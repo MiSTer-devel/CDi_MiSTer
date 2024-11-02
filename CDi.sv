@@ -183,7 +183,7 @@ module emu (
 `endif
 
     assign ADC_BUS = 'Z;
-    assign USER_OUT = '1;
+    assign USER_OUT[6:1] = '1;
     assign {UART_RTS, UART_DTR} = 0;
     assign {SD_SCK, SD_MOSI, SD_CS} = 'Z;
 `ifdef VERILATOR
@@ -583,12 +583,28 @@ module emu (
     bytestream slave_serial_in ();
     wire slave_rts;
 
+    /*
     maneuvering_device spoon (
         .clk(clk_sys),
         .mister_joystick(JOY0),
         .rts(slave_rts),
         .serial_out(slave_serial_in),
         .overclock(overclock_maneuvering_device)
+    );
+    */
+
+    assign USER_OUT[0] = slave_rts;
+
+    uart_rx #(
+        .CLK_FRE  (30),
+        .BAUD_RATE(1200)
+    ) uart_rx_inst (
+        .clk          (clk_sys),
+        .rst_n        (!cditop_reset),
+        .rx_data      (slave_serial_in.data),
+        .rx_data_valid(slave_serial_in.write),
+        .rx_data_ready(1'b1),                // always ready
+        .rx_pin       (USER_IN[1])
     );
 
     cditop cditop (
