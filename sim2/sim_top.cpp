@@ -615,6 +615,9 @@ int main(int argc, char **argv) {
     case 7:
         f_cd_bin = fopen("images/Flashback (Europe).bin", "rb");
         break;
+    case 8:
+        f_cd_bin = fopen("images/Myst (Europe).bin", "rb");
+        break;
     }
 
     assert(f_cd_bin);

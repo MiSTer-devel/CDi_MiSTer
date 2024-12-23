@@ -4,8 +4,11 @@
 // Configures during VBLANK
 
 // DCA Dynamic Control Area
-// Configures dyring HBLANK
+// Configures during HBLANK
 // Limited to a maximum of 8 writes per line
+
+//`define DEBUG
+`define dp(statement) `ifdef DEBUG $display``statement `endif
 
 module ica_dca_ctrl (
     input clk,
@@ -70,9 +73,8 @@ module ica_dca_ctrl (
 
     always_ff @(posedge clk) begin
         if (register_write)
-            $display(
-                "%s Write %x %x %b", unit_name, {1'b1, register_adr}, register_data, register_data
-            );
+            `dp(("%s Write %x %x %b", unit_name, {1'b1, register_adr
+                }, register_data, register_data));
     end
 
     bit ica_ended;
@@ -114,7 +116,7 @@ module ica_dca_ctrl (
                         address <= ica_pointer;
                         // Read one instruction of 4 byte
                         ica_pointer <= ica_pointer + 4;
-                        $display("ICA%d Start reading at %x", unit_index, ica_pointer);
+                        `dp(("ICA%d Start reading at %x", unit_index, ica_pointer));
                         // check for alignment on 32 bit boundary
                         assert (ica_pointer[1:0] == 0);
                         as <= 1;
@@ -144,7 +146,7 @@ module ica_dca_ctrl (
                             dca_misaligned <= 0;
                         end
                         $sformat(unit_name, "DCA%d", unit_index);
-                        $display("DCA%d Start reading at %x", unit_index, dca_pointer);
+                        `dp(("DCA%d Start reading at %x", unit_index, dca_pointer));
                         next_line_dca_pointer <= dca_pointer + 8 * 8;
                     end
                 end
@@ -215,7 +217,7 @@ module ica_dca_ctrl (
                             state <= DCA_READ0;
                             as <= 1;
                             address <= dca_pointer;
-                            $display("DCA%d Continue reading at %x", unit_index, dca_pointer);
+                            // `dp(("DCA%d Continue reading at %x", unit_index, dca_pointer);
 
                             dca_pointer   <= dca_pointer + 8;
                             dca_burst_cnt <= dca_burst_cnt - 1;
@@ -232,27 +234,27 @@ module ica_dca_ctrl (
 
 
             if (execute_instruction) begin
-                $display("%s instruction %x", unit_name, instruction);
+                // `dp(("%s instruction %x", unit_name, instruction);
 
                 case (instruction[31:28])
                     0: begin
                         // stop until next field
                         ica_ended <= 1;
-                        $display("%s STOP", unit_name);
+                        `dp(("%s STOP", unit_name));
 
                         dca_active <= 0;
                     end
                     1: begin
                         // no operation
-                        $display("%s NOP", unit_name);
+                        // `dp(("%s NOP", unit_name);
                     end
                     2: begin
                         // reload dcp
                         if (ica_ended) begin
-                            $display("%s NOP (Reload DCP)", unit_name);
+                            `dp(("%s NOP (Reload DCP)", unit_name));
                         end else begin
                             dca_pointer <= instruction[21:0];
-                            $display("%s Reload DCP %x", unit_name, instruction[21:0]);
+                            `dp(("%s Reload DCP %x", unit_name, instruction[21:0]));
                         end
                     end
                     3: begin
@@ -261,25 +263,25 @@ module ica_dca_ctrl (
                         next_line_dca_pointer <= instruction[21:0];
                         dca_active <= 0;
                         ica_ended <= 1;
-                        $display("%s Reload DCP and STOP %x", unit_name, instruction[21:0]);
+                        `dp(("%s Reload DCP and STOP %x", unit_name, instruction[21:0]));
                     end
                     4: begin
                         // reload ica pointer
                         ica_pointer <= instruction[21:0];
 
-                        if (ica_ended) $display("%s Reload VSR %x", unit_name, instruction[21:0]);
-                        else $display("%s Reload ICA %x", unit_name, instruction[21:0]);
+                        if (ica_ended) `dp(("%s Reload VSR %x", unit_name, instruction[21:0]));
+                        else `dp(("%s Reload ICA %x", unit_name, instruction[21:0]));
                     end
                     5: begin
                         // reload vsr pointer and stop
-                        $display("%s Reload VSR and STOP %x", unit_name, instruction[21:0]);
+                        `dp(("%s Reload VSR and STOP %x", unit_name, instruction[21:0]));
                         ica_ended  <= 1;
                         dca_active <= 0;
 
                     end
                     6: begin
                         // interrupt
-                        $display("%s INTERRUPT", unit_name);
+                        `dp(("%s INTERRUPT", unit_name));
                         irq <= 1;
                     end
                     7: begin
@@ -295,8 +297,7 @@ module ica_dca_ctrl (
                             disp_params.ft2 <= instruction[0];
                             disp_params.strobe <= 1;
 
-                            $display("%s RELOAD DISPLAY PARAMETERS %b", unit_name,
-                                     instruction[4:0]);
+                            `dp(("%s RELOAD DISPLAY PARAMETERS %b", unit_name, instruction[4:0]));
                         end
 
                     end

@@ -3,6 +3,9 @@
 
 // MCD 212 - DRAM and Video
 
+`define dp_vsr(statement) `ifdef DEBUG_VSR $display``statement `endif
+`define dp_dca(statement) `ifdef DEBUG_DCA $display``statement `endif
+
 `ifdef VERILATOR
 function string coding_method_name(bit [3:0] coding, bit plane_b);
     if (plane_b) begin
@@ -823,10 +826,10 @@ module mcd212 (
     end
 
     always_ff @(posedge clk) begin
-        if (ica0_reload_vsr) $display("Reload VSR %x", ica0_vsr);
+        if (ica0_reload_vsr) `dp_vsr(("Reload VSR %x", ica0_vsr));
 
-        if (dca0_read) $display("Start DCA0 on line %d", video_y);
-        if (dca1_read) $display("Start DCA1 on line %d", video_y);
+        if (dca0_read) `dp_dca(("Start DCA0 on line %d", video_y));
+        if (dca1_read) `dp_dca(("Start DCA1 on line %d", video_y));
     end
 
 
@@ -1206,6 +1209,8 @@ module mcd212 (
                     end
                     7'h59: begin
                         // Mosaic Pixel Hold for Plane A
+                        // TODO is ignored
+                        $display("Mosaic A %b", ch0_register_data[3:0]);
                     end
                     7'h5b: begin
                         // Weight Factor for Plane A
@@ -1213,8 +1218,9 @@ module mcd212 (
                         $display("Weight A %d", ch0_register_data[5:0]);
                     end
                     default: begin
-                        if (ch0_register_adr >= 7'h40) begin
-                            $display("Ignored %x", ch0_register_adr);
+                        // Mask out CLUT and Region writes
+                        if (ch0_register_adr >= 7'h40 && ch0_register_adr[6:3] != 4'b1010) begin
+                            $display("Plane A ignored %x", ch0_register_adr);
                         end
                     end
                 endcase
@@ -1320,9 +1326,14 @@ module mcd212 (
                         weight_b <= ch1_register_data[5:0];
                         $display("Weight B %d", ch1_register_data[5:0]);
                     end
+                    7'h5A: begin
+                        // Mosaic Pixel Hold for Plane B
+                        // TODO is ignored
+                        $display("Mosaic B %b", ch0_register_data[3:0]);
+                    end
                     default: begin
-                        if (ch1_register_adr >= 7'h40) begin
-                            $display("Ignored %x", ch1_register_adr);
+                        if (ch1_register_adr >= 7'h40 && ch1_register_adr[6:3] != 4'b1010) begin
+                            $display("Plane B ignored %x", ch1_register_adr);
                         end
                     end
                 endcase

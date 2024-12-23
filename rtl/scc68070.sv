@@ -400,7 +400,7 @@ module scc68070 (
                         uart_command_register.transmitter_enabled <= data_out[3:2] == 2'b01;
                     end
                     3'd4: begin
-                        $display("UART char %c", data_out[7:0]);
+                        // $display("UART char %c", data_out[7:0]);
                     end
                     default: ;
                 endcase

@@ -1,5 +1,8 @@
 
 
+//`define DEBUG
+`define dp(statement) `ifdef DEBUG $display``statement `endif
+
 module display_file_decoder (
     input clk,
     input reset,
@@ -17,8 +20,6 @@ module display_file_decoder (
     pixelstream.source out
 );
     parameter bit unit_index = 0;
-
-    bit debug_print_file  /*verilator public_flat_rw*/ = 0;
 
 `ifdef VERILATOR
     string unit_name;
@@ -78,7 +79,7 @@ module display_file_decoder (
                         state <= READ;
                         as <= 1;
                         burst_index <= 0;
-                        if (debug_print_file) $display("%s: read %x", unit_name, vsr);
+                        `dp(("%s: read %x", unit_name, vsr));
                     end
                 end
                 READ: begin
@@ -133,8 +134,7 @@ module display_file_decoder (
             if (din_valid) begin
                 mem[write_index] <= din;
                 write_index <= write_index + 1;
-                if (debug_print_file) $display("%s: got %x", unit_name, din);
-
+                `dp(("%s: got %x", unit_name, din));
             end
 
             if (out.strobe) lower_byte <= !lower_byte;

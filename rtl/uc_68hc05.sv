@@ -3,6 +3,9 @@
 // Used core is https://opencores.org/projects/68hc05 which only implements basic functionality
 // and no peripherals
 
+//`define DEBUG
+`define dp(statement) `ifdef DEBUG $display``statement `endif
+
 module uc68hc05 (
     input clk30,
     input reset,
@@ -192,32 +195,32 @@ module uc68hc05 (
         case (addr)
             16'h0000: begin
                 datain = porta_mix;
-                // $display("PORTA %x %d %x", dataout, wr, porta_mix);
+                // `dp(("PORTA %x %d %x", dataout, wr, porta_mix));
             end
             16'h0001: begin
                 datain = portb_mix;
-                // $display("PORTB %x %d %x", dataout, wr, portb_mix);
+                // `dp(("PORTB %x %d %x", dataout, wr, portb_mix));
             end
             16'h0002: begin
                 datain = portc_mix;
-                // $display("PORTC %x %d %x", dataout, wr, portc_mix);
+                // `dp(("PORTC %x %d %x", dataout, wr, portc_mix));
             end
             16'h0003: begin
                 // Only input for PORTD
                 datain = portd_in;
-                // $display("PORTD %x %d %x", dataout, wr, portd_in);
+                // `dp(("PORTD %x %d %x", dataout, wr, portd_in));
             end
             16'h0004: begin
                 datain = ddra;
-                // $display("DDRA %x %d", dataout, wr);
+                // `dp(("DDRA %x %d", dataout, wr));
             end
             16'h0005: begin
                 datain = ddrb;
-                // $display("DDRB %x %d", dataout, wr);
+                // `dp(("DDRB %x %d", dataout, wr));
             end
             16'h0006: begin
                 datain = ddrc;
-                // $display("DDRC %x %d", dataout, wr);
+                // `dp(("DDRC %x %d", dataout, wr));
             end
             16'h000a: begin
                 datain = serial_periph_control_register;
@@ -249,7 +252,7 @@ module uc68hc05 (
             end
 
             16'h0013: begin
-                //$display("TIMER STATUS %x %x", dataout, wr);
+                //`dp(("TIMER STATUS %x %x", dataout, wr));
                 datain = timer_status_register;
             end
 
@@ -308,7 +311,7 @@ module uc68hc05 (
                     timer_status_register.output_compare_flag <= 1;
                     if (timer_control_register.output_capture_interrupt_enable) begin
                         timerirq <= 1;
-                        //$display("SLAVE TIMER IRQ");
+                        //`dp(("SLAVE TIMER IRQ"));
                     end
                 end else timerirq <= 0;
 
@@ -316,36 +319,36 @@ module uc68hc05 (
                 case (addr)
                     16'h0000: begin
                         if (wr) porta_out <= dataout;
-                        //$display("PORTA %x %d %x", dataout, wr, porta_mix);
+                        //`dp(("PORTA %x %d %x", dataout, wr, porta_mix));
                     end
                     16'h0001: begin
                         if (wr) portb_out <= dataout;
-                        //$display("PORTB %x %d %x", dataout, wr, portb_mix);
+                        //`dp(("PORTB %x %d %x", dataout, wr, portb_mix));
 
-                        //if (wr) $display("RTS %d %d", dataout[4], ddrb[4]);
+                        //if (wr) `dp(("RTS %d %d", dataout[4], ddrb[4]));
                     end
                     16'h0002: begin
                         if (wr) portc_out <= dataout;
-                        //$display("PORTC %x %d %x", dataout, wr, portc_mix);
+                        //`dp(("PORTC %x %d %x", dataout, wr, portc_mix));
                     end
                     16'h0003: begin
                         // Only input for PORTD
-                        //$display("PORTD %x %d %x", dataout, wr, portd_in);
+                        //`dp(("PORTD %x %d %x", dataout, wr, portd_in));
                     end
                     16'h0004: begin
                         if (wr) ddra <= dataout;
-                        //$display("DDRA %x %d", dataout, wr);
+                        //`dp(("DDRA %x %d", dataout, wr));
                     end
                     16'h0005: begin
                         if (wr) ddrb <= dataout;
-                        //$display("DDRB %x %d", dataout, wr);
+                        //`dp(("DDRB %x %d", dataout, wr));
                     end
                     16'h0006: begin
                         if (wr) ddrc <= dataout;
-                        //$display("DDRC %x %d", dataout, wr);
+                        //`dp(("DDRC %x %d", dataout, wr));
                     end
                     16'h000a: begin
-                        $display("SERIAL PERIPH CONTROL %x %x", dataout, wr);
+                        `dp(("SERIAL PERIPH CONTROL %x %x", dataout, wr));
                         if (wr) begin
                             serial_periph_control_register <= dataout;
                             serial_peripheral_status_register.modf <= 0;
@@ -354,21 +357,20 @@ module uc68hc05 (
 
                     16'h000b: begin
                         /*
-                        $display("SERIAL PERIPH STATUS %x %x %x %x", dataout, wr,
-                                 serial_peripheral_status_register, lastaddr);
+                        `dp(("SERIAL PERIPH STATUS %x %x %x %x", dataout, wr,
+                                 serial_peripheral_status_register, lastaddr));
 		                */
                     end
 
                     16'h000c: begin
 
-                        $display("SERIAL PERIPH DATA %x %x %x", dataout, wr,
-                                 serial_periph_miso_data);
+                        `dp(("SERIAL PERIPH DATA %x %x %x", dataout, wr, serial_periph_miso_data));
 
                         if (wr) begin
                             serial_peripheral_status_register.spif <= 1;
                             spi.write <= 1;
                             spi.mosi <= dataout;
-                            $display("SLAVE SPI MOSI:%x MISO:%x", dataout, spi.miso);
+                            `dp(("SLAVE SPI MOSI:%x MISO:%x", dataout, spi.miso));
 
                         end else begin
                             serial_peripheral_status_register.spif <= 0;
@@ -376,59 +378,59 @@ module uc68hc05 (
                     end
 
                     16'h000d: begin
-                        $display("SERIAL COM BAUD %x %x", dataout, wr);
+                        `dp(("SERIAL COM BAUD %x %x", dataout, wr));
                         if (wr) serial_communications_baud_rate_register <= dataout;
                     end
                     16'h000e: begin
-                        $display("SERIAL COM CONTROL1 %x %x", dataout, wr);
+                        `dp(("SERIAL COM CONTROL1 %x %x", dataout, wr));
                         if (wr) serial_communications_control1_register <= dataout;
                     end
                     16'h000f: begin
-                        $display("SERIAL COM CONTROL2 %x %x", dataout, wr);
+                        `dp(("SERIAL COM CONTROL2 %x %x", dataout, wr));
                         if (wr) serial_communications_control2_register <= dataout;
                     end
 
                     16'h0010: begin
-                        $display("SERIAL COM STATUS %x %x %d", datain, dataout, wr);
+                        `dp(("SERIAL COM STATUS %x %x %d", datain, dataout, wr));
                     end
 
                     16'h0011: begin
                         //if (wr) timer_control_register <= dataout;
                         if (!wr) begin
                             serial_communications_status_register.rdrf <= 0;
-                            $display("SERIAL COM DATA READ %x %x", datain, wr);
+                            `dp(("SERIAL COM DATA READ %x %x", datain, wr));
                         end
 
                         if (wr) begin
-                            $display("SERIAL COM DATA WRITE %x %x", dataout, wr);
+                            `dp(("SERIAL COM DATA WRITE %x %x", dataout, wr));
                         end
                     end
 
                     16'h0012: begin
-                        // $display("TIMER CONTROL %x %x", dataout, wr);
+                        // `dp(("TIMER CONTROL %x %x", dataout, wr));
                         if (wr) timer_control_register <= dataout;
                     end
 
                     16'h0013: begin
-                        //$display("TIMER STATUS %x %x", dataout, wr);
+                        //`dp(("TIMER STATUS %x %x", dataout, wr));
                     end
 
-                    16'h0014: $display("INPUT CAPTURE H %x %x", dataout, wr);
-                    16'h0015: $display("INPUT CAPTURE L %x %x", dataout, wr);
+                    16'h0014: `dp(("INPUT CAPTURE H %x %x", dataout, wr));
+                    16'h0015: `dp(("INPUT CAPTURE L %x %x", dataout, wr));
                     16'h0016: begin
-                        //$display("OUTPUT CAPTURE H %x %x", dataout, wr);
+                        //`dp(("OUTPUT CAPTURE H %x %x", dataout, wr));
                         if (wr) output_capture[15:8] <= dataout;
                     end
                     16'h0017: begin
-                        //$display("OUTPUT CAPTURE L %x %x", dataout, wr);
+                        //`dp(("OUTPUT CAPTURE L %x %x", dataout, wr));
                         if (wr) begin
                             output_capture[7:0] <= dataout;
                             // TODO this is not correct. but might work anyway...
                             timer_status_register.output_compare_flag <= 0;
                         end
                     end
-                    16'h0018: $display("TIMER MSB %x %x", dataout, wr);
-                    16'h0019: $display("TIMER LSB %x %x", dataout, wr);
+                    16'h0018: `dp(("TIMER MSB %x %x", dataout, wr));
+                    16'h0019: `dp(("TIMER LSB %x %x", dataout, wr));
 
                     16'h001a: begin
                         // Alternate counter High
