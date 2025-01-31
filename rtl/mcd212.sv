@@ -632,6 +632,15 @@ module mcd212 (
     bit [21:0] ica1_vsr;
     bit ica1_irq;
 
+    wire rle0_on_rle;
+    wire rle1_on_rle;
+    bit rle0_on_rle_synced;
+    bit rle0_on_rle_synced2;
+    bit rle0_on_rle_synced3;
+    bit rle1_on_rle_synced;
+    bit rle1_on_rle_synced2;
+    bit rle1_on_rle_synced3;
+
     wire dca0_read = hblank_vt && !hblank_vt_q && !vblank && command_register_dcr1.dc1;
     ica_dca_ctrl #(
         .unit_index(0)
@@ -760,7 +769,8 @@ module mcd212 (
         .st(control_register_crsr1w.st),
         .src(rle0_in),
         .dst(rle0_out),
-        .passthrough(!display_decoder_register_ddr1.ft1)
+        .passthrough(!display_decoder_register_ddr1.ft1),
+        .on_rle(rle0_on_rle)
     );
 
     clut_rle rle1 (
@@ -769,7 +779,8 @@ module mcd212 (
         .st(control_register_crsr1w.st),
         .src(rle1_in),
         .dst(rle1_out),
-        .passthrough(!display_decoder_register_ddr2.ft1)
+        .passthrough(!display_decoder_register_ddr2.ft1),
+        .on_rle(rle1_on_rle)
     );
 
 
@@ -840,12 +851,23 @@ module mcd212 (
     end
 
     always_ff @(posedge clk) begin
+        rle0_on_rle_synced3 <= rle0_on_rle_synced2;
+        rle1_on_rle_synced3 <= rle1_on_rle_synced2;
         if (new_line) begin
             synchronized_pixel0 <= 0;
             synchronized_pixel1 <= 0;
         end else begin
-            if (rle0_out.write && rle0_out.strobe) synchronized_pixel0 <= rle0_out.pixel;
-            if (rle1_out.write && rle1_out.strobe) synchronized_pixel1 <= rle1_out.pixel;
+            if (rle0_out.write && rle0_out.strobe) begin
+                synchronized_pixel0 <= rle0_out.pixel;
+                rle0_on_rle_synced  <= rle0_on_rle;
+                rle0_on_rle_synced2 <= rle0_on_rle;
+            end
+            if (rle1_out.write && rle1_out.strobe) begin
+                synchronized_pixel1 <= rle1_out.pixel;
+                rle1_on_rle_synced  <= rle1_on_rle;
+                rle1_on_rle_synced2 <= rle1_on_rle;
+
+            end
 
             // Implement CLUT4 shifting
             if (image_coding_method_register.cm13_10_planea == 4'b1011 && new_pixel_hires && !new_pixel_lores)
@@ -1002,6 +1024,13 @@ module mcd212 (
         plane_a.g = WeightCalc(g, weight_a);
         plane_a.b = WeightCalc(b, weight_a);
 
+        if (rle0_on_rle_synced3) begin
+            plane_a.r = plane_a.r >> 3;
+            plane_a.g = plane_a.g >> 3;
+            plane_a.b = plane_a.b >> 3;
+        end
+
+
         if (image_coding_method_register.cm13_10_planea != 0 && command_register_dcr1.ic1) begin
             // Use only the lower 3 bits first as the highest bit just inverts the result
 
@@ -1052,6 +1081,12 @@ module mcd212 (
         plane_b.r = WeightCalc(r, weight_b);
         plane_b.g = WeightCalc(g, weight_b);
         plane_b.b = WeightCalc(b, weight_b);
+
+        if (rle1_on_rle_synced) begin
+            plane_b.r = plane_b.r >> 3;
+            plane_b.g = plane_b.g >> 3;
+            plane_b.b = plane_b.b >> 3;
+        end
 
         if (image_coding_method_register.cm23_20_planeb != 0 && command_register_dcr2.ic2) begin
             // Use only the lower 3 bits first as the highest bit just inverts the result

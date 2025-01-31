@@ -1,0 +1,59 @@
+[*]
+[*] GTKWave Analyzer v3.3.121 (w)1999-2024 BSI
+[*] Fri Jan 31 21:18:10 2025
+[*]
+[dumpfile] "/tmp/waveform0.vcd"
+[dumpfile_mtime] "Fri Jan 31 21:14:22 2025"
+[dumpfile_size] 3582972
+[savefile] "/home/andre/GIT/scc68070/sim2/rle.gtkw"
+[timestart] 654731
+[size] 1920 1152
+[pos] -1 -1
+*-4.195859 654784 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] TOP.
+[treeopen] TOP.emu.
+[treeopen] TOP.emu.cditop.
+[treeopen] TOP.emu.cditop.mcd212_inst.
+[sst_width] 374
+[signals_width] 327
+[sst_expanded] 1
+[sst_vpaned_height] 346
+@28
+TOP.emu.cditop.mcd212_inst.rle0_on_rle
+TOP.emu.cditop.mcd212_inst.rle0_on_rle_synced3
+@29
+TOP.emu.cditop.mcd212_inst.hblank
+@22
+TOP.emu.cditop.mcd212_inst.synchronized_pixel0[7:0]
+@24
+TOP.emu.cditop.mcd212_inst.video_y[8:0]
+TOP.emu.cditop.mcd212_inst.video_x[12:0]
+@28
+TOP.emu.cditop.mcd212_inst.rle0_on_rle_synced
+TOP.emu.cditop.mcd212_inst.rle1_on_rle
+TOP.emu.cditop.mcd212_inst.rle1_on_rle_synced
+TOP.emu.cditop.mcd212_inst.rle0.on_rle
+@22
+TOP.emu.cditop.mcd212_inst.rle0.rle_counter[7:0]
+@100000028
+TOP.emu.cditop.mcd212_inst.rle0.state[3:0]
+@28
+TOP.emu.cditop.mcd212_inst.rle0_out.strobe
+@22
+TOP.emu.cditop.mcd212_inst.rle0_out.pixel[7:0]
+@28
+TOP.emu.cditop.mcd212_inst.rle0_out.write
+@22
+TOP.emu.cditop.mcd212_inst.r[7:0]
+TOP.emu.cditop.mcd212_inst.g[7:0]
+TOP.emu.cditop.mcd212_inst.b[7:0]
+TOP.emu.cditop.mcd212_inst.clut_out0.b[5:0]
+TOP.emu.cditop.mcd212_inst.clut_out0.g[5:0]
+TOP.emu.cditop.mcd212_inst.clut_out0.r[5:0]
+@28
+TOP.emu.cditop.mcd212_inst.rle0_on_rle
+TOP.emu.cditop.mcd212_inst.rle0_on_rle_synced
+TOP.emu.cditop.mcd212_inst.rle0_on_rle_synced2
+TOP.emu.cditop.mcd212_inst.rle0_on_rle_synced3
+[pattern_trace] 1
+[pattern_trace] 0
