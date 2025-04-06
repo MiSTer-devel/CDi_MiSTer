@@ -36,12 +36,16 @@ Core Utilization:
 ### TODOs in order of priority
 
 * Find a better solution for reducing CPU speed
+* Find a better solution for CD data stalling (take a screenshot or plug in a USB device)
+    * PSX core seems to halt the whole machine to avoid this situation
 * Fix regression: Audio hiccups during Philips Logo in Burn:Cycle
     * A workaround is CPU overclocking
 * Investigate mysterious non loading behavior
 * Investigate input responsiveness (skipped events?)
 * Investigate screeching sound effect in the menu of "Golf Tips"
 * Fix hang on audio track stop or change in media player
+* Cheat support?
+* Digital Video Cartridge MPEG Decoder
 * Investigate "Gray border glitch" at the top of "Myst" gameplay (seems to be only one plane)
 * Fix reset behaviour (Core is sometimes hanging after reset)
 * Add auto start of titles using front panel "Play" button
