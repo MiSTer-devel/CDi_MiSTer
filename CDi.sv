@@ -183,7 +183,6 @@ module emu (
 `endif
 
     assign ADC_BUS = 'Z;
-    assign USER_OUT[6:1] = '1;
     assign {UART_RTS, UART_DTR} = 0;
     assign {SD_SCK, SD_MOSI, SD_CS} = 'Z;
 `ifdef VERILATOR
@@ -657,7 +656,10 @@ module emu (
     );
     */
 
-    assign USER_OUT[0] = slave_rts;
+    assign USER_OUT[6:5] = '1;
+    assign USER_OUT[3:0] = '1;
+
+    assign USER_OUT[4] = ~slave_rts;
 
     uart_rx #(
         .CLK_FRE  (30),
@@ -668,9 +670,9 @@ module emu (
         .rx_data      (slave_serial_in.data),
         .rx_data_valid(slave_serial_in.write),
         .rx_data_ready(1'b1),                // always ready
-        .rx_pin       (USER_IN[1])
+        .rx_pin       (~USER_IN[0])
     );
-
+    
     wire fail_not_enough_words;
     wire fail_too_much_data;
     wire debug_irq_hangup;
