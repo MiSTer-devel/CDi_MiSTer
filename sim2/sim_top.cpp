@@ -18,7 +18,7 @@
 
 #define SCC68070
 #define SLAVE
-// #define TRACE
+#define TRACE
 
 #define BCD(v) ((uint8_t)((((v) / 10) << 4) | ((v) % 10)))
 
@@ -187,6 +187,9 @@ void subcode_data(int lba, struct subcode &out) {
 
 class CDi {
   public:
+    FILE *rc5_file;
+    uint64_t rc5_fliptime{0};
+
     Vemu dut;
     uint64_t step = 0;
     uint64_t sim_time = 0;
@@ -337,6 +340,17 @@ class CDi {
     void modelstep() {
         step++;
         clock();
+
+        if (sim_time >= rc5_fliptime) {
+            dut.USER_IN ^= 1;
+            printf("FLIP!\n");
+            char buffer[100];
+            if (!fgets(buffer, sizeof(buffer), rc5_file))
+                exit(1);
+            float next_flip = std::max(strtof(buffer, nullptr) - 5.65f, 0.0f) * 30e6;
+            // printf("%f\n",next_flip);
+            rc5_fliptime = next_flip;
+        }
 
         if ((step % 100000) == 0) {
             printf("%d\n", step);
@@ -703,6 +717,8 @@ class CDi {
         dut.OSD_STATUS = 1;
 
         start = std::chrono::system_clock::now();
+
+        rc5_file = fopen("digital.csv", "r");
     }
 
     void reset() {
