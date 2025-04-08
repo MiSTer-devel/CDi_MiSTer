@@ -706,6 +706,7 @@ module emu (
         .slave_serial_in(slave_serial_in),
         .slave_serial_out(slave_serial_out),
         .slave_rts(slave_rts),
+        .rc_eye(USER_IN[0]),
 
         .cd_hps_req(cd_hps_req),
         .cd_hps_lba(cd_hps_lba),

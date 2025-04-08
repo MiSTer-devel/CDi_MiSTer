@@ -3,7 +3,7 @@
 // Used core is https://opencores.org/projects/68hc05 which only implements basic functionality
 // and no peripherals
 
-//`define DEBUG
+`define DEBUG
 `define dp(statement) `ifdef DEBUG $display``statement `endif
 
 module uc68hc05 (
@@ -27,7 +27,8 @@ module uc68hc05 (
     input worm_wr,
 
     bytestream.source serial_out,
-    bytestream.sink   serial_in,
+    bytestream.sink serial_in,
+    input tcap,
 
     parallelel_spi.master spi,
     input quirk_force_mode_fault
@@ -73,6 +74,7 @@ module uc68hc05 (
     bit timerirq = 0;
     bit [7:0] serial_periph_miso_data = 0;
     bit [7:0] serial_periph_mosi_data = 0;
+    bit tcap_q;
 
     struct packed {
         bit spie;
@@ -86,6 +88,7 @@ module uc68hc05 (
 
 
     bit [15:0] output_capture = 0;
+    bit [15:0] input_capture = 0;
 
     struct packed {
         bit input_capture_interrupt_enable;
@@ -252,8 +255,16 @@ module uc68hc05 (
             end
 
             16'h0013: begin
-                //`dp(("TIMER STATUS %x %x", dataout, wr));
                 datain = timer_status_register;
+                `dp(("TIMER STATUS Read %x %x", datain, wr));
+            end
+            16'h0014: begin
+                datain = input_capture[15:8];
+                `dp(("INPUT CAPTURE HIGH %x %x", datain, wr));
+            end
+            16'h0015: begin
+                datain = input_capture[7:0];
+                `dp(("INPUT CAPTURE LOW %x %x", datain, wr));
             end
 
             16'h001a: begin
@@ -268,6 +279,7 @@ module uc68hc05 (
         endcase
     end
 
+    /*verilator tracing_off*/
     UR6805 slave_core (
         .clk(clk30),
         .clken(clken),
@@ -281,9 +293,11 @@ module uc68hc05 (
         .state(state),
         .dataout(dataout)
     );
+    /*verilator tracing_on*/
 
 
     always_ff @(posedge clk30) begin
+
         if (reset) begin
             lastaddr <= 0;
             free_running_counter <= 0;
@@ -304,6 +318,9 @@ module uc68hc05 (
         end else begin
             if (!clken) begin
                 lastaddr <= addr;
+                timerirq <= 0;
+                tcap_q <= tcap;
+
 
                 free_running_counter <= free_running_counter + 1;
 
@@ -313,7 +330,16 @@ module uc68hc05 (
                         timerirq <= 1;
                         //`dp(("SLAVE TIMER IRQ"));
                     end
-                end else timerirq <= 0;
+                end
+
+                if (tcap && !tcap_q) begin
+                    timer_status_register.input_capture_flag <= 1;
+                    input_capture <= free_running_counter[17:2];
+                    if (timer_control_register.input_capture_interrupt_enable) begin
+                        timerirq <= 1;
+                        //`dp(("SLAVE TIMER IRQ"));
+                    end
+                end
 
 
                 case (addr)
@@ -407,16 +433,20 @@ module uc68hc05 (
                     end
 
                     16'h0012: begin
-                        // `dp(("TIMER CONTROL %x %x", dataout, wr));
+                        `dp(("TIMER CONTROL %x %x", dataout, wr));
                         if (wr) timer_control_register <= dataout;
                     end
 
                     16'h0013: begin
-                        //`dp(("TIMER STATUS %x %x", dataout, wr));
+                        `dp(("TIMER STATUS %x %x", dataout, wr));
                     end
 
                     16'h0014: `dp(("INPUT CAPTURE H %x %x", dataout, wr));
-                    16'h0015: `dp(("INPUT CAPTURE L %x %x", dataout, wr));
+                    16'h0015: begin
+                        `dp(("INPUT CAPTURE L %x %x", dataout, wr));
+                        timer_status_register.input_capture_flag <= 0;
+
+                    end
                     16'h0016: begin
                         //`dp(("OUTPUT CAPTURE H %x %x", dataout, wr));
                         if (wr) output_capture[15:8] <= dataout;

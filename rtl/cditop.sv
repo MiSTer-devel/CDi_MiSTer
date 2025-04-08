@@ -49,6 +49,7 @@ module cditop (
 
     bytestream.source slave_serial_out,
     bytestream.sink slave_serial_in,
+    input rc_eye,
     output slave_rts,
 
     output [31:0] cd_hps_lba,
@@ -254,6 +255,7 @@ module cditop (
     wire av = iack2;
 
 `ifndef DISABLE_MAIN_CPU
+    /*verilator tracing_off*/
 
     scc68070 scc68070_0 (
         .clk(clk30),
@@ -288,6 +290,7 @@ module cditop (
         .done_in(cdic_dma_done_in),
         .done_out(cdic_dma_done_out)
     );
+    /*verilator tracing_on*/
 
 `endif
 
@@ -358,7 +361,6 @@ module cditop (
     assign reset = external_reset || resetsys;
 
 `ifndef DISABLE_SLAVE_UC
-    /*verilator tracing_off*/
     uc68hc05 uc68hc05_0 (
         .clk30,
         .reset(reset),
@@ -378,12 +380,13 @@ module cditop (
         .worm_data(slave_worm_data),
         .worm_wr  (slave_worm_wr),
 
+        .tcap(rc_eye),
+
         .serial_in(slave_serial_in),
         .serial_out(slave_serial_out),
         .spi(slave_servo_spi),
         .quirk_force_mode_fault(quirk_force_mode_fault)
     );
-    /*verilator tracing_on*/
 
 `endif
     wire signed [15:0] att_audio_left;

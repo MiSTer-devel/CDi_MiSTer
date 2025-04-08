@@ -347,7 +347,7 @@ class CDi {
             char buffer[100];
             if (!fgets(buffer, sizeof(buffer), rc5_file))
                 exit(1);
-            float next_flip = std::max(strtof(buffer, nullptr) - 5.65f, 0.0f) * 30e6;
+            float next_flip = std::max(strtof(buffer, nullptr) - 5.0f, 0.0f) * 30e6;
             // printf("%f\n",next_flip);
             rc5_fliptime = next_flip;
         }
