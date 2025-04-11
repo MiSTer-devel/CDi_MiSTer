@@ -68,6 +68,75 @@ start_delay:
 	move.b #$f8,$310006
 	move.b #$fc,$310006
 
+	move #4000,d0
+	bsr wait
+
+	;move #8000,d0
+	;bsr wait
+
+	move.b #$fc,$310006
+	move.b #$fd,$310006
+	; Request Pointer Type (0xf3)
+	move.b #$f3,$310006
+
+	move #4000,d0
+	bsr wait
+
+	move.b $310000,d0
+	move.b $310000,d0
+	move.b $310000,d0
+	move.b $310002,d0
+	move.b $310002,d0
+	move.b $310002,d0
+	move.b $310004,d0
+	move.b $310004,d0
+	move.b $310004,d0
+
+	move.b #$f9,$310006
+	move.b #$f8,$310006
+	; Request Test Plug Status (0xf4)
+	move.b #$f4,$310006
+
+	move #4000,d0
+	bsr wait
+
+	move.b $310000,d0
+	move.b $310000,d0
+	move.b $310000,d0
+	move.b $310002,d0
+	move.b $310002,d0
+	move.b $310002,d0
+	move.b $310004,d0
+	move.b $310004,d0
+	move.b $310004,d0
+
+	move.b #$f9,$310006
+	move.b #$f8,$310006
+	move.b #$8c,$310004
+
+	; Activate Front LCD Buttons
+	move.b #$8d,$310004
+
+	; Request SLAVE Revision (0xf0)
+	move.b #$f0,$310006
+
+	move #4000,d0
+	bsr wait
+
+	move.b $310000,d0
+	move.b $310000,d0
+	move.b $310000,d0
+	move.b $310002,d0
+	move.b $310002,d0
+	move.b $310002,d0
+	move.b $310004,d0
+	move.b $310004,d0
+	move.b $310004,d0
+
+
+	; Activate Input Polling (0xf7)
+	move.b #$f7,$310006
+
 
 endless:
 	bra endless

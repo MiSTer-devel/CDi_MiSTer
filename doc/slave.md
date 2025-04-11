@@ -19,6 +19,36 @@ $1ff8 -> $961  Timer
 $1ff6 -> $67a  SCI
 $1ff4 -> $100  SPI
 
+## Timer
+
+The internal CPU clock is fOSC/2
+The 16 bit timer counter is /4 of that.
+fOSC is 4 MHz.
+This means the counter operates at 0.5 MHz.
+Ever clock is 2µs
+
+clk_sys is 30 MHz
+Because of clken, fOSC is 15 MHz
+
+A division by 30 would be required.
+
+## Ir decoding
+
+Possible delays
+888µs   444
+1778µs
+1333µs
+
+Magic numbers
+0x3de  990 -> 180
+0x32a  810 -> 68     
+0x2e6  742 -> 68
+0x25f  607 -> 87
+
+df    223
+14e   334
+153   339
+
 ## Variables
     0050 Multiplied with Attenuation value?
     0053 Bit 4 activates transmission to DAC
@@ -29,7 +59,7 @@ $1ff4 -> $100  SPI
          Bit 4 is set at 0x0561 which seems to be related to timing. When?
          Bit 4 is set at 0x0589. When? Seems to be near
                to 0x575 when a compare went different.
-
+         Bit 0 is set when new data from Ir
     0056 Bit 0 is cleared on Unmute
          Bit 0 is set on Mute
     0059 Checked on Unmute
@@ -41,15 +71,24 @@ $1ff4 -> $100  SPI
     0067 SERVO SPI Byte 1
     0068 SERVO SPI Byte 2
     0069 SERVO SPI Byte 3
-    0099 Copy of 0x0066 (during 0c3d)
-    009a Copy of 0x0067 (during 0c3d)
-    009b Copy of 0x0068 (during 0c3d)
-    009c Copy of 0x0069 (during 0c3d)
     0075 Attenuation Highest Bit?
     0076 Attenuation 0
     0077 Attenuation 1
     0078 Attenuation 2
     0079 Attenuation 3
+    0099 Copy of 0x0066 (during 0c3d)
+    009a Copy of 0x0067 (during 0c3d)
+    009b Copy of 0x0068 (during 0c3d)
+    009c Copy of 0x0069 (during 0c3d)
+    009e Ir RC Shift Register 0
+    009f Ir RC Shift Register 1
+    00a0 Ir RC Shift Register 2
+    00a1 Ir RC Shift Register 3
+    00a2 Ir Rc Storage 0
+    00a3 Ir Rc Storage 1
+    00a4 Ir Rc Storage 2
+    00a5 Ir Rc Storage 3
+    00a6 Counter for Ir
     00d1 Only written at 0ff0. Always incremented by 0x10
     00da Only written at 0160
     00db Probably End of Stack

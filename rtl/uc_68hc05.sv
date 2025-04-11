@@ -69,7 +69,9 @@ module uc68hc05 (
     endgenerate
 
     // lower 2 bit are invisible
-    bit [17:0] free_running_counter = 0;
+    bit [15:0] free_running_counter = 0;
+    bit [7:0] free_running_counter_shadowcnt = 0;
+
     bit [7:0] latched_counter = 0;
     bit timerirq = 0;
     bit [7:0] serial_periph_miso_data = 0;
@@ -256,23 +258,25 @@ module uc68hc05 (
 
             16'h0013: begin
                 datain = timer_status_register;
-                `dp(("TIMER STATUS Read %x %x", datain, wr));
+                //`dp(("TIMER STATUS Read %x %x", datain, wr));
             end
             16'h0014: begin
                 datain = input_capture[15:8];
-                `dp(("INPUT CAPTURE HIGH %x %x", datain, wr));
+                //`dp(("INPUT CAPTURE HIGH %x %x", datain, wr));
             end
             16'h0015: begin
                 datain = input_capture[7:0];
-                `dp(("INPUT CAPTURE LOW %x %x", datain, wr));
+                //`dp(("INPUT CAPTURE LOW %x %x", datain, wr));
             end
 
             16'h001a: begin
                 // Alternate counter High
-                datain = free_running_counter[17:10];
+                datain = free_running_counter[15:8];
+                //`dp(("ALTERNATE COUNTER HIGH %x %x", datain, wr));
             end
             16'h001b: begin
                 datain = latched_counter;
+                //`dp(("ALTERNATE COUNTER LOW %x %x", datain, wr));
             end
             default: begin  // do nothing
             end
@@ -319,12 +323,14 @@ module uc68hc05 (
             if (!clken) begin
                 lastaddr <= addr;
                 timerirq <= 0;
-                tcap_q <= tcap;
+                tcap_q   <= tcap;
 
+                if (free_running_counter_shadowcnt == 15-1) begin
+                    free_running_counter_shadowcnt <= 0;
+                    free_running_counter <= free_running_counter + 1;
+                end else free_running_counter_shadowcnt <= free_running_counter_shadowcnt + 1;
 
-                free_running_counter <= free_running_counter + 1;
-
-                if (free_running_counter == {output_capture, 2'b0}) begin
+                if (free_running_counter == output_capture) begin
                     timer_status_register.output_compare_flag <= 1;
                     if (timer_control_register.output_capture_interrupt_enable) begin
                         timerirq <= 1;
@@ -332,9 +338,10 @@ module uc68hc05 (
                     end
                 end
 
+                //if (!tcap && tcap_q) begin
                 if (tcap && !tcap_q) begin
                     timer_status_register.input_capture_flag <= 1;
-                    input_capture <= free_running_counter[17:2];
+                    input_capture <= free_running_counter;
                     if (timer_control_register.input_capture_interrupt_enable) begin
                         timerirq <= 1;
                         //`dp(("SLAVE TIMER IRQ"));
@@ -464,7 +471,7 @@ module uc68hc05 (
 
                     16'h001a: begin
                         // Alternate counter High
-                        latched_counter <= free_running_counter[9:2];
+                        latched_counter <= free_running_counter[7:0];
                     end
                     16'h001b: begin
                         // Alternate counter Low
@@ -472,6 +479,19 @@ module uc68hc05 (
                     default: begin
                         // The rest is just RAM and ROM. But check for out of bounds
                         assert (addr[15:13] == 0);
+
+                        if (wr && addr == 16'h009e) $display("IR0 %x %x WR", addr, dataout);
+                        if (wr && addr == 16'h009f) $display("IR1 %x %x WR", addr, dataout);
+                        if (wr && addr == 16'h00a0) $display("IR2 %x %x WR", addr, dataout);
+                        if (wr && addr == 16'h00a1) $display("IR3 %x %x WR", addr, dataout);
+
+                        if (wr && addr == 16'h00a6) $display("IRCNT %x %x WR", addr, dataout);
+
+                        if (wr && addr == 16'h00a7) $display("TL %x %x WR", addr, dataout);
+                        if (wr && addr == 16'h00a8) $display("TH %x %x WR", addr, dataout);
+
+                        if (wr && addr == 16'h00a9) $display("LAST TL %x %x WR", addr, dataout);
+                        if (wr && addr == 16'h00aa) $display("LAST TH %x %x WR", addr, dataout);
                     end
                 endcase
             end

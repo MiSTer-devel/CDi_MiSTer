@@ -203,7 +203,7 @@ module cditop (
         .disable_cpu_starve(disable_cpu_starve || cdic_dma_ack || cdic_dma_req)
     );
 
-    wire in2in;
+    wire in2in  /*verilator public_flat_rd*/;
     wire in4in;
     wire iack2;
     wire iack4;

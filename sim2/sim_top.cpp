@@ -18,7 +18,7 @@
 
 #define SCC68070
 #define SLAVE
-#define TRACE
+//#define TRACE
 
 #define BCD(v) ((uint8_t)((((v) / 10) << 4) | ((v) % 10)))
 
@@ -337,6 +337,20 @@ class CDi {
 #endif
     }
 
+    void printslavestate() {
+#ifdef SLAVE
+
+        uint32_t rega = dut.rootp->emu__DOT__cditop__DOT__uc68hc05_0__DOT__slave_core__DOT__rega;
+        uint32_t regx = dut.rootp->emu__DOT__cditop__DOT__uc68hc05_0__DOT__slave_core__DOT__regx;
+        uint32_t regpc = dut.rootp->emu__DOT__cditop__DOT__uc68hc05_0__DOT__slave_core__DOT__regpc;
+
+        if (regpc == 0x0a12)
+            printf("%04x %02x %02x\n", regpc, rega, regx);
+#endif
+    }
+
+    int flips_occured = 0;
+
     void modelstep() {
         step++;
         clock();
@@ -344,21 +358,23 @@ class CDi {
         if (sim_time >= rc5_fliptime) {
             dut.USER_IN ^= 1;
             printf("FLIP!\n");
+            flips_occured++;
             char buffer[100];
             if (!fgets(buffer, sizeof(buffer), rc5_file))
                 exit(1);
-            float next_flip = std::max(strtof(buffer, nullptr) - 5.0f, 0.0f) * 30e6;
+            float next_flip = std::max(strtof(buffer, nullptr) - 4.5f, 0.0f) * 30e6;
             // printf("%f\n",next_flip);
             rc5_fliptime = next_flip;
+        }
+
+        if (flips_occured > 4 && dut.rootp->emu__DOT__cditop__DOT__in2in) {
+            fprintf(stderr, "Got it!\n");
+            status = 1;
         }
 
         if ((step % 100000) == 0) {
             printf("%d\n", step);
         }
-
-        dut.rootp->emu__DOT__cd_media_change = (step == 1300000);
-        if (step == 1300000)
-            printf("Media change!\n");
 
 #ifdef SCC68070
         // Abort on illegal Instructions
@@ -518,6 +534,11 @@ class CDi {
 
             printstate();
         }
+
+        if (dut.rootp->emu__DOT__cditop__DOT__uc68hc05_0__DOT__clken) {
+            printslavestate();
+        }
+
 #endif
 
         // Simulate television
