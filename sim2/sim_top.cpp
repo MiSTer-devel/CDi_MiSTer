@@ -274,6 +274,11 @@ class CDi {
         png_destroy_write_struct(&png, &info);
     }
 
+    /*
+    emu__DOT__clk_sys is 30 MHz
+    In gtkwave 1ps is mapped to one half period
+
+    */
     void clock() {
         for (int i = 0; i < 2; i++) {
             dut.rootp->emu__DOT__clk_sys = (sim_time & 1);
@@ -281,7 +286,7 @@ class CDi {
             dut.eval();
 #ifdef TRACE
             if (do_trace) {
-                m_trace.dump(sim_time);
+                m_trace.dump(sim_time*33333/2);
             }
 #endif
             sim_time++;
@@ -344,8 +349,8 @@ class CDi {
         uint32_t regx = dut.rootp->emu__DOT__cditop__DOT__uc68hc05_0__DOT__slave_core__DOT__regx;
         uint32_t regpc = dut.rootp->emu__DOT__cditop__DOT__uc68hc05_0__DOT__slave_core__DOT__regpc;
 
-        if (regpc == 0x0a12)
-            printf("%04x %02x %02x\n", regpc, rega, regx);
+        //if (regpc == 0x0a12)
+            //printf("%04x %02x %02x\n", regpc, rega, regx);
 #endif
     }
 
@@ -358,18 +363,19 @@ class CDi {
         if (sim_time >= rc5_fliptime) {
             dut.USER_IN ^= 1;
             printf("FLIP!\n");
+            fprintf(stderr,"FLIP!\n");
             flips_occured++;
             char buffer[100];
             if (!fgets(buffer, sizeof(buffer), rc5_file))
                 exit(1);
-            float next_flip = std::max(strtof(buffer, nullptr) - 4.5f, 0.0f) * 30e6;
+            float next_flip = std::max(strtof(buffer, nullptr) - 2.9f, 0.0f) * 30e6*2;
             // printf("%f\n",next_flip);
             rc5_fliptime = next_flip;
         }
 
         if (flips_occured > 4 && dut.rootp->emu__DOT__cditop__DOT__in2in) {
             fprintf(stderr, "Got it!\n");
-            status = 1;
+            //status = 1;
         }
 
         if ((step % 100000) == 0) {

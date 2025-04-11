@@ -325,7 +325,7 @@ module uc68hc05 (
                 timerirq <= 0;
                 tcap_q   <= tcap;
 
-                if (free_running_counter_shadowcnt == 15-1) begin
+                if (free_running_counter_shadowcnt == 30-1) begin
                     free_running_counter_shadowcnt <= 0;
                     free_running_counter <= free_running_counter + 1;
                 end else free_running_counter_shadowcnt <= free_running_counter_shadowcnt + 1;
