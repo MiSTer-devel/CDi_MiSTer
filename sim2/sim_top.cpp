@@ -18,7 +18,7 @@
 
 #define SCC68070
 #define SLAVE
-#define TRACE
+// #define TRACE
 
 #define BCD(v) ((uint8_t)((((v) / 10) << 4) | ((v) % 10)))
 
@@ -360,16 +360,11 @@ class CDi {
                 exit(1);
             char *endptr;
             // primitive csv parsing
-            float next_flip = std::max(strtof(buffer, &endptr) - 2.58810f + 4.0f, 0.0f) * 30e6 * 2;
-            rc5_nextstate = strtol(endptr+1, &endptr, 10);
+            float next_flip = std::max(strtof(buffer, &endptr) - 2.58810f + 3.0f, 0.0f) * 30e6 * 2;
+            rc5_nextstate = strtol(endptr + 1, &endptr, 10);
             assert(rc5_nextstate <= 1);
-            printf("%f %d\n", next_flip,rc5_nextstate);
+            printf("%f %d\n", next_flip, rc5_nextstate);
             rc5_fliptime = next_flip;
-        }
-
-        if (flips_occured > 4 && dut.rootp->emu__DOT__cditop__DOT__in2in) {
-            fprintf(stderr, "Got it!\n");
-            // status = 1;
         }
 
         if ((step % 100000) == 0) {

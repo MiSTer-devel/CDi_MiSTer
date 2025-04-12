@@ -102,7 +102,7 @@ module cditop (
 
     bit attex_cs_slave_q = 0;
 
-    wire bus_err_ram_area1 = (addr_byte >= 24'h600000 && addr_byte < 24'hd00000);
+    wire bus_err_ram_area1 = (addr_byte >= 24'h500000 && addr_byte < 24'hd00000);
     wire bus_err_ram_area2 = (addr_byte >= 24'hf00000);
     wire bus_err = (bus_err_ram_area1 || bus_err_ram_area2) && as && (lds || uds);
 
