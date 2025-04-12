@@ -18,7 +18,7 @@
 
 #define SCC68070
 #define SLAVE
-//#define TRACE
+#define TRACE
 
 #define BCD(v) ((uint8_t)((((v) / 10) << 4) | ((v) % 10)))
 

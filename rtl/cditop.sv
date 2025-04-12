@@ -361,7 +361,6 @@ module cditop (
     assign reset = external_reset || resetsys;
 
 `ifndef DISABLE_SLAVE_UC
-    /*verilator tracing_off*/
     uc68hc05 uc68hc05_0 (
         .clk30,
         .reset(reset),
@@ -388,7 +387,6 @@ module cditop (
         .spi(slave_servo_spi),
         .quirk_force_mode_fault(quirk_force_mode_fault)
     );
-    /*verilator tracing_on*/
 
 `endif
     wire signed [15:0] att_audio_left;
