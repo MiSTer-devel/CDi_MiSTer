@@ -325,7 +325,7 @@ module uc68hc05 (
                 timerirq <= 0;
                 tcap_q   <= tcap;
 
-                if (free_running_counter_shadowcnt == 30-1) begin
+                if (free_running_counter_shadowcnt == 30 - 1) begin
                     free_running_counter_shadowcnt <= 0;
                     free_running_counter <= free_running_counter + 1;
                 end else free_running_counter_shadowcnt <= free_running_counter_shadowcnt + 1;
@@ -338,8 +338,8 @@ module uc68hc05 (
                     end
                 end
 
-                //if (!tcap && tcap_q) begin
-                if (tcap && !tcap_q) begin
+                if ((timer_control_register.input_capture_edge_select && tcap && !tcap_q) ||
+                   (!timer_control_register.input_capture_edge_select && !tcap && tcap_q) ) begin
                     timer_status_register.input_capture_flag <= 1;
                     input_capture <= free_running_counter;
                     if (timer_control_register.input_capture_interrupt_enable) begin

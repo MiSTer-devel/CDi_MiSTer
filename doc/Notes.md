@@ -63,3 +63,39 @@ Seems to be not desired:
 
 https://github.com/MiSTer-devel/Main_MiSTer/issues/789
 https://github.com/MiSTer-devel/Main_MiSTer/issues/760
+
+
+  uVar4 = ICLR;
+  uVar4 = Reserved_1B;
+  DAT_00a8 = ACHR;
+  DAT_00a7 = Reserved_1B;
+  bVar3 = DAT_00a7 - DAT_00a9;
+  bVar6 = (DAT_00a8 - cRAM00aa) - (DAT_00a7 < DAT_00a9);
+  if (((((DAT_00a6 & 0x80) != 0) && (DAT_00b8 != '\0')) && (bVar6 < 4)) &&
+     ((bVar6 < 3 || (bVar3 < 0xdf)))) {
+    if ((bVar6 < 3) || (bVar3 < 0x2b)) {
+      if (bVar6 < 3) {
+        if (1 < bVar6) {
+          if (0xe6 < bVar3) goto LAB_0a49;
+          if (0x5f < bVar3) {
+            FUN_0a79();
+            if ((LAB_009e & 2) != 0) {
+              FUN_0a79();
+            }
+            goto LAB_0a4f;
+          }
+        }
+        if (((bVar6 < 2) && ((bool)(DAT_00a8 - cRAM00aa) != DAT_00a7 < DAT_00a9)) &&
+           ((bVar3 < 0xf0 && (0x99 < bVar3)))) {
+          FUN_0a79();
+          goto LAB_0a4f;
+        }
+      }
+    }
+    else if ((LAB_009e & 1) == 0) {
+      FUN_0a79();
+      FUN_0a79();
+      goto LAB_0a4f;
+    }
+  }
+  

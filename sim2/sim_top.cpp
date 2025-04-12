@@ -18,7 +18,7 @@
 
 #define SCC68070
 #define SLAVE
-//#define TRACE
+#define TRACE
 
 #define BCD(v) ((uint8_t)((((v) / 10) << 4) | ((v) % 10)))
 
@@ -189,6 +189,7 @@ class CDi {
   public:
     FILE *rc5_file;
     uint64_t rc5_fliptime{0};
+    uint32_t rc5_nextstate{1};
 
     Vemu dut;
     uint64_t step = 0;
@@ -286,7 +287,7 @@ class CDi {
             dut.eval();
 #ifdef TRACE
             if (do_trace) {
-                m_trace.dump(sim_time*33333/2);
+                m_trace.dump(sim_time * 33333 / 2);
             }
 #endif
             sim_time++;
@@ -349,8 +350,8 @@ class CDi {
         uint32_t regx = dut.rootp->emu__DOT__cditop__DOT__uc68hc05_0__DOT__slave_core__DOT__regx;
         uint32_t regpc = dut.rootp->emu__DOT__cditop__DOT__uc68hc05_0__DOT__slave_core__DOT__regpc;
 
-        //if (regpc == 0x0a12)
-            //printf("%04x %02x %02x\n", regpc, rega, regx);
+        // if (regpc == 0x0a12)
+        // printf("%04x %02x %02x\n", regpc, rega, regx);
 #endif
     }
 
@@ -361,21 +362,26 @@ class CDi {
         clock();
 
         if (sim_time >= rc5_fliptime) {
-            dut.USER_IN ^= 1;
+            dut.USER_IN = (dut.USER_IN & ~1) | rc5_nextstate;
+
             printf("FLIP!\n");
-            fprintf(stderr,"FLIP!\n");
+            fprintf(stderr, "FLIP!\n");
             flips_occured++;
             char buffer[100];
             if (!fgets(buffer, sizeof(buffer), rc5_file))
                 exit(1);
-            float next_flip = std::max(strtof(buffer, nullptr) - 2.9f, 0.0f) * 30e6*2;
-            // printf("%f\n",next_flip);
+            char *endptr;
+            // primitive csv parsing
+            float next_flip = std::max(strtof(buffer, &endptr) - 2.25f, 0.0f) * 30e6 * 2;
+            rc5_nextstate = strtol(endptr+1, &endptr, 10);
+            assert(rc5_nextstate <= 1);
+            printf("%f %d\n", next_flip,rc5_nextstate);
             rc5_fliptime = next_flip;
         }
 
         if (flips_occured > 4 && dut.rootp->emu__DOT__cditop__DOT__in2in) {
             fprintf(stderr, "Got it!\n");
-            //status = 1;
+            // status = 1;
         }
 
         if ((step % 100000) == 0) {
@@ -729,6 +735,7 @@ class CDi {
         dut.eval();
         dut.rootp->emu__DOT__debug_uart_fake_space = false;
         dut.rootp->emu__DOT__img_size = 4096;
+        dut.USER_IN = 1; // RC Eye signal is idle high
 
         // dut.rootp->emu__DOT__tvmode_ntsc = true;
 
