@@ -3,7 +3,7 @@
 // Used core is https://opencores.org/projects/68hc05 which only implements basic functionality
 // and no peripherals
 
-`define DEBUG
+//`define DEBUG
 `define dp(statement) `ifdef DEBUG $display``statement `endif
 
 module uc68hc05 (
@@ -479,19 +479,6 @@ module uc68hc05 (
                     default: begin
                         // The rest is just RAM and ROM. But check for out of bounds
                         assert (addr[15:13] == 0);
-
-                        if (wr && addr == 16'h009e) $display("IR0 %x %x WR", addr, dataout);
-                        if (wr && addr == 16'h009f) $display("IR1 %x %x WR", addr, dataout);
-                        if (wr && addr == 16'h00a0) $display("IR2 %x %x WR", addr, dataout);
-                        if (wr && addr == 16'h00a1) $display("IR3 %x %x WR", addr, dataout);
-
-                        if (wr && addr == 16'h00a6) $display("IRCNT %x %x WR", addr, dataout);
-
-                        if (wr && addr == 16'h00a7) $display("TL %x %x WR", addr, dataout);
-                        if (wr && addr == 16'h00a8) $display("TH %x %x WR", addr, dataout);
-
-                        if (wr && addr == 16'h00a9) $display("LAST TL %x %x WR", addr, dataout);
-                        if (wr && addr == 16'h00aa) $display("LAST TH %x %x WR", addr, dataout);
                     end
                 endcase
             end

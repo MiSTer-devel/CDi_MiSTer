@@ -343,18 +343,6 @@ class CDi {
 #endif
     }
 
-    void printslavestate() {
-#ifdef SLAVE
-
-        uint32_t rega = dut.rootp->emu__DOT__cditop__DOT__uc68hc05_0__DOT__slave_core__DOT__rega;
-        uint32_t regx = dut.rootp->emu__DOT__cditop__DOT__uc68hc05_0__DOT__slave_core__DOT__regx;
-        uint32_t regpc = dut.rootp->emu__DOT__cditop__DOT__uc68hc05_0__DOT__slave_core__DOT__regpc;
-
-        // if (regpc == 0x0a12)
-        // printf("%04x %02x %02x\n", regpc, rega, regx);
-#endif
-    }
-
     int flips_occured = 0;
 
     void modelstep() {
@@ -635,7 +623,7 @@ class CDi {
         dut.rootp->emu__DOT__img_size = 4096;
         dut.USER_IN = 1; // RC Eye signal is idle high
 
-        // dut.rootp->emu__DOT__tvmode_ntsc = true;
+        dut.rootp->emu__DOT__tvmode_ntsc = false;
 
         dut.RESET = 1;
         dut.UART_RXD = 1;

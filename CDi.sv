@@ -609,7 +609,7 @@ module emu (
 
 `ifdef VERILATOR
     bit debug_uart_fake_space  /*verilator public_flat_rw*/;
-    bit tvmode_ntsc  /*verilator public_flat_rw*/;
+    bit tvmode_ntsc  /*verilator public_flat_rw*/ = 0;
     wire overclock_pointing_device = 1;
     wire [1:0] debug_force_video_plane = 0;
     wire enable_reset_on_nvram_img_mount = 0;

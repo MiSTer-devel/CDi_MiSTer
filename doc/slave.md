@@ -49,6 +49,11 @@ df    223
 14e   334
 153   339
 
+## PAL/NTSC
+
+    PAL  f6 02
+    NTSC f6 01
+
 ## Variables
     0050 Multiplied with Attenuation value?
     0053 Bit 4 activates transmission to DAC

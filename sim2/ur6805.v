@@ -786,10 +786,10 @@ module UR6805
    output [7:0] dataout);
   wire [63:0] mask0;
   wire [63:0] mask1;
-  wire [7:0] rega/*verilator public_flat_rd*/ ;
-  wire [7:0] regx/*verilator public_flat_rd*/ ;
+  wire [7:0] rega;
+  wire [7:0] regx;
   wire [15:0] regsp;
-  wire [15:0] regpc/*verilator public_flat_rd*/ ;
+  wire [15:0] regpc;
   wire flagh;
   wire flagi;
   wire flagn;
