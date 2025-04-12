@@ -18,7 +18,7 @@
 
 #define SCC68070
 #define SLAVE
-#define TRACE
+//#define TRACE
 
 #define BCD(v) ((uint8_t)((((v) / 10) << 4) | ((v) % 10)))
 
@@ -372,7 +372,7 @@ class CDi {
                 exit(1);
             char *endptr;
             // primitive csv parsing
-            float next_flip = std::max(strtof(buffer, &endptr) - 2.25f, 0.0f) * 30e6 * 2;
+            float next_flip = std::max(strtof(buffer, &endptr) - 2.58810f + 4.0f, 0.0f) * 30e6 * 2;
             rc5_nextstate = strtol(endptr+1, &endptr, 10);
             assert(rc5_nextstate <= 1);
             printf("%f %d\n", next_flip,rc5_nextstate);
@@ -387,6 +387,10 @@ class CDi {
         if ((step % 100000) == 0) {
             printf("%d\n", step);
         }
+
+        dut.rootp->emu__DOT__cd_media_change = (step == 1300000);
+        if (step == 1300000)
+            printf("Media change!\n");
 
 #ifdef SCC68070
         // Abort on illegal Instructions
@@ -546,118 +550,12 @@ class CDi {
 
             printstate();
         }
-
-        if (dut.rootp->emu__DOT__cditop__DOT__uc68hc05_0__DOT__clken) {
-            printslavestate();
-        }
-
 #endif
 
         // Simulate television
         if (dut.rootp->emu__DOT__cditop__DOT__mcd212_inst__DOT__video_y == 0 &&
             dut.rootp->emu__DOT__cditop__DOT__mcd212_inst__DOT__video_x == 0) {
             char filename[100];
-
-            if (dut.rootp->emu__DOT__tvmode_ntsc) {
-                // NTSC
-
-                // Start game
-                if (frame_index == 223) {
-                    printf("Press a button!\n");
-                    dut.rootp->emu__DOT__JOY0 = 0b100000;
-                }
-                if (frame_index == 230) {
-                    printf("Release a button!\n");
-                    dut.rootp->emu__DOT__JOY0 = 0b000000;
-                }
-
-                if (frame_index > 259) {
-                    if ((frame_index % 25) == 20) {
-                        printf("Press a button!\n");
-                        dut.rootp->emu__DOT__JOY0 = 0b100000;
-                    }
-
-                    if ((frame_index % 25) == 23) {
-                        printf("Release a button!\n");
-                        dut.rootp->emu__DOT__JOY0 = 0b000000;
-                    }
-                }
-
-            } else {
-                // PAL
-
-                // Start game
-                if (frame_index == 190) {
-                    printf("Press a button!\n");
-                    dut.rootp->emu__DOT__JOY0 = 0b100000;
-                }
-                if (frame_index == 194) {
-                    printf("Release a button!\n");
-                    dut.rootp->emu__DOT__JOY0 = 0b000000;
-                }
-
-                if (instanceid == 2 || instanceid == 3) // Tetris
-                {
-                    // Skip Philips Logo
-                    if (frame_index == 347) {
-                        printf("Press a button!\n");
-                        dut.rootp->emu__DOT__JOY0 = 0b100000;
-                    }
-                    if (frame_index == 350) {
-                        printf("Release a button!\n");
-                        dut.rootp->emu__DOT__JOY0 = 0b000000;
-                    }
-                    // Skip Intro
-                    if (frame_index == 505) {
-                        printf("Press a button!\n");
-                        dut.rootp->emu__DOT__JOY0 = 0b100000;
-                    }
-                    if (frame_index == 510) {
-                        printf("Release a button!\n");
-                        dut.rootp->emu__DOT__JOY0 = 0b000000;
-                    }
-
-                    // And just stay like this
-                } else if (instanceid == 1 && frame_index > 300) { // Hotel Mario
-                    if (frame_index < 910) {
-                        // Before ingame
-                        if ((frame_index % 25) == 20) {
-                            printf("Press a button!\n");
-                            dut.rootp->emu__DOT__JOY0 = 0b100000;
-                        }
-
-                        if ((frame_index % 25) == 23) {
-                            printf("Release a button!\n");
-                            dut.rootp->emu__DOT__JOY0 = 0b000000;
-                        }
-                    } else if (get_pixel_value(498, 130) == 0x10bc10 && get_pixel_value(1193, 233) == 0x101010) {
-                        printf("Level Title Card");
-                        // Level Title Card
-                        if ((frame_index % 20) == 10) {
-                            printf("Press a button!\n");
-                            dut.rootp->emu__DOT__JOY0 = 0b100000;
-                        }
-
-                        if ((frame_index % 20) == 15) {
-                            printf("Release a button!\n");
-                            dut.rootp->emu__DOT__JOY0 = 0b000000;
-                        }
-                    } else {
-                        // Press down left during ingame to kill mario to cause audiomap restart
-                        dut.rootp->emu__DOT__JOY0 = 0b000110;
-                    }
-                } else if (frame_index > 200) {
-                    if ((frame_index % 25) == 20) {
-                        printf("Press a button!\n");
-                        dut.rootp->emu__DOT__JOY0 = 0b100000;
-                    }
-
-                    if ((frame_index % 25) == 23) {
-                        printf("Release a button!\n");
-                        dut.rootp->emu__DOT__JOY0 = 0b000000;
-                    }
-                }
-            }
 
             if (pixel_index > 100) {
                 auto current = std::chrono::system_clock::now();
