@@ -102,9 +102,10 @@ module cditop (
 
     bit attex_cs_slave_q = 0;
 
-    wire bus_err_ram_area1 = (addr_byte >= 24'h500000 && addr_byte < 24'hd00000);
-    wire bus_err_ram_area2 = (addr_byte >= 24'hf00000);
-    wire bus_err = (bus_err_ram_area1 || bus_err_ram_area2) && as && (lds || uds);
+    wire bus_err_ram_area1 = (addr_byte >= 24'h080000 && addr_byte < 24'h200000);
+    wire bus_err_ram_area2 = (addr_byte >= 24'h500000 && addr_byte < 24'hd00000);
+    wire bus_err_ram_area3 = (addr_byte >= 24'hf00000);
+    wire bus_err = (bus_err_ram_area1 || bus_err_ram_area2 || bus_err_ram_area1) && as && (lds || uds);
 
     always_ff @(posedge clk30) begin
 

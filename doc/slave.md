@@ -34,6 +34,8 @@ A division by 30 would be required.
 
 ## Observations
 
+### Timing when asking for Region
+
 A real SLAVE 3.2 inside a CDI 210/05 performs a I2C transaction to the front display every 8.1ms
 It seems this is exactly the timer IRQ for the output compare and thus the time base of the SLAVE.
 
@@ -42,6 +44,30 @@ A real CDI 210/05 will have the M68K ask for PAL/NTSC region and then poll for t
 The result is available after 152 pollings on a real machine which takes 196ms in total.
 The polling has a period of 1.3ms.
 The operation will time out after 500 pollings. The default is NTSC when this happens.
+
+### Play button via RC5 Remote Control
+
+On SLAVE 2.0 there is not much
+
+    Read SLAVE 01 0404 1 0 0
+
+On SLAVE 3.2 there is much more
+
+    Read Slave
+    ff ff ff ff CH0
+    a2 04 ff ff CH1 (The A2 is missing on SLAVE2.0)
+    ff ff ff ff CH2
+    04 ff ff ff CH3
+
+### Play button on front panel
+
+With SLAVE 3.2
+
+    a1 87 20 ff
+
+With SLAVE 2.0
+
+    87 20 ff  (Notice the missing A1)
 
 ## Ir decoding
 

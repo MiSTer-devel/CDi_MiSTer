@@ -27,6 +27,13 @@ I assume the ATTEX limits the DRAM to 0x27fffe as these do now follow.
     0xd00000 to 0xdfffff    DVC RAM block 1 (according to mame) 1MB -> MiSTer SDRAM 0x100000 to 0x1FFFFF
     0xe80000 to 0xefffff    DVC RAM block 2 (according to mame) 512kB -> MiSTer SDRAM 0x200000 to 0x27FFFF
 
+## Bus Error
+
+Some locations are not mapped to memory and will cause a bus error exception on a CDI 210/05
+
+    0x080000 to 0x1FFFFF
+    0x500000 to 0xefffff
+
 ## CPU Internal
 
     0x80001001  LIR priority

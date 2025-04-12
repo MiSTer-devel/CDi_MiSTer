@@ -360,7 +360,7 @@ class CDi {
                 exit(1);
             char *endptr;
             // primitive csv parsing
-            float next_flip = std::max(strtof(buffer, &endptr) - 2.58810f + 3.0f, 0.0f) * 30e6 * 2;
+            float next_flip = std::max(strtof(buffer, &endptr) - 6.681932625f + 3.0f, 0.0f) * 30e6 * 2;
             rc5_nextstate = strtol(endptr + 1, &endptr, 10);
             assert(rc5_nextstate <= 1);
             printf("%f %d\n", next_flip, rc5_nextstate);
