@@ -255,11 +255,25 @@ module cditop (
     wire av = iack2;
 
 `ifndef DISABLE_MAIN_CPU
+    wire reset68k;
+
+    // On a real 210/05, the main CPU polls 152 times
+    // for the PAL/NTSC region. The timeout is 500.
+    // With CPU Turbo this timeout is reached...
+    // This reset delay of 8 frames ensures
+    // that the slave has enough time to react
+    // It will result into 160 polls until the answer is available
+    resetdelay cpuresetdelay (
+        .clk(clk30),
+        .reset,
+        .vsync(VSync),
+        .delayedreset(reset68k)
+    );
     /*verilator tracing_off*/
 
     scc68070 scc68070_0 (
         .clk(clk30),
-        .reset(reset),  // External sync reset on emulated system
+        .reset(reset68k),  // External sync reset on emulated system
         .write_strobe(write_strobe),
         .as(as),
         .lds(lds),

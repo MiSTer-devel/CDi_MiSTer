@@ -32,6 +32,17 @@ Because of clken, fOSC is 15 MHz
 
 A division by 30 would be required.
 
+## Observations
+
+A real SLAVE 3.2 inside a CDI 210/05 performs a I2C transaction to the front display every 8.1ms
+It seems this is exactly the timer IRQ for the output compare and thus the time base of the SLAVE.
+
+CPU and SLAVE have their reset signal lifted at the exact same time.
+A real CDI 210/05 will have the M68K ask for PAL/NTSC region and then poll for the result.
+The result is available after 152 pollings on a real machine which takes 196ms in total.
+The polling has a period of 1.3ms.
+The operation will time out after 500 pollings. The default is NTSC when this happens.
+
 ## Ir decoding
 
 Possible delays

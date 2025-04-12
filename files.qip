@@ -14,6 +14,7 @@ set_global_assignment -name SYSTEMVERILOG_FILE rtl/ica_dca_ctrl.sv
 set_global_assignment -name SYSTEMVERILOG_FILE rtl/mcd212.sv
 set_global_assignment -name SYSTEMVERILOG_FILE rtl/mk48t08b.sv
 set_global_assignment -name SYSTEMVERILOG_FILE rtl/pointing_device.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/resetdelay.sv
 set_global_assignment -name SYSTEMVERILOG_FILE rtl/scc68070.sv
 set_global_assignment -name SYSTEMVERILOG_FILE rtl/sdram.sv
 set_global_assignment -name SYSTEMVERILOG_FILE rtl/servo_hle.sv
