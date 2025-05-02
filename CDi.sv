@@ -677,8 +677,8 @@ module emu (
     wire fail_too_much_data;
     wire debug_irq_hangup;
 
-    // TODO requires connection and testing with real photo diode
-    wire rc_eye  /*verilator public_flat_rw*/;
+    // TODO Filtering might be needed. Investigation required
+    wire rc_eye  /*verilator public_flat_rw*/ = USER_IN[2];
 
     cditop cditop (
         .clk30(clk_sys),

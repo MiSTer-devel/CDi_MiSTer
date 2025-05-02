@@ -27,3 +27,19 @@ The **Dual Input Mode** simulates the front port of a CD-i that supports the off
 | 8   | +5V                                        | +5V                              |           |
 | 9   | RC-Eye                                     | RC-Eye                           | In        |
 |     | Can take 2 controllers<br>using a splitter | Fully compatible<br>to back Port |           |
+
+
+## Pinout of the User Port
+
+### NES core
+
+    Indexes:
+    IDXDIR   Function    USBPIN
+    0  OUT   Strobe      D+
+    1  OUT   Clk (P2)    D-
+    2  BI    Glasses/D3  TX-
+    3  OUT   CLK (P2)    GND_d
+    4  IN    D4          RX+
+    5  IN    P1D0        RX-
+    6  IN    P2D0        TX+
+
