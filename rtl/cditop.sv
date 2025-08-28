@@ -49,8 +49,12 @@ module cditop (
 
     bytestream.source slave_serial_out,
     bytestream.sink slave_serial_in,
-    input rc_eye,
     output slave_rts,
+    input rc_eye,
+
+    bytestream.source scc68070_serial_out,
+    bytestream.sink scc68070_serial_in,
+    output scc68070_rts,
 
     output [31:0] cd_hps_lba,
     output cd_hps_req,
@@ -321,6 +325,8 @@ module cditop (
         .addr(addr),
         .uart_tx(scc68_uart_tx),
         .uart_rx(scc68_uart_rx),
+        .bypass_uart_rx(scc68070_serial_in),
+        .bypass_uart_rts(scc68070_rts),
         .debug_uart_fake_space,
         .req1(cdic_dma_req),
         .req2(0),

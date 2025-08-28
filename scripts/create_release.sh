@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#!/bin/bash
-
 set -e
 cd "$(dirname "$0")/.."
 release_filename=CDi_$(date '+%Y%m%d').rbf

@@ -257,7 +257,10 @@ module emu (
     wire [ 10:0] ps2_key;
 
     wire [ 15:0] JOY0  /*verilator public_flat_rw*/;
+    wire [ 15:0] JOY1  /*verilator public_flat_rw*/;
     wire [ 15:0] JOY0_ANALOG  /*verilator public_flat_rw*/;
+    wire [ 15:0] JOY1_ANALOG  /*verilator public_flat_rw*/;
+
     wire [ 24:0] MOUSE  /*verilator public_flat_rw*/;
 
     wire         ioctl_download  /*verilator public_flat_rw*/;
@@ -269,7 +272,6 @@ module emu (
 
     wire         clk_sys  /*verilator public_flat_rw*/;
     wire         clk_audio  /*verilator public_flat_rw*/;
-
 
     wire [ 31:0] cd_hps_lba;
     wire         cd_hps_req  /*verilator public_flat_rd*/;
@@ -348,8 +350,9 @@ module emu (
         .ps2_mouse(MOUSE),
 
         .joystick_l_analog_0(JOY0_ANALOG),
+        .joystick_l_analog_1(JOY1_ANALOG),
         .joystick_0(JOY0),
-
+        .joystick_1(JOY1),
         .RTC(hps_rtc)
     );
 
@@ -671,13 +674,27 @@ module emu (
     bytestream slave_serial_in ();
     wire slave_rts;
 
+    bytestream scc68070_serial_out ();
+    bytestream scc68070_serial_in ();
+    wire scc68070_rts;
+
     pointing_device pointing_dev_front (
+        .clk(clk_sys),
+        .mister_joystick(JOY1),
+        .mister_joystick_analog(JOY1_ANALOG),
+        .mister_mouse(),
+        .rts(slave_rts),
+        .serial_out(slave_serial_in),
+        .overclock(overclock_pointing_device)
+    );
+
+    pointing_device pointing_dev_back (
         .clk(clk_sys),
         .mister_joystick(JOY0),
         .mister_joystick_analog(JOY0_ANALOG),
         .mister_mouse(MOUSE),
-        .rts(slave_rts),
-        .serial_out(slave_serial_in),
+        .rts(scc68070_rts),
+        .serial_out(scc68070_serial_in),
         .overclock(overclock_pointing_device)
     );
 
@@ -739,6 +756,11 @@ module emu (
         .slave_serial_in(slave_serial_in),
         .slave_serial_out(slave_serial_out),
         .slave_rts(slave_rts),
+
+        .scc68070_serial_in(scc68070_serial_in),
+        .scc68070_serial_out(scc68070_serial_out),
+        .scc68070_rts(scc68070_rts),
+        
         .rc_eye(rc_eye),
 
         .cd_hps_req(cd_hps_req),

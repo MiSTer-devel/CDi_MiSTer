@@ -4,7 +4,8 @@ log*
 *.CUE
 *.BIN
 *.rom
-
+uartlog
+*.bmp
 *.wav
 *.vcd
 /zc405351p__servo_cdi_4.1__0d67p__lluk9404.mc68hc705c8a.7490

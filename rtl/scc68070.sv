@@ -41,7 +41,9 @@ module scc68070 (
 
     // UART
     output uart_tx,
-    input  uart_rx,
+    input uart_rx,
+    bytestream.sink bypass_uart_rx,
+    output bypass_uart_rts,
 
     // Debugging
     input debug_uart_fake_space  // fake permanent receival of spaces to force self test
@@ -126,6 +128,8 @@ module scc68070 (
         bit receiver_enabled;
         bit transmitter_enabled;
     } uart_command_register;
+
+    assign bypass_uart_rts = !uart_command_register.receiver_enabled;
 
     always_comb begin
         ipl = 0;
@@ -472,6 +476,10 @@ module scc68070 (
                 uart_receive_holding_valid <= 1;
             end else if (uart_rx_data_valid) begin
                 uart_receive_holding_register <= uart_rx_data;
+                uart_receive_holding_valid <= 1;
+            end else if (bypass_uart_rx.write) begin
+                // Hack for pointing devices. They use 7 bit
+                uart_receive_holding_register <= {1'b0, bypass_uart_rx.data[6:0]};
                 uart_receive_holding_valid <= 1;
             end else if (uart_cs && addr[3:1] == 3'd5 && internal_lds && !write_strobe) begin
                 // Reading the register will reset the status flag
