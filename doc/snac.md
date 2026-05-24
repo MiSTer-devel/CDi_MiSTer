@@ -19,7 +19,7 @@ The **Dual Input Mode** simulates the front port of a CD-i that supports the off
 | --- | ------------------------------------------ | -------------------------------- | --------- |
 | 1   | RXD1                                       | \-                               | In        |
 | 2   | RXD2                                       | RXD                              | In        |
-| 3   | TXD                                        | TXD                              | Out       |
+| 3   | TXD2                                       | TXD                              | Out       |
 | 4   | RTS1                                       | DTR                              | Out       |
 | 5   | GND                                        | GND                              |           |
 | 6   | \-                                         | CTS                              | In        |

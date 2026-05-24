@@ -300,13 +300,18 @@ module cdic (
     end
 
     // Subcode Q data is added at the end of the raw sector data
-    localparam bit [14:0] kWordsPerSubcodeFrame = 12;
+    // The 12 bytes are mapped to 12 words
+    localparam bit [14:0] kWordsPerSubcodeQFrame = 12;
+
+    // Subcode RSTUVW data is written to the data buffers when CDDA mode is in use
+    // The 96 bytes are mapped to 96 words
+    localparam bit [14:0] kWordsPerSubcodeRWFrame = 96;
 
     // 2352 bytes per sector. Always.
     localparam bit [14:0] kCdSectorSize = 2352;
 
     // Total number of words, the CDIC will provide per requested sector
-    localparam bit [14:0] kWordsPerSector = kWordsPerSubcodeFrame + kCdSectorSize / 2;
+    localparam bit [14:0] kWordsPerSector = kCdSectorSize / 2 + kWordsPerSubcodeRWFrame + kWordsPerSubcodeQFrame;
 
     // Index of word in CD sector. Useful for selecting specific words
     bit [14:0] sector_word_index = 0;
@@ -522,6 +527,11 @@ module cdic (
                 // Move target address to write the Q subchannel data next
                 if (read_raw && sector_word_index == 1176) begin
                     cd_data_target_adr <= !data_target_buffer ? 13'h992 : 13'h492;
+                end
+
+                // Move target address to write the RW subchannel data next
+                if (read_raw && sector_word_index == 1176 + 12) begin
+                    cd_data_target_adr <= !data_target_buffer ? 13'h500 : 13'h000;
                 end
             end
 
@@ -848,8 +858,6 @@ module cdic (
                         default: begin
                         end
                     endcase
-
-
                 end
             end
         end

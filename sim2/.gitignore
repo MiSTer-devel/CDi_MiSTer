@@ -3,6 +3,7 @@
 log*
 *.CUE
 *.BIN
+*.sub
 *.rom
 uartlog
 *.bmp

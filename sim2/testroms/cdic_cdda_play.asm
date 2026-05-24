@@ -19,11 +19,10 @@ main:
 	move.w #$0028,$303C00 ; Play CDDA
 	;move.w #$0027,$303C00 ; Fetch TOC
 
-	; Apprentice - Level 1
-	move.l #$19468000,$303C02 ; Timer Register
-
-	; Apprentice - Title Screen
-	move.l #$15220000,$303C02 ; Timer Register
+	; Timer Register 
+	; move.l #$15220000,$303C02 Apprentice - Title Screen
+	; move.l #$19468000,$303C02 Apprentice - Level 1
+	move.l #$00030200,$303C02 Karaoke CD
 
 	move.w #$C000,$303FFE ; Start the Read by setting bit 15 of the data buffer
 
@@ -68,6 +67,7 @@ cdicirq:
 	btst.l #$0,d0 ; check lowest bit of data buffer
 	beq lower_buf
 higher_buf:
+	; Subcode Q
 	move.w $301324,d0
 	move.w $301326,d0
 	move.w $301328,d0
@@ -82,8 +82,28 @@ higher_buf:
 	move.w $301338,d0
 	move.w $30133a,d0
 
+	;Subcode RW Start
+	move.w $300a00,d0
+	move.w $300a02,d0
+	move.w $300a04,d0
+	move.w $300a06,d0
+	move.w $300a08,d0
+	move.w $300a0a,d0
+	move.w $300a0c,d0
+	move.w $300a0e,d0
+	; and end
+	move.w $300ab0,d0
+	move.w $300ab2,d0
+	move.w $300ab4,d0
+	move.w $300ab6,d0
+	move.w $300ab8,d0
+	move.w $300aba,d0
+	move.w $300abc,d0
+	move.w $300abe,d0
+
 	bra read_data
 lower_buf:
+	; Subcode Q
 	move.w $300924,d0
 	move.w $300926,d0
 	move.w $300928,d0
@@ -97,6 +117,25 @@ lower_buf:
 	move.w $300936,d0
 	move.w $300938,d0
 	move.w $30093a,d0
+
+	;Subcode RW Start
+	move.w $300000,d0
+	move.w $300002,d0
+	move.w $300004,d0
+	move.w $300006,d0
+	move.w $300008,d0
+	move.w $30000a,d0
+	move.w $30000c,d0
+	move.w $30000e,d0
+	; and end
+	move.w $3000b0,d0
+	move.w $3000b2,d0
+	move.w $3000b4,d0
+	move.w $3000b6,d0
+	move.w $3000b8,d0
+	move.w $3000ba,d0
+	move.w $3000bc,d0
+	move.w $3000be,d0
 
 read_data:
 

@@ -1,4 +1,5 @@
 // Include common routines
+#include <sys/types.h>
 #include <verilated.h>
 #include <verilated_fst_c.h>
 #include <verilated_vcd_c.h>
@@ -21,7 +22,7 @@
 
 #define SCC68070
 #define SLAVE
-// #define TRACE
+#define TRACE
 // #define SIMULATE_RC5
 
 #define PL_MPEG_IMPLEMENTATION
@@ -86,6 +87,7 @@ typedef struct {
 #define BCD(v) ((uint8_t)((((v) / 10) << 4) | ((v) % 10)))
 
 struct subcode {
+    // Subcode Q
     uint16_t control;
     uint16_t track;
     uint16_t index;
@@ -98,8 +100,11 @@ struct subcode {
     uint16_t mode1_afrac;
     uint16_t mode1_crc0;
     uint16_t mode1_crc1;
+
+    // Subcode RW in interleaved form
+    uint16_t rw[96];
 };
-static_assert(sizeof(struct subcode) == 24);
+static_assert(sizeof(struct subcode) == (12 + 96) * 2);
 
 struct toc_entry toc_buffer[100];
 int toc_entry_count = 0;
@@ -116,6 +121,7 @@ const int height = 312;
 const int size = width * height * 3;
 
 FILE *f_cd_bin{nullptr};
+FILE *f_sub_bin{nullptr};
 
 template <typename T, typename U> constexpr T BIT(T x, U n) noexcept {
     return (x >> n) & T(1);
@@ -216,6 +222,22 @@ void check_scramble(int lba, uint8_t *buffer) {
         if (mode2_lba == lba && mode == 2) {
             descramble_sector(buffer);
         }
+    }
+}
+
+void reinterleave_rw_subchannels(const uint8_t rw[6][12], uint16_t raw[96]) {
+    memset(raw, 0, sizeof(uint16_t) * 96);
+
+    for (int symbol = 0; symbol < 96; symbol++) {
+        uint8_t out = 0;
+
+        for (int ch = 0; ch < 6; ch++) {
+            uint8_t bit = (rw[ch][symbol >> 3] >> (7 - (symbol & 7))) & 1;
+
+            out |= bit << (5 - ch);
+        }
+
+        raw[symbol] = htons(out);
     }
 }
 
@@ -335,7 +357,9 @@ class CDi {
     std::chrono::_V2::system_clock::time_point start;
     static constexpr uint32_t kSectorHeaderSize{12};
     static constexpr uint32_t kSectorSize{2352};
-    static constexpr uint32_t kWordsPerSubcodeFrame{12};
+    static constexpr uint32_t kSubcodeRWSize{96};
+    static constexpr uint32_t kSubcodeQSize{12};
+    static constexpr uint32_t kWordsPerSubcodeFrame{kSubcodeQSize + kSubcodeRWSize};
     static constexpr uint32_t kWordsPerSector{kWordsPerSubcodeFrame + kSectorSize / 2};
 
     uint32_t get_pixel_value(uint32_t x, uint32_t y) {
@@ -790,11 +814,34 @@ class CDi {
             int res = fseek(f_cd_bin, file_offset, SEEK_SET);
             assert(res == 0);
 
-            fread(hps_buffer, 1, kSectorSize, f_cd_bin);
+            res = fread(hps_buffer, 1, kSectorSize, f_cd_bin);
+            assert(res == kSectorSize);
 
             check_scramble(lba, reinterpret_cast<uint8_t *>(hps_buffer));
+
+            // Subcode Q
             struct subcode &out = *reinterpret_cast<struct subcode *>(&hps_buffer[kSectorSize / 2]);
             subcode_data(dut.rootp->emu__DOT__cd_hps_lba, out);
+
+            // Subcode RW from .sub file
+            uint8_t rw[kSubcodeRWSize];
+            // First we read the raw bytes
+            file_offset = (lba - 150) * kSubcodeRWSize;
+            if (f_sub_bin) {
+                res = fseek(f_sub_bin, file_offset, SEEK_SET);
+                assert(res == 0);
+                res = fread(rw, 1, kSubcodeRWSize, f_sub_bin);
+                assert(res == kSubcodeRWSize);
+            } else {
+                memset(rw, 0, sizeof(rw));
+            }
+            /*
+            // Then we need to convert them to words
+            for (int i = 0; i < kSubcodeRWSize; i++) {
+                out.rw[i] = htons(rw[i]);
+            }*/
+            reinterleave_rw_subchannels(reinterpret_cast<uint8_t (*)[12]>(&rw[24]), out.rw);
+
             hps_buffer_index = 0;
         }
 
@@ -1316,7 +1363,8 @@ int main(int argc, char **argv) {
 
     switch (machineindex) {
     case 0:
-        f_cd_bin = fopen("images/addams.bin", "rb");
+        f_cd_bin = fopen("images/karaoke.bin", "rb");
+        f_sub_bin = fopen("images/karaoke.sub", "rb");
         break;
     case 1:
         f_cd_bin = fopen("images/braindead13.bin", "rb");
