@@ -6,18 +6,18 @@
 
 ## Memory Map
 
-$0050 RAM Start
-$0100 ROM Start
-$1FF4 User Vectors
+    $0050 RAM Start
+    $0100 ROM Start
+    $1FF4 User Vectors
 
 ## IRQ Vectors
 
-$1ffe -> $100  Reset
-$1ffc -> $100  SWI
-$1ffa -> $32f  External IRQ
-$1ff8 -> $961  Timer
-$1ff6 -> $67a  SCI
-$1ff4 -> $100  SPI
+    $1ffe -> $100  Reset
+    $1ffc -> $100  SWI
+    $1ffa -> $32f  External IRQ
+    $1ff8 -> $961  Timer
+    $1ff6 -> $67a  SCI
+    $1ff4 -> $100  SPI
 
 ## Timer
 

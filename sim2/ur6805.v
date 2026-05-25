@@ -1,4 +1,5 @@
 // verilator lint_off ALWNEVER
+/* verilator tracing_off */
 
 module fadd
   (input  a,
