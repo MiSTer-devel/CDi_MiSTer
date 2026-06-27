@@ -1283,6 +1283,29 @@ class CDi {
             }
         }
 
+        // simulate fast memory
+        if (dut.rootp->emu__DOT__cditop__DOT__scc68070_0__DOT__clkena_in && dut.rootp->emu__DOT__cditop__DOT__as &&
+            dut.rootp->emu__DOT__cditop__DOT__cs_fast_mem) {
+            if (dut.rootp->emu__DOT__cditop__DOT__write_strobe) {
+                cpu_memory_write_u16(dut.rootp->emu__DOT__cditop__DOT__addr_byte,
+                                     dut.rootp->emu__DOT__cditop__DOT__cpu_data_out,
+                                     dut.rootp->emu__DOT__cditop__DOT__uds, dut.rootp->emu__DOT__cditop__DOT__lds);
+                // printf("Fast CPU write at %x\n", dut.rootp->emu__DOT__cditop__DOT__addr_byte);
+            } else {
+                static int early_rom_cnt = 0;
+
+                if (dut.rootp->emu__DOT__cditop__DOT__addr_byte < 0x8 && early_rom_cnt < 4) {
+                    early_rom_cnt++;
+                    dut.rootp->emu__DOT__cditop__DOT__fast_mem_dout =
+                        cpu_memory_read_u16(0x400000 | dut.rootp->emu__DOT__cditop__DOT__addr_byte);
+                    // printf("Fast CPU early read at %x\n", dut.rootp->emu__DOT__cditop__DOT__addr_byte);
+                } else {
+                    dut.rootp->emu__DOT__cditop__DOT__fast_mem_dout =
+                        cpu_memory_read_u16(dut.rootp->emu__DOT__cditop__DOT__addr_byte);
+                    // printf("Fast CPU read at %x\n", dut.rootp->emu__DOT__cditop__DOT__addr_byte);
+                }
+            }
+        }
         // Trace System Calls
 #ifdef SCC68070
         if (dut.rootp->emu__DOT__cditop__DOT__scc68070_0__DOT__tg68__DOT__tg68kdotcinst__DOT__decodeopc &&
