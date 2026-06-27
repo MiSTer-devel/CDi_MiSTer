@@ -183,8 +183,6 @@ module mcd212 (
         else sdram_owner = sdram_owner_next;
     end
 
-    bit video_fail = 0;
-
     struct packed {
         bit [7:0] reserved3;
         bit da;  // display active
@@ -390,16 +388,11 @@ module mcd212 (
 
     always_ff @(posedge clk) begin
         if (reset) begin
-            sdram_busy_q <= 0;
+            sdram_busy_q  <= 0;
             sdram_owner_q <= CPU;
-            video_fail <= 0;
         end else begin
             sdram_busy_q  <= sdram_busy;
             sdram_owner_q <= sdram_owner;
-
-            if (file0_as && ica0_as) video_fail <= 1;
-            //if (file1_as && ica1_as) video_fail <= 1;
-
             // Ensure ICA list has ended before FILE access
             //assert (!(file0_as && ica0_as));
             //assert (!(file1_as && ica1_as));
@@ -845,7 +838,6 @@ module mcd212 (
 
     bit [7:0] synchronized_pixel0;
     bit [7:0] synchronized_pixel1;
-    bit fail = 0;
 
     always_comb begin
         // CLUT7

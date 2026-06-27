@@ -23,8 +23,11 @@
     * Will be broken again with the addition of frame synced updates
 * Frequency response of CDIC and MPEG audio output might not be 100% accurate
 * Add support for an emulated Peacekeeper Revolver Light Gun
-* "Uncover featuring Tatjana (Europe)" regressions?
+* "Uncover featuring Tatjana (Europe)" graphical issues
     * Corruption of MPEG footage in single step mode?
+    * Broken since at least 260116
+    * Application crashes on 251228 and 260104
+    * Working last on? Did it work at all?
 * Regression of "Historia del Arte Español" (working in DVC rc2)
     * Blank video?
 * Fix Christmas Crisis bonus ride

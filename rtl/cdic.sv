@@ -175,7 +175,6 @@ module cdic (
     bit [12:0] mem_cd_audio_addr;  // Address for CDIC memory
     bit mem_cd_audio_rd;
     bit mem_cd_audio_ack;
-    bit mem_cd_audio_ack_q;
 
     header_submode_s header_submode;
     header_coding_s header_coding;
@@ -263,10 +262,6 @@ module cdic (
         end
     end
 
-    always_ff @(posedge clk) begin
-        if (reset) mem_cd_audio_ack_q <= 0;
-        else mem_cd_audio_ack_q <= mem_cd_audio_ack;
-    end
     wire access = cs && (uds || lds);
 
     struct packed {
