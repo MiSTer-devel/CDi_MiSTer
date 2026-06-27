@@ -36,8 +36,6 @@
 * "Solar Crusade" has video glitches?
 * "Brain Dead 13" has video glitches when switching MPEG streams
 * "The Secret of Nimh" (Philips Edition) has the wrong frame rate? Sometimes?
-* Slow motion with VCDs is desyncing audio and video
-    * Too many frames in output FIFO
 * Leaving the cake Puzzle in 7th Guest freezes (everytime?)
 * Sound bugs on the police procedures disk?
 * Find a better solution for reducing CPU speed
@@ -46,7 +44,6 @@
     * PSX core seems to halt the whole machine to avoid this situation
 * Fix regression: Audio hiccups during Philips Logo in Burn:Cycle
     * A workaround is CPU overclocking
-* Investigate input responsiveness (skipped events?)
 * Fix hang on audio track stop or change in media player
 * Cheat support?
 * Fix reset behaviour (Core is sometimes hanging after reset)

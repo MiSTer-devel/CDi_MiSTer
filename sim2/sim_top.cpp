@@ -77,12 +77,15 @@ typedef struct {
 } plm_plane2_t;
 
 typedef struct {
-    int32_t time;
     unsigned int width;
     unsigned int height;
     plm_plane2_t y;
     plm_plane2_t cr;
     plm_plane2_t cb;
+    int picture_type;
+    int temporal_ref;
+    int timecode;
+    int ready_for_display;
 } plm_frame2_t;
 
 #define BCD(v) ((uint8_t)((((v) / 10) << 4) | ((v) % 10)))
@@ -114,6 +117,8 @@ int toc_entry_count = 0;
 typedef VerilatedFstC tracetype_t;
 
 static bool do_trace{true};
+static bool do_trace_started_once_via_fma{false};
+static bool do_trace_started_once_via_fmv{false};
 #endif
 volatile sig_atomic_t status = 0;
 
@@ -480,25 +485,52 @@ class CDi {
         }
     }
 
-    /// @brief Reads from RAM based on CPU memory view
-    uint16_t cpu_memory_read_u16(uint32_t addr) {
+    uint16_t *cpu_addr_map_memory(uint32_t addr, bool writing) {
         // ensure alignment
         assert((addr & 1) == 0);
 
         if (addr < 0x080000) {
-            return dut.rootp->emu__DOT__ram[(addr) >> 1]; // Video A bank
+            return &dut.rootp->emu__DOT__ram[(addr) >> 1]; // Video A bank
         } else if (addr >= 0x200000 && addr < 0x280000) {
-            return dut.rootp->emu__DOT__ram[(addr - 0x200000 + 0x80000) >> 1]; // Video B bank
-        } else if (addr >= 0x400000 && addr <= 0x4ffbff) {
-            return dut.rootp->emu__DOT__rom[(addr - 0x400000) >> 1]; // System ROM
+            return &dut.rootp->emu__DOT__ram[(addr - 0x200000 + 0x80000) >> 1]; // Video B bank
+        } else if (addr >= 0x400000 && addr <= 0x4ffbff && !writing) {
+            return &dut.rootp->emu__DOT__rom[(addr - 0x400000) >> 1]; // System ROM
         } else if (addr >= 0xd00000 && addr <= 0xdfffff) {
-            return dut.rootp->emu__DOT__ram[(addr - 0xd00000 + 0x100000) >> 1]; // DVC RAM
-        } else if (addr >= 0xe40000 && addr < 0xe60000) {
-            return dut.rootp->emu__DOT__vmpega_rom[(addr - 0xe40000) >> 1]; // VMPEG ROM
+            return &dut.rootp->emu__DOT__ram[(addr - 0xd00000 + 0x100000) >> 1]; // DVC RAM
+        } else if (addr >= 0xe80000 && addr <= 0xefffff) {
+            return &dut.rootp->emu__DOT__ram[(addr - 0xe80000 + 0x200000) >> 1]; // DVC MPEG RAM
+        } else if (addr >= 0xe40000 && addr < 0xe60000 && !writing) {
+            return &dut.rootp->emu__DOT__vmpega_rom[(addr - 0xe40000) >> 1]; // VMPEG ROM
+        } else if (addr >= 0xe60000 && addr < 0xe80000 && !writing) {
+            return &dut.rootp->emu__DOT__vmpega_rom[(addr - 0xe60000) >> 1]; // VMPEG ROM mirror
         } else {
             printf("Not mapped? %x\n", addr);
-            return 0;
+            return nullptr;
             // exit(1);
+        }
+    }
+
+    /// @brief Reads from RAM based on CPU memory view
+    uint16_t cpu_memory_read_u16(uint32_t addr) {
+
+        uint16_t *virt = cpu_addr_map_memory(addr, false);
+        if (virt) {
+            return *virt;
+        }
+        // exit(1);
+        return 0;
+    }
+
+    /// @brief Reads from RAM based on CPU memory view
+    void cpu_memory_write_u16(uint32_t addr, uint16_t data, bool uds, bool lds) {
+        uint16_t *virt = cpu_addr_map_memory(addr, true);
+        if (virt) {
+            if (uds && lds)
+                *virt = data;
+            else if (uds)
+                *virt = (*virt & 0x00ff) | (data & 0xff00);
+            else if (lds)
+                *virt = (*virt & 0xff00) | (data & 0x00ff);
         }
     }
 
@@ -672,6 +704,7 @@ class CDi {
 
             call_func = func;
         }
+
         if (static_cast<SystemCallType>(call) == SystemCallType::I_GetStt) {
             SttFunction func = static_cast<SttFunction>(cpu_d[1] & 0xffff);
             printf(" GetStt %s", sttFunctionToString(func));
@@ -1217,13 +1250,17 @@ class CDi {
             // do_trace = true;
 #endif
             sprintf(bmp_name, "%d/%03d.bmp", instanceid, fmv_frame_cnt);
-            printf("FMV Writing %s at Fifo Level %d at Frame Level %d\n", bmp_name,
+            printf("FMV Writing %s at Fifo Level %d at Frame Level %d %d %c\n", bmp_name,
                    dut.rootp->emu__DOT__cditop__DOT__vmpeg_inst__DOT__video__DOT__fifo_level,
-                   dut.rootp->emu__DOT__cditop__DOT__vmpeg_inst__DOT__video__DOT__pictures_in_fifo_clk_mpeg);
+                   dut.rootp->emu__DOT__cditop__DOT__vmpeg_inst__DOT__video__DOT__pictures_in_input_fifo,
+                   dut.rootp->emu__DOT__cditop__DOT__vmpeg_inst__DOT__video__DOT__pictures_in_output_fifo,
+                   GetPictureType(frame.picture_type));
             ;
-            fprintf(stderr, "FMV Writing %s at Fifo Level %d at Frame Level %d\n", bmp_name,
+            fprintf(stderr, "FMV Writing %s at Fifo Level %d at Frame Level %d %d %c\n", bmp_name,
                     dut.rootp->emu__DOT__cditop__DOT__vmpeg_inst__DOT__video__DOT__fifo_level,
-                    dut.rootp->emu__DOT__cditop__DOT__vmpeg_inst__DOT__video__DOT__pictures_in_fifo_clk_mpeg);
+                    dut.rootp->emu__DOT__cditop__DOT__vmpeg_inst__DOT__video__DOT__pictures_in_input_fifo,
+                    dut.rootp->emu__DOT__cditop__DOT__vmpeg_inst__DOT__video__DOT__pictures_in_output_fifo,
+                    GetPictureType(frame.picture_type));
 
             WriteBmp(bmp_name, w, h, pixels);
 
@@ -1251,9 +1288,12 @@ class CDi {
                 fwrite(&dut.rootp->emu__DOT__cditop__DOT__vmpeg_inst__DOT__mpeg_data, 1, 1, f_fmv_m1v);
             }
 #ifdef TRACE
-            if (!do_trace)
-                fprintf(stderr, "Trace on!\n");
-            do_trace = true;
+            
+            if (!do_trace && !do_trace_started_once_via_fmv) {
+                fprintf(stderr, "Trace on by FMV!\n");
+                do_trace = true;
+                do_trace_started_once_via_fmv = true;
+            }
 #endif
         }
         if (dut.rootp->emu__DOT__cditop__DOT__vmpeg_inst__DOT__fma_data_valid) {
@@ -1263,9 +1303,11 @@ class CDi {
                 fwrite(&dut.rootp->emu__DOT__cditop__DOT__vmpeg_inst__DOT__mpeg_data, 1, 1, f_fma_mp2);
             }
 #ifdef TRACE
-            if (!do_trace)
-                fprintf(stderr, "Trace on!\n");
-            do_trace = true;
+            if (!do_trace && !do_trace_started_once_via_fma) {
+                fprintf(stderr, "Trace on via FMA!\n");
+                do_trace = true;
+                do_trace_started_once_via_fma = true;
+            }
 #endif
         }
 
@@ -1429,8 +1471,8 @@ class CDi {
 
         start = std::chrono::system_clock::now();
 #ifdef TRACE
-        // do_trace = false;
-        // fprintf(stderr, "Trace off!\n");
+        do_trace = false;
+        fprintf(stderr, "Trace off!\n");
 #endif
 
 #ifdef SIMULATE_RC5
