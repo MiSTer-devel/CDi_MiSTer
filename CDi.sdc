@@ -14,7 +14,7 @@ set_false_path -from {emu:emu|cditop:cditop|vmpeg:vmpeg_inst|mpeg_video:video|fr
 set_false_path -from {emu:emu|cditop:cditop|vmpeg:vmpeg_inst|mpeg_video:video|yuv_frame_adr_fifo:readyframes|valid} -to {emu:emu|cditop:cditop|vmpeg:vmpeg_inst|mpeg_video:video|for_display_valid*}
 set_false_path -from {emu:emu|cditop:cditop|vmpeg:vmpeg_inst|mpeg_video:video|decoder_height*} -to {emu:emu|cditop:cditop|vmpeg:vmpeg_inst|mpeg_video:video|frameplayer:frameplayer|frame_height_clkvideo*}
 set_false_path -from {emu:emu|cditop:cditop|vmpeg:vmpeg_inst|mpeg_video:video|decoder_width*} -to {emu:emu|cditop:cditop|vmpeg:vmpeg_inst|mpeg_video:video|frameplayer:frameplayer|frame_width_clkvideo*}
-set_false_path -from {emu:emu|cditop:cditop|vmpeg:vmpeg_inst|mpeg_video:video|pictures_in_fifo_clk_mpeg_gray_q*} -to {emu:emu|cditop:cditop|vmpeg:vmpeg_inst|mpeg_video:video|pictures_in_fifo_clk30_gray*}
+set_false_path -from {emu:emu|cditop:cditop|vmpeg:vmpeg_inst|mpeg_video:video|pictures_in_output_fifo_clk_mpeg_gray_q*} -to {emu:emu|cditop:cditop|vmpeg:vmpeg_inst|mpeg_video:video|pictures_in_output_fifo_clk30_gray*}
 set_false_path -from {emu:emu|cditop:cditop|vmpeg:vmpeg_inst|mpeg_video:video|frameplayer:frameplayer|linecnt*} -to {emu:emu|cditop:cditop|vmpeg:vmpeg_inst|mpeg_video:video|frameplayer:frameplayer|linecnt_clkddr*}
 set_false_path -from {emu:emu|cditop:cditop|vmpeg:vmpeg_inst|mpeg_video:video|yuv_frame_adr_fifo:readyframes|altsyncram:ram_rtl_0|altsyncram_g3n1:auto_generated|ram_block1a0~PORT_B_WRITE_ENABLE_REG} -to {emu:emu|cditop:cditop|vmpeg:vmpeg_inst|mpeg_video:video|first_intra_frame_of_gop_clk30}
 
@@ -43,6 +43,8 @@ set_false_path -from {emu:emu|cditop:cditop|vmpeg:vmpeg_inst|mpeg_video:video|yu
 set_false_path -from {emu:emu|cditop:cditop|vmpeg:vmpeg_inst|mpeg_video:video|yuv_frame_adr_fifo:readyframes|*} -to {emu:emu|cditop:cditop|vmpeg:vmpeg_inst|mpeg_video:video|display_height*}
 set_false_path -from {emu:emu|cditop:cditop|vmpeg:vmpeg_inst|mpeg_video:video|yuv_frame_adr_fifo:readyframes|*} -to {emu:emu|cditop:cditop|vmpeg:vmpeg_inst|mpeg_video:video|first_intra_frame_of_gop_clk30}
 set_false_path -from {emu:emu|cditop:cditop|vmpeg:vmpeg_inst|mpeg_video:video|yuv_frame_adr_fifo:readyframes|*} -to {emu:emu|cditop:cditop|vmpeg:vmpeg_inst|mpeg_video:video|first_intra_frame_of_seq_clk30}
+set_false_path -from {emu:emu|cditop:cditop|vmpeg:vmpeg_inst|mpeg_video:video|desync2_q*} -to {emu:emu|cditop:cditop|vmpeg:vmpeg_inst|mpeg_video:video|desync2_q_clk_mpeg*}
+
 
 # protected by last_decoded_timestamp_updated phase latency
 set_false_path -from {emu:emu|cditop:cditop|vmpeg:vmpeg_inst|mpeg_video:video|last_decoded_timestamp_clk_mpeg*} -to {emu:emu|cditop:cditop|vmpeg:vmpeg_inst|mpeg_video:video|last_decoded_timestamp*}

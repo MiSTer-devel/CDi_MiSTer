@@ -3,13 +3,11 @@
 #include <stdint.h>
 
 struct io_fifo_control {
-    uint32_t write_byte_index;           // @0x10002000
-    uint32_t read_bit_index;             // @0x10002004
-    uint32_t hw_read_count;              // @0x10002008
-    uint32_t hw_huffman_read_dct_coeff;  // @0x1000200C
-    uint32_t has_sequence_header;        // @0x10002010
-    uint32_t demuxer_decoding_timestamp; // @0x10002014
-    uint32_t last_decoded_timestamp;     // @0x10002018
+    uint32_t write_byte_index;          // @0x10002000 read only
+    uint32_t read_bit_index;            // @0x10002004 read + write
+    uint32_t hw_read_count;             // @0x10002008 read + write
+    uint32_t hw_huffman_read_dct_coeff; // @0x1000200C read + write
+    uint32_t has_sequence_header;       // @0x10002010 read only
 };
 
 struct frame_display_fifo {
@@ -19,11 +17,11 @@ struct frame_display_fifo {
     uint32_t width;                    // @0x1000300C
     uint32_t height;                   // @0x10003010
     uint32_t frameperiod_30mhz;        // @0x10003014, ticks of 30 MHz
-    uint32_t event_at_least_one_frame; // @0x10003018 Write only
+    int32_t dts_desync;                // @0x10003018 Read only
     uint32_t event_sequence_end;       // @0x1000301C Write only
     uint32_t first_intra_frame_of_gop; // @0x10003020 Write only
     uint32_t event_buffer_underflow;   // @0x10003024 Write only
-    uint32_t pictures_in_fifo;         // @0x10003028 Read only
+    uint32_t pictures_in_output_fifo;  // @0x10003028 Read only
     uint32_t playback_active;          // @0x1000302c Read only
     uint32_t frameperiod_rawhdr;       // @0x10003030 Write only
     uint32_t frameperiod_90khz;        // @0x10003034 Write only
@@ -32,13 +30,16 @@ struct frame_display_fifo {
     uint32_t commit_frame;             // @0x10003040 Write only
     uint32_t timecode;                 // @0x10003044 Write only
     uint32_t first_intra_frame_of_seq; // @0x10003048 Write only
+    uint32_t reserved2_;               // @0x1000304C
+    uint32_t event_frame_decoded;      // @0x10003050 Write only
 };
 
 struct io_fifo_control *const fifo_ctrl = (struct io_fifo_control *)0x10002000;
 struct frame_display_fifo *const frame_display_fifo =
     (struct frame_display_fifo *)0x10003000;
 
-#define OUTPORT 0x10000000
+#define OUTPORT *(volatile uint32_t *)0x10000000
+
 #define OUTPORT_END 0x1000000c
 #define OUTPORT_FRAME 0x10000010
 

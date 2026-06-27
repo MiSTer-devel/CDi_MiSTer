@@ -184,7 +184,6 @@ typedef struct plm_demux_t plm_demux_t;
 typedef struct plm_video_t plm_video_t;
 typedef struct plm_audio_t plm_audio_t;
 
-void advertise_at_least_one_frame();
 int seq_hdr_latched;
 
 // Demuxed MPEG PS packet
@@ -220,7 +219,6 @@ typedef struct {
 // different from the internal size of the 3 planes.
 
 typedef struct {
-    int32_t time;
     unsigned int width;
     unsigned int height;
     plm_plane_t y;
@@ -229,6 +227,7 @@ typedef struct {
     int picture_type;
     int temporal_ref;
     int timecode;
+    int ready_for_display;
 } plm_frame_t;
 
 // Callback function type for decoded video frames used by the high-level
@@ -831,8 +830,6 @@ int plm_get_height(plm_t *self) {
                : 0;
 }
 
-int64_t plm_get_time(plm_t *self) { return self->time; }
-
 int64_t plm_get_duration(plm_t *self) {
     return plm_demux_get_duration(self->demux, PLM_DEMUX_PACKET_VIDEO_1);
 }
@@ -842,24 +839,6 @@ int plm_get_loop(plm_t *self) { return self->loop; }
 void plm_set_loop(plm_t *self, int loop) { self->loop = loop; }
 
 int plm_has_ended(plm_t *self) { return self->has_ended; }
-
-plm_frame_t *plm_decode_video(plm_t *self) {
-    if (!plm_init_decoders(self)) {
-        return NULL;
-    }
-
-    if (!self->video_packet_type) {
-        return NULL;
-    }
-
-    plm_frame_t *frame = plm_video_decode(self->video_decoder);
-    if (frame) {
-        self->time = frame->time;
-    } else if (plm_demux_has_ended(self->demux)) {
-        plm_handle_end(self);
-    }
-    return frame;
-}
 
 void plm_read_video_packet(plm_buffer_t *buffer, void *user) {
     PLM_UNUSED(buffer);
@@ -1177,20 +1156,14 @@ size_t plm_buffer_tell_file_callback(plm_buffer_t *self, void *user) {
 
 #endif // PLM_NO_STDIO
 
-int plm_buffer_has_ended(plm_buffer_t *self) { return self->has_ended; }
-
 static inline int plm_dma_buffer_has(plm_dma_buffer_t *self, size_t count) {
     __asm volatile("" : : : "memory");
     while (((fifo_ctrl->write_byte_index << 3) - fifo_ctrl->read_bit_index) <
            count) {
         __asm volatile("" : : : "memory");
-        // If the driver has not yet instructed to play, we will wait patiently
-        // But if the driver has told us to play, we accept an abort of the
-        // stream as long as no pictures are left in the output FIFO
-        if (frame_display_fifo->playback_active &&
-            frame_display_fifo->pictures_in_fifo == 0) {
-            return FALSE;
-        }
+        // We need patience now. If we have reached this point, there has to be
+        // picture data if it doesn't exist, a real VMPEG stalls. We need to
+        // stall as well
     }
     return TRUE;
 }
@@ -1203,10 +1176,6 @@ static inline int plm_dma_buffer_has_noblock(plm_dma_buffer_t *self,
         return TRUE;
     }
     return FALSE;
-}
-
-int plm_dma_buffer_has_ended(plm_dma_buffer_t *self) {
-    return !plm_dma_buffer_has_noblock(self, 32);
 }
 
 int plm_buffer_has(plm_buffer_t *self, size_t count) {
@@ -1295,8 +1264,6 @@ void plm_dma_buffer_skip(plm_dma_buffer_t *self, size_t count) {
     }
 }
 
-static const int PLM_START_SEQ_END = 0xB7;
-
 int plm_dma_buffer_next_start_code(plm_dma_buffer_t *self) {
     plm_dma_buffer_align(self);
 
@@ -1308,12 +1275,6 @@ int plm_dma_buffer_next_start_code(plm_dma_buffer_t *self) {
             fifo_ctrl->read_bit_index = (byte_index + 4) << 3;
 
             int startcode = self->bytes[byte_index + 3];
-
-            if (startcode == PLM_START_SEQ_END) {
-                frame_display_fifo->event_sequence_end = 1;
-                __asm volatile("" : : : "memory");
-            }
-
             return startcode;
         }
         fifo_ctrl->read_bit_index += 8;
@@ -1399,6 +1360,7 @@ static const int PLM_VIDEO_PICTURE_TYPE_PREDICTIVE = 2;
 static const int PLM_VIDEO_PICTURE_TYPE_B = 3;
 
 static const int PLM_START_SEQUENCE = 0xB3;
+static const int PLM_START_SEQ_END = 0xB7;
 static const int PLM_START_SLICE_FIRST = 0x01;
 static const int PLM_START_SLICE_LAST = 0xAF;
 static const int PLM_START_PICTURE = 0x00;
@@ -1454,7 +1416,6 @@ static const uint32_t PLM_VIDEO_PICTURE_RATE_90KHZ[] = {
 	TICKS_90KHZ(0.000),
 	TICKS_90KHZ(0.0),
 };
-
 
 static const uint8_t PLM_VIDEO_ZIG_ZAG[] = {
 	 0,  1,  8, 16,  9,  2,  3, 10,
@@ -1850,9 +1811,7 @@ static const plm_vlc_uint_t PLM_VIDEO_DCT_COEFF[] = {
 	{       0,   0x1e01}, {       0,   0x1d01},  // 110: 0000 0000 0001 110x
 	{       0,   0x1c01}, {       0,   0x1b01},  // 111: 0000 0000 0001 111x
 };
-
 // clang-format on
-
 static inline uint16_t plm_dma_read_dct_coeff(plm_dma_buffer_t *buffer) {
     uint16_t result;
 
@@ -1881,9 +1840,6 @@ typedef struct {
 #define DDR_MEMORY_AREA 16777216
 
 struct plm_video_t {
-    int time;
-    int frames_decoded;
-
     int start_code;
     int picture_type;
     int temporal_ref;
@@ -1905,14 +1861,12 @@ struct plm_video_t {
     int dc_predictor[3];
 
     plm_dma_buffer_t *buffer;
-    int destroy_buffer_when_done;
 
     plm_frame_t frame_current;
     plm_frame_t frame_forward;
     plm_frame_t frame_backward;
 
     int has_reference_frame;
-    int assume_no_b_frames;
 };
 
 static inline uint8_t plm_clamp(int n) {
@@ -1950,7 +1904,6 @@ plm_video_t *plm_video_create_with_buffer(plm_dma_buffer_t *buffer,
     memset(self, 0, sizeof(plm_video_t));
 
     self->buffer = buffer;
-    self->destroy_buffer_when_done = destroy_when_done;
 
     __asm volatile("" : : : "memory");
 
@@ -1999,18 +1952,9 @@ int plm_video_get_height(plm_video_t *self) {
     return plm_video_has_header(self) ? seq_hdr_conf.height : 0;
 }
 
-void plm_video_set_no_delay(plm_video_t *self, int no_delay) {
-    self->assume_no_b_frames = no_delay;
-}
-
-int64_t plm_video_get_time(plm_video_t *self) { return self->time; }
-
-int plm_video_has_ended(plm_video_t *self) {
-    return plm_dma_buffer_has_ended(self->buffer);
-}
-
 plm_frame_t *plm_video_decode(plm_video_t *self) {
-    static int stay_here = FALSE;
+    // used to avoid finding a sequence header again
+    static int dont_find_next_header = FALSE;
 
     plm_frame_t *frame = NULL;
 
@@ -2019,52 +1963,53 @@ plm_frame_t *plm_video_decode(plm_video_t *self) {
 
     do {
         DEBUG_STATE = 2;
-        if (!stay_here)
+        if (!dont_find_next_header)
             self->start_code = plm_dma_buffer_next_start_code(self->buffer);
-        stay_here = FALSE;
+        dont_find_next_header = FALSE;
 
         if (self->start_code == PLM_START_PICTURE &&
             fifo_ctrl->has_sequence_header) {
             plm_video_decode_picture(self);
 
-            if (self->assume_no_b_frames) {
-                frame = &self->frame_backward;
-            } else if (self->picture_type == PLM_VIDEO_PICTURE_TYPE_B) {
+            if (self->picture_type == PLM_VIDEO_PICTURE_TYPE_B) {
                 frame = &self->frame_current;
             } else if (self->has_reference_frame) {
                 frame = &self->frame_forward;
             } else {
                 self->has_reference_frame = TRUE;
             }
-        } else if (self->start_code == PLM_START_SEQUENCE) {
+        } else if (self->start_code == PLM_START_SEQ_END) {
+            frame_display_fifo->event_sequence_end = 1;
+            __asm volatile("" : : : "memory");
+
             if (self->has_reference_frame) {
                 self->has_reference_frame = FALSE;
                 frame = &self->frame_backward;
                 fifo_ctrl->has_sequence_header = FALSE;
-                stay_here = TRUE;
+            }
+        } else if (self->start_code == PLM_START_SEQUENCE) {
+            if (self->has_reference_frame) {
+                // Is this state even possible?
+
+                // Anyway, we start as sequence end
+                self->has_reference_frame = FALSE;
+                frame = &self->frame_backward;
+                fifo_ctrl->has_sequence_header = FALSE;
+
+                dont_find_next_header = TRUE;
                 break;
             }
             plm_video_decode_sequence_header(self);
         } else if (self->start_code == PLM_START_GROUP_OF_PICTURES) {
             plm_video_decode_group_of_pictures(self);
         } else if (self->start_code == -1) {
-            // If we reached the end of the file and the previously decoded
-            // frame was a reference frame, we still have to return it.
-            if (self->has_reference_frame &&
-                plm_dma_buffer_has_ended(self->buffer)) {
-                self->has_reference_frame = FALSE;
-                frame = &self->frame_backward;
-                break;
-            }
-
+            // This should be impossible!
+            *((volatile uint8_t *)OUTPORT_END) = 9;
             return NULL;
         }
 
     } while (!frame);
     DEBUG_STATE = 15;
-
-    frame->time = self->time;
-    self->frames_decoded++;
 
     return frame;
 }
@@ -2212,6 +2157,8 @@ void plm_video_init_frame(plm_video_t *self, plm_frame_t *frame) {
     frame->cb.data =
         seq_hdr_conf.next_framebuffer + luma_plane_size + chroma_plane_size;
 
+    frame->ready_for_display = FALSE;
+
     seq_hdr_conf.next_framebuffer += frame_data_size;
     if (((uint32_t)(seq_hdr_conf.next_framebuffer + frame_data_size)) >=
         DDR_MEMORY_AREA)
@@ -2294,10 +2241,8 @@ void plm_video_decode_picture(plm_video_t *self) {
         plm_video_predict_macroblock(self);
     }
 
-    // If we have reached this point, we have at least one frame that will be
-    // returned, even if the decoding process was aborted, trying to get another
-    // one
-    advertise_at_least_one_frame();
+    self->frame_current.ready_for_display = TRUE;
+    frame_display_fifo->event_frame_decoded = 1;
 
     // If this is a reference picture rotate the prediction pointers
     if (self->picture_type == PLM_VIDEO_PICTURE_TYPE_INTRA ||

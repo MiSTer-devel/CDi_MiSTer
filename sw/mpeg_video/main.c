@@ -41,17 +41,7 @@ int seq_hdr_latched;
 // To be able to continue playback, those must be kept between resets
 __attribute__((section(".noinit"))) struct seq_hdr_conf seq_hdr_conf;
 
-void print_chr(char ch) { *((volatile uint8_t *)OUTPORT) = ch; }
-
-void print_str(const char *p) {
-    while (*p != 0)
-        *((volatile uint8_t *)OUTPORT) = *(p++);
-}
-
-void stop_verilator() {
-    print_str("Nope\n");
-    *((volatile uint8_t *)OUTPORT_END) = 1;
-}
+void stop_verilator() { *((volatile uint8_t *)OUTPORT_END) = 1; }
 
 void sync_to_worker() {
     struct image_synthesis_descriptor *desc = get_next_free_synthesis_desc();
@@ -64,14 +54,15 @@ void dct_coeff_read(plm_dma_buffer_t *buffer) {
 #if 0
 	fifo_ctrl->hw_huffman_read_dct_coeff = 1;
 	__asm volatile("" : : : "memory");
-	*((volatile uint32_t *)OUTPORT) = fifo_ctrl->hw_huffman_read_dct_coeff;
-	*((volatile uint32_t *)OUTPORT) = fifo_ctrl->read_bit_index;
+	OUTPORT = fifo_ctrl->hw_huffman_read_dct_coeff;
+	OUTPORT = fifo_ctrl->read_bit_index;
 #else
-    *((volatile uint32_t *)OUTPORT) =
-        plm_dma_buffer_read_vlc_uint(buffer, PLM_VIDEO_DCT_COEFF);
-    *((volatile uint32_t *)OUTPORT) = fifo_ctrl->read_bit_index;
+    OUTPORT = plm_dma_buffer_read_vlc_uint(buffer, PLM_VIDEO_DCT_COEFF);
+    OUTPORT = fifo_ctrl->read_bit_index;
 #endif
 }
+
+static int32_t dts_desync_last = 0;
 
 static void push_frame(plm_frame_t *frame) {
     static int first_intra_frame_of_gop_occured = false;
@@ -87,7 +78,7 @@ static void push_frame(plm_frame_t *frame) {
 
     __asm volatile("" : : : "memory");
 
-    while (frame_display_fifo->pictures_in_fifo > 25)
+    while (frame_display_fifo->pictures_in_output_fifo > 25)
         __asm volatile("" : : : "memory");
 
     *((volatile plm_frame_t **)OUTPORT_FRAME) = frame;
@@ -95,7 +86,7 @@ static void push_frame(plm_frame_t *frame) {
     frame_display_fifo->u_adr = (uint32_t)frame->cb.data;
     frame_display_fifo->v_adr = (uint32_t)frame->cr.data;
 
-    // The VMPEG driver needs to know when the first I frame occured during a
+    // The VMPEG driver needs to know when the first I frame occurred during a
     // GOP We use the temporal ref for this, which starts at 0 with every GOP
     if (frame->temporal_ref == 0)
         first_intra_frame_of_gop_occured = false;
@@ -115,43 +106,31 @@ static void push_frame(plm_frame_t *frame) {
     frame_display_fifo->width = frame->width;
     frame_display_fifo->height = frame->height;
 
+    int32_t dts_desync_avg =
+        (dts_desync_last + frame_display_fifo->dts_desync) / 2;
+    dts_desync_last = frame_display_fifo->dts_desync;
+
     int period30mhz = PLM_VIDEO_PICTURE_RATE_30MHZ[seq_hdr_conf.frameperiod] *
-                      (frame_display_fifo->slow_motion + 1);
+                          (frame_display_fifo->slow_motion + 1) -
+                      dts_desync_avg * 1000; // steps of 33 us
     int period90khz = PLM_VIDEO_PICTURE_RATE_90KHZ[seq_hdr_conf.frameperiod];
+
+    if (period30mhz < 400000) // much faster than 60 Hz? Better not
+        period30mhz = 400000;
 
     frame_display_fifo->frameperiod_90khz = period90khz;
     frame_display_fifo->frameperiod_rawhdr = seq_hdr_conf.frameperiod;
     frame_display_fifo->temporal_ref = frame->temporal_ref;
     frame_display_fifo->timecode = frame->timecode;
 
-    if (frame_display_fifo->pictures_in_fifo < 3) {
-        // It seems our FIFO is loosing pictures. Maybe the frame rate is
-        // slightly off? Increase frame period by 0.1Hz when running at 25 FPS
-        frame_display_fifo->frameperiod_30mhz = period30mhz + 4780;
-    } else {
-        frame_display_fifo->frameperiod_30mhz = period30mhz;
-    }
+    frame_display_fifo->frameperiod_30mhz = period30mhz;
+
+    frame_display_fifo->video_status =
+        (frame->temporal_ref << 2) | frame->picture_type;
 
     // The order is crucial. Everything written above must be in I/O by now
     __asm volatile("" : : : "memory");
     frame_display_fifo->commit_frame = 1;
-    __asm volatile("" : : : "memory");
-}
-
-uint32_t last_demuxer_dts = 0;
-uint32_t demuxer_dts;
-
-void update_dts_register() {
-    if (last_demuxer_dts != demuxer_dts) {
-        fifo_ctrl->last_decoded_timestamp = demuxer_dts;
-        last_demuxer_dts = demuxer_dts;
-    }
-}
-
-void advertise_at_least_one_frame() {
-    __asm volatile("" : : : "memory");
-    frame_display_fifo->event_at_least_one_frame = 1;
-    update_dts_register();
     __asm volatile("" : : : "memory");
 }
 
@@ -177,13 +156,12 @@ void main(void) {
     int underflow_occured = 0;
 
     for (;;) {
-        demuxer_dts = fifo_ctrl->demuxer_decoding_timestamp;
-        __asm volatile("" : : : "memory");
         plm_frame_t *frame = plm_video_decode(mpeg);
-        update_dts_register();
-        __asm volatile("" : : : "memory");
 
         if (frame) {
+            if (!frame->ready_for_display)
+                *((volatile uint8_t *)OUTPORT_END) = 11;
+
             DEBUG_STATE = 27;
 
             worker_cnt = 0;
@@ -196,8 +174,10 @@ void main(void) {
             DEBUG_STATE = 28;
 
             push_frame(frame);
+            frame->ready_for_display = false;
             underflow_occured = 0;
         } else {
+            // Only indicate underflow when there is no frame left
             if (!underflow_occured) {
                 frame_display_fifo->event_buffer_underflow = 1;
                 underflow_occured = 1;

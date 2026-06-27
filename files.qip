@@ -17,7 +17,6 @@ set_global_assignment -name SYSTEMVERILOG_FILE rtl/hps_cd_sector_cache.sv
 set_global_assignment -name SYSTEMVERILOG_FILE rtl/ica_dca_ctrl.sv
 set_global_assignment -name SYSTEMVERILOG_FILE rtl/mcd212.sv
 set_global_assignment -name SYSTEMVERILOG_FILE rtl/mk48t08b.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/mpeg/demuxer.sv
 set_global_assignment -name SYSTEMVERILOG_FILE rtl/mpeg/fma/audio_firmware_memory.sv
 set_global_assignment -name SYSTEMVERILOG_FILE rtl/mpeg/fma/dsp_registers.sv
 set_global_assignment -name SYSTEMVERILOG_FILE rtl/mpeg/fma/mpeg_audio.sv
@@ -34,9 +33,12 @@ set_global_assignment -name SYSTEMVERILOG_FILE rtl/mpeg/fmv/macroblock_worker.sv
 set_global_assignment -name SYSTEMVERILOG_FILE rtl/mpeg/fmv/mpeg_input_stream_fifo_32k.sv
 set_global_assignment -name SYSTEMVERILOG_FILE rtl/mpeg/fmv/mpeg_video_start_code_decoder.sv
 set_global_assignment -name SYSTEMVERILOG_FILE rtl/mpeg/fmv/mpeg_video.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/mpeg/fmv/presentation_time_fifo.sv
 set_global_assignment -name SYSTEMVERILOG_FILE rtl/mpeg/fmv/sample_rate_converter.sv
 set_global_assignment -name SYSTEMVERILOG_FILE rtl/mpeg/fmv/worker_firmware_memory.sv
 set_global_assignment -name SYSTEMVERILOG_FILE rtl/mpeg/fmv/yuv_frame_adr_fifo.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/mpeg/mpeg_demuxer.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/mpeg/mpeg_playback_timer.sv
 set_global_assignment -name SYSTEMVERILOG_FILE rtl/mpeg/VexiiRiscv.v
 set_global_assignment -name SYSTEMVERILOG_FILE rtl/pointing_device.sv
 set_global_assignment -name SYSTEMVERILOG_FILE rtl/resetdelay.sv

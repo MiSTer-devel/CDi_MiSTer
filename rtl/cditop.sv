@@ -213,7 +213,7 @@ module cditop (
     // video mixing. But we won't do that here and use the digital
     // one instead
     wire mcd212_vsd;
-
+    /*verilator tracing_off*/
     mcd212 mcd212_inst (
         .clk(clk30),
         .reset,
@@ -250,7 +250,7 @@ module cditop (
         // Don't starve the CPU during DMA transfers
         .disable_cpu_starve(config_disable_cpu_starve || cdic_dma_ack || cdic_dma_req)
     );
-
+    /*verilator tracing_on*/
 
     // DMA signals from CPU
     wire vmpeg_dma_ack;
@@ -564,7 +564,7 @@ module cditop (
 `endif
     wire signed [15:0] att_audio_left;
     wire signed [15:0] att_audio_right;
-
+    /*verilator tracing_off*/
     dual_ad7528_attenuation att (
         .clk(clk30),
         .datadac(datadac),
@@ -600,6 +600,7 @@ module cditop (
         .cd_img_mounted(cd_img_mounted),
         .tray_is_closed
     );
+    /*verilator tracing_on*/
 
     always_comb begin
         slave_bus_ack = dtackslaven && !dtackslaven_q;
