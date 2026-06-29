@@ -117,6 +117,7 @@ module vmpeg (
     // [5:0] 6 Bit Minutes. Not BCD
     // [10:6] 5 Bits Hours. Not BCD
     wire [31:0] fmv_display_timecode;
+    wire [31:0] fmv_decoder_timecode;
     bit fmv_playback_active;
     bit fmv_decoder_active;
     bit fmv_single_step;
@@ -180,8 +181,9 @@ module vmpeg (
         .decoder_height(fmv_decoder_height),
         .display_width(fmv_display_width),
         .display_height(fmv_display_height),
-        .display_tempref(fmv_display_tempref),
+        .display_video_status(fmv_display_video_status),
         .display_timecode(fmv_display_timecode),
+        .decoder_timecode(fmv_decoder_timecode),
         .decoder_frameperiod_90khz(fmv_decoder_frameperiod_90khz),
         .decoder_frameperiod_rawhdr(fmv_decoder_frameperiod_rawhdr)
     );
@@ -440,7 +442,7 @@ module vmpeg (
     wire [10:0] fmv_display_width;
     wire [ 8:0] fmv_display_height;
 
-    wire [ 7:0] fmv_display_tempref;
+    wire [ 7:0] fmv_display_video_status;
     wire [15:0] fmv_decoder_frameperiod_90khz;
     wire [ 7:0] fmv_decoder_frameperiod_rawhdr;
 
@@ -507,17 +509,17 @@ module vmpeg (
             15'h180E: dout = fma_interrupt_enable_register;  // 0x0E0301C
             15'h1812: dout = 16'h0004;  // 0x0E03024, HF2 Flag of DSP56001?
 
-            15'h2001: dout = image_width;  // 00E04002 ?? Written then Read
+            15'h2001: dout = image_width;  // 00E04002 ?? Written then Read FMV_IMGSZ
             15'h2002: dout = image_height;  // 00E04004 ?? Written then Read
             15'h2003: dout = image_rt;  // 00E04006 ??
             15'h2004: dout = fmv_display_timecode[31:16];  // 00E04008 Temporal time code High
             15'h2005: dout = fmv_display_timecode[15:0];  // 00E0400C Temporal time code Low
-            15'h2029: dout = {5'b0, fmv_display_width};  // e04052 Picture Width ?? Only read
-            15'h202a: dout = {7'b0, fmv_display_height};  // e04054 Picture Height ?? Only read
+            15'h2029: dout = {5'b0, fmv_display_width};  // e04052 PIC Width, Only read FMV_PICSZ
+            15'h202a: dout = {7'b0, fmv_display_height};  // e04054 PIC Height, Only read
             15'h202b: dout = {8'b0, fmv_decoder_frameperiod_rawhdr};  // e04056 Pic Rt ??
-            15'h202c: dout = fmv_display_timecode[31:16];  // 00E04058 Time Code High ??
-            15'h202d: dout = fmv_display_timecode[15:0];  // 00E0405A Time Code Low ??
-            15'h202e: dout = {6'b0, fmv_display_tempref, 2'b0};  // 00E0405C TMP REF?? SYS_VSR?
+            15'h202c: dout = fmv_decoder_timecode[31:16];  // 00E04058 Time Code High ??
+            15'h202d: dout = fmv_decoder_timecode[15:0];  // 00E0405A Time Code Low ??
+            15'h202e: dout = {8'b0, fmv_display_video_status};  // 00E0405C SYS_VSR
             15'h202f: dout = fmv_fifo_full ? 0 : 16'h2000;  // 00E0405E ? SYS_STS
             15'h2030: dout = fmv_interrupt_enable_register;  // 0E04060
             15'h2031: dout = fmv_interrupt_status_register;  // 0E04062
@@ -534,6 +536,7 @@ module vmpeg (
             15'h203f: dout = video_ctrl_decoder_offset_x;  // 0E0407E FMV_DECOFF X
             15'h2044: dout = fmv_decoder_command;  // E04088 Decoder Command? GEN_DEC_CMD?
             15'h2046: dout = fmv_video_data_input_command_register;  // 0E0408C GEN_VDI_CMD
+            15'h2049: dout = 0;  // 0E04092 GEN_VID_BUF
             15'h204C: dout = fmv_dclk[21:6];  // 0E04098 GEN_SYSCR
             15'h204E: dout = 0;  // e0409c GEN_SYNC_DIFF? Always reads 0 on real machine
             15'h204F: dout = 1;  // e0409e GEN_DEC_DELAY? Always changing but negative?
@@ -575,12 +578,15 @@ module vmpeg (
     bit register_update_latch;
     bit register_update_scroll;
 
+    bit fmv_event_frame_decoded_q;
+
     always @(posedge clk) begin
         bus_ack <= 0;
         vsync_q <= vsync;
         dsp_reset_input_fifo <= 0;
         fmv_single_step <= 0;
         fmv_clear_fifo <= 0;
+        fmv_event_frame_decoded_q <= fmv_event_frame_decoded;
 
         // create a single clock delay of this signal
         // should be better since this signal must be carried over to clk_mpeg
@@ -614,6 +620,7 @@ module vmpeg (
             image_height <= 0;
             image_rt <= 0;
             image_width <= 0;
+            fmv_event_frame_decoded_q <= 0;
             mpeg_ram_enabled <= 0;
             mpeg_ram_enabled_cnt <= 0;
             pending_fma_stream_change <= 0;
@@ -630,6 +637,12 @@ module vmpeg (
             video_ctrl_y_display <= 0;
             video_ctrl_y_offset <= 0;
         end else begin
+
+            if (fmv_event_frame_decoded_q) begin
+                image_width <= {5'b0, fmv_decoder_width};
+                image_height <= {7'b0, fmv_decoder_height};
+                image_rt <= {8'b0, fmv_decoder_frameperiod_rawhdr};
+            end
 
             if (restart_fmv_dsp_enable_q) fmv_dsp_enable <= 1;
             if (fmv_demuxer_decoding_timestamp_updated)
@@ -678,9 +691,6 @@ module vmpeg (
             if (fmv_event_picture_starts_display) begin
                 fmv_interrupt_status_register.pic <= 1;
 
-                image_width <= {5'b0, fmv_decoder_width};
-                image_height <= {7'b0, fmv_decoder_height};
-                image_rt <= {8'b0, fmv_decoder_frameperiod_rawhdr};
             end
             if (fmv_event_last_picture_starts_display) fmv_interrupt_status_register.eod <= 1;
             if (fmv_event_program_end) fmv_interrupt_status_register.eii <= 1;
@@ -923,13 +933,8 @@ module vmpeg (
                             fmv_system_command_register <= din;
 
                             if (din[3]) begin  // 0008 Play
-                                fmv_dclk_start_video <= fma_dclk + 32'd3000;  // 65ms delay
+                                fmv_dclk_start_video <= fma_dclk + 32'd2000;  // 65ms delay
                                 fmv_dclk_start_video_latched <= 1;
-
-                                // Really correct?
-                                image_width <= {5'b0, fmv_decoder_width};
-                                image_height <= {7'b0, fmv_decoder_height};
-                                image_rt <= {8'b0, fmv_decoder_frameperiod_rawhdr};
 
                                 // TODO can't be correct. set 0x42
                                 fmv_decoder_command[6] <= 1;
@@ -1100,6 +1105,9 @@ module vmpeg (
                         15'h2046: begin
                             $display("FMV Write GEN_VDI_CMD %x %x ?", address[15:1], din);
                             fmv_video_data_input_command_register <= din;
+                        end
+                        15'h2049: begin
+                            $display("FMV Write GEN_VID_BUF %x %x ?", address[15:1], din);
                         end
                         15'h204C: begin
                             $display("FMV Write GEN_SYSCR %x %x ?", address[15:1], din);

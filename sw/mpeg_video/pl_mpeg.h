@@ -2241,6 +2241,19 @@ void plm_video_decode_picture(plm_video_t *self) {
         plm_video_predict_macroblock(self);
     }
 
+    // Present settings even before a frame is available for display
+    frame_display_fifo->width = seq_hdr_conf.width;
+    frame_display_fifo->height = seq_hdr_conf.height;
+    int period30mhz = PLM_VIDEO_PICTURE_RATE_30MHZ[seq_hdr_conf.frameperiod] *
+                      (frame_display_fifo->slow_motion + 1);
+    int period90khz = PLM_VIDEO_PICTURE_RATE_90KHZ[seq_hdr_conf.frameperiod];
+
+    if (period30mhz < 400000) // much faster than 60 Hz? Better not
+        period30mhz = 400000;
+    frame_display_fifo->frameperiod_90khz = period90khz;
+    frame_display_fifo->frameperiod_rawhdr = seq_hdr_conf.frameperiod;
+    frame_display_fifo->timecode = self->timecode;
+
     self->frame_current.ready_for_display = TRUE;
     frame_display_fifo->event_frame_decoded = 1;
 

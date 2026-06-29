@@ -25,7 +25,7 @@ struct frame_display_fifo {
     uint32_t playback_active;          // @0x1000302c Read only
     uint32_t frameperiod_rawhdr;       // @0x10003030 Write only
     uint32_t frameperiod_90khz;        // @0x10003034 Write only
-    uint32_t temporal_ref;             // @0x10003038 Write only
+    uint32_t video_status;             // @0x10003038 Write only
     uint32_t slow_motion;              // @0x1000303c Read only
     uint32_t commit_frame;             // @0x10003040 Write only
     uint32_t timecode;                 // @0x10003044 Write only
