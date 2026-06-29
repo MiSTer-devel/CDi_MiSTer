@@ -32,6 +32,8 @@ struct frame_display_fifo {
     uint32_t first_intra_frame_of_seq; // @0x10003048 Write only
     uint32_t reserved2_;               // @0x1000304C
     uint32_t event_frame_decoded;      // @0x10003050 Write only
+    uint32_t luma_width;               // @0x10003054 Write only
+    uint32_t chroma_width;             // @0x10003058 Write only
 };
 
 struct io_fifo_control *const fifo_ctrl = (struct io_fifo_control *)0x10002000;

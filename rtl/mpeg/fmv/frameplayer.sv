@@ -64,7 +64,8 @@ module frameplayer (
 
     bit [28:0] address_y_offset;
     bit [28:0] address_uv_offset;
-    bit [10:0] frame_stride;
+    bit [10:0] luma_stride;
+    bit [9:0] chroma_stride;
 
     enum bit [1:0] {
         IDLE,
@@ -253,7 +254,8 @@ module frameplayer (
             address_u <= latched_frame.u_adr + address_uv_offset + 29'(window_x_clkddr / 2);
             address_v <= latched_frame.v_adr + address_uv_offset + 29'(window_x_clkddr / 2);
             fetch_and_show_frame <= latched_frame_valid && show_on_next_video_frame;
-            frame_stride <= latched_frame.width;
+            luma_stride <= latched_frame.luma_width;
+            chroma_stride <= latched_frame.chroma_width;
             target_y <= 0;
             target_u <= 0;
             target_v <= 0;
@@ -280,7 +282,7 @@ module frameplayer (
                         ddrif.addr <= {DDR_CORE_BASE, address_u[27:3]};
                         ddrif.read <= 1;
                         ddrif.acquire <= 1;
-                        address_u <= address_u + 29'(frame_stride / 2);
+                        address_u <= address_u + 29'(chroma_stride);
                         ddrif.burstcnt <= 8'(9'(frame_width_clkddr + 15) / 16) + 1;
                         data_burst_cnt <= 7'(9'(frame_width_clkddr + 15) / 16) + 1;
                         fetchstate <= WAITING;
@@ -290,7 +292,7 @@ module frameplayer (
                         ddrif.addr <= {DDR_CORE_BASE, address_v[27:3]};
                         ddrif.read <= 1;
                         ddrif.acquire <= 1;
-                        address_v <= address_v + 29'(frame_stride / 2);
+                        address_v <= address_v + 29'(chroma_stride);
                         ddrif.burstcnt <= 8'(9'(frame_width_clkddr + 15) / 16) + 1;
                         data_burst_cnt <= 7'(9'(frame_width_clkddr + 15) / 16) + 1;
                         fetchstate <= WAITING;
@@ -300,7 +302,7 @@ module frameplayer (
                         ddrif.addr <= {DDR_CORE_BASE, address_y[27:3]};
                         ddrif.read <= 1;
                         ddrif.acquire <= 1;
-                        address_y <= address_y + 29'(frame_stride);
+                        address_y <= address_y + 29'(luma_stride);
                         ddrif.burstcnt <= 8'(9'(frame_width_clkddr + 7) / 8) + 1;
                         data_burst_cnt <= 7'(9'(frame_width_clkddr + 7) / 8) + 1;
                         fetchstate <= WAITING;
