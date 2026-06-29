@@ -9,7 +9,7 @@ typedef struct {
     bit first_intra_frame_of_seq;
     bit [10:0] width;
     bit [8:0] height;
-    bit [7:0] tempref;
+    bit [7:0] video_status;  // tempref and picture type
     bit [31:0] timecode;
 } planar_yuv_s;
 

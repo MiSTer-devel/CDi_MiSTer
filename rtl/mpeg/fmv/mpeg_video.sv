@@ -50,9 +50,10 @@ module mpeg_video (
 
     output bit [10:0] decoder_width,
     output bit [ 8:0] decoder_height,
+    output bit [31:0] decoder_timecode,
     output bit [10:0] display_width,
     output bit [ 8:0] display_height,
-    output bit [ 7:0] display_tempref,
+    output bit [ 7:0] display_video_status,
     output bit [31:0] display_timecode,
     output bit [15:0] decoder_frameperiod_90khz,
     output bit [ 7:0] decoder_frameperiod_rawhdr
@@ -558,6 +559,8 @@ module mpeg_video (
     wire playback_active_clkddr;
 
     bit [31:0] soft_state1  /*verilator public_flat_rd*/ = 0;
+    bit [31:0] debug_out  /*verilator public_flat_rd*/ = 0;
+
     wire expose_frame_struct_adr  /*verilator public_flat_rd*/;
     wire expose_frame_y_adr  /*verilator public_flat_rd*/;
 
@@ -652,10 +655,11 @@ module mpeg_video (
     end
 
     planar_yuv_s just_decoded;
-    bit [10:0] decoder_width_clk_mpeg = 100;
-    bit [8:0] decoder_height_clk_mpeg = 100;
+    bit [10:0] decoder_width_clk_mpeg = 0;
+    bit [8:0] decoder_height_clk_mpeg = 0;
     bit [15:0] decoder_frameperiod_90khz_clk_mpeg;
     bit [7:0] decoder_frameperiod_rawhdr_clk_mpeg;
+    bit [31:0] decoder_timecode_clk_mpeg;
 
     bit [31:0] dmem_cmd_payload_address_1_q;
     bit dmem_cmd_valid_1_q;
@@ -683,7 +687,10 @@ module mpeg_video (
             soft_state1 <= dmem_cmd_payload_data_1;
 
         if (dmem_cmd_payload_address_1 == 32'h10000000 && dmem_cmd_valid_1 && dmem_cmd_payload_write_1 && dmem_cmd_ready_1)
+        begin
             $display("Debug out %x", dmem_cmd_payload_data_1);
+            debug_out <= dmem_cmd_payload_data_1;
+        end
 
         // Core 1 memory access
         if (dmem_cmd_valid_1 && dmem_cmd_ready_1) begin
@@ -722,10 +729,11 @@ module mpeg_video (
                         if (dmem_cmd_payload_address_1[15:0] == 16'h3034)
                             decoder_frameperiod_90khz_clk_mpeg <= dmem_cmd_payload_data_1[15:0];
                         if (dmem_cmd_payload_address_1[15:0] == 16'h3038) begin
-                            just_decoded.tempref <= dmem_cmd_payload_data_1[7:0];
+                            just_decoded.video_status <= dmem_cmd_payload_data_1[7:0];
                         end
                         if (dmem_cmd_payload_address_1[15:0] == 16'h3044) begin
                             just_decoded.timecode <= dmem_cmd_payload_data_1;
+                            decoder_timecode_clk_mpeg <= dmem_cmd_payload_data_1;
                         end
                         if (dmem_cmd_payload_address_1[15:0] == 16'h3048) begin
                             just_decoded.first_intra_frame_of_seq <= dmem_cmd_payload_data_1[0];
@@ -801,35 +809,16 @@ module mpeg_video (
         .flag_out_clk_b(just_decoded_commit_clk30)
     );
 
+    bit single_step_latch;
+
     always_ff @(posedge clk30) begin
         vsync_q   <= vsync;
         hsync_q   <= hsync;
         vblank_q1 <= vblank;
         vblank_q2 <= vblank_q1;
 
-        if (latch_frame_for_display) begin
-            display_width <= for_display.width;
-            display_height <= for_display.height;
-            display_tempref <= for_display.tempref;
-            display_timecode <= for_display.timecode;
-            first_intra_frame_of_gop_clk30 <= for_display.first_intra_frame_of_gop;
-            first_intra_frame_of_seq_clk30 <= for_display.first_intra_frame_of_seq;
-        end
-
-        if (just_decoded_commit_clk30) begin
-            frame_period <= frame_period_clk_mpeg;
-            decoder_frameperiod_90khz <= decoder_frameperiod_90khz_clk_mpeg;
-            decoder_frameperiod_rawhdr <= decoder_frameperiod_rawhdr_clk_mpeg;
-            decoder_width <= decoder_width_clk_mpeg;
-            decoder_height <= decoder_height_clk_mpeg;
-        end
-
-        if (!dsp_enable) begin
-            display_tempref <= 0;
-            display_timecode <= 0;
-            decoder_frameperiod_90khz <= 0;
-            decoder_frameperiod_rawhdr <= 0;
-        end
+        if (reset_dsp_enabled) single_step_latch <= 0;
+        else if (single_step) single_step_latch <= 1;
 
         for_display_valid <= for_display_valid_clk_mpeg;
 
@@ -838,8 +827,38 @@ module mpeg_video (
         event_first_intra_frame_seq_starts_display <= 0;
         event_last_picture_starts_display <= 0;
 
-        latch_frame_for_display <= 0;
         event_potential_picture_starts_display <= 0;
+
+        if (latch_frame_for_display) begin
+            latch_frame_for_display <= 0;
+            display_video_status <= for_display.video_status;
+            display_timecode <= for_display.timecode;
+            display_width <= for_display.width;
+            display_height <= for_display.height;
+            first_intra_frame_of_gop_clk30 <= for_display.first_intra_frame_of_gop;
+            first_intra_frame_of_seq_clk30 <= for_display.first_intra_frame_of_seq;
+        end
+
+        if (just_decoded_commit_clk30) begin
+
+        end
+
+        if (event_frame_decoded) begin
+            frame_period <= frame_period_clk_mpeg;
+            decoder_frameperiod_90khz <= decoder_frameperiod_90khz_clk_mpeg;
+            decoder_frameperiod_rawhdr <= decoder_frameperiod_rawhdr_clk_mpeg;
+            decoder_width <= decoder_width_clk_mpeg;
+            decoder_height <= decoder_height_clk_mpeg;
+            decoder_timecode <= decoder_timecode_clk_mpeg;
+        end
+
+        if (!dsp_enable) begin
+            display_video_status <= 0;
+            display_timecode <= 0;
+            decoder_timecode <= 0;
+            decoder_frameperiod_90khz <= 0;
+            decoder_frameperiod_rawhdr <= 0;
+        end
 
         if (latch_frame_until_vblank && !vblank && vblank_q1 && vblank_q2) begin
             latch_frame_until_vblank <= 0;
@@ -870,9 +889,10 @@ module mpeg_video (
             latch_frame_until_vsync <= 1;
         end
 
-        if (single_step) begin
+        if (single_step_latch && for_display_valid) begin
+            single_step_latch <= 0;
             latch_frame_until_vblank <= 1;
-            latch_frame_for_display  <= 1;
+            latch_frame_for_display <= 1;
         end
     end
 

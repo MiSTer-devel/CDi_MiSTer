@@ -1,4 +1,5 @@
 // Include common routines
+#include <cerrno>
 #include <string>
 #include <sys/types.h>
 #include <vector>
@@ -938,7 +939,9 @@ class CDi {
                 assert(res == 0);
 
                 res = fread(hps_buffer, 1, kSectorSize, f_cd_bin);
-                assert(res == kSectorSize);
+                if (res != kSectorSize) {
+                    printf("fread failed with %d %s\n", res, strerror(errno));
+                }
 
                 check_scramble(lba, reinterpret_cast<uint8_t *>(hps_buffer));
             } else {
@@ -1250,17 +1253,19 @@ class CDi {
             // do_trace = true;
 #endif
             sprintf(bmp_name, "%d/%03d.bmp", instanceid, fmv_frame_cnt);
-            printf("FMV Writing %s at Fifo Level %d at Frame Level %d %d %c\n", bmp_name,
+            printf("FMV Writing %s at Fifo Level %d at Frame Level %d %d %d %c %d\n", bmp_name,
                    dut.rootp->emu__DOT__cditop__DOT__vmpeg_inst__DOT__video__DOT__fifo_level,
                    dut.rootp->emu__DOT__cditop__DOT__vmpeg_inst__DOT__video__DOT__pictures_in_input_fifo,
-                   dut.rootp->emu__DOT__cditop__DOT__vmpeg_inst__DOT__video__DOT__pictures_in_output_fifo,
-                   GetPictureType(frame.picture_type));
+                    dut.rootp->emu__DOT__cditop__DOT__vmpeg_inst__DOT__video__DOT__pictures_in_mpeg_decoder,
+                    dut.rootp->emu__DOT__cditop__DOT__vmpeg_inst__DOT__video__DOT__pictures_in_output_fifo,
+                   GetPictureType(frame.picture_type), frame.temporal_ref);
             ;
-            fprintf(stderr, "FMV Writing %s at Fifo Level %d at Frame Level %d %d %c\n", bmp_name,
+            fprintf(stderr, "FMV Writing %s at Fifo Level %d at Frame Level %d %d %d %c %d\n", bmp_name,
                     dut.rootp->emu__DOT__cditop__DOT__vmpeg_inst__DOT__video__DOT__fifo_level,
                     dut.rootp->emu__DOT__cditop__DOT__vmpeg_inst__DOT__video__DOT__pictures_in_input_fifo,
+                    dut.rootp->emu__DOT__cditop__DOT__vmpeg_inst__DOT__video__DOT__pictures_in_mpeg_decoder,
                     dut.rootp->emu__DOT__cditop__DOT__vmpeg_inst__DOT__video__DOT__pictures_in_output_fifo,
-                    GetPictureType(frame.picture_type));
+                    GetPictureType(frame.picture_type), frame.temporal_ref);
 
             WriteBmp(bmp_name, w, h, pixels);
 
@@ -1288,7 +1293,6 @@ class CDi {
                 fwrite(&dut.rootp->emu__DOT__cditop__DOT__vmpeg_inst__DOT__mpeg_data, 1, 1, f_fmv_m1v);
             }
 #ifdef TRACE
-            
             if (!do_trace && !do_trace_started_once_via_fmv) {
                 fprintf(stderr, "Trace on by FMV!\n");
                 do_trace = true;

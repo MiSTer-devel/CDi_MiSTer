@@ -120,9 +120,7 @@ static void push_frame(plm_frame_t *frame) {
 
     frame_display_fifo->frameperiod_90khz = period90khz;
     frame_display_fifo->frameperiod_rawhdr = seq_hdr_conf.frameperiod;
-    frame_display_fifo->temporal_ref = frame->temporal_ref;
     frame_display_fifo->timecode = frame->timecode;
-
     frame_display_fifo->frameperiod_30mhz = period30mhz;
 
     frame_display_fifo->video_status =
