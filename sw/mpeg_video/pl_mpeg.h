@@ -2243,6 +2243,9 @@ void plm_video_decode_picture(plm_video_t *self) {
 
     // Present settings even before a frame is available for display
     frame_display_fifo->width = seq_hdr_conf.width;
+    frame_display_fifo->luma_width = seq_hdr_conf.luma_width;
+    frame_display_fifo->chroma_width = seq_hdr_conf.chroma_width;
+    frame_display_fifo->width = seq_hdr_conf.width;
     frame_display_fifo->height = seq_hdr_conf.height;
     int period30mhz = PLM_VIDEO_PICTURE_RATE_30MHZ[seq_hdr_conf.frameperiod] *
                       (frame_display_fifo->slow_motion + 1);

@@ -741,6 +741,10 @@ module mpeg_video (
 
                         if (dmem_cmd_payload_address_1[15:0] == 16'h3050)
                             event_frame_decoded_clk_mpeg <= 1;
+                        if (dmem_cmd_payload_address_1[15:0] == 16'h3054)
+                            just_decoded.luma_width <= dmem_cmd_payload_data_1[10:0];
+                        if (dmem_cmd_payload_address_1[15:0] == 16'h3058)
+                            just_decoded.chroma_width <= dmem_cmd_payload_data_1[9:0];
 
                         if (dmem_cmd_payload_address_1[15:0] == 16'h2010) begin
                             has_sequence_header <= dmem_cmd_payload_data_1[0];
