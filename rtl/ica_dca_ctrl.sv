@@ -46,7 +46,7 @@ module ica_dca_ctrl (
     bit [3:0] dca_burst_cnt;
     bit [31:0] instruction;
 
-    bit [4:0] stall_cnt;
+    bit [3:0] stall_cnt;
 
     enum bit [3:0] {
         IDLE,

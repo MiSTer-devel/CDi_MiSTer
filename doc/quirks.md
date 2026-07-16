@@ -1,5 +1,9 @@
 # FAQ, Issues and Quirks
 
+The production quality of CD-i hardware and software is sometimes questionable.
+For this reason, I've created a list of some known quirks, one might suspect of being caused
+by emulation errors but are also present on the real machine.
+
 * Is the "Digital Video Cartridge" supported?
     * Please stop asking! >.<
 * The map of "Zelda - Wand of Gamelon" has micro jitter during scrolling
@@ -76,3 +80,7 @@
   * The movie on the disc has an audio issue from time code 00:04:23 to 00:04:28. This is not caused by an MPEG decoding issue,
     since it can be reproduced with modern playback software as well. The noise sounds like a broken recording from
     a magnetic tape during the authoring process.
+* When pausing and resuming MPEG audio, sometimes a short blip of ~70ms can be heard, followed by a pause of ~250ms before actual Audio starts
+  * This is a bug in the VMPEG ROM version 4.1 and is present on real hardware as well.
+  * With the movie "Addams Family", at least one title is known to show this issue
+

@@ -6,8 +6,6 @@
     * Distorted on 260628
     * Seems to work on 260502
     * Pregap related? Might be a problem on Linux side
-* "Litil Divil" has as bouncing image when taking control of the character.
-    * Only on 60 Hz?
 * "Burn-Cycle (USA Europe) (Disc 1) (The Game)" has a pop during the cutscene when entering the bar.
     * Problem is absent in German version
 * "Chaos Control"
