@@ -214,6 +214,7 @@ module cdic (
         .start_playback(audio_start_playback),
         .stop_playback(audio_stop_playback),
         .cdda_mode(read_cdda),
+        .last_refreshed_buffer(data_buffer_register[0]),
         .playback_active(audio_playback_active),
         .finished_buffer_playback(finished_audio_buffer_playback),
         .decoder_disable_audiomap(decoder_disable_audiomap),

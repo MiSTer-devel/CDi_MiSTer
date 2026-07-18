@@ -173,3 +173,49 @@ void prepare_artificial_audiocd_toc() {
     toc_buffer[14] = {1, 162, 34, 25, 0};
     toc_entry_count = 15;
 }
+
+void prepare_inxs_listen_like_thieves_audiocd_toc() {
+    toc_buffer[0] = {1, 1, 0, 2, 51};
+    toc_buffer[1] = {1, 1, 0, 2, 51};
+    toc_buffer[2] = {1, 1, 0, 2, 51};
+    toc_buffer[3] = {1, 2, 3, 56, 37};
+    toc_buffer[4] = {1, 2, 3, 56, 37};
+    toc_buffer[5] = {1, 2, 3, 56, 37};
+    toc_buffer[6] = {1, 3, 7, 38, 32};
+    toc_buffer[7] = {1, 3, 7, 38, 32};
+    toc_buffer[8] = {1, 3, 7, 38, 32};
+    toc_buffer[9] = {1, 4, 17, 34, 32};
+    toc_buffer[10] = {1, 4, 17, 34, 32};
+    toc_buffer[11] = {1, 4, 17, 34, 32};
+    toc_buffer[12] = {1, 5, 20, 39, 53};
+    toc_buffer[13] = {1, 5, 20, 39, 53};
+    toc_buffer[14] = {1, 5, 20, 39, 53};
+    toc_buffer[15] = {1, 6, 23, 19, 72};
+    toc_buffer[16] = {1, 6, 23, 19, 72};
+    toc_buffer[17] = {1, 6, 23, 19, 72};
+    toc_buffer[18] = {1, 7, 32, 3, 3};
+    toc_buffer[19] = {1, 7, 32, 3, 3};
+    toc_buffer[20] = {1, 7, 32, 3, 3};
+    toc_buffer[21] = {1, 8, 35, 20, 35};
+    toc_buffer[22] = {1, 8, 35, 20, 35};
+    toc_buffer[23] = {1, 8, 35, 20, 35};
+    toc_buffer[24] = {1, 9, 37, 65, 96};
+    toc_buffer[25] = {1, 9, 37, 65, 96};
+    toc_buffer[26] = {1, 9, 37, 65, 96};
+    toc_buffer[27] = {1, 16, 48, 64, 32};
+    toc_buffer[28] = {1, 16, 48, 64, 32};
+    toc_buffer[29] = {1, 16, 48, 64, 32};
+    toc_buffer[30] = {1, 17, 51, 69, 99};
+    toc_buffer[31] = {1, 17, 51, 69, 99};
+    toc_buffer[32] = {1, 17, 51, 69, 99};
+    toc_buffer[33] = {1, 160, 1, 0, 0};
+    toc_buffer[34] = {1, 160, 1, 0, 0};
+    toc_buffer[35] = {1, 160, 1, 0, 0};
+    toc_buffer[36] = {1, 161, 17, 0, 0};
+    toc_buffer[37] = {1, 161, 17, 0, 0};
+    toc_buffer[38] = {1, 161, 17, 0, 0};
+    toc_buffer[39] = {1, 162, 55, 23, 112};
+    toc_buffer[40] = {1, 162, 55, 23, 112};
+    toc_buffer[41] = {1, 162, 55, 23, 112};
+    toc_entry_count = 42;
+}

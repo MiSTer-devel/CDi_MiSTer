@@ -16,6 +16,7 @@ module audioplayer (
     input start_playback,
     input stop_playback,
     input cdda_mode,
+    input last_refreshed_buffer,
     output bit playback_active,
     output bit finished_buffer_playback,
     output decoder_disable_audiomap,
@@ -89,7 +90,7 @@ module audioplayer (
                 playback_active <= 1;
                 // ADPCM playback always starts at 0x2800
                 // For CDDA this might not be accurate
-                playback_request_addr <= cdda_mode ? 13'h0f00 : 13'h1400;
+                playback_request_addr <= cdda_mode ? (last_refreshed_buffer ? 13'h0f00 : 13'h0a00) : 13'h1400;
             end
 
             // after the decoder was started, change address to the next buffer

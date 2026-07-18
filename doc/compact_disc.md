@@ -134,6 +134,152 @@ After 2 seconds, the index 1 of track 1 starts
     01 01 01 00 00 05 00 00 02 05 29 da
     01 01 01 00 00 07 00 00 02 07 4d 1b
 
+#### Audio CD - INXS - Listen Like Thieves (USA)
+
+This is burned from a ROM online. This is not my own
+
+    CATALOG 0075678127724
+    FILE "INXS - Listen Like Thieves (USA) (Track 01).bin" BINARY
+    TRACK 01 AUDIO
+        INDEX 00 00:00:00
+        INDEX 01 00:00:33
+    FILE "INXS - Listen Like Thieves (USA) (Track 02).bin" BINARY
+    TRACK 02 AUDIO
+        INDEX 01 00:00:00
+    FILE "INXS - Listen Like Thieves (USA) (Track 03).bin" BINARY
+    TRACK 03 AUDIO
+        INDEX 00 00:00:00
+        INDEX 01 00:01:62
+    FILE "INXS - Listen Like Thieves (USA) (Track 04).bin" BINARY
+    TRACK 04 AUDIO
+        INDEX 00 00:00:00
+        INDEX 01 00:01:72
+    FILE "INXS - Listen Like Thieves (USA) (Track 05).bin" BINARY
+    TRACK 05 AUDIO
+        INDEX 01 00:00:00
+    FILE "INXS - Listen Like Thieves (USA) (Track 06).bin" BINARY
+    TRACK 06 AUDIO
+        INDEX 00 00:00:00
+        INDEX 01 00:01:13
+    FILE "INXS - Listen Like Thieves (USA) (Track 07).bin" BINARY
+    TRACK 07 AUDIO
+        INDEX 01 00:00:00
+    FILE "INXS - Listen Like Thieves (USA) (Track 08).bin" BINARY
+    TRACK 08 AUDIO
+        INDEX 00 00:00:00
+        INDEX 01 00:00:63
+    FILE "INXS - Listen Like Thieves (USA) (Track 09).bin" BINARY
+    TRACK 09 AUDIO
+        INDEX 00 00:00:00
+        INDEX 01 00:00:52
+    FILE "INXS - Listen Like Thieves (USA) (Track 10).bin" BINARY
+    TRACK 10 AUDIO
+        INDEX 00 00:00:00
+        INDEX 01 00:00:60
+    FILE "INXS - Listen Like Thieves (USA) (Track 11).bin" BINARY
+    TRACK 11 AUDIO
+        INDEX 01 00:00:00
+
+The TOC after burning. I should not that the CD-i 210/05 has problems
+playing the first track. Only on the second try it works.
+
+     0  01 00 a0 98 59 08 00 01 00 00 14 17
+     1  01 00 a0 98 59 09 00 01 00 00 be 46
+     2  01 00 a1 98 59 10 00 11 00 00 16 d0
+     3  01 00 a1 98 59 11 00 11 00 00 bc 81
+     4  01 00 a1 98 59 12 00 11 00 00 52 53
+     5  01 00 a2 98 59 13 00 37 17 70 e0 62
+     6  01 00 a2 98 59 14 00 37 17 70 87 b6
+     7  01 00 a2 98 59 15 00 37 17 70 2d e7
+     8  01 00 01 98 59 16 00 00 02 33 49 bd
+     9  01 00 01 98 59 17 00 00 02 33 e3 ec
+    10  01 00 01 98 59 18 00 00 02 33 86 15
+    11  01 00 02 98 59 19 00 03 38 25 25 c8
+    12  01 00 02 98 59 20 00 03 38 25 81 5a
+    13  01 00 02 98 59 21 00 03 38 25 2b 0b
+    14  01 00 03 98 59 22 00 07 26 20 2e 13
+    15  01 00 03 98 59 23 00 07 26 20 84 42
+    16  01 00 03 98 59 24 00 07 26 20 e3 96
+    17  01 00 04 98 59 25 00 11 22 20 b3 d8
+    18  01 00 04 98 59 26 00 11 22 20 5d 0a
+    19  01 00 04 98 59 27 00 11 22 20 f7 5b
+    20  01 00 05 98 59 28 00 14 27 35 83 e0
+    21  01 00 05 98 59 29 00 14 27 35 29 b1
+    22  01 00 05 98 59 30 00 14 27 35 85 97
+    23  01 00 06 98 59 31 00 17 13 48 d8 88
+    24  01 00 06 98 59 32 00 17 13 48 36 5a
+    25  01 00 06 98 59 33 00 17 13 48 9c 0b
+    26  01 00 07 98 59 34 00 20 03 03 06 e5
+    27  01 00 07 98 59 35 00 20 03 03 ac b4
+    28  01 00 07 98 59 36 00 20 03 03 42 66
+    29  01 00 08 98 59 37 00 23 14 23 d6 23
+    30  01 00 08 98 59 38 00 23 14 23 b3 da
+    31  01 00 08 98 59 39 00 23 14 23 19 8b
+    32  01 00 09 98 59 40 00 25 41 60 d0 ef
+    33  01 00 09 98 59 41 00 25 41 60 7a be
+    34  01 00 09 98 59 42 00 25 41 60 94 6c
+    35  01 00 10 98 59 43 00 30 40 20 89 e6
+    36  01 00 10 98 59 44 00 30 40 20 ee 32
+    37  01 00 10 98 59 45 00 30 40 20 44 63
+    38  01 00 11 98 59 46 00 33 45 63 33 60
+    39  01 00 11 98 59 47 00 33 45 63 99 31
+    40  01 00 11 98 59 48 00 33 45 63 fc c8
+
+When playing from 00:02:00 on a real CD-i, it is interesting that the first 2 sectors are missing
+in the subchannel Q data. Nonetheless, the rest is as expected.
+Index 0 is counting down as it should.
+
+     0  ff01 ff01 ff00 ff00 ff00 ff30 ff00 ff00 ff02 ff03 ff21 ff76 ffff 5800 d7fe 1d7d3  CRC OK
+     1  ff01 ff01 ff00 ff00 ff00 ff29 ff00 ff00 ff02 ff04 fffd ffb7 ffff 5801 dffe 02fb  CRC OK
+     2  ff01 ff01 ff00 ff00 ff00 ff28 ff00 ff00 ff02 ff05 ff47 ffc7 ffff 5800 dffe 02dd  CRC OK
+     3  ff01 ff01 ff00 ff00 ff00 ff27 ff00 ff00 ff02 ff06 ff12 ff5d ffff 5801 dffe 02fb  CRC OK
+     4  ff01 ff01 ff00 ff00 ff00 ff26 ff00 ff00 ff02 ff07 ffa8 ff2d ffff 5800 dffe 02fd  CRC OK
+     5  ff01 ff01 ff00 ff00 ff00 ff25 ff00 ff00 ff02 ff08 ffb7 ff10 ffff 5801 dffe 02de  CRC OK
+     6  ff01 ff01 ff00 ff00 ff00 ff24 ff00 ff00 ff02 ff09 ff0d ff60 ffff 5800 dffe 02fd  CRC OK
+     7  ff01 ff01 ff00 ff00 ff00 ff23 ff00 ff00 ff02 ff10 ffe9 ffac ffff 5801 dffe 02fc  CRC OK
+     8  ff01 ff01 ff00 ff00 ff00 ff22 ff00 ff00 ff02 ff11 ff53 ffdc ffff 5800 dffe 02dd  CRC OK
+     9  ff01 ff01 ff00 ff00 ff00 ff21 ff00 ff00 ff02 ff12 ff8d ff6d ffff 5801 dffe 02fb  CRC OK
+    10  ff01 ff01 ff00 ff00 ff00 ff20 ff00 ff00 ff02 ff13 ff37 ff1d ffff 5800 dffe 02f9  CRC OK
+    11  ff01 ff01 ff00 ff00 ff00 ff19 ff00 ff00 ff02 ff14 ffe3 ff68 ffff 5801 dffe 02df  CRC OK
+    12  ff01 ff01 ff00 ff00 ff00 ff18 ff00 ff00 ff02 ff15 ff59 ff18 ffff 5800 dffe 02f9  CRC OK
+    13  ff01 ff01 ff00 ff00 ff00 ff17 ff00 ff00 ff02 ff16 ff0c ff82 ffff 5801 dffe 02fd  CRC OK
+    14  ff01 ff01 ff00 ff00 ff00 ff16 ff00 ff00 ff02 ff17 ffb6 fff2 ffff 5800 dffe 02df  CRC OK
+    15  ff01 ff01 ff00 ff00 ff00 ff15 ff00 ff00 ff02 ff18 ffa9 ffcf ffff 5801 dffe 02fc  CRC OK
+    16  ff01 ff01 ff00 ff00 ff00 ff14 ff00 ff00 ff02 ff19 ff13 ffbf ffff 5800 dffe 02fa  CRC OK
+    17  ff01 ff01 ff00 ff00 ff00 ff13 ff00 ff00 ff02 ff20 ffd3 ff11 ffff 5801 dffe 02df  CRC OK
+    18  ff01 ff01 ff00 ff00 ff00 ff12 ff00 ff00 ff02 ff21 ff69 ff61 ffff 5800 dffe 02fa  CRC OK
+    
+What does the end of the disc look like?
+
+    33  ff01 ff11 ff01 ff03 ff31 ff67 ff00 ff37 ff17 ff55 ff73 ff93 ffff 4801 dffe 02f0  CRC OK
+    34  ff01 ff11 ff01 ff03 ff31 ff68 ff00 ff37 ff17 ff56 ff26 ff09 ffff 4800 dffe 02ec  CRC OK
+    35  ff01 ff11 ff01 ff03 ff31 ff69 ff00 ff37 ff17 ff57 ff9c ff79 ffff 4801 dffe 02ed  CRC OK
+    36  ff01 ff11 ff01 ff03 ff31 ff70 ff00 ff37 ff17 ff58 ffc1 ffb0 ffff 4800 dffe 02f2  CRC OK
+    37  ff01 ff11 ff01 ff03 ff31 ff71 ff00 ff37 ff17 ff59 ff7b ffc0 ffff 4801 dffe 02ec  CRC OK
+    38  ff01 ff11 ff01 ff03 ff31 ff72 ff00 ff37 ff17 ff60 ff32 ff68 ffff 4800 dffe 02ec  CRC OK
+    39  ff01 ff11 ff01 ff03 ff31 ff73 ff00 ff37 ff17 ff61 ff88 ff18 ffff 4801 dffe 02f1  CRC OK
+    40  ff01 ff11 ff01 ff03 ff31 ff74 ff00 ff37 ff17 ff62 ffdf ffaf ffff 4800 dffe 02eb  CRC OK
+    41  ff01 ff11 ff01 ff03 ff32 ff00 ff00 ff37 ff17 ff63 ff95 ffee ffff 4801 dffe 02ec  CRC OK
+    42  ff02 ff00 ff75 ff67 ff81 ff27 ff72 ff40 ff00 ff64 ff13 ffeb ffff 4800 dffe 02f0  CRC OK
+    43  ff01 ff11 ff01 ff03 ff32 ff02 ff00 ff37 ff17 ff65 ffb1 ffab ffff 4801 dffe 02eb  CRC OK
+    44  ff01 ff11 ff01 ff03 ff32 ff03 ff00 ff37 ff17 ff66 ff2b ff99 ffff 4800 dffe 02ed  CRC OK
+    45  ff03 ff00 ff00 ff00 ff00 ff00 ff00 ff00 ff00 ff67 ff52 ff71 ffff 4801 dffe 02ef  CRC OK
+    46  ff01 ff11 ff01 ff03 ff32 ff05 ff00 ff37 ff17 ff68 ff07 ffd2 ffff 5800 dffe 02eb  CRC OK
+    47  ff01 ff11 ff01 ff03 ff32 ff06 ff00 ff37 ff17 ff69 fff9 ff21 ffff 5801 dffe 02ee  CRC OK   Last sector of last track
+    48  ff01 ffaa ff01 ff00 ff00 ff00 ff00 ff37 ff17 ff70 ff84 fff9 ffff 5800 dffe 02ee  CRC OK
+    49  ff02 ff00 ff75 ff67 ff81 ff27 ff72 ff40 ff00 ff71 ff51 ff7f ffff 5801 dffe 02e9  CRC OK
+    50  ff01 ffaa ff01 ff00 ff00 ff02 ff00 ff37 ff17 ff72 ffe0 ff38 ffff 5800 dffe 02ee  CRC OK
+    51  ff01 ffaa ff01 ff00 ff00 ff03 ff00 ff37 ff17 ff73 ff5a ff48 ffff 5801 dffe 02ef  CRC OK
+    52  ff01 ffaa ff01 ff00 ff00 ff04 ff00 ff37 ff17 ff74 ff4d ff7b ffff 5800 dffe 02ea  CRC OK
+    53  ff01 ffaa ff01 ff00 ff00 ff05 ff00 ff37 ff18 ff00 ffc9 ff07 ffff 5801 dffe 02ef  CRC OK
+    54  ff01 ffaa ff01 ff00 ff00 ff06 ff00 ff37 ff18 ff01 ff37 fff4 ffff 5800 dffe 02ef  CRC OK
+    55  ff01 ffaa ff01 ff00 ff00 ff07 ff00 ff37 ff18 ff02 ffad ffc6 ffff 5801 dffe 02ea  CRC OK
+    56  ff01 ffaa ff01 ff00 ff00 ff08 ff00 ff37 ff18 ff03 ffd8 ff1e ffff 5800 dffe 02ef  CRC OK
+    57  ff01 ffaa ff01 ff00 ff00 ff09 ff00 ff37 ff18 ff04 ff02 ffa8 ffff 5801 dffe 02ee  CRC OK
+    58  ff01 ffaa ff01 ff00 ff00 ff10 ff00 ff37 ff18 ff05 ffbe ffaf ffff 5800 dffe 02eb  CRC OK
+
+Just garbage but data is still delivered
+
 ### Play CDDA
 
 Recording of "Play CDDA" command.

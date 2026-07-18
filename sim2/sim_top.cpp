@@ -714,6 +714,15 @@ class CDi {
         }
     }
 
+    void PlayAudioCdInxListenLikeThieves() {
+        if (frame_index == 190)
+            press_button1_signal = true;
+        if (frame_index == 261)
+            do_trace = true;
+        if (frame_index == 390)
+            do_trace = false;
+    }
+
     void chaos_control_germany() {
 
         if (frame_index > 1030) {
@@ -1112,6 +1121,7 @@ class CDi {
                 // lost_ride_pal();
                 // PressEvery5Frames();
                 // chaos_control_germany();
+                // PlayAudioCdInxListenLikeThieves();
             }
 #endif
 
@@ -1531,7 +1541,8 @@ int main(int argc, char **argv) {
 
     switch (machineindex) {
     case 0:
-        f_cd_bin = fopen("images/addams.bin", "rb");
+        f_cd_bin = fopen("images/inxs.bin", "rb");
+        prepare_inxs_listen_like_thieves_audiocd_toc();
         break;
     case 1:
         f_cd_bin = fopen("images/aims_frogs.iso", "rb");

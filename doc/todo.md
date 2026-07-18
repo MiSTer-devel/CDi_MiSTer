@@ -2,10 +2,6 @@
 
 * Check if speed of mouse device really is the max, a CD-i can take
     * Also check the accumulator
-* "INXS - Listen Like Thieves (USA)" has distorted audio
-    * Distorted on 260628
-    * Seems to work on 260502
-    * Pregap related? Might be a problem on Linux side
 * "Burn-Cycle (USA Europe) (Disc 1) (The Game)" has a pop during the cutscene when entering the bar.
     * Problem is absent in German version
 * "Chaos Control"
