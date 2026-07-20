@@ -250,7 +250,11 @@ module audiodecoder (
                 EVALHEADER2: begin
                     if (mem_ack_q) begin
                         $display("Coding param: %x", mem_data_byte);
-                        gain_shift   <= gain_shift_offset - mem_data_byte[3:0];
+
+                        if (gain_shift_offset >= mem_data_byte[3:0])
+                            gain_shift <= gain_shift_offset - mem_data_byte[3:0];
+                        else gain_shift <= 0;
+
                         filter_index <= mem_data_byte[5:4];
                     end
 

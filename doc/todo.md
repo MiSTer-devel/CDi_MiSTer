@@ -2,8 +2,6 @@
 
 * Check if speed of mouse device really is the max, a CD-i can take
     * Also check the accumulator
-* "Burn-Cycle (USA Europe) (Disc 1) (The Game)" has a pop during the cutscene when entering the bar.
-    * Problem is absent in German version
 * "Chaos Control"
     * Video glitches when pausing and resuming. MPEG stream is actually damaged! Even mplayer has some issues.
 * Random hang of playback controls in Addams Family Disc 2. Movie still playing. Sudden rainbow colors.
