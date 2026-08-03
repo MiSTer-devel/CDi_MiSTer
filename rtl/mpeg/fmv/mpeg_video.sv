@@ -194,6 +194,9 @@ module mpeg_video (
     // Useful for fast forwarding after slow motion
     wire signed [32:0] demuxer_dts_desync = demuxer_system_clock_reference - dts_fifo_out;
 
+    wire totally_out_of_sync_need_frameskip = dts_fifo_out_valid_dts && demuxer_dts_desync > 15000;
+
+
     // Only bits 21:6 can be changed by the CPU
     // It should be noted that the driver wants to have bit 21 always 0.
     // So only bits 20:6 of dclk must be used here.
@@ -261,7 +264,7 @@ module mpeg_video (
                 );
 
             // Only apply during synchronous playback and when we have a valid DTS for desync calculation
-            display_dts_desync_q <= (dts_fifo_out_valid_dts && synchronous_playback) ? display_dts_desync : 0;
+            display_dts_desync_q <= (dts_fifo_out_valid_dts && synchronous_playback && !totally_out_of_sync_need_frameskip) ? display_dts_desync : 0;
         end
 
         event_buffer_underflow <= pictures_in_fifo==1 && latch_frame_for_display && pictures_in_mpeg_decoder==0;
@@ -920,7 +923,7 @@ module mpeg_video (
 
         if (playback_active) begin
             // Skip frames during huge differences. Occuring when going for normal speed after slow motion
-            if (vblank && !hsync && hsync_q && dts_fifo_out_valid_dts && demuxer_dts_desync > 15000 && for_display_valid && synchronous_playback) begin
+            if (vblank && !hsync && hsync_q && totally_out_of_sync_need_frameskip && for_display_valid && synchronous_playback) begin
                 $display("FrameSkip");
                 latch_frame_for_display <= 1;
             end
