@@ -192,16 +192,16 @@ module mpeg_video (
     wire dts_fifo_out_valid_dts = dts_fifo_valid && (dts_fifo_out != 0);
 
     // Useful for fast forwarding after slow motion
-    wire signed [32:0] desync = demuxer_system_clock_reference - dts_fifo_out;
+    wire signed [32:0] demuxer_dts_desync = demuxer_system_clock_reference - dts_fifo_out;
 
     // Only bits 21:6 can be changed by the CPU
     // It should be noted that the driver wants to have bit 21 always 0.
     // So only bits 20:6 of dclk must be used here.
-    wire signed [14:0] desync2 = dclk[20:6] - dts_fifo_out[21:7];
+    wire signed [14:0] display_dts_desync = dclk[20:6] - dts_fifo_out[21:7];
 
-    // Latched from desync2 at latch_frame_for_display
+    // Latched from display_dts_desync at latch_frame_for_display
     // to help with meta stability
-    bit signed [14:0] desync2_q;
+    bit signed [14:0] display_dts_desync_q;
 
     // Inc on picture_added_in_input_fifo
     // Dec on event_frame_decoded
@@ -239,7 +239,7 @@ module mpeg_video (
         // Catch something that should not be possible
 
         if (clear_fifo || reset_dsp_enabled) begin
-            desync2_q <= 0;
+            display_dts_desync_q <= 0;
         end else if (frame_period_tick) begin
             last_display_latch_dclk <= dclk;
             assert (dts_fifo_valid);
@@ -248,15 +248,20 @@ module mpeg_video (
                     "desync_valid %d %d %d %d",
                     dclk,
                     dclk - last_display_latch_dclk,
-                    desync2,
-                    desync
+                    display_dts_desync,
+                    demuxer_dts_desync
                 );
             else
                 $display(
-                    "desync %d %d %d %d", dclk, dclk - last_display_latch_dclk, desync2, desync
+                    "desync %d %d %d %d",
+                    dclk,
+                    dclk - last_display_latch_dclk,
+                    display_dts_desync,
+                    demuxer_dts_desync
                 );
 
-            desync2_q <= (dts_fifo_out_valid_dts && synchronous_playback) ? desync2 : 0;
+            // Only apply during synchronous playback and when we have a valid DTS for desync calculation
+            display_dts_desync_q <= (dts_fifo_out_valid_dts && synchronous_playback) ? display_dts_desync : 0;
         end
 
         event_buffer_underflow <= pictures_in_fifo==1 && latch_frame_for_display && pictures_in_mpeg_decoder==0;
@@ -840,10 +845,10 @@ module mpeg_video (
     bit frame_period_tick;
 
     // 24' is required to fix math problem on Verilator
-    wire [23:0] frame_period_top = frame_period - 1 - (24'(desync2_q) * 2048);
+    wire [23:0] frame_period_top = frame_period - 1 - (24'(display_dts_desync_q) * 2048);
 
     // Initial DTS near SCR. Playback is allowed
-    bit desync2_satisfied_latch = 0;
+    bit display_dts_desync_satisfied_latch = 0;
 
     always_ff @(posedge clk30) begin
         vsync_q <= vsync;
@@ -915,20 +920,20 @@ module mpeg_video (
 
         if (playback_active) begin
             // Skip frames during huge differences. Occuring when going for normal speed after slow motion
-            if (vblank && !hsync && hsync_q && dts_fifo_out_valid_dts && desync > 15000 && for_display_valid && synchronous_playback) begin
+            if (vblank && !hsync && hsync_q && dts_fifo_out_valid_dts && demuxer_dts_desync > 15000 && for_display_valid && synchronous_playback) begin
                 $display("FrameSkip");
                 latch_frame_for_display <= 1;
             end
 
             // Start playback only when we are near the next valid DTS 
-            if (!dts_fifo_out_valid_dts || (dts_fifo_out_valid_dts && desync2 > -30)) begin
-                desync2_satisfied_latch <= 1;
+            if (!dts_fifo_out_valid_dts || (dts_fifo_out_valid_dts && display_dts_desync > -30)) begin
+                display_dts_desync_satisfied_latch <= 1;
             end
 
             // Always increment frame count during asynchronous mode
             // Always increment frame count when no DTS is available
             // Only increment frame count during synchronous mode, when initial DTS check was fulfilled
-            if (!synchronous_playback || desync2_satisfied_latch)
+            if (!synchronous_playback || display_dts_desync_satisfied_latch)
                 playback_frame_cnt <= playback_frame_cnt + 1;
 
             // Timed latching of frames
@@ -943,7 +948,7 @@ module mpeg_video (
                 end
             end
         end else begin
-            desync2_satisfied_latch <= 0;
+            display_dts_desync_satisfied_latch <= 0;
         end
 
         if (single_step_latch && for_display_valid) begin
