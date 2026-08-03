@@ -128,6 +128,14 @@ It was used for mixed language simulation with the free version of ModelSim when
 
 The [sim2](sim2) folder is the current one, used for most development and makes use of Verilator for improved performance.
 
+## Building with docker
+
+This replicates the process of https://github.com/MiSTer-unstable-nightlies but allows interaction with the container
+
+	docker run --mount type=bind,src=$(pwd),dst=/home/ --rm -it --entrypoint bash theypsilon/quartus-lite-c5:17.0.2.docker0
+	cd /home
+	time /opt/intelFPGA_lite/quartus/bin/quartus_sh --flow compile CDi.qsf
+
 ## Used resources
 
 This MiSTer core would've probably never been possible without the reverse engineering efforts of certain people.

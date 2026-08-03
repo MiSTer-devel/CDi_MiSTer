@@ -1,5 +1,6 @@
 # TODOs and known issues
 
+* Implement optional 50/15 µsec emphasis for ADPCM (and CDDA?)
 * Check if speed of mouse device really is the max, a CD-i can take
     * Also check the accumulator
 * "Chaos Control"

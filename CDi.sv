@@ -270,10 +270,10 @@ module emu (
 
     wire [ 10:0] ps2_key;
 
-    wire [ 15:0] JOY0  /*verilator public_flat_rw*/;
-    wire [ 15:0] JOY1  /*verilator public_flat_rw*/;
-    wire [ 15:0] JOY0_ANALOG  /*verilator public_flat_rw*/;
-    wire [ 15:0] JOY1_ANALOG  /*verilator public_flat_rw*/;
+    bit [ 15:0] JOY0  /*verilator public_flat_rw*/;
+    bit [ 15:0] JOY1  /*verilator public_flat_rw*/;
+    bit [ 15:0] JOY0_ANALOG  /*verilator public_flat_rw*/;
+    bit [ 15:0] JOY1_ANALOG  /*verilator public_flat_rw*/;
 
     wire [ 24:0] MOUSE  /*verilator public_flat_rw*/;
 

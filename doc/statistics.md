@@ -9,6 +9,7 @@ Core Utilization:
 
 Expected synthesis times with Quartus 17.0.2
 
+    AMD Ryzen 9 5950X                          12 minutes
     AMD Ryzen 7 3700X 8-Core                   16 minutes
     Intel(R) Core(TM) i5-8265U CPU @ 1.60GHz   25 minutes
 

@@ -1,5 +1,9 @@
 // Include common routines
+#include <algorithm>
 #include <cerrno>
+#include <cstdlib>
+#include <fstream>
+#include <sstream>
 #include <string>
 #include <sys/types.h>
 #include <vector>
@@ -13,7 +17,6 @@
 #include <chrono>
 #include <csignal>
 #include <cstdint>
-#include <png.h>
 
 #include "crc.h"
 #include "hle.h"
@@ -21,6 +24,9 @@
 #include "table_of_contents.h"
 #include <arpa/inet.h>
 #include <byteswap.h>
+#include <fcntl.h>
+#include <sys/socket.h>
+#include <unistd.h>
 
 #define SCC68070
 #define SLAVE
@@ -66,6 +72,47 @@ int WriteBmp(const char *path, int width, int height, uint8_t *pixels) {
     for (int y = height - 1; y >= 0; y--) {
         fwrite(pixels + y * width * 3, 3, width, fh);
         fwrite("\x00\x00\x00\x00", 1, padding, fh);
+    }
+    fclose(fh);
+    return file_size;
+}
+
+// Writes the simulator's RGB framebuffer as a vertically scaled BGR BMP.
+int WriteRgbBmp(const char *path, int width, int height, int vertical_scale, const uint8_t *pixels) {
+    FILE *fh = fopen(path, "wb");
+    if (!fh)
+        return 0;
+
+    const int output_height = height * vertical_scale;
+    const int padded_width = (width * 3 + 3) & (~3);
+    const int data_size = padded_width * output_height;
+    const int file_size = 54 + data_size;
+
+    fwrite("BM", 1, 2, fh);
+    fwrite(&file_size, 1, 4, fh);
+    fwrite("\x00\x00\x00\x00\x36\x00\x00\x00\x28\x00\x00\x00", 1, 12, fh);
+    fwrite(&width, 1, 4, fh);
+    fwrite(&output_height, 1, 4, fh);
+    fwrite("\x01\x00\x18\x00\x00\x00\x00\x00", 1, 8, fh);
+    fwrite(&data_size, 1, 4, fh);
+    fwrite("\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00", 1, 16, fh);
+
+    std::vector<uint8_t> bgr_row(padded_width, 0);
+    for (int y = height - 1; y >= 0; y--) {
+        const uint8_t *row = pixels + y * width * 3;
+        for (int x = 0; x < width; x++) {
+            const uint8_t *pixel = row + x * 3;
+            uint8_t *bgr_pixel = &bgr_row[x * 3];
+            bgr_pixel[0] = pixel[2];
+            bgr_pixel[1] = pixel[1];
+            bgr_pixel[2] = pixel[0];
+        }
+        for (int repeat = 0; repeat < vertical_scale; repeat++) {
+            if (fwrite(bgr_row.data(), 1, padded_width, fh) != static_cast<size_t>(padded_width)) {
+                fclose(fh);
+                return 0;
+            }
+        }
     }
     fclose(fh);
     return file_size;
@@ -134,13 +181,11 @@ template <typename T, typename U> constexpr T BIT(T x, U n) noexcept {
     return (x >> n) & T(1);
 }
 
-bool press_button1_signal{false};
-bool press_button2_signal{false};
+volatile sig_atomic_t press_button1_signal{false};
+volatile sig_atomic_t toggle_debug_signal{false};
 bool print_instructions{false};
 
 void SignalHandler(int signum, siginfo_t *info, void *context) {
-    fprintf(stderr, "Received signal %d\n", signum);
-
     switch (signum) {
     case SIGINT:
         // End simulation
@@ -153,15 +198,23 @@ void SignalHandler(int signum, siginfo_t *info, void *context) {
         break;
     case SIGUSR2:
         // example: killall -s USR2 Vemu
-#ifdef TRACE
-        do_trace = !do_trace;
-        fprintf(stderr, "Trace %s\n", do_trace ? "on" : "off");
-#else
-        print_instructions = !print_instructions;
-        fprintf(stderr, "Instruction Trace %s\n", print_instructions ? "on" : "off");
-#endif
+        toggle_debug_signal = true;
         break;
     }
+}
+
+void ProcessPendingSignals() {
+    if (!toggle_debug_signal)
+        return;
+
+    toggle_debug_signal = false;
+#ifdef TRACE
+    do_trace = !do_trace;
+    fprintf(stderr, "Trace %s\n", do_trace ? "on" : "off");
+#else
+    print_instructions = !print_instructions;
+    fprintf(stderr, "Instruction Trace %s\n", print_instructions ? "on" : "off");
+#endif
 }
 
 // got from mame
@@ -323,7 +376,6 @@ class CDi {
     uint64_t time30mhz = 0;
     uint64_t tracetime = 0;
     int frame_index = 0;
-    int release_button_frame{-1};
     int fmv_frame_cnt{0};
 
   private:
@@ -334,6 +386,7 @@ class CDi {
 
     FILE *f_fmv{nullptr};
     FILE *f_fmv_m1v{nullptr};
+    FILE *f_executed_events{nullptr};
 
     int fmv_index{0};
     /// @brief Used to decide whether a new index must be created
@@ -360,8 +413,21 @@ class CDi {
     bool executing_dvc_rom_instructions{false};
 
     int instanceid;
+    enum class InputKind { Button1, Button2, Analog, TraceOn, TraceOff, InstructionsOn, InstructionsOff, Quit };
+    struct InputEvent {
+        uint64_t frame;
+        InputKind kind;
+        unsigned int hold_frames{3};
+        uint8_t analog_x{0};
+        uint8_t analog_y{0};
+    };
+    std::vector<InputEvent> input_events;
+    int udp_fd{-1};
+    uint64_t button_release_frame[2]{0, 0};
+    uint8_t held_buttons{0};
 
-    std::chrono::_V2::system_clock::time_point start;
+    std::chrono::_V2::system_clock::time_point start_time;
+    std::chrono::_V2::system_clock::time_point last_frame_time;
     static constexpr uint32_t kSectorHeaderSize{12};
     static constexpr uint32_t kSectorSize{2352};
     static constexpr uint32_t kSubcodeRWSize{96};
@@ -375,47 +441,6 @@ class CDi {
         uint32_t g = static_cast<uint32_t>(*pixel++) << 8;
         uint32_t b = static_cast<uint32_t>(*pixel++);
         return r | g | b;
-    }
-
-    void write_png_file(const char *filename) {
-        FILE *fp = fopen(filename, "wb");
-        if (!fp)
-            abort();
-
-        png_structp png = png_create_write_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
-        if (!png)
-            abort();
-
-        png_infop info = png_create_info_struct(png);
-        if (!info)
-            abort();
-
-        if (setjmp(png_jmpbuf(png)))
-            abort();
-
-        png_init_io(png, fp);
-
-        int png_height_scale = 4;
-        int png_height = height * png_height_scale;
-        // Output is 8bit depth, RGBA format.
-        png_set_IHDR(png, info, width, png_height, 8, PNG_COLOR_TYPE_RGB, PNG_INTERLACE_NONE,
-                     PNG_COMPRESSION_TYPE_DEFAULT, PNG_FILTER_TYPE_DEFAULT);
-        png_write_info(png, info);
-
-        png_bytepp row_pointers = (png_bytepp)png_malloc(png, sizeof(png_bytepp) * png_height);
-
-        for (int i = 0; i < png_height; i++) {
-            row_pointers[i] = &output_image[width * 3 * (i / png_height_scale)];
-        }
-
-        png_write_image(png, row_pointers);
-        png_write_end(png, NULL);
-
-        free(row_pointers);
-
-        fclose(fp);
-
-        png_destroy_write_struct(&png, &info);
     }
 
     uint16_t phase_accumulator;
@@ -731,107 +756,278 @@ class CDi {
         call_func = SS_Opt; // Invalidate
     }
 
-    // Keep pressing B1 until the broken game is reached
-    void lost_ride_pal() {
-        if (frame_index > 150) {
-            if ((frame_index % 40) == 10) {
-                press_button1_signal = true;
+    bool QueueInputEvent(uint64_t frame, const std::string &command, unsigned int hold_frames, const char *source,
+                         unsigned int line_number) {
+        InputKind kind;
+        if (command == "b1" || command == "button1")
+            kind = InputKind::Button1;
+        else if (command == "b2" || command == "button2")
+            kind = InputKind::Button2;
+        else if (command == "trace_on")
+            kind = InputKind::TraceOn;
+        else if (command == "trace_off")
+            kind = InputKind::TraceOff;
+        else if (command == "instructions_on")
+            kind = InputKind::InstructionsOn;
+        else if (command == "instructions_off")
+            kind = InputKind::InstructionsOff;
+        else if (command == "quit")
+            kind = InputKind::Quit;
+        else {
+            fprintf(stderr, "%s:%u: unknown input command '%s'\n", source, line_number, command.c_str());
+            return false;
+        }
+        if ((kind == InputKind::Button1 || kind == InputKind::Button2) && hold_frames == 0) {
+            fprintf(stderr, "%s:%u: hold_frames must be at least one\n", source, line_number);
+            return false;
+        }
+        input_events.push_back({frame, kind, hold_frames});
+        std::stable_sort(input_events.begin(), input_events.end(),
+                         [](const InputEvent &a, const InputEvent &b) { return a.frame < b.frame; });
+        return true;
+    }
+
+    bool QueueAnalogEvent(uint64_t frame, int x, int y, const char *source, unsigned int line_number) {
+        if (x < -128 || x > 127 || y < -128 || y > 127) {
+            fprintf(stderr, "%s:%u: analog coordinates must be between -128 and 127\n", source, line_number);
+            return false;
+        }
+        input_events.push_back({frame, InputKind::Analog, 0, static_cast<uint8_t>(static_cast<int8_t>(x)),
+                                static_cast<uint8_t>(static_cast<int8_t>(y))});
+        std::stable_sort(input_events.begin(), input_events.end(),
+                         [](const InputEvent &a, const InputEvent &b) { return a.frame < b.frame; });
+        return true;
+    }
+
+    void PollUdpInput() {
+        if (udp_fd < 0)
+            return;
+
+        char buffer[256];
+        while (true) {
+            const ssize_t received = recv(udp_fd, buffer, sizeof(buffer) - 1, 0);
+            if (received < 0) {
+                if (errno != EAGAIN && errno != EWOULDBLOCK)
+                    perror("recv");
+                return;
+            }
+            buffer[received] = '\0';
+            std::istringstream input(buffer);
+            std::string first;
+            std::string command;
+            unsigned int hold_frames = 3;
+            if (!(input >> first))
+                continue;
+
+            uint64_t frame = frame_index;
+            char *end = nullptr;
+            const unsigned long long parsed_frame = strtoull(first.c_str(), &end, 10);
+            if (*end == '\0') {
+                frame = parsed_frame;
+                if (!(input >> command)) {
+                    fprintf(stderr, "Ignoring malformed UDP input: %s\n", buffer);
+                    continue;
+                }
+            } else {
+                command = first;
+            }
+            if (command == "analog") {
+                int x;
+                int y;
+                std::string extra;
+                if (!(input >> x >> y) || (input >> extra) || !QueueAnalogEvent(frame, x, y, "UDP", 0))
+                    fprintf(stderr, "Ignoring malformed UDP input: %s\n", buffer);
+                continue;
+            }
+            bool valid = true;
+            if (input >> hold_frames) {
+                std::string extra;
+                valid = !(input >> extra);
+            } else if (!input.eof()) {
+                valid = false;
+            }
+            if (!valid || !QueueInputEvent(frame, command, hold_frames, "UDP", 0)) {
+                fprintf(stderr, "Ignoring malformed UDP input: %s\n", buffer);
             }
         }
     }
 
-    void PressEvery5Frames() {
-        if (frame_index > 200) {
-            if ((frame_index % 5) == 1) {
-                press_button1_signal = true;
-            }
-        }
-    }
-
-    void PlayAudioCdInxListenLikeThieves() {
-        if (frame_index == 190)
-            press_button1_signal = true;
-        if (frame_index == 261)
-            do_trace = true;
-        if (frame_index == 390)
-            do_trace = false;
-    }
-
-    void chaos_control_germany() {
-
-        if (frame_index > 1030) {
-            dut.rootp->emu__DOT__config_disable_seek_time = 0;
-            dut.rootp->emu__DOT__config_disable_cpu_starve = 0;
-
-            if ((frame_index % 100) == 10) {
-                press_button2_signal = true;
-            }
-
-            if ((frame_index % 100) == 30) {
-                press_button2_signal = true;
-            }
-
-            if ((frame_index % 100) == 50) {
-                press_button1_signal = true;
-            }
-
-            if ((frame_index % 100) == 70) {
-                press_button1_signal = true;
-            }
-        } else if (frame_index > 150) {
-            if ((frame_index % 20) == 10) {
-                press_button1_signal = true;
-            }
-        }
-    }
-
-    /// Presses buttons until game is reached
-    void space_ace_pal() {
-        switch (frame_index) {
-        case 154:
-            // Skip Philips Intro
-            press_button1_signal = true;
+    void RecordExecutedInputEvent(const InputEvent &event) {
+        assert(f_executed_events);
+        switch (event.kind) {
+        case InputKind::Button1:
+            fprintf(f_executed_events, "%d b1 %u\n", frame_index, event.hold_frames);
             break;
-        case 414:
-            // Skip SUPERCLUB company logo
-            press_button1_signal = true;
+        case InputKind::Button2:
+            fprintf(f_executed_events, "%d b2 %u\n", frame_index, event.hold_frames);
             break;
-        case 460:
-            // Skip game intro
-            press_button1_signal = true;
+        case InputKind::Analog:
+            fprintf(f_executed_events, "%d analog %d %d\n", frame_index, static_cast<int8_t>(event.analog_x),
+                    static_cast<int8_t>(event.analog_y));
+            break;
+        case InputKind::TraceOn:
+            fprintf(f_executed_events, "%d trace_on\n", frame_index);
+            break;
+        case InputKind::TraceOff:
+            fprintf(f_executed_events, "%d trace_off\n", frame_index);
+            break;
+        case InputKind::InstructionsOn:
+            fprintf(f_executed_events, "%d instructions_on\n", frame_index);
+            break;
+        case InputKind::InstructionsOff:
+            fprintf(f_executed_events, "%d instructions_off\n", frame_index);
+            break;
+        case InputKind::Quit:
+            fprintf(f_executed_events, "%d quit\n", frame_index);
             break;
         }
+        fflush(f_executed_events);
     }
 
-    /// Presses buttons until game is reached
-    void braindead13_pal() {
-        switch (frame_index) {
-        case 250:
-            // Skip Philips Intro
-            press_button1_signal = true;
-            break;
-        case 300:
-            // Skip ICDI company logo
-            press_button1_signal = true;
-            break;
-        case 313:
+    void ApplyInputEvents() {
+        PollUdpInput();
+        if (press_button1_signal) {
+            press_button1_signal = false;
+            QueueInputEvent(frame_index, "b1", 3, "SIGUSR1", 0);
+        }
+
+        for (unsigned int button = 0; button < 2; button++) {
+            if (button_release_frame[button] != 0 && frame_index >= button_release_frame[button]) {
+                held_buttons &= ~(1u << button);
+                button_release_frame[button] = 0;
+                fprintf(stderr, "Release Button %u at frame %d\n", button + 1, frame_index);
+            }
+        }
+
+        while (!input_events.empty() && input_events.front().frame <= static_cast<uint64_t>(frame_index)) {
+            const InputEvent event = input_events.front();
+            input_events.erase(input_events.begin());
+            RecordExecutedInputEvent(event);
+            switch (event.kind) {
+            case InputKind::Button1:
+            case InputKind::Button2: {
+                const unsigned int button = event.kind == InputKind::Button1 ? 0 : 1;
+                held_buttons |= 1u << button;
+                button_release_frame[button] =
+                    std::max(button_release_frame[button], static_cast<uint64_t>(frame_index) + event.hold_frames);
+                fprintf(stderr, "Press Button %u at frame %d\n", button + 1, frame_index);
+                break;
+            }
+            case InputKind::Analog:
+                // JOY0_ANALOG is { Y[7:0], X[7:0] }.
+                dut.rootp->emu__DOT__JOY0_ANALOG = (event.analog_y << 8) | event.analog_x;
+                fprintf(stderr, "Set analog X=%d Y=%d at frame %d\n", static_cast<int8_t>(event.analog_x),
+                        static_cast<int8_t>(event.analog_y), frame_index);
+                break;
+            case InputKind::TraceOn:
 #ifdef TRACE
-            do_trace = true;
-            fprintf(stderr, "Trace on!\n");
+                do_trace = true;
+                fprintf(stderr, "Trace on by Command at frame %d\n", frame_index);
 #endif
-            break;
-        case 365:
-            // status = 1;
-            // fprintf(stderr, "Stop!\n");
-            break;
-        case 460: // TODO index might be wrong
-            // Skip game intro
-            press_button1_signal = true;
-            break;
+                break;
+            case InputKind::TraceOff:
+#ifdef TRACE
+                do_trace = false;
+                fprintf(stderr, "Trace off by Command at frame %d\n", frame_index);
+#endif
+                break;
+            case InputKind::InstructionsOn:
+                print_instructions = true;
+                break;
+            case InputKind::InstructionsOff:
+                print_instructions = false;
+                break;
+            case InputKind::Quit:
+                status = SIGINT;
+                break;
+            }
         }
+        dut.rootp->emu__DOT__JOY0 = (held_buttons & 1 ? 0b010000 : 0) | (held_buttons & 2 ? 0b100000 : 0);
     }
 
   public:
+    bool LoadEventScript(const char *path) {
+        std::ifstream script(path);
+        if (!script) {
+            fprintf(stderr, "Unable to open event script %s\n", path);
+            return false;
+        }
+
+        std::string line;
+        unsigned int line_number = 0;
+        while (std::getline(script, line)) {
+            line_number++;
+            const std::size_t comment = line.find('#');
+            if (comment != std::string::npos)
+                line.erase(comment);
+
+            std::istringstream input(line);
+            uint64_t frame;
+            std::string command;
+            unsigned int hold_frames = 3;
+            if (!(input >> frame))
+                continue;
+            if (!(input >> command)) {
+                fprintf(stderr, "%s:%u: expected: <frame> <command> [hold_frames]\n", path, line_number);
+                return false;
+            }
+            if (command == "analog") {
+                int x;
+                int y;
+                std::string extra;
+                if (!(input >> x >> y) || (input >> extra)) {
+                    fprintf(stderr, "%s:%u: expected: <frame> analog <x> <y>\n", path, line_number);
+                    return false;
+                }
+                if (!QueueAnalogEvent(frame, x, y, path, line_number))
+                    return false;
+                continue;
+            }
+            if (input >> hold_frames) {
+                std::string extra;
+                if (input >> extra) {
+                    fprintf(stderr, "%s:%u: expected: <frame> <command> [hold_frames]\n", path, line_number);
+                    return false;
+                }
+            } else if (!input.eof()) {
+                fprintf(stderr, "%s:%u: invalid hold_frames\n", path, line_number);
+                return false;
+            }
+            if (!QueueInputEvent(frame, command, hold_frames, path, line_number))
+                return false;
+        }
+
+        fprintf(stderr, "Loaded %zu input events from %s\n", input_events.size(), path);
+        return true;
+    }
+
+    bool EnableUdpInput(uint16_t port) {
+        udp_fd = socket(AF_INET, SOCK_DGRAM, 0);
+        if (udp_fd < 0) {
+            perror("socket");
+            return false;
+        }
+        const int flags = fcntl(udp_fd, F_GETFL, 0);
+        if (flags < 0 || fcntl(udp_fd, F_SETFL, flags | O_NONBLOCK) < 0) {
+            perror("fcntl");
+            close(udp_fd);
+            udp_fd = -1;
+            return false;
+        }
+        sockaddr_in address{};
+        address.sin_family = AF_INET;
+        address.sin_addr.s_addr = htonl(INADDR_ANY);
+        address.sin_port = htons(port);
+        if (bind(udp_fd, reinterpret_cast<sockaddr *>(&address), sizeof(address)) < 0) {
+            perror("bind");
+            close(udp_fd);
+            udp_fd = -1;
+            return false;
+        }
+        fprintf(stderr, "Listening for UDP input on port %u\n", port);
+        return true;
+    }
+
     void loadfile(uint16_t index, const char *path) {
 
         FILE *f = fopen(path, "rb");
@@ -1147,55 +1343,26 @@ class CDi {
             dut.rootp->emu__DOT__cditop__DOT__mcd212_inst__DOT__video_x == 0) {
             char filename[100];
 
-#ifndef SIMULATE_RC5
-            if (dut.rootp->emu__DOT__tvmode_ntsc) {
-                // NTSC
-            } else {
-                // PAL
-                // space_ace_pal();
-                // braindead13_pal();
-                // lost_ride_pal();
-                // PressEvery5Frames();
-                // chaos_control_germany();
-                // PlayAudioCdInxListenLikeThieves();
-            }
-#endif
-
-            if (press_button1_signal) {
-                press_button1_signal = false;
-                release_button_frame = frame_index + 3;
-                printf("Press Button 1!\n");
-                fprintf(stderr, "Press Button 1!\n");
-                dut.rootp->emu__DOT__JOY0 |= 0b010000;
-            }
-
-            if (press_button2_signal) {
-                press_button2_signal = false;
-                release_button_frame = frame_index + 3;
-                printf("Press Button 2!\n");
-                fprintf(stderr, "Press Button 2!\n");
-                dut.rootp->emu__DOT__JOY0 |= 0b100000;
-            }
-
-            if (release_button_frame == frame_index) {
-                printf("Release buttons!\n");
-                fprintf(stderr, "Release buttons!\n");
-                dut.rootp->emu__DOT__JOY0 = 0b00000;
-            }
+            ApplyInputEvents();
+            ProcessPendingSignals();
 
             if (pixel_index > 400) {
                 auto current = std::chrono::system_clock::now();
-                std::chrono::duration<double> elapsed_seconds = current - start;
-                sprintf(filename, "%d/video_%03d.png", instanceid, frame_index);
-                write_png_file(filename);
-                printf("Written video_%03d.png\n", frame_index);
+                std::chrono::duration<double> elapsed_seconds_since_start = current - start_time;
+                std::chrono::duration<double> elapsed_seconds_since_last_frame = current - last_frame_time;
+                last_frame_time = current;
+
+                sprintf(filename, "%d/video_%03d.bmp", instanceid, frame_index);
+                if (!WriteRgbBmp(filename, width, height, 4, output_image))
+                    abort();
+                printf("Written video_%03d.bmp\n", frame_index);
                 // printf("We are at time30mhz=%ld\n", time30mhz);
 
                 uint32_t mpeg_frequency = mpeg_clk_calc_ticks * 30 / mpeg_clk_calc_ticks30;
 
                 // printf("Written %s after %.2fs. FMV at %d MHz\n", filename, elapsed_seconds.count(), mpeg_frequency);
-                fprintf(stderr, "Written %s after %.2fs. FMV at %d MHz\n", filename, elapsed_seconds.count(),
-                        mpeg_frequency);
+                fprintf(stderr, "Written %s after %.2fs, total %.2fs. FMV at %d MHz\n", filename,
+                        elapsed_seconds_since_last_frame.count(), elapsed_seconds_since_start.count(), mpeg_frequency);
 
                 mpeg_clk_calc_ticks30 = 0;
                 mpeg_clk_calc_ticks = 0;
@@ -1252,7 +1419,7 @@ class CDi {
 #ifdef TRACE
             // do_trace = true;
 #endif
-            sprintf(bmp_name, "%d/%03d.bmp", instanceid, fmv_frame_cnt);
+            sprintf(bmp_name, "%d/fmv_%03d.bmp", instanceid, fmv_frame_cnt);
             printf("FMV Writing %s at Fifo Level %d at Frame Level %d %d %d %c %d\n", bmp_name,
                    dut.rootp->emu__DOT__cditop__DOT__vmpeg_inst__DOT__video__DOT__fifo_level,
                    dut.rootp->emu__DOT__cditop__DOT__vmpeg_inst__DOT__video__DOT__pictures_in_input_fifo,
@@ -1341,6 +1508,10 @@ class CDi {
     }
 
     virtual ~CDi() {
+        if (udp_fd >= 0)
+            close(udp_fd);
+        if (f_executed_events)
+            fclose(f_executed_events);
         assert(f_audio_right);
         assert(f_audio_left);
         assert(f_fma);
@@ -1406,6 +1577,15 @@ class CDi {
 
     CDi(int i) {
         instanceid = i;
+
+        char event_filename[] = "/tmp/cdi-input-events-XXXXXX";
+        const int event_fd = mkstemp(event_filename);
+        assert(event_fd >= 0);
+        f_executed_events = fdopen(event_fd, "w");
+        assert(f_executed_events);
+        fprintf(f_executed_events, "# Executed input events; reusable with --events\n");
+        fflush(f_executed_events);
+        fprintf(stderr, "Recording executed input events to %s\n", event_filename);
 
         char filename[100];
         sprintf(filename, "%d/audio_left.bin", instanceid);
@@ -1473,10 +1653,11 @@ class CDi {
         dut.RESET = 0;
         dut.OSD_STATUS = 1;
 
-        start = std::chrono::system_clock::now();
+        start_time = std::chrono::system_clock::now();
+        last_frame_time = std::chrono::system_clock::now();
 #ifdef TRACE
         do_trace = false;
-        fprintf(stderr, "Trace off!\n");
+        fprintf(stderr, "Trace off on start!\n");
 #endif
 
 #ifdef SIMULATE_RC5
@@ -1561,6 +1742,45 @@ class CDi {
 };
 
 int main(int argc, char **argv) {
+
+    const char *event_script = nullptr;
+    uint16_t udp_port = 0;
+    int machineindex = 0;
+    int positional_arguments = 0;
+    bool autoplay{false};
+
+    for (int i = 1; i < argc; i++) {
+        if (strcmp(argv[i], "--events") == 0) {
+            if (++i == argc) {
+                fprintf(stderr, "--events requires a path\n");
+                return 1;
+            }
+            event_script = argv[i];
+        } else if (strcmp(argv[i], "--udp") == 0) {
+            if (++i == argc) {
+                fprintf(stderr, "--udp requires a port\n");
+                return 1;
+            }
+            char *end = nullptr;
+            const long port = strtol(argv[i], &end, 10);
+            if (*end != '\0' || port < 1 || port > 65535) {
+                fprintf(stderr, "Invalid UDP port: %s\n", argv[i]);
+                return 1;
+            }
+            udp_port = static_cast<uint16_t>(port);
+        } else if (strcmp(argv[i], "--auto") == 0) {
+            autoplay = true;
+        } else if (strcmp(argv[i], "--help") == 0) {
+            fprintf(stderr, "Usage: %s [machine] [--auto] [--events script] [--udp port]\n", argv[0]);
+            return 0;
+        } else if (positional_arguments++ == 0) {
+            machineindex = atoi(argv[i]);
+        } else {
+            fprintf(stderr, "Unexpected argument: %s\n", argv[i]);
+            return 1;
+        }
+    }
+
     // Initialize Verilators variables
     Verilated::commandArgs(argc, argv);
 
@@ -1569,7 +1789,7 @@ int main(int argc, char **argv) {
         Verilated::traceEverOn(true);
 #endif
 
-    struct sigaction sa;
+    struct sigaction sa{};
     sa.sa_sigaction = SignalHandler;
     sigemptyset(&sa.sa_mask);
     sa.sa_flags = SA_SIGINFO;
@@ -1578,17 +1798,13 @@ int main(int argc, char **argv) {
     sigaction(SIGUSR1, &sa, NULL);
     sigaction(SIGUSR2, &sa, NULL);
 
-    int machineindex = 0;
-
-    if (argc >= 2) {
-        machineindex = atoi(argv[1]);
+    if (positional_arguments >= 1) {
         fprintf(stderr, "Machine is %d\n", machineindex);
     }
 
     switch (machineindex) {
     case 0:
-        f_cd_bin = fopen("images/inxs.bin", "rb");
-        prepare_inxs_listen_like_thieves_audiocd_toc();
+        f_cd_bin = fopen("images/addams.bin", "rb");
         break;
     case 1:
         f_cd_bin = fopen("images/aims_frogs.iso", "rb");
@@ -1625,7 +1841,12 @@ int main(int argc, char **argv) {
 
     CDi machine(machineindex);
 
-    machine.dut.rootp->emu__DOT__config_auto_play = argc >= 3 ? 1 : 0;
+    if (event_script && !machine.LoadEventScript(event_script))
+        return 1;
+    if (udp_port && !machine.EnableUdpInput(udp_port))
+        return 1;
+
+    machine.dut.rootp->emu__DOT__config_auto_play = autoplay;
     if (machine.dut.rootp->emu__DOT__config_auto_play) {
         fprintf(stderr, "Autoplay enabled!\n");
     } else {

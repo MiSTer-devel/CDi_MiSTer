@@ -1,0 +1,9 @@
+#166 trace_on
+#207 trace_off
+224 b1 2 # Open Playback Controls
+235 analog 80 0 # Move cursor to Fast Forward
+240 analog 0 0
+244 trace_on
+245 b1 2 # Start Fast Forward
+273 b1 2 # Stop Fast Forward
+333 quit
