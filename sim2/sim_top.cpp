@@ -1256,8 +1256,8 @@ class CDi {
             printf("FMV Writing %s at Fifo Level %d at Frame Level %d %d %d %c %d\n", bmp_name,
                    dut.rootp->emu__DOT__cditop__DOT__vmpeg_inst__DOT__video__DOT__fifo_level,
                    dut.rootp->emu__DOT__cditop__DOT__vmpeg_inst__DOT__video__DOT__pictures_in_input_fifo,
-                    dut.rootp->emu__DOT__cditop__DOT__vmpeg_inst__DOT__video__DOT__pictures_in_mpeg_decoder,
-                    dut.rootp->emu__DOT__cditop__DOT__vmpeg_inst__DOT__video__DOT__pictures_in_output_fifo,
+                   dut.rootp->emu__DOT__cditop__DOT__vmpeg_inst__DOT__video__DOT__pictures_in_mpeg_decoder,
+                   dut.rootp->emu__DOT__cditop__DOT__vmpeg_inst__DOT__video__DOT__pictures_in_output_fifo,
                    GetPictureType(frame.picture_type), frame.temporal_ref);
             ;
             fprintf(stderr, "FMV Writing %s at Fifo Level %d at Frame Level %d %d %d %c %d\n", bmp_name,
@@ -1611,7 +1611,7 @@ int main(int argc, char **argv) {
         f_cd_bin = fopen("images/FMVTEST.BIN", "rb");
         break;
     case 7:
-        f_cd_bin = fopen("images/7thguest_german.bin", "rb");
+        f_cd_bin = fopen("images/FMVTEST.BIN", "rb");
         break;
     case 8:
         f_cd_bin = fopen("images/Dragon_s_Lair_US.bin", "rb");

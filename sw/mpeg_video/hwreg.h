@@ -17,7 +17,7 @@ struct frame_display_fifo {
     uint32_t width;                    // @0x1000300C
     uint32_t height;                   // @0x10003010
     uint32_t frameperiod_30mhz;        // @0x10003014, ticks of 30 MHz
-    int32_t dts_desync;                // @0x10003018 Read only
+    int32_t reserved_;                 // @0x10003018 Read only
     uint32_t event_sequence_end;       // @0x1000301C Write only
     uint32_t first_intra_frame_of_gop; // @0x10003020 Write only
     uint32_t event_buffer_underflow;   // @0x10003024 Write only

@@ -106,17 +106,9 @@ static void push_frame(plm_frame_t *frame) {
     frame_display_fifo->width = frame->width;
     frame_display_fifo->height = frame->height;
 
-    int32_t dts_desync_avg =
-        (dts_desync_last + frame_display_fifo->dts_desync) / 2;
-    dts_desync_last = frame_display_fifo->dts_desync;
-
     int period30mhz = PLM_VIDEO_PICTURE_RATE_30MHZ[seq_hdr_conf.frameperiod] *
-                          (frame_display_fifo->slow_motion + 1) -
-                      dts_desync_avg * 1000; // steps of 33 us
+                          (frame_display_fifo->slow_motion + 1);
     int period90khz = PLM_VIDEO_PICTURE_RATE_90KHZ[seq_hdr_conf.frameperiod];
-
-    if (period30mhz < 400000) // much faster than 60 Hz? Better not
-        period30mhz = 400000;
 
     frame_display_fifo->frameperiod_90khz = period90khz;
     frame_display_fifo->frameperiod_rawhdr = seq_hdr_conf.frameperiod;

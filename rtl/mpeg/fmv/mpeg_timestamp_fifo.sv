@@ -11,16 +11,16 @@ module mpeg_timestamp_fifo (
     output bit valid,
     output signed [32:0] q,
     // State
-    output [5:0] cnt
+    output [6:0] cnt
 );
 
-    bit signed [32:0] ram[64];
+    bit signed [32:0] ram[128];
 
     // Clock domain of output
-    bit [5:0] raddr;
+    bit [6:0] raddr;
 
     // Clock domain of input
-    bit [5:0] waddr;
+    bit [6:0] waddr;
 
     assign cnt = waddr - raddr;
 
@@ -32,7 +32,7 @@ module mpeg_timestamp_fifo (
             ram[waddr] <= wdata;
             waddr <= waddr + 1;
 
-            assert (cnt < 62);
+            assert (cnt < 122);
         end
 
         if (strobe) begin

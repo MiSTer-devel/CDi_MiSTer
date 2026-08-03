@@ -43,3 +43,15 @@ I've checked this file with FFmpeg and the complaint became clear.
     filter 1 1c 0
 
 The shifting parameter is negative. I shall clamp it like MAME does too.
+
+## Coding parameters
+
+    On the street in the city  [:cdic] Coding 44, 1 channels, 4 bits, 000049d4 frequency
+    Bare intro cutscene        [:cdic] Coding 44, 1 channels, 4 bits, 000049d4 frequency
+
+    01 00 01 00
+     Emphasis on
+       4 bits
+          18.9 kHz
+             Mono
+

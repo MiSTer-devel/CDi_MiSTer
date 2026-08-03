@@ -124,7 +124,7 @@ module vmpeg (
     wire fmv_event_sequence_end;
     wire fmv_event_frame_decoded;
     wire fmv_event_buffer_underflow;
-    wire [5:0] fmv_pictures_in_fifo;
+    wire [6:0] fmv_pictures_in_fifo;
     bit [2:0] fmv_slow_motion;
 
     bit [8:0] latched_display_offset_y;
@@ -175,6 +175,7 @@ module vmpeg (
         .event_first_intra_frame_seq_starts_display(fmv_event_first_intra_frame_seq_starts_display),
         .pictures_in_fifo(fmv_pictures_in_fifo),
         .demuxer_decoding_timestamp(fmv_demuxer_decoding_timestamp),
+        .demuxer_decoding_timestamp_updated(fmv_demuxer_decoding_timestamp_updated),
         .demuxer_system_clock_reference(fmv_demuxer_system_clock_reference),
         .dclk(fmv_dclk),
         .decoder_width(fmv_decoder_width),
@@ -544,7 +545,7 @@ module vmpeg (
             dout = {
                 1'b0, fmv_demuxer_decoding_timestamp_reduced_view
             };  // 00E040A0 Decoding Timestamp
-            15'h2052: dout = {10'b0, fmv_pictures_in_fifo};  // 00E040A4 ?? Pictures in fifo?
+            15'h2052: dout = {9'b0, fmv_pictures_in_fifo};  // 00E040A4 ?? Pictures in fifo?
             15'h2054: dout = fmv_decoder_frameperiod_90khz;  // E040A8 Picture Rate Only read.
             15'h2055: dout = fmv_display_rate;  // e040aa ?? Display Rate ? Only read.
             15'h2056: dout = fmv_frame_rate;  // e040ac ?? GEN_FRAME_RATE Read and written.
@@ -933,7 +934,7 @@ module vmpeg (
                             fmv_system_command_register <= din;
 
                             if (din[3]) begin  // 0008 Play
-                                fmv_dclk_start_video <= fma_dclk + 32'd2000;  // 65ms delay
+                                fmv_dclk_start_video <= fma_dclk + 32'd3000;  // 65ms delay
                                 fmv_dclk_start_video_latched <= 1;
 
                                 // TODO can't be correct. set 0x42
