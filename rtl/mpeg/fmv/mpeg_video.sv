@@ -842,6 +842,9 @@ module mpeg_video (
     // 24' is required to fix math problem on Verilator
     wire [23:0] frame_period_top = frame_period - 1 - (24'(desync2_q) * 2048);
 
+    // Initial DTS near SCR. Playback is allowed
+    bit desync2_satisfied_latch = 0;
+
     always_ff @(posedge clk30) begin
         vsync_q <= vsync;
         hsync_q <= hsync;
@@ -917,10 +920,15 @@ module mpeg_video (
                 latch_frame_for_display <= 1;
             end
 
+            // Start playback only when we are near the next valid DTS 
+            if (!dts_fifo_out_valid_dts || (dts_fifo_out_valid_dts && desync2 > -30)) begin
+                desync2_satisfied_latch <= 1;
+            end
+
             // Always increment frame count during asynchronous mode
             // Always increment frame count when no DTS is available
-            // Only increment frame count during synchronous mode, when we are near the next valid DTS
-            if ( !synchronous_playback || !dts_fifo_out_valid_dts || (dts_fifo_out_valid_dts && desync2 > -40))
+            // Only increment frame count during synchronous mode, when initial DTS check was fulfilled
+            if (!synchronous_playback || desync2_satisfied_latch)
                 playback_frame_cnt <= playback_frame_cnt + 1;
 
             // Timed latching of frames
@@ -934,6 +942,8 @@ module mpeg_video (
                     frame_period_tick <= for_display_valid;
                 end
             end
+        end else begin
+            desync2_satisfied_latch <= 0;
         end
 
         if (single_step_latch && for_display_valid) begin
