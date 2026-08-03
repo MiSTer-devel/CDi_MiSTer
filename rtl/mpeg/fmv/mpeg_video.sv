@@ -9,6 +9,7 @@ module mpeg_video (
     input clear_fifo,
     input reset_persistent_storage,
     input playback_active,
+    input synchronous_playback,
     input decoder_active,
     input single_step,
     input [2:0] slow_motion,
@@ -255,7 +256,7 @@ module mpeg_video (
                     "desync %d %d %d %d", dclk, dclk - last_display_latch_dclk, desync2, desync
                 );
 
-            desync2_q <= dts_fifo_out_valid_dts ? desync2 : 0;
+            desync2_q <= (dts_fifo_out_valid_dts && synchronous_playback) ? desync2 : 0;
         end
 
         event_buffer_underflow <= pictures_in_fifo==1 && latch_frame_for_display && pictures_in_mpeg_decoder==0;
@@ -911,14 +912,15 @@ module mpeg_video (
 
         if (playback_active) begin
             // Skip frames during huge differences. Occuring when going for normal speed after slow motion
-            if (vblank && !hsync && hsync_q && dts_fifo_out_valid_dts && desync > 15000 && for_display_valid) begin
+            if (vblank && !hsync && hsync_q && dts_fifo_out_valid_dts && desync > 15000 && for_display_valid && synchronous_playback) begin
                 $display("FrameSkip");
                 latch_frame_for_display <= 1;
             end
 
+            // Always increment frame count during asynchronous mode
             // Always increment frame count when no DTS is available
-            // Only increment frame count when we are near the next valid DTS
-            if ( !dts_fifo_out_valid_dts || (dts_fifo_out_valid_dts && desync2 > -40))
+            // Only increment frame count during synchronous mode, when we are near the next valid DTS
+            if ( !synchronous_playback || !dts_fifo_out_valid_dts || (dts_fifo_out_valid_dts && desync2 > -40))
                 playback_frame_cnt <= playback_frame_cnt + 1;
 
             // Timed latching of frames

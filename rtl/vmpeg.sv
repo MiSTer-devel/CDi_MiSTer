@@ -144,6 +144,7 @@ module vmpeg (
         .clear_fifo(fmv_clear_fifo),
         .reset_persistent_storage(fmv_reset_persistent_storage),
         .playback_active(fmv_playback_active),
+        .synchronous_playback(fmv_system_control_register[2]),
         .decoder_active(fmv_decoder_active),
         .single_step(fmv_single_step),
         .slow_motion(fmv_slow_motion),
@@ -383,7 +384,10 @@ module vmpeg (
     // [3] CDI mode?
     // [5:4] Decoder Mode
     // 882D 1000 1000 0010 1101 During Addams Family playback, Sync, CD-i Mode, Fullmotion No Interlace
+    // 8829 1000 1000 0010 1001 During Addams Family Fast Forward, Async, CD-i Mode, Fullmotion No Interlace
     // 8829 1000 1000 0010 1001 During self build stepping, Async, CD-i Mode, Fullmotion No Interlace
+    // So this would indicate that Sync should Synchronize to the DTS?
+    // And Async shall decode and display as fast as possible?
     (* keep *) (* noprune *) bit [15:0] fmv_system_control_register = 0;
 
     bit fmv_show_on_next_video_frame;
@@ -467,7 +471,13 @@ module vmpeg (
     // 0x2242  0010 0010 0100 0010  Imagination in Motion - Step Reverse during Pause
     // 0x2202  0010 0010 0000 0010  Self build, directly into step
     // 0x2202 is essential for single step?
-    // 0x0042 decoding status?
+    // 0x0042  0000 0000 0100 0010 decoding status?
+    // Disco bird test with moving window in this order, without the non working loop:
+    // 0x1001  0001 0000 0000 0001
+    // 0x1972  0001 1001 0111 0010 RUN_RYTHM?
+    // 0x5962  0101 1001 0110 0010 RUN_RYTHM?
+    // 0x7952  0111 1001 0101 0010
+    // 0x002c  0000 0000 0010 1100 after a long while of continues updates without new picture
     bit  [15:0] fmv_decoder_command;
 
     bit  [15:0] image_height = 0;
@@ -934,7 +944,7 @@ module vmpeg (
                             fmv_system_command_register <= din;
 
                             if (din[3]) begin  // 0008 Play
-                                fmv_dclk_start_video <= fma_dclk + 32'd3000;  // 65ms delay
+                                fmv_dclk_start_video <= fma_dclk + 32'd1000;
                                 fmv_dclk_start_video_latched <= 1;
 
                                 // TODO can't be correct. set 0x42
