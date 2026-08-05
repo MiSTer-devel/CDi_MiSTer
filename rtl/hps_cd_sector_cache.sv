@@ -77,6 +77,14 @@ module hps_cd_sector_cache (
     bit cd_hps_ack_q = 0;
 
     wire at_least_one_sector_in_cache = sector_size_calibrated && cache_level >= ADDR_WIDTH'(sector_size);
+`ifdef VERILATOR
+    // During simulation, data flow is guaranteed. Use the cache when at least one sector has been loaded
+    wire at_least_half_full_cache = 1;
+`else
+    // In case of a physical CD drive, a seek might take longer. Try to catch this scenario by
+    // pausing the simulated seek, until at least half of cache is full
+    wire at_least_half_full_cache = sector_size_calibrated && cache_level[ADDR_WIDTH-1];
+`endif
     wire cache_can_take_one_sector = !sector_size_calibrated || (cache_level < ADDR_WIDTH'(CACHE_SIZE - 5 - sector_size));
 
     bit [7:0] request_request_pause_cnt;
@@ -136,7 +144,12 @@ module hps_cd_sector_cache (
                 cd_hps_lba <= seek_lba;
                 reading_active <= 1;
             end else if (sector_tick && seeking_time_cnt != 0) begin
-                seeking_time_cnt <= seeking_time_cnt - 1;
+
+                if (!at_least_half_full_cache && seeking_time_cnt == 1) begin
+                    // Keep seeking! We should have more data before we play the cache!
+                end else begin
+                    seeking_time_cnt <= seeking_time_cnt - 1;
+                end
             end
 
             if (sector_tick && !cd_hps_ack && !cd_hps_req) begin

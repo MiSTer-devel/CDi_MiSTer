@@ -1200,7 +1200,8 @@ class CDi {
         }
 
         dut.rootp->emu__DOT__sd_buff_wr = 0;
-        if (dut.rootp->emu__DOT__cd_hps_ack && (time30mhz % 180) == 15) {
+        // Data rate doesn't need to match, since the CD sector cache will do the throttle
+        if (dut.rootp->emu__DOT__cd_hps_ack && (time30mhz % 10) == 5) {
             if (hps_buffer_index == kWordsPerSector) {
                 dut.rootp->emu__DOT__cd_hps_ack = 0;
                 printf("Sector transferred!\n");
