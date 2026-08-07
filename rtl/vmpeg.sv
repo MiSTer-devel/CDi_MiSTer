@@ -470,6 +470,7 @@ module vmpeg (
     // 0x1942  0001 1001 0100 0010  when playing
     // 0x2242  0010 0010 0100 0010  Imagination in Motion - Step Reverse during Pause
     // 0x2202  0010 0010 0000 0010  Self build, directly into step
+    // 0x5061  0101 0000 0110 0001  after mv_cdnext() and a lot of time in single step mode
     // 0x2202 is essential for single step?
     // 0x0042  0000 0000 0100 0010 decoding status?
     // Disco bird test with moving window in this order, without the non working loop:

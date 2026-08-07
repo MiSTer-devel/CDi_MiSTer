@@ -860,8 +860,12 @@ module mpeg_video (
         vblank_q2 <= vblank_q1;
         frame_period_tick <= 0;
 
-        if (reset_dsp_enabled) single_step_latch <= 0;
-        else if (single_step) single_step_latch <= 1;
+        if (reset_dsp_enabled) begin
+            single_step_latch <= 0;
+            latch_frame_until_vsync <= 0;
+        end else if (single_step) begin
+            single_step_latch <= 1;
+        end
 
         for_display_valid <= for_display_valid_clk_mpeg;
 
@@ -915,7 +919,7 @@ module mpeg_video (
             latch_frame_until_vsync <= 0;
             event_potential_picture_starts_display <= 1;
 
-            if (for_display_valid && playback_active) begin
+            if (for_display_valid) begin
                 latch_frame_for_display  <= 1;
                 latch_frame_until_vblank <= 1;
             end
@@ -952,12 +956,12 @@ module mpeg_video (
             end
         end else begin
             display_dts_desync_satisfied_latch <= 0;
+            playback_frame_cnt <= 0;
         end
 
-        if (single_step_latch && for_display_valid) begin
+        if (single_step_latch && for_display_valid && !vsync && vsync_q) begin
             single_step_latch <= 0;
-            latch_frame_until_vblank <= 1;
-            latch_frame_for_display <= 1;
+            latch_frame_until_vsync <= 1;
         end
     end
 
