@@ -1,0 +1,67 @@
+[*]
+[*] GTKWave Analyzer v3.3.127 (w)1999-2026 BSI
+[*] Mon Aug 10 12:12:43 2026
+[*]
+[dumpfile] "/tmp/waveform.vcd"
+[dumpfile_mtime] "Mon Aug 10 12:12:43 2026"
+[dumpfile_size] 458194718
+[savefile] "/home/andre/GIT/scc68070/sim2/video.gtkw"
+[timestart] 0
+[size] 1920 1152
+[pos] -1 -1
+*-24.597601 75000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] TOP.
+[treeopen] TOP.emu.
+[treeopen] TOP.emu.cditop.
+[treeopen] TOP.emu.cditop.vmpeg_inst.
+[treeopen] TOP.emu.cditop.vmpeg_inst.video.
+[treeopen] TOP.emu.cditop.vmpeg_inst.video.frameplayer.
+[sst_width] 465
+[signals_width] 529
+[sst_expanded] 1
+[sst_vpaned_height] 350
+@28
+TOP.emu.cditop.vmpeg_inst.fmv_interrupt_status_register.dcl
+TOP.emu.cditop.vmpeg_inst.fmv_interrupt_status_register.eii
+TOP.emu.cditop.vmpeg_inst.fmv_interrupt_status_register.eod
+TOP.emu.cditop.vmpeg_inst.fmv_interrupt_status_register.erdd
+TOP.emu.cditop.vmpeg_inst.fmv_interrupt_status_register.erdv
+TOP.emu.cditop.vmpeg_inst.fmv_interrupt_status_register.esi
+TOP.emu.cditop.vmpeg_inst.fmv_interrupt_status_register.gop
+TOP.emu.cditop.vmpeg_inst.fmv_interrupt_status_register.ndat
+TOP.emu.cditop.vmpeg_inst.fmv_interrupt_status_register.ovf
+TOP.emu.cditop.vmpeg_inst.fmv_interrupt_status_register.pai
+TOP.emu.cditop.vmpeg_inst.fmv_interrupt_status_register.pic
+TOP.emu.cditop.vmpeg_inst.fmv_interrupt_status_register.rfb
+TOP.emu.cditop.vmpeg_inst.fmv_interrupt_status_register.seq
+TOP.emu.cditop.vmpeg_inst.fmv_interrupt_status_register.tim
+TOP.emu.cditop.vmpeg_inst.fmv_interrupt_status_register.vcup
+TOP.emu.cditop.vmpeg_inst.fmv_interrupt_status_register.vsync
+@200
+-
+@28
+TOP.emu.cditop.vmpeg_inst.video.data_strobe
+@24
+TOP.emu.cditop.vmpeg_inst.video.frame_period_top[23:0]
+@28
+TOP.emu.cditop.vmpeg_inst.video.dts_fifo.reset
+TOP.emu.cditop.vmpeg_inst.video.latch_frame_for_display
+TOP.emu.cditop.vmpeg_inst.video.latch_frame_until_vblank
+TOP.emu.cditop.vmpeg_inst.video.latch_frame_until_vsync
+TOP.emu.cditop.vmpeg_inst.video.frame_period_tick
+@22
+TOP.emu.cditop.vmpeg_inst.video.playback_frame_cnt[23:0]
+TOP.emu.cditop.vmpeg_inst.video.dts_fifo.cnt[6:0]
+@420
+TOP.emu.cditop.frame_index
+@22
+TOP.emu.cditop.vmpeg_inst.fmv_system_command_register[15:0]
+TOP.emu.cditop.vmpeg_inst.fmv_system_control_register[15:0]
+TOP.emu.cditop.vmpeg_inst.fmv_video_command_register[15:0]
+TOP.emu.cditop.vmpeg_inst.fmv_video_data_input_command_register[15:0]
+@28
+TOP.emu.cditop.vmpeg_inst.video.frameplayer.fetch_and_show_frame
+@23
+TOP.emu.cditop.vmpeg_inst.video.frameplayer.r[9:0]
+[pattern_trace] 1
+[pattern_trace] 0
