@@ -38,7 +38,7 @@ Each non-comment line is `<frame> <command> [hold_frames]`. Button presses
 hold for three frames unless a duration is supplied. Set the analog stick with
 `<frame> analog <x> <y>`; `x` and `y` are signed 8-bit values (`-128..127`)
 and are stored as `JOY0_ANALOG = { Y, X }`. Available commands are `b1`, `b2`, `analog`,
-`trace_on`, `trace_off`, `instructions_on`, `instructions_off`, and `quit`.
+`b1b2`, `trace_on`, `trace_off`, `instructions_on`, `instructions_off`, and `quit`.
 
     # Skip three screens
     154 b1
@@ -52,8 +52,23 @@ it uses the same commands as the script. For example:
 
     printf 'b1\n' | nc -u -w1 127.0.0.1 28070
     printf 'analog 0 -128\n' | nc -u -w1 127.0.0.1 28070
+    printf 'b1b2 3\n' | nc -u -w1 127.0.0.1 28070
     ./sim_top.sh 9 --udp 28070
 
 Every run records events as they take effect in a unique
 `/tmp/cdi-input-events-*` file. Pass that file to `--events` to replay a live
 UDP session deterministically.
+
+### UDP controller GUI
+
+`udp_controller.py` is a small Tk GUI for the live UDP interface (it uses only
+Python's standard library). Start the simulator, then start the controller in
+another terminal:
+
+    ./sim_top.sh 9 --udp 28070
+    ./udp_controller.py --port 28070
+
+Click **Button 1**, **Button 2**, or **Buttons 1 + 2**, drag the analog pad,
+or use the arrow keys (WASD also works). `Z`, `X`, and `C` trigger buttons 1,
+2, and 1 + 2. The host, port, and button hold duration can be changed in the
+window. Use **Stop simulator** to send the UDP `quit` command.

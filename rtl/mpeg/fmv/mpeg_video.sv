@@ -170,7 +170,7 @@ module mpeg_video (
     end
 
     wire dts_fifo_valid;
-    wire signed [32:0] dts_fifo_out;
+    (* keep *) (* noprune *) wire signed [32:0] dts_fifo_out;
 
     wire [6:0] pictures_in_dts_fifo;
 
@@ -196,15 +196,14 @@ module mpeg_video (
 
     wire totally_out_of_sync_need_frameskip = dts_fifo_out_valid_dts && demuxer_dts_desync > 15000;
 
-
     // Only bits 21:6 can be changed by the CPU
     // It should be noted that the driver wants to have bit 21 always 0.
     // So only bits 20:6 of dclk must be used here.
-    wire signed [14:0] display_dts_desync = dclk[20:6] - dts_fifo_out[21:7];
+    (* keep *) (* noprune *) wire signed [14:0] display_dts_desync = dclk[20:6] - dts_fifo_out[21:7];
 
     // Latched from display_dts_desync at latch_frame_for_display
     // to help with meta stability
-    bit signed [14:0] display_dts_desync_q;
+    (* keep *) (* noprune *) bit signed [14:0] display_dts_desync_q;
 
     // Inc on picture_added_in_input_fifo
     // Dec on event_frame_decoded
@@ -264,7 +263,7 @@ module mpeg_video (
                 );
 
             // Only apply during synchronous playback and when we have a valid DTS for desync calculation
-            display_dts_desync_q <= (dts_fifo_out_valid_dts && synchronous_playback && !totally_out_of_sync_need_frameskip) ? display_dts_desync : 0;
+            display_dts_desync_q <= (dts_fifo_out_valid_dts && synchronous_playback) ? display_dts_desync : 0;
         end
 
         event_buffer_underflow <= pictures_in_fifo==1 && latch_frame_for_display && pictures_in_mpeg_decoder==0;
@@ -848,7 +847,7 @@ module mpeg_video (
     bit frame_period_tick;
 
     // 24' is required to fix math problem on Verilator
-    wire [23:0] frame_period_top = frame_period - 1 - (24'(display_dts_desync_q) * 2048);
+    wire [23:0] frame_period_top = frame_period - 1;
 
     // Initial DTS near SCR. Playback is allowed
     bit display_dts_desync_satisfied_latch = 0;
@@ -927,10 +926,6 @@ module mpeg_video (
 
         if (playback_active) begin
             // Skip frames during huge differences. Occuring when going for normal speed after slow motion
-            if (vblank && !hsync && hsync_q && totally_out_of_sync_need_frameskip && for_display_valid && synchronous_playback) begin
-                $display("FrameSkip");
-                latch_frame_for_display <= 1;
-            end
 
             // Start playback only when we are near the next valid DTS 
             if (!dts_fifo_out_valid_dts || (dts_fifo_out_valid_dts && display_dts_desync > -30)) begin

@@ -413,7 +413,7 @@ class CDi {
     bool executing_dvc_rom_instructions{false};
 
     int instanceid;
-    enum class InputKind { Button1, Button2, Analog, TraceOn, TraceOff, InstructionsOn, InstructionsOff, Quit };
+    enum class InputKind { Button1, Button2, Buttons1And2, Analog, TraceOn, TraceOff, InstructionsOn, InstructionsOff, Quit };
     struct InputEvent {
         uint64_t frame;
         InputKind kind;
@@ -763,6 +763,8 @@ class CDi {
             kind = InputKind::Button1;
         else if (command == "b2" || command == "button2")
             kind = InputKind::Button2;
+        else if (command == "b1b2" || command == "both")
+            kind = InputKind::Buttons1And2;
         else if (command == "trace_on")
             kind = InputKind::TraceOn;
         else if (command == "trace_off")
@@ -777,7 +779,8 @@ class CDi {
             fprintf(stderr, "%s:%u: unknown input command '%s'\n", source, line_number, command.c_str());
             return false;
         }
-        if ((kind == InputKind::Button1 || kind == InputKind::Button2) && hold_frames == 0) {
+        if ((kind == InputKind::Button1 || kind == InputKind::Button2 || kind == InputKind::Buttons1And2) &&
+            hold_frames == 0) {
             fprintf(stderr, "%s:%u: hold_frames must be at least one\n", source, line_number);
             return false;
         }
@@ -861,6 +864,11 @@ class CDi {
         case InputKind::Button2:
             fprintf(f_executed_events, "%d b2 %u\n", frame_index, event.hold_frames);
             break;
+        case InputKind::Buttons1And2:
+            // Write replayable individual events at the same frame.
+            fprintf(f_executed_events, "%d b1 %u\n%d b2 %u\n", frame_index, event.hold_frames, frame_index,
+                    event.hold_frames);
+            break;
         case InputKind::Analog:
             fprintf(f_executed_events, "%d analog %d %d\n", frame_index, static_cast<int8_t>(event.analog_x),
                     static_cast<int8_t>(event.analog_y));
@@ -905,12 +913,20 @@ class CDi {
             RecordExecutedInputEvent(event);
             switch (event.kind) {
             case InputKind::Button1:
-            case InputKind::Button2: {
-                const unsigned int button = event.kind == InputKind::Button1 ? 0 : 1;
-                held_buttons |= 1u << button;
-                button_release_frame[button] =
-                    std::max(button_release_frame[button], static_cast<uint64_t>(frame_index) + event.hold_frames);
-                fprintf(stderr, "Press Button %u at frame %d\n", button + 1, frame_index);
+            case InputKind::Button2:
+            case InputKind::Buttons1And2: {
+                const unsigned int buttons = event.kind == InputKind::Button1 ? 1u
+                                             : event.kind == InputKind::Button2 ? 2u
+                                                                              : 3u;
+                held_buttons |= buttons;
+                for (unsigned int button = 0; button < 2; button++) {
+                    if (buttons & (1u << button)) {
+                        button_release_frame[button] = std::max(
+                            button_release_frame[button], static_cast<uint64_t>(frame_index) + event.hold_frames);
+                    }
+                }
+                fprintf(stderr, "Press Button%s%s at frame %d\n", buttons & 1 ? " 1" : "",
+                        buttons == 3 ? " + 2" : buttons & 2 ? " 2" : "", frame_index);
                 break;
             }
             case InputKind::Analog:
@@ -1484,11 +1500,6 @@ class CDi {
                 fwrite(&dut.rootp->emu__DOT__cditop__DOT__vmpeg_inst__DOT__mpeg_data, 1, 1, f_fmv_m1v);
             }
 #ifdef TRACE
-            if (!do_trace && !do_trace_started_once_via_fmv) {
-                fprintf(stderr, "Trace on by FMV!\n");
-                do_trace = true;
-                do_trace_started_once_via_fmv = true;
-            }
 #endif
         }
         if (dut.rootp->emu__DOT__cditop__DOT__vmpeg_inst__DOT__fma_data_valid) {
@@ -1498,11 +1509,6 @@ class CDi {
                 fwrite(&dut.rootp->emu__DOT__cditop__DOT__vmpeg_inst__DOT__mpeg_data, 1, 1, f_fma_mp2);
             }
 #ifdef TRACE
-            if (!do_trace && !do_trace_started_once_via_fma) {
-                fprintf(stderr, "Trace on via FMA!\n");
-                do_trace = true;
-                do_trace_started_once_via_fma = true;
-            }
 #endif
         }
 
@@ -1845,7 +1851,7 @@ int main(int argc, char **argv) {
         f_cd_bin = fopen("images/christ_country.bin", "rb");
         break;
     case 5:
-        f_cd_bin = fopen("images/startrek.bin", "rb");
+        f_cd_bin = fopen("images/lost_ride.bin", "rb");
         break;
     case 6:
         f_cd_bin = fopen("images/FMVTEST.BIN", "rb");
