@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.127 (w)1999-2026 BSI
-[*] Mon Aug 10 12:12:43 2026
+[*] Mon Aug 10 19:13:02 2026
 [*]
 [dumpfile] "/tmp/waveform.vcd"
-[dumpfile_mtime] "Mon Aug 10 12:12:43 2026"
-[dumpfile_size] 458194718
+[dumpfile_mtime] "Mon Aug 10 19:13:02 2026"
+[dumpfile_size] 5525158925
 [savefile] "/home/andre/GIT/scc68070/sim2/video.gtkw"
-[timestart] 0
-[size] 1920 1152
+[timestart] 1334300000
+[size] 2560 1348
 [pos] -1 -1
-*-24.597601 75000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-24.480701 1378700000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] TOP.
 [treeopen] TOP.emu.
 [treeopen] TOP.emu.cditop.
@@ -19,7 +19,7 @@
 [sst_width] 465
 [signals_width] 529
 [sst_expanded] 1
-[sst_vpaned_height] 350
+[sst_vpaned_height] 418
 @28
 TOP.emu.cditop.vmpeg_inst.fmv_interrupt_status_register.dcl
 TOP.emu.cditop.vmpeg_inst.fmv_interrupt_status_register.eii
@@ -61,7 +61,48 @@ TOP.emu.cditop.vmpeg_inst.fmv_video_command_register[15:0]
 TOP.emu.cditop.vmpeg_inst.fmv_video_data_input_command_register[15:0]
 @28
 TOP.emu.cditop.vmpeg_inst.video.frameplayer.fetch_and_show_frame
-@23
+@22
 TOP.emu.cditop.vmpeg_inst.video.frameplayer.r[9:0]
+@420
+TOP.emu.cditop.vmpeg_inst.video.demuxer_dts_desync[32:0]
+TOP.emu.cditop.vmpeg_inst.video.display_dts_desync[14:0]
+TOP.emu.cditop.vmpeg_inst.video.display_dts_desync_q[14:0]
+TOP.emu.cditop.vmpeg_inst.video.display_dts_desync_satisfied_latch
+@22
+TOP.emu.cditop.vmpeg_inst.fmv_dclk[31:0]
+@24
+TOP.emu.cditop.vmpeg_inst.video.pictures_in_fifo[6:0]
+@200
+-
+@22
+TOP.emu.cditop.fdrvs1.V_AsyStat[15:0]
+@25
+TOP.emu.cditop.fdrvs1.V_BufStat[7:0]
+@22
+TOP.emu.cditop.fdrvs1.V_ChipSpd[31:0]
+TOP.emu.cditop.fdrvs1.V_DTSVal[15:0]
+TOP.emu.cditop.fdrvs1.V_DecOff[31:0]
+TOP.emu.cditop.fdrvs1.V_Frozen[7:0]
+TOP.emu.cditop.fdrvs1.V_LCntr[15:0]
+TOP.emu.cditop.fdrvs1.V_NISFnd[31:0]
+TOP.emu.cditop.fdrvs1.V_PRPA[15:0]
+TOP.emu.cditop.fdrvs1.V_PWI[31:0]
+TOP.emu.cditop.fdrvs1.V_PausedSCR[31:0]
+TOP.emu.cditop.fdrvs1.V_PicRt[7:0]
+TOP.emu.cditop.fdrvs1.V_PlayType[15:0]
+TOP.emu.cditop.fdrvs1.V_SCR[31:0]
+TOP.emu.cditop.fdrvs1.V_ScrOff[31:0]
+TOP.emu.cditop.fdrvs1.V_ScrOrg[31:0]
+TOP.emu.cditop.fdrvs1.V_Scroll[15:0]
+TOP.emu.cditop.fdrvs1.V_SigStat[15:0]
+TOP.emu.cditop.fdrvs1.V_Speed[31:0]
+TOP.emu.cditop.fdrvs1.V_Stat[15:0]
+TOP.emu.cditop.fdrvs1.V_Status[15:0]
+TOP.emu.cditop.fdrvs1.V_StepDone[7:0]
+TOP.emu.cditop.fdrvs1.V_SyncDone[7:0]
+TOP.emu.cditop.fdrvs1.V_Sync[7:0]
+TOP.emu.cditop.fdrvs1.V_UpdFlag[7:0]
+TOP.emu.cditop.fdrvs1.V_VCMD[15:0]
+TOP.emu.cditop.fdrvs1.V_Window[31:0]
 [pattern_trace] 1
 [pattern_trace] 0

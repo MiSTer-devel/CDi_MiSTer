@@ -413,7 +413,17 @@ class CDi {
     bool executing_dvc_rom_instructions{false};
 
     int instanceid;
-    enum class InputKind { Button1, Button2, Buttons1And2, Analog, TraceOn, TraceOff, InstructionsOn, InstructionsOff, Quit };
+    enum class InputKind {
+        Button1,
+        Button2,
+        Buttons1And2,
+        Analog,
+        TraceOn,
+        TraceOff,
+        InstructionsOn,
+        InstructionsOff,
+        Quit
+    };
     struct InputEvent {
         uint64_t frame;
         InputKind kind;
@@ -501,12 +511,14 @@ class CDi {
 
         // The FPGA PLL is configured for 80 MHz, but
         // the power is not always required. Scale it up to 60 MHZ
-        if (fmv_fifo_level > 2000) {
+        if (fmv_fifo_level > 2000 &&
+            dut.rootp->emu__DOT__cditop__DOT__vmpeg_inst__DOT__video__DOT__pictures_in_output_fifo < 3) {
             clockmpeg();
         }
 
         // Ok, scale it up to 90 MHz
-        if (fmv_fifo_level > 8000) {
+        if (fmv_fifo_level > 8000 &&
+            dut.rootp->emu__DOT__cditop__DOT__vmpeg_inst__DOT__video__DOT__pictures_in_output_fifo < 3) {
             clockmpeg();
         }
     }
@@ -915,18 +927,21 @@ class CDi {
             case InputKind::Button1:
             case InputKind::Button2:
             case InputKind::Buttons1And2: {
-                const unsigned int buttons = event.kind == InputKind::Button1 ? 1u
+                const unsigned int buttons = event.kind == InputKind::Button1   ? 1u
                                              : event.kind == InputKind::Button2 ? 2u
-                                                                              : 3u;
+                                                                                : 3u;
                 held_buttons |= buttons;
                 for (unsigned int button = 0; button < 2; button++) {
                     if (buttons & (1u << button)) {
-                        button_release_frame[button] = std::max(
-                            button_release_frame[button], static_cast<uint64_t>(frame_index) + event.hold_frames);
+                        button_release_frame[button] = std::max(button_release_frame[button],
+                                                                static_cast<uint64_t>(frame_index) + event.hold_frames);
                     }
                 }
                 fprintf(stderr, "Press Button%s%s at frame %d\n", buttons & 1 ? " 1" : "",
-                        buttons == 3 ? " + 2" : buttons & 2 ? " 2" : "", frame_index);
+                        buttons == 3  ? " + 2"
+                        : buttons & 2 ? " 2"
+                                      : "",
+                        frame_index);
                 break;
             }
             case InputKind::Analog:
