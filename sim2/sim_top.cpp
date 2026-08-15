@@ -32,6 +32,8 @@
 #define SLAVE
 #define TRACE
 // #define SIMULATE_RC5
+// #define TRACE_ON_FMA
+// #define TRACE_ON_FMV
 
 #define PL_MPEG_IMPLEMENTATION
 #include "pl_mpeg_pc.h"
@@ -1514,7 +1516,12 @@ class CDi {
             if (dut.rootp->emu__DOT__cditop__DOT__vmpeg_inst__DOT__fmv_packet_body) {
                 fwrite(&dut.rootp->emu__DOT__cditop__DOT__vmpeg_inst__DOT__mpeg_data, 1, 1, f_fmv_m1v);
             }
-#ifdef TRACE
+#if defined(TRACE) && defined (TRACE_ON_FMV)
+            if (!do_trace && !do_trace_started_once_via_fmv) {
+                fprintf(stderr, "Trace on by FMV!\n");
+                do_trace = true;
+                do_trace_started_once_via_fmv = true;
+            }
 #endif
         }
         if (dut.rootp->emu__DOT__cditop__DOT__vmpeg_inst__DOT__fma_data_valid) {
@@ -1523,7 +1530,12 @@ class CDi {
             if (dut.rootp->emu__DOT__cditop__DOT__vmpeg_inst__DOT__fma_packet_body) {
                 fwrite(&dut.rootp->emu__DOT__cditop__DOT__vmpeg_inst__DOT__mpeg_data, 1, 1, f_fma_mp2);
             }
-#ifdef TRACE
+#if defined(TRACE) && defined (TRACE_ON_FMA)
+            if (!do_trace && !do_trace_started_once_via_fma) {
+                fprintf(stderr, "Trace on via FMA!\n");
+                do_trace = true;
+                do_trace_started_once_via_fma = true;
+            }
 #endif
         }
 

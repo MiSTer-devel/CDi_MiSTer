@@ -646,6 +646,7 @@ module emu (
         else if (cd_hps_req) cd_hps_req_during_power_cycle <= 1;
     end
 
+    /* verilator tracing_off */
     sdram sdram (
         .*,
         .init(0),  //~clock_locked),
@@ -662,6 +663,7 @@ module emu (
         .burst(prepare_sdram ? 1'b0 : sdram_burst),
         .burstdata_valid(sdram_burstdata_valid)
     );
+    /* verilator tracing_on */
 
 `ifdef VERILATOR
     // DDR3 simulation
@@ -828,6 +830,7 @@ module emu (
     wire cd_data_valid;
     wire cd_stop_sector_delivery;
 
+    /* verilator tracing_off */
     hps_cd_sector_cache hps_cd_sector_cache (
         .clk(clk_sys),
         .reset(cditop_reset),
@@ -850,6 +853,7 @@ module emu (
 
         .config_disable_seek_time
     );
+    /* verilator tracing_on */
 
     wire forced_snac_rts;
     wire forced_rts_flag;

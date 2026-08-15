@@ -205,6 +205,7 @@ module cditop (
     end
 
 
+    /* verilator tracing_off */
     mk48t08b mk48t (
         .clk(clk30),
         .reset,
@@ -224,6 +225,7 @@ module cditop (
 
         .hps_rtc(hps_rtc)
     );
+    /* verilator tracing_on */
 
     wire vdsc_int  /*verilator public_flat_rd*/;
 
@@ -232,7 +234,7 @@ module cditop (
     // video mixing. But we won't do that here and use the digital
     // one instead
     wire mcd212_vsd;
-    /*verilator tracing_off*/
+    /* verilator tracing_off */
     mcd212 mcd212_inst (
         .clk(clk30),
         .reset,
@@ -306,6 +308,7 @@ module cditop (
     wire sample_tick44  /*verilator public_flat_rd*/;
     wire mpeg_45tick;
 
+    /* verilator tracing_off */
     cdic_clock_gen cdic_clk_gen (
         .clk(clk30),
         .clk_audio(clk_audio),
@@ -318,7 +321,6 @@ module cditop (
 
     wire cdic_intreq;
     wire cdic_intack;
-    /*verilator tracing_off*/
     cdic cdic_inst (
         .clk(clk30),
         .reset,
@@ -366,8 +368,6 @@ module cditop (
 
     rgb888_s fmv_video_out;
     rgb888_s mcd212_video_out;
-    wire debug_video_fifo_overflow;
-    wire debug_audio_fifo_overflow;
     linear_volume_s mpeg_dsp_volume;
 
     vmpeg vmpeg_inst (
@@ -394,8 +394,6 @@ module cditop (
         .debug_disable_vcd_clock,
         .debug_activate_vcd_filter,
         .mpeg_ram_enabled(mpeg_ram_enabled),
-        .debug_video_fifo_overflow(debug_video_fifo_overflow),
-        .debug_audio_fifo_overflow(debug_audio_fifo_overflow),
         .hsync(HSync),
         .vsync(VSync),
         .hblank(HBlank),
@@ -434,7 +432,7 @@ module cditop (
     );
 `endif
 
-    /*verilator tracing_off*/
+    /* verilator tracing_off */
     scc68070 scc68070_0 (
         .clk(clk30),
         .reset(reset68k),  // External sync reset on emulated system
@@ -564,7 +562,7 @@ module cditop (
     assign reset = external_reset || resetsys;
 
 `ifndef DISABLE_SLAVE_UC
-    /*verilator tracing_off*/
+    /* verilator tracing_off */
     uc68hc05 uc68hc05_0 (
         .clk30,
         .reset(reset),
@@ -595,7 +593,7 @@ module cditop (
 `endif
     wire signed [15:0] att_audio_left;
     wire signed [15:0] att_audio_right;
-    /*verilator tracing_off*/
+    /* verilator tracing_off */
     dual_ad7528_attenuation att (
         .clk(clk30),
         .datadac(datadac),

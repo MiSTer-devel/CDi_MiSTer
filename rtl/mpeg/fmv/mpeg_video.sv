@@ -53,12 +53,15 @@ module mpeg_video (
     output bit [10:0] decoder_width,
     output bit [ 8:0] decoder_height,
     output bit [31:0] decoder_timecode,
+    output bit [15:0] decoder_frameperiod_90khz,
+    output bit [ 7:0] decoder_frameperiod_rawhdr,
+
     output bit [10:0] display_width,
     output bit [ 8:0] display_height,
     output bit [ 7:0] display_video_status,
     output bit [31:0] display_timecode,
-    output bit [15:0] decoder_frameperiod_90khz,
-    output bit [ 7:0] decoder_frameperiod_rawhdr
+    output bit [ 7:0] display_frameperiod_rawhdr
+
 );
     ddr_if worker_2_ddr ();
     ddr_if worker_3_ddr ();
@@ -199,7 +202,9 @@ module mpeg_video (
     // Only bits 21:6 can be changed by the CPU
     // It should be noted that the driver wants to have bit 21 always 0.
     // So only bits 20:6 of dclk must be used here.
-    (* keep *) (* noprune *) wire signed [14:0] display_dts_desync = dclk[20:6] - dts_fifo_out[21:7];
+    (* keep *)
+    (* noprune *)
+    wire signed [14:0] display_dts_desync = dclk[20:6] - dts_fifo_out[21:7];
 
     // Latched from display_dts_desync at latch_frame_for_display
     // to help with meta stability
@@ -754,8 +759,10 @@ module mpeg_video (
                             event_sequence_end_clk_mpeg <= 1;
                         if (dmem_cmd_payload_address_1[15:0] == 16'h3020)
                             just_decoded.first_intra_frame_of_gop <= dmem_cmd_payload_data_1[0];
-                        if (dmem_cmd_payload_address_1[15:0] == 16'h3030)
+                        if (dmem_cmd_payload_address_1[15:0] == 16'h3030) begin
+                            just_decoded.frameperiod_rawhdr <= dmem_cmd_payload_data_1[7:0];
                             decoder_frameperiod_rawhdr_clk_mpeg <= dmem_cmd_payload_data_1[7:0];
+                        end
                         if (dmem_cmd_payload_address_1[15:0] == 16'h3034)
                             decoder_frameperiod_90khz_clk_mpeg <= dmem_cmd_payload_data_1[15:0];
                         if (dmem_cmd_payload_address_1[15:0] == 16'h3038) begin
@@ -879,6 +886,7 @@ module mpeg_video (
             latch_frame_for_display <= 0;
             display_video_status <= for_display.video_status;
             display_timecode <= for_display.timecode;
+            display_frameperiod_rawhdr <= for_display.frameperiod_rawhdr;
             display_width <= for_display.width;
             display_height <= for_display.height;
             first_intra_frame_of_gop_clk30 <= for_display.first_intra_frame_of_gop;
