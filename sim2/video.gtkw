@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.127 (w)1999-2026 BSI
-[*] Sat Aug 15 13:48:40 2026
+[*] Sat Aug 15 17:59:32 2026
 [*]
 [dumpfile] "/tmp/waveform.vcd"
-[dumpfile_mtime] "Sat Aug 15 13:48:00 2026"
-[dumpfile_size] 4485266003
+[dumpfile_mtime] "Sat Aug 15 17:59:06 2026"
+[dumpfile_size] 12608131893
 [savefile] "/home/andre/GIT/scc68070/sim2/video.gtkw"
-[timestart] 24700000
-[size] 1920 1152
-[pos] -1 -1
-*-25.469681 101720909 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[timestart] 19000000
+[size] 2560 1348
+[pos] -321 -99
+*-25.639330 218900000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] TOP.
 [treeopen] TOP.emu.
 [treeopen] TOP.emu.cditop.
@@ -20,7 +20,7 @@
 [sst_width] 465
 [signals_width] 529
 [sst_expanded] 1
-[sst_vpaned_height] 349
+[sst_vpaned_height] 418
 @28
 TOP.emu.cditop.vmpeg_inst.fmv_interrupt_status_register.dcl
 TOP.emu.cditop.vmpeg_inst.fmv_interrupt_status_register.eii
@@ -60,7 +60,7 @@ TOP.emu.cditop.vmpeg_inst.video.dts_fifo.cnt[6:0]
 TOP.emu.cditop.vmpeg_inst.fmv_display_video_status[7:0]
 TOP.emu.cditop.vmpeg_inst.fmv_display_rate[15:0]
 TOP.emu.cditop.vmpeg_inst.fmv_display_height[8:0]
-@29
+@28
 TOP.emu.cditop.vmpeg_inst.fmv_playback_active
 @420
 TOP.emu.cditop.frame_index
@@ -75,6 +75,9 @@ TOP.emu.cditop.vmpeg_inst.video.frameplayer.fetch_and_show_frame
 TOP.emu.cditop.vmpeg_inst.video.demuxer_dts_desync[32:0]
 TOP.emu.cditop.vmpeg_inst.video.display_dts_desync[14:0]
 TOP.emu.cditop.vmpeg_inst.video.display_dts_desync_q[14:0]
+@28
+TOP.emu.cditop.vmpeg_inst.fmv_request_for_bits
+@420
 TOP.emu.cditop.vmpeg_inst.video.display_dts_desync_satisfied_latch
 @22
 TOP.emu.cditop.vmpeg_inst.fmv_dclk[31:0]
@@ -85,9 +88,9 @@ TOP.emu.cditop.vmpeg_inst.image_height[15:0]
 TOP.emu.cditop.vmpeg_inst.image_rt[15:0]
 TOP.emu.cditop.vmpeg_inst.image_width[15:0]
 TOP.emu.cditop.vmpeg_inst.fmv_display_height[8:0]
-TOP.emu.cditop.vmpeg_inst.fmv_display_rate[15:0]
 TOP.emu.cditop.vmpeg_inst.fmv_display_width[10:0]
 TOP.emu.cditop.vmpeg_inst.fmv_display_frameperiod_rawhdr[7:0]
+TOP.emu.cditop.vmpeg_inst.fmv_display_rate[15:0]
 TOP.emu.cditop.vmpeg_inst.fmv_decoder_frameperiod_rawhdr[7:0]
 TOP.emu.cditop.vmpeg_inst.fmv_decoder_height[8:0]
 TOP.emu.cditop.vmpeg_inst.fmv_decoder_timecode[31:0]
@@ -97,11 +100,32 @@ TOP.emu.cditop.vmpeg_inst.video.pictures_in_output_fifo[4:0]
 TOP.emu.cditop.vmpeg_inst.video.pictures_in_input_fifo[6:0]
 TOP.emu.cditop.vmpeg_inst.video.pictures_in_dts_fifo[6:0]
 TOP.emu.cditop.vmpeg_inst.video.pictures_in_fifo[6:0]
+@c00024
+TOP.emu.cditop.vmpeg_inst.fmv_accepted_pictures_in_fifo[6:0]
+@28
+(0)TOP.emu.cditop.vmpeg_inst.fmv_accepted_pictures_in_fifo[6:0]
+(1)TOP.emu.cditop.vmpeg_inst.fmv_accepted_pictures_in_fifo[6:0]
+(2)TOP.emu.cditop.vmpeg_inst.fmv_accepted_pictures_in_fifo[6:0]
+(3)TOP.emu.cditop.vmpeg_inst.fmv_accepted_pictures_in_fifo[6:0]
+(4)TOP.emu.cditop.vmpeg_inst.fmv_accepted_pictures_in_fifo[6:0]
+(5)TOP.emu.cditop.vmpeg_inst.fmv_accepted_pictures_in_fifo[6:0]
+(6)TOP.emu.cditop.vmpeg_inst.fmv_accepted_pictures_in_fifo[6:0]
+@1401200
+-group_end
+@28
+TOP.emu.cditop.vmpeg_inst.fmv_fifo_full
+TOP.emu.cditop.vmpeg_inst.video.speed_up
+@8024
+TOP.emu.cditop.vmpeg_inst.video.frame_period_top[23:0]
+@28
+TOP.emu.cditop.vmpeg_inst.fmv_request_for_bits
 @200
 -
 @22
 TOP.emu.cditop.fdrvs1.V_AsyStat[15:0]
+@25
 TOP.emu.cditop.fdrvs1.V_BufStat[7:0]
+@22
 TOP.emu.cditop.fdrvs1.V_ChipSpd[31:0]
 TOP.emu.cditop.fdrvs1.V_DTSVal[15:0]
 TOP.emu.cditop.fdrvs1.V_DecOff[31:0]

@@ -33,7 +33,7 @@
 #define TRACE
 // #define SIMULATE_RC5
 // #define TRACE_ON_FMA
-// #define TRACE_ON_FMV
+#define TRACE_ON_FMV
 
 #define PL_MPEG_IMPLEMENTATION
 #include "pl_mpeg_pc.h"

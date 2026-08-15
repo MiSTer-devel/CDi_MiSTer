@@ -12,6 +12,7 @@ module mpeg_video (
     input synchronous_playback,
     input decoder_active,
     input single_step,
+    input speed_up,
     input [2:0] slow_motion,
 
     input  [7:0] data_byte,
@@ -854,7 +855,19 @@ module mpeg_video (
     bit frame_period_tick;
 
     // 24' is required to fix math problem on Verilator
-    wire [23:0] frame_period_top = frame_period - 1;
+    bit [23:0] frame_period_top;
+
+    always_comb begin
+
+        frame_period_top = frame_period - 1 - (24'(display_dts_desync_q) * 2048);
+
+        if (frame_period_top < frame_period / 2 || totally_out_of_sync_need_frameskip) begin
+            frame_period_top = frame_period / 2;
+        end else if (frame_period_top > frame_period + frame_period / 2) begin
+            frame_period_top = frame_period + frame_period / 2;
+        end
+    end
+
 
     // Initial DTS near SCR. Playback is allowed
     bit display_dts_desync_satisfied_latch = 0;
@@ -965,6 +978,10 @@ module mpeg_video (
         if (single_step_latch && for_display_valid && !vsync && vsync_q) begin
             single_step_latch <= 0;
             latch_frame_until_vsync <= 1;
+        end
+
+        if (speed_up && for_display_valid) begin
+            //latch_frame_until_vsync <= 1;
         end
     end
 
