@@ -2058,6 +2058,7 @@ int plm_video_decode_group_of_pictures(plm_video_t *self) {
     // High  SSSS SSSS SSPP PPPP
     // Low   HHHH HHHH HHMM MMMM
     self->timecode = (seconds_frame << 16) | (hours_minutes);
+    OUTPORT = self->timecode;
 }
 
 int plm_video_decode_sequence_header(plm_video_t *self) {

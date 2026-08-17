@@ -146,7 +146,6 @@ module vmpeg (
         .synchronous_playback(fmv_system_control_register[2]),
         .decoder_active(fmv_decoder_active),
         .single_step(fmv_single_step),
-        .speed_up(fmv_decoder_active && fmv_pictures_in_fifo > fmv_accepted_pictures_in_fifo + 8),
         .slow_motion(fmv_slow_motion),
         .data_byte(mpeg_data),
         .data_strobe(fmv_data_valid && fmv_packet_body),
@@ -497,7 +496,7 @@ module vmpeg (
         fmv_request_for_bits = !fmv_fifo_full;
 
         // Fake a busy VMPEG card
-        if (fmv_decoder_active && fmv_pictures_in_fifo > fmv_accepted_pictures_in_fifo + 8)
+        if (fmv_decoder_active && fmv_pictures_in_fifo > fmv_accepted_pictures_in_fifo + 10)
             fmv_request_for_bits = 0;
     end
 

@@ -12,7 +12,6 @@ module mpeg_video (
     input synchronous_playback,
     input decoder_active,
     input single_step,
-    input speed_up,
     input [2:0] slow_motion,
 
     input  [7:0] data_byte,
@@ -768,10 +767,13 @@ module mpeg_video (
                             decoder_frameperiod_90khz_clk_mpeg <= dmem_cmd_payload_data_1[15:0];
                         if (dmem_cmd_payload_address_1[15:0] == 16'h3038) begin
                             just_decoded.video_status <= dmem_cmd_payload_data_1[7:0];
+                            $display("FMV video_status %d %d", dmem_cmd_payload_data_1[31:2],
+                                     dmem_cmd_payload_data_1[1:0]);
                         end
                         if (dmem_cmd_payload_address_1[15:0] == 16'h3044) begin
                             just_decoded.timecode <= dmem_cmd_payload_data_1;
                             decoder_timecode_clk_mpeg <= dmem_cmd_payload_data_1;
+                            $display("FMV timecode %x", dmem_cmd_payload_data_1);
                         end
                         if (dmem_cmd_payload_address_1[15:0] == 16'h3048) begin
                             just_decoded.first_intra_frame_of_seq <= dmem_cmd_payload_data_1[0];
@@ -786,7 +788,7 @@ module mpeg_video (
 
                         if (dmem_cmd_payload_address_1[15:0] == 16'h2010) begin
                             has_sequence_header <= dmem_cmd_payload_data_1[0];
-                            $display("has_sequence_header %d", dmem_cmd_payload_data_1[0]);
+                            $display("FMV has_sequence_header %d", dmem_cmd_payload_data_1[0]);
                         end
 
                     end
@@ -856,15 +858,17 @@ module mpeg_video (
 
     // 24' is required to fix math problem on Verilator
     bit [23:0] frame_period_top;
+    wire [23:0] frame_period_min = frame_period - frame_period / 3;
+    wire [23:0] frame_period_max = frame_period + frame_period / 3;
 
     always_comb begin
 
         frame_period_top = frame_period - 1 - (24'(display_dts_desync_q) * 2048);
 
-        if (frame_period_top < frame_period / 2 || totally_out_of_sync_need_frameskip) begin
-            frame_period_top = frame_period / 2;
-        end else if (frame_period_top > frame_period + frame_period / 2) begin
-            frame_period_top = frame_period + frame_period / 2;
+        if (frame_period_top < frame_period_min || totally_out_of_sync_need_frameskip) begin
+            frame_period_top = frame_period_min;
+        end else if (frame_period_top > frame_period_max) begin
+            frame_period_top = frame_period_max;
         end
     end
 
@@ -946,8 +950,6 @@ module mpeg_video (
         end
 
         if (playback_active) begin
-            // Skip frames during huge differences. Occuring when going for normal speed after slow motion
-
             // Start playback only when we are near the next valid DTS 
             if (!dts_fifo_out_valid_dts || (dts_fifo_out_valid_dts && display_dts_desync > -30)) begin
                 display_dts_desync_satisfied_latch <= 1;
@@ -978,10 +980,6 @@ module mpeg_video (
         if (single_step_latch && for_display_valid && !vsync && vsync_q) begin
             single_step_latch <= 0;
             latch_frame_until_vsync <= 1;
-        end
-
-        if (speed_up && for_display_valid) begin
-            //latch_frame_until_vsync <= 1;
         end
     end
 

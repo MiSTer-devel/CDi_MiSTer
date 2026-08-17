@@ -16,6 +16,18 @@ from typing import Iterator
 
 
 PICTURE_TYPES = {1: "I", 2: "P", 3: "B", 4: "D"}
+ASPECT_RATIOS = {
+    1: "1:1 (square)", 2: "0.6735", 3: "0.7031", 4: "0.7615",
+    5: "0.8055", 6: "0.8437", 7: "0.8935", 8: "0.9157",
+    9: "0.9815", 10: "1.0255", 11: "1.0695", 12: "1.0950",
+    13: "1.1575", 14: "1.2015",
+}
+FRAME_RATES = {
+    1: ("24000/1001", 24000 / 1001), 2: ("24", 24.0),
+    3: ("25", 25.0), 4: ("30000/1001", 30000 / 1001),
+    5: ("30", 30.0), 6: ("50", 50.0),
+    7: ("60000/1001", 60000 / 1001), 8: ("60", 60.0),
+}
 
 
 def start_codes(data: bytes) -> Iterator[tuple[int, int]]:
@@ -48,6 +60,30 @@ def parse_gop(data: bytes, offset: int) -> dict[str, object] | None:
     }
 
 
+def parse_sequence(data: bytes, offset: int) -> dict[str, object] | None:
+    """Decode the fixed 64-bit portion of a sequence_header (B3)."""
+    if offset + 12 > len(data):
+        return None
+    value = int.from_bytes(data[offset + 4 : offset + 12], "big")
+    aspect_code = (value >> 36) & 0xF
+    frame_rate_code = (value >> 32) & 0xF
+    bit_rate_value = (value >> 14) & 0x3FFFF
+    rate = FRAME_RATES.get(frame_rate_code)
+    return {
+        "offset": offset,
+        "width": (value >> 52) & 0xFFF,
+        "height": (value >> 40) & 0xFFF,
+        "aspect_ratio_code": aspect_code,
+        "aspect_ratio": ASPECT_RATIOS.get(aspect_code, "reserved"),
+        "frame_rate_code": frame_rate_code,
+        "frame_rate": None if rate is None else rate[1],
+        "frame_rate_name": None if rate is None else rate[0],
+        "bit_rate": None if bit_rate_value == 0x3FFFF else bit_rate_value * 400,
+        "vbv_buffer_size": ((value >> 3) & 0x3FF) * 16_384,
+        "constrained_parameters": bool((value >> 2) & 1),
+    }
+
+
 def parse_picture(data: bytes, offset: int, gop: dict[str, object] | None) -> dict[str, object] | None:
     """Decode temporal_reference and picture_coding_type after a 00 code."""
     if offset + 6 > len(data):
@@ -65,7 +101,11 @@ def parse_picture(data: bytes, offset: int, gop: dict[str, object] | None) -> di
 def inspect(data: bytes) -> Iterator[dict[str, object]]:
     current_gop: dict[str, object] | None = None
     for offset, code in start_codes(data):
-        if code == 0xB8:
+        if code == 0xB3:
+            sequence = parse_sequence(data, offset)
+            if sequence is not None:
+                yield {"kind": "sequence", **sequence}
+        elif code == 0xB8:
             current_gop = parse_gop(data, offset)
             if current_gop is not None:
                 yield {"kind": "gop", **current_gop}
@@ -89,6 +129,16 @@ def main() -> int:
     for record in inspect(data):
         if args.json:
             print(json.dumps(record))
+        elif record["kind"] == "sequence":
+            bit_rate = "variable" if record["bit_rate"] is None else f"{record['bit_rate']} bit/s"
+            frame_rate = record["frame_rate_name"] or "reserved"
+            constrained = ", constrained" if record["constrained_parameters"] else ""
+            print(
+                f"SEQUENCE @ 0x{record['offset']:08x}  {record['width']}x{record['height']}  "
+                f"aspect={record['aspect_ratio']} (code {record['aspect_ratio_code']})  "
+                f"fps={frame_rate} (code {record['frame_rate_code']})  "
+                f"bitrate={bit_rate}  vbv={record['vbv_buffer_size']} bits{constrained}"
+            )
         elif record["kind"] == "gop":
             flags = []
             if record["drop_frame"]:
