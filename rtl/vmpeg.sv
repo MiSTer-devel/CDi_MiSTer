@@ -123,7 +123,6 @@ module vmpeg (
     wire fmv_event_frame_decoded;
     wire fmv_event_buffer_underflow;
     wire [6:0] fmv_pictures_in_fifo;
-    bit [6:0] fmv_accepted_pictures_in_fifo;
     bit [2:0] fmv_slow_motion;
 
     bit [8:0] latched_display_offset_y;
@@ -490,14 +489,9 @@ module vmpeg (
     } video_command_s;
 
     bit fmv_request_for_bits;
-
     always_comb begin
-        // Request for bits according to actual buffer water levl
+        // Request for bits according to actual buffer water level
         fmv_request_for_bits = !fmv_fifo_full;
-
-        // Fake a busy VMPEG card
-        if (fmv_decoder_active && fmv_pictures_in_fifo > fmv_accepted_pictures_in_fifo + 10)
-            fmv_request_for_bits = 0;
     end
 
     bit [5:0] mpeg_ram_enabled_cnt;
@@ -953,8 +947,6 @@ module vmpeg (
                                 image_width <= {5'b0, fmv_decoder_width};
                                 image_height <= {7'b0, fmv_decoder_height};
                                 image_rt <= {8'b0, fmv_decoder_frameperiod_rawhdr};
-
-                                fmv_accepted_pictures_in_fifo <= fmv_pictures_in_fifo;
 
                                 // TODO can't be correct. set 0x42
                                 fmv_decoder_command[6] <= 1;

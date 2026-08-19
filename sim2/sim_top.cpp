@@ -1150,6 +1150,8 @@ class CDi {
             assert(dut.rootp->emu__DOT__cd_hps_ack == 0);
             dut.rootp->emu__DOT__cd_hps_ack = 1;
 
+            print_instructions = true;
+
             int32_t lba = dut.rootp->emu__DOT__cd_hps_lba;
             uint32_t m_time = dut.rootp->emu__DOT__cditop__DOT__cdic_inst__DOT__time_register;
 
@@ -1875,7 +1877,7 @@ int main(int argc, char **argv) {
         f_cd_bin = fopen("images/Zelda Wand of Gamelon.bin", "rb");
         break;
     case 4:
-        f_cd_bin = fopen("images/christ_country.bin", "rb");
+        f_cd_bin = fopen("images/cdi_stub.bin", "rb");
         break;
     case 5:
         f_cd_bin = fopen("images/lost_ride.bin", "rb");
@@ -1884,7 +1886,7 @@ int main(int argc, char **argv) {
         f_cd_bin = fopen("images/FMVTEST.BIN", "rb");
         break;
     case 7:
-        f_cd_bin = fopen("images/FMVTEST.BIN", "rb");
+        f_cd_bin = fopen("images/Frog Feast (USA) (Unl).bin", "rb");
         break;
     case 8:
         f_cd_bin = fopen("images/Dragon_s_Lair_US.bin", "rb");

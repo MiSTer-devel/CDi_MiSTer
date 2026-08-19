@@ -858,11 +858,10 @@ module mpeg_video (
 
     // 24' is required to fix math problem on Verilator
     bit [23:0] frame_period_top;
-    wire [23:0] frame_period_min = frame_period - frame_period / 3;
-    wire [23:0] frame_period_max = frame_period + frame_period / 3;
+    wire [23:0] frame_period_min = frame_period - frame_period / 4;
+    wire [23:0] frame_period_max = frame_period + frame_period / 4;
 
     always_comb begin
-
         frame_period_top = frame_period - 1 - (24'(display_dts_desync_q) * 2048);
 
         if (frame_period_top < frame_period_min || totally_out_of_sync_need_frameskip) begin
