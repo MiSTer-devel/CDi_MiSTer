@@ -858,8 +858,13 @@ module mpeg_video (
 
     // 24' is required to fix math problem on Verilator
     bit [23:0] frame_period_top;
-    wire [23:0] frame_period_min = frame_period - frame_period / 4;
-    wire [23:0] frame_period_max = frame_period + frame_period / 4;
+
+    // Min period was confirmed by resuming with Continue command
+    // Addams Family /cd/seq2.rtf seek 0x08d65800
+    // Lost Ride     /cd/ma       seek 0x03520800
+    // VMPEG had the same speed to fast forward
+    wire [23:0] frame_period_min = frame_period - frame_period / 8;
+    wire [23:0] frame_period_max = frame_period + frame_period / 8;
 
     always_comb begin
         frame_period_top = frame_period - 1 - (24'(display_dts_desync_q) * 2048);
