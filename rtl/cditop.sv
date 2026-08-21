@@ -98,7 +98,7 @@ module cditop (
     bit bus_ack  /*verilator public_flat_rd*/;
 
     bit [15:0] data_in;
-    wire [15:0] cpu_data_out  /*verilator public_flat_rd*/;
+    wire [15:0] cpu_data_out;
     wire [23:1] addr;
     wire [23:0] addr_byte  /*verilator public_flat_rd*/ = {addr[23:1], 1'b0};
 
@@ -113,20 +113,7 @@ module cditop (
     wire [15:0] vmpeg_dout;
     wire [7:0] mk48_dout;
 
-`ifdef VERILATOR
-    `define FASTMEM
-`endif
-
-`ifdef FASTMEM
-    wire fastmem_use = !cdic_dma_ack && !vmpeg_dma_ack;
-    // only MCD212 registers
-    wire cs_fast_video_mem = as && (addr_byte < 24'h4ffc00) && ((addr_byte <= 24'h27ffff) || (addr_byte >= 24'h400000));
-    bit [15:0] fast_mem_dout  /*verilator public_flat_rw*/;
-    wire attex_cs_mcd212_orig = ((addr_byte <= 24'h27ffff) || (addr_byte >= 24'h400000)) && as && !addr[23];
-    wire attex_cs_mcd212 = fastmem_use ? (addr_byte >= 24'h4ffc00 && as && addr_byte <= 24'h4fffff) : attex_cs_mcd212_orig;
-`else
     wire attex_cs_mcd212 = ((addr_byte <= 24'h27ffff) || (addr_byte >= 24'h400000)) && as && !addr[23];
-`endif
     wire dvc_ram_cs = ((addr_byte[23:20] == 4'hd) || (addr_byte[23:19] == 5'b11101)) && as;
     wire dvc_rom_cs = (addr_byte[23:18] == 6'b111001) && as;
     wire dvc_mpeg_cs = (addr_byte[23:18] == 6'b111000) && as && !config_disable_vmpeg;
@@ -134,12 +121,6 @@ module cditop (
     wire attex_cs_slave = addr_byte[23:16] == 8'h31 && as;
     wire attex_cs_mk48 = addr_byte[23:16] == 8'h32 && as;
 
-`ifdef FASTMEM
-    wire cs_fast_mem  /*verilator public_flat_rd */ = fastmem_use && (cs_fast_video_mem | dvc_ram_cs | dvc_rom_cs);
-`else
-    wire cs_fast_mem  /*verilator public_flat_rd */ = 0;
-    bit [15:0] fast_mem_dout  /*verilator public_flat_rw*/;
-`endif
     // Custom kernel module for OS9 to start a CD-i application after booting
     // Written by "CD-i Fan" for "CD-i Emulator"
     wire rom_playcdi_cs = ((addr_byte >= 24'hf00000) && (addr_byte <= 24'hf00068)) && as;
@@ -246,13 +227,8 @@ module cditop (
         .cpu_lds(lds),
         .cpu_write_strobe(write_strobe),
         .cs(attex_cs_mcd212),
-`ifdef FASTMEM
-        .dvc_ram_cs(dvc_ram_cs && !fastmem_use),
-        .dvc_rom_cs(dvc_rom_cs && !fastmem_use),
-`else
         .dvc_ram_cs(dvc_ram_cs),
         .dvc_rom_cs(dvc_rom_cs),
-`endif
         .vidout(mcd212_video_out),
         .vsd(mcd212_vsd),
         .hsync(HSync),
@@ -512,13 +488,6 @@ module cditop (
             data_in = rom_playcdi_dout;
             bus_ack = rom_playcdi_bus_ack;
         end
-
-`ifdef FASTMEM
-        if (cs_fast_mem) begin
-            data_in = fast_mem_dout;
-            bus_ack = 1;
-        end
-`endif
 
         if (cdic_intack) begin
             data_in = cdic_dout;
