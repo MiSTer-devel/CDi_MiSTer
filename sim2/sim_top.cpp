@@ -30,7 +30,7 @@
 
 #define SCC68070
 #define SLAVE
-#define TRACE
+// #define TRACE
 // #define SIMULATE_RC5
 // #define TRACE_ON_FMA
 // #define TRACE_ON_FMV

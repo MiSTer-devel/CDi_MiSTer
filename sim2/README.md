@@ -80,4 +80,5 @@ another terminal:
 Click **Button 1**, **Button 2**, or **Buttons 1 + 2**, drag the analog pad,
 or use the arrow keys (WASD also works). `Z`, `X`, and `C` trigger buttons 1,
 2, and 1 + 2. The host, port, and button hold duration can be changed in the
-window. Use **Stop simulator** to send the UDP `quit` command.
+window. The analog stick stays at its last position; use **Center stick** to
+return it to neutral. Use **Stop simulator** to send the UDP `quit` command.

@@ -3,6 +3,8 @@
 
 The simulator does not reply to UDP packets, so the status text reports only
 whether this program successfully handed a packet to the local socket stack.
+
+This whole tool is AI generated
 """
 
 import argparse
@@ -60,7 +62,6 @@ class UdpController:
         self.draw_pad(0, 0)
         self.canvas.bind("<Button-1>", self.drag_pad)
         self.canvas.bind("<B1-Motion>", self.drag_pad)
-        self.canvas.bind("<ButtonRelease-1>", self.reset_analog)
         ttk.Button(analog, text="Center stick", command=self.reset_analog).grid(sticky="ew", pady=(7, 0))
 
         tools = ttk.LabelFrame(frame, text="Diagnostics", padding=8)
@@ -119,7 +120,7 @@ class UdpController:
         self.canvas.create_line(center - radius, center, center + radius, center, fill="#cccccc")
         self.canvas.create_line(center, center - radius, center, center + radius, fill="#cccccc")
         knob_x = center + x / 127 * radius
-        knob_y = center - y / 128 * radius
+        knob_y = center + y / 128 * radius
         self.canvas.create_oval(knob_x - 10, knob_y - 10, knob_x + 10, knob_y + 10, fill="#4c78a8", outline="")
 
     def set_analog(self, x: int, y: int) -> None:
@@ -137,7 +138,7 @@ class UdpController:
         distance = (dx * dx + dy * dy) ** 0.5
         if distance > radius:
             dx, dy = dx * radius / distance, dy * radius / distance
-        self.set_analog(round(dx / radius * 127), round(-dy / radius * 128))
+        self.set_analog(round(dx / radius * 127), round(dy / radius * 128))
 
     def reset_analog(self, _event=None) -> None:
         self.set_analog(0, 0)
@@ -163,7 +164,6 @@ class UdpController:
         directions = {"left": "left", "a": "left", "right": "right", "d": "right", "up": "up", "w": "up", "down": "down", "s": "down"}
         if key in directions:
             self.pressed_directions.discard(directions[key])
-            self.update_directional_analog()
 
     def update_directional_analog(self) -> None:
         x = 127 if "right" in self.pressed_directions else -128 if "left" in self.pressed_directions else 0

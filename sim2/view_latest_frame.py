@@ -3,6 +3,8 @@
 
 The simulator writes frames as <instance>/video_###.bmp.  This viewer keeps a
 single window pointed at whichever such file was modified most recently.
+
+This whole tool is AI generated
 """
 
 import argparse
