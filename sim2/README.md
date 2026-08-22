@@ -43,6 +43,9 @@ obtain the current frame path for use in another tool instead, use:
 
     ./sim_top.sh 9 --events input-events.txt
 
+Pass `--png` to write simulation frames as PNG files. PNG output is optional;
+without it, frames are written as BMP files.
+
 Each non-comment line is `<frame> <command> [hold_frames]`. Button presses
 hold for three frames unless a duration is supplied. Set the analog stick with
 `<frame> analog <x> <y>`; `x` and `y` are signed 8-bit values (`-128..127`)
