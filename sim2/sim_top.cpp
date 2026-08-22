@@ -1170,8 +1170,9 @@ class CDi {
         }
 #endif
 
+        // Make a print of the current tick time with a frequency of 300 Hz (every 3.33ms)
         if ((time30mhz % 100000) == 0) {
-            printf("%d\n", time30mhz);
+            printf("Time %lu\n", time30mhz);
         }
 
         dut.rootp->emu__DOT__cd_media_change = (time30mhz == 1300000);

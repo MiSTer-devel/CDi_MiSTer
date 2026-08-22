@@ -1,5 +1,11 @@
 # TODOs and known issues
 
+* Zelda - Wand of Gamelon
+    * Help cutscene has audio glitches now when playing sound effects
+    * Worked in CDi_unstable_250924
+    * Worked in CDi_unstable_260628
+    * Broken in CDi_unstable_260716 and even soft locks when testing
+    * Broken in CDi_unstable_260810
 * "Freeze Picture" feature of VCDs seems to cause issues
 * Regressions with "The Lost Ride"
 * Implement optional 50/15 µsec emphasis for ADPCM (and CDDA?)
