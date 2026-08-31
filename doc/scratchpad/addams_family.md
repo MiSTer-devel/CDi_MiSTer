@@ -1100,3 +1100,8 @@ CPU Read Access 00d02c54 01d6
 cat log-part-aa | grep "o 0027e996" | grep -v "Return from" | sort > log_barf
 
 cat log-part-aa  | grep -e "eo 00272556" -e MV_
+
+**There are news on this topic**:
+The problem can be replicated even on real hardware. It just takes more patience and Python script
+which fakes a controller and presses B1 at a rate of 15 Hz.
+

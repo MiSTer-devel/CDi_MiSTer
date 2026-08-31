@@ -46,9 +46,11 @@ obtain the current frame path for use in another tool instead, use:
 Pass `--png` to write simulation frames as PNG files. PNG output is optional;
 without it, frames are written as BMP files.
 
-Each non-comment line is `<frame> <command> [hold_frames]`. Button presses
+Each non-comment line is `<frame|+increment> <command> [hold_frames]`. A bare
+frame number is absolute; `+increment` schedules the event that many frames
+after the preceding script event (the initial frame is zero). Button presses
 hold for three frames unless a duration is supplied. Set the analog stick with
-`<frame> analog <x> <y>`; `x` and `y` are signed 8-bit values (`-128..127`)
+`<frame|+increment> analog <x> <y>`; `x` and `y` are signed 8-bit values (`-128..127`)
 and are stored as `JOY0_ANALOG = { Y, X }`. Available commands are `b1`, `b2`, `analog`,
 `b1b2`, `trace_on`, `trace_off`, `instructions_on`, `instructions_off`, and `quit`.
 
@@ -57,6 +59,14 @@ and are stored as `JOY0_ANALOG = { Y, X }`. Available commands are `b1`, `b2`, `
     414 b1 5
     460 b1
     500 analog 0 -128
+
+The same sequence can use relative frame increments, which is useful when
+inserting or moving groups of events:
+
+    154 b1
+    +260 b1 5
+    +46 b1
+    +40 analog 0 -128
 
 For live control, add `--udp <port>`. A datagram may be `b1` (scheduled for
 the current frame), `<frame> b1 [hold_frames]`, or `<frame> analog <x> <y>`;

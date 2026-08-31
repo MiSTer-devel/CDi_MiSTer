@@ -1,0 +1,45 @@
+# ./sim_top.sh 0 --auto --udp 28070 --events stimulus/chaos_control.event > log0
+# Executed input events; reusable with --events
+# Image: images/chaos_control.bin
+# Without fast fake memory
+412 b1 3
+434 b1 3
+459 b1 3
+661 b1 3
+669 b1 3
+725 b1 3
+872 b1 3
+963 b1 3
+992 b1 3
+1025 b1 3
+1036 b1 3
+1053 b1 3
+
+# Now pause and resume frequently
++50 b2 3
++50 b2 3
++50 b2 3
++50 b2 3
++50 b2 3
++50 b2 3
++50 b2 3
++50 b2 3
++50 b2 3
++50 b2 3
++50 b2 3
++50 b2 3
++50 b2 3
++50 b2 3
++50 b2 3
++50 b2 3
++50 b2 3
++50 b2 3
++50 b2 3
++50 b2 3
++50 b2 3
++50 b2 3
++50 b2 3
++50 b2 3
++50 b2 3
++50 b2 3
+

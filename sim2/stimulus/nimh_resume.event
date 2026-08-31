@@ -1,0 +1,62 @@
+# ./sim_top.sh 0 --auto --udp 28070 --events stimulus/nimh_resume.event > log0
+# Image: images/nimh.bin ec9d1d4243df627315ff9006a17d5fc6
+# No "Fake fast memory"
+
+300 b1 3 # Attempt to quit copyright screen
+320 b1 3 # Attempt to quit copyright screen
+355 b1 3 # Attempt to quit copyright screen
+373 b1 3 # Attempt to quit copyright screen
+460 b1 3 # Attempt to quit copyright screen
+670 b1 3 # Attempt to quit copyright screen
+814 b1 3 # Attempt to quit copyright screen
+
+# Select Timmys medicine chapter
+931 analog 120 -2
+948 analog 0 0
+950 b1 3
+
+1012 b1 3 # Open PBC wrong button
+1018 b2 3 # Open PBC correct button
+1024 analog 115 -7 # Move cursor to pause
+1030 analog 0 0
+1031 b1 3 # Press pause
+1081 b1 3 # Resume
+
+# Results are showing desynchronisation
+# $ cat log0 | grep valid
+# desync_valid       32903       32903     -1      -15596
+# desync_valid       34706        1803     -1      -19196
+# desync_valid     1791091     1752782      1           4
+# desync_valid     1792888        1797      1           4
+# desync_valid     1794685        1797      1           4
+# desync_valid     1796482        1797      2           4
+# desync_valid     1800076        1800      2           4
+# desync_valid     1801869        1793      2           4
+# desync_valid     1803663        1794      1           4
+# desync_valid     1805460        1797      1           4
+# desync_valid     1807257        1797      1           4
+# desync_valid     1810854        1800      1           4
+# desync_valid     1812650        1796      1       -1196
+# desync_valid     1814447        1797      1           4
+# desync_valid     1816244        1797      1       -1196
+# desync_valid     1818041        1797      0           4
+# desync_valid     1819841        1800      1       -1196
+# desync_valid     1821638        1797      1           4
+# desync_valid     1823435        1797      1       -1196
+# desync_valid     1874375       50940    769        9604
+# desync_valid     1876400        2025    772       12004
+# desync_valid     1878332        1932    774       15604
+# desync_valid     1881932        1575    774       18004
+# desync_valid     1885531        1575    774       15604
+# desync_valid     1887556        2025    778       14404
+# desync_valid     1889131        1575    774       16804
+# desync_valid     1890706        1575    771       16804
+# desync_valid     1892281        1575    767       15604
+# desync_valid     1894306        2025    771       13204
+# desync_valid     1896331        2025    774       13204
+# desync_valid     1898356        2025    777       10804
+# desync_valid     1900381        2025    781        8404
+# desync_valid     1904205        1799    785        7204
+
+
+

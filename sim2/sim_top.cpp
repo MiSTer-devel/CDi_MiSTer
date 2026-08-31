@@ -939,6 +939,7 @@ class CDi {
 
         std::string line;
         unsigned int line_number = 0;
+        uint64_t previous_frame = 0;
         while (std::getline(script, line)) {
             line_number++;
             const std::size_t comment = line.find('#');
@@ -946,13 +947,30 @@ class CDi {
                 line.erase(comment);
 
             std::istringstream input(line);
-            uint64_t frame;
+            std::string frame_spec;
             std::string command;
             unsigned int hold_frames = 3;
-            if (!(input >> frame))
+            if (!(input >> frame_spec))
                 continue;
+            char *end = nullptr;
+            errno = 0;
+            const unsigned long long parsed_frame = strtoull(frame_spec.c_str(), &end, 10);
+            if (*end != '\0' || errno == ERANGE || frame_spec == "-" ||
+                (!frame_spec.empty() && frame_spec[0] == '-')) {
+                fprintf(stderr, "%s:%u: expected a frame number or +<frame_increment>\n", path, line_number);
+                return false;
+            }
+            const bool relative_frame = !frame_spec.empty() && frame_spec[0] == '+';
+            uint64_t frame = parsed_frame;
+            if (relative_frame) {
+                if (frame > UINT64_MAX - previous_frame) {
+                    fprintf(stderr, "%s:%u: frame increment overflows\n", path, line_number);
+                    return false;
+                }
+                frame += previous_frame;
+            }
             if (!(input >> command)) {
-                fprintf(stderr, "%s:%u: expected: <frame> <command> [hold_frames]\n", path, line_number);
+                fprintf(stderr, "%s:%u: expected: <frame|+increment> <command> [hold_frames]\n", path, line_number);
                 return false;
             }
             if (command == "analog") {
@@ -965,6 +983,7 @@ class CDi {
                 }
                 if (!QueueAnalogEvent(frame, x, y, path, line_number))
                     return false;
+                previous_frame = frame;
                 continue;
             }
             if (input >> hold_frames) {
@@ -979,6 +998,7 @@ class CDi {
             }
             if (!QueueInputEvent(frame, command, hold_frames, path, line_number))
                 return false;
+            previous_frame = frame;
         }
 
         fprintf(stderr, "Loaded %zu input events from %s\n", input_events.size(), path);

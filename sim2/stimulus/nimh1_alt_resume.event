@@ -1,0 +1,117 @@
+# ./sim_top.sh 1 --auto --udp 28071 > log1
+# Executed input events; reusable with --events
+# Image: images/nimh_alt.bin 2a74467d0c8026c637e09c0b3951a91f
+# Requires "Fake fast memory"
+# Pauses and resumes playback of movie, fails with same crash as "Addams Family" during resume
+
+196 b1 3
+234 b1 3
+261 b1 3
+284 b1 3
+322 b1 3
+342 b1 3 # Pause
+378 b1 3 # Resume
+
+# Expected results
+# $ cat log1 | grep valid
+# desync_valid       31400       31400      3       -2396
+# desync_valid       32892        1492      3       -5399
+# desync_valid       31382       -1510      3       -2396
+# desync_valid       32874        1492      3       -5399
+# desync_valid       37369        1501      2       -8408
+# desync_valid       40366        1501      2      -10814
+# desync_valid       33435       -6931      7           4
+# desync_valid       35291        1856      7       -2550
+# desync_valid       37146        1855      6       -1504
+# desync_valid       39004        1858      6       -1657
+# desync_valid       40863        1859      6         589
+# desync_valid       42721        1858      5         435
+# desync_valid       44582        1861      5         281
+# desync_valid       46444        1862      5         128
+# desync_valid       48305        1861      4         -26
+# desync_valid       50170        1865      4        -180
+# desync_valid       52034        1864      5        -334
+# desync_valid       33437      -18597      7           4
+# desync_valid       37169        1876      6       -1504
+# desync_valid       39028        1859      6       -1657
+# desync_valid       40886        1858      6         589
+# desync_valid       33416       -7470      7           4
+# desync_valid       37148        1876      6       -1504
+# desync_valid       39007        1859      6       -1657
+# desync_valid       40865        1858      6         589
+# desync_valid       42723        1858      5         435
+# desync_valid       44585        1862      5         281
+# desync_valid       46446        1861      5         128
+# desync_valid       48308        1862      4       -1226
+# desync_valid       50172        1864      4        -180
+# desync_valid       52037        1865      5         866
+# desync_valid       53898        1861      4        -487
+# desync_valid       55763        1865      4         559
+# desync_valid       57627        1864      4        -795
+# desync_valid       59492        1865      3         251
+# desync_valid       61359        1867      3       -1102
+# desync_valid       63227        1868      3         -56
+# desync_valid       65094        1867      3       -1410
+# desync_valid       66962        1868      3        -364
+# desync_valid       68829        1867      3        -517
+# desync_valid       70697        1868      2        -671
+# desync_valid       72568        1871      2        -825
+# desync_valid       74438        1870      3         221
+# desync_valid       76306        1868      2          68
+# desync_valid       78177        1871      2         -86
+# desync_valid       80047        1870      2       -1440
+# desync_valid       81918        1871      1        -394
+# desync_valid       83792        1874      2       -1747
+# desync_valid       85662        1870      2         499
+# desync_valid       87533        1871      1         345
+# desync_valid       89407        1874      1         191
+# desync_valid       94649        5242     54        4838   After resume
+# desync_valid       96360        1711     51        5884
+# desync_valid       98080        1720     49        5730
+# desync_valid       99807        1727     47        4376
+# desync_valid      101539        1732     44        3023
+# desync_valid      103281        1742     42        4069
+# desync_valid      105028        1747     41        2715
+# desync_valid      106779        1751     39        3761
+# desync_valid      108536        1757     36        2408
+# desync_valid      110302        1766     35        3454
+# desync_valid      112072        1770     34        3300
+# desync_valid      113844        1772     31        3146
+# desync_valid      115626        1782     30        2993
+# desync_valid      117410        1784     29        2839
+# desync_valid      119198        1788     27        2685
+# desync_valid      120992        1794     26        2531
+# desync_valid      122789        1797     25        2378
+# desync_valid      124589        1800     23        2224
+# desync_valid      126395        1806     22        2070
+# desync_valid      128204        1809     22        1916
+# desync_valid      130013        1809     20        1763
+# desync_valid      131829        1816     19        1609
+# desync_valid      133647        1818     19        1455
+# desync_valid      135465        1818     17        1301
+# desync_valid      137290        1825     17        1148
+# desync_valid      139114        1824     16         994
+# desync_valid      140942        1828     15         840
+# desync_valid      142773        1831     14         686
+# desync_valid      144607        1834     14         533
+# desync_valid      146440        1833     13        1579
+# desync_valid      148277        1837     12        1425
+# desync_valid      150117        1840     12        1271
+# desync_valid      151957        1840     11        1118
+# desync_valid      153800        1843     11         964
+# desync_valid      155643        1843     10         810
+# desync_valid      157489        1846      9         656
+# desync_valid      159338        1849      9         503
+# desync_valid      161187        1849      9         349
+# desync_valid      163037        1850      8         195
+# desync_valid      164889        1852      8          41
+# desync_valid      166741        1852      8        -112
+# desync_valid      168593        1852      7        -266
+# desync_valid      170449        1856      7        -420
+# desync_valid      172304        1855      7        -574
+# desync_valid      174159        1855      6        -727
+# desync_valid      176017        1858      6         319
+# desync_valid      177876        1859      6         165
+# desync_valid      179734        1858      5          11
+# desync_valid      181596        1862      5        -142
+# desync_valid      183457        1861      5        -296

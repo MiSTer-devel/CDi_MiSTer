@@ -2,9 +2,17 @@
 # 8f72e250d8b62724449099a38e6cf077  images/addams.bin
 
 224 b1 2 # Open Playback Controls
-+11 analog 80 0 # Move cursor to Fast Forward
-+5 analog 0 0
-+4 trace_on
-+1 b1 2 # Start Fast Forward
-+28 b1 2 # Stop Fast Forward
++20 trace_on
+
++2 b1 2 # Pause
++28 b1 2 # Resume
+
++60 b1 2 # Pause
++28 b1 2 # Resume
+
++60 b1 2 # Pause
++28 b1 2 # Resume
+
 +60 quit
+
+

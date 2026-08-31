@@ -1,0 +1,33 @@
+# ./sim_top.sh 5 --auto --udp 28070 --events stimulus/lost_ride.event > log5
+# c35db1ef0919fa20406220e12ee48e0e  images/lost_ride.bin
+# No "Fake fast memory"
+
+369 b1 3 # Skip the Philips Logo intro
+
+614 b1 3 # Skip the Enji logo intro Try 1
+629 b1 3 # Skip the Enji logo intro Try 2
+649 b1 3 # Skip the Enji logo intro Try 3
+
+# The game now loads the menu
+684 b1 3 # Select MineWorld
+# On frame 941 the vehicle prep scene is visible
+
+# We should be ingame now at frame 1190
+
+# Open the map by pressing b1+b2
+1207 b1 3
+1207 b2 3
+
+# We wait a while until the buffers are full. But is this even a thing? I don't know.
+
+1360 b1 3 # Close the map
+
+1409 analog -115 -11 # Pan to the left. There is a fork ahead.
+
+# I want to see the overdraw of the arrows
+
+1497 analog 111 -4 # Back to center by panning right
+1554 analog 0 0 # Stop panning
+1557 b1 3 # Fire but sadly missed
+
+
