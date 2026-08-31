@@ -205,8 +205,7 @@ typedef struct {
 // Callback function type for decoded video frames used by the high-level
 // plm_* interface
 
-typedef void (*plm_video_decode_callback)(plm_t *self, plm_frame_t *frame,
-                                          void *user);
+typedef void (*plm_video_decode_callback)(plm_t *self, plm_frame_t *frame, void *user);
 
 // Decoded Audio Samples
 // Samples are stored as normalized (-1, 1) float either interleaved, or if
@@ -225,8 +224,7 @@ typedef struct {
 // Callback function type for decoded audio samples used by the high-level
 // plm_* interface
 
-typedef void (*plm_audio_decode_callback)(plm_t *self, plm_samples_t *samples,
-                                          void *user);
+typedef void (*plm_audio_decode_callback)(plm_t *self, plm_samples_t *samples, void *user);
 
 // Callback function for plm_buffer when it needs more data
 
@@ -234,8 +232,7 @@ typedef void (*plm_buffer_load_callback)(plm_buffer_t *self, void *user);
 
 // Callback function for plm_buffer when it needs to seek
 
-typedef void (*plm_buffer_seek_callback)(plm_buffer_t *self, size_t offset,
-                                         void *user);
+typedef void (*plm_buffer_seek_callback)(plm_buffer_t *self, size_t offset, void *user);
 
 // Callback function for plm_buffer when it needs to tell the position
 
@@ -264,8 +261,7 @@ plm_t *plm_create_with_file(FILE *fh, int close_when_done);
 // free_when_done to let plmpeg call free() on the pointer when plm_destroy()
 // is called.
 
-plm_t *plm_create_with_memory(uint8_t *bytes, size_t length,
-                              int free_when_done);
+plm_t *plm_create_with_memory(uint8_t *bytes, size_t length, int free_when_done);
 
 // Create a plmpeg instance with a plm_buffer as source. Pass TRUE to
 // destroy_when_done to let plmpeg call plm_buffer_destroy() on the buffer when
@@ -369,15 +365,13 @@ int plm_has_ended(plm_t *self);
 // callback is set, video data will be ignored and not be decoded. The *user
 // Parameter will be passed to your callback.
 
-void plm_set_video_decode_callback(plm_t *self, plm_video_decode_callback fp,
-                                   void *user);
+void plm_set_video_decode_callback(plm_t *self, plm_video_decode_callback fp, void *user);
 
 // Set the callback for decoded audio samples used with plm_decode(). If no
 // callback is set, audio data will be ignored and not be decoded. The *user
 // Parameter will be passed to your callback.
 
-void plm_set_audio_decode_callback(plm_t *self, plm_audio_decode_callback fp,
-                                   void *user);
+void plm_set_audio_decode_callback(plm_t *self, plm_audio_decode_callback fp, void *user);
 
 // Advance the internal timer by seconds and decode video/audio up to this time.
 // This will call the video_decode_callback and audio_decode_callback any number
@@ -452,19 +446,17 @@ plm_buffer_t *plm_buffer_create_with_file(FILE *fh, int close_when_done);
 // callbacks, useful for file handles that don't use the standard FILE API.
 // Setting the length and closing/freeing has to be done manually.
 
-plm_buffer_t *
-plm_buffer_create_with_callbacks(plm_buffer_load_callback load_callback,
-                                 plm_buffer_seek_callback seek_callback,
-                                 plm_buffer_tell_callback tell_callback,
-                                 size_t length, void *user);
+plm_buffer_t *plm_buffer_create_with_callbacks(plm_buffer_load_callback load_callback,
+                                               plm_buffer_seek_callback seek_callback,
+                                               plm_buffer_tell_callback tell_callback, size_t length,
+                                               void *user);
 
 // Create a buffer instance with a pointer to memory as source. This assumes
 // the whole file is in memory. The bytes are not copied. Pass 1 to
 // free_when_done to let plmpeg call free() on the pointer when plm_destroy()
 // is called.
 
-plm_dma_buffer_t *plm_buffer_create_with_memory(uint8_t *bytes, size_t length,
-                                                int free_when_done);
+plm_dma_buffer_t *plm_buffer_create_with_memory(uint8_t *bytes, size_t length, int free_when_done);
 
 // Create an empty buffer with an initial capacity. The buffer will grow
 // as needed. Data that has already been read, will be discarded.
@@ -499,8 +491,7 @@ void plm_buffer_signal_end(plm_buffer_t *self);
 
 // Set a callback that is called whenever the buffer needs more data
 
-void plm_buffer_set_load_callback(plm_buffer_t *self,
-                                  plm_buffer_load_callback fp, void *user);
+void plm_buffer_set_load_callback(plm_buffer_t *self, plm_buffer_load_callback fp, void *user);
 
 // Rewind the buffer back to the beginning. When loading from a file handle,
 // this also seeks to the beginning of the file.
@@ -579,8 +570,7 @@ int plm_demux_has_ended(plm_demux_t *self);
 // Note that the specified time is considered 0-based, regardless of the first
 // PTS in the data source.
 
-plm_packet_t *plm_demux_seek(plm_demux_t *self, int64_t time, int type,
-                             int force_intra);
+plm_packet_t *plm_demux_seek(plm_demux_t *self, int64_t time, int type, int force_intra);
 
 // Get the PTS of the first packet of this type. Returns PLM_PACKET_INVALID_TS
 // if not packet of this packet type can be found.
@@ -604,8 +594,7 @@ plm_packet_t *plm_demux_decode(plm_demux_t *self);
 
 // Create a video decoder with a plm_buffer as source.
 
-plm_video_t *plm_video_create_with_buffer(plm_buffer_t *buffer,
-                                          int destroy_when_done);
+plm_video_t *plm_video_create_with_buffer(plm_buffer_t *buffer, int destroy_when_done);
 
 // Destroy a video decoder and free all data.
 
@@ -744,416 +733,14 @@ plm_samples_t *plm_audio_decode(plm_audio_t *self);
 
 // To catch heap management, invalidate these calls
 #define PLM_FREE(p) stop_verilator();
-#define PLM_REALLOC(p, sz)                                                     \
-    0;                                                                         \
+#define PLM_REALLOC(p, sz)                                                                                   \
+    0;                                                                                                       \
     stop_verilator();
 #endif
 
 #define PLM_UNUSED(expr) (void)(expr)
 #ifdef _MSC_VER
 #pragma warning(disable : 4996)
-#endif
-
-// -----------------------------------------------------------------------------
-// plm (high-level interface) implementation
-
-struct plm_t {
-    plm_demux_t *demux;
-    int64_t time;
-    int has_ended;
-    int loop;
-    int has_decoders;
-
-#ifdef ENABLE_VIDEO
-    int video_enabled;
-    int video_packet_type;
-    plm_buffer_t *video_buffer;
-    plm_video_t *video_decoder;
-#endif
-    int audio_enabled;
-    int audio_stream_index;
-    int audio_packet_type;
-    int64_t audio_lead_time;
-    plm_buffer_t *audio_buffer;
-    plm_audio_t *audio_decoder;
-
-#ifdef ENABLE_VIDEO
-    plm_video_decode_callback video_decode_callback;
-    void *video_decode_callback_user_data;
-#endif
-
-    plm_audio_decode_callback audio_decode_callback;
-    void *audio_decode_callback_user_data;
-};
-
-int plm_init_decoders(plm_t *self);
-void plm_handle_end(plm_t *self);
-void plm_read_video_packet(plm_buffer_t *buffer, void *user);
-void plm_read_audio_packet(plm_buffer_t *buffer, void *user);
-void plm_read_packets(plm_t *self, int requested_type);
-
-#ifndef PLM_NO_STDIO
-
-plm_t *plm_create_with_filename(const char *filename) {
-    plm_buffer_t *buffer = plm_buffer_create_with_filename(filename);
-    if (!buffer) {
-        return NULL;
-    }
-    return plm_create_with_buffer(buffer, TRUE);
-}
-
-plm_t *plm_create_with_file(FILE *fh, int close_when_done) {
-    plm_buffer_t *buffer = plm_buffer_create_with_file(fh, close_when_done);
-    return plm_create_with_buffer(buffer, TRUE);
-}
-
-#endif // PLM_NO_STDIO
-
-plm_t *plm_create_with_memory(uint8_t *bytes, size_t length,
-                              int free_when_done) {
-    plm_dma_buffer_t *buffer =
-        plm_buffer_create_with_memory(bytes, length, free_when_done);
-    return plm_create_with_buffer(buffer, TRUE);
-}
-
-plm_t *plm_create_with_buffer(plm_dma_buffer_t *buffer, int destroy_when_done) {
-    static plm_t plm_instance;
-    plm_t *self = &plm_instance;
-    memset(self, 0, sizeof(plm_t));
-
-    self->demux = plm_demux_create(buffer, destroy_when_done);
-#ifdef ENABLE_VIDEO
-    self->video_enabled = TRUE;
-#endif
-    self->audio_enabled = TRUE;
-    plm_init_decoders(self);
-
-    return self;
-}
-
-void plm_destroy(plm_t *self) {
-#ifdef ENABLE_VIDEO
-    if (self->video_decoder) {
-        plm_video_destroy(self->video_decoder);
-    }
-#endif
-    if (self->audio_decoder) {
-        plm_audio_destroy(self->audio_decoder);
-    }
-
-    plm_demux_destroy(self->demux);
-    PLM_FREE(self);
-}
-
-int plm_get_audio_enabled(plm_t *self) { return self->audio_enabled; }
-
-int plm_has_headers(plm_t *self) {
-    if (!plm_demux_has_headers(self->demux)) {
-        return FALSE;
-    }
-
-    if (!plm_init_decoders(self)) {
-        return FALSE;
-    }
-
-    if (
-#ifdef ENABLE_VIDEO
-        (self->video_decoder && !plm_video_has_header(self->video_decoder)) ||
-#endif
-        (self->audio_decoder && !plm_audio_has_header(self->audio_decoder))) {
-        return FALSE;
-    }
-
-    return TRUE;
-}
-
-void plm_set_audio_enabled(plm_t *self, int enabled) {
-    self->audio_enabled = enabled;
-
-    if (!enabled) {
-        self->audio_packet_type = 0;
-        return;
-    }
-
-    self->audio_packet_type =
-        (plm_init_decoders(self) && self->audio_decoder)
-            ? PLM_DEMUX_PACKET_AUDIO_1 + self->audio_stream_index
-            : 0;
-}
-
-void plm_set_audio_stream(plm_t *self, int stream_index) {
-    if (stream_index < 0 || stream_index > 3) {
-        return;
-    }
-    self->audio_stream_index = stream_index;
-
-    // Set the correct audio_packet_type
-    plm_set_audio_enabled(self, self->audio_enabled);
-}
-
-#ifdef ENABLE_VIDEO
-int plm_get_video_enabled(plm_t *self) { return self->video_enabled; }
-
-void plm_set_video_enabled(plm_t *self, int enabled) {
-    self->video_enabled = enabled;
-
-    if (!enabled) {
-        self->video_packet_type = 0;
-        return;
-    }
-
-    self->video_packet_type = (plm_init_decoders(self) && self->video_decoder)
-                                  ? PLM_DEMUX_PACKET_VIDEO_1
-                                  : 0;
-}
-
-int plm_get_num_video_streams(plm_t *self) {
-    return plm_demux_get_num_video_streams(self->demux);
-}
-
-int plm_get_width(plm_t *self) {
-    return (plm_init_decoders(self) && self->video_decoder)
-               ? plm_video_get_width(self->video_decoder)
-               : 0;
-}
-
-int plm_get_height(plm_t *self) {
-    return (plm_init_decoders(self) && self->video_decoder)
-               ? plm_video_get_height(self->video_decoder)
-               : 0;
-}
-
-int32_t plm_get_framerate(plm_t *self) {
-    return (plm_init_decoders(self) && self->video_decoder)
-               ? plm_video_get_framerate(self->video_decoder)
-               : 0;
-}
-
-int32_t plm_get_pixel_aspect_ratio(plm_t *self) {
-    return (plm_init_decoders(self) && self->video_decoder)
-               ? plm_video_get_pixel_aspect_ratio(self->video_decoder)
-               : 0;
-}
-#endif
-int plm_get_num_audio_streams(plm_t *self) {
-    return plm_demux_get_num_audio_streams(self->demux);
-}
-
-int plm_get_samplerate(plm_t *self) {
-    return (plm_init_decoders(self) && self->audio_decoder)
-               ? plm_audio_get_samplerate(self->audio_decoder)
-               : 0;
-}
-
-void plm_set_audio_lead_time(plm_t *self, int64_t lead_time) {
-    self->audio_lead_time = lead_time;
-}
-
-int64_t plm_get_time(plm_t *self) { return self->time; }
-
-int64_t plm_get_duration(plm_t *self) {
-    return plm_demux_get_duration(self->demux, PLM_DEMUX_PACKET_VIDEO_1);
-}
-
-int plm_get_loop(plm_t *self) { return self->loop; }
-
-void plm_set_loop(plm_t *self, int loop) { self->loop = loop; }
-
-int plm_has_ended(plm_t *self) { return self->has_ended; }
-
-#ifdef ENABLE_VIDEO
-void plm_set_video_decode_callback(plm_t *self, plm_video_decode_callback fp,
-                                   void *user) {
-    self->video_decode_callback = fp;
-    self->video_decode_callback_user_data = user;
-}
-#endif
-
-void plm_set_audio_decode_callback(plm_t *self, plm_audio_decode_callback fp,
-                                   void *user) {
-    self->audio_decode_callback = fp;
-    self->audio_decode_callback_user_data = user;
-}
-
-#ifdef ENABLE_VIDEO
-plm_frame_t *plm_decode_video(plm_t *self) {
-    if (!plm_init_decoders(self)) {
-        return NULL;
-    }
-
-    if (!self->video_packet_type) {
-        return NULL;
-    }
-
-    plm_frame_t *frame = plm_video_decode(self->video_decoder);
-    if (frame) {
-        self->time = frame->time;
-    } else if (plm_demux_has_ended(self->demux)) {
-        plm_handle_end(self);
-    }
-    return frame;
-}
-#endif
-
-plm_samples_t *plm_decode_audio(plm_t *self) {
-    if (!plm_init_decoders(self)) {
-        return NULL;
-    }
-
-    if (!self->audio_packet_type) {
-        return NULL;
-    }
-
-    plm_samples_t *samples = plm_audio_decode(self->audio_decoder);
-    if (samples) {
-        self->time = samples->time;
-    } else if (plm_demux_has_ended(self->demux)) {
-        plm_handle_end(self);
-    }
-    return samples;
-}
-
-void plm_handle_end(plm_t *self) { self->has_ended = TRUE; }
-
-#ifdef ENABLE_VIDEO
-void plm_read_video_packet(plm_buffer_t *buffer, void *user) {
-    PLM_UNUSED(buffer);
-    plm_t *self = (plm_t *)user;
-    plm_read_packets(self, self->video_packet_type);
-}
-#endif
-
-void plm_read_audio_packet(plm_buffer_t *buffer, void *user) {
-    PLM_UNUSED(buffer);
-    plm_t *self = (plm_t *)user;
-    plm_read_packets(self, self->audio_packet_type);
-}
-
-void plm_read_packets(plm_t *self, int requested_type) {
-    plm_packet_t *packet;
-    while ((packet = plm_demux_decode(self->demux))) {
-#ifdef ENABLE_VIDEO
-        if (packet->type == self->video_packet_type) {
-            plm_buffer_write(self->video_buffer, packet->data, packet->length);
-        }
-#endif
-        if (packet->type == self->audio_packet_type) {
-            plm_buffer_write(self->audio_buffer, packet->data, packet->length);
-        }
-
-        if (packet->type == requested_type) {
-            return;
-        }
-    }
-
-    if (plm_demux_has_ended(self->demux)) {
-#ifdef ENABLE_VIDEO
-        if (self->video_buffer) {
-            plm_buffer_signal_end(self->video_buffer);
-        }
-#endif
-        if (self->audio_buffer) {
-            plm_buffer_signal_end(self->audio_buffer);
-        }
-    }
-}
-
-#ifdef ENABLE_VIDEO
-plm_frame_t *plm_seek_frame(plm_t *self, int64_t time, int seek_exact) {
-    if (!plm_init_decoders(self)) {
-        return NULL;
-    }
-
-    if (!self->video_packet_type) {
-        return NULL;
-    }
-
-    int type = self->video_packet_type;
-
-    int64_t start_time = plm_demux_get_start_time(self->demux, type);
-    int64_t duration = plm_demux_get_duration(self->demux, type);
-
-    if (time < 0) {
-        time = 0;
-    } else if (time > duration) {
-        time = duration;
-    }
-
-    plm_packet_t *packet = plm_demux_seek(self->demux, time, type, TRUE);
-    if (!packet) {
-        return NULL;
-    }
-
-    // Disable writing to the audio buffer while decoding video
-    int previous_audio_packet_type = self->audio_packet_type;
-    self->audio_packet_type = 0;
-
-    // Clear video buffer and decode the found packet
-    plm_video_rewind(self->video_decoder);
-    plm_video_set_time(self->video_decoder, packet->pts - start_time);
-    plm_buffer_write(self->video_buffer, packet->data, packet->length);
-    plm_frame_t *frame = plm_video_decode(self->video_decoder);
-
-    // If we want to seek to an exact frame, we have to decode all frames
-    // on top of the intra frame we just jumped to.
-    if (seek_exact) {
-        while (frame && frame->time < time) {
-            frame = plm_video_decode(self->video_decoder);
-        }
-    }
-
-    // Enable writing to the audio buffer again?
-    self->audio_packet_type = previous_audio_packet_type;
-
-    if (frame) {
-        self->time = frame->time;
-    }
-
-    self->has_ended = FALSE;
-    return frame;
-}
-
-int plm_seek(plm_t *self, int64_t time, int seek_exact) {
-    plm_frame_t *frame = plm_seek_frame(self, time, seek_exact);
-
-    if (!frame) {
-        return FALSE;
-    }
-
-    if (self->video_decode_callback) {
-        self->video_decode_callback(self, frame,
-                                    self->video_decode_callback_user_data);
-    }
-
-    // If audio is not enabled we are done here.
-    if (!self->audio_packet_type) {
-        return TRUE;
-    }
-
-    // Sync up Audio. This demuxes more packets until the first audio packet
-    // with a PTS greater than the current time is found. plm_decode() is then
-    // called to decode enough audio data to satisfy the audio_lead_time.
-
-    int64_t start_time =
-        plm_demux_get_start_time(self->demux, self->video_packet_type);
-    plm_audio_rewind(self->audio_decoder);
-
-    plm_packet_t *packet = NULL;
-    while ((packet = plm_demux_decode(self->demux))) {
-
-        if (packet->type == self->video_packet_type) {
-            plm_buffer_write(self->video_buffer, packet->data, packet->length);
-        } else if (packet->type == self->audio_packet_type &&
-                   packet->pts - start_time > self->time) {
-            plm_audio_set_time(self->audio_decoder, packet->pts - start_time);
-            plm_buffer_write(self->audio_buffer, packet->data, packet->length);
-            plm_decode(self, 0);
-            break;
-        }
-    }
-
-    return TRUE;
-}
 #endif
 
 // -----------------------------------------------------------------------------
@@ -1216,8 +803,7 @@ void plm_buffer_discard_read_bytes(plm_buffer_t *self);
 
 #ifndef PLM_NO_STDIO
 void plm_buffer_load_file_callback(plm_buffer_t *self, void *user);
-void plm_buffer_seek_file_callback(plm_buffer_t *self, size_t offset,
-                                   void *user);
+void plm_buffer_seek_file_callback(plm_buffer_t *self, size_t offset, void *user);
 size_t plm_buffer_tell_file_callback(plm_buffer_t *self, void *user);
 #endif
 
@@ -1240,57 +826,9 @@ int plm_buffer_find_start_code(plm_buffer_t *self, int code);
 int plm_buffer_no_start_code(plm_buffer_t *self);
 
 int16_t plm_buffer_read_vlc(plm_buffer_t *self, const plm_vlc_t *table);
-uint16_t plm_buffer_read_vlc_uint(plm_buffer_t *self,
-                                  const plm_vlc_uint_t *table);
+uint16_t plm_buffer_read_vlc_uint(plm_buffer_t *self, const plm_vlc_uint_t *table);
 
-#ifndef PLM_NO_STDIO
-
-plm_buffer_t *plm_buffer_create_with_filename(const char *filename) {
-    FILE *fh = fopen(filename, "rb");
-    if (!fh) {
-        return NULL;
-    }
-    return plm_buffer_create_with_file(fh, TRUE);
-}
-
-plm_buffer_t *plm_buffer_create_with_file(FILE *fh, int close_when_done) {
-    plm_buffer_t *self =
-        plm_buffer_create_with_capacity(PLM_BUFFER_DEFAULT_SIZE);
-    self->fh = fh;
-    self->close_when_done = close_when_done;
-    self->mode = PLM_BUFFER_MODE_FILE;
-    self->discard_read_bytes = TRUE;
-
-    fseek(self->fh, 0, SEEK_END);
-    self->total_size = ftell(self->fh);
-    fseek(self->fh, 0, SEEK_SET);
-
-    self->load_callback = plm_buffer_load_file_callback;
-    self->seek_callback = plm_buffer_seek_file_callback;
-    self->tell_callback = plm_buffer_tell_file_callback;
-    return self;
-}
-
-#endif // PLM_NO_STDIO
-
-plm_buffer_t *
-plm_buffer_create_with_callbacks(plm_buffer_load_callback load_callback,
-                                 plm_buffer_seek_callback seek_callback,
-                                 plm_buffer_tell_callback tell_callback,
-                                 size_t length, void *user) {
-    plm_buffer_t *self =
-        plm_buffer_create_with_capacity(PLM_BUFFER_DEFAULT_SIZE);
-    self->mode = PLM_BUFFER_MODE_FILE;
-    self->total_size = length;
-    self->load_callback = load_callback;
-    self->seek_callback = seek_callback;
-    self->tell_callback = tell_callback;
-    self->load_callback_user_data = user;
-    return self;
-}
-
-plm_dma_buffer_t *plm_buffer_create_with_memory(uint8_t *bytes, size_t length,
-                                                int free_when_done) {
+plm_dma_buffer_t *plm_buffer_create_with_memory(uint8_t *bytes, size_t length, int free_when_done) {
     static int already_taken = 0;
     if (already_taken)
         stop_verilator();
@@ -1307,198 +845,16 @@ plm_dma_buffer_t *plm_buffer_create_with_memory(uint8_t *bytes, size_t length,
     self->discard_read_bytes = FALSE;
     return self;
 }
-
-plm_buffer_t *plm_buffer_create_with_capacity(size_t capacity) {
-
-    static int already_taken = 0;
-    if (already_taken)
-        stop_verilator();
-    already_taken = 1;
-
-    static plm_buffer_t singleton2;
-    static uint8_t default_buffer[PLM_BUFFER_DEFAULT_SIZE];
-    plm_buffer_t *self = &singleton2;
-    memset(self, 0, sizeof(plm_buffer_t));
-    self->capacity = capacity;
-    self->free_when_done = TRUE;
-    // self->bytes = (uint8_t *)PLM_MALLOC(capacity);
-    self->bytes = default_buffer;
-    self->mode = PLM_BUFFER_MODE_RING;
-    self->discard_read_bytes = TRUE;
-    return self;
-}
-
-plm_buffer_t *plm_buffer_create_for_appending(size_t initial_capacity) {
-    plm_buffer_t *self = plm_buffer_create_with_capacity(initial_capacity);
-    self->mode = PLM_BUFFER_MODE_APPEND;
-    self->discard_read_bytes = FALSE;
-    return self;
-}
-
-void plm_buffer_destroy(plm_buffer_t *self) {
-#ifndef PLM_NO_STDIO
-    if (self->fh && self->close_when_done) {
-        fclose(self->fh);
-    }
-#endif
-    if (self->free_when_done) {
-        PLM_FREE(self->bytes);
-    }
-    PLM_FREE(self);
-}
-
-size_t plm_buffer_get_size(plm_buffer_t *self) {
-    return (self->mode == PLM_BUFFER_MODE_FILE) ? self->total_size
-                                                : self->length;
-}
-
-size_t plm_buffer_get_remaining(plm_buffer_t *self) {
-    return self->length - (self->bit_index >> 3);
-}
-
-size_t plm_buffer_write(plm_buffer_t *self, uint8_t *bytes, size_t length) {
-    if (self->mode == PLM_BUFFER_MODE_FIXED_MEM) {
-        return 0;
-    }
-
-    if (self->discard_read_bytes) {
-        // This should be a ring buffer, but instead it just shifts all unread
-        // data to the beginning of the buffer and appends new data at the end.
-        // Seems to be good enough.
-
-        plm_buffer_discard_read_bytes(self);
-        if (self->mode == PLM_BUFFER_MODE_RING) {
-            self->total_size = 0;
-        }
-    }
-
-    // Do we have to resize to fit the new data?
-    size_t bytes_available = self->capacity - self->length;
-    if (bytes_available < length) {
-        size_t new_size = self->capacity;
-        do {
-            new_size *= 2;
-        } while (new_size - self->length < length);
-        self->bytes = (uint8_t *)PLM_REALLOC(self->bytes, new_size);
-        self->capacity = new_size;
-    }
-
-    memcpy(self->bytes + self->length, bytes, length);
-    self->length += length;
-    self->has_ended = FALSE;
-    return length;
-}
-
-void plm_buffer_signal_end(plm_buffer_t *self) {
-    self->total_size = self->length;
-}
-
-void plm_buffer_set_load_callback(plm_buffer_t *self,
-                                  plm_buffer_load_callback fp, void *user) {
-    self->load_callback = fp;
-    self->load_callback_user_data = user;
-}
-
-void plm_buffer_seek(plm_buffer_t *self, size_t pos) {
-    self->has_ended = FALSE;
-
-    if (self->seek_callback) {
-        self->seek_callback(self, pos, self->load_callback_user_data);
-        self->bit_index = 0;
-        self->length = 0;
-    } else if (self->mode == PLM_BUFFER_MODE_RING) {
-        if (pos != 0) {
-            // Seeking to non-0 is forbidden for dynamic-mem buffers
-            return;
-        }
-        self->bit_index = 0;
-        self->length = 0;
-        self->total_size = 0;
-    } else if (pos < self->length) {
-        self->bit_index = pos << 3;
-    }
-}
-
-void plm_buffer_discard_read_bytes(plm_buffer_t *self) {
-    size_t byte_pos = self->bit_index >> 3;
-    if (byte_pos == self->length) {
-        self->bit_index = 0;
-        self->length = 0;
-    } else if (byte_pos > 0) {
-        memmove(self->bytes, self->bytes + byte_pos, self->length - byte_pos);
-        self->bit_index -= byte_pos << 3;
-        self->length -= byte_pos;
-    }
-}
-
-#ifndef PLM_NO_STDIO
-
-void plm_buffer_load_file_callback(plm_buffer_t *self, void *user) {
-    PLM_UNUSED(user);
-
-    if (self->discard_read_bytes) {
-        plm_buffer_discard_read_bytes(self);
-    }
-
-    size_t bytes_available = self->capacity - self->length;
-    size_t bytes_read =
-        fread(self->bytes + self->length, 1, bytes_available, self->fh);
-    self->length += bytes_read;
-
-    if (bytes_read == 0) {
-        self->has_ended = TRUE;
-    }
-}
-
-void plm_buffer_seek_file_callback(plm_buffer_t *self, size_t offset,
-                                   void *user) {
-    PLM_UNUSED(user);
-    fseek(self->fh, offset, SEEK_SET);
-}
-
-size_t plm_buffer_tell_file_callback(plm_buffer_t *self, void *user) {
-    PLM_UNUSED(user);
-    return ftell(self->fh);
-}
-
-#endif // PLM_NO_STDIO
-
-int plm_dma_buffer_has_ended(plm_dma_buffer_t *self) { return self->has_ended; }
-
-int plm_buffer_has_ended(plm_buffer_t *self) { return self->has_ended; }
-
 int plm_dma_buffer_has(plm_dma_buffer_t *self, size_t count) {
-    if (((fifo_ctrl->write_byte_index << 3) - fifo_ctrl->read_bit_index) >=
-        count) {
+    if (((fifo_ctrl->write_byte_index << 3) - fifo_ctrl->read_bit_index) >= count) {
         return TRUE;
     }
 
-    if (self->total_size != 0 &&
-        fifo_ctrl->write_byte_index == self->total_size) {
+    if (self->total_size != 0 && fifo_ctrl->write_byte_index == self->total_size) {
         self->has_ended = TRUE;
     }
     return FALSE;
 }
-
-int plm_buffer_has(plm_buffer_t *self, size_t count) {
-    if (((self->length << 3) - self->bit_index) >= count) {
-        return TRUE;
-    }
-
-    if (self->load_callback) {
-        self->load_callback(self, self->load_callback_user_data);
-
-        if (((self->length << 3) - self->bit_index) >= count) {
-            return TRUE;
-        }
-    }
-
-    if (self->total_size != 0 && self->length == self->total_size) {
-        self->has_ended = TRUE;
-    }
-    return FALSE;
-}
-
 int plm_dma_buffer_read(plm_dma_buffer_t *self, int count) {
     if (!plm_dma_buffer_has(self, count)) {
         return 0;
@@ -1508,9 +864,8 @@ int plm_dma_buffer_read(plm_dma_buffer_t *self, int count) {
     while (count) {
         int current_byte = self->bytes[fifo_ctrl->read_bit_index >> 3];
 
-        int remaining =
-            8 - (fifo_ctrl->read_bit_index & 7); // Remaining bits in byte
-        int read = remaining < count ? remaining : count; // Bits in self run
+        int remaining = 8 - (fifo_ctrl->read_bit_index & 7); // Remaining bits in byte
+        int read = remaining < count ? remaining : count;    // Bits in self run
         int shift = remaining - read;
         int mask = (0xff >> (8 - read));
 
@@ -1534,7 +889,7 @@ int plm_dma_buffer_peek(plm_dma_buffer_t *self, int count) {
     while (count) {
         int current_byte = self->bytes[read_bit_index >> 3];
 
-        int remaining = 8 - (read_bit_index & 7); // Remaining bits in byte
+        int remaining = 8 - (read_bit_index & 7);         // Remaining bits in byte
         int read = remaining < count ? remaining : count; // Bits in self run
         int shift = remaining - read;
         int mask = (0xff >> (8 - read));
@@ -1547,45 +902,9 @@ int plm_dma_buffer_peek(plm_dma_buffer_t *self, int count) {
 
     return value;
 }
-
-int plm_buffer_read(plm_buffer_t *self, int count) {
-    if (!plm_buffer_has(self, count)) {
-        return 0;
-    }
-
-    int value = 0;
-    while (count) {
-        int current_byte = self->bytes[self->bit_index >> 3];
-
-        int remaining = 8 - (self->bit_index & 7); // Remaining bits in byte
-        int read = remaining < count ? remaining : count; // Bits in self run
-        int shift = remaining - read;
-        int mask = (0xff >> (8 - read));
-
-        value = (value << read) | ((current_byte & (mask << shift)) >> shift);
-
-        self->bit_index += read;
-        count -= read;
-    }
-
-    return value;
-}
-
 void plm_dma_buffer_align(plm_dma_buffer_t *self) {
-    fifo_ctrl->read_bit_index = ((fifo_ctrl->read_bit_index + 7) >> 3)
-                                << 3; // Align to next byte
+    fifo_ctrl->read_bit_index = ((fifo_ctrl->read_bit_index + 7) >> 3) << 3; // Align to next byte
 }
-
-void plm_buffer_align(plm_buffer_t *self) {
-    self->bit_index = ((self->bit_index + 7) >> 3) << 3; // Align to next byte
-}
-
-void plm_buffer_skip(plm_buffer_t *self, size_t count) {
-    if (plm_buffer_has(self, count)) {
-        self->bit_index += count;
-    }
-}
-
 void plm_dma_buffer_skip(plm_dma_buffer_t *self, size_t count) {
     if (plm_dma_buffer_has(self, count)) {
         fifo_ctrl->read_bit_index += count;
@@ -1595,836 +914,12 @@ void plm_dma_buffer_skip(plm_dma_buffer_t *self, size_t count) {
 int plm_dma_buffer_skip_bytes(plm_dma_buffer_t *self, uint8_t v) {
     plm_dma_buffer_align(self);
     int skipped = 0;
-    while (plm_dma_buffer_has(self, 8) &&
-           self->bytes[fifo_ctrl->read_bit_index >> 3] == v) {
+    while (plm_dma_buffer_has(self, 8) && self->bytes[fifo_ctrl->read_bit_index >> 3] == v) {
         fifo_ctrl->read_bit_index += 8;
         skipped++;
     }
     return skipped;
 }
-
-int plm_buffer_skip_bytes(plm_buffer_t *self, uint8_t v) {
-    plm_buffer_align(self);
-    int skipped = 0;
-    while (plm_buffer_has(self, 8) && self->bytes[self->bit_index >> 3] == v) {
-        self->bit_index += 8;
-        skipped++;
-    }
-    return skipped;
-}
-
-int plm_dma_buffer_next_start_code(plm_dma_buffer_t *self) {
-    plm_dma_buffer_align(self);
-
-    while (plm_dma_buffer_has(self, (5 << 3))) {
-        size_t byte_index = (fifo_ctrl->read_bit_index) >> 3;
-        if (self->bytes[byte_index] == 0x00 &&
-            self->bytes[byte_index + 1] == 0x00 &&
-            self->bytes[byte_index + 2] == 0x01) {
-            fifo_ctrl->read_bit_index = (byte_index + 4) << 3;
-            return self->bytes[byte_index + 3];
-        }
-        fifo_ctrl->read_bit_index += 8;
-    }
-    return -1;
-}
-
-int plm_dma_buffer_find_start_code(plm_dma_buffer_t *self, int code) {
-    int current = 0;
-    while (TRUE) {
-        current = plm_dma_buffer_next_start_code(self);
-        if (current == code || current == -1) {
-            return current;
-        }
-    }
-    return -1;
-}
-
-int plm_buffer_next_start_code(plm_buffer_t *self) {
-    plm_buffer_align(self);
-
-    while (plm_buffer_has(self, (5 << 3))) {
-        size_t byte_index = (self->bit_index) >> 3;
-        if (self->bytes[byte_index] == 0x00 &&
-            self->bytes[byte_index + 1] == 0x00 &&
-            self->bytes[byte_index + 2] == 0x01) {
-            self->bit_index = (byte_index + 4) << 3;
-            return self->bytes[byte_index + 3];
-        }
-        self->bit_index += 8;
-    }
-    return -1;
-}
-
-int plm_buffer_find_start_code(plm_buffer_t *self, int code) {
-    int current = 0;
-    while (TRUE) {
-        current = plm_buffer_next_start_code(self);
-        if (current == code || current == -1) {
-            return current;
-        }
-    }
-    return -1;
-}
-
-int plm_buffer_has_start_code(plm_buffer_t *self, int code) {
-    size_t previous_bit_index = self->bit_index;
-    int previous_discard_read_bytes = self->discard_read_bytes;
-
-    self->discard_read_bytes = FALSE;
-    int current = plm_buffer_find_start_code(self, code);
-
-    self->bit_index = previous_bit_index;
-    self->discard_read_bytes = previous_discard_read_bytes;
-    return current;
-}
-
-int plm_buffer_peek_non_zero(plm_buffer_t *self, int bit_count) {
-    if (!plm_buffer_has(self, bit_count)) {
-        return FALSE;
-    }
-
-    int val = plm_buffer_read(self, bit_count);
-    self->bit_index -= bit_count;
-    return val != 0;
-}
-
-int16_t plm_buffer_read_vlc(plm_buffer_t *self, const plm_vlc_t *table) {
-    plm_vlc_t state = {0, 0};
-    do {
-        state = table[state.index + plm_buffer_read(self, 1)];
-    } while (state.index > 0);
-    return state.value;
-}
-
-uint16_t plm_buffer_read_vlc_uint(plm_buffer_t *self,
-                                  const plm_vlc_uint_t *table) {
-    return (uint16_t)plm_buffer_read_vlc(self, (const plm_vlc_t *)table);
-}
-
-// ----------------------------------------------------------------------------
-// plm_demux implementation
-
-static const int PLM_START_PACK = 0xBA;
-static const int PLM_START_END = 0xB9;
-static const int PLM_START_SYSTEM = 0xBB;
-
-struct plm_demux_t {
-    plm_dma_buffer_t *buffer;
-    int destroy_buffer_when_done;
-    int64_t system_clock_ref;
-
-    size_t last_file_size;
-    int64_t last_decoded_pts;
-    int64_t duration;
-
-    int start_code;
-    int has_pack_header;
-    int has_system_header;
-    int has_headers;
-
-    int num_audio_streams;
-    int num_video_streams;
-    plm_packet_t current_packet;
-    plm_packet_t next_packet;
-};
-
-void plm_demux_buffer_seek(plm_demux_t *self, size_t pos);
-int64_t plm_demux_decode_time(plm_demux_t *self);
-plm_packet_t *plm_demux_decode_packet(plm_demux_t *self, int type);
-plm_packet_t *plm_demux_get_packet(plm_demux_t *self);
-
-plm_demux_t *plm_demux_create(plm_dma_buffer_t *buffer, int destroy_when_done) {
-    static plm_demux_t instance_demux;
-    plm_demux_t *self = &instance_demux;
-    memset(self, 0, sizeof(plm_demux_t));
-
-    self->buffer = buffer;
-    self->destroy_buffer_when_done = destroy_when_done;
-
-    self->duration = PLM_PACKET_INVALID_TS;
-    self->start_code = -1;
-
-    plm_demux_has_headers(self);
-    return self;
-}
-
-int plm_demux_has_headers(plm_demux_t *self) {
-    if (self->has_headers) {
-        return TRUE;
-    }
-
-    // Decode pack header
-    if (!self->has_pack_header) {
-        if (self->start_code != PLM_START_PACK &&
-            plm_dma_buffer_find_start_code(self->buffer, PLM_START_PACK) ==
-                -1) {
-            return FALSE;
-        }
-
-        self->start_code = PLM_START_PACK;
-        if (!plm_dma_buffer_has(self->buffer, 64)) {
-            return FALSE;
-        }
-        self->start_code = -1;
-
-        if (plm_dma_buffer_read(self->buffer, 4) != 0x02) {
-            return FALSE;
-        }
-
-        self->system_clock_ref = plm_demux_decode_time(self);
-        plm_dma_buffer_skip(self->buffer, 1);
-        plm_dma_buffer_skip(self->buffer, 22); // mux_rate * 50
-        plm_dma_buffer_skip(self->buffer, 1);
-
-        self->has_pack_header = TRUE;
-    }
-
-    // Decode system header
-    if (!self->has_system_header) {
-        if (self->start_code != PLM_START_SYSTEM &&
-            plm_dma_buffer_find_start_code(self->buffer, PLM_START_SYSTEM) ==
-                -1) {
-            return FALSE;
-        }
-
-        self->start_code = PLM_START_SYSTEM;
-        if (!plm_dma_buffer_has(self->buffer, 56)) {
-            return FALSE;
-        }
-        self->start_code = -1;
-
-        plm_dma_buffer_skip(self->buffer, 16); // header_length
-        plm_dma_buffer_skip(self->buffer, 24); // rate bound
-        self->num_audio_streams = plm_dma_buffer_read(self->buffer, 6);
-        plm_dma_buffer_skip(self->buffer, 5); // misc flags
-        self->num_video_streams = plm_dma_buffer_read(self->buffer, 5);
-
-        self->has_system_header = TRUE;
-    }
-
-    self->has_headers = TRUE;
-    return TRUE;
-}
-
-int plm_demux_get_num_video_streams(plm_demux_t *self) {
-    return plm_demux_has_headers(self) ? self->num_video_streams : 0;
-}
-
-int plm_demux_get_num_audio_streams(plm_demux_t *self) {
-    return plm_demux_has_headers(self) ? self->num_audio_streams : 0;
-}
-
-int plm_demux_has_ended(plm_demux_t *self) {
-    return plm_dma_buffer_has_ended(self->buffer);
-}
-
-plm_packet_t *plm_demux_decode(plm_demux_t *self) {
-    if (!plm_demux_has_headers(self)) {
-        return NULL;
-    }
-
-    if (self->current_packet.length) {
-        size_t bits_till_next_packet = self->current_packet.length << 3;
-        if (!plm_dma_buffer_has(self->buffer, bits_till_next_packet)) {
-            return NULL;
-        }
-        plm_dma_buffer_skip(self->buffer, bits_till_next_packet);
-        self->current_packet.length = 0;
-    }
-
-    // Pending packet waiting for data?
-    if (self->next_packet.length) {
-        return plm_demux_get_packet(self);
-    }
-
-    // Pending packet waiting for header?
-    if (self->start_code != -1) {
-        return plm_demux_decode_packet(self, self->start_code);
-    }
-
-    do {
-        self->start_code = plm_dma_buffer_next_start_code(self->buffer);
-        if (self->start_code == PLM_DEMUX_PACKET_VIDEO_1 ||
-            self->start_code == PLM_DEMUX_PACKET_PRIVATE ||
-            (self->start_code >= PLM_DEMUX_PACKET_AUDIO_1 &&
-             self->start_code <= PLM_DEMUX_PACKET_AUDIO_4)) {
-            return plm_demux_decode_packet(self, self->start_code);
-        }
-    } while (self->start_code != -1);
-
-    return NULL;
-}
-
-int64_t plm_demux_decode_time(plm_demux_t *self) {
-    int64_t clock = plm_dma_buffer_read(self->buffer, 3) << 30;
-    plm_dma_buffer_skip(self->buffer, 1);
-    clock |= plm_dma_buffer_read(self->buffer, 15) << 15;
-    plm_dma_buffer_skip(self->buffer, 1);
-    clock |= plm_dma_buffer_read(self->buffer, 15);
-    plm_dma_buffer_skip(self->buffer, 1);
-    return clock;
-}
-
-plm_packet_t *plm_demux_decode_packet(plm_demux_t *self, int type) {
-    if (!plm_dma_buffer_has(self->buffer, 16 << 3)) {
-        return NULL;
-    }
-
-    self->start_code = -1;
-
-    self->next_packet.type = type;
-    self->next_packet.length = plm_dma_buffer_read(self->buffer, 16);
-    self->next_packet.length -=
-        plm_dma_buffer_skip_bytes(self->buffer, 0xff); // stuffing
-
-    // skip P-STD
-    if (plm_dma_buffer_read(self->buffer, 2) == 0x01) {
-        plm_dma_buffer_skip(self->buffer, 16);
-        self->next_packet.length -= 2;
-    }
-
-    int pts_dts_marker = plm_dma_buffer_read(self->buffer, 2);
-    if (pts_dts_marker == 0x03) {
-        self->next_packet.pts = plm_demux_decode_time(self);
-        self->last_decoded_pts = self->next_packet.pts;
-        plm_dma_buffer_skip(self->buffer, 40); // skip dts
-        self->next_packet.length -= 10;
-    } else if (pts_dts_marker == 0x02) {
-        self->next_packet.pts = plm_demux_decode_time(self);
-        self->last_decoded_pts = self->next_packet.pts;
-        self->next_packet.length -= 5;
-    } else if (pts_dts_marker == 0x00) {
-        self->next_packet.pts = PLM_PACKET_INVALID_TS;
-        plm_dma_buffer_skip(self->buffer, 4);
-        self->next_packet.length -= 1;
-    } else {
-        return NULL; // invalid
-    }
-
-    return plm_demux_get_packet(self);
-}
-
-plm_packet_t *plm_demux_get_packet(plm_demux_t *self) {
-    if (!plm_dma_buffer_has(self->buffer, self->next_packet.length << 3)) {
-        return NULL;
-    }
-
-    self->current_packet.data =
-        self->buffer->bytes + (fifo_ctrl->read_bit_index >> 3);
-    self->current_packet.length = self->next_packet.length;
-    self->current_packet.type = self->next_packet.type;
-    self->current_packet.pts = self->next_packet.pts;
-
-    self->next_packet.length = 0;
-    return &self->current_packet;
-}
-
-// -----------------------------------------------------------------------------
-// plm_video implementation
-
-// Inspired by Java MPEG-1 Video Decoder and Player by Zoltan Korandi
-// https://sourceforge.net/projects/javampeg1video/
-
-static const int PLM_VIDEO_PICTURE_TYPE_INTRA = 1;
-static const int PLM_VIDEO_PICTURE_TYPE_PREDICTIVE = 2;
-static const int PLM_VIDEO_PICTURE_TYPE_B = 3;
-
-static const int PLM_START_SEQUENCE = 0xB3;
-static const int PLM_START_SLICE_FIRST = 0x01;
-static const int PLM_START_SLICE_LAST = 0xAF;
-static const int PLM_START_PICTURE = 0x00;
-static const int PLM_START_EXTENSION = 0xB5;
-static const int PLM_START_USER_DATA = 0xB2;
-
-#define PLM_START_IS_SLICE(c)                                                  \
-    (c >= PLM_START_SLICE_FIRST && c <= PLM_START_SLICE_LAST)
-
-static const float PLM_VIDEO_PIXEL_ASPECT_RATIO[] = {
-    1.0000, /* square pixels */
-    0.6735, /* 3:4? */
-    0.7031, /* MPEG-1 / MPEG-2 video encoding divergence? */
-    0.7615, 0.8055, 0.8437, 0.8935, 0.9157, 0.9815,
-    1.0255, 1.0695, 1.0950, 1.1575, 1.2051,
-};
-
-// clang-format off
-static const double PLM_VIDEO_PICTURE_RATE[] = {
-	0.000, 23.976, 24.000, 25.000, 29.970, 30.000, 50.000, 59.940,
-	60.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000
-};
-
-static const uint8_t PLM_VIDEO_ZIG_ZAG[] = {
-	 0,  1,  8, 16,  9,  2,  3, 10,
-	17, 24, 32, 25, 18, 11,  4,  5,
-	12, 19, 26, 33, 40, 48, 41, 34,
-	27, 20, 13,  6,  7, 14, 21, 28,
-	35, 42, 49, 56, 57, 50, 43, 36,
-	29, 22, 15, 23, 30, 37, 44, 51,
-	58, 59, 52, 45, 38, 31, 39, 46,
-	53, 60, 61, 54, 47, 55, 62, 63
-};
-
-static const uint8_t PLM_VIDEO_INTRA_QUANT_MATRIX[] = {
-	 8, 16, 19, 22, 26, 27, 29, 34,
-	16, 16, 22, 24, 27, 29, 34, 37,
-	19, 22, 26, 27, 29, 34, 34, 38,
-	22, 22, 26, 27, 29, 34, 37, 40,
-	22, 26, 27, 29, 32, 35, 40, 48,
-	26, 27, 29, 32, 35, 40, 48, 58,
-	26, 27, 29, 34, 38, 46, 56, 69,
-	27, 29, 35, 38, 46, 56, 69, 83
-};
-
-static const uint8_t PLM_VIDEO_NON_INTRA_QUANT_MATRIX[] = {
-	16, 16, 16, 16, 16, 16, 16, 16,
-	16, 16, 16, 16, 16, 16, 16, 16,
-	16, 16, 16, 16, 16, 16, 16, 16,
-	16, 16, 16, 16, 16, 16, 16, 16,
-	16, 16, 16, 16, 16, 16, 16, 16,
-	16, 16, 16, 16, 16, 16, 16, 16,
-	16, 16, 16, 16, 16, 16, 16, 16,
-	16, 16, 16, 16, 16, 16, 16, 16
-};
-
-static const uint8_t PLM_VIDEO_PREMULTIPLIER_MATRIX[] = {
-	32, 44, 42, 38, 32, 25, 17,  9,
-	44, 62, 58, 52, 44, 35, 24, 12,
-	42, 58, 55, 49, 42, 33, 23, 12,
-	38, 52, 49, 44, 38, 30, 20, 10,
-	32, 44, 42, 38, 32, 25, 17,  9,
-	25, 35, 33, 30, 25, 20, 14,  7,
-	17, 24, 23, 20, 17, 14,  9,  5,
-	 9, 12, 12, 10,  9,  7,  5,  2
-};
-
-static const plm_vlc_t PLM_VIDEO_MACROBLOCK_ADDRESS_INCREMENT[] = {
-	{  1 << 1,    0}, {       0,    1},  //   0: x
-	{  2 << 1,    0}, {  3 << 1,    0},  //   1: 0x
-	{  4 << 1,    0}, {  5 << 1,    0},  //   2: 00x
-	{       0,    3}, {       0,    2},  //   3: 01x
-	{  6 << 1,    0}, {  7 << 1,    0},  //   4: 000x
-	{       0,    5}, {       0,    4},  //   5: 001x
-	{  8 << 1,    0}, {  9 << 1,    0},  //   6: 0000x
-	{       0,    7}, {       0,    6},  //   7: 0001x
-	{ 10 << 1,    0}, { 11 << 1,    0},  //   8: 0000 0x
-	{ 12 << 1,    0}, { 13 << 1,    0},  //   9: 0000 1x
-	{ 14 << 1,    0}, { 15 << 1,    0},  //  10: 0000 00x
-	{ 16 << 1,    0}, { 17 << 1,    0},  //  11: 0000 01x
-	{ 18 << 1,    0}, { 19 << 1,    0},  //  12: 0000 10x
-	{       0,    9}, {       0,    8},  //  13: 0000 11x
-	{      -1,    0}, { 20 << 1,    0},  //  14: 0000 000x
-	{      -1,    0}, { 21 << 1,    0},  //  15: 0000 001x
-	{ 22 << 1,    0}, { 23 << 1,    0},  //  16: 0000 010x
-	{       0,   15}, {       0,   14},  //  17: 0000 011x
-	{       0,   13}, {       0,   12},  //  18: 0000 100x
-	{       0,   11}, {       0,   10},  //  19: 0000 101x
-	{ 24 << 1,    0}, { 25 << 1,    0},  //  20: 0000 0001x
-	{ 26 << 1,    0}, { 27 << 1,    0},  //  21: 0000 0011x
-	{ 28 << 1,    0}, { 29 << 1,    0},  //  22: 0000 0100x
-	{ 30 << 1,    0}, { 31 << 1,    0},  //  23: 0000 0101x
-	{ 32 << 1,    0}, {      -1,    0},  //  24: 0000 0001 0x
-	{      -1,    0}, { 33 << 1,    0},  //  25: 0000 0001 1x
-	{ 34 << 1,    0}, { 35 << 1,    0},  //  26: 0000 0011 0x
-	{ 36 << 1,    0}, { 37 << 1,    0},  //  27: 0000 0011 1x
-	{ 38 << 1,    0}, { 39 << 1,    0},  //  28: 0000 0100 0x
-	{       0,   21}, {       0,   20},  //  29: 0000 0100 1x
-	{       0,   19}, {       0,   18},  //  30: 0000 0101 0x
-	{       0,   17}, {       0,   16},  //  31: 0000 0101 1x
-	{       0,   35}, {      -1,    0},  //  32: 0000 0001 00x
-	{      -1,    0}, {       0,   34},  //  33: 0000 0001 11x
-	{       0,   33}, {       0,   32},  //  34: 0000 0011 00x
-	{       0,   31}, {       0,   30},  //  35: 0000 0011 01x
-	{       0,   29}, {       0,   28},  //  36: 0000 0011 10x
-	{       0,   27}, {       0,   26},  //  37: 0000 0011 11x
-	{       0,   25}, {       0,   24},  //  38: 0000 0100 00x
-	{       0,   23}, {       0,   22},  //  39: 0000 0100 01x
-};
-
-static const plm_vlc_t PLM_VIDEO_MACROBLOCK_TYPE_INTRA[] = {
-	{  1 << 1,    0}, {       0,  0x01},  //   0: x
-	{      -1,    0}, {       0,  0x11},  //   1: 0x
-};
-
-static const plm_vlc_t PLM_VIDEO_MACROBLOCK_TYPE_PREDICTIVE[] = {
-	{  1 << 1,    0}, {       0, 0x0a},  //   0: x
-	{  2 << 1,    0}, {       0, 0x02},  //   1: 0x
-	{  3 << 1,    0}, {       0, 0x08},  //   2: 00x
-	{  4 << 1,    0}, {  5 << 1,    0},  //   3: 000x
-	{  6 << 1,    0}, {       0, 0x12},  //   4: 0000x
-	{       0, 0x1a}, {       0, 0x01},  //   5: 0001x
-	{      -1,    0}, {       0, 0x11},  //   6: 0000 0x
-};
-
-static const plm_vlc_t PLM_VIDEO_MACROBLOCK_TYPE_B[] = {
-	{  1 << 1,    0}, {  2 << 1,    0},  //   0: x
-	{  3 << 1,    0}, {  4 << 1,    0},  //   1: 0x
-	{       0, 0x0c}, {       0, 0x0e},  //   2: 1x
-	{  5 << 1,    0}, {  6 << 1,    0},  //   3: 00x
-	{       0, 0x04}, {       0, 0x06},  //   4: 01x
-	{  7 << 1,    0}, {  8 << 1,    0},  //   5: 000x
-	{       0, 0x08}, {       0, 0x0a},  //   6: 001x
-	{  9 << 1,    0}, { 10 << 1,    0},  //   7: 0000x
-	{       0, 0x1e}, {       0, 0x01},  //   8: 0001x
-	{      -1,    0}, {       0, 0x11},  //   9: 0000 0x
-	{       0, 0x16}, {       0, 0x1a},  //  10: 0000 1x
-};
-
-static const plm_vlc_t *PLM_VIDEO_MACROBLOCK_TYPE[] = {
-	NULL,
-	PLM_VIDEO_MACROBLOCK_TYPE_INTRA,
-	PLM_VIDEO_MACROBLOCK_TYPE_PREDICTIVE,
-	PLM_VIDEO_MACROBLOCK_TYPE_B
-};
-
-static const plm_vlc_t PLM_VIDEO_CODE_BLOCK_PATTERN[] = {
-	{  1 << 1,    0}, {  2 << 1,    0},  //   0: x
-	{  3 << 1,    0}, {  4 << 1,    0},  //   1: 0x
-	{  5 << 1,    0}, {  6 << 1,    0},  //   2: 1x
-	{  7 << 1,    0}, {  8 << 1,    0},  //   3: 00x
-	{  9 << 1,    0}, { 10 << 1,    0},  //   4: 01x
-	{ 11 << 1,    0}, { 12 << 1,    0},  //   5: 10x
-	{ 13 << 1,    0}, {       0,   60},  //   6: 11x
-	{ 14 << 1,    0}, { 15 << 1,    0},  //   7: 000x
-	{ 16 << 1,    0}, { 17 << 1,    0},  //   8: 001x
-	{ 18 << 1,    0}, { 19 << 1,    0},  //   9: 010x
-	{ 20 << 1,    0}, { 21 << 1,    0},  //  10: 011x
-	{ 22 << 1,    0}, { 23 << 1,    0},  //  11: 100x
-	{       0,   32}, {       0,   16},  //  12: 101x
-	{       0,    8}, {       0,    4},  //  13: 110x
-	{ 24 << 1,    0}, { 25 << 1,    0},  //  14: 0000x
-	{ 26 << 1,    0}, { 27 << 1,    0},  //  15: 0001x
-	{ 28 << 1,    0}, { 29 << 1,    0},  //  16: 0010x
-	{ 30 << 1,    0}, { 31 << 1,    0},  //  17: 0011x
-	{       0,   62}, {       0,    2},  //  18: 0100x
-	{       0,   61}, {       0,    1},  //  19: 0101x
-	{       0,   56}, {       0,   52},  //  20: 0110x
-	{       0,   44}, {       0,   28},  //  21: 0111x
-	{       0,   40}, {       0,   20},  //  22: 1000x
-	{       0,   48}, {       0,   12},  //  23: 1001x
-	{ 32 << 1,    0}, { 33 << 1,    0},  //  24: 0000 0x
-	{ 34 << 1,    0}, { 35 << 1,    0},  //  25: 0000 1x
-	{ 36 << 1,    0}, { 37 << 1,    0},  //  26: 0001 0x
-	{ 38 << 1,    0}, { 39 << 1,    0},  //  27: 0001 1x
-	{ 40 << 1,    0}, { 41 << 1,    0},  //  28: 0010 0x
-	{ 42 << 1,    0}, { 43 << 1,    0},  //  29: 0010 1x
-	{       0,   63}, {       0,    3},  //  30: 0011 0x
-	{       0,   36}, {       0,   24},  //  31: 0011 1x
-	{ 44 << 1,    0}, { 45 << 1,    0},  //  32: 0000 00x
-	{ 46 << 1,    0}, { 47 << 1,    0},  //  33: 0000 01x
-	{ 48 << 1,    0}, { 49 << 1,    0},  //  34: 0000 10x
-	{ 50 << 1,    0}, { 51 << 1,    0},  //  35: 0000 11x
-	{ 52 << 1,    0}, { 53 << 1,    0},  //  36: 0001 00x
-	{ 54 << 1,    0}, { 55 << 1,    0},  //  37: 0001 01x
-	{ 56 << 1,    0}, { 57 << 1,    0},  //  38: 0001 10x
-	{ 58 << 1,    0}, { 59 << 1,    0},  //  39: 0001 11x
-	{       0,   34}, {       0,   18},  //  40: 0010 00x
-	{       0,   10}, {       0,    6},  //  41: 0010 01x
-	{       0,   33}, {       0,   17},  //  42: 0010 10x
-	{       0,    9}, {       0,    5},  //  43: 0010 11x
-	{      -1,    0}, { 60 << 1,    0},  //  44: 0000 000x
-	{ 61 << 1,    0}, { 62 << 1,    0},  //  45: 0000 001x
-	{       0,   58}, {       0,   54},  //  46: 0000 010x
-	{       0,   46}, {       0,   30},  //  47: 0000 011x
-	{       0,   57}, {       0,   53},  //  48: 0000 100x
-	{       0,   45}, {       0,   29},  //  49: 0000 101x
-	{       0,   38}, {       0,   26},  //  50: 0000 110x
-	{       0,   37}, {       0,   25},  //  51: 0000 111x
-	{       0,   43}, {       0,   23},  //  52: 0001 000x
-	{       0,   51}, {       0,   15},  //  53: 0001 001x
-	{       0,   42}, {       0,   22},  //  54: 0001 010x
-	{       0,   50}, {       0,   14},  //  55: 0001 011x
-	{       0,   41}, {       0,   21},  //  56: 0001 100x
-	{       0,   49}, {       0,   13},  //  57: 0001 101x
-	{       0,   35}, {       0,   19},  //  58: 0001 110x
-	{       0,   11}, {       0,    7},  //  59: 0001 111x
-	{       0,   39}, {       0,   27},  //  60: 0000 0001x
-	{       0,   59}, {       0,   55},  //  61: 0000 0010x
-	{       0,   47}, {       0,   31},  //  62: 0000 0011x
-};
-
-static const plm_vlc_t PLM_VIDEO_MOTION[] = {
-	{  1 << 1,    0}, {       0,    0},  //   0: x
-	{  2 << 1,    0}, {  3 << 1,    0},  //   1: 0x
-	{  4 << 1,    0}, {  5 << 1,    0},  //   2: 00x
-	{       0,    1}, {       0,   -1},  //   3: 01x
-	{  6 << 1,    0}, {  7 << 1,    0},  //   4: 000x
-	{       0,    2}, {       0,   -2},  //   5: 001x
-	{  8 << 1,    0}, {  9 << 1,    0},  //   6: 0000x
-	{       0,    3}, {       0,   -3},  //   7: 0001x
-	{ 10 << 1,    0}, { 11 << 1,    0},  //   8: 0000 0x
-	{ 12 << 1,    0}, { 13 << 1,    0},  //   9: 0000 1x
-	{      -1,    0}, { 14 << 1,    0},  //  10: 0000 00x
-	{ 15 << 1,    0}, { 16 << 1,    0},  //  11: 0000 01x
-	{ 17 << 1,    0}, { 18 << 1,    0},  //  12: 0000 10x
-	{       0,    4}, {       0,   -4},  //  13: 0000 11x
-	{      -1,    0}, { 19 << 1,    0},  //  14: 0000 001x
-	{ 20 << 1,    0}, { 21 << 1,    0},  //  15: 0000 010x
-	{       0,    7}, {       0,   -7},  //  16: 0000 011x
-	{       0,    6}, {       0,   -6},  //  17: 0000 100x
-	{       0,    5}, {       0,   -5},  //  18: 0000 101x
-	{ 22 << 1,    0}, { 23 << 1,    0},  //  19: 0000 0011x
-	{ 24 << 1,    0}, { 25 << 1,    0},  //  20: 0000 0100x
-	{ 26 << 1,    0}, { 27 << 1,    0},  //  21: 0000 0101x
-	{ 28 << 1,    0}, { 29 << 1,    0},  //  22: 0000 0011 0x
-	{ 30 << 1,    0}, { 31 << 1,    0},  //  23: 0000 0011 1x
-	{ 32 << 1,    0}, { 33 << 1,    0},  //  24: 0000 0100 0x
-	{       0,   10}, {       0,  -10},  //  25: 0000 0100 1x
-	{       0,    9}, {       0,   -9},  //  26: 0000 0101 0x
-	{       0,    8}, {       0,   -8},  //  27: 0000 0101 1x
-	{       0,   16}, {       0,  -16},  //  28: 0000 0011 00x
-	{       0,   15}, {       0,  -15},  //  29: 0000 0011 01x
-	{       0,   14}, {       0,  -14},  //  30: 0000 0011 10x
-	{       0,   13}, {       0,  -13},  //  31: 0000 0011 11x
-	{       0,   12}, {       0,  -12},  //  32: 0000 0100 00x
-	{       0,   11}, {       0,  -11},  //  33: 0000 0100 01x
-};
-
-static const plm_vlc_t PLM_VIDEO_DCT_SIZE_LUMINANCE[] = {
-	{  1 << 1,    0}, {  2 << 1,    0},  //   0: x
-	{       0,    1}, {       0,    2},  //   1: 0x
-	{  3 << 1,    0}, {  4 << 1,    0},  //   2: 1x
-	{       0,    0}, {       0,    3},  //   3: 10x
-	{       0,    4}, {  5 << 1,    0},  //   4: 11x
-	{       0,    5}, {  6 << 1,    0},  //   5: 111x
-	{       0,    6}, {  7 << 1,    0},  //   6: 1111x
-	{       0,    7}, {  8 << 1,    0},  //   7: 1111 1x
-	{       0,    8}, {      -1,    0},  //   8: 1111 11x
-};
-
-static const plm_vlc_t PLM_VIDEO_DCT_SIZE_CHROMINANCE[] = {
-	{  1 << 1,    0}, {  2 << 1,    0},  //   0: x
-	{       0,    0}, {       0,    1},  //   1: 0x
-	{       0,    2}, {  3 << 1,    0},  //   2: 1x
-	{       0,    3}, {  4 << 1,    0},  //   3: 11x
-	{       0,    4}, {  5 << 1,    0},  //   4: 111x
-	{       0,    5}, {  6 << 1,    0},  //   5: 1111x
-	{       0,    6}, {  7 << 1,    0},  //   6: 1111 1x
-	{       0,    7}, {  8 << 1,    0},  //   7: 1111 11x
-	{       0,    8}, {      -1,    0},  //   8: 1111 111x
-};
-
-static const plm_vlc_t *PLM_VIDEO_DCT_SIZE[] = {
-	PLM_VIDEO_DCT_SIZE_LUMINANCE,
-	PLM_VIDEO_DCT_SIZE_CHROMINANCE,
-	PLM_VIDEO_DCT_SIZE_CHROMINANCE
-};
-
-
-//  dct_coeff bitmap:
-//    0xff00  run
-//    0x00ff  level
-
-//  Decoded values are unsigned. Sign bit follows in the stream.
-
-static const plm_vlc_uint_t PLM_VIDEO_DCT_COEFF[] = {
-	{  1 << 1,        0}, {       0,   0x0001},  //   0: x
-	{  2 << 1,        0}, {  3 << 1,        0},  //   1: 0x
-	{  4 << 1,        0}, {  5 << 1,        0},  //   2: 00x
-	{  6 << 1,        0}, {       0,   0x0101},  //   3: 01x
-	{  7 << 1,        0}, {  8 << 1,        0},  //   4: 000x
-	{  9 << 1,        0}, { 10 << 1,        0},  //   5: 001x
-	{       0,   0x0002}, {       0,   0x0201},  //   6: 010x
-	{ 11 << 1,        0}, { 12 << 1,        0},  //   7: 0000x
-	{ 13 << 1,        0}, { 14 << 1,        0},  //   8: 0001x
-	{ 15 << 1,        0}, {       0,   0x0003},  //   9: 0010x
-	{       0,   0x0401}, {       0,   0x0301},  //  10: 0011x
-	{ 16 << 1,        0}, {       0,   0xffff},  //  11: 0000 0x
-	{ 17 << 1,        0}, { 18 << 1,        0},  //  12: 0000 1x
-	{       0,   0x0701}, {       0,   0x0601},  //  13: 0001 0x
-	{       0,   0x0102}, {       0,   0x0501},  //  14: 0001 1x
-	{ 19 << 1,        0}, { 20 << 1,        0},  //  15: 0010 0x
-	{ 21 << 1,        0}, { 22 << 1,        0},  //  16: 0000 00x
-	{       0,   0x0202}, {       0,   0x0901},  //  17: 0000 10x
-	{       0,   0x0004}, {       0,   0x0801},  //  18: 0000 11x
-	{ 23 << 1,        0}, { 24 << 1,        0},  //  19: 0010 00x
-	{ 25 << 1,        0}, { 26 << 1,        0},  //  20: 0010 01x
-	{ 27 << 1,        0}, { 28 << 1,        0},  //  21: 0000 000x
-	{ 29 << 1,        0}, { 30 << 1,        0},  //  22: 0000 001x
-	{       0,   0x0d01}, {       0,   0x0006},  //  23: 0010 000x
-	{       0,   0x0c01}, {       0,   0x0b01},  //  24: 0010 001x
-	{       0,   0x0302}, {       0,   0x0103},  //  25: 0010 010x
-	{       0,   0x0005}, {       0,   0x0a01},  //  26: 0010 011x
-	{ 31 << 1,        0}, { 32 << 1,        0},  //  27: 0000 0000x
-	{ 33 << 1,        0}, { 34 << 1,        0},  //  28: 0000 0001x
-	{ 35 << 1,        0}, { 36 << 1,        0},  //  29: 0000 0010x
-	{ 37 << 1,        0}, { 38 << 1,        0},  //  30: 0000 0011x
-	{ 39 << 1,        0}, { 40 << 1,        0},  //  31: 0000 0000 0x
-	{ 41 << 1,        0}, { 42 << 1,        0},  //  32: 0000 0000 1x
-	{ 43 << 1,        0}, { 44 << 1,        0},  //  33: 0000 0001 0x
-	{ 45 << 1,        0}, { 46 << 1,        0},  //  34: 0000 0001 1x
-	{       0,   0x1001}, {       0,   0x0502},  //  35: 0000 0010 0x
-	{       0,   0x0007}, {       0,   0x0203},  //  36: 0000 0010 1x
-	{       0,   0x0104}, {       0,   0x0f01},  //  37: 0000 0011 0x
-	{       0,   0x0e01}, {       0,   0x0402},  //  38: 0000 0011 1x
-	{ 47 << 1,        0}, { 48 << 1,        0},  //  39: 0000 0000 00x
-	{ 49 << 1,        0}, { 50 << 1,        0},  //  40: 0000 0000 01x
-	{ 51 << 1,        0}, { 52 << 1,        0},  //  41: 0000 0000 10x
-	{ 53 << 1,        0}, { 54 << 1,        0},  //  42: 0000 0000 11x
-	{ 55 << 1,        0}, { 56 << 1,        0},  //  43: 0000 0001 00x
-	{ 57 << 1,        0}, { 58 << 1,        0},  //  44: 0000 0001 01x
-	{ 59 << 1,        0}, { 60 << 1,        0},  //  45: 0000 0001 10x
-	{ 61 << 1,        0}, { 62 << 1,        0},  //  46: 0000 0001 11x
-	{      -1,        0}, { 63 << 1,        0},  //  47: 0000 0000 000x
-	{ 64 << 1,        0}, { 65 << 1,        0},  //  48: 0000 0000 001x
-	{ 66 << 1,        0}, { 67 << 1,        0},  //  49: 0000 0000 010x
-	{ 68 << 1,        0}, { 69 << 1,        0},  //  50: 0000 0000 011x
-	{ 70 << 1,        0}, { 71 << 1,        0},  //  51: 0000 0000 100x
-	{ 72 << 1,        0}, { 73 << 1,        0},  //  52: 0000 0000 101x
-	{ 74 << 1,        0}, { 75 << 1,        0},  //  53: 0000 0000 110x
-	{ 76 << 1,        0}, { 77 << 1,        0},  //  54: 0000 0000 111x
-	{       0,   0x000b}, {       0,   0x0802},  //  55: 0000 0001 000x
-	{       0,   0x0403}, {       0,   0x000a},  //  56: 0000 0001 001x
-	{       0,   0x0204}, {       0,   0x0702},  //  57: 0000 0001 010x
-	{       0,   0x1501}, {       0,   0x1401},  //  58: 0000 0001 011x
-	{       0,   0x0009}, {       0,   0x1301},  //  59: 0000 0001 100x
-	{       0,   0x1201}, {       0,   0x0105},  //  60: 0000 0001 101x
-	{       0,   0x0303}, {       0,   0x0008},  //  61: 0000 0001 110x
-	{       0,   0x0602}, {       0,   0x1101},  //  62: 0000 0001 111x
-	{ 78 << 1,        0}, { 79 << 1,        0},  //  63: 0000 0000 0001x
-	{ 80 << 1,        0}, { 81 << 1,        0},  //  64: 0000 0000 0010x
-	{ 82 << 1,        0}, { 83 << 1,        0},  //  65: 0000 0000 0011x
-	{ 84 << 1,        0}, { 85 << 1,        0},  //  66: 0000 0000 0100x
-	{ 86 << 1,        0}, { 87 << 1,        0},  //  67: 0000 0000 0101x
-	{ 88 << 1,        0}, { 89 << 1,        0},  //  68: 0000 0000 0110x
-	{ 90 << 1,        0}, { 91 << 1,        0},  //  69: 0000 0000 0111x
-	{       0,   0x0a02}, {       0,   0x0902},  //  70: 0000 0000 1000x
-	{       0,   0x0503}, {       0,   0x0304},  //  71: 0000 0000 1001x
-	{       0,   0x0205}, {       0,   0x0107},  //  72: 0000 0000 1010x
-	{       0,   0x0106}, {       0,   0x000f},  //  73: 0000 0000 1011x
-	{       0,   0x000e}, {       0,   0x000d},  //  74: 0000 0000 1100x
-	{       0,   0x000c}, {       0,   0x1a01},  //  75: 0000 0000 1101x
-	{       0,   0x1901}, {       0,   0x1801},  //  76: 0000 0000 1110x
-	{       0,   0x1701}, {       0,   0x1601},  //  77: 0000 0000 1111x
-	{ 92 << 1,        0}, { 93 << 1,        0},  //  78: 0000 0000 0001 0x
-	{ 94 << 1,        0}, { 95 << 1,        0},  //  79: 0000 0000 0001 1x
-	{ 96 << 1,        0}, { 97 << 1,        0},  //  80: 0000 0000 0010 0x
-	{ 98 << 1,        0}, { 99 << 1,        0},  //  81: 0000 0000 0010 1x
-	{100 << 1,        0}, {101 << 1,        0},  //  82: 0000 0000 0011 0x
-	{102 << 1,        0}, {103 << 1,        0},  //  83: 0000 0000 0011 1x
-	{       0,   0x001f}, {       0,   0x001e},  //  84: 0000 0000 0100 0x
-	{       0,   0x001d}, {       0,   0x001c},  //  85: 0000 0000 0100 1x
-	{       0,   0x001b}, {       0,   0x001a},  //  86: 0000 0000 0101 0x
-	{       0,   0x0019}, {       0,   0x0018},  //  87: 0000 0000 0101 1x
-	{       0,   0x0017}, {       0,   0x0016},  //  88: 0000 0000 0110 0x
-	{       0,   0x0015}, {       0,   0x0014},  //  89: 0000 0000 0110 1x
-	{       0,   0x0013}, {       0,   0x0012},  //  90: 0000 0000 0111 0x
-	{       0,   0x0011}, {       0,   0x0010},  //  91: 0000 0000 0111 1x
-	{104 << 1,        0}, {105 << 1,        0},  //  92: 0000 0000 0001 00x
-	{106 << 1,        0}, {107 << 1,        0},  //  93: 0000 0000 0001 01x
-	{108 << 1,        0}, {109 << 1,        0},  //  94: 0000 0000 0001 10x
-	{110 << 1,        0}, {111 << 1,        0},  //  95: 0000 0000 0001 11x
-	{       0,   0x0028}, {       0,   0x0027},  //  96: 0000 0000 0010 00x
-	{       0,   0x0026}, {       0,   0x0025},  //  97: 0000 0000 0010 01x
-	{       0,   0x0024}, {       0,   0x0023},  //  98: 0000 0000 0010 10x
-	{       0,   0x0022}, {       0,   0x0021},  //  99: 0000 0000 0010 11x
-	{       0,   0x0020}, {       0,   0x010e},  // 100: 0000 0000 0011 00x
-	{       0,   0x010d}, {       0,   0x010c},  // 101: 0000 0000 0011 01x
-	{       0,   0x010b}, {       0,   0x010a},  // 102: 0000 0000 0011 10x
-	{       0,   0x0109}, {       0,   0x0108},  // 103: 0000 0000 0011 11x
-	{       0,   0x0112}, {       0,   0x0111},  // 104: 0000 0000 0001 000x
-	{       0,   0x0110}, {       0,   0x010f},  // 105: 0000 0000 0001 001x
-	{       0,   0x0603}, {       0,   0x1002},  // 106: 0000 0000 0001 010x
-	{       0,   0x0f02}, {       0,   0x0e02},  // 107: 0000 0000 0001 011x
-	{       0,   0x0d02}, {       0,   0x0c02},  // 108: 0000 0000 0001 100x
-	{       0,   0x0b02}, {       0,   0x1f01},  // 109: 0000 0000 0001 101x
-	{       0,   0x1e01}, {       0,   0x1d01},  // 110: 0000 0000 0001 110x
-	{       0,   0x1c01}, {       0,   0x1b01},  // 111: 0000 0000 0001 111x
-};
-
-// clang-format on
-
-typedef struct {
-    int full_px;
-    int is_set;
-    int r_size;
-    int h;
-    int v;
-} plm_video_motion_t;
-
-struct plm_video_t {
-    double framerate;
-    double pixel_aspect_ratio;
-    double time;
-    int frames_decoded;
-    int width;
-    int height;
-    int mb_width;
-    int mb_height;
-    int mb_size;
-
-    int luma_width;
-    int luma_height;
-
-    int chroma_width;
-    int chroma_height;
-
-    int start_code;
-    int picture_type;
-
-    plm_video_motion_t motion_forward;
-    plm_video_motion_t motion_backward;
-
-    int has_sequence_header;
-
-    int quantizer_scale;
-    int slice_begin;
-    int macroblock_address;
-
-    int mb_row;
-    int mb_col;
-
-    int macroblock_type;
-    int macroblock_intra;
-
-    int dc_predictor[3];
-
-    plm_buffer_t *buffer;
-    int destroy_buffer_when_done;
-
-    plm_frame_t frame_current;
-    plm_frame_t frame_forward;
-    plm_frame_t frame_backward;
-
-    uint8_t *frames_data;
-
-    int block_data[64];
-    uint8_t intra_quant_matrix[64];
-    uint8_t non_intra_quant_matrix[64];
-
-    int has_reference_frame;
-    int assume_no_b_frames;
-};
-
-static inline uint8_t plm_clamp(int n) {
-    if (n > 255) {
-        n = 255;
-    } else if (n < 0) {
-        n = 0;
-    }
-    return n;
-}
-
-int plm_video_decode_sequence_header(plm_video_t *self);
-void plm_video_init_frame(plm_video_t *self, plm_frame_t *frame, uint8_t *base);
-void plm_video_decode_picture(plm_video_t *self);
-void plm_video_decode_slice(plm_video_t *self, int slice);
-void plm_video_decode_macroblock(plm_video_t *self);
-void plm_video_decode_motion_vectors(plm_video_t *self);
-int plm_video_decode_motion_vector(plm_video_t *self, int r_size, int motion);
-void plm_video_predict_macroblock(plm_video_t *self);
-void plm_video_copy_macroblock(plm_video_t *self, plm_frame_t *s, int motion_h,
-                               int motion_v);
-void plm_video_interpolate_macroblock(plm_video_t *self, plm_frame_t *s,
-                                      int motion_h, int motion_v);
-void plm_video_process_macroblock(plm_video_t *self, uint8_t *s, uint8_t *d,
-                                  int mh, int mb, int bs, int interp);
-void plm_video_decode_block(plm_video_t *self, int block);
-void plm_video_idct(int *block);
-
-#undef PLM_PUT_PIXEL
-#undef PLM_DEFINE_FRAME_CONVERT_FUNCTION
-
 // -----------------------------------------------------------------------------
 // plm_audio implementation
 
@@ -2461,8 +956,7 @@ static const short PLM_AUDIO_BIT_RATE_LAYER_I[] = {
     32, 48, 56, 64,  80,  96,  112, 128, 144, 160, 176, 192, 224, 256  // MPEG-2
 };
 
-static const int PLM_AUDIO_SCALEFACTOR_BASE[] = {0x02000000, 0x01965FEA,
-                                                 0x01428A30};
+static const int PLM_AUDIO_SCALEFACTOR_BASE[] = {0x02000000, 0x01965FEA, 0x01428A30};
 
 typedef int32_t intsample_t;
 #define MULTDIV 256
@@ -2470,262 +964,134 @@ typedef int32_t intsample_t;
 #define FLOAT_TO_FIX_256(x) ((intsample_t)(x * MULTDIV))
 
 static const intsample_t PLM_AUDIO_SYNTHESIS_WINDOW[] = {
-    FLOAT_TO_FIX_2(0.0),      FLOAT_TO_FIX_2(-0.5),
-    FLOAT_TO_FIX_2(-0.5),     FLOAT_TO_FIX_2(-0.5),
-    FLOAT_TO_FIX_2(-0.5),     FLOAT_TO_FIX_2(-0.5),
-    FLOAT_TO_FIX_2(-0.5),     FLOAT_TO_FIX_2(-1.0),
-    FLOAT_TO_FIX_2(-1.0),     FLOAT_TO_FIX_2(-1.0),
-    FLOAT_TO_FIX_2(-1.0),     FLOAT_TO_FIX_2(-1.5),
-    FLOAT_TO_FIX_2(-1.5),     FLOAT_TO_FIX_2(-2.0),
-    FLOAT_TO_FIX_2(-2.0),     FLOAT_TO_FIX_2(-2.5),
-    FLOAT_TO_FIX_2(-2.5),     FLOAT_TO_FIX_2(-3.0),
-    FLOAT_TO_FIX_2(-3.5),     FLOAT_TO_FIX_2(-3.5),
-    FLOAT_TO_FIX_2(-4.0),     FLOAT_TO_FIX_2(-4.5),
-    FLOAT_TO_FIX_2(-5.0),     FLOAT_TO_FIX_2(-5.5),
-    FLOAT_TO_FIX_2(-6.5),     FLOAT_TO_FIX_2(-7.0),
-    FLOAT_TO_FIX_2(-8.0),     FLOAT_TO_FIX_2(-8.5),
-    FLOAT_TO_FIX_2(-9.5),     FLOAT_TO_FIX_2(-10.5),
-    FLOAT_TO_FIX_2(-12.0),    FLOAT_TO_FIX_2(-13.0),
-    FLOAT_TO_FIX_2(-14.5),    FLOAT_TO_FIX_2(-15.5),
-    FLOAT_TO_FIX_2(-17.5),    FLOAT_TO_FIX_2(-19.0),
-    FLOAT_TO_FIX_2(-20.5),    FLOAT_TO_FIX_2(-22.5),
-    FLOAT_TO_FIX_2(-24.5),    FLOAT_TO_FIX_2(-26.5),
-    FLOAT_TO_FIX_2(-29.0),    FLOAT_TO_FIX_2(-31.5),
-    FLOAT_TO_FIX_2(-34.0),    FLOAT_TO_FIX_2(-36.5),
-    FLOAT_TO_FIX_2(-39.5),    FLOAT_TO_FIX_2(-42.5),
-    FLOAT_TO_FIX_2(-45.5),    FLOAT_TO_FIX_2(-48.5),
-    FLOAT_TO_FIX_2(-52.0),    FLOAT_TO_FIX_2(-55.5),
-    FLOAT_TO_FIX_2(-58.5),    FLOAT_TO_FIX_2(-62.5),
-    FLOAT_TO_FIX_2(-66.0),    FLOAT_TO_FIX_2(-69.5),
-    FLOAT_TO_FIX_2(-73.5),    FLOAT_TO_FIX_2(-77.0),
-    FLOAT_TO_FIX_2(-80.5),    FLOAT_TO_FIX_2(-84.5),
-    FLOAT_TO_FIX_2(-88.0),    FLOAT_TO_FIX_2(-91.5),
-    FLOAT_TO_FIX_2(-95.0),    FLOAT_TO_FIX_2(-98.0),
-    FLOAT_TO_FIX_2(-101.0),   FLOAT_TO_FIX_2(-104.0),
-    FLOAT_TO_FIX_2(106.5),    FLOAT_TO_FIX_2(109.0),
-    FLOAT_TO_FIX_2(111.0),    FLOAT_TO_FIX_2(112.5),
-    FLOAT_TO_FIX_2(113.5),    FLOAT_TO_FIX_2(114.0),
-    FLOAT_TO_FIX_2(114.0),    FLOAT_TO_FIX_2(113.5),
-    FLOAT_TO_FIX_2(112.0),    FLOAT_TO_FIX_2(110.5),
-    FLOAT_TO_FIX_2(107.5),    FLOAT_TO_FIX_2(104.0),
-    FLOAT_TO_FIX_2(100.0),    FLOAT_TO_FIX_2(94.5),
-    FLOAT_TO_FIX_2(88.5),     FLOAT_TO_FIX_2(81.5),
-    FLOAT_TO_FIX_2(73.0),     FLOAT_TO_FIX_2(63.5),
-    FLOAT_TO_FIX_2(53.0),     FLOAT_TO_FIX_2(41.5),
-    FLOAT_TO_FIX_2(28.5),     FLOAT_TO_FIX_2(14.5),
-    FLOAT_TO_FIX_2(-1.0),     FLOAT_TO_FIX_2(-18.0),
-    FLOAT_TO_FIX_2(-36.0),    FLOAT_TO_FIX_2(-55.5),
-    FLOAT_TO_FIX_2(-76.5),    FLOAT_TO_FIX_2(-98.5),
-    FLOAT_TO_FIX_2(-122.0),   FLOAT_TO_FIX_2(-147.0),
-    FLOAT_TO_FIX_2(-173.5),   FLOAT_TO_FIX_2(-200.5),
-    FLOAT_TO_FIX_2(-229.5),   FLOAT_TO_FIX_2(-259.5),
-    FLOAT_TO_FIX_2(-290.5),   FLOAT_TO_FIX_2(-322.5),
-    FLOAT_TO_FIX_2(-355.5),   FLOAT_TO_FIX_2(-389.5),
-    FLOAT_TO_FIX_2(-424.0),   FLOAT_TO_FIX_2(-459.5),
-    FLOAT_TO_FIX_2(-495.5),   FLOAT_TO_FIX_2(-532.0),
-    FLOAT_TO_FIX_2(-568.5),   FLOAT_TO_FIX_2(-605.0),
-    FLOAT_TO_FIX_2(-641.5),   FLOAT_TO_FIX_2(-678.0),
-    FLOAT_TO_FIX_2(-714.0),   FLOAT_TO_FIX_2(-749.0),
-    FLOAT_TO_FIX_2(-783.5),   FLOAT_TO_FIX_2(-817.0),
-    FLOAT_TO_FIX_2(-849.0),   FLOAT_TO_FIX_2(-879.5),
-    FLOAT_TO_FIX_2(-908.5),   FLOAT_TO_FIX_2(-935.0),
-    FLOAT_TO_FIX_2(-959.5),   FLOAT_TO_FIX_2(-981.0),
-    FLOAT_TO_FIX_2(-1000.5),  FLOAT_TO_FIX_2(-1016.0),
-    FLOAT_TO_FIX_2(-1028.5),  FLOAT_TO_FIX_2(-1037.5),
-    FLOAT_TO_FIX_2(-1042.5),  FLOAT_TO_FIX_2(-1043.5),
-    FLOAT_TO_FIX_2(-1040.0),  FLOAT_TO_FIX_2(-1031.5),
-    FLOAT_TO_FIX_2(1018.5),   FLOAT_TO_FIX_2(1000.0),
-    FLOAT_TO_FIX_2(976.0),    FLOAT_TO_FIX_2(946.5),
-    FLOAT_TO_FIX_2(911.0),    FLOAT_TO_FIX_2(869.5),
-    FLOAT_TO_FIX_2(822.0),    FLOAT_TO_FIX_2(767.5),
-    FLOAT_TO_FIX_2(707.0),    FLOAT_TO_FIX_2(640.0),
-    FLOAT_TO_FIX_2(565.5),    FLOAT_TO_FIX_2(485.0),
-    FLOAT_TO_FIX_2(397.0),    FLOAT_TO_FIX_2(302.5),
-    FLOAT_TO_FIX_2(201.0),    FLOAT_TO_FIX_2(92.5),
-    FLOAT_TO_FIX_2(-22.5),    FLOAT_TO_FIX_2(-144.0),
-    FLOAT_TO_FIX_2(-272.5),   FLOAT_TO_FIX_2(-407.0),
-    FLOAT_TO_FIX_2(-547.5),   FLOAT_TO_FIX_2(-694.0),
-    FLOAT_TO_FIX_2(-846.0),   FLOAT_TO_FIX_2(-1003.0),
-    FLOAT_TO_FIX_2(-1165.0),  FLOAT_TO_FIX_2(-1331.5),
-    FLOAT_TO_FIX_2(-1502.0),  FLOAT_TO_FIX_2(-1675.5),
-    FLOAT_TO_FIX_2(-1852.5),  FLOAT_TO_FIX_2(-2031.5),
-    FLOAT_TO_FIX_2(-2212.5),  FLOAT_TO_FIX_2(-2394.0),
-    FLOAT_TO_FIX_2(-2576.5),  FLOAT_TO_FIX_2(-2758.5),
-    FLOAT_TO_FIX_2(-2939.5),  FLOAT_TO_FIX_2(-3118.5),
-    FLOAT_TO_FIX_2(-3294.5),  FLOAT_TO_FIX_2(-3467.5),
-    FLOAT_TO_FIX_2(-3635.5),  FLOAT_TO_FIX_2(-3798.5),
-    FLOAT_TO_FIX_2(-3955.0),  FLOAT_TO_FIX_2(-4104.5),
-    FLOAT_TO_FIX_2(-4245.5),  FLOAT_TO_FIX_2(-4377.5),
-    FLOAT_TO_FIX_2(-4499.0),  FLOAT_TO_FIX_2(-4609.5),
-    FLOAT_TO_FIX_2(-4708.0),  FLOAT_TO_FIX_2(-4792.5),
-    FLOAT_TO_FIX_2(-4863.5),  FLOAT_TO_FIX_2(-4919.0),
-    FLOAT_TO_FIX_2(-4958.0),  FLOAT_TO_FIX_2(-4979.5),
-    FLOAT_TO_FIX_2(-4983.0),  FLOAT_TO_FIX_2(-4967.5),
-    FLOAT_TO_FIX_2(-4931.5),  FLOAT_TO_FIX_2(-4875.0),
-    FLOAT_TO_FIX_2(-4796.0),  FLOAT_TO_FIX_2(-4694.5),
-    FLOAT_TO_FIX_2(-4569.5),  FLOAT_TO_FIX_2(-4420.0),
-    FLOAT_TO_FIX_2(-4246.0),  FLOAT_TO_FIX_2(-4046.0),
-    FLOAT_TO_FIX_2(-3820.0),  FLOAT_TO_FIX_2(-3567.0),
-    FLOAT_TO_FIX_2(3287.0),   FLOAT_TO_FIX_2(2979.5),
-    FLOAT_TO_FIX_2(2644.0),   FLOAT_TO_FIX_2(2280.5),
-    FLOAT_TO_FIX_2(1888.0),   FLOAT_TO_FIX_2(1467.5),
-    FLOAT_TO_FIX_2(1018.5),   FLOAT_TO_FIX_2(541.0),
-    FLOAT_TO_FIX_2(35.0),     FLOAT_TO_FIX_2(-499.0),
-    FLOAT_TO_FIX_2(-1061.0),  FLOAT_TO_FIX_2(-1650.0),
-    FLOAT_TO_FIX_2(-2266.5),  FLOAT_TO_FIX_2(-2909.0),
-    FLOAT_TO_FIX_2(-3577.0),  FLOAT_TO_FIX_2(-4270.0),
-    FLOAT_TO_FIX_2(-4987.5),  FLOAT_TO_FIX_2(-5727.5),
-    FLOAT_TO_FIX_2(-6490.0),  FLOAT_TO_FIX_2(-7274.0),
-    FLOAT_TO_FIX_2(-8077.5),  FLOAT_TO_FIX_2(-8899.5),
-    FLOAT_TO_FIX_2(-9739.0),  FLOAT_TO_FIX_2(-10594.5),
-    FLOAT_TO_FIX_2(-11464.5), FLOAT_TO_FIX_2(-12347.0),
-    FLOAT_TO_FIX_2(-13241.0), FLOAT_TO_FIX_2(-14144.5),
-    FLOAT_TO_FIX_2(-15056.0), FLOAT_TO_FIX_2(-15973.5),
-    FLOAT_TO_FIX_2(-16895.5), FLOAT_TO_FIX_2(-17820.0),
-    FLOAT_TO_FIX_2(-18744.5), FLOAT_TO_FIX_2(-19668.0),
-    FLOAT_TO_FIX_2(-20588.0), FLOAT_TO_FIX_2(-21503.0),
-    FLOAT_TO_FIX_2(-22410.5), FLOAT_TO_FIX_2(-23308.5),
-    FLOAT_TO_FIX_2(-24195.0), FLOAT_TO_FIX_2(-25068.5),
-    FLOAT_TO_FIX_2(-25926.5), FLOAT_TO_FIX_2(-26767.0),
-    FLOAT_TO_FIX_2(-27589.0), FLOAT_TO_FIX_2(-28389.0),
-    FLOAT_TO_FIX_2(-29166.5), FLOAT_TO_FIX_2(-29919.0),
-    FLOAT_TO_FIX_2(-30644.5), FLOAT_TO_FIX_2(-31342.0),
-    FLOAT_TO_FIX_2(-32009.5), FLOAT_TO_FIX_2(-32645.0),
-    FLOAT_TO_FIX_2(-33247.0), FLOAT_TO_FIX_2(-33814.5),
-    FLOAT_TO_FIX_2(-34346.0), FLOAT_TO_FIX_2(-34839.5),
-    FLOAT_TO_FIX_2(-35295.0), FLOAT_TO_FIX_2(-35710.0),
-    FLOAT_TO_FIX_2(-36084.5), FLOAT_TO_FIX_2(-36417.5),
-    FLOAT_TO_FIX_2(-36707.5), FLOAT_TO_FIX_2(-36954.0),
-    FLOAT_TO_FIX_2(-37156.5), FLOAT_TO_FIX_2(-37315.0),
-    FLOAT_TO_FIX_2(-37428.0), FLOAT_TO_FIX_2(-37496.0),
-    FLOAT_TO_FIX_2(37519.0),  FLOAT_TO_FIX_2(37496.0),
-    FLOAT_TO_FIX_2(37428.0),  FLOAT_TO_FIX_2(37315.0),
-    FLOAT_TO_FIX_2(37156.5),  FLOAT_TO_FIX_2(36954.0),
-    FLOAT_TO_FIX_2(36707.5),  FLOAT_TO_FIX_2(36417.5),
-    FLOAT_TO_FIX_2(36084.5),  FLOAT_TO_FIX_2(35710.0),
-    FLOAT_TO_FIX_2(35295.0),  FLOAT_TO_FIX_2(34839.5),
-    FLOAT_TO_FIX_2(34346.0),  FLOAT_TO_FIX_2(33814.5),
-    FLOAT_TO_FIX_2(33247.0),  FLOAT_TO_FIX_2(32645.0),
-    FLOAT_TO_FIX_2(32009.5),  FLOAT_TO_FIX_2(31342.0),
-    FLOAT_TO_FIX_2(30644.5),  FLOAT_TO_FIX_2(29919.0),
-    FLOAT_TO_FIX_2(29166.5),  FLOAT_TO_FIX_2(28389.0),
-    FLOAT_TO_FIX_2(27589.0),  FLOAT_TO_FIX_2(26767.0),
-    FLOAT_TO_FIX_2(25926.5),  FLOAT_TO_FIX_2(25068.5),
-    FLOAT_TO_FIX_2(24195.0),  FLOAT_TO_FIX_2(23308.5),
-    FLOAT_TO_FIX_2(22410.5),  FLOAT_TO_FIX_2(21503.0),
-    FLOAT_TO_FIX_2(20588.0),  FLOAT_TO_FIX_2(19668.0),
-    FLOAT_TO_FIX_2(18744.5),  FLOAT_TO_FIX_2(17820.0),
-    FLOAT_TO_FIX_2(16895.5),  FLOAT_TO_FIX_2(15973.5),
-    FLOAT_TO_FIX_2(15056.0),  FLOAT_TO_FIX_2(14144.5),
-    FLOAT_TO_FIX_2(13241.0),  FLOAT_TO_FIX_2(12347.0),
-    FLOAT_TO_FIX_2(11464.5),  FLOAT_TO_FIX_2(10594.5),
-    FLOAT_TO_FIX_2(9739.0),   FLOAT_TO_FIX_2(8899.5),
-    FLOAT_TO_FIX_2(8077.5),   FLOAT_TO_FIX_2(7274.0),
-    FLOAT_TO_FIX_2(6490.0),   FLOAT_TO_FIX_2(5727.5),
-    FLOAT_TO_FIX_2(4987.5),   FLOAT_TO_FIX_2(4270.0),
-    FLOAT_TO_FIX_2(3577.0),   FLOAT_TO_FIX_2(2909.0),
-    FLOAT_TO_FIX_2(2266.5),   FLOAT_TO_FIX_2(1650.0),
-    FLOAT_TO_FIX_2(1061.0),   FLOAT_TO_FIX_2(499.0),
-    FLOAT_TO_FIX_2(-35.0),    FLOAT_TO_FIX_2(-541.0),
-    FLOAT_TO_FIX_2(-1018.5),  FLOAT_TO_FIX_2(-1467.5),
-    FLOAT_TO_FIX_2(-1888.0),  FLOAT_TO_FIX_2(-2280.5),
-    FLOAT_TO_FIX_2(-2644.0),  FLOAT_TO_FIX_2(-2979.5),
-    FLOAT_TO_FIX_2(3287.0),   FLOAT_TO_FIX_2(3567.0),
-    FLOAT_TO_FIX_2(3820.0),   FLOAT_TO_FIX_2(4046.0),
-    FLOAT_TO_FIX_2(4246.0),   FLOAT_TO_FIX_2(4420.0),
-    FLOAT_TO_FIX_2(4569.5),   FLOAT_TO_FIX_2(4694.5),
-    FLOAT_TO_FIX_2(4796.0),   FLOAT_TO_FIX_2(4875.0),
-    FLOAT_TO_FIX_2(4931.5),   FLOAT_TO_FIX_2(4967.5),
-    FLOAT_TO_FIX_2(4983.0),   FLOAT_TO_FIX_2(4979.5),
-    FLOAT_TO_FIX_2(4958.0),   FLOAT_TO_FIX_2(4919.0),
-    FLOAT_TO_FIX_2(4863.5),   FLOAT_TO_FIX_2(4792.5),
-    FLOAT_TO_FIX_2(4708.0),   FLOAT_TO_FIX_2(4609.5),
-    FLOAT_TO_FIX_2(4499.0),   FLOAT_TO_FIX_2(4377.5),
-    FLOAT_TO_FIX_2(4245.5),   FLOAT_TO_FIX_2(4104.5),
-    FLOAT_TO_FIX_2(3955.0),   FLOAT_TO_FIX_2(3798.5),
-    FLOAT_TO_FIX_2(3635.5),   FLOAT_TO_FIX_2(3467.5),
-    FLOAT_TO_FIX_2(3294.5),   FLOAT_TO_FIX_2(3118.5),
-    FLOAT_TO_FIX_2(2939.5),   FLOAT_TO_FIX_2(2758.5),
-    FLOAT_TO_FIX_2(2576.5),   FLOAT_TO_FIX_2(2394.0),
-    FLOAT_TO_FIX_2(2212.5),   FLOAT_TO_FIX_2(2031.5),
-    FLOAT_TO_FIX_2(1852.5),   FLOAT_TO_FIX_2(1675.5),
-    FLOAT_TO_FIX_2(1502.0),   FLOAT_TO_FIX_2(1331.5),
-    FLOAT_TO_FIX_2(1165.0),   FLOAT_TO_FIX_2(1003.0),
-    FLOAT_TO_FIX_2(846.0),    FLOAT_TO_FIX_2(694.0),
-    FLOAT_TO_FIX_2(547.5),    FLOAT_TO_FIX_2(407.0),
-    FLOAT_TO_FIX_2(272.5),    FLOAT_TO_FIX_2(144.0),
-    FLOAT_TO_FIX_2(22.5),     FLOAT_TO_FIX_2(-92.5),
-    FLOAT_TO_FIX_2(-201.0),   FLOAT_TO_FIX_2(-302.5),
-    FLOAT_TO_FIX_2(-397.0),   FLOAT_TO_FIX_2(-485.0),
-    FLOAT_TO_FIX_2(-565.5),   FLOAT_TO_FIX_2(-640.0),
-    FLOAT_TO_FIX_2(-707.0),   FLOAT_TO_FIX_2(-767.5),
-    FLOAT_TO_FIX_2(-822.0),   FLOAT_TO_FIX_2(-869.5),
-    FLOAT_TO_FIX_2(-911.0),   FLOAT_TO_FIX_2(-946.5),
-    FLOAT_TO_FIX_2(-976.0),   FLOAT_TO_FIX_2(-1000.0),
-    FLOAT_TO_FIX_2(1018.5),   FLOAT_TO_FIX_2(1031.5),
-    FLOAT_TO_FIX_2(1040.0),   FLOAT_TO_FIX_2(1043.5),
-    FLOAT_TO_FIX_2(1042.5),   FLOAT_TO_FIX_2(1037.5),
-    FLOAT_TO_FIX_2(1028.5),   FLOAT_TO_FIX_2(1016.0),
-    FLOAT_TO_FIX_2(1000.5),   FLOAT_TO_FIX_2(981.0),
-    FLOAT_TO_FIX_2(959.5),    FLOAT_TO_FIX_2(935.0),
-    FLOAT_TO_FIX_2(908.5),    FLOAT_TO_FIX_2(879.5),
-    FLOAT_TO_FIX_2(849.0),    FLOAT_TO_FIX_2(817.0),
-    FLOAT_TO_FIX_2(783.5),    FLOAT_TO_FIX_2(749.0),
-    FLOAT_TO_FIX_2(714.0),    FLOAT_TO_FIX_2(678.0),
-    FLOAT_TO_FIX_2(641.5),    FLOAT_TO_FIX_2(605.0),
-    FLOAT_TO_FIX_2(568.5),    FLOAT_TO_FIX_2(532.0),
-    FLOAT_TO_FIX_2(495.5),    FLOAT_TO_FIX_2(459.5),
-    FLOAT_TO_FIX_2(424.0),    FLOAT_TO_FIX_2(389.5),
-    FLOAT_TO_FIX_2(355.5),    FLOAT_TO_FIX_2(322.5),
-    FLOAT_TO_FIX_2(290.5),    FLOAT_TO_FIX_2(259.5),
-    FLOAT_TO_FIX_2(229.5),    FLOAT_TO_FIX_2(200.5),
-    FLOAT_TO_FIX_2(173.5),    FLOAT_TO_FIX_2(147.0),
-    FLOAT_TO_FIX_2(122.0),    FLOAT_TO_FIX_2(98.5),
-    FLOAT_TO_FIX_2(76.5),     FLOAT_TO_FIX_2(55.5),
-    FLOAT_TO_FIX_2(36.0),     FLOAT_TO_FIX_2(18.0),
-    FLOAT_TO_FIX_2(1.0),      FLOAT_TO_FIX_2(-14.5),
-    FLOAT_TO_FIX_2(-28.5),    FLOAT_TO_FIX_2(-41.5),
-    FLOAT_TO_FIX_2(-53.0),    FLOAT_TO_FIX_2(-63.5),
-    FLOAT_TO_FIX_2(-73.0),    FLOAT_TO_FIX_2(-81.5),
-    FLOAT_TO_FIX_2(-88.5),    FLOAT_TO_FIX_2(-94.5),
-    FLOAT_TO_FIX_2(-100.0),   FLOAT_TO_FIX_2(-104.0),
-    FLOAT_TO_FIX_2(-107.5),   FLOAT_TO_FIX_2(-110.5),
-    FLOAT_TO_FIX_2(-112.0),   FLOAT_TO_FIX_2(-113.5),
-    FLOAT_TO_FIX_2(-114.0),   FLOAT_TO_FIX_2(-114.0),
-    FLOAT_TO_FIX_2(-113.5),   FLOAT_TO_FIX_2(-112.5),
-    FLOAT_TO_FIX_2(-111.0),   FLOAT_TO_FIX_2(-109.0),
-    FLOAT_TO_FIX_2(106.5),    FLOAT_TO_FIX_2(104.0),
-    FLOAT_TO_FIX_2(101.0),    FLOAT_TO_FIX_2(98.0),
-    FLOAT_TO_FIX_2(95.0),     FLOAT_TO_FIX_2(91.5),
-    FLOAT_TO_FIX_2(88.0),     FLOAT_TO_FIX_2(84.5),
-    FLOAT_TO_FIX_2(80.5),     FLOAT_TO_FIX_2(77.0),
-    FLOAT_TO_FIX_2(73.5),     FLOAT_TO_FIX_2(69.5),
-    FLOAT_TO_FIX_2(66.0),     FLOAT_TO_FIX_2(62.5),
-    FLOAT_TO_FIX_2(58.5),     FLOAT_TO_FIX_2(55.5),
-    FLOAT_TO_FIX_2(52.0),     FLOAT_TO_FIX_2(48.5),
-    FLOAT_TO_FIX_2(45.5),     FLOAT_TO_FIX_2(42.5),
-    FLOAT_TO_FIX_2(39.5),     FLOAT_TO_FIX_2(36.5),
-    FLOAT_TO_FIX_2(34.0),     FLOAT_TO_FIX_2(31.5),
-    FLOAT_TO_FIX_2(29.0),     FLOAT_TO_FIX_2(26.5),
-    FLOAT_TO_FIX_2(24.5),     FLOAT_TO_FIX_2(22.5),
-    FLOAT_TO_FIX_2(20.5),     FLOAT_TO_FIX_2(19.0),
-    FLOAT_TO_FIX_2(17.5),     FLOAT_TO_FIX_2(15.5),
-    FLOAT_TO_FIX_2(14.5),     FLOAT_TO_FIX_2(13.0),
-    FLOAT_TO_FIX_2(12.0),     FLOAT_TO_FIX_2(10.5),
-    FLOAT_TO_FIX_2(9.5),      FLOAT_TO_FIX_2(8.5),
-    FLOAT_TO_FIX_2(8.0),      FLOAT_TO_FIX_2(7.0),
-    FLOAT_TO_FIX_2(6.5),      FLOAT_TO_FIX_2(5.5),
-    FLOAT_TO_FIX_2(5.0),      FLOAT_TO_FIX_2(4.5),
-    FLOAT_TO_FIX_2(4.0),      FLOAT_TO_FIX_2(3.5),
-    FLOAT_TO_FIX_2(3.5),      FLOAT_TO_FIX_2(3.0),
-    FLOAT_TO_FIX_2(2.5),      FLOAT_TO_FIX_2(2.5),
-    FLOAT_TO_FIX_2(2.0),      FLOAT_TO_FIX_2(2.0),
-    FLOAT_TO_FIX_2(1.5),      FLOAT_TO_FIX_2(1.5),
-    FLOAT_TO_FIX_2(1.0),      FLOAT_TO_FIX_2(1.0),
-    FLOAT_TO_FIX_2(1.0),      FLOAT_TO_FIX_2(1.0),
-    FLOAT_TO_FIX_2(0.5),      FLOAT_TO_FIX_2(0.5),
-    FLOAT_TO_FIX_2(0.5),      FLOAT_TO_FIX_2(0.5),
-    FLOAT_TO_FIX_2(0.5),      FLOAT_TO_FIX_2(0.5)};
+    FLOAT_TO_FIX_2(0.0),      FLOAT_TO_FIX_2(-0.5),     FLOAT_TO_FIX_2(-0.5),     FLOAT_TO_FIX_2(-0.5),
+    FLOAT_TO_FIX_2(-0.5),     FLOAT_TO_FIX_2(-0.5),     FLOAT_TO_FIX_2(-0.5),     FLOAT_TO_FIX_2(-1.0),
+    FLOAT_TO_FIX_2(-1.0),     FLOAT_TO_FIX_2(-1.0),     FLOAT_TO_FIX_2(-1.0),     FLOAT_TO_FIX_2(-1.5),
+    FLOAT_TO_FIX_2(-1.5),     FLOAT_TO_FIX_2(-2.0),     FLOAT_TO_FIX_2(-2.0),     FLOAT_TO_FIX_2(-2.5),
+    FLOAT_TO_FIX_2(-2.5),     FLOAT_TO_FIX_2(-3.0),     FLOAT_TO_FIX_2(-3.5),     FLOAT_TO_FIX_2(-3.5),
+    FLOAT_TO_FIX_2(-4.0),     FLOAT_TO_FIX_2(-4.5),     FLOAT_TO_FIX_2(-5.0),     FLOAT_TO_FIX_2(-5.5),
+    FLOAT_TO_FIX_2(-6.5),     FLOAT_TO_FIX_2(-7.0),     FLOAT_TO_FIX_2(-8.0),     FLOAT_TO_FIX_2(-8.5),
+    FLOAT_TO_FIX_2(-9.5),     FLOAT_TO_FIX_2(-10.5),    FLOAT_TO_FIX_2(-12.0),    FLOAT_TO_FIX_2(-13.0),
+    FLOAT_TO_FIX_2(-14.5),    FLOAT_TO_FIX_2(-15.5),    FLOAT_TO_FIX_2(-17.5),    FLOAT_TO_FIX_2(-19.0),
+    FLOAT_TO_FIX_2(-20.5),    FLOAT_TO_FIX_2(-22.5),    FLOAT_TO_FIX_2(-24.5),    FLOAT_TO_FIX_2(-26.5),
+    FLOAT_TO_FIX_2(-29.0),    FLOAT_TO_FIX_2(-31.5),    FLOAT_TO_FIX_2(-34.0),    FLOAT_TO_FIX_2(-36.5),
+    FLOAT_TO_FIX_2(-39.5),    FLOAT_TO_FIX_2(-42.5),    FLOAT_TO_FIX_2(-45.5),    FLOAT_TO_FIX_2(-48.5),
+    FLOAT_TO_FIX_2(-52.0),    FLOAT_TO_FIX_2(-55.5),    FLOAT_TO_FIX_2(-58.5),    FLOAT_TO_FIX_2(-62.5),
+    FLOAT_TO_FIX_2(-66.0),    FLOAT_TO_FIX_2(-69.5),    FLOAT_TO_FIX_2(-73.5),    FLOAT_TO_FIX_2(-77.0),
+    FLOAT_TO_FIX_2(-80.5),    FLOAT_TO_FIX_2(-84.5),    FLOAT_TO_FIX_2(-88.0),    FLOAT_TO_FIX_2(-91.5),
+    FLOAT_TO_FIX_2(-95.0),    FLOAT_TO_FIX_2(-98.0),    FLOAT_TO_FIX_2(-101.0),   FLOAT_TO_FIX_2(-104.0),
+    FLOAT_TO_FIX_2(106.5),    FLOAT_TO_FIX_2(109.0),    FLOAT_TO_FIX_2(111.0),    FLOAT_TO_FIX_2(112.5),
+    FLOAT_TO_FIX_2(113.5),    FLOAT_TO_FIX_2(114.0),    FLOAT_TO_FIX_2(114.0),    FLOAT_TO_FIX_2(113.5),
+    FLOAT_TO_FIX_2(112.0),    FLOAT_TO_FIX_2(110.5),    FLOAT_TO_FIX_2(107.5),    FLOAT_TO_FIX_2(104.0),
+    FLOAT_TO_FIX_2(100.0),    FLOAT_TO_FIX_2(94.5),     FLOAT_TO_FIX_2(88.5),     FLOAT_TO_FIX_2(81.5),
+    FLOAT_TO_FIX_2(73.0),     FLOAT_TO_FIX_2(63.5),     FLOAT_TO_FIX_2(53.0),     FLOAT_TO_FIX_2(41.5),
+    FLOAT_TO_FIX_2(28.5),     FLOAT_TO_FIX_2(14.5),     FLOAT_TO_FIX_2(-1.0),     FLOAT_TO_FIX_2(-18.0),
+    FLOAT_TO_FIX_2(-36.0),    FLOAT_TO_FIX_2(-55.5),    FLOAT_TO_FIX_2(-76.5),    FLOAT_TO_FIX_2(-98.5),
+    FLOAT_TO_FIX_2(-122.0),   FLOAT_TO_FIX_2(-147.0),   FLOAT_TO_FIX_2(-173.5),   FLOAT_TO_FIX_2(-200.5),
+    FLOAT_TO_FIX_2(-229.5),   FLOAT_TO_FIX_2(-259.5),   FLOAT_TO_FIX_2(-290.5),   FLOAT_TO_FIX_2(-322.5),
+    FLOAT_TO_FIX_2(-355.5),   FLOAT_TO_FIX_2(-389.5),   FLOAT_TO_FIX_2(-424.0),   FLOAT_TO_FIX_2(-459.5),
+    FLOAT_TO_FIX_2(-495.5),   FLOAT_TO_FIX_2(-532.0),   FLOAT_TO_FIX_2(-568.5),   FLOAT_TO_FIX_2(-605.0),
+    FLOAT_TO_FIX_2(-641.5),   FLOAT_TO_FIX_2(-678.0),   FLOAT_TO_FIX_2(-714.0),   FLOAT_TO_FIX_2(-749.0),
+    FLOAT_TO_FIX_2(-783.5),   FLOAT_TO_FIX_2(-817.0),   FLOAT_TO_FIX_2(-849.0),   FLOAT_TO_FIX_2(-879.5),
+    FLOAT_TO_FIX_2(-908.5),   FLOAT_TO_FIX_2(-935.0),   FLOAT_TO_FIX_2(-959.5),   FLOAT_TO_FIX_2(-981.0),
+    FLOAT_TO_FIX_2(-1000.5),  FLOAT_TO_FIX_2(-1016.0),  FLOAT_TO_FIX_2(-1028.5),  FLOAT_TO_FIX_2(-1037.5),
+    FLOAT_TO_FIX_2(-1042.5),  FLOAT_TO_FIX_2(-1043.5),  FLOAT_TO_FIX_2(-1040.0),  FLOAT_TO_FIX_2(-1031.5),
+    FLOAT_TO_FIX_2(1018.5),   FLOAT_TO_FIX_2(1000.0),   FLOAT_TO_FIX_2(976.0),    FLOAT_TO_FIX_2(946.5),
+    FLOAT_TO_FIX_2(911.0),    FLOAT_TO_FIX_2(869.5),    FLOAT_TO_FIX_2(822.0),    FLOAT_TO_FIX_2(767.5),
+    FLOAT_TO_FIX_2(707.0),    FLOAT_TO_FIX_2(640.0),    FLOAT_TO_FIX_2(565.5),    FLOAT_TO_FIX_2(485.0),
+    FLOAT_TO_FIX_2(397.0),    FLOAT_TO_FIX_2(302.5),    FLOAT_TO_FIX_2(201.0),    FLOAT_TO_FIX_2(92.5),
+    FLOAT_TO_FIX_2(-22.5),    FLOAT_TO_FIX_2(-144.0),   FLOAT_TO_FIX_2(-272.5),   FLOAT_TO_FIX_2(-407.0),
+    FLOAT_TO_FIX_2(-547.5),   FLOAT_TO_FIX_2(-694.0),   FLOAT_TO_FIX_2(-846.0),   FLOAT_TO_FIX_2(-1003.0),
+    FLOAT_TO_FIX_2(-1165.0),  FLOAT_TO_FIX_2(-1331.5),  FLOAT_TO_FIX_2(-1502.0),  FLOAT_TO_FIX_2(-1675.5),
+    FLOAT_TO_FIX_2(-1852.5),  FLOAT_TO_FIX_2(-2031.5),  FLOAT_TO_FIX_2(-2212.5),  FLOAT_TO_FIX_2(-2394.0),
+    FLOAT_TO_FIX_2(-2576.5),  FLOAT_TO_FIX_2(-2758.5),  FLOAT_TO_FIX_2(-2939.5),  FLOAT_TO_FIX_2(-3118.5),
+    FLOAT_TO_FIX_2(-3294.5),  FLOAT_TO_FIX_2(-3467.5),  FLOAT_TO_FIX_2(-3635.5),  FLOAT_TO_FIX_2(-3798.5),
+    FLOAT_TO_FIX_2(-3955.0),  FLOAT_TO_FIX_2(-4104.5),  FLOAT_TO_FIX_2(-4245.5),  FLOAT_TO_FIX_2(-4377.5),
+    FLOAT_TO_FIX_2(-4499.0),  FLOAT_TO_FIX_2(-4609.5),  FLOAT_TO_FIX_2(-4708.0),  FLOAT_TO_FIX_2(-4792.5),
+    FLOAT_TO_FIX_2(-4863.5),  FLOAT_TO_FIX_2(-4919.0),  FLOAT_TO_FIX_2(-4958.0),  FLOAT_TO_FIX_2(-4979.5),
+    FLOAT_TO_FIX_2(-4983.0),  FLOAT_TO_FIX_2(-4967.5),  FLOAT_TO_FIX_2(-4931.5),  FLOAT_TO_FIX_2(-4875.0),
+    FLOAT_TO_FIX_2(-4796.0),  FLOAT_TO_FIX_2(-4694.5),  FLOAT_TO_FIX_2(-4569.5),  FLOAT_TO_FIX_2(-4420.0),
+    FLOAT_TO_FIX_2(-4246.0),  FLOAT_TO_FIX_2(-4046.0),  FLOAT_TO_FIX_2(-3820.0),  FLOAT_TO_FIX_2(-3567.0),
+    FLOAT_TO_FIX_2(3287.0),   FLOAT_TO_FIX_2(2979.5),   FLOAT_TO_FIX_2(2644.0),   FLOAT_TO_FIX_2(2280.5),
+    FLOAT_TO_FIX_2(1888.0),   FLOAT_TO_FIX_2(1467.5),   FLOAT_TO_FIX_2(1018.5),   FLOAT_TO_FIX_2(541.0),
+    FLOAT_TO_FIX_2(35.0),     FLOAT_TO_FIX_2(-499.0),   FLOAT_TO_FIX_2(-1061.0),  FLOAT_TO_FIX_2(-1650.0),
+    FLOAT_TO_FIX_2(-2266.5),  FLOAT_TO_FIX_2(-2909.0),  FLOAT_TO_FIX_2(-3577.0),  FLOAT_TO_FIX_2(-4270.0),
+    FLOAT_TO_FIX_2(-4987.5),  FLOAT_TO_FIX_2(-5727.5),  FLOAT_TO_FIX_2(-6490.0),  FLOAT_TO_FIX_2(-7274.0),
+    FLOAT_TO_FIX_2(-8077.5),  FLOAT_TO_FIX_2(-8899.5),  FLOAT_TO_FIX_2(-9739.0),  FLOAT_TO_FIX_2(-10594.5),
+    FLOAT_TO_FIX_2(-11464.5), FLOAT_TO_FIX_2(-12347.0), FLOAT_TO_FIX_2(-13241.0), FLOAT_TO_FIX_2(-14144.5),
+    FLOAT_TO_FIX_2(-15056.0), FLOAT_TO_FIX_2(-15973.5), FLOAT_TO_FIX_2(-16895.5), FLOAT_TO_FIX_2(-17820.0),
+    FLOAT_TO_FIX_2(-18744.5), FLOAT_TO_FIX_2(-19668.0), FLOAT_TO_FIX_2(-20588.0), FLOAT_TO_FIX_2(-21503.0),
+    FLOAT_TO_FIX_2(-22410.5), FLOAT_TO_FIX_2(-23308.5), FLOAT_TO_FIX_2(-24195.0), FLOAT_TO_FIX_2(-25068.5),
+    FLOAT_TO_FIX_2(-25926.5), FLOAT_TO_FIX_2(-26767.0), FLOAT_TO_FIX_2(-27589.0), FLOAT_TO_FIX_2(-28389.0),
+    FLOAT_TO_FIX_2(-29166.5), FLOAT_TO_FIX_2(-29919.0), FLOAT_TO_FIX_2(-30644.5), FLOAT_TO_FIX_2(-31342.0),
+    FLOAT_TO_FIX_2(-32009.5), FLOAT_TO_FIX_2(-32645.0), FLOAT_TO_FIX_2(-33247.0), FLOAT_TO_FIX_2(-33814.5),
+    FLOAT_TO_FIX_2(-34346.0), FLOAT_TO_FIX_2(-34839.5), FLOAT_TO_FIX_2(-35295.0), FLOAT_TO_FIX_2(-35710.0),
+    FLOAT_TO_FIX_2(-36084.5), FLOAT_TO_FIX_2(-36417.5), FLOAT_TO_FIX_2(-36707.5), FLOAT_TO_FIX_2(-36954.0),
+    FLOAT_TO_FIX_2(-37156.5), FLOAT_TO_FIX_2(-37315.0), FLOAT_TO_FIX_2(-37428.0), FLOAT_TO_FIX_2(-37496.0),
+    FLOAT_TO_FIX_2(37519.0),  FLOAT_TO_FIX_2(37496.0),  FLOAT_TO_FIX_2(37428.0),  FLOAT_TO_FIX_2(37315.0),
+    FLOAT_TO_FIX_2(37156.5),  FLOAT_TO_FIX_2(36954.0),  FLOAT_TO_FIX_2(36707.5),  FLOAT_TO_FIX_2(36417.5),
+    FLOAT_TO_FIX_2(36084.5),  FLOAT_TO_FIX_2(35710.0),  FLOAT_TO_FIX_2(35295.0),  FLOAT_TO_FIX_2(34839.5),
+    FLOAT_TO_FIX_2(34346.0),  FLOAT_TO_FIX_2(33814.5),  FLOAT_TO_FIX_2(33247.0),  FLOAT_TO_FIX_2(32645.0),
+    FLOAT_TO_FIX_2(32009.5),  FLOAT_TO_FIX_2(31342.0),  FLOAT_TO_FIX_2(30644.5),  FLOAT_TO_FIX_2(29919.0),
+    FLOAT_TO_FIX_2(29166.5),  FLOAT_TO_FIX_2(28389.0),  FLOAT_TO_FIX_2(27589.0),  FLOAT_TO_FIX_2(26767.0),
+    FLOAT_TO_FIX_2(25926.5),  FLOAT_TO_FIX_2(25068.5),  FLOAT_TO_FIX_2(24195.0),  FLOAT_TO_FIX_2(23308.5),
+    FLOAT_TO_FIX_2(22410.5),  FLOAT_TO_FIX_2(21503.0),  FLOAT_TO_FIX_2(20588.0),  FLOAT_TO_FIX_2(19668.0),
+    FLOAT_TO_FIX_2(18744.5),  FLOAT_TO_FIX_2(17820.0),  FLOAT_TO_FIX_2(16895.5),  FLOAT_TO_FIX_2(15973.5),
+    FLOAT_TO_FIX_2(15056.0),  FLOAT_TO_FIX_2(14144.5),  FLOAT_TO_FIX_2(13241.0),  FLOAT_TO_FIX_2(12347.0),
+    FLOAT_TO_FIX_2(11464.5),  FLOAT_TO_FIX_2(10594.5),  FLOAT_TO_FIX_2(9739.0),   FLOAT_TO_FIX_2(8899.5),
+    FLOAT_TO_FIX_2(8077.5),   FLOAT_TO_FIX_2(7274.0),   FLOAT_TO_FIX_2(6490.0),   FLOAT_TO_FIX_2(5727.5),
+    FLOAT_TO_FIX_2(4987.5),   FLOAT_TO_FIX_2(4270.0),   FLOAT_TO_FIX_2(3577.0),   FLOAT_TO_FIX_2(2909.0),
+    FLOAT_TO_FIX_2(2266.5),   FLOAT_TO_FIX_2(1650.0),   FLOAT_TO_FIX_2(1061.0),   FLOAT_TO_FIX_2(499.0),
+    FLOAT_TO_FIX_2(-35.0),    FLOAT_TO_FIX_2(-541.0),   FLOAT_TO_FIX_2(-1018.5),  FLOAT_TO_FIX_2(-1467.5),
+    FLOAT_TO_FIX_2(-1888.0),  FLOAT_TO_FIX_2(-2280.5),  FLOAT_TO_FIX_2(-2644.0),  FLOAT_TO_FIX_2(-2979.5),
+    FLOAT_TO_FIX_2(3287.0),   FLOAT_TO_FIX_2(3567.0),   FLOAT_TO_FIX_2(3820.0),   FLOAT_TO_FIX_2(4046.0),
+    FLOAT_TO_FIX_2(4246.0),   FLOAT_TO_FIX_2(4420.0),   FLOAT_TO_FIX_2(4569.5),   FLOAT_TO_FIX_2(4694.5),
+    FLOAT_TO_FIX_2(4796.0),   FLOAT_TO_FIX_2(4875.0),   FLOAT_TO_FIX_2(4931.5),   FLOAT_TO_FIX_2(4967.5),
+    FLOAT_TO_FIX_2(4983.0),   FLOAT_TO_FIX_2(4979.5),   FLOAT_TO_FIX_2(4958.0),   FLOAT_TO_FIX_2(4919.0),
+    FLOAT_TO_FIX_2(4863.5),   FLOAT_TO_FIX_2(4792.5),   FLOAT_TO_FIX_2(4708.0),   FLOAT_TO_FIX_2(4609.5),
+    FLOAT_TO_FIX_2(4499.0),   FLOAT_TO_FIX_2(4377.5),   FLOAT_TO_FIX_2(4245.5),   FLOAT_TO_FIX_2(4104.5),
+    FLOAT_TO_FIX_2(3955.0),   FLOAT_TO_FIX_2(3798.5),   FLOAT_TO_FIX_2(3635.5),   FLOAT_TO_FIX_2(3467.5),
+    FLOAT_TO_FIX_2(3294.5),   FLOAT_TO_FIX_2(3118.5),   FLOAT_TO_FIX_2(2939.5),   FLOAT_TO_FIX_2(2758.5),
+    FLOAT_TO_FIX_2(2576.5),   FLOAT_TO_FIX_2(2394.0),   FLOAT_TO_FIX_2(2212.5),   FLOAT_TO_FIX_2(2031.5),
+    FLOAT_TO_FIX_2(1852.5),   FLOAT_TO_FIX_2(1675.5),   FLOAT_TO_FIX_2(1502.0),   FLOAT_TO_FIX_2(1331.5),
+    FLOAT_TO_FIX_2(1165.0),   FLOAT_TO_FIX_2(1003.0),   FLOAT_TO_FIX_2(846.0),    FLOAT_TO_FIX_2(694.0),
+    FLOAT_TO_FIX_2(547.5),    FLOAT_TO_FIX_2(407.0),    FLOAT_TO_FIX_2(272.5),    FLOAT_TO_FIX_2(144.0),
+    FLOAT_TO_FIX_2(22.5),     FLOAT_TO_FIX_2(-92.5),    FLOAT_TO_FIX_2(-201.0),   FLOAT_TO_FIX_2(-302.5),
+    FLOAT_TO_FIX_2(-397.0),   FLOAT_TO_FIX_2(-485.0),   FLOAT_TO_FIX_2(-565.5),   FLOAT_TO_FIX_2(-640.0),
+    FLOAT_TO_FIX_2(-707.0),   FLOAT_TO_FIX_2(-767.5),   FLOAT_TO_FIX_2(-822.0),   FLOAT_TO_FIX_2(-869.5),
+    FLOAT_TO_FIX_2(-911.0),   FLOAT_TO_FIX_2(-946.5),   FLOAT_TO_FIX_2(-976.0),   FLOAT_TO_FIX_2(-1000.0),
+    FLOAT_TO_FIX_2(1018.5),   FLOAT_TO_FIX_2(1031.5),   FLOAT_TO_FIX_2(1040.0),   FLOAT_TO_FIX_2(1043.5),
+    FLOAT_TO_FIX_2(1042.5),   FLOAT_TO_FIX_2(1037.5),   FLOAT_TO_FIX_2(1028.5),   FLOAT_TO_FIX_2(1016.0),
+    FLOAT_TO_FIX_2(1000.5),   FLOAT_TO_FIX_2(981.0),    FLOAT_TO_FIX_2(959.5),    FLOAT_TO_FIX_2(935.0),
+    FLOAT_TO_FIX_2(908.5),    FLOAT_TO_FIX_2(879.5),    FLOAT_TO_FIX_2(849.0),    FLOAT_TO_FIX_2(817.0),
+    FLOAT_TO_FIX_2(783.5),    FLOAT_TO_FIX_2(749.0),    FLOAT_TO_FIX_2(714.0),    FLOAT_TO_FIX_2(678.0),
+    FLOAT_TO_FIX_2(641.5),    FLOAT_TO_FIX_2(605.0),    FLOAT_TO_FIX_2(568.5),    FLOAT_TO_FIX_2(532.0),
+    FLOAT_TO_FIX_2(495.5),    FLOAT_TO_FIX_2(459.5),    FLOAT_TO_FIX_2(424.0),    FLOAT_TO_FIX_2(389.5),
+    FLOAT_TO_FIX_2(355.5),    FLOAT_TO_FIX_2(322.5),    FLOAT_TO_FIX_2(290.5),    FLOAT_TO_FIX_2(259.5),
+    FLOAT_TO_FIX_2(229.5),    FLOAT_TO_FIX_2(200.5),    FLOAT_TO_FIX_2(173.5),    FLOAT_TO_FIX_2(147.0),
+    FLOAT_TO_FIX_2(122.0),    FLOAT_TO_FIX_2(98.5),     FLOAT_TO_FIX_2(76.5),     FLOAT_TO_FIX_2(55.5),
+    FLOAT_TO_FIX_2(36.0),     FLOAT_TO_FIX_2(18.0),     FLOAT_TO_FIX_2(1.0),      FLOAT_TO_FIX_2(-14.5),
+    FLOAT_TO_FIX_2(-28.5),    FLOAT_TO_FIX_2(-41.5),    FLOAT_TO_FIX_2(-53.0),    FLOAT_TO_FIX_2(-63.5),
+    FLOAT_TO_FIX_2(-73.0),    FLOAT_TO_FIX_2(-81.5),    FLOAT_TO_FIX_2(-88.5),    FLOAT_TO_FIX_2(-94.5),
+    FLOAT_TO_FIX_2(-100.0),   FLOAT_TO_FIX_2(-104.0),   FLOAT_TO_FIX_2(-107.5),   FLOAT_TO_FIX_2(-110.5),
+    FLOAT_TO_FIX_2(-112.0),   FLOAT_TO_FIX_2(-113.5),   FLOAT_TO_FIX_2(-114.0),   FLOAT_TO_FIX_2(-114.0),
+    FLOAT_TO_FIX_2(-113.5),   FLOAT_TO_FIX_2(-112.5),   FLOAT_TO_FIX_2(-111.0),   FLOAT_TO_FIX_2(-109.0),
+    FLOAT_TO_FIX_2(106.5),    FLOAT_TO_FIX_2(104.0),    FLOAT_TO_FIX_2(101.0),    FLOAT_TO_FIX_2(98.0),
+    FLOAT_TO_FIX_2(95.0),     FLOAT_TO_FIX_2(91.5),     FLOAT_TO_FIX_2(88.0),     FLOAT_TO_FIX_2(84.5),
+    FLOAT_TO_FIX_2(80.5),     FLOAT_TO_FIX_2(77.0),     FLOAT_TO_FIX_2(73.5),     FLOAT_TO_FIX_2(69.5),
+    FLOAT_TO_FIX_2(66.0),     FLOAT_TO_FIX_2(62.5),     FLOAT_TO_FIX_2(58.5),     FLOAT_TO_FIX_2(55.5),
+    FLOAT_TO_FIX_2(52.0),     FLOAT_TO_FIX_2(48.5),     FLOAT_TO_FIX_2(45.5),     FLOAT_TO_FIX_2(42.5),
+    FLOAT_TO_FIX_2(39.5),     FLOAT_TO_FIX_2(36.5),     FLOAT_TO_FIX_2(34.0),     FLOAT_TO_FIX_2(31.5),
+    FLOAT_TO_FIX_2(29.0),     FLOAT_TO_FIX_2(26.5),     FLOAT_TO_FIX_2(24.5),     FLOAT_TO_FIX_2(22.5),
+    FLOAT_TO_FIX_2(20.5),     FLOAT_TO_FIX_2(19.0),     FLOAT_TO_FIX_2(17.5),     FLOAT_TO_FIX_2(15.5),
+    FLOAT_TO_FIX_2(14.5),     FLOAT_TO_FIX_2(13.0),     FLOAT_TO_FIX_2(12.0),     FLOAT_TO_FIX_2(10.5),
+    FLOAT_TO_FIX_2(9.5),      FLOAT_TO_FIX_2(8.5),      FLOAT_TO_FIX_2(8.0),      FLOAT_TO_FIX_2(7.0),
+    FLOAT_TO_FIX_2(6.5),      FLOAT_TO_FIX_2(5.5),      FLOAT_TO_FIX_2(5.0),      FLOAT_TO_FIX_2(4.5),
+    FLOAT_TO_FIX_2(4.0),      FLOAT_TO_FIX_2(3.5),      FLOAT_TO_FIX_2(3.5),      FLOAT_TO_FIX_2(3.0),
+    FLOAT_TO_FIX_2(2.5),      FLOAT_TO_FIX_2(2.5),      FLOAT_TO_FIX_2(2.0),      FLOAT_TO_FIX_2(2.0),
+    FLOAT_TO_FIX_2(1.5),      FLOAT_TO_FIX_2(1.5),      FLOAT_TO_FIX_2(1.0),      FLOAT_TO_FIX_2(1.0),
+    FLOAT_TO_FIX_2(1.0),      FLOAT_TO_FIX_2(1.0),      FLOAT_TO_FIX_2(0.5),      FLOAT_TO_FIX_2(0.5),
+    FLOAT_TO_FIX_2(0.5),      FLOAT_TO_FIX_2(0.5),      FLOAT_TO_FIX_2(0.5),      FLOAT_TO_FIX_2(0.5)};
 
 // Quantizer lookup, step 1: bitrate classes
 static const uint8_t PLM_AUDIO_QUANT_LUT_STEP_1[2][16] = {
@@ -2863,8 +1229,7 @@ int plm_audio_decode_header(plm_audio_t *self);
 void plm_audio_decode_frame(plm_audio_t *self);
 void plm_audio_decode_layer_i_frame(plm_audio_t *self);
 void plm_audio_decode_layer_ii_frame(plm_audio_t *self);
-const plm_quantizer_spec_t *plm_audio_read_allocation(plm_audio_t *self, int sb,
-                                                      int tab3);
+const plm_quantizer_spec_t *plm_audio_read_allocation(plm_audio_t *self, int sb, int tab3);
 void plm_audio_read_samples(plm_audio_t *self, int ch, int sb, int part);
 void plm_audio_read_layer_i_sample(plm_audio_t *self, int ch, int sb);
 void plm_audio_synthesize_sample(plm_audio_t *self, int ss, int *out_pos);
@@ -2882,36 +1247,12 @@ plm_audio_t *plm_audio_create_with_buffer(plm_dma_buffer_t *buffer) {
 
 #ifdef SOFT_CONVOLVE
     memcpy(self->D, PLM_AUDIO_SYNTHESIS_WINDOW, 512 * sizeof(intsample_t));
-    memcpy(self->D + 512, PLM_AUDIO_SYNTHESIS_WINDOW,
-           512 * sizeof(intsample_t));
+    memcpy(self->D + 512, PLM_AUDIO_SYNTHESIS_WINDOW, 512 * sizeof(intsample_t));
 #endif
     // Attempt to decode first header
     self->next_frame_data_size = plm_audio_decode_header(self);
 
     return self;
-}
-
-int plm_audio_has_header(plm_audio_t *self) {
-    if (self->has_header) {
-        return TRUE;
-    }
-
-    self->next_frame_data_size = plm_audio_decode_header(self);
-    return self->has_header;
-}
-
-int plm_audio_get_samplerate(plm_audio_t *self) {
-    return plm_audio_has_header(self)
-               ? PLM_AUDIO_SAMPLE_RATE[self->samplerate_index]
-               : 0;
-}
-
-int64_t plm_audio_get_time(plm_audio_t *self) { return self->time; }
-
-void plm_audio_set_time(plm_audio_t *self, int64_t time) {
-    self->samples_decoded =
-        time * (double)PLM_AUDIO_SAMPLE_RATE[self->samplerate_index];
-    self->time = time;
 }
 
 plm_samples_t *plm_audio_decode(plm_audio_t *self) {
@@ -2930,14 +1271,12 @@ plm_samples_t *plm_audio_decode(plm_audio_t *self) {
 
     // To avoid accidental detection of frame headers inside of superfluous
     // data, we keep note here on the amount of data we should skip
-    int bit_index_next_frame_header =
-        fifo_ctrl->read_bit_index + (self->next_frame_data_size << 3);
+    int bit_index_next_frame_header = fifo_ctrl->read_bit_index + (self->next_frame_data_size << 3);
 
     plm_audio_decode_frame(self);
 
     if (fifo_ctrl->read_bit_index < bit_index_next_frame_header) {
-        plm_dma_buffer_skip(self->buffer, bit_index_next_frame_header -
-                                              fifo_ctrl->read_bit_index);
+        plm_dma_buffer_skip(self->buffer, bit_index_next_frame_header - fifo_ctrl->read_bit_index);
     }
 
     self->next_frame_data_size = 0;
@@ -2946,16 +1285,14 @@ plm_samples_t *plm_audio_decode(plm_audio_t *self) {
 
     self->samples.count = self->samples_per_frame;
     self->samples_decoded += self->samples_per_frame;
-    self->time =
-        self->samples_decoded / PLM_AUDIO_SAMPLE_RATE[self->samplerate_index];
+    self->time = self->samples_decoded / PLM_AUDIO_SAMPLE_RATE[self->samplerate_index];
 
     return &self->samples;
 }
 
 int plm_audio_find_frame_sync(plm_audio_t *self) {
     size_t i;
-    for (i = fifo_ctrl->read_bit_index >> 3;
-         i < fifo_ctrl->write_byte_index - 1; i++) {
+    for (i = fifo_ctrl->read_bit_index >> 3; i < fifo_ctrl->write_byte_index - 1; i++) {
         if (
             // Ensure first 8 bytes of sync word are set
             self->buffer->bytes[i] == 0xFF &&
@@ -2996,15 +1333,13 @@ int plm_audio_decode_header(plm_audio_t *self) {
     }
 
     // prefix with 0xE0 for first F nibble in MPEG1 audio header and MPEG ID
-    fifo_ctrl->mpeg_audio_header =
-        0xE00000 | plm_dma_buffer_peek(self->buffer, 8 + 8 + 5);
+    fifo_ctrl->mpeg_audio_header = 0xE00000 | plm_dma_buffer_peek(self->buffer, 8 + 8 + 5);
     self->version = plm_dma_buffer_read(self->buffer, 2);
     self->layer = plm_dma_buffer_read(self->buffer, 2);
     int hasCRC = !plm_dma_buffer_read(self->buffer, 1);
 
     if (self->version != PLM_AUDIO_MPEG_1 ||
-        (self->layer != PLM_AUDIO_LAYER_I &&
-         self->layer != PLM_AUDIO_LAYER_II)) {
+        (self->layer != PLM_AUDIO_LAYER_I && self->layer != PLM_AUDIO_LAYER_II)) {
         return 0;
     }
 
@@ -3024,8 +1359,8 @@ int plm_audio_decode_header(plm_audio_t *self) {
 
     // If we already have a header, make sure the samplerate, bitrate and mode
     // are still the same, otherwise we might have missed sync.
-    if (self->has_header && (self->bitrate_index != bitrate_index ||
-                             self->samplerate_index != samplerate_index)) {
+    if (self->has_header &&
+        (self->bitrate_index != bitrate_index || self->samplerate_index != samplerate_index)) {
         return 0;
     }
 
@@ -3053,13 +1388,11 @@ int plm_audio_decode_header(plm_audio_t *self) {
     // frame.
     self->samples_per_frame = (self->layer == PLM_AUDIO_LAYER_I) ? 384 : 1152;
     self->samples.count = self->samples_per_frame;
-    int bitrate = self->layer == PLM_AUDIO_LAYER_I
-                      ? PLM_AUDIO_BIT_RATE_LAYER_I[self->bitrate_index]
-                      : PLM_AUDIO_BIT_RATE[self->bitrate_index];
+    int bitrate = self->layer == PLM_AUDIO_LAYER_I ? PLM_AUDIO_BIT_RATE_LAYER_I[self->bitrate_index]
+                                                   : PLM_AUDIO_BIT_RATE[self->bitrate_index];
     int samplerate = PLM_AUDIO_SAMPLE_RATE[self->samplerate_index];
-    int frame_size = self->layer == PLM_AUDIO_LAYER_I
-                         ? (((12000 * bitrate / samplerate) + padding) << 2)
-                         : ((144000 * bitrate / samplerate) + padding);
+    int frame_size = self->layer == PLM_AUDIO_LAYER_I ? (((12000 * bitrate / samplerate) + padding) << 2)
+                                                      : ((144000 * bitrate / samplerate) + padding);
     return frame_size - (hasCRC ? 6 : 4);
 }
 
@@ -3093,8 +1426,7 @@ void plm_audio_decode_layer_ii_frame(plm_audio_t *self) {
     }
 
     for (int sb = self->bound; sb < sblimit; sb++) {
-        self->allocation[0][sb] = self->allocation[1][sb] =
-            plm_audio_read_allocation(self, sb, tab3);
+        self->allocation[0][sb] = self->allocation[1][sb] = plm_audio_read_allocation(self, sb, tab3);
     }
 
     // Read scale factor selector information
@@ -3102,8 +1434,7 @@ void plm_audio_decode_layer_ii_frame(plm_audio_t *self) {
     for (int sb = 0; sb < sblimit; sb++) {
         for (int ch = 0; ch < channels; ch++) {
             if (self->allocation[ch][sb]) {
-                self->scale_factor_info[ch][sb] =
-                    plm_dma_buffer_read(self->buffer, 2);
+                self->scale_factor_info[ch][sb] = plm_dma_buffer_read(self->buffer, 2);
             }
         }
         if (self->mode == PLM_AUDIO_MODE_MONO) {
@@ -3127,8 +1458,7 @@ void plm_audio_decode_layer_ii_frame(plm_audio_t *self) {
                     sf[2] = plm_dma_buffer_read(self->buffer, 6);
                     break;
                 case 2:
-                    sf[0] = sf[1] = sf[2] =
-                        plm_dma_buffer_read(self->buffer, 6);
+                    sf[0] = sf[1] = sf[2] = plm_dma_buffer_read(self->buffer, 6);
                     break;
                 case 3:
                     sf[0] = plm_dma_buffer_read(self->buffer, 6);
@@ -3192,16 +1522,14 @@ void plm_audio_decode_layer_i_frame(plm_audio_t *self) {
     }
 
     for (int sb = self->bound; sb < sblimit; sb++) {
-        self->allocation[0][sb] = self->allocation[1][sb] =
-            plm_audio_read_allocation(self, sb, -1);
+        self->allocation[0][sb] = self->allocation[1][sb] = plm_audio_read_allocation(self, sb, -1);
     }
 
     int channels = (self->mode == PLM_AUDIO_MODE_MONO) ? 1 : 2;
     for (int sb = 0; sb < sblimit; sb++) {
         for (int ch = 0; ch < channels; ch++) {
             if (self->allocation[ch][sb]) {
-                self->scale_factor[ch][sb][0] =
-                    plm_dma_buffer_read(self->buffer, 6);
+                self->scale_factor[ch][sb][0] = plm_dma_buffer_read(self->buffer, 6);
             }
         }
         if (self->mode == PLM_AUDIO_MODE_MONO) {
@@ -3226,18 +1554,14 @@ void plm_audio_decode_layer_i_frame(plm_audio_t *self) {
     plm_dma_buffer_align(self->buffer);
 }
 
-const plm_quantizer_spec_t *plm_audio_read_allocation(plm_audio_t *self, int sb,
-                                                      int tab3) {
+const plm_quantizer_spec_t *plm_audio_read_allocation(plm_audio_t *self, int sb, int tab3) {
     if (tab3 < 0) {
         int allocation = plm_dma_buffer_read(self->buffer, 4);
-        return (allocation && allocation < 15)
-                   ? (&PLM_AUDIO_LAYER_I_QUANT_TAB[allocation - 1])
-                   : 0;
+        return (allocation && allocation < 15) ? (&PLM_AUDIO_LAYER_I_QUANT_TAB[allocation - 1]) : 0;
     }
 
     int tab4 = PLM_AUDIO_QUANT_LUT_STEP_3[tab3][sb];
-    int qtab = PLM_AUDIO_QUANT_LUT_STEP_4[tab4 & 15][plm_dma_buffer_read(
-        self->buffer, tab4 >> 4)];
+    int qtab = PLM_AUDIO_QUANT_LUT_STEP_4[tab4 & 15][plm_dma_buffer_read(self->buffer, tab4 >> 4)];
     return qtab ? (&PLM_AUDIO_QUANT_TAB[qtab - 1]) : 0;
 }
 
@@ -3258,8 +1582,7 @@ void plm_audio_read_samples(plm_audio_t *self, int ch, int sb, int part) {
         sf = 0;
     } else {
         int shift = (sf / 3) | 0;
-        sf =
-            (PLM_AUDIO_SCALEFACTOR_BASE[sf % 3] + ((1 << shift) >> 1)) >> shift;
+        sf = (PLM_AUDIO_SCALEFACTOR_BASE[sf % 3] + ((1 << shift) >> 1)) >> shift;
     }
 
     // Decode samples
@@ -3306,8 +1629,7 @@ void plm_audio_read_layer_i_sample(plm_audio_t *self, int ch, int sb) {
         sf = 0;
     } else {
         int shift = (sf / 3) | 0;
-        sf =
-            (PLM_AUDIO_SCALEFACTOR_BASE[sf % 3] + ((1 << shift) >> 1)) >> shift;
+        sf = (PLM_AUDIO_SCALEFACTOR_BASE[sf % 3] + ((1 << shift) >> 1)) >> shift;
     }
 
     int sample = plm_dma_buffer_read(self->buffer, q->bits);
@@ -3316,8 +1638,7 @@ void plm_audio_read_layer_i_sample(plm_audio_t *self, int ch, int sb) {
     adj = ((adj + 1) >> 1) - 1;
 
     val = (adj - sample) * scale;
-    self->sample[ch][sb][0] =
-        (val * (sf >> 12) + ((val * (sf & 4095) + 2048) >> 12)) >> 12;
+    self->sample[ch][sb][0] = (val * (sf >> 12) + ((val * (sf & 4095) + 2048) >> 12)) >> 12;
 }
 
 void plm_audio_synthesize_sample(plm_audio_t *self, int ss, int *out_pos) {
@@ -3398,8 +1719,7 @@ void plm_audio_synthesize_sample(plm_audio_t *self, int ss, int *out_pos) {
         }
 #endif
         {
-            volatile struct io_audio_out *out_channel =
-                (ch == 0) ? io_audio_out_left : io_audio_out_right;
+            volatile struct io_audio_out *out_channel = (ch == 0) ? io_audio_out_left : io_audio_out_right;
             for (int j = 0; j < 32; j++) {
                 out_channel->sample = hw_U[j] / (0x10000);
             }
@@ -3409,9 +1729,8 @@ void plm_audio_synthesize_sample(plm_audio_t *self, int ss, int *out_pos) {
 }
 
 void plm_audio_idct36(int s[32][3], int ss, intsample_t *d, int dp) {
-    int32_t t01, t02, t03, t04, t05, t06, t07, t08, t09, t10, t11, t12, t13,
-        t14, t15, t16, t17, t18, t19, t20, t21, t22, t23, t24, t25, t26, t27,
-        t28, t29, t30, t31, t32, t33;
+    int32_t t01, t02, t03, t04, t05, t06, t07, t08, t09, t10, t11, t12, t13, t14, t15, t16, t17, t18, t19,
+        t20, t21, t22, t23, t24, t25, t26, t27, t28, t29, t30, t31, t32, t33;
 
     t01 = (s[0][ss] + s[31][ss]);
     t02 = (s[0][ss] - s[31][ss]) * FLOAT_TO_FIX_256(0.500602998235f) / MULTDIV;
