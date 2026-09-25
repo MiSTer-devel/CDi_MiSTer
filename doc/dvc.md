@@ -30,13 +30,14 @@ here some notes.
 
                  33 bit   32 bit   16 bit       
                  90 khz   45 kHz   703.125 Hz   30 MHz
-    1  23.98 Hz  3753.75  1876.88  29.326       1251251
-    2  24 Hz     3750     1875     29.297       1250000
-    3  25 Hz     3600     1800     28.125       1200000
-    4  29.97 Hz  3003     1501.5   23.46        1001001
-    5  30 Hz     3000     1500     23.43        1000000
-    6  50 Hz     1800     900      14.0625      600000
-    8  60 Hz     1500     750      11.71875     500000
+    1  23.98 Hz  3753.75  1876.88  29.326       1251251    Film
+    2  24 Hz     3750     1875     29.297       1250000    Film
+    3  25 Hz     3600     1800     28.125       1200000    PAL Half
+    4  29.97 Hz  3003     1501.5   23.46        1001001    NTSC Half
+    5  30 Hz     3000     1500     23.43        1000000    NTSC Half
+    6  50 Hz     1800     900      14.0625      600000     PAL Video
+    8  60 Hz     1500     750      11.71875     500000     NTSC Video
+       75 Hz     1200     600      9.375        400000     CD Sector Rate
 
 Some registers and variables
 
@@ -64,6 +65,15 @@ But no, it just stops, for some reason.
 If `ma_cdplay()` is started in wait mode and make `mv_cdplay()` the follower an offset of 11250 in the latter, will result into playback of audio half of a second earlier than video too.
 
 An offset in the first waiting one is ignored.
+
+### FMA DCLK
+
+During a 26.51 hour experiment, it was proven that it wraps from `0xffffffff` back to `0`.
+This register cannot be manipulated by the CPU.
+
+### FMV DCLK
+
+Wraps around after 0x7fff to 0. MSB always 0.
 
 ### FMV Timer
 

@@ -5,12 +5,11 @@
 * Implement optional 50/15 µsec emphasis for ADPCM (and CDDA?)
 * Check if speed of mouse device really is the max, a CD-i can take
     * Also check the accumulator
-* "Chaos Control"
-    * Video glitches when pausing and resuming. MPEG stream is actually damaged! Even mplayer has some issues.
 * Random hang of playback controls in Addams Family Disc 2. Movie still playing. Sudden rainbow colors.
     * Reproduced by frequently pausing and resuming
     * No regression. Always present since 251123
     * Can be reproduced on cdiemu as well
+    * Issue is absent on mame0289-1072-gf43983b62ed
 * Randomly no audio in Mad Dog McCree? Unclear reproduction
 * Check random audio video out of sync (e.g. Mad Dog McCree)
 * Check correct timing of DVC clipping functionality when scroll bit is reset
@@ -23,7 +22,8 @@
 * "Uncover featuring Tatjana (Europe)"
     * On the main menu, the lowest card "1 GAME" is broken. Sometimes it just stays open
       This is reproducible with 2607020, 260131
-      Issue also present on cdiemu
+    * Issue also present on cdiemu
+    * Issue is also present on mame0289-1072-gf43983b62ed
 * Regression of "Historia del Arte Español" (working in DVC rc2)
     * Blank video?
 * Fix Christmas Crisis bonus ride

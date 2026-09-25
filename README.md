@@ -107,7 +107,10 @@ Note*: 2 controllers are an unusual state for a CD-i machine. Keep that in mind.
 
 By the time of writing, an optical drive emulator is not available for physical CD-i machines.
 It is therefore encouraged to test on CD-i emulators before burning to disc.
+
 [This core can be used to test your creations to some extent](doc/cdi_homebrew.md)
+
+[If extensive debugging is required, a software emulator might be a better choice](doc/other_emulators.md)
 
 ### Issues with external dependencies
 

@@ -242,3 +242,127 @@ It seems that my implementation was wrong here.
 The audio buffer register should have bit 15 set after playback has been finished, even so
 audio control was set to 0.
 Also, playback cannot be stopped on real hardware.
+
+## Glitches in video when resuming after pausing the game
+
+The first level is lib.rtf
+
+Some commands for analysis
+
+    ./mpeg1_picture_info.py 4/fmv_m1v_3.bin > a
+    ./mpeg1_picture_info.py /home/andre/ChaosControl/lib_onlyvideo.m1v > b
+
+    ./mpeg1_picture_info.py --slices 4/fmv_m1v_3.bin > a
+    ./mpeg1_picture_info.py --slices /home/andre/ChaosControl/lib_onlyvideo.m1v > b
+
+What can be noticed is this from this core
+
+    SLICE   @ 0x00085e13  picture=0x00085b3d  vertical_pos=  3  quantiser_scale= 1
+    SLICE   @ 0x00085f68  picture=0x00085b3d  vertical_pos=  4  quantiser_scale= 1
+    SLICE   @ 0x000860ad  picture=0x00085b3d  vertical_pos=  5  quantiser_scale= 1
+    SLICE   @ 0x00086398  picture=0x00085b3d  vertical_pos=  6  quantiser_scale= 1
+    SLICE   @ 0x0008670e  picture=0x00085b3d  vertical_pos=  7  quantiser_scale= 1
+    SLICE   @ 0x00086864  picture=0x00085b3d  vertical_pos=  4  quantiser_scale= 1 <- again?
+    SLICE   @ 0x000869a9  picture=0x00085b3d  vertical_pos=  5  quantiser_scale= 1 <- again?
+    SLICE   @ 0x00086c94  picture=0x00085b3d  vertical_pos=  6  quantiser_scale= 1 <- again?
+    SLICE   @ 0x0008700a  picture=0x00085b3d  vertical_pos=  7  quantiser_scale= 1 <- again?
+    SLICE   @ 0x0008732a  picture=0x00085b3d  vertical_pos= 11  quantiser_scale= 1 <- 9 and 10 are missing
+    SLICE   @ 0x0008750d  picture=0x00085b3d  vertical_pos= 12  quantiser_scale= 1
+    SLICE   @ 0x000876bc  picture=0x00085b3d  vertical_pos= 13  quantiser_scale= 1
+    PICTURE @ 0x000878c7  GOP 00:00:03:17  temporal_ref=   2  type=B
+
+Compared to the original MPEG file
+
+    SLICE   @ 0x000860ad  picture=0x00085b3d  vertical_pos=  5  quantiser_scale= 1
+    SLICE   @ 0x00086398  picture=0x00085b3d  vertical_pos=  6  quantiser_scale= 1
+    SLICE   @ 0x0008670e  picture=0x00085b3d  vertical_pos=  7  quantiser_scale= 1
+    SLICE   @ 0x00086d0a  picture=0x00085b3d  vertical_pos=  9  quantiser_scale= 1 <- 8 is missing but that is ok
+    SLICE   @ 0x0008708c  picture=0x00085b3d  vertical_pos= 10  quantiser_scale= 1
+    SLICE   @ 0x0008732e  picture=0x00085b3d  vertical_pos= 11  quantiser_scale= 1
+    SLICE   @ 0x00087511  picture=0x00085b3d  vertical_pos= 12  quantiser_scale= 1
+    SLICE   @ 0x000876c0  picture=0x00085b3d  vertical_pos= 13  quantiser_scale= 1
+    PICTURE @ 0x000878cb  GOP 00:00:03:17  temporal_ref=   2  type=B
+    SLICE   @ 0x000878d4  picture=0x000878cb  vertical_pos=  1  quantiser_scale= 1
+    SLICE   @ 0x00087905  picture=0x000878cb  vertical_pos=  2  quantiser_scale= 1
+    SLICE   @ 0x00087944  picture=0x00
+
+This means that the pausing causes a resume on the wrong sector ?
+Since the problem can still be reproduced with the current state, analysis
+of the instructions executed during the fault might be required.
+
+Replacing `pictures_in_fifo = pictures_in_dts_fifo;` with a permanent `pictures_in_fifo = pictures_in_input_fifo;` is also not helping.
+I'm not sure why this only turns up with Chaos Control and no other title.
+
+This is also visible in the demuxer log
+
+    $ cat backup_chaos_control/log_only_gameplay | grep -e MV_ -e PACK > PACK_MV_log
+    FMV PACK      181204
+    FMV PACK      182404
+    FMV PACK      183604
+    FMV PACK      184804
+    Syscall @ 27adc6 8e I$SetStt 00000006 0000010d 00000018 0000003b 00000008 0000002e 00007b30 00000000  002310f0 00d06490 00276eb0 00d0151a 00d0649e 00d07af4 00d08000 00dfd428 SetStt MV_Pause
+    FMA PACK      186004
+    FMV PACK      187204
+    Syscall @ 27abb4 8e I$SetStt 00000006 00000105 00000000 0000003b 00000008 00000080 00000028 00000080  00000004 00d064b2 00276eb0 00d0151a 00d0649e 00d07af4 00d08000 00dfd428 SetStt MV_Continue
+    FMV PACK      189604
+    FMV PACK      189604 <-- Duplicate
+    FMV PACK      190804
+
+This gives indication that the problem occurs after the continue syscall.
+Now with added SLICE analysis to the bitstream decoder on FPGA side.
+
+    cat log0_2 | grep -e "FMV PACK" -e MV_Co -e "fmvdrv 00e54558" -e PIC4 -e Timecode -e SLICE > barf
+
+    fmvdrv 00e54558  00000908 000003a7 00007531 74807480 00000908 00000914 00000000 0000008e  0022a3f8 00df6d70 00df6b90 00e04000 00dfcc30 00d07af4 00001500 00dff2f4 2400
+    SLICE  13
+    PIC4   10 2 20506
+    SLICE   1
+    SLICE   2
+    SLICE   3
+    FMV PACK      121204
+    fmvdrv 00e54558  00000908 000003af 0000765d 0000003b 00000908 00000914 0040817c 0000008e  0022ad0c 00df6d70 00df6b90 00e04000 00dfcc30 00dfd3e8 00001500 00dff2f4 2400
+    SLICE   4
+    SLICE   5
+    SLICE   6
+    SLICE   7
+    SLICE   9
+    Syscall @ 27abb4 8e I$SetStt 00000006 00000105 00000000 0000003b 00000008 00000080 00000028 00000080  00000004 00d064b2 00276eb0 00d0151a 00d0649e 00d07af4 00d08000 00dfd428 SetStt MV_Continue
+    FMV PACK      123604
+    fmvdrv 00e54558  00000908 0000ffff 000078b5 5c805c80 00000908 00000914 0040817c 0000008e  0022b620 00df6d70 00df6b90 00e04000 00dfcc30 00dfd3e8 00001500 00dff2f4 2400
+    SLICE   4  <--- Duplicate starts here
+    SLICE   5
+    SLICE   6
+    SLICE   7
+    SLICE   9
+    FMV PACK      123604
+    fmvdrv 00e54558  00000908 000003cc 000078b5 4a804a80 00000908 00000914 0040817c 0000008e  0022bf34 00df6d70 00df6b90 00e04000 00dfcc30 00dfd3e8 00001500 00dff2f4 2400
+    SLICE  12
+    SLICE  13
+    PIC4    9 3 19602
+    SLICE   1
+    SLICE   2
+    SLICE   3
+    SLICE   4
+
+In this case these are all the addresses of PCL buffers. Exactly 16 PCL buffers to feed the FMV
+
+    fmvdrv 00e54558  .. A0 0003ca80 ...
+    fmvdrv 00e54558  .. A0 0003d394 ...
+    fmvdrv 00e54558  .. A0 0003dca8 ...
+    fmvdrv 00e54558  .. A0 0003e5bc ...
+    fmvdrv 00e54558  .. A0 0003eed0 ...
+    fmvdrv 00e54558  .. A0 0003f7e4 ...
+    fmvdrv 00e54558  .. A0 000400f8 ...
+    fmvdrv 00e54558  .. A0 00040a0c ...
+    fmvdrv 00e54558  .. A0 002291d0 ...
+    fmvdrv 00e54558  .. A0 00229ae4 ...
+    fmvdrv 00e54558  .. A0 0022a3f8 ...
+    fmvdrv 00e54558  .. A0 0022ad0c ...
+    fmvdrv 00e54558  .. A0 0022b620 ... This had the same data as 0022ad0c ???
+    fmvdrv 00e54558  .. A0 0022bf34 ...
+    fmvdrv 00e54558  .. A0 0022c848 ...
+    fmvdrv 00e54558  .. A0 0022d15c ...
+
+
+It turned out to be a bug in the CDIC during CMD24. This will be fixed.
+

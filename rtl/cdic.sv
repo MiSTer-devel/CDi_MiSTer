@@ -599,13 +599,6 @@ module cdic (
                     // This causes an IRQ to occur
                     x_buffer_register[15] <= 1'b1;
 
-                    // Reset Mode 1&2 cause reading to stop after reading
-                    // a sector
-                    if (command_register == 16'h23 || command_register == 16'h24) begin
-                        cd_reading_active <= 0;
-                        cd_stop_sector_delivery <= 1;
-                    end
-
                     if (header_submode.audio && audio_channel_match && header_mode2) begin
                         data_buffer_register[0] <= audio_target_buffer;
                         audio_target_buffer <= !audio_target_buffer;
@@ -620,22 +613,26 @@ module cdic (
                 x_buffer_register[15] <= 1'b0;
                 read_cdda <= 0;
                 read_raw <= 0;
+                spin_down_cnt <= 0;
 
                 case (command_register)
                     16'h23: begin
                         data_buffer_register[15] <= 0;  // TODO really instant?
-                        $display("CDIC Command: Stop disc");
+                        $display("CDIC Command: Stop disc spin");
                         cd_seek_lba <= time_register_as_lba;
-                        read_mode2 <= 0;
                         spin_down_cnt <= 3;
+                        cd_reading_active <= 0;
+                        cd_stop_sector_delivery <= 1;
                         // It might be tempting to do x_buffer_register[15] <= 1'b1; immediatly here.
                         // But it won't work. It needs to be delayed. spin_down_cnt will do the job
                     end
                     16'h24: begin
                         data_buffer_register[15] <= 0;  // TODO really instant?
-                        $display("CDIC Command: Reset Mode 2");
+                        $display("CDIC Command: Stop reading and keep position");
                         cd_seek_lba <= time_register_as_lba;
-                        read_mode2  <= 1;
+                        spin_down_cnt <= 2;
+                        cd_reading_active <= 0;
+                        cd_stop_sector_delivery <= 1;
                     end
                     16'h2b: begin
                         // Unknown purpose
@@ -650,6 +647,9 @@ module cdic (
                         // audio instantly
                         if (audio_channel_register != 0 && !audio_control_register[11])
                             audio_abort_playback <= 1;
+
+                        spin_down_cnt <= 2;
+
                     end
                     16'h27: begin
                         $display("CDIC Command: Fetch TOC");
@@ -803,6 +803,7 @@ module cdic (
                                 cd_reading_active <= 0;
                                 cd_stop_sector_delivery <= 1;
 
+                                // TODO is this accurate?
                                 data_target_buffer <= 0;
 
                                 // Note: The first audio buffer must be delivered to 2800
