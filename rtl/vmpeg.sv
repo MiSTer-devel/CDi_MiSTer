@@ -41,9 +41,7 @@ module vmpeg (
 
     input debug_disable_vcd_clock,
     input debug_activate_vcd_filter,
-    output bit mpeg_ram_enabled,  // Prohibits detection of MPEG RAM by the OS RAM crawler
-    output bit debug_audio_fifo_overflow,
-    output bit debug_video_fifo_overflow
+    output bit mpeg_ram_enabled  // Prohibits detection of MPEG RAM by the OS RAM crawler
 );
     wire access = cs && (uds || lds);
 
@@ -189,16 +187,6 @@ module vmpeg (
         .decoder_frameperiod_90khz(fmv_decoder_frameperiod_90khz),
         .decoder_frameperiod_rawhdr(fmv_decoder_frameperiod_rawhdr)
     );
-
-    always_ff @(posedge clk) begin
-        if (reset) begin
-            debug_video_fifo_overflow <= 0;
-            debug_audio_fifo_overflow <= 0;
-        end else begin
-            if (fma_fifo_full) debug_audio_fifo_overflow <= 1;
-            if (fmv_fifo_full) debug_video_fifo_overflow <= 1;
-        end
-    end
 
     wire fmv_event_program_end;
     wire fma_event_program_end;

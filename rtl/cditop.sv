@@ -186,6 +186,7 @@ module cditop (
     end
 
 
+    /* verilator tracing_off */
     mk48t08b mk48t (
         .clk(clk30),
         .reset,
@@ -205,6 +206,7 @@ module cditop (
 
         .hps_rtc(hps_rtc)
     );
+    /* verilator tracing_on */
 
     wire vdsc_int  /*verilator public_flat_rd*/;
 
@@ -213,7 +215,7 @@ module cditop (
     // video mixing. But we won't do that here and use the digital
     // one instead
     wire mcd212_vsd;
-    /*verilator tracing_off*/
+    /* verilator tracing_off */
     mcd212 mcd212_inst (
         .clk(clk30),
         .reset,
@@ -342,8 +344,6 @@ module cditop (
 
     rgb888_s fmv_video_out;
     rgb888_s mcd212_video_out;
-    wire debug_video_fifo_overflow;
-    wire debug_audio_fifo_overflow;
     linear_volume_s mpeg_dsp_volume;
 
     vmpeg vmpeg_inst (
@@ -370,8 +370,6 @@ module cditop (
         .debug_disable_vcd_clock,
         .debug_activate_vcd_filter,
         .mpeg_ram_enabled(mpeg_ram_enabled),
-        .debug_video_fifo_overflow(debug_video_fifo_overflow),
-        .debug_audio_fifo_overflow(debug_audio_fifo_overflow),
         .hsync(HSync),
         .vsync(VSync),
         .hblank(HBlank),
@@ -410,7 +408,7 @@ module cditop (
     );
 `endif
 
-    /*verilator tracing_off*/
+    /* verilator tracing_off */
     scc68070 scc68070_0 (
         .clk(clk30),
         .reset(reset68k),  // External sync reset on emulated system
@@ -564,7 +562,7 @@ module cditop (
 `endif
     wire signed [15:0] att_audio_left;
     wire signed [15:0] att_audio_right;
-    /*verilator tracing_off*/
+    /* verilator tracing_off */
     dual_ad7528_attenuation att (
         .clk(clk30),
         .datadac(datadac),
@@ -680,6 +678,174 @@ module cditop (
 `ifdef VERILATOR
     // Only for gtkwave to align video images with the signals in the waveform
     int frame_index  /*verilator public_flat_rw*/;
+    bit executing_dvc_rom_instructions  /*verilator public_flat_rw*/ = 0;
+
+    // Tool to observe variables in the MV Map Descriptor returned by MV_Info()
+    bit [23:0] mvmapdesc  /*verilator public_flat_rw*/ = 0;
+
+    struct {
+        bit [15:0] MD_Id, MD_Type, MD_Stream;
+        bit [31:0] MD_StLoop, MD_EnLoop;
+        bit [15:0] MD_LpCnt, MD_LCntr;
+        bit [31:0] MD_ImgSz, MD_DecWin, MD_DecOff, MD_ScrOrg, MD_ScrOff;
+        bit [31:0] MD_BCol, MD_Speed, MD_TimeCd;
+        bit [15:0] MD_TmpRef;
+        bit [7:0] MD_PicRt;
+        bit [87:0] MD_Res1;
+    } mvmap = '{default: 0};
+
+    always @(posedge clk30) begin
+        if (mvmapdesc != 0 && bus_ack && write_strobe && as && (lds || uds)) begin
+            case (addr_byte - mvmapdesc)
+                24'h00: begin
+                    mvmap.MD_Id = cpu_data;
+                    $display("MVmapDesc MD_Id = %x", cpu_data);
+                end
+                24'h02: begin
+                    mvmap.MD_Type = cpu_data;
+                    $display("MVmapDesc MD_Type = %x", cpu_data);
+                end
+                24'h04: begin
+                    mvmap.MD_Stream = cpu_data;
+                    $display("MVmapDesc MD_Stream = %x", cpu_data);
+                end
+                24'h06: begin
+                    mvmap.MD_StLoop[31:16] = cpu_data;
+                    $display("MVmapDesc MD_StLoop = %x", {cpu_data, mvmap.MD_StLoop[15:0]});
+                end
+                24'h08: begin
+                    mvmap.MD_StLoop[15:0] = cpu_data;
+                    $display("MVmapDesc MD_StLoop = %x", {mvmap.MD_StLoop[31:16], cpu_data});
+                end
+                24'h0a: begin
+                    mvmap.MD_EnLoop[31:16] = cpu_data;
+                    $display("MVmapDesc MD_EnLoop = %x", {cpu_data, mvmap.MD_EnLoop[15:0]});
+                end
+                24'h0c: begin
+                    mvmap.MD_EnLoop[15:0] = cpu_data;
+                    $display("MVmapDesc MD_EnLoop = %x", {mvmap.MD_EnLoop[31:16], cpu_data});
+                end
+                24'h0e: begin
+                    mvmap.MD_LpCnt = cpu_data;
+                    $display("MVmapDesc MD_LpCnt = %x", cpu_data);
+                end
+                24'h10: begin
+                    mvmap.MD_LCntr = cpu_data;
+                    $display("MVmapDesc MD_LCntr = %x", cpu_data);
+                end
+                24'h12: begin
+                    mvmap.MD_ImgSz[31:16] = cpu_data;
+                    $display("MVmapDesc MD_ImgSz = %x", {cpu_data, mvmap.MD_ImgSz[15:0]});
+                end
+                24'h14: begin
+                    mvmap.MD_ImgSz[15:0] = cpu_data;
+                    $display("MVmapDesc MD_ImgSz = %x", {mvmap.MD_ImgSz[31:16], cpu_data});
+                end
+                24'h16: begin
+                    mvmap.MD_DecWin[31:16] = cpu_data;
+                    $display("MVmapDesc MD_DecWin = %x", {cpu_data, mvmap.MD_DecWin[15:0]});
+                end
+                24'h18: begin
+                    mvmap.MD_DecWin[15:0] = cpu_data;
+                    $display("MVmapDesc MD_DecWin = %x", {mvmap.MD_DecWin[31:16], cpu_data});
+                end
+                24'h1a: begin
+                    mvmap.MD_DecOff[31:16] = cpu_data;
+                    $display("MVmapDesc MD_DecOff = %x", {cpu_data, mvmap.MD_DecOff[15:0]});
+                end
+                24'h1c: begin
+                    mvmap.MD_DecOff[15:0] = cpu_data;
+                    $display("MVmapDesc MD_DecOff = %x", {mvmap.MD_DecOff[31:16], cpu_data});
+                end
+                24'h1e: begin
+                    mvmap.MD_ScrOrg[31:16] = cpu_data;
+                    $display("MVmapDesc MD_ScrOrg = %x", {cpu_data, mvmap.MD_ScrOrg[15:0]});
+                end
+                24'h20: begin
+                    mvmap.MD_ScrOrg[15:0] = cpu_data;
+                    $display("MVmapDesc MD_ScrOrg = %x", {mvmap.MD_ScrOrg[31:16], cpu_data});
+                end
+                24'h22: begin
+                    mvmap.MD_ScrOff[31:16] = cpu_data;
+                    $display("MVmapDesc MD_ScrOff = %x", {cpu_data, mvmap.MD_ScrOff[15:0]});
+                end
+                24'h24: begin
+                    mvmap.MD_ScrOff[15:0] = cpu_data;
+                    $display("MVmapDesc MD_ScrOff = %x", {mvmap.MD_ScrOff[31:16], cpu_data});
+                end
+                24'h26: begin
+                    mvmap.MD_BCol[31:16] = cpu_data;
+                    $display("MVmapDesc MD_BCol = %x", {cpu_data, mvmap.MD_BCol[15:0]});
+                end
+                24'h28: begin
+                    mvmap.MD_BCol[15:0] = cpu_data;
+                    $display("MVmapDesc MD_BCol = %x", {mvmap.MD_BCol[31:16], cpu_data});
+                end
+                24'h2a: begin
+                    mvmap.MD_Speed[31:16] = cpu_data;
+                    $display("MVmapDesc MD_Speed = %x", {cpu_data, mvmap.MD_Speed[15:0]});
+                end
+                24'h2c: begin
+                    mvmap.MD_Speed[15:0] = cpu_data;
+                    $display("MVmapDesc MD_Speed = %x", {mvmap.MD_Speed[31:16], cpu_data});
+                end
+                24'h2e: begin
+                    mvmap.MD_TimeCd[31:16] = cpu_data;
+                    $display("MVmapDesc MD_TimeCd = %x", {cpu_data, mvmap.MD_TimeCd[15:0]});
+                end
+                24'h30: begin
+                    mvmap.MD_TimeCd[15:0] = cpu_data;
+                    $display("MVmapDesc MD_TimeCd = %x", {mvmap.MD_TimeCd[31:16], cpu_data});
+                end
+                24'h32: begin
+                    mvmap.MD_TmpRef = cpu_data;
+                    $display("MVmapDesc MD_TmpRef = %x", cpu_data);
+                end
+                24'h34:
+                if (uds) begin
+                    mvmap.MD_PicRt = cpu_data[15:8];
+                    $display("MVmapDesc MD_PicRt = %x", cpu_data[15:8]);
+                end
+                default: ;
+            endcase
+        end
+    end
+
+    always @(posedge clk30) begin
+        // Print only when read by the application. Not the driver
+        if (mvmapdesc != 0 && bus_ack && !write_strobe && !executing_dvc_rom_instructions && as && (lds || uds)) begin
+            case (addr_byte - mvmapdesc)
+                24'h00:  $display("MVmapDesc Read MD_Id = %x", data_in);
+                24'h02:  $display("MVmapDesc Read MD_Type = %x", data_in);
+                24'h04:  $display("MVmapDesc Read MD_Stream = %x", data_in);
+                24'h06:  $display("MVmapDesc Read MD_StLoop[31:16] = %x", data_in);
+                24'h08:  $display("MVmapDesc Read MD_StLoop[15:0] = %x", data_in);
+                24'h0a:  $display("MVmapDesc Read MD_EnLoop[31:16] = %x", data_in);
+                24'h0c:  $display("MVmapDesc Read MD_EnLoop[15:0] = %x", data_in);
+                24'h0e:  $display("MVmapDesc Read MD_LpCnt = %x", data_in);
+                24'h10:  $display("MVmapDesc Read MD_LCntr = %x", data_in);
+                24'h12:  $display("MVmapDesc Read MD_ImgSz[31:16] = %x", data_in);
+                24'h14:  $display("MVmapDesc Read MD_ImgSz[15:0] = %x", data_in);
+                24'h16:  $display("MVmapDesc Read MD_DecWin[31:16] = %x", data_in);
+                24'h18:  $display("MVmapDesc Read MD_DecWin[15:0] = %x", data_in);
+                24'h1a:  $display("MVmapDesc Read MD_DecOff[31:16] = %x", data_in);
+                24'h1c:  $display("MVmapDesc Read MD_DecOff[15:0] = %x", data_in);
+                24'h1e:  $display("MVmapDesc Read MD_ScrOrg[31:16] = %x", data_in);
+                24'h20:  $display("MVmapDesc Read MD_ScrOrg[15:0] = %x", data_in);
+                24'h22:  $display("MVmapDesc Read MD_ScrOff[31:16] = %x", data_in);
+                24'h24:  $display("MVmapDesc Read MD_ScrOff[15:0] = %x", data_in);
+                24'h26:  $display("MVmapDesc Read MD_BCol[31:16] = %x", data_in);
+                24'h28:  $display("MVmapDesc Read MD_BCol[15:0] = %x", data_in);
+                24'h2a:  $display("MVmapDesc Read MD_Speed[31:16] = %x", data_in);
+                24'h2c:  $display("MVmapDesc Read MD_Speed[15:0] = %x", data_in);
+                24'h2e:  $display("MVmapDesc Read MD_TimeCd[31:16] = %x", data_in);
+                24'h30:  $display("MVmapDesc Read MD_TimeCd[15:0] = %x", data_in);
+                24'h32:  $display("MVmapDesc Read MD_TmpRef = %x", data_in);
+                24'h34:  $display("MVmapDesc Read MD_PicRt = %x", data_in);
+                default: ;
+            endcase
+        end
+    end
 
     // Tool to observe variables in madriv module
     struct {
@@ -687,10 +853,10 @@ module cditop (
         bit [15:0] irq_stat;    // 0x120
         bit [15:0] irq_enable;  // 0x150
     } madriv = '{default: 0};
-    bit [23:0] madriv_static  /*verilator public_flat_rw*/ = 24'hdfb770;
+    bit [23:0] madriv_static  /*verilator public_flat_rw*/ = 0;
 
     always @(posedge clk30) begin
-        if (madriv_static != 0 && bus_ack && write_strobe) begin
+        if (madriv_static != 0 && bus_ack && write_strobe && as && (lds || uds)) begin
             if (addr_byte == madriv_static + 24'h122) begin
                 madriv.dma_addr[31:16] = cpu_data;
                 $display("FMA dma_addr = %x", {cpu_data, madriv.dma_addr[15:0]});
@@ -743,10 +909,10 @@ module cditop (
         bit [31:0] V_PausedSCR; // 0x144
         bit [31:0] V_ChipSpd; // 0x196 long*
     } fdrvs1 = '{default: 0};
-    bit [23:0] fdrvs1_static  /*verilator public_flat_rw*/ = 24'hdfb180;
+    bit [23:0] fdrvs1_static  /*verilator public_flat_rw*/ = 0;
     always @(posedge clk30) begin
 
-        if (fdrvs1_static != 0 && bus_ack && write_strobe) begin
+        if (fdrvs1_static != 0 && bus_ack && write_strobe && as && (lds || uds)) begin
 
             if (addr_byte == fdrvs1_static + 24'h0136) begin
                 fdrvs1.V_Status = cpu_data;

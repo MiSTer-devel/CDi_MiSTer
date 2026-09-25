@@ -114,6 +114,7 @@ const int size = width * height * 3;
 
 FILE *f_cd_bin{nullptr};
 FILE *f_sub_bin{nullptr};
+std::string mounted_image_path;
 
 template <typename T, typename U> constexpr T BIT(T x, U n) noexcept {
     return (x >> n) & T(1);
@@ -131,6 +132,7 @@ void mount_image(const char *path) {
 
     f_cd_bin = fopen(path, "rb");
     assert(f_cd_bin);
+    mounted_image_path = path;
 }
 
 void SignalHandler(int signum, siginfo_t *info, void *context) {
@@ -955,8 +957,7 @@ class CDi {
             char *end = nullptr;
             errno = 0;
             const unsigned long long parsed_frame = strtoull(frame_spec.c_str(), &end, 10);
-            if (*end != '\0' || errno == ERANGE || frame_spec == "-" ||
-                (!frame_spec.empty() && frame_spec[0] == '-')) {
+            if (*end != '\0' || errno == ERANGE || frame_spec == "-" || (!frame_spec.empty() && frame_spec[0] == '-')) {
                 fprintf(stderr, "%s:%u: expected a frame number or +<frame_increment>\n", path, line_number);
                 return false;
             }
@@ -1311,16 +1312,38 @@ class CDi {
                 // We are at the beginning of IrqSrvc in fdrvs1. This means that A2 contains fdrvs1_static
                 uint32_t *cpu_a =
                     &dut.rootp->emu__DOT__cditop__DOT__scc68070_0__DOT__tg68__DOT__tg68kdotcinst__DOT__regfile[8];
-                dut.rootp->emu__DOT__cditop__DOT__fdrvs1_static = cpu_a[2];
+
+                if (dut.rootp->emu__DOT__cditop__DOT__fdrvs1_static != cpu_a[2]) {
+                    printf("fdrvs1_static set to %x", cpu_a[2]);
+                    dut.rootp->emu__DOT__cditop__DOT__fdrvs1_static = cpu_a[2];
+                }
             }
 
             if (m_pc == 0x0e5029a) {
                 // We are at the beginning of MA_Play in madriv. This means that A2 contains madriv_static
                 uint32_t *cpu_a =
                     &dut.rootp->emu__DOT__cditop__DOT__scc68070_0__DOT__tg68__DOT__tg68kdotcinst__DOT__regfile[8];
-                dut.rootp->emu__DOT__cditop__DOT__madriv_static = cpu_a[2];
+                if (dut.rootp->emu__DOT__cditop__DOT__madriv_static != cpu_a[2]) {
+                    printf("madriv_static set to %x", cpu_a[2]);
+                    dut.rootp->emu__DOT__cditop__DOT__madriv_static = cpu_a[2];
+                }
             }
 
+            if (m_pc == 0x00e4ee6c) {
+                // 00e4ee64 41 f1 20 70     lea        (0x70,A1,D2w*0x1),A0
+                // 00e4ee68 4a 68 00 00     tst.w      (0x0,A0)
+                // 00e4ee6c 66 08           bne.b      LAB_00e4ee76 <-- We are here
+                // This is part of MV_Info to get the location of MVmapDesc*
+                uint32_t *cpu_a =
+                    &dut.rootp->emu__DOT__cditop__DOT__scc68070_0__DOT__tg68__DOT__tg68kdotcinst__DOT__regfile[8];
+
+                if (dut.rootp->emu__DOT__cditop__DOT__mvmapdesc != cpu_a[0]) {
+                    printf("MVmapDesc set to %x", cpu_a[0]);
+                    dut.rootp->emu__DOT__cditop__DOT__mvmapdesc = cpu_a[0];
+                }
+            }
+
+            dut.rootp->emu__DOT__cditop__DOT__executing_dvc_rom_instructions = m_pc >= 0xe40000 && m_pc < 0xe7ffff;
 #if 0
             executing_dvc_rom_instructions = m_pc >= 0xe40000 && m_pc < 0xe7ffff;
 #endif
@@ -1598,6 +1621,7 @@ class CDi {
         f_executed_events = fdopen(event_fd, "w");
         assert(f_executed_events);
         fprintf(f_executed_events, "# Executed input events; reusable with --events\n");
+        fprintf(f_executed_events, "# Image: %s\n", mounted_image_path.c_str());
         fflush(f_executed_events);
         fprintf(stderr, "Recording executed input events to %s\n", event_filename);
 
