@@ -63,17 +63,21 @@ static bool do_trace{true};
 #endif
 volatile sig_atomic_t status = 0;
 
-// #define CROP
+#define CROP
+#define TWO_ROUNDS
+
+constexpr int kMaxWidth = 120 * 16;
+constexpr int kMaxHeight = 312;
 
 #ifdef CROP
-const int width = 1536; // 768*2
-const int height = 280;
+int width = 384 * 4; // default PAL
+int height = 280;    // default PAL
 #else
-const int width = 120 * 16;
-const int height = 312;
+constexpr int width = 120 * 16;
+constexpr int height = 312;
 #endif
 
-const int size = width * height * 3;
+const int size = kMaxWidth * kMaxHeight * 3;
 const int png_height_scale = 4;
 
 FILE *f_cd_bin{nullptr};
@@ -782,8 +786,13 @@ void get_video_frame(std::string binpath, std::string pngpath) {
     machine.dut.rootp->emu__DOT__cditop__DOT__mcd212_inst__DOT__command_register_dcr1 = ic1 | dc1 | cf;
     machine.dut.rootp->emu__DOT__cditop__DOT__mcd212_inst__DOT__command_register_dcr2 = ic1 | dc1;
 
-    if (binpath.find("flashback") != std::string::npos)
+    if (binpath.find("flashback") != std::string::npos) {
         machine.dut.rootp->emu__DOT__cditop__DOT__mcd212_inst__DOT__control_register_crsr1w = 1;
+#ifdef CROP
+        width = 360 * 4;
+        height = 240;
+#endif
+    }
 
     machine.modelstep(); // Step to get new frame out of the way
 
@@ -796,8 +805,6 @@ void get_video_frame(std::string binpath, std::string pngpath) {
         machine.modelstep();
     }
     machine.modelstep();
-
-    // #define TWO_ROUNDS
 
 #ifdef TWO_ROUNDS
     // And again!
@@ -812,6 +819,12 @@ void get_video_frame(std::string binpath, std::string pngpath) {
     machine.write_png_file(pngpath.c_str());
     // machine.write_png_file("1.png");
     fprintf(stderr, "Written %s\n", pngpath.c_str());
+
+    // restore PAL default
+#ifdef CROP
+    width = 384 * 4;
+    height = 280;
+#endif
 }
 
 void forked_run() {

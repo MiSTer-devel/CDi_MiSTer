@@ -1,5 +1,4 @@
 mkdir -p videosim
-rm videosim/*.png
 
 set -e
 

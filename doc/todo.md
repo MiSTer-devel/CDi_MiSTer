@@ -1,5 +1,8 @@
 # TODOs and known issues
 
+* Add optional support for CLUT RGB888 mode.
+  * RGB666 is more accurate to a real MCD212 but the data exists, so we could use it.
+* ST flag changes pixel aspect ratio on HDMI upscaled image. Good or bad?
 * "Freeze Picture" feature of VCDs seems to cause issues
 * Regressions with "The Lost Ride"
 * Implement optional 50/15 µsec emphasis for ADPCM (and CDDA?)
@@ -50,6 +53,7 @@
     * More investigation needed
 * Find a solution for the video mode reset during system resets
     * The ST flag is the issue here, causing a video mode change
+    * Interlacing also is a problem here
 * Check compatibility with CDs that have track index 2 as opposed to the usual 0 and 1
     * Possible discs? "Philips CDI Format Test Disc 1 (Europe)" and a disc by Zeneca Pharmaceuticals Group, "An Interactive Medical Program"
 * Possibly adding support for the Quizard arcade hardware

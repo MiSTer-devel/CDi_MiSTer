@@ -1136,10 +1136,12 @@ module mcd212 (
         (image_coding_method_register.cm23_20_planeb != 0);
 
     function automatic [7:0] WeightCalc(input [7:0] rgb, input [5:0] weight);
+        bit [3:0] invert_weight = 15 - weight[5:2];
+
         if (weight == 0) begin
-            WeightCalc = 0;
+            WeightCalc = 16;
         end else begin
-            WeightCalc = 8'((15'(rgb) * (15'(weight) + 15'd1)) >> 6);
+            WeightCalc = 8'((15'(rgb) * (15'(weight) + 15'd1)) >> 6) + {4'b0, invert_weight};
         end
     endfunction
 
@@ -1169,10 +1171,9 @@ module mcd212 (
             plane_a.b = WeightCalc(b, weight_a);
         end else begin
             // According to 8.1 PLANES, OFF is black level of 16
-            // On a real CD-i it is much blacker than 16. I assume 0
-            plane_a.r = 0;
-            plane_a.g = 0;
-            plane_a.b = 0;
+            plane_a.r = 16;
+            plane_a.g = 16;
+            plane_a.b = 16;
         end
 
         if (command_register_dcr1.ic1) begin
@@ -1241,10 +1242,9 @@ module mcd212 (
             plane_b.b = WeightCalc(b, weight_b);
         end else begin
             // According to 8.1 PLANES, OFF is black level of 16
-            // On a real CD-i it is much blacker than 16. I assume 0
-            plane_b.r = 0;
-            plane_b.g = 0;
-            plane_b.b = 0;
+            plane_b.r = 16;
+            plane_b.g = 16;
+            plane_b.b = 16;
         end
 
         if (command_register_dcr2.ic2) begin
@@ -1281,8 +1281,9 @@ module mcd212 (
     end
 
     function automatic [7:0] clamped_mix(input [7:0] a, input [7:0] b);
-        bit [8:0] sum = a + b;
+        bit signed [9:0] sum = {1'b0, a} + {1'b0, b} - 16;
         if (sum > 255) clamped_mix = 255;
+        else if (sum < 0) clamped_mix = 0;
         else clamped_mix = sum[7:0];
     endfunction
 
@@ -1303,16 +1304,19 @@ module mcd212 (
         bit backdrop_pixel;
 
         // start with the backdrop color
-        vidout.r = backdrop_color_register.r ? 8'hff : 0;
-        vidout.g = backdrop_color_register.g ? 8'hff : 0;
-        vidout.b = backdrop_color_register.b ? 8'hff : 0;
-        backdrop_pixel = (!plane_a_visible_q && !plane_b_visible_q);
         if (!backdrop_color_register.y) begin
             // Half brightness
-            vidout.r[7] = 0;
-            vidout.g[7] = 0;
-            vidout.b[7] = 0;
+            vidout.r = backdrop_color_register.r ? 122 : 16;
+            vidout.g = backdrop_color_register.g ? 122 : 16;
+            vidout.b = backdrop_color_register.b ? 122 : 16;
+        end else begin
+            // Full brightness
+            vidout.r = backdrop_color_register.r ? 230 : 16;
+            vidout.g = backdrop_color_register.g ? 230 : 16;
+            vidout.b = backdrop_color_register.b ? 230 : 16;
         end
+
+        backdrop_pixel = (!plane_a_visible_q && !plane_b_visible_q);
 
         if (transparency_control_register.mx) begin
             // No Mix. Only overlay
