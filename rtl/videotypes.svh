@@ -5,9 +5,9 @@ typedef struct packed {
     bit [5:0] r;
     bit [5:0] g;
     bit [5:0] b;
-} clut_entry_s;
+} rgb666_s;
 
-typedef struct {
+typedef struct packed {
     bit [7:0] r;
     bit [7:0] g;
     bit [7:0] b;

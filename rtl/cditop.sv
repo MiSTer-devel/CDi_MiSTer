@@ -81,6 +81,7 @@ module cditop (
     output fail_not_enough_words,
     output fail_too_much_data,
     input config_disable_cpu_starve,
+    input config_rgb888,
     input config_auto_play,
     input config_disable_vmpeg,
     input [64:0] hps_rtc
@@ -250,7 +251,8 @@ module cditop (
         .debug_force_video_plane,
         .debug_limited_to_full,
         // Don't starve the CPU during DMA transfers
-        .disable_cpu_starve(config_disable_cpu_starve || cdic_dma_ack || cdic_dma_req)
+        .config_disable_cpu_starve(config_disable_cpu_starve || cdic_dma_ack || cdic_dma_req),
+        .config_rgb888
     );
     /*verilator tracing_on*/
 

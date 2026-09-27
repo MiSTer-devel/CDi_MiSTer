@@ -222,6 +222,7 @@ module emu (
         "P1O[33:32],Aspect ratio,Original,Full Screen,[ARC1],[ARC2];",
         "P1O[35:34],Scale,Normal,V-Integer,Narrower HV-Integer,Wider HV-Integer;",
         "P1O[39],Vertical Crop,Off,On(270);",
+        "P1O[40],CLUT Bits,Original(18),24;",
         "P1O[10:9],RGB Scale,0-255,16-235,16-255;",
         "P1-;",
         "P1O[26:24],Audio Mixing,Original,CDIC unmixed,VMPEG unmixed,VMPEG Left,VMPEG Right;",
@@ -340,6 +341,7 @@ module emu (
     bit [1:0] debug_limited_to_full  /*verilator public_flat_rw */ = 0;
     bit audio_cd_in_tray  /*verilator public_flat_rw */ = 0;
     bit config_disable_cpu_starve  /*verilator public_flat_rw */ = 1;
+    bit config_rgb888  /*verilator public_flat_rw */ = 1;
     bit config_auto_play  /*verilator public_flat_rw */ = 1;
     bit config_disable_vmpeg = 0;
     bit config_first_player_back_port = 0;
@@ -363,6 +365,7 @@ module emu (
     wire enable_reset_on_nvram_img_mount = !status[8];
     wire [1:0] debug_limited_to_full = status[10:9];
     wire config_disable_cpu_starve = status[11];
+    wire config_rgb888 = status[40];
     wire audio_cd_in_tray = status[12];
     bit config_disable_vmpeg = 0;  // synced status[13];
     wire config_auto_play = !status[14];
@@ -1024,6 +1027,7 @@ module emu (
         .fail_not_enough_words(fail_not_enough_words),
         .fail_too_much_data(fail_too_much_data),
         .config_disable_cpu_starve,
+        .config_rgb888,
         .config_auto_play,
         .config_disable_vmpeg(config_disable_vmpeg),
 

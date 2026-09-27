@@ -69,7 +69,9 @@ module mcd212 (
 
     input [1:0] debug_force_video_plane,
     input [1:0] debug_limited_to_full,
-    input disable_cpu_starve
+    input config_disable_cpu_starve,
+    input config_rgb888
+
 );
 
     // Memory Swapping according to chapter 3.4
@@ -463,7 +465,7 @@ module mcd212 (
     always_comb begin
         cpu_starve = 0;
 
-        if (!disable_cpu_starve) begin
+        if (!config_disable_cpu_starve) begin
             if (vblank) cpu_starve = video_x > 1200;
             else cpu_starve = video_x > 1200;
         end
@@ -601,11 +603,11 @@ module mcd212 (
 
     region_entry region_control[8];
 
-    clut_entry_s clut_out0;
-    clut_entry_s clut_out1;
+    rgb888_s clut_out0;
+    rgb888_s clut_out1;
 
-    clut_entry_s clut_wr_data0;
-    clut_entry_s clut_wr_data1;
+    rgb888_s clut_wr_data0;
+    rgb888_s clut_wr_data1;
     bit [7:0] clut_wr_addr0;
     bit [7:0] clut_wr_addr1;
 
@@ -626,10 +628,10 @@ module mcd212 (
         .q_b(clut_out1)
     );
 
-    clut_entry_s trans_color_plane_a;
-    clut_entry_s trans_color_plane_b;
-    clut_entry_s mask_color_plane_a;
-    clut_entry_s mask_color_plane_b;
+    rgb666_s trans_color_plane_a;
+    rgb666_s trans_color_plane_b;
+    rgb666_s mask_color_plane_a;
+    rgb666_s mask_color_plane_b;
 
     wire [15:0] ica0_din = sdram_dout;
     wire [15:0] ica1_din = sdram_dout;
@@ -1095,10 +1097,10 @@ module mcd212 (
 
     rgb555_s rgb555;
 
-    function clut_entry_s RGB888ToClut(input rgb888_s rgb);
-        RGB888ToClut.r = rgb.r[7:2];
-        RGB888ToClut.g = rgb.g[7:2];
-        RGB888ToClut.b = rgb.b[7:2];
+    function rgb666_s RGB8To6(input rgb888_s rgb);
+        RGB8To6.r = rgb.r[7:2];
+        RGB8To6.g = rgb.g[7:2];
+        RGB8To6.b = rgb.b[7:2];
     endfunction
 
     bit plane_a_visible;
@@ -1123,8 +1125,15 @@ module mcd212 (
     end
 
     // Ignore Color Key for DYUV. Use it only for CLUT!
-    wire plane_a_color_key_match = (clut_out0 == trans_color_plane_a) && !plane_a_dyuv_active && (image_coding_method_register.cm13_10_planea != 0);
-    wire plane_b_color_key_match = (clut_out1 == trans_color_plane_b) && !plane_b_dyuv_active && (image_coding_method_register.cm23_20_planeb != 0);
+    wire plane_a_color_key_match = (RGB8To6(
+        clut_out0
+    ) == trans_color_plane_a) && !plane_a_dyuv_active &&
+        (image_coding_method_register.cm13_10_planea != 0);
+
+    wire plane_b_color_key_match = (RGB8To6(
+        clut_out1
+    ) == trans_color_plane_b) && !plane_b_dyuv_active &&
+        (image_coding_method_register.cm23_20_planeb != 0);
 
     function automatic [7:0] WeightCalc(input [7:0] rgb, input [5:0] weight);
         if (weight == 0) begin
@@ -1138,9 +1147,15 @@ module mcd212 (
         bit plane_a_transparent;  // Because logic in datasheet is also inverted
         bit [7:0] r, g, b;
         plane_a_transparent = 1;
-        r = {clut_out0.r, 2'b00};
-        g = {clut_out0.g, 2'b00};
-        b = {clut_out0.b, 2'b00};
+        r = clut_out0.r;
+        g = clut_out0.g;
+        b = clut_out0.b;
+
+        if (!config_rgb888) begin
+            r[1:0] = 0;
+            g[1:0] = 0;
+            b[1:0] = 0;
+        end
 
         if (plane_a_dyuv_active) begin
             r = dyuv0_out.r;
@@ -1198,9 +1213,15 @@ module mcd212 (
         bit [7:0] r, g, b;
         plane_b_transparent = 1;
 
-        r = {clut_out1.r, 2'b00};
-        g = {clut_out1.g, 2'b00};
-        b = {clut_out1.b, 2'b00};
+        r = clut_out1.r;
+        g = clut_out1.g;
+        b = clut_out1.b;
+
+        if (!config_rgb888) begin
+            r[1:0] = 0;
+            g[1:0] = 0;
+            b[1:0] = 0;
+        end
 
         if (plane_b_dyuv_active) begin
             r = dyuv1_out.r;
@@ -1510,12 +1531,8 @@ module mcd212 (
     // According to 5.4.4.5 CLUT Bank Register, A7 is forced 1
     assign clut_wr_addr1 = {1'b1, clut_bank1, ch1_register_adr[5:0]};
 
-    assign clut_wr_data0 = {
-        ch0_register_data[23:18], ch0_register_data[15:10], ch0_register_data[7:2]
-    };
-    assign clut_wr_data1 = {
-        ch1_register_data[23:18], ch1_register_data[15:10], ch1_register_data[7:2]
-    };
+    assign clut_wr_data0 = ch0_register_data;
+    assign clut_wr_data1 = ch1_register_data;
 
     assign clut_we0 = (ch0_register_adr <= 7'h3f) && ch0_register_write;
     assign clut_we1 = (ch1_register_adr <= 7'h3f) && ch1_register_write;
@@ -1727,17 +1744,17 @@ endmodule
 // to ensure that this is indeed a True Dual-Port RAM with Single Clock
 module clut_dual_port_memory (
     input clk,
-    input clut_entry_s data_a,
-    input clut_entry_s data_b,
+    input rgb888_s data_a,
+    input rgb888_s data_b,
     input [7:0] addr_a,
     input [7:0] addr_b,
     input we_a,
     input we_b,
-    output clut_entry_s q_a,
-    output clut_entry_s q_b
+    output rgb888_s q_a,
+    output rgb888_s q_b
 );
     // Declare the RAM variable
-    clut_entry_s ram[256]  /*verilator public_flat_rw*/;
+    rgb888_s ram[256]  /*verilator public_flat_rw*/;
 
     // Port A 
     always @(posedge clk) begin
