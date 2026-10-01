@@ -1,0 +1,15 @@
+# dump-name  comma-separated-hacks
+# Supported hacks: 2rounds, st
+
+# Flashback is a title that uses the ST Flag
+
+flashback0 st
+flashback1 st
+flashback2 st
+flashback3 st
+
+# Zenith sets the CLUT using the DCA
+
+zenith0 2rounds
+zenith1 2rounds
+zenith2 2rounds

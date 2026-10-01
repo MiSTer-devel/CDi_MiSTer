@@ -12,8 +12,10 @@
 #include <chrono>
 #include <csignal>
 #include <cstdint>
+#include <fstream>
 #include <glob.h>
 #include <iostream>
+#include <map>
 #include <png.h>
 #include <regex>
 #include <sstream>
@@ -63,13 +65,14 @@ static bool do_trace{true};
 #endif
 volatile sig_atomic_t status = 0;
 
-#define CROP
-#define TWO_ROUNDS
+#ifndef CROP
+#define CROP 1
+#endif
 
 constexpr int kMaxWidth = 120 * 16;
 constexpr int kMaxHeight = 312;
 
-#ifdef CROP
+#if CROP
 int width = 384 * 4; // default PAL
 int height = 280;    // default PAL
 #else
@@ -524,14 +527,14 @@ class CDi {
                 r = dut.VGA_R;
                 g = dut.VGA_G;
                 b = dut.VGA_B;
-#ifdef CROP
+#if CROP
                 output_image[pixel_index++] = r;
                 output_image[pixel_index++] = g;
                 output_image[pixel_index++] = b;
 #endif
             }
 
-#ifndef CROP
+#if !CROP
             output_image[pixel_index++] = r;
             output_image[pixel_index++] = g;
             output_image[pixel_index++] = b;
@@ -626,9 +629,8 @@ std::vector<std::string> glob(const std::string &pattern) {
     int return_value = glob(pattern.c_str(), GLOB_TILDE, NULL, &glob_result);
     if (return_value != 0) {
         globfree(&glob_result);
-        stringstream ss;
-        ss << "glob() failed with return_value " << return_value << endl;
-        throw std::runtime_error(ss.str());
+        std::cerr << "glob() failed with return_value " << return_value << endl;
+        exit(1);
     }
 
     // collect all the filenames into a std::list<std::string>
@@ -644,86 +646,50 @@ std::vector<std::string> glob(const std::string &pattern) {
     return filenames;
 }
 
-std::array<uint32_t, 256> frogfeast_clut = {
-    0x0,      0x101010, 0x3000,   0x104010, 0x5800,   0xec0808, 0x9c00,   0xe4e400, 0x4030fc, 0x68c494, 0xbcbcbc,
-    0xc4c4e4, 0xf4fcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc,
-    0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc,
-    0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc,
-    0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc,
-    0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc,
-    0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc,
-    0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc,
-    0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc,
-    0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc,
-    0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc,
-    0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0x0,      0x6008,   0x45828,  0x6028,
-    0xec0808, 0xa46008, 0x9c00,   0x20ac00, 0x38b400, 0x8438,   0x8438,   0x40b400, 0x48bc08, 0x30cc00, 0x64cc00,
-    0x64fc64, 0xc48408, 0x18608c, 0x306498, 0x4434fc, 0x4030fc, 0x5848fc, 0x9c9c,   0x3c98b8, 0x98cc,   0x9ccc,
-    0x49ccc,  0x89ccc,  0xc9ccc,  0x98ccfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc,
-    0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc,
-    0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc,
-    0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc,
-    0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc,
-    0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc,
-    0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc,
-    0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc,
-    0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc,
-    0xfcfcfc, 0xfcfcfc, 0xfcfcfc};
+bool has_hack(const std::string &hacks, const std::string &hack) {
+    size_t start = 0;
+    while (start < hacks.size()) {
+        const size_t end = hacks.find(',', start);
+        if (hacks.substr(start, end - start) == hack)
+            return true;
+        if (end == std::string::npos)
+            break;
+        start = end + 1;
+    }
+    return false;
+}
 
-std::array<uint32_t, 256> validation_disc_clut = {
-    0xfcfc,   0xfcfcfc, 0xfc0000, 0xfc00,   0xfcfc00, 0xfc00fc, 0xfcfc,   0x0,      0xfc,     0xfcfcfc, 0xfc0000,
-    0xfc00,   0xfcfc00, 0xfc00fc, 0xfcfc,   0x0,      0xfc,     0xfcfcfc, 0xfc0000, 0xfc00,   0xfcfc00, 0xfc00fc,
-    0xfcfc,   0x0,      0xfc,     0xfcfcfc, 0xfc0000, 0xfc00,   0xfcfc00, 0xfc00fc, 0xfcfc,   0x0,      0xfc,
-    0xfcfcfc, 0xfc0000, 0xfc00,   0xfcfc00, 0xfc00fc, 0xfcfc,   0x0,      0xfc,     0xfcfcfc, 0xfc0000, 0xfc00,
-    0xfcfc00, 0xfc00fc, 0xfcfc,   0x0,      0xfc,     0xfcfcfc, 0xfc0000, 0xfc00,   0xfcfc00, 0xfc00fc, 0xfcfc,
-    0x0,      0xfc,     0xfcfcfc, 0xfc0000, 0xfc00,   0xfcfc00, 0xfc00fc, 0xfcfc,   0x0,      0x141414, 0x404040,
-    0xbcbcbc, 0x383838, 0x242424, 0x303030, 0x4c4c4c, 0x949494, 0x2c2c48, 0x384054, 0x646870, 0x787894, 0x1c2c38,
-    0x707070, 0x606060, 0x242c40, 0x787878, 0x484c5c, 0x606060, 0x101438, 0x30304c, 0x5c6468, 0x707078, 0x303048,
-    0x5c5c5c, 0x888888, 0x686870, 0x646464, 0x8c8c94, 0x4c5464, 0x808088, 0x101010, 0xdcdcdc, 0x646464, 0x303848,
-    0x88888c, 0x38404c, 0x4c4c5c, 0x101430, 0x707880, 0x545c64, 0x545464, 0x84c4b0, 0x1c2438, 0x101010, 0x141c30,
-    0x2c3048, 0x404854, 0x545454, 0x2c2c2c, 0x303030, 0x1c1c1c, 0x808080, 0x88949c, 0x9084b4, 0x3c4478, 0x40547c,
-    0xc4cccc, 0xa4a4a4, 0x909090, 0xb4b4b4, 0xa8a8a8, 0x9c9c9c, 0x949494, 0xfcfcfc, 0x787894, 0x9084b4, 0x646464,
-    0x687c70, 0x80ac94, 0x9084b4, 0x9084b4, 0x787894, 0x80ac94, 0x1054e8, 0x707878, 0x646468, 0x808888, 0xd0d0d0,
-    0x10142c, 0x646878, 0x545c68, 0x949c9c, 0xccd4d4, 0x686868, 0x141414, 0x404040, 0xbcbcbc, 0x383838, 0x242424,
-    0x303030, 0x4c4c4c, 0xdcdcdc, 0x2c2c48, 0x384054, 0x646870, 0x40485c, 0x1c2c38, 0x707070, 0x707878, 0x242c40,
-    0x949494, 0x949494, 0x9084b4, 0x9084b4, 0x606060, 0x646c64, 0x949494, 0x80ac94, 0x101010, 0x787894, 0x787894,
-    0x787894, 0x687c70, 0xdcdcdc, 0xdcdcdc, 0x949494, 0x949494, 0xa4a8a8, 0x949494, 0x8c9494, 0x808888, 0xd0d0d0,
-    0x484848, 0xd4dcdc, 0x949c9c, 0xccd4d4, 0x686868, 0x40404,  0xc8c8c8, 0x40404,  0x9ce4c4, 0x585858, 0x606060,
-    0x141414, 0x0,      0xf8f8f8, 0xdcdcdc, 0xb4b4b4, 0x484848, 0x84c0ac, 0x7068,   0x5c70,   0xc8a8d0, 0xb400b4,
-    0x949494, 0xdc1414, 0xc8c8c8, 0xc8a8d0, 0xc8a8d0, 0xc8a8d0, 0xc8a8d0, 0xc8a8d0, 0xc8a8d0, 0xc8a8d0, 0xc8a8d0,
-    0xc8a8d0, 0xc8a8d0, 0xc8a8d0, 0xc8a8d0, 0xc8a8d0, 0x0,      0x40404,  0x80808,  0xc0c0c,  0x0,      0x0,
-    0x48000,  0x0,      0x0,      0x0,      0x0,      0x0,      0x0,      0x0,      0x0,      0x0,      0x0,
-    0x0,      0x0,      0x0,      0x0,      0x0,      0x0,      0x0,      0x0,      0x0,      0x0,      0x0,
-    0x0,      0x0,      0x0,
-};
+std::map<std::string, std::string> load_hacks(const char *filename) {
+    std::map<std::string, std::string> hacks_by_dump;
+    std::ifstream file(filename);
 
-std::array<uint32_t, 256> zenith_ingame_clut = {
-    0x0,      0x40408,  0xc1010,  0x14181c, 0x1c2028, 0x242c34, 0x2c3440, 0x344048, 0x3c4854, 0x445060, 0x4c5c6c,
-    0x546474, 0x607080, 0x68788c, 0x708098, 0x788ca4, 0x7c90a8, 0x8498ac, 0x8c9cb4, 0x94a4b8, 0x9cacc0, 0xa4b0c4,
-    0xacb8c8, 0xb4c0d0, 0xbcc8d4, 0xc4ccd8, 0xccd4e0, 0xd4dce4, 0xe0e4ec, 0xe8ecf0, 0xf0f4f4, 0xfcfcfc, 0x403800,
-    0x504800, 0x645800, 0x746c00, 0x888000, 0x989000, 0xaca400, 0xbcb800, 0xd0d000, 0xd4d418, 0xdcdc3c, 0xe0e05c,
-    0xe8e880, 0xececa8, 0xf4f4d0, 0xfcfcfc, 0x58002c, 0x600438, 0x6c0844, 0x781450, 0x841c60, 0x8c286c, 0x98387c,
-    0xa4448c, 0xac5498, 0xb868a8, 0xc47cb8, 0xd090c8, 0xd8a4d4, 0xe4bce0, 0xf0d4f0, 0xfcf0fc, 0x480000, 0x5c0000,
-    0x740000, 0x8c0000, 0xa00000, 0xb80000, 0xd00000, 0xd41414, 0xd82c2c, 0xe04848, 0xe46464, 0xe88080, 0xf0a0a0,
-    0xf4bcbc, 0xfce0e0, 0x285884, 0xbcc8d4, 0x44546c, 0xbcc8d4, 0x44546c, 0x44546c, 0xbcc8d4, 0xbcc8d4, 0x44546c,
-    0xbcc8d4, 0xbcc8d4, 0x44546c, 0x44546c, 0xbcc8d4, 0xbcc8d4, 0x44546c, 0x44546c, 0x0,      0x0,      0x0,
-    0x0,      0x0,      0x0,      0x0,      0x0,      0x0,      0x240000, 0xbc2400, 0xf4a800, 0x0,      0x0,
-    0x708098, 0xfc0000, 0xfc0000, 0xfcfc00, 0xfcbc00, 0xfc7c00, 0xfc3c00, 0x2c4048, 0x24343c, 0x202c30, 0x182028,
-    0x10181c, 0x81010,  0x40408,  0x0,      0x445c68, 0x3c505c, 0x344850, 0x0,      0x101818, 0x102020, 0x181818,
-    0x182020, 0x202010, 0x202018, 0x202820, 0x282828, 0x283830, 0x303020, 0x303838, 0x304040, 0x383820, 0x383830,
-    0x384848, 0x385858, 0x404030, 0x404840, 0x405050, 0x405850, 0x406058, 0x484830, 0x484838, 0x484848, 0x486060,
-    0x486860, 0x486868, 0x505038, 0x505850, 0x506058, 0x507070, 0x507878, 0x586050, 0x586868, 0x587878, 0x588c8c,
-    0x606858, 0x687870, 0x689494, 0x68a4a4, 0x787860, 0x708c84, 0x78acac, 0x849484, 0x9cac94, 0x9cb4ac, 0x9cccc4,
-    0x9ce4e4, 0xbcd0cc, 0xccf4f4, 0xc0c0c0, 0x808080, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc,
-    0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcfc, 0xfcfcdc, 0xfcfc98, 0xfcf4b4, 0xfcf098, 0xfce884, 0xf0e898,
-    0xe8e0b4, 0xecd478, 0xd8cc9c, 0xd4cc7c, 0xb8bcb0, 0xc4b470, 0xa8ac9c, 0xa0a06c, 0x949494, 0x7494a4, 0x8c8c8c,
-    0x789494, 0x78887c, 0x7c885c, 0x68888c, 0x6c7878, 0x507488, 0x606c60, 0x546848, 0x486864, 0x305c78, 0x484c4c,
-    0x285468, 0x2c5044, 0x1c485c, 0x203c48, 0xc344c,  0xc343c,  0x202820, 0x2444,   0x82428,  0x101c18, 0x1c38,
-    0x1830,   0x1428,   0x141c,   0x80808,  0x420,    0x810,    0x808,    0x418,    0x10,     0xfcfcfc, 0xececec,
-    0xdcdcdc, 0xcccccc, 0xb8b8b8, 0xa8a8a8, 0x989898, 0x888888, 0x747474, 0x646464, 0x545454, 0x444444, 0x303030,
-    0x202020, 0x101010, 0x0};
+    if (!file)
+        throw std::runtime_error(std::string("Unable to open video hack configuration ") + filename);
 
-void get_video_frame(std::string binpath, std::string pngpath) {
+    std::string line;
+    while (std::getline(file, line)) {
+        std::istringstream entry(line);
+        std::string dump_name;
+        std::string hacks;
+
+        if (!(entry >> dump_name) || dump_name[0] == '#')
+            continue;
+        if (!(entry >> hacks))
+            throw std::runtime_error("Missing hacks for dump " + dump_name);
+
+        hacks_by_dump[dump_name] = hacks;
+    }
+
+    return hacks_by_dump;
+}
+
+std::string dump_name(const std::string &binpath) {
+    const size_t basename_start = binpath.find_last_of('/') + 1;
+    const size_t extension_start = binpath.rfind(".bin");
+    return binpath.substr(basename_start, extension_start - basename_start);
+}
+
+void get_video_frame(std::string binpath, std::string pngpath, const std::string &hacks) {
     CDi machine(0);
 
     FILE *f = fopen(binpath.c_str(), "rb");
@@ -735,39 +701,6 @@ void get_video_frame(std::string binpath, std::string pngpath) {
     if (machine.dut.rootp->emu__DOT__ram[1] == 0x0015) {
         for (int i = 0; i < 1024 * 256 * 2; i++) {
             machine.dut.rootp->emu__DOT__ram[i] = bswap_16(machine.dut.rootp->emu__DOT__ram[i]);
-        }
-    }
-
-    if (binpath == "ramdumps/frogfeast3.bin" || binpath == "ramdumps/frogfeast4.bin") {
-        fprintf(stderr, "Overwrite CLUT\n");
-        auto &clut = frogfeast_clut;
-        for (int i = 0; i < 256; i++) {
-            uint32_t r = (clut[i] >> 18) & 0x3f;
-            uint32_t g = (clut[i] >> 10) & 0x3f;
-            uint32_t b = (clut[i] >> 2) & 0x3f;
-            machine.dut.rootp->emu__DOT__cditop__DOT__mcd212_inst__DOT__clutmem__DOT__ram[i] = (r << 12) | (g << 6) | b;
-        }
-    }
-
-#if 0
-    auto &clut = zenith_ingame_clut;
-    for (int i = 0; i < 256; i++) {
-        uint32_t r = (clut[i] >> 18) & 0x3f;
-        uint32_t g = (clut[i] >> 10) & 0x3f;
-        uint32_t b = (clut[i] >> 2) & 0x3f;
-        machine.dut.rootp->emu__DOT__cditop__DOT__mcd212_inst__DOT__clutmem__DOT__ram[i] = (r << 12) | (g << 6) | b;
-    }
-#endif
-
-    if (binpath == "ramdumps/dyuv2.bin" || binpath == "ramdumps/dyuv0.bin" || binpath == "ramdumps/dyuv1.bin" ||
-        binpath == "ramdumps/dyuv3.bin") {
-        fprintf(stderr, "Overwrite CLUT\n");
-        auto &clut = validation_disc_clut;
-        for (int i = 0; i < 256; i++) {
-            uint32_t r = (clut[i] >> 18) & 0x3f;
-            uint32_t g = (clut[i] >> 10) & 0x3f;
-            uint32_t b = (clut[i] >> 2) & 0x3f;
-            machine.dut.rootp->emu__DOT__cditop__DOT__mcd212_inst__DOT__clutmem__DOT__ram[i] = (r << 12) | (g << 6) | b;
         }
     }
 
@@ -786,9 +719,9 @@ void get_video_frame(std::string binpath, std::string pngpath) {
     machine.dut.rootp->emu__DOT__cditop__DOT__mcd212_inst__DOT__command_register_dcr1 = ic1 | dc1 | cf;
     machine.dut.rootp->emu__DOT__cditop__DOT__mcd212_inst__DOT__command_register_dcr2 = ic1 | dc1;
 
-    if (binpath.find("flashback") != std::string::npos) {
+    if (has_hack(hacks, "st")) {
         machine.dut.rootp->emu__DOT__cditop__DOT__mcd212_inst__DOT__control_register_crsr1w = 1;
-#ifdef CROP
+#if CROP
         width = 360 * 4;
         height = 240;
 #endif
@@ -806,22 +739,22 @@ void get_video_frame(std::string binpath, std::string pngpath) {
     }
     machine.modelstep();
 
-#ifdef TWO_ROUNDS
-    // And again!
-    while (machine.dut.rootp->emu__DOT__cditop__DOT__mcd212_inst__DOT__video_y == 0) {
-        machine.modelstep();
+    if (has_hack(hacks, "2rounds")) {
+        // And again!
+        while (machine.dut.rootp->emu__DOT__cditop__DOT__mcd212_inst__DOT__video_y == 0) {
+            machine.modelstep();
+        }
+        while (machine.dut.rootp->emu__DOT__cditop__DOT__mcd212_inst__DOT__video_y != 0) {
+            machine.modelstep();
+        }
     }
-    while (machine.dut.rootp->emu__DOT__cditop__DOT__mcd212_inst__DOT__video_y != 0) {
-        machine.modelstep();
-    }
-#endif
 
     machine.write_png_file(pngpath.c_str());
     // machine.write_png_file("1.png");
     fprintf(stderr, "Written %s\n", pngpath.c_str());
 
     // restore PAL default
-#ifdef CROP
+#if CROP
     width = 384 * 4;
     height = 280;
 #endif
@@ -831,9 +764,13 @@ void forked_run() {
     static constexpr size_t kNumberForks{14};
     std::vector<pid_t> child_pids;
 
+    const char *env_ramdump_glob = std::getenv("CDI_RAMDUMP_GLOB");
     const char *env_ramdumps = std::getenv("CDI_RAMDUMPS");
+    const char *env_video_hacks_file = std::getenv("CDI_VIDEO_HACKS_FILE");
+    const auto hacks_by_dump = load_hacks(env_video_hacks_file ? env_video_hacks_file : "videosim_hacks.txt");
 
-    std::string path = env_ramdumps ? (std::string(env_ramdumps) + "/*.bin") : "ramdumps/*.bin";
+    std::string path = std::string(env_ramdumps ? env_ramdumps : "ramdumps/") + "/" +
+                       (env_ramdump_glob ? env_ramdump_glob : "*") + ".bin";
     printf("Reading ram dumps from %s\n", path.c_str());
     auto ramdumps = glob(path);
     size_t chunksize = std::max((size_t)ramdumps.size() / kNumberForks, (size_t)1);
@@ -859,8 +796,9 @@ void forked_run() {
 
                 auto binpath = *iterator;
                 auto pngpath = std::regex_replace(binpath, std::regex(".*/(.*).bin"), "videosim/$1.png");
+                const auto hacks = hacks_by_dump.find(dump_name(binpath));
 
-                get_video_frame(binpath, pngpath);
+                get_video_frame(binpath, pngpath, hacks == hacks_by_dump.end() ? "" : hacks->second);
 
                 iterator++;
             }
