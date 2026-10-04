@@ -58,6 +58,20 @@ module scc68070 (
     wire internal_nWr;
     bit clkena_in  /*verilator public_flat_rd*/;
 
+`ifdef VERILATOR
+    // Simulation-only: clkena_in is TG68K's existing bus-stall enable.
+    // Sampling it on the falling edge produces a stable clock gate for the
+    // next rising edge.  Hardware synthesis retains the direct clk below.
+    bit  tg68k_clock_enable = 1'b1;
+    wire tg68k_clk = clk & tg68k_clock_enable;
+    always_ff @(negedge clk or posedge reset) begin
+        if (reset) tg68k_clock_enable <= 1'b1;
+        else tg68k_clock_enable <= clkena_in;
+    end
+`else
+    wire tg68k_clk = clk;
+`endif
+
     struct packed {
         bit int1_pir;
         bit [2:0] int1n_ipl;
@@ -203,7 +217,7 @@ module scc68070 (
 
     /*verilator tracing_off*/
     tg68kdotc_verilog_wrapper tg68 (
-        .clk(clk),
+        .clk(tg68k_clk),
         .nReset(!reset),
         .clkena_in(clkena_in),
         .data_in(internal_data_in),
