@@ -72,7 +72,7 @@ module vmpeg (
     wire fma_event_underflow;
     bit dsp_reset_input_fifo;
     bit fma_dsp_enable = 0;
-    bit fmv_dsp_enable = 0;
+    bit fmv_dsp_enable  /*verilator public_flat_rd*/ = 0;
     bit fmv_reset_persistent_storage = 0;
 
     wire fma_fifo_full;

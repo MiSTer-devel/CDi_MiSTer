@@ -20,8 +20,8 @@
 #include <cstdint>
 
 #include "crc.h"
-#include "imgwrite.h"
 #include "hle.h"
+#include "imgwrite.h"
 #include "scramble.h"
 #include "table_of_contents.h"
 #include <arpa/inet.h>
@@ -29,7 +29,6 @@
 #include <fcntl.h>
 #include <sys/socket.h>
 #include <unistd.h>
-
 
 #define SCC68070
 #define SLAVE
@@ -438,16 +437,22 @@ class CDi {
     */
     void clock30() {
         mpeg_clk_calc_ticks30++;
-        mpeg_clk_calc_ticks++;
 
         uint32_t fmv_fifo_level = dut.rootp->emu__DOT__cditop__DOT__vmpeg_inst__DOT__video__DOT__fifo_level;
+        uint32_t fmv_dsp_enable = dut.rootp->emu__DOT__cditop__DOT__vmpeg_inst__DOT__fmv_dsp_enable;
+
+        bool drive_mpeg_clock = fmv_dsp_enable;
+
+        if (drive_mpeg_clock)
+            mpeg_clk_calc_ticks++;
 
         for (int i = 0; i < 2; i++) {
             // clk_sys is 30 MHz
             dut.rootp->emu__DOT__clk_sys = (i & 1);
 
             // clk_mpeg is 30 MHz when no work is to be done
-            dut.rootp->emu__DOT__clk_mpeg = (i & 1);
+            if (drive_mpeg_clock)
+                dut.rootp->emu__DOT__clk_mpeg = (i & 1);
 
             // clk_audio is 6.615 MHz
             // 6.615 MHz * 2^15 / 30 MHz = 7225.344
@@ -465,13 +470,13 @@ class CDi {
 
         // The FPGA PLL is configured for 80 MHz, but
         // the power is not always required. Scale it up to 60 MHZ
-        if (fmv_fifo_level > 2000 &&
+        if (drive_mpeg_clock && fmv_fifo_level > 2000 &&
             dut.rootp->emu__DOT__cditop__DOT__vmpeg_inst__DOT__video__DOT__pictures_in_output_fifo < 3) {
             clockmpeg();
         }
 
         // Ok, scale it up to 90 MHz
-        if (fmv_fifo_level > 8000 &&
+        if (drive_mpeg_clock && fmv_fifo_level > 8000 &&
             dut.rootp->emu__DOT__cditop__DOT__vmpeg_inst__DOT__video__DOT__pictures_in_output_fifo < 3) {
             clockmpeg();
         }
