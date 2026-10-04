@@ -33,7 +33,6 @@
 
 #define SCC68070
 #define SLAVE
-#define TRACE
 // #define SIMULATE_RC5
 // #define TRACE_ON_FMA
 // #define TRACE_ON_FMV
@@ -1905,7 +1904,8 @@ int main(int argc, char **argv) {
     machine.DumpDvcSysMemory();
     machine.dump_slave_memory();
 
-    fclose(f_cd_bin);
+    if (f_cd_bin)
+        fclose(f_cd_bin);
 
     fprintf(stderr, "Closing...\n");
     fflush(stdout);
