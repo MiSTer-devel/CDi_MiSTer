@@ -10,6 +10,7 @@
 #include <vector>
 #include <verilated.h>
 #include <verilated_fst_c.h>
+#include <verilated_save.h>
 
 // Include model header, generated from Verilating "top.v"
 #include "Vemu.h"
@@ -321,10 +322,6 @@ class CDi {
 #endif
 
     Vemu dut;
-    uint64_t time30mhz = 0;
-    uint64_t tracetime = 0;
-    int frame_index = 0;
-    int fmv_frame_cnt{0};
 
     void EnablePngFrames() {
         write_png_frames = true;
@@ -348,22 +345,12 @@ class CDi {
 
     FILE *f_uart{nullptr};
 
-    uint8_t output_image[size] = {0};
     uint32_t regfile[16];
 #ifdef TRACE
     tracetype_t m_trace;
 #endif
 
-    uint32_t prevpc = 0;
     SttFunction call_func;
-
-    int pixel_index = 0;
-
-    uint16_t hps_buffer[4096];
-    uint16_t hps_buffer_index = 0;
-    bool hps_nvram_backup_active{false};
-    bool ignore_first_hps_din{false};
-    bool executing_dvc_rom_instructions{false};
 
     int instanceid;
     enum class InputKind {
@@ -384,10 +371,105 @@ class CDi {
         uint8_t analog_x{0};
         uint8_t analog_y{0};
     };
-    std::vector<InputEvent> input_events;
+
+    // Persistent host-side state. Keep operating-system resources (files,
+    // sockets, tracing) and the Verilated DUT out of this object: they are
+    // recreated when a process restarts, while the DUT saves itself.
+    struct TestbenchState {
+        static constexpr uint32_t kVersion{1};
+
+        uint32_t version{kVersion};
+        std::string image_path;
+        uint64_t time30mhz{0};
+        uint64_t tracetime{0};
+        uint32_t frame_index{0};
+        uint32_t fmv_frame_cnt{0};
+        uint16_t phase_accumulator{0};
+        uint32_t mpeg_clk_calc_ticks30{0};
+        uint32_t mpeg_clk_calc_ticks{0};
+        uint32_t pixel_index{0};
+        uint16_t hps_buffer_index{0};
+        bool hps_nvram_backup_active{false};
+        bool ignore_first_hps_din{false};
+        bool executing_dvc_rom_instructions{false};
+        uint32_t prevpc{0};
+        uint8_t held_buttons{0};
+        uint64_t button_release_frame[2]{0, 0};
+        uint16_t hps_buffer[4096]{};
+        uint8_t output_image[size]{};
+        std::vector<InputEvent> input_events;
+
+        void Save(VerilatedSave &os) const {
+            os << version << image_path << time30mhz << tracetime;
+            os << frame_index << fmv_frame_cnt << phase_accumulator;
+            os << mpeg_clk_calc_ticks30 << mpeg_clk_calc_ticks << pixel_index;
+            os << hps_buffer_index << hps_nvram_backup_active << ignore_first_hps_din;
+            os << executing_dvc_rom_instructions << prevpc << held_buttons;
+            os << button_release_frame[0] << button_release_frame[1];
+            os.write(hps_buffer, sizeof(hps_buffer));
+            os.write(output_image, sizeof(output_image));
+            const uint32_t event_count = input_events.size();
+            os << event_count;
+            for (const InputEvent &event : input_events)
+                os << event.frame << static_cast<uint8_t>(event.kind) << event.hold_frames << event.analog_x
+                   << event.analog_y;
+        }
+
+        bool Load(VerilatedRestore &os) {
+            os >> version >> image_path >> time30mhz >> tracetime;
+            os >> frame_index >> fmv_frame_cnt >> phase_accumulator;
+            os >> mpeg_clk_calc_ticks30 >> mpeg_clk_calc_ticks >> pixel_index;
+            os >> hps_buffer_index >> hps_nvram_backup_active >> ignore_first_hps_din;
+            os >> executing_dvc_rom_instructions >> prevpc >> held_buttons;
+            os >> button_release_frame[0] >> button_release_frame[1];
+            os.read(hps_buffer, sizeof(hps_buffer));
+            os.read(output_image, sizeof(output_image));
+            uint32_t event_count;
+            os >> event_count;
+            if (event_count > 1000000)
+                return false;
+            input_events.clear();
+            input_events.reserve(event_count);
+            for (uint32_t i = 0; i < event_count; ++i) {
+                InputEvent event{};
+                uint8_t kind;
+                os >> event.frame >> kind >> event.hold_frames >> event.analog_x >> event.analog_y;
+                if (kind > static_cast<uint8_t>(InputKind::Quit))
+                    return false;
+                event.kind = static_cast<InputKind>(kind);
+                input_events.push_back(event);
+            }
+            return true;
+        }
+    };
+
+    TestbenchState testbench;
+    uint64_t &time30mhz{testbench.time30mhz};
+    uint64_t &tracetime{testbench.tracetime};
+    uint32_t &frame_index{testbench.frame_index};
+    uint32_t &fmv_frame_cnt{testbench.fmv_frame_cnt};
+    uint16_t &phase_accumulator{testbench.phase_accumulator};
+    uint32_t &mpeg_clk_calc_ticks30{testbench.mpeg_clk_calc_ticks30};
+    uint32_t &mpeg_clk_calc_ticks{testbench.mpeg_clk_calc_ticks};
+    uint32_t &pixel_index{testbench.pixel_index};
+    uint16_t (&hps_buffer)[4096]{testbench.hps_buffer};
+    uint16_t &hps_buffer_index{testbench.hps_buffer_index};
+    bool &hps_nvram_backup_active{testbench.hps_nvram_backup_active};
+    bool &ignore_first_hps_din{testbench.ignore_first_hps_din};
+    bool &executing_dvc_rom_instructions{testbench.executing_dvc_rom_instructions};
+    uint32_t &prevpc{testbench.prevpc};
+    uint8_t (&output_image)[size]{testbench.output_image};
+    std::vector<InputEvent> &input_events{testbench.input_events};
     int udp_fd{-1};
-    uint64_t button_release_frame[2]{0, 0};
-    uint8_t held_buttons{0};
+    uint64_t (&button_release_frame)[2]{testbench.button_release_frame};
+    uint8_t &held_buttons{testbench.held_buttons};
+    uint64_t save_at_frame{UINT64_MAX};
+    std::string save_state_path;
+    bool save_at_lba_enabled{false};
+    uint32_t save_at_lba{0};
+    std::string save_lba_state_path;
+    enum class SaveRequest { None, Frame, Lba };
+    SaveRequest pending_save{SaveRequest::None};
 
     std::chrono::_V2::system_clock::time_point start_time;
     std::chrono::_V2::system_clock::time_point last_frame_time;
@@ -406,7 +488,73 @@ class CDi {
         return r | g | b;
     }
 
-    uint16_t phase_accumulator;
+  public:
+    bool SaveState(const char *path) {
+        VerilatedSave os;
+        os.open(path);
+        if (!os.isOpen()) {
+            fprintf(stderr, "Unable to write save state %s\n", path);
+            return false;
+        }
+        testbench.image_path = mounted_image_path;
+        testbench.Save(os);
+        os << dut;
+        fprintf(stderr, "Saved state at frame %d to %s\n", frame_index, path);
+        return true;
+    }
+
+    bool LoadState(const char *path) {
+        VerilatedRestore os;
+        os.open(path);
+        if (!os.isOpen()) {
+            fprintf(stderr, "Unable to read save state %s\n", path);
+            return false;
+        }
+        if (!testbench.Load(os) || testbench.version != TestbenchState::kVersion ||
+            testbench.image_path != mounted_image_path) {
+            fprintf(stderr, "Save state %s is for a different format or CD image\n", path);
+            return false;
+        }
+        os >> dut;
+        dut.eval();
+        start_time = std::chrono::system_clock::now();
+        last_frame_time = start_time;
+        fprintf(stderr, "Loaded state at frame %d from %s\n", frame_index, path);
+        return true;
+    }
+
+    void SetSaveAtFrame(uint64_t frame, const char *path) {
+        save_at_frame = frame;
+        save_state_path = path;
+    }
+
+    void SetSaveAtLba(uint32_t lba, const char *path) {
+        save_at_lba_enabled = true;
+        save_at_lba = lba;
+        save_lba_state_path = path;
+    }
+
+  private:
+    void RequestSave(SaveRequest request) {
+        if (pending_save == SaveRequest::None)
+            pending_save = request;
+    }
+
+    void CommitPendingSave() {
+        if (pending_save == SaveRequest::None)
+            return;
+
+        const bool lba_request = pending_save == SaveRequest::Lba;
+        const char *path = lba_request ? save_lba_state_path.c_str() : save_state_path.c_str();
+        if (SaveState(path)) {
+            if (lba_request)
+                fprintf(stderr, "Saved state on seek LBA 0x%08x\n", save_at_lba);
+            status = SIGINT;
+        } else {
+            status = 1;
+        }
+        pending_save = SaveRequest::None;
+    }
 
     void clockmpeg() {
         mpeg_clk_calc_ticks++;
@@ -422,11 +570,6 @@ class CDi {
             tracetime++;
         }
     }
-
-    // These two are used to calculate the actual MPEG frequency
-    // required to do the job on a frame basis
-    uint32_t mpeg_clk_calc_ticks30{0}; ///< counts 30 MHz clock ticks
-    uint32_t mpeg_clk_calc_ticks{0};   ///< counts MPEG clock ticks
 
     /*
     Primarily creates a 30 MHz clock and
@@ -936,12 +1079,16 @@ class CDi {
     }
 
   public:
-    bool LoadEventScript(const char *path) {
+    // An explicit --events script is an input override, including after a
+    // save-state restore.  Live UDP events continue to append normally.
+    bool ReplaceInputEventsFromScript(const char *path) {
         std::ifstream script(path);
         if (!script) {
             fprintf(stderr, "Unable to open event script %s\n", path);
             return false;
         }
+
+        input_events.clear();
 
         std::string line;
         unsigned int line_number = 0;
@@ -1092,6 +1239,15 @@ class CDi {
     void modelstep() {
         time30mhz++;
         clock30();
+
+        // These are the hps_cd_sector_cache inputs, exported by the CDIC.
+        // Check immediately after its clock edge so the one-cycle valid pulse
+        // cannot be missed.
+        if (save_at_lba_enabled && dut.rootp->emu__DOT__cd_seek_lba_valid &&
+            dut.rootp->emu__DOT__cd_seek_lba == save_at_lba) {
+            save_at_lba_enabled = false;
+            RequestSave(SaveRequest::Lba);
+        }
 
 #ifdef SIMULATE_RC5
         if (time30mhz >= rc5_fliptime) {
@@ -1408,6 +1564,9 @@ class CDi {
                 mpeg_clk_calc_ticks30 = 0;
                 mpeg_clk_calc_ticks = 0;
 
+                if (frame_index == save_at_frame)
+                    RequestSave(SaveRequest::Frame);
+
                 if (frame_index == 120) {
                     ScanForOs9Modules();
                 }
@@ -1546,6 +1705,10 @@ class CDi {
             output_image[pixel_index++] = g;
             output_image[pixel_index++] = b;
         }
+
+        // Save only after all host-side work for this simulated tick has run.
+        // Verilator is quiescent here: the preceding dut.eval() calls returned.
+        CommitPendingSave();
     }
 
     virtual ~CDi() {
@@ -1787,6 +1950,11 @@ int main(int argc, char **argv) {
 
     const char *event_script = nullptr;
     uint16_t udp_port = 0;
+    const char *load_state = nullptr;
+    const char *save_state = nullptr;
+    uint64_t save_frame = 0;
+    const char *save_lba_state = nullptr;
+    uint32_t save_lba = 0;
     int machineindex = 0;
     int positional_arguments = 0;
     bool autoplay{false};
@@ -1799,6 +1967,37 @@ int main(int argc, char **argv) {
                 return 1;
             }
             event_script = argv[i];
+        } else if (strcmp(argv[i], "--load-state") == 0) {
+            if (++i == argc) {
+                fprintf(stderr, "--load-state requires a path\n");
+                return 1;
+            }
+            load_state = argv[i];
+        } else if (strcmp(argv[i], "--save-at-frame") == 0) {
+            if (i + 2 >= argc) {
+                fprintf(stderr, "--save-at-frame requires a frame and path\n");
+                return 1;
+            }
+            char *end = nullptr;
+            save_frame = strtoull(argv[++i], &end, 10);
+            if (*end != '\0') {
+                fprintf(stderr, "Invalid save frame: %s\n", argv[i]);
+                return 1;
+            }
+            save_state = argv[++i];
+        } else if (strcmp(argv[i], "--save-at-lba") == 0) {
+            if (i + 2 >= argc) {
+                fprintf(stderr, "--save-at-lba requires an LBA and path\n");
+                return 1;
+            }
+            char *end = nullptr;
+            const unsigned long long lba = strtoull(argv[++i], &end, 0);
+            if (*end != '\0' || lba > UINT32_MAX) {
+                fprintf(stderr, "Invalid save LBA: %s\n", argv[i]);
+                return 1;
+            }
+            save_lba = lba;
+            save_lba_state = argv[++i];
         } else if (strcmp(argv[i], "--udp") == 0) {
             if (++i == argc) {
                 fprintf(stderr, "--udp requires a port\n");
@@ -1816,7 +2015,10 @@ int main(int argc, char **argv) {
         } else if (strcmp(argv[i], "--png") == 0) {
             write_png_frames = true;
         } else if (strcmp(argv[i], "--help") == 0) {
-            fprintf(stderr, "Usage: %s [machine] [--auto] [--png] [--events script] [--udp port]\n", argv[0]);
+            fprintf(stderr,
+                    "Usage: %s [machine] [--auto] [--png] [--events script] [--udp port] [--load-state file] "
+                    "[--save-at-frame frame file] [--save-at-lba lba file]\n",
+                    argv[0]);
             return 0;
         } else if (positional_arguments++ == 0) {
             machineindex = atoi(argv[i]);
@@ -1849,7 +2051,7 @@ int main(int argc, char **argv) {
 
     switch (machineindex) {
     case 0:
-        mount_image("images/addams.bin");
+        mount_image("images/nimh.bin");
         break;
     case 1:
         mount_image("images/aims_frogs.iso");
@@ -1883,10 +2085,17 @@ int main(int argc, char **argv) {
 
     CDi machine(machineindex);
 
+    if (load_state && !machine.LoadState(load_state))
+        return 1;
+    if (save_state)
+        machine.SetSaveAtFrame(save_frame, save_state);
+    if (save_lba_state)
+        machine.SetSaveAtLba(save_lba, save_lba_state);
+
     if (write_png_frames)
         machine.EnablePngFrames();
 
-    if (event_script && !machine.LoadEventScript(event_script))
+    if (event_script && !machine.ReplaceInputEventsFromScript(event_script))
         return 1;
     if (udp_port && !machine.EnableUdpInput(udp_port))
         return 1;

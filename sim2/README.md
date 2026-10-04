@@ -14,6 +14,46 @@ You need CD images to use with the simulation. Only the `.bin` files are require
 
     ./sim_top.sh
 
+### Restart-based save states
+
+The simulator can write a state at a frame boundary and then exit. Restart it
+with that state to continue from the same simulated time:
+
+    ./sim_top.sh 6 --save-at-frame 300 /tmp/cdi-frame-300.vls
+    ./sim_top.sh 6 --load-state /tmp/cdi-frame-300.vls
+
+To stop at a CD seek instead, use the LBA form (decimal or `0x` hexadecimal):
+
+    ./sim_top.sh 6 --save-at-lba 0xa6 /tmp/cdi-seek-a6.vls
+
+The state is taken after frame 299 has been written (the frame counter is
+300). The LBA form saves at the `seek_lba_valid` pulse delivered to
+`hps_cd_sector_cache`. It contains the RTL model, display/audio transfer
+state, and pending scripted input. Use the same machine/CD image and the same
+Verilator build to restore it. Supplying `--events` with `--load-state` clears
+the state’s pending scripted input and replaces it with that script; `--udp`
+may be added for new live input after restoring.
+
+### RTL performance profile
+
+`profile_rtl.sh` builds an isolated, instrumented Verilator model and uses
+`gprof` plus Verilator's `verilator_profcfunc` to attribute host time back to
+RTL modules and source lines. It does not modify the normal `obj_dir` build.
+The instrumented model is substantially slower, so it samples a short,
+representative interval and stops cleanly to write the profile data.
+
+    ./profile_rtl.sh 20 6
+
+The arguments are `[seconds] [machine] [simulator options]`; for example, to
+replay a workload:
+
+    ./profile_rtl.sh 30 6 --events stimulus/fmvtest.event
+
+Prepare the desired ROM and CD image first, as for `sim_top.sh`. Results are
+kept in a newly created `/tmp/scc68070-profile.*` directory and its path is
+printed at the end. Set `PROFILE_DIR` to retain builds and reports in a chosen
+directory, or `PROFILE_JOBS` to control the parallel build count.
+
 ### MPEG-1 GOP and picture headers
 
 To list sequence properties, GOP timecodes, and the temporal reference and

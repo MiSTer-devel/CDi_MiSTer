@@ -57,7 +57,7 @@ main:
 	move.w #$0100,$303C06 ; File Register
 	move.l #$ffffffff,$303C08 ; Channel Register
 	move.w #$0000,$303C0C ; Audio Channel Register
-	move.l #$12224800,$303C02 ; Timer Register
+	move.l #$01341100,$303C02 ; Timer Register
 	move.w #$C000,$303FFE ; Start the Read by setting bit 15 of the data buffer
 
 	move.l #0,$0E0407C ;FMV_DECOFF
@@ -72,12 +72,11 @@ waitforpics:
 	cmp.w #2,$00E040A4 ; Compare 5 against pictures in FIFO
 	bmi waitforpics
 
-	move.w #$0008,$E040C0 ; FMV SYSCMD - Play
-
 	move.b #'B',$80002019
 
 	move.w #$0008,$E040C0 ; FMV SYSCMD - Play
 	move.w #$0420,$E040C2 ; FMV VIDCMD - Show on next frame
+	move.w #$882D,$E040C6 ; FMV SYSSCR - Sync, CD-i Mode, Fullmotion No Interlace
 
 
 endless:

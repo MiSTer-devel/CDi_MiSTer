@@ -3,7 +3,9 @@ set -euo pipefail
 
 # Optional TRACE
 debug_flags=()
-cpp_flags="-O2 -march=native"
+# The Verilator PCH is also consumed by the small C++ harness objects, which
+# Verilator builds with -Os.  Match that setting here so GCC accepts the PCH.
+cpp_flags="-Os"
 if [[ "${SIM_DEBUG:-1}" == "1" ]]; then
     debug_flags=(--trace --trace-fst --trace-structs --assert)
     # Keep the C++ harness trace support in lockstep with Verilator tracing.
@@ -11,8 +13,10 @@ if [[ "${SIM_DEBUG:-1}" == "1" ]]; then
     cpp_flags+=" -DTRACE"
 fi
 
-verilator --top-module emu \
+CXXFLAGS="${CXXFLAGS:-} -march=native" verilator --top-module emu \
      "${debug_flags[@]}" \
+     --savable \
+     --compiler-include ../save_serialize.h \
      -O2 -CFLAGS "$cpp_flags" \
      --cc --exe --build \
     --build-jobs 8 -LDFLAGS "-lpng" sim_top.cpp imgwrite.cpp -I../rtl \

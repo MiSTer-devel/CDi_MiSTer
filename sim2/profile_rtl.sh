@@ -63,8 +63,11 @@ fi
 mkdir -p "$machine"
 
 echo "Building RTL-profiled simulator in $profile_dir"
-verilator --top-module emu \
-    --prof-cfuncs --assert -O2 -CFLAGS "-O2 -march=native" \
+# Keep the profiling model savable too: sim_top.cpp serializes the DUT.
+# -Os matches Verilator's harness objects, avoiding a GCC PCH mismatch.
+CXXFLAGS="${CXXFLAGS:-} -march=native" verilator --top-module emu \
+    --savable --compiler-include "$script_dir/save_serialize.h" \
+    --prof-cfuncs --assert -O2 -CFLAGS "-Os" \
     --cc --exe --build --Mdir "$profile_dir" --build-jobs "${PROFILE_JOBS:-8}" \
     -LDFLAGS "-lpng" sim_top.cpp imgwrite.cpp -I../rtl \
     ../rtl/*.sv ../CDi.sv ../rtl/*.v \
