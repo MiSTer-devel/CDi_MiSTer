@@ -663,7 +663,10 @@ PROCESS (exe_opcode, OP1out, Flags, rot_bits, rot_msb, rot_lsb, rot_rot, exec, B
 						rot_rot <= OP1out(15);
 			WHEN "10" =>					--Long
 						rot_rot <= OP1out(31);
-			WHEN OTHERS => NULL;
+			-- All binary values are covered above.  Give non-binary simulation
+			-- values a defined result instead of retaining rot_rot; the latter
+			-- becomes a combinational feedback loop in GHDL's Verilog output.
+			WHEN OTHERS => rot_rot <= '0';
 		END CASE;
 	
 		CASE rot_bits IS
@@ -679,7 +682,9 @@ PROCESS (exe_opcode, OP1out, Flags, rot_bits, rot_msb, rot_lsb, rot_rot, exec, B
 			WHEN "11" =>					--ROL, ROR
 						rot_lsb <= rot_rot;
 						rot_msb <= OP1out(0);
-			WHEN OTHERS => NULL;
+			WHEN OTHERS =>
+						rot_lsb <= '0';
+						rot_msb <= '0';
 		END CASE;
 	
 		IF exec(rot_nop)='1' THEN
@@ -716,10 +721,14 @@ PROCESS (exe_opcode, OP1out, Flags, rot_bits, rot_msb, rot_lsb, rot_rot, exec, B
 -----------------------------------------------------------------------------
 -- Barrel Shifter
 -----------------------------------------------------------------------------	
-process (OP1out, OP2out, opcode, bit_nr, bit_msb, bs_shift, bs_shift_mod, ring, result_bs, exe_opcode, vector, 
-         rot_bits, Flags, bs_C, msb, hot_msb, asl_over, asl_over_xor, ALU, asr_sign, exec)
-	begin
-		ring <= "100000";
+	process (OP1out, OP2out, opcode, bit_nr, bit_msb, bs_shift, bs_shift_mod, ring, result_bs, exe_opcode, vector,
+	         rot_bits, Flags, bs_C, msb, hot_msb, asl_over, asl_over_xor, ALU, asr_sign, exec)
+		begin
+			-- Every binary shift/rotate case below assigns bs_C.  A defined
+			-- default avoids retaining it when an input contains X/U in simulation;
+			-- retaining it becomes a combinational loop in GHDL's Verilog output.
+			bs_C <= '0';
+			ring <= "100000";
 		IF rot_bits="10" THEN --ROX L/R
 			CASE exe_opcode(7 downto 6) IS
 				WHEN "00" =>					--Byte
@@ -941,7 +950,9 @@ process (OP1out, OP2out, opcode, bit_nr, bit_msb, bs_shift, bs_shift_mod, ring, 
 				IF rot_bits="10" THEN --ROX L/R
 					vector(32) <= Flags(4);
 				END IF;
-			WHEN OTHERS => NULL;
+			-- All binary operand sizes are covered above.  Avoid a retained msb
+			-- for non-binary simulation values.
+			WHEN OTHERS => msb <= '0';
 		END CASE;
 		result_bs <= std_logic_vector(unsigned('0'&X"00000000"&vector) sll to_integer(unsigned(bit_nr(5 downto 0)))); 
 

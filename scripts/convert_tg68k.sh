@@ -12,8 +12,7 @@ ghdl_mcode -a -fsynopsys --std=08 tg68dotc_verilog_wrapper.vhd
 ghdl_mcode synth --out=verilog -fsynopsys --std=08  --latches tg68kdotc_verilog_wrapper > /tmp/tg68kdotc_verilog_wrapper.v
 
 # Prefix some lint tolerance
-echo "// verilator lint_off UNOPTFLAT
-// verilator lint_off INITIALDLY
+echo "// verilator lint_off INITIALDLY
 // verilator lint_off COMBDLY
 // verilator lint_off CASEINCOMPLETE
 // verilator lint_off UNSIGNED

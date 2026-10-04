@@ -4100,7 +4100,10 @@ PROCESS (exe_opcode, Flags)
 			WHEN X"d" => exe_condition <= (Flags(3) AND NOT Flags(1)) OR (NOT Flags(3) AND Flags(1));
 			WHEN X"e" => exe_condition <= (Flags(3) AND Flags(1) AND NOT Flags(2)) OR (NOT Flags(3) AND NOT Flags(1) AND NOT Flags(2));
 			WHEN X"f" => exe_condition <= (Flags(3) AND NOT Flags(1)) OR (NOT Flags(3) AND Flags(1)) OR Flags(2);
-			WHEN OTHERS => NULL;
+			-- The 16 binary conditions are exhaustive. Avoid retaining the
+			-- previous value for non-binary simulation states, which GHDL
+			-- otherwise emits as combinational feedback.
+			WHEN OTHERS => exe_condition <= '0';
 		END CASE;
 	END PROCESS;
 	

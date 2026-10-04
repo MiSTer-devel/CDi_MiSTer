@@ -1,4 +1,3 @@
-// verilator lint_off UNOPTFLAT
 // verilator lint_off INITIALDLY
 // verilator lint_off COMBDLY
 // verilator lint_off CASEINCOMPLETE
@@ -144,124 +143,123 @@ module tg68k_alu_2_0_2_0
   wire bs_v;
   wire bs_c;
   wire bs_x;
-  wire n9797_o;
   wire n9798_o;
-  wire [23:0] n9799_o;
-  wire [6:0] n9800_o;
-  wire n9801_o;
-  wire [31:0] n9802_o;
+  wire n9799_o;
+  wire [23:0] n9800_o;
+  wire [6:0] n9801_o;
+  wire n9802_o;
   wire [31:0] n9803_o;
   wire [31:0] n9804_o;
   wire [31:0] n9805_o;
   wire [31:0] n9806_o;
   wire [31:0] n9807_o;
-  wire n9808_o;
+  wire [31:0] n9808_o;
   wire n9809_o;
   wire n9810_o;
-  wire [7:0] n9811_o;
-  wire n9812_o;
-  wire n9814_o;
+  wire n9811_o;
+  wire [7:0] n9812_o;
+  wire n9813_o;
   wire n9815_o;
-  wire n9817_o;
-  wire [31:0] n9818_o;
+  wire n9816_o;
+  wire n9818_o;
   wire [31:0] n9819_o;
   wire [31:0] n9820_o;
-  wire n9821_o;
-  wire n9823_o;
+  wire [31:0] n9821_o;
+  wire n9822_o;
   wire n9824_o;
-  wire n9826_o;
-  wire [15:0] n9827_o;
+  wire n9825_o;
+  wire n9827_o;
   wire [15:0] n9828_o;
-  wire [31:0] n9829_o;
-  wire n9830_o;
-  wire [31:0] n9831_o;
+  wire [15:0] n9829_o;
+  wire [31:0] n9830_o;
+  wire n9831_o;
   wire [31:0] n9832_o;
   wire [31:0] n9833_o;
   wire [31:0] n9834_o;
-  wire n9835_o;
-  wire [31:0] n9836_o;
-  wire n9837_o;
-  wire [31:0] n9838_o;
-  wire n9839_o;
-  wire [3:0] n9840_o;
+  wire [31:0] n9835_o;
+  wire n9836_o;
+  wire [31:0] n9837_o;
+  wire n9838_o;
+  wire [31:0] n9839_o;
+  wire n9840_o;
   wire [3:0] n9841_o;
-  wire [7:0] n9842_o;
-  wire n9843_o;
-  wire [31:0] n9844_o;
-  wire n9845_o;
+  wire [3:0] n9842_o;
+  wire [7:0] n9843_o;
+  wire n9844_o;
+  wire [31:0] n9845_o;
   wire n9846_o;
   wire n9847_o;
   wire n9848_o;
-  wire [15:0] n9849_o;
+  wire n9849_o;
   wire [15:0] n9850_o;
-  wire [31:0] n9851_o;
-  wire n9852_o;
+  wire [15:0] n9851_o;
+  wire [31:0] n9852_o;
   wire n9853_o;
   wire n9854_o;
   wire n9855_o;
-  wire [7:0] n9857_o;
-  wire n9858_o;
-  wire [3:0] n9859_o;
+  wire n9856_o;
+  wire [7:0] n9858_o;
+  wire n9859_o;
   wire [3:0] n9860_o;
-  wire [7:0] n9861_o;
+  wire [3:0] n9861_o;
   wire [7:0] n9862_o;
   wire [7:0] n9863_o;
-  wire [15:0] n9864_o;
-  wire [7:0] n9865_o;
+  wire [7:0] n9864_o;
+  wire [15:0] n9865_o;
   wire [7:0] n9866_o;
   wire [7:0] n9867_o;
   wire [7:0] n9868_o;
   wire [7:0] n9869_o;
-  wire [15:0] n9870_o;
+  wire [7:0] n9870_o;
   wire [15:0] n9871_o;
   wire [15:0] n9872_o;
   wire [15:0] n9873_o;
   wire [15:0] n9874_o;
   wire [15:0] n9875_o;
-  wire [31:0] n9876_o;
+  wire [15:0] n9876_o;
   wire [31:0] n9877_o;
   wire [31:0] n9878_o;
   wire [31:0] n9879_o;
   wire [31:0] n9880_o;
   wire [31:0] n9881_o;
   wire [31:0] n9882_o;
-  wire [7:0] n9883_o;
+  wire [31:0] n9883_o;
   wire [7:0] n9884_o;
-  wire [23:0] n9885_o;
+  wire [7:0] n9885_o;
   wire [23:0] n9886_o;
   wire [23:0] n9887_o;
-  wire [31:0] n9888_o;
+  wire [23:0] n9888_o;
   wire [31:0] n9889_o;
   wire [31:0] n9890_o;
   wire [31:0] n9891_o;
   wire [31:0] n9892_o;
-  wire [7:0] n9893_o;
+  wire [31:0] n9893_o;
   wire [7:0] n9894_o;
-  wire [23:0] n9895_o;
+  wire [7:0] n9895_o;
   wire [23:0] n9896_o;
   wire [23:0] n9897_o;
-  wire n9902_o;
+  wire [23:0] n9898_o;
   wire n9903_o;
   wire n9904_o;
   wire n9905_o;
-  wire [1:0] n9906_o;
-  wire n9907_o;
-  wire [2:0] n9908_o;
-  wire [28:0] n9909_o;
-  wire [31:0] n9910_o;
-  wire [1:0] n9911_o;
-  wire [31:0] n9913_o;
+  wire n9906_o;
+  wire [1:0] n9907_o;
+  wire n9908_o;
+  wire [2:0] n9909_o;
+  wire [28:0] n9910_o;
+  wire [31:0] n9911_o;
+  wire [1:0] n9912_o;
   wire [31:0] n9914_o;
   wire [31:0] n9915_o;
-  wire n9916_o;
-  wire n9919_o;
-  wire n9921_o;
-  wire [3:0] n9922_o;
-  wire [7:0] n9924_o;
-  wire [11:0] n9926_o;
-  wire [3:0] n9927_o;
-  wire [15:0] n9928_o;
-  wire n9929_o;
+  wire [31:0] n9916_o;
+  wire n9917_o;
+  wire n9920_o;
+  wire n9922_o;
+  wire [3:0] n9923_o;
+  wire [7:0] n9925_o;
+  wire [11:0] n9927_o;
+  wire [3:0] n9928_o;
+  wire [15:0] n9929_o;
   wire n9930_o;
   wire n9931_o;
   wire n9932_o;
@@ -269,13 +267,13 @@ module tg68k_alu_2_0_2_0
   wire n9934_o;
   wire n9935_o;
   wire n9936_o;
-  wire n9938_o;
+  wire n9937_o;
   wire n9939_o;
   wire n9940_o;
   wire n9941_o;
   wire n9942_o;
   wire n9943_o;
-  wire n9945_o;
+  wire n9944_o;
   wire n9946_o;
   wire n9947_o;
   wire n9948_o;
@@ -283,57 +281,57 @@ module tg68k_alu_2_0_2_0
   wire n9950_o;
   wire n9951_o;
   wire n9952_o;
-  wire [31:0] n9955_o;
-  wire [31:0] n9957_o;
-  wire [31:0] n9959_o;
-  wire n9960_o;
+  wire n9953_o;
+  wire [31:0] n9956_o;
+  wire [31:0] n9958_o;
+  wire [31:0] n9960_o;
   wire n9961_o;
   wire n9962_o;
   wire n9963_o;
   wire n9964_o;
-  wire n9966_o;
+  wire n9965_o;
   wire n9967_o;
-  wire [31:0] n9968_o;
-  wire n9969_o;
+  wire n9968_o;
+  wire [31:0] n9969_o;
   wire n9970_o;
-  wire [15:0] n9971_o;
+  wire n9971_o;
   wire [15:0] n9972_o;
   wire [15:0] n9973_o;
   wire [15:0] n9974_o;
   wire [15:0] n9975_o;
-  wire n9977_o;
+  wire [15:0] n9976_o;
   wire n9978_o;
   wire n9979_o;
   wire n9980_o;
   wire n9981_o;
   wire n9982_o;
   wire n9983_o;
-  wire [31:0] n9985_o;
+  wire n9984_o;
   wire [31:0] n9986_o;
-  wire n9987_o;
+  wire [31:0] n9987_o;
   wire n9988_o;
-  wire n9990_o;
-  wire [31:0] n9993_o;
+  wire n9989_o;
+  wire n9991_o;
   wire [31:0] n9994_o;
   wire [31:0] n9995_o;
   wire [31:0] n9996_o;
   wire [31:0] n9997_o;
   wire [31:0] n9998_o;
-  wire n9999_o;
+  wire [31:0] n9999_o;
   wire n10000_o;
-  wire [32:0] n10002_o;
-  wire n10003_o;
-  wire [33:0] n10004_o;
-  wire [32:0] n10006_o;
-  wire n10007_o;
-  wire [33:0] n10008_o;
+  wire n10001_o;
+  wire [32:0] n10003_o;
+  wire n10004_o;
+  wire [33:0] n10005_o;
+  wire [32:0] n10007_o;
+  wire n10008_o;
   wire [33:0] n10009_o;
   wire [33:0] n10010_o;
-  wire [32:0] n10012_o;
-  wire n10013_o;
-  wire [33:0] n10014_o;
+  wire [33:0] n10011_o;
+  wire [32:0] n10013_o;
+  wire n10014_o;
   wire [33:0] n10015_o;
-  wire n10016_o;
+  wire [33:0] n10016_o;
   wire n10017_o;
   wire n10018_o;
   wire n10019_o;
@@ -344,8 +342,8 @@ module tg68k_alu_2_0_2_0
   wire n10024_o;
   wire n10025_o;
   wire n10026_o;
-  wire [31:0] n10027_o;
-  wire n10028_o;
+  wire n10027_o;
+  wire [31:0] n10028_o;
   wire n10029_o;
   wire n10030_o;
   wire n10031_o;
@@ -366,35 +364,35 @@ module tg68k_alu_2_0_2_0
   wire n10046_o;
   wire n10047_o;
   wire n10048_o;
-  wire [2:0] n10049_o;
-  wire n10053_o;
-  wire [8:0] n10054_o;
-  wire [9:0] n10055_o;
-  wire n10056_o;
+  wire n10049_o;
+  wire [2:0] n10050_o;
+  wire n10054_o;
+  wire [8:0] n10055_o;
+  wire [9:0] n10056_o;
   wire n10057_o;
   wire n10058_o;
   wire n10059_o;
   wire n10060_o;
-  wire [3:0] n10063_o;
-  localparam [8:0] n10064_o = 9'b000000000;
-  wire n10066_o;
-  wire [3:0] n10068_o;
+  wire n10061_o;
+  wire [3:0] n10064_o;
+  localparam [8:0] n10065_o = 9'b000000000;
+  wire n10067_o;
   wire [3:0] n10069_o;
-  wire n10070_o;
+  wire [3:0] n10070_o;
   wire n10071_o;
   wire n10072_o;
   wire n10073_o;
   wire n10074_o;
   wire n10075_o;
-  wire [8:0] n10076_o;
+  wire n10076_o;
   wire [8:0] n10077_o;
-  wire n10078_o;
+  wire [8:0] n10078_o;
   wire n10079_o;
   wire n10080_o;
   wire n10081_o;
   wire n10082_o;
-  wire [3:0] n10084_o;
-  wire n10085_o;
+  wire n10083_o;
+  wire [3:0] n10085_o;
   wire n10086_o;
   wire n10087_o;
   wire n10088_o;
@@ -407,310 +405,310 @@ module tg68k_alu_2_0_2_0
   wire n10095_o;
   wire n10096_o;
   wire n10097_o;
-  wire [3:0] n10099_o;
-  wire n10100_o;
+  wire n10098_o;
+  wire [3:0] n10100_o;
   wire n10101_o;
   wire n10102_o;
   wire n10103_o;
-  wire [8:0] n10104_o;
+  wire n10104_o;
   wire [8:0] n10105_o;
-  wire [7:0] n10106_o;
+  wire [8:0] n10106_o;
   wire [7:0] n10107_o;
   wire [7:0] n10108_o;
-  wire n10109_o;
-  wire [8:0] n10110_o;
-  wire n10111_o;
-  wire n10113_o;
+  wire [7:0] n10109_o;
+  wire n10110_o;
+  wire [8:0] n10111_o;
+  wire n10112_o;
   wire n10114_o;
   wire n10115_o;
   wire n10116_o;
-  wire [1:0] n10121_o;
-  wire n10123_o;
-  wire n10125_o;
-  wire [1:0] n10126_o;
-  reg n10129_o;
-  reg n10133_o;
-  wire n10139_o;
+  wire n10117_o;
+  wire [1:0] n10122_o;
+  wire n10124_o;
+  wire n10126_o;
+  wire [1:0] n10127_o;
+  reg n10130_o;
+  reg n10134_o;
   wire n10140_o;
-  wire [1:0] n10141_o;
-  wire n10143_o;
-  wire [4:0] n10144_o;
-  wire [2:0] n10145_o;
-  wire [4:0] n10147_o;
+  wire n10141_o;
+  wire [1:0] n10142_o;
+  wire n10144_o;
+  wire [4:0] n10145_o;
+  wire [2:0] n10146_o;
   wire [4:0] n10148_o;
-  wire [1:0] n10149_o;
-  wire n10151_o;
-  wire [4:0] n10152_o;
-  wire [2:0] n10153_o;
-  wire [4:0] n10155_o;
+  wire [4:0] n10149_o;
+  wire [1:0] n10150_o;
+  wire n10152_o;
+  wire [4:0] n10153_o;
+  wire [2:0] n10154_o;
   wire [4:0] n10156_o;
   wire [4:0] n10157_o;
-  wire n10163_o;
+  wire [4:0] n10158_o;
   wire n10164_o;
   wire n10165_o;
-  wire [1:0] n10171_o;
-  wire n10173_o;
-  wire n10176_o;
-  wire [2:0] n10178_o;
-  wire n10180_o;
-  wire n10182_o;
-  wire n10184_o;
-  wire n10186_o;
-  wire n10188_o;
-  wire [4:0] n10189_o;
-  reg n10192_o;
-  reg n10196_o;
-  reg n10200_o;
-  reg n10204_o;
-  reg n10208_o;
-  reg n10211_o;
-  wire [1:0] n10212_o;
-  wire n10214_o;
-  wire n10217_o;
-  wire [7:0] n10219_o;
-  wire [4:0] n10237_o;
-  wire n10239_o;
-  wire n10242_o;
+  wire n10166_o;
+  wire [1:0] n10172_o;
+  wire n10174_o;
+  wire n10177_o;
+  wire [2:0] n10179_o;
+  wire n10181_o;
+  wire n10183_o;
+  wire n10185_o;
+  wire n10187_o;
+  wire n10189_o;
+  wire [4:0] n10190_o;
+  reg n10193_o;
+  reg n10197_o;
+  reg n10201_o;
+  reg n10205_o;
+  reg n10209_o;
+  reg n10212_o;
+  wire [1:0] n10213_o;
+  wire n10215_o;
+  wire n10218_o;
+  wire [7:0] n10220_o;
+  wire [4:0] n10238_o;
+  wire n10240_o;
   wire n10243_o;
   wire n10244_o;
   wire n10245_o;
-  wire n10250_o;
-  localparam [31:0] n10251_o = 32'b00000000000000000000000000000000;
-  wire [4:0] n10253_o;
-  wire n10255_o;
-  wire n10258_o;
+  wire n10246_o;
+  wire n10251_o;
+  localparam [31:0] n10252_o = 32'b00000000000000000000000000000000;
+  wire [4:0] n10254_o;
+  wire n10256_o;
   wire n10259_o;
   wire n10260_o;
   wire n10261_o;
-  wire n10265_o;
+  wire n10262_o;
   wire n10266_o;
-  wire [4:0] n10268_o;
-  wire n10270_o;
-  wire n10273_o;
+  wire n10267_o;
+  wire [4:0] n10269_o;
+  wire n10271_o;
   wire n10274_o;
   wire n10275_o;
   wire n10276_o;
-  wire n10280_o;
+  wire n10277_o;
   wire n10281_o;
-  wire [4:0] n10283_o;
-  wire n10285_o;
-  wire n10288_o;
+  wire n10282_o;
+  wire [4:0] n10284_o;
+  wire n10286_o;
   wire n10289_o;
   wire n10290_o;
   wire n10291_o;
-  wire n10295_o;
+  wire n10292_o;
   wire n10296_o;
-  wire [4:0] n10298_o;
-  wire n10300_o;
-  wire n10303_o;
+  wire n10297_o;
+  wire [4:0] n10299_o;
+  wire n10301_o;
   wire n10304_o;
   wire n10305_o;
   wire n10306_o;
-  wire n10310_o;
+  wire n10307_o;
   wire n10311_o;
-  wire [4:0] n10313_o;
-  wire n10315_o;
-  wire n10318_o;
+  wire n10312_o;
+  wire [4:0] n10314_o;
+  wire n10316_o;
   wire n10319_o;
   wire n10320_o;
   wire n10321_o;
-  wire n10325_o;
+  wire n10322_o;
   wire n10326_o;
-  wire [4:0] n10328_o;
-  wire n10330_o;
-  wire n10333_o;
+  wire n10327_o;
+  wire [4:0] n10329_o;
+  wire n10331_o;
   wire n10334_o;
   wire n10335_o;
   wire n10336_o;
-  wire n10340_o;
+  wire n10337_o;
   wire n10341_o;
-  wire [4:0] n10343_o;
-  wire n10345_o;
-  wire n10348_o;
+  wire n10342_o;
+  wire [4:0] n10344_o;
+  wire n10346_o;
   wire n10349_o;
   wire n10350_o;
   wire n10351_o;
-  wire n10355_o;
+  wire n10352_o;
   wire n10356_o;
-  wire [4:0] n10358_o;
-  wire n10360_o;
-  wire n10363_o;
+  wire n10357_o;
+  wire [4:0] n10359_o;
+  wire n10361_o;
   wire n10364_o;
   wire n10365_o;
   wire n10366_o;
-  wire n10370_o;
+  wire n10367_o;
   wire n10371_o;
-  wire [4:0] n10373_o;
-  wire n10375_o;
-  wire n10378_o;
+  wire n10372_o;
+  wire [4:0] n10374_o;
+  wire n10376_o;
   wire n10379_o;
   wire n10380_o;
   wire n10381_o;
-  wire n10385_o;
+  wire n10382_o;
   wire n10386_o;
-  wire [4:0] n10388_o;
-  wire n10390_o;
-  wire n10393_o;
+  wire n10387_o;
+  wire [4:0] n10389_o;
+  wire n10391_o;
   wire n10394_o;
   wire n10395_o;
   wire n10396_o;
-  wire n10400_o;
+  wire n10397_o;
   wire n10401_o;
-  wire [4:0] n10403_o;
-  wire n10405_o;
-  wire n10408_o;
+  wire n10402_o;
+  wire [4:0] n10404_o;
+  wire n10406_o;
   wire n10409_o;
   wire n10410_o;
   wire n10411_o;
-  wire n10415_o;
+  wire n10412_o;
   wire n10416_o;
-  wire [4:0] n10418_o;
-  wire n10420_o;
-  wire n10423_o;
+  wire n10417_o;
+  wire [4:0] n10419_o;
+  wire n10421_o;
   wire n10424_o;
   wire n10425_o;
   wire n10426_o;
-  wire n10430_o;
+  wire n10427_o;
   wire n10431_o;
-  wire [4:0] n10433_o;
-  wire n10435_o;
-  wire n10438_o;
+  wire n10432_o;
+  wire [4:0] n10434_o;
+  wire n10436_o;
   wire n10439_o;
   wire n10440_o;
   wire n10441_o;
-  wire n10445_o;
+  wire n10442_o;
   wire n10446_o;
-  wire [4:0] n10448_o;
-  wire n10450_o;
-  wire n10453_o;
+  wire n10447_o;
+  wire [4:0] n10449_o;
+  wire n10451_o;
   wire n10454_o;
   wire n10455_o;
   wire n10456_o;
-  wire n10460_o;
+  wire n10457_o;
   wire n10461_o;
-  wire [4:0] n10463_o;
-  wire n10465_o;
-  wire n10468_o;
+  wire n10462_o;
+  wire [4:0] n10464_o;
+  wire n10466_o;
   wire n10469_o;
   wire n10470_o;
   wire n10471_o;
-  wire n10475_o;
+  wire n10472_o;
   wire n10476_o;
-  wire [4:0] n10478_o;
-  wire n10480_o;
-  wire n10483_o;
+  wire n10477_o;
+  wire [4:0] n10479_o;
+  wire n10481_o;
   wire n10484_o;
   wire n10485_o;
   wire n10486_o;
-  wire n10490_o;
+  wire n10487_o;
   wire n10491_o;
-  wire [4:0] n10493_o;
-  wire n10495_o;
-  wire n10498_o;
+  wire n10492_o;
+  wire [4:0] n10494_o;
+  wire n10496_o;
   wire n10499_o;
   wire n10500_o;
   wire n10501_o;
-  wire n10505_o;
+  wire n10502_o;
   wire n10506_o;
-  wire [4:0] n10508_o;
-  wire n10510_o;
-  wire n10513_o;
+  wire n10507_o;
+  wire [4:0] n10509_o;
+  wire n10511_o;
   wire n10514_o;
   wire n10515_o;
   wire n10516_o;
-  wire n10520_o;
+  wire n10517_o;
   wire n10521_o;
-  wire [4:0] n10523_o;
-  wire n10525_o;
-  wire n10528_o;
+  wire n10522_o;
+  wire [4:0] n10524_o;
+  wire n10526_o;
   wire n10529_o;
   wire n10530_o;
   wire n10531_o;
-  wire n10535_o;
+  wire n10532_o;
   wire n10536_o;
-  wire [4:0] n10538_o;
-  wire n10540_o;
-  wire n10543_o;
+  wire n10537_o;
+  wire [4:0] n10539_o;
+  wire n10541_o;
   wire n10544_o;
   wire n10545_o;
   wire n10546_o;
-  wire n10550_o;
+  wire n10547_o;
   wire n10551_o;
-  wire [4:0] n10553_o;
-  wire n10555_o;
-  wire n10558_o;
+  wire n10552_o;
+  wire [4:0] n10554_o;
+  wire n10556_o;
   wire n10559_o;
   wire n10560_o;
   wire n10561_o;
-  wire n10565_o;
+  wire n10562_o;
   wire n10566_o;
-  wire [4:0] n10568_o;
-  wire n10570_o;
-  wire n10573_o;
+  wire n10567_o;
+  wire [4:0] n10569_o;
+  wire n10571_o;
   wire n10574_o;
   wire n10575_o;
   wire n10576_o;
-  wire n10580_o;
+  wire n10577_o;
   wire n10581_o;
-  wire [4:0] n10583_o;
-  wire n10585_o;
-  wire n10588_o;
+  wire n10582_o;
+  wire [4:0] n10584_o;
+  wire n10586_o;
   wire n10589_o;
   wire n10590_o;
   wire n10591_o;
-  wire n10595_o;
+  wire n10592_o;
   wire n10596_o;
-  wire [4:0] n10598_o;
-  wire n10600_o;
-  wire n10603_o;
+  wire n10597_o;
+  wire [4:0] n10599_o;
+  wire n10601_o;
   wire n10604_o;
   wire n10605_o;
   wire n10606_o;
-  wire n10610_o;
+  wire n10607_o;
   wire n10611_o;
-  wire [4:0] n10613_o;
-  wire n10615_o;
-  wire n10618_o;
+  wire n10612_o;
+  wire [4:0] n10614_o;
+  wire n10616_o;
   wire n10619_o;
   wire n10620_o;
   wire n10621_o;
-  wire n10625_o;
+  wire n10622_o;
   wire n10626_o;
-  wire [4:0] n10628_o;
-  wire n10630_o;
-  wire n10633_o;
+  wire n10627_o;
+  wire [4:0] n10629_o;
+  wire n10631_o;
   wire n10634_o;
   wire n10635_o;
   wire n10636_o;
-  wire n10640_o;
+  wire n10637_o;
   wire n10641_o;
-  wire [4:0] n10643_o;
-  wire n10645_o;
-  wire n10648_o;
+  wire n10642_o;
+  wire [4:0] n10644_o;
+  wire n10646_o;
   wire n10649_o;
   wire n10650_o;
   wire n10651_o;
-  wire n10655_o;
+  wire n10652_o;
   wire n10656_o;
-  wire [4:0] n10658_o;
-  wire n10660_o;
-  wire n10663_o;
+  wire n10657_o;
+  wire [4:0] n10659_o;
+  wire n10661_o;
   wire n10664_o;
   wire n10665_o;
   wire n10666_o;
-  wire n10670_o;
+  wire n10667_o;
   wire n10671_o;
-  wire [4:0] n10673_o;
-  wire n10675_o;
-  wire n10678_o;
+  wire n10672_o;
+  wire [4:0] n10674_o;
+  wire n10676_o;
   wire n10679_o;
   wire n10680_o;
   wire n10681_o;
-  wire n10685_o;
+  wire n10682_o;
   wire n10686_o;
-  wire [4:0] n10688_o;
-  wire n10690_o;
-  wire n10693_o;
+  wire n10687_o;
+  wire [4:0] n10689_o;
+  wire n10691_o;
   wire n10694_o;
   wire n10695_o;
   wire n10696_o;
@@ -720,94 +718,94 @@ module tg68k_alu_2_0_2_0
   wire n10700_o;
   wire n10701_o;
   wire n10702_o;
-  wire [4:0] n10703_o;
-  wire n10705_o;
-  wire n10708_o;
+  wire n10703_o;
+  wire [4:0] n10704_o;
+  wire n10706_o;
   wire n10709_o;
-  wire [4:0] n10711_o;
-  wire n10714_o;
-  wire [31:0] n10715_o;
+  wire n10710_o;
+  wire [4:0] n10712_o;
+  wire n10715_o;
   wire [31:0] n10716_o;
-  wire n10717_o;
-  wire [15:0] n10718_o;
+  wire [31:0] n10717_o;
+  wire n10718_o;
   wire [15:0] n10719_o;
-  wire [31:0] n10720_o;
+  wire [15:0] n10720_o;
   wire [31:0] n10721_o;
-  wire n10722_o;
-  wire [23:0] n10723_o;
-  wire [7:0] n10724_o;
-  wire [31:0] n10725_o;
+  wire [31:0] n10722_o;
+  wire n10723_o;
+  wire [23:0] n10724_o;
+  wire [7:0] n10725_o;
   wire [31:0] n10726_o;
-  wire n10727_o;
-  wire [35:0] n10729_o;
-  wire [3:0] n10730_o;
+  wire [31:0] n10727_o;
+  wire n10728_o;
+  wire [35:0] n10730_o;
   wire [3:0] n10731_o;
   wire [3:0] n10732_o;
-  wire [31:0] n10733_o;
-  wire [35:0] n10735_o;
+  wire [3:0] n10733_o;
+  wire [31:0] n10734_o;
   wire [35:0] n10736_o;
   wire [35:0] n10737_o;
-  wire n10738_o;
-  wire [37:0] n10740_o;
-  wire [1:0] n10741_o;
+  wire [35:0] n10738_o;
+  wire n10739_o;
+  wire [37:0] n10741_o;
   wire [1:0] n10742_o;
   wire [1:0] n10743_o;
-  wire [35:0] n10744_o;
-  wire [37:0] n10746_o;
+  wire [1:0] n10744_o;
+  wire [35:0] n10745_o;
   wire [37:0] n10747_o;
   wire [37:0] n10748_o;
-  wire n10749_o;
-  wire [38:0] n10751_o;
-  wire [39:0] n10753_o;
-  wire n10754_o;
+  wire [37:0] n10749_o;
+  wire n10750_o;
+  wire [38:0] n10752_o;
+  wire [39:0] n10754_o;
   wire n10755_o;
   wire n10756_o;
-  wire [38:0] n10757_o;
-  wire [39:0] n10759_o;
+  wire n10757_o;
+  wire [38:0] n10758_o;
   wire [39:0] n10760_o;
   wire [39:0] n10761_o;
   wire [39:0] n10762_o;
-  wire [7:0] n10763_o;
+  wire [39:0] n10763_o;
   wire [7:0] n10764_o;
   wire [7:0] n10765_o;
-  wire [31:0] n10766_o;
-  wire n10767_o;
+  wire [7:0] n10766_o;
+  wire [31:0] n10767_o;
   wire n10768_o;
-  wire [38:0] n10769_o;
-  wire [39:0] n10770_o;
+  wire n10769_o;
+  wire [38:0] n10770_o;
   wire [39:0] n10771_o;
-  wire n10772_o;
-  wire [1:0] n10773_o;
-  wire [37:0] n10774_o;
-  wire [39:0] n10775_o;
+  wire [39:0] n10772_o;
+  wire n10773_o;
+  wire [1:0] n10774_o;
+  wire [37:0] n10775_o;
   wire [39:0] n10776_o;
-  wire n10777_o;
-  wire [3:0] n10778_o;
-  wire [35:0] n10779_o;
-  wire [39:0] n10780_o;
+  wire [39:0] n10777_o;
+  wire n10778_o;
+  wire [3:0] n10779_o;
+  wire [35:0] n10780_o;
   wire [39:0] n10781_o;
-  wire n10782_o;
-  wire [7:0] n10783_o;
-  wire [23:0] n10784_o;
-  wire [31:0] n10785_o;
+  wire [39:0] n10782_o;
+  wire n10783_o;
+  wire [7:0] n10784_o;
+  wire [23:0] n10785_o;
   wire [31:0] n10786_o;
   wire [31:0] n10787_o;
-  wire n10788_o;
-  wire [15:0] n10789_o;
+  wire [31:0] n10788_o;
+  wire n10789_o;
   wire [15:0] n10790_o;
-  wire [31:0] n10791_o;
+  wire [15:0] n10791_o;
   wire [31:0] n10792_o;
-  wire [7:0] n10793_o;
-  wire [31:0] n10794_o;
-  wire [7:0] n10795_o;
-  wire [39:0] n10796_o;
-  localparam [39:0] n10797_o = 40'b0000000000000000000000000000000000000000;
-  wire [39:0] n10799_o;
-  localparam [39:0] n10801_o = 40'b1111111111111111111111111111111111111111;
-  wire [39:0] n10803_o;
+  wire [31:0] n10793_o;
+  wire [7:0] n10794_o;
+  wire [31:0] n10795_o;
+  wire [7:0] n10796_o;
+  wire [39:0] n10797_o;
+  localparam [39:0] n10798_o = 40'b0000000000000000000000000000000000000000;
+  wire [39:0] n10800_o;
+  localparam [39:0] n10802_o = 40'b1111111111111111111111111111111111111111;
   wire [39:0] n10804_o;
   wire [39:0] n10805_o;
-  wire n10806_o;
+  wire [39:0] n10806_o;
   wire n10807_o;
   wire n10808_o;
   wire n10809_o;
@@ -817,7 +815,7 @@ module tg68k_alu_2_0_2_0
   wire n10813_o;
   wire n10814_o;
   wire n10815_o;
-  wire n10823_o;
+  wire n10816_o;
   wire n10824_o;
   wire n10825_o;
   wire n10826_o;
@@ -827,7 +825,7 @@ module tg68k_alu_2_0_2_0
   wire n10830_o;
   wire n10831_o;
   wire n10832_o;
-  wire n10840_o;
+  wire n10833_o;
   wire n10841_o;
   wire n10842_o;
   wire n10843_o;
@@ -837,7 +835,7 @@ module tg68k_alu_2_0_2_0
   wire n10847_o;
   wire n10848_o;
   wire n10849_o;
-  wire n10857_o;
+  wire n10850_o;
   wire n10858_o;
   wire n10859_o;
   wire n10860_o;
@@ -847,7 +845,7 @@ module tg68k_alu_2_0_2_0
   wire n10864_o;
   wire n10865_o;
   wire n10866_o;
-  wire n10874_o;
+  wire n10867_o;
   wire n10875_o;
   wire n10876_o;
   wire n10877_o;
@@ -857,7 +855,7 @@ module tg68k_alu_2_0_2_0
   wire n10881_o;
   wire n10882_o;
   wire n10883_o;
-  wire n10891_o;
+  wire n10884_o;
   wire n10892_o;
   wire n10893_o;
   wire n10894_o;
@@ -867,7 +865,7 @@ module tg68k_alu_2_0_2_0
   wire n10898_o;
   wire n10899_o;
   wire n10900_o;
-  wire n10908_o;
+  wire n10901_o;
   wire n10909_o;
   wire n10910_o;
   wire n10911_o;
@@ -877,7 +875,7 @@ module tg68k_alu_2_0_2_0
   wire n10915_o;
   wire n10916_o;
   wire n10917_o;
-  wire n10925_o;
+  wire n10918_o;
   wire n10926_o;
   wire n10927_o;
   wire n10928_o;
@@ -887,7 +885,7 @@ module tg68k_alu_2_0_2_0
   wire n10932_o;
   wire n10933_o;
   wire n10934_o;
-  wire n10942_o;
+  wire n10935_o;
   wire n10943_o;
   wire n10944_o;
   wire n10945_o;
@@ -897,7 +895,7 @@ module tg68k_alu_2_0_2_0
   wire n10949_o;
   wire n10950_o;
   wire n10951_o;
-  wire n10959_o;
+  wire n10952_o;
   wire n10960_o;
   wire n10961_o;
   wire n10962_o;
@@ -907,7 +905,7 @@ module tg68k_alu_2_0_2_0
   wire n10966_o;
   wire n10967_o;
   wire n10968_o;
-  wire n10976_o;
+  wire n10969_o;
   wire n10977_o;
   wire n10978_o;
   wire n10979_o;
@@ -917,7 +915,7 @@ module tg68k_alu_2_0_2_0
   wire n10983_o;
   wire n10984_o;
   wire n10985_o;
-  wire n10993_o;
+  wire n10986_o;
   wire n10994_o;
   wire n10995_o;
   wire n10996_o;
@@ -927,7 +925,7 @@ module tg68k_alu_2_0_2_0
   wire n11000_o;
   wire n11001_o;
   wire n11002_o;
-  wire n11010_o;
+  wire n11003_o;
   wire n11011_o;
   wire n11012_o;
   wire n11013_o;
@@ -937,7 +935,7 @@ module tg68k_alu_2_0_2_0
   wire n11017_o;
   wire n11018_o;
   wire n11019_o;
-  wire n11027_o;
+  wire n11020_o;
   wire n11028_o;
   wire n11029_o;
   wire n11030_o;
@@ -947,7 +945,7 @@ module tg68k_alu_2_0_2_0
   wire n11034_o;
   wire n11035_o;
   wire n11036_o;
-  wire n11044_o;
+  wire n11037_o;
   wire n11045_o;
   wire n11046_o;
   wire n11047_o;
@@ -957,7 +955,7 @@ module tg68k_alu_2_0_2_0
   wire n11051_o;
   wire n11052_o;
   wire n11053_o;
-  wire n11061_o;
+  wire n11054_o;
   wire n11062_o;
   wire n11063_o;
   wire n11064_o;
@@ -967,7 +965,7 @@ module tg68k_alu_2_0_2_0
   wire n11068_o;
   wire n11069_o;
   wire n11070_o;
-  wire n11078_o;
+  wire n11071_o;
   wire n11079_o;
   wire n11080_o;
   wire n11081_o;
@@ -977,7 +975,7 @@ module tg68k_alu_2_0_2_0
   wire n11085_o;
   wire n11086_o;
   wire n11087_o;
-  wire n11095_o;
+  wire n11088_o;
   wire n11096_o;
   wire n11097_o;
   wire n11098_o;
@@ -987,7 +985,7 @@ module tg68k_alu_2_0_2_0
   wire n11102_o;
   wire n11103_o;
   wire n11104_o;
-  wire n11112_o;
+  wire n11105_o;
   wire n11113_o;
   wire n11114_o;
   wire n11115_o;
@@ -997,7 +995,7 @@ module tg68k_alu_2_0_2_0
   wire n11119_o;
   wire n11120_o;
   wire n11121_o;
-  wire n11129_o;
+  wire n11122_o;
   wire n11130_o;
   wire n11131_o;
   wire n11132_o;
@@ -1007,7 +1005,7 @@ module tg68k_alu_2_0_2_0
   wire n11136_o;
   wire n11137_o;
   wire n11138_o;
-  wire n11146_o;
+  wire n11139_o;
   wire n11147_o;
   wire n11148_o;
   wire n11149_o;
@@ -1017,7 +1015,7 @@ module tg68k_alu_2_0_2_0
   wire n11153_o;
   wire n11154_o;
   wire n11155_o;
-  wire n11163_o;
+  wire n11156_o;
   wire n11164_o;
   wire n11165_o;
   wire n11166_o;
@@ -1027,7 +1025,7 @@ module tg68k_alu_2_0_2_0
   wire n11170_o;
   wire n11171_o;
   wire n11172_o;
-  wire n11180_o;
+  wire n11173_o;
   wire n11181_o;
   wire n11182_o;
   wire n11183_o;
@@ -1037,7 +1035,7 @@ module tg68k_alu_2_0_2_0
   wire n11187_o;
   wire n11188_o;
   wire n11189_o;
-  wire n11197_o;
+  wire n11190_o;
   wire n11198_o;
   wire n11199_o;
   wire n11200_o;
@@ -1047,7 +1045,7 @@ module tg68k_alu_2_0_2_0
   wire n11204_o;
   wire n11205_o;
   wire n11206_o;
-  wire n11214_o;
+  wire n11207_o;
   wire n11215_o;
   wire n11216_o;
   wire n11217_o;
@@ -1057,7 +1055,7 @@ module tg68k_alu_2_0_2_0
   wire n11221_o;
   wire n11222_o;
   wire n11223_o;
-  wire n11231_o;
+  wire n11224_o;
   wire n11232_o;
   wire n11233_o;
   wire n11234_o;
@@ -1067,7 +1065,7 @@ module tg68k_alu_2_0_2_0
   wire n11238_o;
   wire n11239_o;
   wire n11240_o;
-  wire n11248_o;
+  wire n11241_o;
   wire n11249_o;
   wire n11250_o;
   wire n11251_o;
@@ -1077,7 +1075,7 @@ module tg68k_alu_2_0_2_0
   wire n11255_o;
   wire n11256_o;
   wire n11257_o;
-  wire n11265_o;
+  wire n11258_o;
   wire n11266_o;
   wire n11267_o;
   wire n11268_o;
@@ -1087,7 +1085,7 @@ module tg68k_alu_2_0_2_0
   wire n11272_o;
   wire n11273_o;
   wire n11274_o;
-  wire n11282_o;
+  wire n11275_o;
   wire n11283_o;
   wire n11284_o;
   wire n11285_o;
@@ -1097,7 +1095,7 @@ module tg68k_alu_2_0_2_0
   wire n11289_o;
   wire n11290_o;
   wire n11291_o;
-  wire n11299_o;
+  wire n11292_o;
   wire n11300_o;
   wire n11301_o;
   wire n11302_o;
@@ -1107,7 +1105,7 @@ module tg68k_alu_2_0_2_0
   wire n11306_o;
   wire n11307_o;
   wire n11308_o;
-  wire n11316_o;
+  wire n11309_o;
   wire n11317_o;
   wire n11318_o;
   wire n11319_o;
@@ -1117,7 +1115,7 @@ module tg68k_alu_2_0_2_0
   wire n11323_o;
   wire n11324_o;
   wire n11325_o;
-  wire n11333_o;
+  wire n11326_o;
   wire n11334_o;
   wire n11335_o;
   wire n11336_o;
@@ -1127,7 +1125,7 @@ module tg68k_alu_2_0_2_0
   wire n11340_o;
   wire n11341_o;
   wire n11342_o;
-  wire n11350_o;
+  wire n11343_o;
   wire n11351_o;
   wire n11352_o;
   wire n11353_o;
@@ -1137,7 +1135,7 @@ module tg68k_alu_2_0_2_0
   wire n11357_o;
   wire n11358_o;
   wire n11359_o;
-  wire n11367_o;
+  wire n11360_o;
   wire n11368_o;
   wire n11369_o;
   wire n11370_o;
@@ -1147,7 +1145,7 @@ module tg68k_alu_2_0_2_0
   wire n11374_o;
   wire n11375_o;
   wire n11376_o;
-  wire n11384_o;
+  wire n11377_o;
   wire n11385_o;
   wire n11386_o;
   wire n11387_o;
@@ -1157,7 +1155,7 @@ module tg68k_alu_2_0_2_0
   wire n11391_o;
   wire n11392_o;
   wire n11393_o;
-  wire n11401_o;
+  wire n11394_o;
   wire n11402_o;
   wire n11403_o;
   wire n11404_o;
@@ -1167,7 +1165,7 @@ module tg68k_alu_2_0_2_0
   wire n11408_o;
   wire n11409_o;
   wire n11410_o;
-  wire n11418_o;
+  wire n11411_o;
   wire n11419_o;
   wire n11420_o;
   wire n11421_o;
@@ -1177,7 +1175,7 @@ module tg68k_alu_2_0_2_0
   wire n11425_o;
   wire n11426_o;
   wire n11427_o;
-  wire n11435_o;
+  wire n11428_o;
   wire n11436_o;
   wire n11437_o;
   wire n11438_o;
@@ -1187,7 +1185,7 @@ module tg68k_alu_2_0_2_0
   wire n11442_o;
   wire n11443_o;
   wire n11444_o;
-  wire n11452_o;
+  wire n11445_o;
   wire n11453_o;
   wire n11454_o;
   wire n11455_o;
@@ -1207,509 +1205,503 @@ module tg68k_alu_2_0_2_0
   wire n11469_o;
   wire n11470_o;
   wire n11471_o;
-  wire [5:0] n11473_o;
+  wire n11472_o;
   wire [5:0] n11474_o;
   wire [5:0] n11475_o;
-  wire [3:0] n11476_o;
-  wire n11478_o;
-  wire [3:0] n11479_o;
-  wire n11481_o;
-  wire [3:0] n11482_o;
-  wire n11484_o;
-  wire [3:0] n11485_o;
-  wire n11487_o;
-  wire [3:0] n11489_o;
-  wire n11491_o;
-  wire [3:0] n11492_o;
-  wire n11494_o;
-  wire [3:0] n11496_o;
-  wire n11498_o;
-  wire [3:0] n11500_o;
+  wire [5:0] n11476_o;
+  wire [3:0] n11477_o;
+  wire n11479_o;
+  wire [3:0] n11480_o;
+  wire n11482_o;
+  wire [3:0] n11483_o;
+  wire n11485_o;
+  wire [3:0] n11486_o;
+  wire n11488_o;
+  wire [3:0] n11490_o;
+  wire n11492_o;
+  wire [3:0] n11493_o;
+  wire n11495_o;
+  wire [3:0] n11497_o;
+  wire n11499_o;
   wire [3:0] n11501_o;
   wire [3:0] n11502_o;
-  wire n11504_o;
-  wire [3:0] n11505_o;
-  wire [3:0] n11507_o;
-  wire [1:0] n11508_o;
-  wire n11509_o;
+  wire [3:0] n11503_o;
+  wire n11505_o;
+  wire [3:0] n11506_o;
+  wire [3:0] n11508_o;
+  wire [1:0] n11509_o;
   wire n11510_o;
   wire n11511_o;
-  wire n11513_o;
-  wire [3:0] n11514_o;
+  wire n11512_o;
+  wire n11514_o;
   wire [3:0] n11515_o;
-  wire [1:0] n11516_o;
-  wire [1:0] n11518_o;
-  wire [3:0] n11519_o;
-  wire [3:0] n11522_o;
-  wire [1:0] n11523_o;
-  wire [2:0] n11524_o;
-  wire [1:0] n11525_o;
+  wire [3:0] n11516_o;
+  wire [1:0] n11517_o;
+  wire [1:0] n11519_o;
+  wire [3:0] n11520_o;
+  wire [3:0] n11523_o;
+  wire [1:0] n11524_o;
+  wire [2:0] n11525_o;
   wire [1:0] n11526_o;
-  wire n11527_o;
-  wire n11529_o;
-  wire [3:0] n11530_o;
-  wire [3:0] n11532_o;
-  wire [2:0] n11533_o;
-  wire n11534_o;
-  wire n11536_o;
+  wire [1:0] n11527_o;
+  wire n11528_o;
+  wire n11530_o;
+  wire [3:0] n11531_o;
+  wire [3:0] n11533_o;
+  wire [2:0] n11534_o;
+  wire n11535_o;
   wire n11537_o;
   wire n11538_o;
   wire n11539_o;
-  wire n11541_o;
-  wire [3:0] n11542_o;
-  wire [3:0] n11544_o;
-  wire [2:0] n11545_o;
-  wire n11546_o;
+  wire n11540_o;
+  wire n11542_o;
+  wire [3:0] n11543_o;
+  wire [3:0] n11545_o;
+  wire [2:0] n11546_o;
   wire n11547_o;
-  wire [1:0] n11548_o;
-  wire [1:0] n11550_o;
-  wire [3:0] n11551_o;
+  wire n11548_o;
+  wire [1:0] n11549_o;
+  wire [1:0] n11551_o;
   wire [3:0] n11552_o;
-  wire [2:0] n11553_o;
-  wire [2:0] n11555_o;
-  localparam [4:0] n11556_o = 5'b11111;
-  wire [1:0] n11558_o;
-  wire n11560_o;
-  wire n11562_o;
+  wire [3:0] n11553_o;
+  wire [2:0] n11554_o;
+  wire [2:0] n11556_o;
+  localparam [4:0] n11557_o = 5'b11111;
+  wire [1:0] n11559_o;
+  wire n11561_o;
   wire n11563_o;
-  wire n11565_o;
+  wire n11564_o;
   wire n11566_o;
-  wire n11569_o;
+  wire n11567_o;
   wire n11570_o;
   wire n11571_o;
-  wire n11573_o;
+  wire n11572_o;
   wire n11574_o;
   wire n11575_o;
-  wire n11577_o;
+  wire n11576_o;
   wire n11578_o;
-  wire [1:0] n11579_o;
-  wire n11580_o;
+  wire n11579_o;
+  wire [1:0] n11580_o;
   wire n11581_o;
   wire n11582_o;
   wire n11583_o;
   wire n11584_o;
-  wire n11587_o;
-  wire [1:0] n11592_o;
-  wire n11593_o;
-  wire n11595_o;
+  wire n11585_o;
+  wire n11588_o;
+  wire [1:0] n11593_o;
+  wire n11594_o;
   wire n11596_o;
-  wire n11598_o;
-  wire n11600_o;
+  wire n11597_o;
+  wire n11599_o;
   wire n11601_o;
   wire n11602_o;
-  wire n11604_o;
-  wire [2:0] n11605_o;
-  reg n11606_o;
-  wire n11608_o;
+  wire n11603_o;
+  wire n11605_o;
+  wire [2:0] n11606_o;
+  reg n11608_o;
   wire n11610_o;
-  wire n11611_o;
   wire n11612_o;
+  wire n11613_o;
   wire n11614_o;
-  wire n11615_o;
+  wire n11616_o;
   wire n11617_o;
-  wire [3:0] n11618_o;
-  reg n11621_o;
-  reg n11623_o;
-  wire n11624_o;
-  wire n11625_o;
-  wire n11627_o;
+  wire n11619_o;
+  wire [3:0] n11620_o;
+  reg n11624_o;
+  reg n11627_o;
   wire n11628_o;
-  wire n11630_o;
+  wire n11629_o;
   wire n11631_o;
-  wire [30:0] n11632_o;
-  wire [31:0] n11633_o;
+  wire n11632_o;
   wire n11634_o;
   wire n11635_o;
   wire [30:0] n11636_o;
   wire [31:0] n11637_o;
-  wire [1:0] n11638_o;
-  wire n11640_o;
-  wire n11642_o;
+  wire n11638_o;
+  wire n11639_o;
+  wire [30:0] n11640_o;
+  wire [31:0] n11641_o;
+  wire [1:0] n11642_o;
   wire n11644_o;
-  wire n11645_o;
-  wire [1:0] n11646_o;
-  wire n11647_o;
-  reg n11648_o;
+  wire n11646_o;
+  wire n11648_o;
   wire n11649_o;
-  reg n11650_o;
-  wire [6:0] n11652_o;
-  wire [15:0] n11653_o;
-  wire [6:0] n11654_o;
-  wire n11655_o;
-  wire n11656_o;
-  wire [31:0] n11657_o;
-  wire [31:0] n11658_o;
+  wire [1:0] n11650_o;
+  wire n11651_o;
+  reg n11652_o;
+  wire n11653_o;
+  reg n11654_o;
+  wire [6:0] n11656_o;
+  wire [15:0] n11657_o;
+  wire [6:0] n11658_o;
   wire n11659_o;
   wire n11660_o;
   wire [31:0] n11661_o;
-  wire n11666_o;
-  wire [1:0] n11667_o;
-  wire n11669_o;
-  wire n11671_o;
+  wire [31:0] n11662_o;
+  wire n11663_o;
+  wire n11664_o;
+  wire [31:0] n11665_o;
+  wire n11670_o;
+  wire [1:0] n11671_o;
   wire n11673_o;
-  wire n11674_o;
-  wire n11676_o;
-  wire [2:0] n11677_o;
-  reg [5:0] n11682_o;
-  wire [1:0] n11683_o;
-  wire n11685_o;
-  wire n11687_o;
+  wire n11675_o;
+  wire n11677_o;
+  wire n11678_o;
+  wire n11680_o;
+  wire [2:0] n11681_o;
+  reg [5:0] n11686_o;
+  wire [1:0] n11687_o;
   wire n11689_o;
-  wire n11690_o;
-  wire n11692_o;
-  wire [2:0] n11693_o;
-  reg [5:0] n11698_o;
-  wire [5:0] n11699_o;
-  wire [1:0] n11701_o;
-  wire n11703_o;
-  wire n11704_o;
-  wire n11705_o;
-  wire n11706_o;
+  wire n11691_o;
+  wire n11693_o;
+  wire n11694_o;
+  wire n11696_o;
+  wire [2:0] n11697_o;
+  reg [5:0] n11702_o;
+  wire [5:0] n11703_o;
+  wire [1:0] n11705_o;
   wire n11707_o;
-  wire [5:0] n11708_o;
-  wire [2:0] n11709_o;
-  wire [2:0] n11710_o;
-  wire n11712_o;
-  wire [2:0] n11715_o;
-  wire [5:0] n11716_o;
-  wire [5:0] n11717_o;
-  wire [5:0] n11719_o;
-  localparam [33:0] n11722_o = 34'b0000000000000000000000000000000000;
-  wire n11726_o;
-  wire [5:0] n11727_o;
-  wire [5:0] n11729_o;
-  wire [30:0] n11731_o;
-  wire [31:0] n11733_o;
-  wire [30:0] n11734_o;
-  wire [31:0] n11736_o;
+  wire n11708_o;
+  wire n11709_o;
+  wire n11710_o;
+  wire n11711_o;
+  wire [5:0] n11712_o;
+  wire [2:0] n11713_o;
+  wire [2:0] n11714_o;
+  wire n11716_o;
+  wire [2:0] n11719_o;
+  wire [5:0] n11720_o;
+  wire [5:0] n11721_o;
+  wire [5:0] n11723_o;
+  localparam [33:0] n11726_o = 34'b0000000000000000000000000000000000;
+  wire n11730_o;
+  wire [5:0] n11731_o;
+  wire [5:0] n11733_o;
+  wire [30:0] n11735_o;
   wire [31:0] n11737_o;
-  wire [32:0] n11738_o;
-  wire [1:0] n11739_o;
-  wire n11742_o;
-  wire n11745_o;
-  wire n11747_o;
-  wire n11748_o;
-  wire [1:0] n11749_o;
-  wire n11750_o;
-  reg n11751_o;
+  wire [30:0] n11738_o;
+  wire [31:0] n11740_o;
+  wire [31:0] n11741_o;
+  wire [32:0] n11742_o;
+  wire [1:0] n11743_o;
+  wire n11746_o;
+  wire n11749_o;
+  wire n11751_o;
   wire n11752_o;
-  reg n11753_o;
-  wire [7:0] n11755_o;
-  wire [15:0] n11756_o;
-  wire [6:0] n11757_o;
-  wire [31:0] n11758_o;
-  wire [32:0] n11760_o;
-  wire [32:0] n11761_o;
-  wire n11763_o;
-  wire n11764_o;
-  wire n11765_o;
-  wire n11766_o;
+  wire [1:0] n11753_o;
+  wire n11754_o;
+  reg n11755_o;
+  wire n11756_o;
+  reg n11757_o;
+  wire [7:0] n11759_o;
+  wire [15:0] n11760_o;
+  wire [6:0] n11761_o;
+  wire [31:0] n11762_o;
+  wire [32:0] n11764_o;
+  wire [32:0] n11765_o;
   wire n11767_o;
+  wire n11768_o;
   wire n11769_o;
+  wire n11770_o;
   wire n11771_o;
-  wire n11772_o;
   wire n11773_o;
-  wire [1:0] n11774_o;
   wire n11775_o;
+  wire n11776_o;
   wire n11777_o;
-  wire n11778_o;
-  wire n11780_o;
+  wire [1:0] n11778_o;
+  wire n11779_o;
+  wire n11781_o;
   wire n11782_o;
-  wire n11783_o;
   wire n11784_o;
   wire n11786_o;
-  wire [2:0] n11787_o;
-  reg n11788_o;
-  wire n11789_o;
-  wire n11791_o;
-  wire n11792_o;
-  wire [1:0] n11793_o;
-  wire [7:0] n11794_o;
-  wire [7:0] n11795_o;
-  wire [7:0] n11796_o;
+  wire n11787_o;
+  wire n11788_o;
+  wire n11790_o;
+  wire [2:0] n11791_o;
+  reg n11793_o;
+  wire n11794_o;
   wire n11797_o;
-  wire n11799_o;
-  wire [15:0] n11800_o;
-  wire [15:0] n11801_o;
-  wire [15:0] n11802_o;
+  wire n11798_o;
+  wire [1:0] n11799_o;
+  wire [7:0] n11800_o;
+  wire [7:0] n11801_o;
+  wire [7:0] n11802_o;
   wire n11803_o;
   wire n11805_o;
-  wire n11807_o;
-  wire n11808_o;
-  wire [31:0] n11809_o;
-  wire [31:0] n11810_o;
-  wire [31:0] n11811_o;
-  wire n11812_o;
+  wire [15:0] n11806_o;
+  wire [15:0] n11807_o;
+  wire [15:0] n11808_o;
+  wire n11809_o;
+  wire n11811_o;
+  wire n11813_o;
   wire n11814_o;
-  wire [2:0] n11815_o;
-  wire [7:0] n11816_o;
-  wire [7:0] n11817_o;
-  reg [7:0] n11819_o;
-  wire [7:0] n11820_o;
-  wire [7:0] n11821_o;
-  reg [7:0] n11823_o;
-  wire [15:0] n11824_o;
-  reg [15:0] n11826_o;
-  reg n11827_o;
-  wire n11828_o;
-  wire n11829_o;
-  wire n11830_o;
-  wire n11832_o;
-  wire [1:0] n11833_o;
-  wire [7:0] n11834_o;
-  wire [7:0] n11835_o;
-  wire [7:0] n11836_o;
-  wire n11837_o;
+  wire [31:0] n11815_o;
+  wire [31:0] n11816_o;
+  wire [31:0] n11817_o;
+  wire n11818_o;
+  wire n11820_o;
+  wire [2:0] n11821_o;
+  wire [7:0] n11822_o;
+  wire [7:0] n11823_o;
+  reg [7:0] n11825_o;
+  wire [7:0] n11826_o;
+  wire [7:0] n11827_o;
+  reg [7:0] n11829_o;
+  wire [15:0] n11830_o;
+  reg [15:0] n11832_o;
+  reg n11833_o;
+  wire n11834_o;
+  wire n11835_o;
+  wire n11836_o;
   wire n11838_o;
-  wire n11839_o;
-  wire n11841_o;
-  wire [15:0] n11842_o;
-  wire [15:0] n11843_o;
-  wire [15:0] n11844_o;
+  wire [1:0] n11839_o;
+  wire [7:0] n11840_o;
+  wire [7:0] n11841_o;
+  wire [7:0] n11842_o;
+  wire n11843_o;
+  wire n11844_o;
   wire n11845_o;
-  wire n11846_o;
   wire n11847_o;
-  wire n11849_o;
+  wire [15:0] n11848_o;
+  wire [15:0] n11849_o;
+  wire [15:0] n11850_o;
   wire n11851_o;
   wire n11852_o;
-  wire [31:0] n11853_o;
-  wire [31:0] n11854_o;
-  wire [31:0] n11855_o;
-  wire n11856_o;
+  wire n11853_o;
+  wire n11855_o;
   wire n11857_o;
   wire n11858_o;
-  wire n11860_o;
-  wire [2:0] n11861_o;
-  wire [7:0] n11862_o;
-  wire [7:0] n11863_o;
-  reg [7:0] n11865_o;
-  wire [7:0] n11866_o;
-  wire [7:0] n11867_o;
-  reg [7:0] n11869_o;
-  wire [15:0] n11870_o;
-  reg [15:0] n11872_o;
-  reg n11873_o;
-  wire n11874_o;
-  wire n11875_o;
-  wire [31:0] n11876_o;
-  wire [31:0] n11877_o;
-  wire [31:0] n11878_o;
-  wire [31:0] n11879_o;
-  wire [31:0] n11880_o;
+  wire [31:0] n11859_o;
+  wire [31:0] n11860_o;
+  wire [31:0] n11861_o;
+  wire n11862_o;
+  wire n11863_o;
+  wire n11864_o;
+  wire n11866_o;
+  wire [2:0] n11867_o;
+  wire [7:0] n11868_o;
+  wire [7:0] n11869_o;
+  reg [7:0] n11871_o;
+  wire [7:0] n11872_o;
+  wire [7:0] n11873_o;
+  reg [7:0] n11875_o;
+  wire [15:0] n11876_o;
+  reg [15:0] n11878_o;
+  reg n11879_o;
+  wire n11880_o;
   wire n11881_o;
   wire [31:0] n11882_o;
   wire [31:0] n11883_o;
-  wire n11885_o;
-  wire n11886_o;
-  wire n11888_o;
-  wire n11890_o;
+  wire [31:0] n11884_o;
+  wire [31:0] n11885_o;
+  wire [31:0] n11886_o;
+  wire n11887_o;
+  wire [31:0] n11888_o;
+  wire [31:0] n11889_o;
   wire n11891_o;
-  wire n11893_o;
+  wire n11892_o;
   wire n11894_o;
   wire n11896_o;
   wire n11897_o;
-  wire n11898_o;
+  wire n11899_o;
   wire n11900_o;
   wire n11902_o;
-  wire [5:0] n11904_o;
+  wire n11903_o;
+  wire n11904_o;
   wire n11906_o;
-  wire [5:0] n11908_o;
-  wire n11910_o;
-  wire [5:0] n11912_o;
-  wire n11914_o;
-  wire [5:0] n11916_o;
-  wire n11918_o;
-  wire [5:0] n11920_o;
-  wire n11922_o;
-  wire [5:0] n11924_o;
-  wire [5:0] n11925_o;
+  wire n11908_o;
+  wire [5:0] n11910_o;
+  wire n11912_o;
+  wire [5:0] n11914_o;
+  wire n11916_o;
+  wire [5:0] n11918_o;
+  wire n11920_o;
+  wire [5:0] n11922_o;
+  wire n11924_o;
   wire [5:0] n11926_o;
-  wire [5:0] n11927_o;
-  wire [5:0] n11928_o;
-  wire [5:0] n11929_o;
+  wire n11928_o;
   wire [5:0] n11930_o;
+  wire [5:0] n11931_o;
   wire [5:0] n11932_o;
-  wire n11934_o;
-  wire n11936_o;
+  wire [5:0] n11933_o;
+  wire [5:0] n11934_o;
+  wire [5:0] n11935_o;
+  wire [5:0] n11936_o;
   wire [5:0] n11938_o;
   wire n11940_o;
-  wire [5:0] n11942_o;
-  wire n11944_o;
-  wire [5:0] n11946_o;
-  wire [5:0] n11947_o;
+  wire n11942_o;
+  wire [5:0] n11944_o;
+  wire n11946_o;
   wire [5:0] n11948_o;
-  wire [5:0] n11949_o;
-  wire n11951_o;
-  wire n11953_o;
+  wire n11950_o;
+  wire [5:0] n11952_o;
+  wire [5:0] n11953_o;
+  wire [5:0] n11954_o;
   wire [5:0] n11955_o;
-  wire [5:0] n11956_o;
-  wire n11958_o;
-  wire [2:0] n11959_o;
+  wire n11957_o;
+  wire n11959_o;
   wire [5:0] n11961_o;
-  wire n11963_o;
-  wire [3:0] n11964_o;
-  wire [5:0] n11966_o;
-  wire n11968_o;
-  wire [4:0] n11969_o;
-  wire [5:0] n11971_o;
-  wire n11973_o;
-  wire [5:0] n11974_o;
-  reg [5:0] n11976_o;
-  wire n11977_o;
-  wire n11978_o;
-  wire [5:0] n11979_o;
+  wire [5:0] n11962_o;
+  wire n11964_o;
+  wire [2:0] n11965_o;
+  wire [5:0] n11967_o;
+  wire n11969_o;
+  wire [3:0] n11970_o;
+  wire [5:0] n11972_o;
+  wire n11974_o;
+  wire [4:0] n11975_o;
+  wire [5:0] n11977_o;
+  wire n11979_o;
   wire [5:0] n11980_o;
-  wire n11981_o;
-  wire n11982_o;
+  reg [5:0] n11982_o;
   wire n11983_o;
   wire n11984_o;
+  wire [5:0] n11985_o;
   wire [5:0] n11986_o;
-  wire [5:0] n11987_o;
+  wire n11987_o;
   wire n11988_o;
   wire n11989_o;
   wire n11990_o;
   wire [5:0] n11992_o;
   wire [5:0] n11993_o;
-  wire [5:0] n11994_o;
+  wire n11994_o;
   wire n11995_o;
   wire n11996_o;
-  wire n11997_o;
+  wire [5:0] n11998_o;
   wire [5:0] n11999_o;
-  wire [5:0] n12001_o;
+  wire [5:0] n12000_o;
+  wire n12001_o;
+  wire n12002_o;
   wire n12003_o;
-  wire [5:0] n12004_o;
-  wire n12005_o;
-  wire [5:0] n12006_o;
-  wire n12007_o;
-  wire [31:0] n12008_o;
-  wire [31:0] n12009_o;
-  wire [31:0] n12010_o;
-  localparam [32:0] n12011_o = 33'b000000000000000000000000000000000;
-  wire n12012_o;
-  wire n12014_o;
-  wire n12015_o;
-  wire n12016_o;
-  wire n12017_o;
+  wire [5:0] n12005_o;
+  wire [5:0] n12007_o;
+  wire n12009_o;
+  wire [5:0] n12010_o;
+  wire n12011_o;
+  wire [5:0] n12012_o;
+  wire n12013_o;
+  wire [31:0] n12014_o;
+  wire [31:0] n12015_o;
+  wire [31:0] n12016_o;
+  localparam [32:0] n12017_o = 33'b000000000000000000000000000000000;
   wire n12018_o;
-  wire [31:0] n12019_o;
-  wire [31:0] n12020_o;
+  wire n12020_o;
   wire n12021_o;
+  wire n12022_o;
   wire n12023_o;
-  wire n12025_o;
-  wire [32:0] n12027_o;
-  wire [1:0] n12028_o;
+  wire n12024_o;
+  wire [31:0] n12025_o;
+  wire [31:0] n12026_o;
+  wire n12027_o;
   wire n12029_o;
-  localparam [23:0] n12030_o = 24'b000000000000000000000000;
-  localparam [23:0] n12031_o = 24'b000000000000000000000000;
-  wire n12033_o;
-  wire n12034_o;
+  wire n12031_o;
+  wire [32:0] n12033_o;
+  wire [1:0] n12034_o;
   wire n12035_o;
-  wire n12036_o;
-  wire [22:0] n12037_o;
+  localparam [23:0] n12036_o = 24'b000000000000000000000000;
+  localparam [23:0] n12037_o = 24'b000000000000000000000000;
   wire n12039_o;
   wire n12040_o;
-  localparam [15:0] n12041_o = 16'b0000000000000000;
-  wire n12044_o;
+  wire n12041_o;
+  wire n12042_o;
+  wire [22:0] n12043_o;
   wire n12045_o;
   wire n12046_o;
-  wire n12047_o;
-  wire [14:0] n12048_o;
+  localparam [15:0] n12047_o = 16'b0000000000000000;
   wire n12050_o;
+  wire n12051_o;
   wire n12052_o;
   wire n12053_o;
-  wire n12054_o;
+  wire [14:0] n12054_o;
   wire n12056_o;
-  wire n12057_o;
   wire n12058_o;
   wire n12059_o;
-  wire n12061_o;
-  wire [2:0] n12062_o;
+  wire n12060_o;
+  wire n12062_o;
   wire n12063_o;
-  reg n12064_o;
-  wire [6:0] n12065_o;
-  wire [6:0] n12066_o;
-  reg [6:0] n12067_o;
-  wire n12068_o;
+  wire n12064_o;
+  wire n12065_o;
+  wire n12067_o;
+  wire [2:0] n12068_o;
   wire n12069_o;
   reg n12070_o;
-  wire [14:0] n12071_o;
-  wire [14:0] n12072_o;
-  reg [14:0] n12073_o;
+  wire [6:0] n12071_o;
+  wire [6:0] n12072_o;
+  reg [6:0] n12073_o;
   wire n12074_o;
-  reg n12075_o;
-  wire [7:0] n12077_o;
+  wire n12075_o;
+  reg n12076_o;
+  wire [14:0] n12077_o;
+  wire [14:0] n12078_o;
+  reg [14:0] n12079_o;
+  wire n12080_o;
   reg n12081_o;
-  wire [7:0] n12082_o;
   wire [7:0] n12083_o;
-  wire [7:0] n12084_o;
-  wire [7:0] n12085_o;
-  reg [7:0] n12086_o;
-  wire [15:0] n12087_o;
-  wire [15:0] n12088_o;
-  wire [15:0] n12089_o;
-  wire [15:0] n12090_o;
-  reg [15:0] n12091_o;
-  wire [7:0] n12095_o;
-  wire [7:0] n12096_o;
-  wire [7:0] n12097_o;
-  wire [65:0] n12099_o;
-  wire [30:0] n12100_o;
-  wire [31:0] n12101_o;
-  wire [65:0] n12102_o;
-  wire n12106_o;
-  wire [7:0] n12107_o;
-  wire [7:0] n12108_o;
-  wire n12109_o;
-  wire [7:0] n12110_o;
-  wire [7:0] n12111_o;
-  wire n12112_o;
-  wire [7:0] n12113_o;
+  reg n12088_o;
+  wire [7:0] n12089_o;
+  wire [7:0] n12090_o;
+  wire [7:0] n12091_o;
+  wire [7:0] n12092_o;
+  reg [7:0] n12093_o;
+  wire [15:0] n12094_o;
+  wire [15:0] n12095_o;
+  wire [15:0] n12096_o;
+  wire [15:0] n12097_o;
+  reg [15:0] n12098_o;
+  wire [7:0] n12102_o;
+  wire [7:0] n12103_o;
+  wire [7:0] n12104_o;
+  wire [65:0] n12106_o;
+  wire [30:0] n12107_o;
+  wire [31:0] n12108_o;
+  wire [65:0] n12109_o;
+  wire n12113_o;
   wire [7:0] n12114_o;
   wire [7:0] n12115_o;
-  wire [7:0] n12116_o;
+  wire n12116_o;
   wire [7:0] n12117_o;
   wire [7:0] n12118_o;
   wire n12119_o;
-  wire n12120_o;
-  wire n12121_o;
-  wire n12122_o;
+  wire [7:0] n12120_o;
+  wire [7:0] n12121_o;
+  wire [7:0] n12122_o;
   wire [7:0] n12123_o;
-  wire n12125_o;
-  wire [7:0] n12127_o;
+  wire [7:0] n12124_o;
+  wire [7:0] n12125_o;
+  wire n12126_o;
+  wire n12127_o;
+  wire n12128_o;
   wire n12129_o;
-  wire [15:0] n12131_o;
-  wire n12133_o;
+  wire [7:0] n12130_o;
+  wire n12132_o;
+  wire [7:0] n12134_o;
   wire n12136_o;
-  wire [1:0] n12137_o;
-  wire [1:0] n12139_o;
-  wire [2:0] n12140_o;
-  wire [2:0] n12142_o;
-  wire [2:0] n12144_o;
-  wire n12147_o;
-  wire n12148_o;
-  wire n12149_o;
-  wire [1:0] n12150_o;
-  wire n12151_o;
-  wire [2:0] n12152_o;
-  wire n12153_o;
-  wire [3:0] n12154_o;
+  wire [15:0] n12138_o;
+  wire n12140_o;
+  wire n12143_o;
+  wire [1:0] n12144_o;
+  wire [1:0] n12146_o;
+  wire [2:0] n12147_o;
+  wire [2:0] n12149_o;
+  wire [2:0] n12151_o;
+  wire n12154_o;
   wire n12155_o;
   wire n12156_o;
-  wire n12157_o;
-  wire [1:0] n12158_o;
-  wire [1:0] n12159_o;
-  wire [1:0] n12160_o;
-  wire [1:0] n12161_o;
+  wire [1:0] n12157_o;
+  wire n12158_o;
+  wire [2:0] n12159_o;
+  wire n12160_o;
+  wire [3:0] n12161_o;
+  wire n12162_o;
   wire n12163_o;
   wire n12164_o;
-  wire n12165_o;
-  wire n12166_o;
-  wire n12167_o;
+  wire [1:0] n12165_o;
+  wire [1:0] n12166_o;
+  wire [1:0] n12167_o;
   wire [1:0] n12168_o;
-  wire n12169_o;
-  wire [2:0] n12170_o;
+  wire n12170_o;
   wire n12171_o;
-  wire [3:0] n12172_o;
+  wire n12172_o;
   wire n12173_o;
   wire n12174_o;
   wire [1:0] n12175_o;
@@ -1717,47 +1709,47 @@ module tg68k_alu_2_0_2_0
   wire [2:0] n12177_o;
   wire n12178_o;
   wire [3:0] n12179_o;
-  wire [3:0] n12180_o;
-  wire [3:0] n12181_o;
-  wire [3:0] n12182_o;
-  wire n12184_o;
+  wire n12180_o;
+  wire n12181_o;
+  wire [1:0] n12182_o;
+  wire n12183_o;
+  wire [2:0] n12184_o;
   wire n12185_o;
-  wire n12188_o;
+  wire [3:0] n12186_o;
+  wire [3:0] n12187_o;
+  wire [3:0] n12188_o;
+  wire [3:0] n12189_o;
   wire n12191_o;
   wire n12192_o;
-  wire n12193_o;
-  wire n12194_o;
   wire n12195_o;
-  wire n12196_o;
   wire n12198_o;
   wire n12199_o;
+  wire n12200_o;
   wire n12201_o;
   wire n12202_o;
   wire n12203_o;
-  wire n12204_o;
   wire n12205_o;
-  wire [1:0] n12207_o;
-  wire [3:0] n12209_o;
-  wire [3:0] n12211_o;
-  wire [3:0] n12212_o;
-  wire [3:0] n12213_o;
-  wire [3:0] n12214_o;
-  wire [3:0] n12215_o;
+  wire n12206_o;
+  wire n12208_o;
+  wire n12209_o;
+  wire n12210_o;
+  wire n12211_o;
+  wire n12212_o;
+  wire [1:0] n12214_o;
   wire [3:0] n12216_o;
-  wire [3:0] n12217_o;
-  wire n12218_o;
-  wire n12219_o;
+  wire [3:0] n12218_o;
+  wire [3:0] n12219_o;
   wire [3:0] n12220_o;
-  wire n12221_o;
-  wire n12222_o;
-  wire n12223_o;
+  wire [3:0] n12221_o;
+  wire [3:0] n12222_o;
+  wire [3:0] n12223_o;
+  wire [3:0] n12224_o;
   wire n12225_o;
   wire n12226_o;
-  wire n12227_o;
+  wire [3:0] n12227_o;
   wire n12228_o;
   wire n12229_o;
   wire n12230_o;
-  wire n12231_o;
   wire n12232_o;
   wire n12233_o;
   wire n12234_o;
@@ -1769,36 +1761,36 @@ module tg68k_alu_2_0_2_0
   wire n12240_o;
   wire n12241_o;
   wire n12242_o;
+  wire n12243_o;
   wire n12244_o;
+  wire n12245_o;
   wire n12246_o;
+  wire n12247_o;
   wire n12248_o;
   wire n12249_o;
-  wire n12250_o;
-  wire [1:0] n12251_o;
-  wire [3:0] n12253_o;
-  wire n12254_o;
+  wire n12251_o;
+  wire n12253_o;
   wire n12255_o;
-  wire [1:0] n12256_o;
-  wire [3:0] n12258_o;
-  wire [3:0] n12259_o;
+  wire n12256_o;
+  wire n12257_o;
+  wire [1:0] n12258_o;
   wire [3:0] n12260_o;
   wire n12261_o;
-  wire n12263_o;
-  wire n12264_o;
-  wire n12265_o;
-  wire n12266_o;
-  wire n12267_o;
+  wire n12262_o;
+  wire [1:0] n12263_o;
+  wire [3:0] n12265_o;
+  wire [3:0] n12266_o;
+  wire [3:0] n12267_o;
+  wire n12268_o;
   wire n12270_o;
+  wire n12271_o;
   wire n12272_o;
   wire n12273_o;
   wire n12274_o;
-  wire n12276_o;
   wire n12277_o;
-  wire n12278_o;
   wire n12279_o;
   wire n12280_o;
   wire n12281_o;
-  wire n12282_o;
   wire n12283_o;
   wire n12284_o;
   wire n12285_o;
@@ -1806,29 +1798,29 @@ module tg68k_alu_2_0_2_0
   wire n12287_o;
   wire n12288_o;
   wire n12289_o;
+  wire n12290_o;
   wire n12291_o;
   wire n12292_o;
+  wire n12293_o;
+  wire n12294_o;
   wire n12295_o;
   wire n12296_o;
-  wire n12297_o;
   wire n12298_o;
   wire n12299_o;
-  wire [1:0] n12300_o;
   wire n12302_o;
   wire n12303_o;
   wire n12304_o;
   wire n12305_o;
   wire n12306_o;
+  wire [1:0] n12307_o;
   wire n12309_o;
   wire n12310_o;
-  wire [1:0] n12311_o;
+  wire n12311_o;
   wire n12312_o;
   wire n12313_o;
-  wire n12314_o;
-  wire n12315_o;
   wire n12316_o;
   wire n12317_o;
-  wire n12318_o;
+  wire [1:0] n12318_o;
   wire n12319_o;
   wire n12320_o;
   wire n12321_o;
@@ -1844,6 +1836,7 @@ module tg68k_alu_2_0_2_0
   wire n12331_o;
   wire n12332_o;
   wire n12333_o;
+  wire n12334_o;
   wire n12335_o;
   wire n12336_o;
   wire n12337_o;
@@ -1854,170 +1847,169 @@ module tg68k_alu_2_0_2_0
   wire n12343_o;
   wire n12344_o;
   wire n12345_o;
-  wire [15:0] n12346_o;
-  wire n12348_o;
+  wire n12346_o;
+  wire n12347_o;
+  wire n12349_o;
   wire n12350_o;
-  wire [15:0] n12351_o;
-  wire n12353_o;
-  wire n12354_o;
+  wire n12351_o;
+  wire n12352_o;
+  wire [15:0] n12353_o;
   wire n12355_o;
-  wire n12358_o;
-  wire [3:0] n12361_o;
-  wire [3:0] n12362_o;
-  wire [3:0] n12363_o;
-  wire [3:0] n12364_o;
-  wire [3:0] n12365_o;
-  wire [3:0] n12366_o;
-  wire [3:0] n12367_o;
+  wire n12357_o;
+  wire [15:0] n12358_o;
+  wire n12360_o;
+  wire n12361_o;
+  wire n12362_o;
+  wire n12365_o;
   wire [3:0] n12368_o;
   wire [3:0] n12369_o;
-  wire [1:0] n12370_o;
-  wire [1:0] n12371_o;
-  wire [1:0] n12372_o;
-  wire [1:0] n12373_o;
-  wire [1:0] n12374_o;
-  wire [1:0] n12375_o;
-  wire [1:0] n12376_o;
-  wire n12377_o;
-  wire n12378_o;
-  wire n12379_o;
-  wire n12380_o;
-  wire n12381_o;
-  wire n12382_o;
-  wire n12383_o;
+  wire [3:0] n12370_o;
+  wire [3:0] n12371_o;
+  wire [3:0] n12372_o;
+  wire [3:0] n12373_o;
+  wire [3:0] n12374_o;
+  wire [3:0] n12375_o;
+  wire [3:0] n12376_o;
+  wire [1:0] n12377_o;
+  wire [1:0] n12378_o;
+  wire [1:0] n12379_o;
+  wire [1:0] n12380_o;
+  wire [1:0] n12381_o;
+  wire [1:0] n12382_o;
+  wire [1:0] n12383_o;
   wire n12384_o;
   wire n12385_o;
-  wire [3:0] n12386_o;
-  wire [3:0] n12387_o;
-  wire [3:0] n12388_o;
-  wire [3:0] n12389_o;
-  wire [3:0] n12390_o;
-  wire [3:0] n12391_o;
-  wire [3:0] n12392_o;
+  wire n12386_o;
+  wire n12387_o;
+  wire n12388_o;
+  wire n12389_o;
+  wire n12390_o;
+  wire n12391_o;
+  wire n12392_o;
   wire [3:0] n12393_o;
   wire [3:0] n12394_o;
   wire [3:0] n12395_o;
   wire [3:0] n12396_o;
   wire [3:0] n12397_o;
   wire [3:0] n12398_o;
-  wire [4:0] n12399_o;
-  wire [4:0] n12400_o;
-  wire [4:0] n12401_o;
-  wire [4:0] n12402_o;
-  wire [4:0] n12403_o;
-  wire [4:0] n12404_o;
-  wire [4:0] n12405_o;
-  wire [3:0] n12406_o;
-  wire [3:0] n12407_o;
-  wire [3:0] n12408_o;
-  wire n12409_o;
-  wire n12410_o;
-  wire n12411_o;
-  wire n12412_o;
-  wire n12413_o;
-  wire n12414_o;
-  wire n12415_o;
-  wire [3:0] n12416_o;
-  wire [4:0] n12417_o;
-  wire [4:0] n12418_o;
-  wire [4:0] n12419_o;
-  wire [2:0] n12420_o;
-  wire [2:0] n12421_o;
-  wire [2:0] n12422_o;
-  wire [2:0] n12423_o;
-  wire [2:0] n12424_o;
-  wire [2:0] n12425_o;
-  wire [2:0] n12426_o;
-  wire [3:0] n12432_o;
-  wire [7:0] n12433_o;
-  wire [3:0] n12435_o;
-  wire n12436_o;
-  localparam [7:0] n12437_o = 8'b00000000;
+  wire [3:0] n12399_o;
+  wire [3:0] n12400_o;
+  wire [3:0] n12401_o;
+  wire [3:0] n12402_o;
+  wire [3:0] n12403_o;
+  wire [3:0] n12404_o;
+  wire [3:0] n12405_o;
+  wire [4:0] n12406_o;
+  wire [4:0] n12407_o;
+  wire [4:0] n12408_o;
+  wire [4:0] n12409_o;
+  wire [4:0] n12410_o;
+  wire [4:0] n12411_o;
+  wire [4:0] n12412_o;
+  wire [3:0] n12413_o;
+  wire [3:0] n12414_o;
+  wire [3:0] n12415_o;
+  wire n12416_o;
+  wire n12417_o;
+  wire n12418_o;
+  wire n12419_o;
+  wire n12420_o;
+  wire n12421_o;
+  wire n12422_o;
+  wire [3:0] n12423_o;
+  wire [4:0] n12424_o;
+  wire [4:0] n12425_o;
+  wire [4:0] n12426_o;
+  wire [2:0] n12427_o;
+  wire [2:0] n12428_o;
+  wire [2:0] n12429_o;
+  wire [2:0] n12430_o;
+  wire [2:0] n12431_o;
+  wire [2:0] n12432_o;
+  wire [2:0] n12433_o;
   wire [3:0] n12439_o;
-  wire n12440_o;
-  wire [4:0] n12442_o;
-  wire [4:0] n12443_o;
-  wire [4:0] n12444_o;
-  wire [4:0] n12445_o;
-  wire [4:0] n12446_o;
-  wire [7:0] n12447_o;
-  wire n12454_o;
-  wire n12455_o;
-  wire n12456_o;
-  wire n12457_o;
-  wire n12459_o;
-  wire n12460_o;
+  wire [7:0] n12440_o;
+  wire [3:0] n12442_o;
+  wire n12443_o;
+  localparam [7:0] n12444_o = 8'b00000000;
+  wire [3:0] n12446_o;
+  wire n12447_o;
+  wire [4:0] n12449_o;
+  wire [4:0] n12450_o;
+  wire [4:0] n12451_o;
+  wire [4:0] n12452_o;
+  wire [4:0] n12453_o;
+  wire [7:0] n12454_o;
   wire n12461_o;
+  wire n12462_o;
+  wire n12463_o;
   wire n12464_o;
-  wire [62:0] n12465_o;
-  wire [63:0] n12466_o;
+  wire n12466_o;
   wire n12467_o;
-  wire [31:0] n12468_o;
-  wire [32:0] n12469_o;
-  wire [32:0] n12470_o;
-  wire [32:0] n12471_o;
-  wire [31:0] n12472_o;
-  wire [32:0] n12473_o;
-  wire [32:0] n12474_o;
-  wire [32:0] n12475_o;
+  wire n12468_o;
+  wire n12471_o;
+  wire [62:0] n12472_o;
+  wire [63:0] n12473_o;
+  wire n12474_o;
+  wire [31:0] n12475_o;
   wire [32:0] n12476_o;
   wire [32:0] n12477_o;
   wire [32:0] n12478_o;
-  wire [30:0] n12479_o;
-  wire n12480_o;
-  wire n12482_o;
-  wire [15:0] n12483_o;
-  wire [31:0] n12485_o;
-  wire [31:0] n12486_o;
-  wire [31:0] n12487_o;
+  wire [31:0] n12479_o;
+  wire [32:0] n12480_o;
+  wire [32:0] n12481_o;
+  wire [32:0] n12482_o;
+  wire [32:0] n12483_o;
+  wire [32:0] n12484_o;
+  wire [32:0] n12485_o;
+  wire [30:0] n12486_o;
+  wire n12487_o;
   wire n12489_o;
-  wire n12490_o;
-  wire n12491_o;
-  wire n12492_o;
-  wire n12493_o;
-  wire n12494_o;
-  wire [31:0] n12495_o;
+  wire [15:0] n12490_o;
+  wire [31:0] n12492_o;
+  wire [31:0] n12493_o;
+  wire [31:0] n12494_o;
+  wire n12496_o;
   wire n12497_o;
   wire n12498_o;
   wire n12499_o;
   wire n12500_o;
   wire n12501_o;
+  wire [31:0] n12502_o;
   wire n12504_o;
-  wire n12510_o;
-  wire n12512_o;
-  wire n12513_o;
-  wire n12514_o;
-  wire n12515_o;
-  wire n12516_o;
+  wire n12505_o;
+  wire n12506_o;
+  wire n12507_o;
+  wire n12508_o;
+  wire n12511_o;
   wire n12517_o;
-  wire n12518_o;
   wire n12519_o;
   wire n12520_o;
-  wire [31:0] n12522_o;
-  wire [31:0] n12523_o;
+  wire n12521_o;
+  wire n12522_o;
+  wire n12523_o;
+  wire n12524_o;
+  wire n12525_o;
   wire n12526_o;
   wire n12527_o;
-  wire n12528_o;
-  wire [63:0] n12529_o;
-  wire [63:0] n12530_o;
-  wire [63:0] n12531_o;
-  wire [63:0] n12532_o;
+  wire [31:0] n12529_o;
+  wire [31:0] n12530_o;
+  wire n12533_o;
+  wire n12534_o;
   wire n12535_o;
-  wire n12541_o;
+  wire [63:0] n12536_o;
+  wire [63:0] n12537_o;
+  wire [63:0] n12538_o;
+  wire [63:0] n12539_o;
   wire n12542_o;
-  wire n12543_o;
-  wire n12544_o;
-  wire n12545_o;
-  wire n12546_o;
-  wire n12547_o;
   wire n12548_o;
+  wire n12549_o;
   wire n12550_o;
   wire n12551_o;
   wire n12552_o;
   wire n12553_o;
   wire n12554_o;
   wire n12555_o;
-  wire n12556_o;
   wire n12557_o;
   wire n12558_o;
   wire n12559_o;
@@ -2075,174 +2067,174 @@ module tg68k_alu_2_0_2_0
   wire n12611_o;
   wire n12612_o;
   wire n12613_o;
-  wire [3:0] n12614_o;
-  wire [3:0] n12615_o;
-  wire [3:0] n12616_o;
-  wire [3:0] n12617_o;
-  wire [3:0] n12618_o;
-  wire [3:0] n12619_o;
-  wire [3:0] n12620_o;
+  wire n12614_o;
+  wire n12615_o;
+  wire n12616_o;
+  wire n12617_o;
+  wire n12618_o;
+  wire n12619_o;
+  wire n12620_o;
   wire [3:0] n12621_o;
-  wire [15:0] n12622_o;
-  wire [15:0] n12623_o;
-  wire [31:0] n12624_o;
-  wire n12625_o;
-  wire n12627_o;
-  wire n12628_o;
-  wire n12629_o;
-  wire n12630_o;
-  wire n12631_o;
-  wire [31:0] n12632_o;
-  wire n12633_o;
+  wire [3:0] n12622_o;
+  wire [3:0] n12623_o;
+  wire [3:0] n12624_o;
+  wire [3:0] n12625_o;
+  wire [3:0] n12626_o;
+  wire [3:0] n12627_o;
+  wire [3:0] n12628_o;
+  wire [15:0] n12629_o;
+  wire [15:0] n12630_o;
+  wire [31:0] n12631_o;
+  wire n12632_o;
   wire n12634_o;
-  wire [63:0] n12635_o;
-  wire [15:0] n12636_o;
-  wire [15:0] n12637_o;
-  wire [31:0] n12638_o;
+  wire n12635_o;
+  wire n12636_o;
+  wire n12637_o;
+  wire n12638_o;
   wire [31:0] n12639_o;
-  wire [15:0] n12640_o;
-  wire [15:0] n12641_o;
-  wire [15:0] n12642_o;
-  wire n12644_o;
-  wire n12645_o;
-  wire n12646_o;
+  wire n12640_o;
+  wire n12641_o;
+  wire [63:0] n12642_o;
+  wire [15:0] n12643_o;
+  wire [15:0] n12644_o;
+  wire [31:0] n12645_o;
+  wire [31:0] n12646_o;
   wire [15:0] n12647_o;
+  wire [15:0] n12648_o;
   wire [15:0] n12649_o;
-  wire n12650_o;
   wire n12651_o;
-  wire [32:0] n12652_o;
-  wire [32:0] n12654_o;
-  wire [32:0] n12655_o;
-  wire [32:0] n12656_o;
-  wire [16:0] n12658_o;
-  wire [15:0] n12659_o;
-  wire [32:0] n12660_o;
+  wire n12652_o;
+  wire n12653_o;
+  wire [15:0] n12654_o;
+  wire [15:0] n12656_o;
+  wire n12657_o;
+  wire n12658_o;
+  wire [32:0] n12659_o;
   wire [32:0] n12661_o;
   wire [32:0] n12662_o;
-  wire n12663_o;
-  wire [31:0] n12664_o;
-  wire [31:0] n12665_o;
-  wire [31:0] n12666_o;
-  wire [30:0] n12667_o;
-  wire n12668_o;
-  wire [31:0] n12669_o;
-  wire [31:0] n12670_o;
+  wire [32:0] n12663_o;
+  wire [16:0] n12665_o;
+  wire [15:0] n12666_o;
+  wire [32:0] n12667_o;
+  wire [32:0] n12668_o;
+  wire [32:0] n12669_o;
+  wire n12670_o;
+  wire [31:0] n12671_o;
   wire [31:0] n12672_o;
   wire [31:0] n12673_o;
-  wire [31:0] n12674_o;
+  wire [30:0] n12674_o;
   wire n12675_o;
-  wire n12676_o;
-  wire n12677_o;
-  wire n12678_o;
-  wire n12679_o;
-  wire n12680_o;
-  wire n12681_o;
+  wire [31:0] n12676_o;
+  wire [31:0] n12677_o;
+  wire [31:0] n12679_o;
+  wire [31:0] n12680_o;
+  wire [31:0] n12681_o;
   wire n12682_o;
   wire n12683_o;
   wire n12684_o;
   wire n12685_o;
   wire n12686_o;
+  wire n12687_o;
   wire n12688_o;
+  wire n12689_o;
+  wire n12690_o;
   wire n12691_o;
-  wire n12697_o;
-  wire n12700_o;
-  wire n12701_o;
-  wire n12702_o;
-  wire [63:0] n12704_o;
-  wire [63:0] n12705_o;
+  wire n12692_o;
+  wire n12693_o;
+  wire n12695_o;
+  wire n12698_o;
+  wire n12704_o;
+  wire n12707_o;
   wire n12708_o;
   wire n12709_o;
-  wire n12710_o;
   wire [63:0] n12711_o;
-  wire n12713_o;
+  wire [63:0] n12712_o;
+  wire n12715_o;
   wire n12716_o;
   wire n12717_o;
-  wire n12718_o;
-  wire n12719_o;
-  wire [31:0] n12720_o;
-  wire [32:0] n12722_o;
-  wire [16:0] n12724_o;
-  wire [15:0] n12725_o;
-  wire [32:0] n12726_o;
-  wire [32:0] n12727_o;
-  wire n12730_o;
-  wire n12731_o;
-  wire [31:0] n12732_o;
-  wire [31:0] n12734_o;
-  wire [31:0] n12735_o;
-  wire [31:0] n12736_o;
-  wire [63:0] n12737_o;
-  wire n12739_o;
-  wire n12740_o;
-  wire n12742_o;
-  wire n12743_o;
+  wire [63:0] n12718_o;
+  wire n12720_o;
+  wire n12723_o;
+  wire n12724_o;
+  wire n12725_o;
+  wire n12726_o;
+  wire [31:0] n12727_o;
+  wire [32:0] n12729_o;
+  wire [16:0] n12731_o;
+  wire [15:0] n12732_o;
+  wire [32:0] n12733_o;
+  wire [32:0] n12734_o;
+  wire n12737_o;
+  wire n12738_o;
+  wire [31:0] n12739_o;
+  wire [31:0] n12741_o;
+  wire [31:0] n12742_o;
+  wire [31:0] n12743_o;
+  wire [63:0] n12744_o;
   wire n12746_o;
-  wire [31:0] n12756_o;
-  wire [2:0] n12757_o;
-  wire [3:0] n12758_o;
-  reg [3:0] n12759_q;
-  wire [8:0] n12760_o;
-  wire [127:0] n12762_o;
-  wire [63:0] n12763_o;
-  reg [63:0] n12764_q;
-  wire n12765_o;
-  reg n12766_q;
-  reg n12767_q;
-  wire n12769_o;
-  reg n12770_q;
-  wire n12771_o;
-  reg n12772_q;
-  wire [63:0] n12774_o;
-  reg [63:0] n12775_q;
+  wire n12747_o;
+  wire n12749_o;
+  wire n12750_o;
+  wire n12753_o;
+  wire [31:0] n12763_o;
+  wire [2:0] n12764_o;
+  wire [3:0] n12765_o;
+  reg [3:0] n12766_q;
+  wire [8:0] n12767_o;
+  wire [127:0] n12769_o;
+  wire [63:0] n12770_o;
+  reg [63:0] n12771_q;
+  wire n12772_o;
+  reg n12773_q;
+  reg n12774_q;
   wire n12776_o;
   reg n12777_q;
-  wire [63:0] n12779_o;
-  reg [63:0] n12780_q;
+  wire n12778_o;
+  reg n12779_q;
   wire [63:0] n12781_o;
+  reg [63:0] n12782_q;
   wire n12783_o;
   reg n12784_q;
-  wire [32:0] n12785_o;
-  reg [32:0] n12786_q;
-  wire n12787_o;
-  reg n12788_q;
-  wire [63:0] n12789_o;
+  wire [63:0] n12786_o;
+  reg [63:0] n12787_q;
+  wire [63:0] n12788_o;
   wire n12790_o;
   reg n12791_q;
-  wire n12792_o;
-  reg n12793_q;
-  wire [31:0] n12796_o;
-  wire [39:0] n12798_o;
-  wire [31:0] n12799_o;
-  wire [39:0] n12801_o;
-  wire [4:0] n12802_o;
-  wire n12803_o;
-  reg n12804_q;
-  wire n12805_o;
-  reg n12806_q;
-  wire n12807_o;
-  reg n12808_q;
-  wire n12809_o;
-  reg n12810_q;
-  wire n12811_o;
-  reg n12812_q;
-  wire n12813_o;
-  reg n12814_q;
-  wire n12815_o;
-  reg n12816_q;
-  wire [32:0] n12818_o;
-  wire [32:0] n12819_o;
-  wire [32:0] n12820_o;
-  wire [31:0] n12821_o;
-  wire [7:0] n12822_o;
-  reg [7:0] n12823_q;
-  reg [7:0] n12824_q;
-  wire n12825_o;
-  wire n12826_o;
-  wire n12827_o;
-  wire n12828_o;
-  wire n12829_o;
-  wire n12830_o;
-  wire n12831_o;
+  wire [32:0] n12792_o;
+  reg [32:0] n12793_q;
+  wire n12794_o;
+  reg n12795_q;
+  wire [63:0] n12796_o;
+  wire n12797_o;
+  reg n12798_q;
+  wire n12799_o;
+  reg n12800_q;
+  wire [31:0] n12803_o;
+  wire [39:0] n12805_o;
+  wire [31:0] n12806_o;
+  wire [39:0] n12808_o;
+  wire [4:0] n12809_o;
+  wire n12810_o;
+  reg n12811_q;
+  wire n12812_o;
+  reg n12813_q;
+  wire n12814_o;
+  reg n12815_q;
+  wire n12816_o;
+  reg n12817_q;
+  wire n12818_o;
+  reg n12819_q;
+  wire n12820_o;
+  reg n12821_q;
+  wire n12822_o;
+  reg n12823_q;
+  wire [32:0] n12825_o;
+  wire [32:0] n12826_o;
+  wire [32:0] n12827_o;
+  wire [31:0] n12828_o;
+  wire [7:0] n12829_o;
+  reg [7:0] n12830_q;
+  reg [7:0] n12831_q;
   wire n12832_o;
   wire n12833_o;
   wire n12834_o;
@@ -2268,33 +2260,33 @@ module tg68k_alu_2_0_2_0
   wire n12854_o;
   wire n12855_o;
   wire n12856_o;
-  wire [1:0] n12857_o;
-  reg n12858_o;
-  wire [1:0] n12859_o;
-  reg n12860_o;
-  wire [1:0] n12861_o;
-  reg n12862_o;
-  wire [1:0] n12863_o;
-  reg n12864_o;
-  wire [1:0] n12865_o;
-  reg n12866_o;
-  wire [1:0] n12867_o;
-  reg n12868_o;
-  wire [1:0] n12869_o;
-  reg n12870_o;
-  wire [1:0] n12871_o;
-  reg n12872_o;
-  wire [1:0] n12873_o;
-  reg n12874_o;
-  wire [1:0] n12875_o;
-  reg n12876_o;
-  wire n12877_o;
-  wire n12878_o;
-  wire n12879_o;
-  wire n12880_o;
-  wire n12881_o;
-  wire n12882_o;
-  wire n12883_o;
+  wire n12857_o;
+  wire n12858_o;
+  wire n12859_o;
+  wire n12860_o;
+  wire n12861_o;
+  wire n12862_o;
+  wire n12863_o;
+  wire [1:0] n12864_o;
+  reg n12865_o;
+  wire [1:0] n12866_o;
+  reg n12867_o;
+  wire [1:0] n12868_o;
+  reg n12869_o;
+  wire [1:0] n12870_o;
+  reg n12871_o;
+  wire [1:0] n12872_o;
+  reg n12873_o;
+  wire [1:0] n12874_o;
+  reg n12875_o;
+  wire [1:0] n12876_o;
+  reg n12877_o;
+  wire [1:0] n12878_o;
+  reg n12879_o;
+  wire [1:0] n12880_o;
+  reg n12881_o;
+  wire [1:0] n12882_o;
+  reg n12883_o;
   wire n12884_o;
   wire n12885_o;
   wire n12886_o;
@@ -2424,14 +2416,14 @@ module tg68k_alu_2_0_2_0
   wire n13010_o;
   wire n13011_o;
   wire n13012_o;
-  wire [31:0] n13013_o;
+  wire n13013_o;
   wire n13014_o;
   wire n13015_o;
   wire n13016_o;
   wire n13017_o;
   wire n13018_o;
   wire n13019_o;
-  wire n13020_o;
+  wire [31:0] n13020_o;
   wire n13021_o;
   wire n13022_o;
   wire n13023_o;
@@ -2457,33 +2449,33 @@ module tg68k_alu_2_0_2_0
   wire n13043_o;
   wire n13044_o;
   wire n13045_o;
-  wire [1:0] n13046_o;
-  reg n13047_o;
-  wire [1:0] n13048_o;
-  reg n13049_o;
-  wire [1:0] n13050_o;
-  reg n13051_o;
-  wire [1:0] n13052_o;
-  reg n13053_o;
-  wire [1:0] n13054_o;
-  reg n13055_o;
-  wire [1:0] n13056_o;
-  reg n13057_o;
-  wire [1:0] n13058_o;
-  reg n13059_o;
-  wire [1:0] n13060_o;
-  reg n13061_o;
-  wire [1:0] n13062_o;
-  reg n13063_o;
-  wire [1:0] n13064_o;
-  reg n13065_o;
-  wire n13066_o;
-  wire n13067_o;
-  wire n13068_o;
-  wire n13069_o;
-  wire n13070_o;
-  wire n13071_o;
-  wire n13072_o;
+  wire n13046_o;
+  wire n13047_o;
+  wire n13048_o;
+  wire n13049_o;
+  wire n13050_o;
+  wire n13051_o;
+  wire n13052_o;
+  wire [1:0] n13053_o;
+  reg n13054_o;
+  wire [1:0] n13055_o;
+  reg n13056_o;
+  wire [1:0] n13057_o;
+  reg n13058_o;
+  wire [1:0] n13059_o;
+  reg n13060_o;
+  wire [1:0] n13061_o;
+  reg n13062_o;
+  wire [1:0] n13063_o;
+  reg n13064_o;
+  wire [1:0] n13065_o;
+  reg n13066_o;
+  wire [1:0] n13067_o;
+  reg n13068_o;
+  wire [1:0] n13069_o;
+  reg n13070_o;
+  wire [1:0] n13071_o;
+  reg n13072_o;
   wire n13073_o;
   wire n13074_o;
   wire n13075_o;
@@ -2627,4988 +2619,5007 @@ module tg68k_alu_2_0_2_0
   wire n13213_o;
   wire n13214_o;
   wire n13215_o;
-  wire [33:0] n13216_o;
-  assign bf_ext_out = n12823_q;
-  assign set_v_flag = n12691_o;
-  assign flags = n12824_q;
-  assign c_out = n10049_o;
-  assign addsub_q = n10027_o;
-  assign aluout = n9807_o;
+  wire n13216_o;
+  wire n13217_o;
+  wire n13218_o;
+  wire n13219_o;
+  wire n13220_o;
+  wire n13221_o;
+  wire n13222_o;
+  wire [33:0] n13223_o;
+  assign bf_ext_out = n12830_q;
+  assign set_v_flag = n12698_o;
+  assign flags = n12831_q;
+  assign c_out = n10050_o;
+  assign addsub_q = n10028_o;
+  assign aluout = n9808_o;
   /* TG68K_ALU.vhd:86:16  */
-  assign op1in = n12756_o; // (signal)
+  assign op1in = n12763_o; // (signal)
   /* TG68K_ALU.vhd:87:16  */
-  assign addsub_a = n9915_o; // (signal)
+  assign addsub_a = n9916_o; // (signal)
   /* TG68K_ALU.vhd:88:16  */
-  assign addsub_b = n9998_o; // (signal)
+  assign addsub_b = n9999_o; // (signal)
   /* TG68K_ALU.vhd:89:16  */
-  assign notaddsub_b = n10010_o; // (signal)
+  assign notaddsub_b = n10011_o; // (signal)
   /* TG68K_ALU.vhd:90:16  */
-  assign add_result = n10015_o; // (signal)
+  assign add_result = n10016_o; // (signal)
   /* TG68K_ALU.vhd:91:16  */
-  assign addsub_ofl = n12757_o; // (signal)
+  assign addsub_ofl = n12764_o; // (signal)
   /* TG68K_ALU.vhd:92:16  */
-  assign opaddsub = n9977_o; // (signal)
+  assign opaddsub = n9978_o; // (signal)
   /* TG68K_ALU.vhd:93:16  */
-  assign c_in = n12758_o; // (signal)
+  assign c_in = n12765_o; // (signal)
   /* TG68K_ALU.vhd:94:16  */
-  assign flag_z = n12144_o; // (signal)
+  assign flag_z = n12151_o; // (signal)
   /* TG68K_ALU.vhd:95:16  */
-  assign set_flags = n12182_o; // (signal)
+  assign set_flags = n12189_o; // (signal)
   /* TG68K_ALU.vhd:96:16  */
-  assign ccrin = n12118_o; // (signal)
+  assign ccrin = n12125_o; // (signal)
   /* TG68K_ALU.vhd:97:16  */
-  assign last_flags1 = n12759_q; // (signal)
+  assign last_flags1 = n12766_q; // (signal)
   /* TG68K_ALU.vhd:100:16  */
-  assign bcd_pur = n10055_o; // (signal)
+  assign bcd_pur = n10056_o; // (signal)
   /* TG68K_ALU.vhd:101:16  */
-  assign bcd_kor = n12760_o; // (signal)
+  assign bcd_kor = n12767_o; // (signal)
   /* TG68K_ALU.vhd:102:16  */
-  assign halve_carry = n10060_o; // (signal)
+  assign halve_carry = n10061_o; // (signal)
   /* TG68K_ALU.vhd:103:16  */
-  assign vflag_a = n10113_o; // (signal)
+  assign vflag_a = n10114_o; // (signal)
   /* TG68K_ALU.vhd:104:16  */
-  assign bcd_a_carry = n10116_o; // (signal)
+  assign bcd_a_carry = n10117_o; // (signal)
   /* TG68K_ALU.vhd:105:16  */
-  assign bcd_a = n10110_o; // (signal)
+  assign bcd_a = n10111_o; // (signal)
   /* TG68K_ALU.vhd:106:16  */
-  assign result_mulu = n12762_o; // (signal)
+  assign result_mulu = n12769_o; // (signal)
   /* TG68K_ALU.vhd:107:16  */
-  assign result_div = n12764_q; // (signal)
+  assign result_div = n12771_q; // (signal)
   /* TG68K_ALU.vhd:108:16  */
-  assign result_div_pre = n12674_o; // (signal)
+  assign result_div_pre = n12681_o; // (signal)
   /* TG68K_ALU.vhd:109:16  */
-  assign set_mv_flag = n12504_o; // (signal)
+  assign set_mv_flag = n12511_o; // (signal)
   /* TG68K_ALU.vhd:110:16  */
-  assign v_flag = n12766_q; // (signal)
+  assign v_flag = n12773_q; // (signal)
   /* TG68K_ALU.vhd:112:16  */
-  assign rot_rot = n11606_o; // (signal)
+  assign rot_rot = n11608_o; // (signal)
   /* TG68K_ALU.vhd:113:16  */
-  assign rot_lsb = n11621_o; // (signal)
+  assign rot_lsb = n11624_o; // (signal)
   /* TG68K_ALU.vhd:114:16  */
-  assign rot_msb = n11623_o; // (signal)
+  assign rot_msb = n11627_o; // (signal)
   /* TG68K_ALU.vhd:115:16  */
-  assign rot_x = n11659_o; // (signal)
+  assign rot_x = n11663_o; // (signal)
   /* TG68K_ALU.vhd:116:16  */
-  assign rot_c = n11660_o; // (signal)
+  assign rot_c = n11664_o; // (signal)
   /* TG68K_ALU.vhd:117:16  */
-  assign rot_out = n11661_o; // (signal)
+  assign rot_out = n11665_o; // (signal)
   /* TG68K_ALU.vhd:118:16  */
-  assign asl_vflag = n12767_q; // (signal)
+  assign asl_vflag = n12774_q; // (signal)
   /* TG68K_ALU.vhd:120:16  */
-  assign bit_number = n10157_o; // (signal)
+  assign bit_number = n10158_o; // (signal)
   /* TG68K_ALU.vhd:121:16  */
-  assign bits_out = n13013_o; // (signal)
+  assign bits_out = n13020_o; // (signal)
   /* TG68K_ALU.vhd:122:16  */
-  assign one_bit_in = n12878_o; // (signal)
+  assign one_bit_in = n12885_o; // (signal)
   /* TG68K_ALU.vhd:123:16  */
-  assign bchg = n12770_q; // (signal)
+  assign bchg = n12777_q; // (signal)
   /* TG68K_ALU.vhd:124:16  */
-  assign bset = n12772_q; // (signal)
+  assign bset = n12779_q; // (signal)
   /* TG68K_ALU.vhd:126:16  */
-  assign mulu_sign = n12464_o; // (signal)
+  assign mulu_sign = n12471_o; // (signal)
   /* TG68K_ALU.vhd:128:16  */
-  assign muls_msb = n12459_o; // (signal)
+  assign muls_msb = n12466_o; // (signal)
   /* TG68K_ALU.vhd:129:16  */
-  assign mulu_reg = n12775_q; // (signal)
+  assign mulu_reg = n12782_q; // (signal)
   /* TG68K_ALU.vhd:130:16  */
-  assign fasign = n12777_q; // (signal)
+  assign fasign = n12784_q; // (signal)
   /* TG68K_ALU.vhd:132:16  */
-  assign faktorb = n12486_o; // (signal)
+  assign faktorb = n12493_o; // (signal)
   /* TG68K_ALU.vhd:134:16  */
-  assign div_reg = n12780_q; // (signal)
+  assign div_reg = n12787_q; // (signal)
   /* TG68K_ALU.vhd:135:16  */
-  assign div_quot = n12781_o; // (signal)
+  assign div_quot = n12788_o; // (signal)
   /* TG68K_ALU.vhd:137:16  */
-  assign div_neg = n12784_q; // (signal)
+  assign div_neg = n12791_q; // (signal)
   /* TG68K_ALU.vhd:138:16  */
-  assign div_bit = n12663_o; // (signal)
+  assign div_bit = n12670_o; // (signal)
   /* TG68K_ALU.vhd:139:16  */
-  assign div_sub = n12662_o; // (signal)
+  assign div_sub = n12669_o; // (signal)
   /* TG68K_ALU.vhd:140:16  */
-  assign div_over = n12786_q; // (signal)
+  assign div_over = n12793_q; // (signal)
   /* TG68K_ALU.vhd:141:16  */
-  assign nozero = n12788_q; // (signal)
+  assign nozero = n12795_q; // (signal)
   /* TG68K_ALU.vhd:142:16  */
-  assign div_qsign = n12634_o; // (signal)
+  assign div_qsign = n12641_o; // (signal)
   /* TG68K_ALU.vhd:143:16  */
-  assign dividend = n12789_o; // (signal)
+  assign dividend = n12796_o; // (signal)
   /* TG68K_ALU.vhd:144:16  */
-  assign divs = n12548_o; // (signal)
+  assign divs = n12555_o; // (signal)
   /* TG68K_ALU.vhd:145:16  */
-  assign signedop = n12791_q; // (signal)
+  assign signedop = n12798_q; // (signal)
   /* TG68K_ALU.vhd:146:16  */
-  assign op1_sign = n12793_q; // (signal)
+  assign op1_sign = n12800_q; // (signal)
   /* TG68K_ALU.vhd:148:16  */
-  assign op2outext = n12649_o; // (signal)
+  assign op2outext = n12656_o; // (signal)
   /* TG68K_ALU.vhd:151:16  */
-  assign datareg = n12796_o; // (signal)
+  assign datareg = n12803_o; // (signal)
   /* TG68K_ALU.vhd:153:16  */
-  assign bf_datareg = n10716_o; // (signal)
+  assign bf_datareg = n10717_o; // (signal)
   /* TG68K_ALU.vhd:154:16  */
-  assign result = n12798_o; // (signal)
+  assign result = n12805_o; // (signal)
   /* TG68K_ALU.vhd:155:16  */
-  assign result_tmp = n10805_o; // (signal)
+  assign result_tmp = n10806_o; // (signal)
   /* TG68K_ALU.vhd:156:16  */
-  assign unshifted_bitmask = n12799_o; // (signal)
+  assign unshifted_bitmask = n12806_o; // (signal)
   /* TG68K_ALU.vhd:158:16  */
-  assign inmux0 = n10771_o; // (signal)
+  assign inmux0 = n10772_o; // (signal)
   /* TG68K_ALU.vhd:159:16  */
-  assign inmux1 = n10776_o; // (signal)
+  assign inmux1 = n10777_o; // (signal)
   /* TG68K_ALU.vhd:160:16  */
-  assign inmux2 = n10781_o; // (signal)
+  assign inmux2 = n10782_o; // (signal)
   /* TG68K_ALU.vhd:161:16  */
-  assign inmux3 = n10787_o; // (signal)
+  assign inmux3 = n10788_o; // (signal)
   /* TG68K_ALU.vhd:162:16  */
-  assign shifted_bitmask = n10761_o; // (signal)
+  assign shifted_bitmask = n10762_o; // (signal)
   /* TG68K_ALU.vhd:163:16  */
-  assign bitmaskmux0 = n10748_o; // (signal)
+  assign bitmaskmux0 = n10749_o; // (signal)
   /* TG68K_ALU.vhd:164:16  */
-  assign bitmaskmux1 = n10737_o; // (signal)
+  assign bitmaskmux1 = n10738_o; // (signal)
   /* TG68K_ALU.vhd:165:16  */
-  assign bitmaskmux2 = n10726_o; // (signal)
+  assign bitmaskmux2 = n10727_o; // (signal)
   /* TG68K_ALU.vhd:166:16  */
-  assign bitmaskmux3 = n10721_o; // (signal)
+  assign bitmaskmux3 = n10722_o; // (signal)
   /* TG68K_ALU.vhd:167:16  */
-  assign bf_set2 = n10792_o; // (signal)
+  assign bf_set2 = n10793_o; // (signal)
   /* TG68K_ALU.vhd:168:16  */
-  assign shift = n12801_o; // (signal)
+  assign shift = n12808_o; // (signal)
   /* TG68K_ALU.vhd:169:16  */
-  assign bf_firstbit = n11475_o; // (signal)
+  assign bf_firstbit = n11476_o; // (signal)
   /* TG68K_ALU.vhd:170:16  */
-  assign mux = n11552_o; // (signal)
+  assign mux = n11553_o; // (signal)
   /* TG68K_ALU.vhd:171:16  */
-  assign bitnr = n12802_o; // (signal)
+  assign bitnr = n12809_o; // (signal)
   /* TG68K_ALU.vhd:172:16  */
   assign mask = datareg; // (signal)
   /* TG68K_ALU.vhd:173:16  */
-  assign mask_not_zero = n11587_o; // (signal)
+  assign mask_not_zero = n11588_o; // (signal)
   /* TG68K_ALU.vhd:174:16  */
-  assign bf_bset = n12804_q; // (signal)
+  assign bf_bset = n12811_q; // (signal)
   /* TG68K_ALU.vhd:175:16  */
-  assign bf_nflag = n13067_o; // (signal)
+  assign bf_nflag = n13074_o; // (signal)
   /* TG68K_ALU.vhd:176:16  */
-  assign bf_bchg = n12806_q; // (signal)
+  assign bf_bchg = n12813_q; // (signal)
   /* TG68K_ALU.vhd:177:16  */
-  assign bf_ins = n12808_q; // (signal)
+  assign bf_ins = n12815_q; // (signal)
   /* TG68K_ALU.vhd:178:16  */
-  assign bf_exts = n12810_q; // (signal)
+  assign bf_exts = n12817_q; // (signal)
   /* TG68K_ALU.vhd:179:16  */
-  assign bf_fffo = n12812_q; // (signal)
+  assign bf_fffo = n12819_q; // (signal)
   /* TG68K_ALU.vhd:180:16  */
-  assign bf_d32 = n12814_q; // (signal)
+  assign bf_d32 = n12821_q; // (signal)
   /* TG68K_ALU.vhd:181:16  */
-  assign bf_s32 = n12816_q; // (signal)
+  assign bf_s32 = n12823_q; // (signal)
   /* TG68K_ALU.vhd:187:16  */
-  assign hot_msb = n13216_o; // (signal)
+  assign hot_msb = n13223_o; // (signal)
   /* TG68K_ALU.vhd:188:16  */
-  assign vector = n12818_o; // (signal)
+  assign vector = n12825_o; // (signal)
   /* TG68K_ALU.vhd:189:16  */
-  assign result_bs = n12102_o; // (signal)
+  assign result_bs = n12109_o; // (signal)
   /* TG68K_ALU.vhd:190:16  */
-  assign bit_nr = n12006_o; // (signal)
+  assign bit_nr = n12012_o; // (signal)
   /* TG68K_ALU.vhd:191:16  */
-  assign bit_msb = n11729_o; // (signal)
+  assign bit_msb = n11733_o; // (signal)
   /* TG68K_ALU.vhd:192:16  */
-  assign bs_shift = n11719_o; // (signal)
+  assign bs_shift = n11723_o; // (signal)
   /* TG68K_ALU.vhd:193:16  */
-  assign bs_shift_mod = n11976_o; // (signal)
+  assign bs_shift_mod = n11982_o; // (signal)
   /* TG68K_ALU.vhd:194:16  */
-  assign asl_over = n11761_o; // (signal)
+  assign asl_over = n11765_o; // (signal)
   /* TG68K_ALU.vhd:195:16  */
-  assign asl_over_xor = n12819_o; // (signal)
+  assign asl_over_xor = n12826_o; // (signal)
   /* TG68K_ALU.vhd:196:16  */
-  assign asr_sign = n12820_o; // (signal)
+  assign asr_sign = n12827_o; // (signal)
   /* TG68K_ALU.vhd:197:16  */
-  assign msb = n12081_o; // (signal)
+  assign msb = n12088_o; // (signal)
   /* TG68K_ALU.vhd:198:16  */
-  assign ring = n11699_o; // (signal)
+  assign ring = n11703_o; // (signal)
   /* TG68K_ALU.vhd:199:16  */
-  assign alu = n11883_o; // (signal)
+  assign alu = n11889_o; // (signal)
   /* TG68K_ALU.vhd:200:16  */
-  assign bsout = n12821_o; // (signal)
+  assign bsout = n12828_o; // (signal)
   /* TG68K_ALU.vhd:201:16  */
-  assign bs_v = n11896_o; // (signal)
+  assign bs_v = n11902_o; // (signal)
   /* TG68K_ALU.vhd:202:16  */
-  assign bs_c = n12023_o; // (signal)
+  assign bs_c = n12029_o; // (signal)
   /* TG68K_ALU.vhd:203:16  */
-  assign bs_x = n11898_o; // (signal)
+  assign bs_x = n11904_o; // (signal)
   /* TG68K_ALU.vhd:215:35  */
-  assign n9797_o = op1in[7];
+  assign n9798_o = op1in[7];
   /* TG68K_ALU.vhd:215:39  */
-  assign n9798_o = n9797_o | exec_tas;
-  assign n9799_o = op1in[31:8];
-  assign n9800_o = op1in[6:0];
+  assign n9799_o = n9798_o | exec_tas;
+  assign n9800_o = op1in[31:8];
+  assign n9801_o = op1in[6:0];
   /* TG68K_ALU.vhd:216:24  */
-  assign n9801_o = exec[76];
+  assign n9802_o = exec[76];
   /* TG68K_ALU.vhd:217:41  */
-  assign n9802_o = result[31:0];
+  assign n9803_o = result[31:0];
   /* TG68K_ALU.vhd:219:57  */
-  assign n9803_o = {26'b0, bf_firstbit};  //  uext
+  assign n9804_o = {26'b0, bf_firstbit};  //  uext
   /* TG68K_ALU.vhd:219:57  */
-  assign n9804_o = bf_ffo_offset - n9803_o;
+  assign n9805_o = bf_ffo_offset - n9804_o;
   /* TG68K_ALU.vhd:218:25  */
-  assign n9805_o = bf_fffo ? n9804_o : n9802_o;
-  assign n9806_o = {n9799_o, n9798_o, n9800_o};
+  assign n9806_o = bf_fffo ? n9805_o : n9803_o;
+  assign n9807_o = {n9800_o, n9799_o, n9801_o};
   /* TG68K_ALU.vhd:216:17  */
-  assign n9807_o = n9801_o ? n9805_o : n9806_o;
+  assign n9808_o = n9802_o ? n9806_o : n9807_o;
   /* TG68K_ALU.vhd:224:24  */
-  assign n9808_o = exec[12];
+  assign n9809_o = exec[12];
   /* TG68K_ALU.vhd:224:45  */
-  assign n9809_o = exec[13];
+  assign n9810_o = exec[13];
   /* TG68K_ALU.vhd:224:38  */
-  assign n9810_o = n9808_o | n9809_o;
+  assign n9811_o = n9809_o | n9810_o;
   /* TG68K_ALU.vhd:225:51  */
-  assign n9811_o = bcd_a[7:0];
+  assign n9812_o = bcd_a[7:0];
   /* TG68K_ALU.vhd:226:27  */
-  assign n9812_o = exec[20];
+  assign n9813_o = exec[20];
   /* TG68K_ALU.vhd:226:41  */
-  assign n9814_o = 1'b1 & n9812_o;
+  assign n9815_o = 1'b1 & n9813_o;
   /* TG68K_ALU.vhd:228:40  */
-  assign n9815_o = exec[67];
+  assign n9816_o = exec[67];
   /* TG68K_ALU.vhd:228:60  */
-  assign n9817_o = 1'b1 & n9815_o;
+  assign n9818_o = 1'b1 & n9816_o;
   /* TG68K_ALU.vhd:229:61  */
-  assign n9818_o = result_mulu[31:0];
+  assign n9819_o = result_mulu[31:0];
   /* TG68K_ALU.vhd:231:61  */
-  assign n9819_o = result_mulu[63:32];
+  assign n9820_o = result_mulu[63:32];
   /* TG68K_ALU.vhd:228:33  */
-  assign n9820_o = n9817_o ? n9818_o : n9819_o;
+  assign n9821_o = n9818_o ? n9819_o : n9820_o;
   /* TG68K_ALU.vhd:241:27  */
-  assign n9821_o = exec[21];
+  assign n9822_o = exec[21];
   /* TG68K_ALU.vhd:241:41  */
-  assign n9823_o = 1'b1 & n9821_o;
+  assign n9824_o = 1'b1 & n9822_o;
   /* TG68K_ALU.vhd:242:38  */
-  assign n9824_o = exe_opcode[15];
+  assign n9825_o = exe_opcode[15];
   /* TG68K_ALU.vhd:242:47  */
-  assign n9826_o = n9824_o | 1'b0;
+  assign n9827_o = n9825_o | 1'b0;
   /* TG68K_ALU.vhd:244:52  */
-  assign n9827_o = result_div[47:32];
+  assign n9828_o = result_div[47:32];
   /* TG68K_ALU.vhd:244:77  */
-  assign n9828_o = result_div[15:0];
+  assign n9829_o = result_div[15:0];
   /* TG68K_ALU.vhd:244:66  */
-  assign n9829_o = {n9827_o, n9828_o};
+  assign n9830_o = {n9828_o, n9829_o};
   /* TG68K_ALU.vhd:246:40  */
-  assign n9830_o = exec[68];
+  assign n9831_o = exec[68];
   /* TG68K_ALU.vhd:247:60  */
-  assign n9831_o = result_div[63:32];
+  assign n9832_o = result_div[63:32];
   /* TG68K_ALU.vhd:249:60  */
-  assign n9832_o = result_div[31:0];
+  assign n9833_o = result_div[31:0];
   /* TG68K_ALU.vhd:246:33  */
-  assign n9833_o = n9830_o ? n9831_o : n9832_o;
+  assign n9834_o = n9831_o ? n9832_o : n9833_o;
   /* TG68K_ALU.vhd:242:25  */
-  assign n9834_o = n9826_o ? n9829_o : n9833_o;
+  assign n9835_o = n9827_o ? n9830_o : n9834_o;
   /* TG68K_ALU.vhd:252:27  */
-  assign n9835_o = exec[5];
+  assign n9836_o = exec[5];
   /* TG68K_ALU.vhd:253:41  */
-  assign n9836_o = op2out | op1out;
+  assign n9837_o = op2out | op1out;
   /* TG68K_ALU.vhd:254:27  */
-  assign n9837_o = exec[6];
+  assign n9838_o = exec[6];
   /* TG68K_ALU.vhd:255:41  */
-  assign n9838_o = op2out & op1out;
+  assign n9839_o = op2out & op1out;
   /* TG68K_ALU.vhd:256:27  */
-  assign n9839_o = exec[16];
-  assign n9840_o = {exe_condition, exe_condition, exe_condition, exe_condition};
+  assign n9840_o = exec[16];
   assign n9841_o = {exe_condition, exe_condition, exe_condition, exe_condition};
-  assign n9842_o = {n9840_o, n9841_o};
+  assign n9842_o = {exe_condition, exe_condition, exe_condition, exe_condition};
+  assign n9843_o = {n9841_o, n9842_o};
   /* TG68K_ALU.vhd:258:27  */
-  assign n9843_o = exec[7];
+  assign n9844_o = exec[7];
   /* TG68K_ALU.vhd:259:41  */
-  assign n9844_o = op2out ^ op1out;
+  assign n9845_o = op2out ^ op1out;
   /* TG68K_ALU.vhd:261:27  */
-  assign n9845_o = exec[85];
+  assign n9846_o = exec[85];
   /* TG68K_ALU.vhd:264:27  */
-  assign n9846_o = exec[9];
+  assign n9847_o = exec[9];
   /* TG68K_ALU.vhd:266:27  */
-  assign n9847_o = exec[81];
+  assign n9848_o = exec[81];
   /* TG68K_ALU.vhd:268:27  */
-  assign n9848_o = exec[15];
+  assign n9849_o = exec[15];
   /* TG68K_ALU.vhd:269:40  */
-  assign n9849_o = op1out[15:0];
+  assign n9850_o = op1out[15:0];
   /* TG68K_ALU.vhd:269:61  */
-  assign n9850_o = op1out[31:16];
+  assign n9851_o = op1out[31:16];
   /* TG68K_ALU.vhd:269:53  */
-  assign n9851_o = {n9849_o, n9850_o};
+  assign n9852_o = {n9850_o, n9851_o};
   /* TG68K_ALU.vhd:270:27  */
-  assign n9852_o = exec[14];
+  assign n9853_o = exec[14];
   /* TG68K_ALU.vhd:272:27  */
-  assign n9853_o = exec[75];
+  assign n9854_o = exec[75];
   /* TG68K_ALU.vhd:274:27  */
-  assign n9854_o = exec[2];
+  assign n9855_o = exec[2];
   /* TG68K_ALU.vhd:276:38  */
-  assign n9855_o = exe_opcode[9];
+  assign n9856_o = exe_opcode[9];
   /* TG68K_ALU.vhd:276:25  */
-  assign n9857_o = n9855_o ? 8'b00000000 : flagssr;
+  assign n9858_o = n9856_o ? 8'b00000000 : flagssr;
   /* TG68K_ALU.vhd:281:27  */
-  assign n9858_o = exec[77];
+  assign n9859_o = exec[77];
   /* TG68K_ALU.vhd:282:54  */
-  assign n9859_o = n10027_o[11:8];
+  assign n9860_o = n10028_o[11:8];
   /* TG68K_ALU.vhd:282:78  */
-  assign n9860_o = n10027_o[3:0];
+  assign n9861_o = n10028_o[3:0];
   /* TG68K_ALU.vhd:282:68  */
-  assign n9861_o = {n9859_o, n9860_o};
-  assign n9862_o = n10027_o[7:0];
+  assign n9862_o = {n9860_o, n9861_o};
+  assign n9863_o = n10028_o[7:0];
   /* TG68K_ALU.vhd:281:17  */
-  assign n9863_o = n9858_o ? n9861_o : n9862_o;
-  assign n9864_o = {n9857_o, n12824_q};
-  assign n9865_o = n9864_o[7:0];
+  assign n9864_o = n9859_o ? n9862_o : n9863_o;
+  assign n9865_o = {n9858_o, n12831_q};
+  assign n9866_o = n9865_o[7:0];
   /* TG68K_ALU.vhd:274:17  */
-  assign n9866_o = n9854_o ? n9865_o : n9863_o;
-  assign n9867_o = n9864_o[15:8];
-  assign n9868_o = n10027_o[15:8];
+  assign n9867_o = n9855_o ? n9866_o : n9864_o;
+  assign n9868_o = n9865_o[15:8];
+  assign n9869_o = n10028_o[15:8];
   /* TG68K_ALU.vhd:274:17  */
-  assign n9869_o = n9854_o ? n9867_o : n9868_o;
-  assign n9870_o = {n9869_o, n9866_o};
+  assign n9870_o = n9855_o ? n9868_o : n9869_o;
+  assign n9871_o = {n9870_o, n9867_o};
   /* TG68KdotC_Kernel.vhd:2260:130  */
-  assign n9871_o = bf_datareg[15:0];
+  assign n9872_o = bf_datareg[15:0];
   /* TG68K_ALU.vhd:272:17  */
-  assign n9872_o = n9853_o ? n9871_o : n9870_o;
+  assign n9873_o = n9854_o ? n9872_o : n9871_o;
   /* TG68KdotC_Kernel.vhd:2260:183  */
-  assign n9873_o = bf_datareg[31:16];
-  assign n9874_o = n10027_o[31:16];
+  assign n9874_o = bf_datareg[31:16];
+  assign n9875_o = n10028_o[31:16];
   /* TG68K_ALU.vhd:272:17  */
-  assign n9875_o = n9853_o ? n9873_o : n9874_o;
+  assign n9876_o = n9854_o ? n9874_o : n9875_o;
   /* TG68KdotC_Kernel.vhd:2260:153  */
-  assign n9876_o = {n9875_o, n9872_o};
+  assign n9877_o = {n9876_o, n9873_o};
   /* TG68K_ALU.vhd:270:17  */
-  assign n9877_o = n9852_o ? bits_out : n9876_o;
+  assign n9878_o = n9853_o ? bits_out : n9877_o;
   /* TG68K_ALU.vhd:268:17  */
-  assign n9878_o = n9848_o ? n9851_o : n9877_o;
+  assign n9879_o = n9849_o ? n9852_o : n9878_o;
   /* TG68K_ALU.vhd:266:17  */
-  assign n9879_o = n9847_o ? bsout : n9878_o;
+  assign n9880_o = n9848_o ? bsout : n9879_o;
   /* TG68K_ALU.vhd:264:17  */
-  assign n9880_o = n9846_o ? rot_out : n9879_o;
+  assign n9881_o = n9847_o ? rot_out : n9880_o;
   /* TG68K_ALU.vhd:261:17  */
-  assign n9881_o = n9845_o ? op2out : n9880_o;
+  assign n9882_o = n9846_o ? op2out : n9881_o;
   /* TG68K_ALU.vhd:258:17  */
-  assign n9882_o = n9843_o ? n9844_o : n9881_o;
+  assign n9883_o = n9844_o ? n9845_o : n9882_o;
   /* TG68KdotC_Kernel.vhd:2260:94  */
-  assign n9883_o = n9882_o[7:0];
+  assign n9884_o = n9883_o[7:0];
   /* TG68K_ALU.vhd:256:17  */
-  assign n9884_o = n9839_o ? n9842_o : n9883_o;
+  assign n9885_o = n9840_o ? n9843_o : n9884_o;
   /* TG68KdotC_Kernel.vhd:2260:82  */
-  assign n9885_o = n9882_o[31:8];
-  assign n9886_o = n10027_o[31:8];
+  assign n9886_o = n9883_o[31:8];
+  assign n9887_o = n10028_o[31:8];
   /* TG68K_ALU.vhd:256:17  */
-  assign n9887_o = n9839_o ? n9886_o : n9885_o;
-  assign n9888_o = {n9887_o, n9884_o};
+  assign n9888_o = n9840_o ? n9887_o : n9886_o;
+  assign n9889_o = {n9888_o, n9885_o};
   /* TG68K_ALU.vhd:254:17  */
-  assign n9889_o = n9837_o ? n9838_o : n9888_o;
+  assign n9890_o = n9838_o ? n9839_o : n9889_o;
   /* TG68K_ALU.vhd:252:17  */
-  assign n9890_o = n9835_o ? n9836_o : n9889_o;
+  assign n9891_o = n9836_o ? n9837_o : n9890_o;
   /* TG68K_ALU.vhd:241:17  */
-  assign n9891_o = n9823_o ? n9834_o : n9890_o;
+  assign n9892_o = n9824_o ? n9835_o : n9891_o;
   /* TG68K_ALU.vhd:226:17  */
-  assign n9892_o = n9814_o ? n9820_o : n9891_o;
-  assign n9893_o = n9892_o[7:0];
+  assign n9893_o = n9815_o ? n9821_o : n9892_o;
+  assign n9894_o = n9893_o[7:0];
   /* TG68K_ALU.vhd:224:17  */
-  assign n9894_o = n9810_o ? n9811_o : n9893_o;
-  assign n9895_o = n9892_o[31:8];
-  assign n9896_o = n10027_o[31:8];
+  assign n9895_o = n9811_o ? n9812_o : n9894_o;
+  assign n9896_o = n9893_o[31:8];
+  assign n9897_o = n10028_o[31:8];
   /* TG68K_ALU.vhd:224:17  */
-  assign n9897_o = n9810_o ? n9896_o : n9895_o;
+  assign n9898_o = n9811_o ? n9897_o : n9896_o;
   /* TG68K_ALU.vhd:293:24  */
-  assign n9902_o = exec[29];
+  assign n9903_o = exec[29];
   /* TG68K_ALU.vhd:294:34  */
-  assign n9903_o = sndopc[11];
+  assign n9904_o = sndopc[11];
   /* TG68K_ALU.vhd:295:51  */
-  assign n9904_o = op1out[31];
-  /* TG68K_ALU.vhd:295:62  */
   assign n9905_o = op1out[31];
+  /* TG68K_ALU.vhd:295:62  */
+  assign n9906_o = op1out[31];
   /* TG68K_ALU.vhd:295:55  */
-  assign n9906_o = {n9904_o, n9905_o};
+  assign n9907_o = {n9905_o, n9906_o};
   /* TG68K_ALU.vhd:295:73  */
-  assign n9907_o = op1out[31];
+  assign n9908_o = op1out[31];
   /* TG68K_ALU.vhd:295:66  */
-  assign n9908_o = {n9906_o, n9907_o};
+  assign n9909_o = {n9907_o, n9908_o};
   /* TG68K_ALU.vhd:295:84  */
-  assign n9909_o = op1out[31:3];
+  assign n9910_o = op1out[31:3];
   /* TG68K_ALU.vhd:295:77  */
-  assign n9910_o = {n9908_o, n9909_o};
+  assign n9911_o = {n9909_o, n9910_o};
   /* TG68K_ALU.vhd:297:84  */
-  assign n9911_o = sndopc[10:9];
+  assign n9912_o = sndopc[10:9];
   /* TG68K_ALU.vhd:297:77  */
-  assign n9913_o = {30'b000000000000000000000000000000, n9911_o};
+  assign n9914_o = {30'b000000000000000000000000000000, n9912_o};
   /* TG68K_ALU.vhd:294:25  */
-  assign n9914_o = n9903_o ? n9910_o : n9913_o;
+  assign n9915_o = n9904_o ? n9911_o : n9914_o;
   /* TG68K_ALU.vhd:293:17  */
-  assign n9915_o = n9902_o ? n9914_o : op1out;
+  assign n9916_o = n9903_o ? n9915_o : op1out;
   /* TG68K_ALU.vhd:301:24  */
-  assign n9916_o = exec[48];
+  assign n9917_o = exec[48];
   /* TG68K_ALU.vhd:301:17  */
-  assign n9919_o = n9916_o ? 1'b1 : 1'b0;
+  assign n9920_o = n9917_o ? 1'b1 : 1'b0;
   /* TG68K_ALU.vhd:309:24  */
-  assign n9921_o = exec[78];
+  assign n9922_o = exec[78];
   /* TG68K_ALU.vhd:310:65  */
-  assign n9922_o = op2out[7:4];
+  assign n9923_o = op2out[7:4];
   /* TG68K_ALU.vhd:310:57  */
-  assign n9924_o = {4'b0000, n9922_o};
+  assign n9925_o = {4'b0000, n9923_o};
   /* TG68K_ALU.vhd:310:78  */
-  assign n9926_o = {n9924_o, 4'b0000};
+  assign n9927_o = {n9925_o, 4'b0000};
   /* TG68K_ALU.vhd:310:95  */
-  assign n9927_o = op2out[3:0];
+  assign n9928_o = op2out[3:0];
   /* TG68K_ALU.vhd:310:87  */
-  assign n9928_o = {n9926_o, n9927_o};
+  assign n9929_o = {n9927_o, n9928_o};
   /* TG68K_ALU.vhd:311:30  */
-  assign n9929_o = ~execopc;
+  assign n9930_o = ~execopc;
   /* TG68K_ALU.vhd:311:43  */
-  assign n9930_o = exec[53];
+  assign n9931_o = exec[53];
   /* TG68K_ALU.vhd:311:55  */
-  assign n9931_o = ~n9930_o;
+  assign n9932_o = ~n9931_o;
   /* TG68K_ALU.vhd:311:35  */
-  assign n9932_o = n9931_o & n9929_o;
+  assign n9933_o = n9932_o & n9930_o;
   /* TG68K_ALU.vhd:311:68  */
-  assign n9933_o = exec[29];
+  assign n9934_o = exec[29];
   /* TG68K_ALU.vhd:311:82  */
-  assign n9934_o = ~n9933_o;
+  assign n9935_o = ~n9934_o;
   /* TG68K_ALU.vhd:311:60  */
-  assign n9935_o = n9934_o & n9932_o;
+  assign n9936_o = n9935_o & n9933_o;
   /* TG68K_ALU.vhd:312:38  */
-  assign n9936_o = ~long_start;
+  assign n9937_o = ~long_start;
   /* TG68K_ALU.vhd:312:59  */
-  assign n9938_o = exe_datatype == 2'b00;
+  assign n9939_o = exe_datatype == 2'b00;
   /* TG68K_ALU.vhd:312:43  */
-  assign n9939_o = n9938_o & n9936_o;
+  assign n9940_o = n9939_o & n9937_o;
   /* TG68K_ALU.vhd:312:73  */
-  assign n9940_o = exec[50];
+  assign n9941_o = exec[50];
   /* TG68K_ALU.vhd:312:81  */
-  assign n9941_o = ~n9940_o;
+  assign n9942_o = ~n9941_o;
   /* TG68K_ALU.vhd:312:65  */
-  assign n9942_o = n9941_o & n9939_o;
+  assign n9943_o = n9942_o & n9940_o;
   /* TG68K_ALU.vhd:314:41  */
-  assign n9943_o = ~long_start;
+  assign n9944_o = ~long_start;
   /* TG68K_ALU.vhd:314:62  */
-  assign n9945_o = exe_datatype == 2'b10;
+  assign n9946_o = exe_datatype == 2'b10;
   /* TG68K_ALU.vhd:314:46  */
-  assign n9946_o = n9945_o & n9943_o;
+  assign n9947_o = n9946_o & n9944_o;
   /* TG68K_ALU.vhd:314:77  */
-  assign n9947_o = exec[47];
+  assign n9948_o = exec[47];
   /* TG68K_ALU.vhd:314:93  */
-  assign n9948_o = exec[46];
+  assign n9949_o = exec[46];
   /* TG68K_ALU.vhd:314:86  */
-  assign n9949_o = n9947_o | n9948_o;
+  assign n9950_o = n9948_o | n9949_o;
   /* TG68K_ALU.vhd:314:103  */
-  assign n9950_o = n9949_o | movem_presub;
+  assign n9951_o = n9950_o | movem_presub;
   /* TG68K_ALU.vhd:314:68  */
-  assign n9951_o = n9950_o & n9946_o;
+  assign n9952_o = n9951_o & n9947_o;
   /* TG68K_ALU.vhd:315:40  */
-  assign n9952_o = exec[69];
+  assign n9953_o = exec[69];
   /* TG68K_ALU.vhd:315:33  */
-  assign n9955_o = n9952_o ? 32'b00000000000000000000000000000110 : 32'b00000000000000000000000000000100;
+  assign n9956_o = n9953_o ? 32'b00000000000000000000000000000110 : 32'b00000000000000000000000000000100;
   /* TG68K_ALU.vhd:314:25  */
-  assign n9957_o = n9951_o ? n9955_o : 32'b00000000000000000000000000000010;
+  assign n9958_o = n9952_o ? n9956_o : 32'b00000000000000000000000000000010;
   /* TG68K_ALU.vhd:312:25  */
-  assign n9959_o = n9942_o ? 32'b00000000000000000000000000000001 : n9957_o;
+  assign n9960_o = n9943_o ? 32'b00000000000000000000000000000001 : n9958_o;
   /* TG68K_ALU.vhd:324:33  */
-  assign n9960_o = exec[28];
+  assign n9961_o = exec[28];
   /* TG68K_ALU.vhd:324:59  */
-  assign n9961_o = n12824_q[4];
+  assign n9962_o = n12831_q[4];
   /* TG68K_ALU.vhd:324:50  */
-  assign n9962_o = n9961_o & n9960_o;
+  assign n9963_o = n9962_o & n9961_o;
   /* TG68K_ALU.vhd:324:75  */
-  assign n9963_o = exec[31];
+  assign n9964_o = exec[31];
   /* TG68K_ALU.vhd:324:68  */
-  assign n9964_o = n9962_o | n9963_o;
+  assign n9965_o = n9963_o | n9964_o;
   /* TG68K_ALU.vhd:324:25  */
-  assign n9966_o = n9964_o ? 1'b1 : 1'b0;
+  assign n9967_o = n9965_o ? 1'b1 : 1'b0;
   /* TG68K_ALU.vhd:327:41  */
-  assign n9967_o = exec[56];
+  assign n9968_o = exec[56];
   /* TG68K_ALU.vhd:311:17  */
-  assign n9968_o = n9935_o ? n9959_o : op2out;
+  assign n9969_o = n9936_o ? n9960_o : op2out;
   /* TG68K_ALU.vhd:311:17  */
-  assign n9969_o = n9935_o ? n9919_o : n9967_o;
+  assign n9970_o = n9936_o ? n9920_o : n9968_o;
   /* TG68K_ALU.vhd:311:17  */
-  assign n9970_o = n9935_o ? 1'b0 : n9966_o;
+  assign n9971_o = n9936_o ? 1'b0 : n9967_o;
   /* TG68KdotC_Kernel.vhd:1407:33  */
-  assign n9971_o = n9968_o[15:0];
+  assign n9972_o = n9969_o[15:0];
   /* TG68K_ALU.vhd:309:17  */
-  assign n9972_o = n9921_o ? n9928_o : n9971_o;
-  assign n9973_o = n9968_o[31:16];
+  assign n9973_o = n9922_o ? n9929_o : n9972_o;
+  assign n9974_o = n9969_o[31:16];
   /* TG68KdotC_Kernel.vhd:1407:33  */
-  assign n9974_o = op2out[31:16];
+  assign n9975_o = op2out[31:16];
   /* TG68K_ALU.vhd:309:17  */
-  assign n9975_o = n9921_o ? n9974_o : n9973_o;
+  assign n9976_o = n9922_o ? n9975_o : n9974_o;
   /* TG68K_ALU.vhd:309:17  */
-  assign n9977_o = n9921_o ? n9919_o : n9969_o;
+  assign n9978_o = n9922_o ? n9920_o : n9970_o;
   /* TG68K_ALU.vhd:309:17  */
-  assign n9978_o = n9921_o ? 1'b0 : n9970_o;
+  assign n9979_o = n9922_o ? 1'b0 : n9971_o;
   /* TG68K_ALU.vhd:331:24  */
-  assign n9979_o = exec[69];
+  assign n9980_o = exec[69];
   /* TG68K_ALU.vhd:331:43  */
-  assign n9980_o = n9979_o | check_aligned;
+  assign n9981_o = n9980_o | check_aligned;
   /* TG68K_ALU.vhd:332:36  */
-  assign n9981_o = ~movem_presub;
+  assign n9982_o = ~movem_presub;
   /* TG68K_ALU.vhd:333:64  */
-  assign n9982_o = ~long_start;
+  assign n9983_o = ~long_start;
   /* TG68K_ALU.vhd:333:48  */
-  assign n9983_o = n9982_o & non_aligned;
+  assign n9984_o = n9983_o & non_aligned;
   /* TG68KdotC_Kernel.vhd:1289:1  */
-  assign n9985_o = {n9975_o, n9972_o};
+  assign n9986_o = {n9976_o, n9973_o};
   /* TG68K_ALU.vhd:333:25  */
-  assign n9986_o = n9983_o ? 32'b00000000000000000000000000000000 : n9985_o;
+  assign n9987_o = n9984_o ? 32'b00000000000000000000000000000000 : n9986_o;
   /* TG68K_ALU.vhd:337:64  */
-  assign n9987_o = ~long_start;
+  assign n9988_o = ~long_start;
   /* TG68K_ALU.vhd:337:48  */
-  assign n9988_o = n9987_o & non_aligned;
+  assign n9989_o = n9988_o & non_aligned;
   /* TG68K_ALU.vhd:338:44  */
-  assign n9990_o = exe_datatype == 2'b10;
+  assign n9991_o = exe_datatype == 2'b10;
   /* TG68K_ALU.vhd:338:27  */
-  assign n9993_o = n9990_o ? 32'b00000000000000000000000000001000 : 32'b00000000000000000000000000000100;
-  assign n9994_o = {n9975_o, n9972_o};
+  assign n9994_o = n9991_o ? 32'b00000000000000000000000000001000 : 32'b00000000000000000000000000000100;
+  assign n9995_o = {n9976_o, n9973_o};
   /* TG68K_ALU.vhd:337:25  */
-  assign n9995_o = n9988_o ? n9993_o : n9994_o;
+  assign n9996_o = n9989_o ? n9994_o : n9995_o;
   /* TG68K_ALU.vhd:332:19  */
-  assign n9996_o = n9981_o ? n9986_o : n9995_o;
-  assign n9997_o = {n9975_o, n9972_o};
+  assign n9997_o = n9982_o ? n9987_o : n9996_o;
+  assign n9998_o = {n9976_o, n9973_o};
   /* TG68K_ALU.vhd:331:17  */
-  assign n9998_o = n9980_o ? n9996_o : n9997_o;
+  assign n9999_o = n9981_o ? n9997_o : n9998_o;
   /* TG68K_ALU.vhd:347:28  */
-  assign n9999_o = ~opaddsub;
+  assign n10000_o = ~opaddsub;
   /* TG68K_ALU.vhd:347:33  */
-  assign n10000_o = n9999_o | long_start;
+  assign n10001_o = n10000_o | long_start;
   /* TG68K_ALU.vhd:348:43  */
-  assign n10002_o = {1'b0, addsub_b};
+  assign n10003_o = {1'b0, addsub_b};
   /* TG68K_ALU.vhd:348:57  */
-  assign n10003_o = c_in[0];
+  assign n10004_o = c_in[0];
   /* TG68K_ALU.vhd:348:52  */
-  assign n10004_o = {n10002_o, n10003_o};
+  assign n10005_o = {n10003_o, n10004_o};
   /* TG68K_ALU.vhd:350:48  */
-  assign n10006_o = {1'b0, addsub_b};
+  assign n10007_o = {1'b0, addsub_b};
   /* TG68K_ALU.vhd:350:62  */
-  assign n10007_o = c_in[0];
+  assign n10008_o = c_in[0];
   /* TG68K_ALU.vhd:350:57  */
-  assign n10008_o = {n10006_o, n10007_o};
+  assign n10009_o = {n10007_o, n10008_o};
   /* TG68K_ALU.vhd:350:40  */
-  assign n10009_o = ~n10008_o;
+  assign n10010_o = ~n10009_o;
   /* TG68K_ALU.vhd:347:17  */
-  assign n10010_o = n10000_o ? n10004_o : n10009_o;
+  assign n10011_o = n10001_o ? n10005_o : n10010_o;
   /* TG68K_ALU.vhd:352:36  */
-  assign n10012_o = {1'b0, addsub_a};
+  assign n10013_o = {1'b0, addsub_a};
   /* TG68K_ALU.vhd:352:57  */
-  assign n10013_o = notaddsub_b[0];
+  assign n10014_o = notaddsub_b[0];
   /* TG68K_ALU.vhd:352:45  */
-  assign n10014_o = {n10012_o, n10013_o};
+  assign n10015_o = {n10013_o, n10014_o};
   /* TG68K_ALU.vhd:352:61  */
-  assign n10015_o = n10014_o + notaddsub_b;
+  assign n10016_o = n10015_o + notaddsub_b;
   /* TG68K_ALU.vhd:353:38  */
-  assign n10016_o = add_result[9];
+  assign n10017_o = add_result[9];
   /* TG68K_ALU.vhd:353:54  */
-  assign n10017_o = addsub_a[8];
+  assign n10018_o = addsub_a[8];
   /* TG68K_ALU.vhd:353:42  */
-  assign n10018_o = n10016_o ^ n10017_o;
+  assign n10019_o = n10017_o ^ n10018_o;
   /* TG68K_ALU.vhd:353:70  */
-  assign n10019_o = addsub_b[8];
+  assign n10020_o = addsub_b[8];
   /* TG68K_ALU.vhd:353:58  */
-  assign n10020_o = n10018_o ^ n10019_o;
+  assign n10021_o = n10019_o ^ n10020_o;
   /* TG68K_ALU.vhd:354:38  */
-  assign n10021_o = add_result[17];
+  assign n10022_o = add_result[17];
   /* TG68K_ALU.vhd:354:55  */
-  assign n10022_o = addsub_a[16];
+  assign n10023_o = addsub_a[16];
   /* TG68K_ALU.vhd:354:43  */
-  assign n10023_o = n10021_o ^ n10022_o;
+  assign n10024_o = n10022_o ^ n10023_o;
   /* TG68K_ALU.vhd:354:72  */
-  assign n10024_o = addsub_b[16];
+  assign n10025_o = addsub_b[16];
   /* TG68K_ALU.vhd:354:60  */
-  assign n10025_o = n10023_o ^ n10024_o;
+  assign n10026_o = n10024_o ^ n10025_o;
   /* TG68K_ALU.vhd:355:38  */
-  assign n10026_o = add_result[33];
+  assign n10027_o = add_result[33];
   /* TG68K_ALU.vhd:356:39  */
-  assign n10027_o = add_result[32:1];
+  assign n10028_o = add_result[32:1];
   /* TG68K_ALU.vhd:357:39  */
-  assign n10028_o = c_in[1];
+  assign n10029_o = c_in[1];
   /* TG68K_ALU.vhd:357:57  */
-  assign n10029_o = add_result[8];
+  assign n10030_o = add_result[8];
   /* TG68K_ALU.vhd:357:43  */
-  assign n10030_o = n10028_o ^ n10029_o;
+  assign n10031_o = n10029_o ^ n10030_o;
   /* TG68K_ALU.vhd:357:73  */
-  assign n10031_o = addsub_a[7];
+  assign n10032_o = addsub_a[7];
   /* TG68K_ALU.vhd:357:61  */
-  assign n10032_o = n10030_o ^ n10031_o;
+  assign n10033_o = n10031_o ^ n10032_o;
   /* TG68K_ALU.vhd:357:89  */
-  assign n10033_o = addsub_b[7];
+  assign n10034_o = addsub_b[7];
   /* TG68K_ALU.vhd:357:77  */
-  assign n10034_o = n10032_o ^ n10033_o;
+  assign n10035_o = n10033_o ^ n10034_o;
   /* TG68K_ALU.vhd:358:39  */
-  assign n10035_o = c_in[2];
+  assign n10036_o = c_in[2];
   /* TG68K_ALU.vhd:358:57  */
-  assign n10036_o = add_result[16];
+  assign n10037_o = add_result[16];
   /* TG68K_ALU.vhd:358:43  */
-  assign n10037_o = n10035_o ^ n10036_o;
+  assign n10038_o = n10036_o ^ n10037_o;
   /* TG68K_ALU.vhd:358:74  */
-  assign n10038_o = addsub_a[15];
+  assign n10039_o = addsub_a[15];
   /* TG68K_ALU.vhd:358:62  */
-  assign n10039_o = n10037_o ^ n10038_o;
+  assign n10040_o = n10038_o ^ n10039_o;
   /* TG68K_ALU.vhd:358:91  */
-  assign n10040_o = addsub_b[15];
+  assign n10041_o = addsub_b[15];
   /* TG68K_ALU.vhd:358:79  */
-  assign n10041_o = n10039_o ^ n10040_o;
+  assign n10042_o = n10040_o ^ n10041_o;
   /* TG68K_ALU.vhd:359:39  */
-  assign n10042_o = c_in[3];
+  assign n10043_o = c_in[3];
   /* TG68K_ALU.vhd:359:57  */
-  assign n10043_o = add_result[32];
+  assign n10044_o = add_result[32];
   /* TG68K_ALU.vhd:359:43  */
-  assign n10044_o = n10042_o ^ n10043_o;
+  assign n10045_o = n10043_o ^ n10044_o;
   /* TG68K_ALU.vhd:359:74  */
-  assign n10045_o = addsub_a[31];
+  assign n10046_o = addsub_a[31];
   /* TG68K_ALU.vhd:359:62  */
-  assign n10046_o = n10044_o ^ n10045_o;
+  assign n10047_o = n10045_o ^ n10046_o;
   /* TG68K_ALU.vhd:359:91  */
-  assign n10047_o = addsub_b[31];
+  assign n10048_o = addsub_b[31];
   /* TG68K_ALU.vhd:359:79  */
-  assign n10048_o = n10046_o ^ n10047_o;
+  assign n10049_o = n10047_o ^ n10048_o;
   /* TG68K_ALU.vhd:360:30  */
-  assign n10049_o = c_in[3:1];
+  assign n10050_o = c_in[3:1];
   /* TG68K_ALU.vhd:370:32  */
-  assign n10053_o = c_in[1];
+  assign n10054_o = c_in[1];
   /* TG68K_ALU.vhd:370:46  */
-  assign n10054_o = add_result[8:0];
+  assign n10055_o = add_result[8:0];
   /* TG68K_ALU.vhd:370:35  */
-  assign n10055_o = {n10053_o, n10054_o};
+  assign n10056_o = {n10054_o, n10055_o};
   /* TG68K_ALU.vhd:372:38  */
-  assign n10056_o = op1out[4];
+  assign n10057_o = op1out[4];
   /* TG68K_ALU.vhd:372:52  */
-  assign n10057_o = op2out[4];
+  assign n10058_o = op2out[4];
   /* TG68K_ALU.vhd:372:42  */
-  assign n10058_o = n10056_o ^ n10057_o;
+  assign n10059_o = n10057_o ^ n10058_o;
   /* TG68K_ALU.vhd:372:67  */
-  assign n10059_o = bcd_pur[5];
+  assign n10060_o = bcd_pur[5];
   /* TG68K_ALU.vhd:372:56  */
-  assign n10060_o = n10058_o ^ n10059_o;
+  assign n10061_o = n10059_o ^ n10060_o;
   /* TG68K_ALU.vhd:373:17  */
-  assign n10063_o = halve_carry ? 4'b0110 : 4'b0000;
+  assign n10064_o = halve_carry ? 4'b0110 : 4'b0000;
   /* TG68K_ALU.vhd:376:27  */
-  assign n10066_o = bcd_pur[9];
+  assign n10067_o = bcd_pur[9];
   /* TG68KdotC_Kernel.vhd:217:16  */
-  assign n10068_o = n10064_o[7:4];
+  assign n10069_o = n10065_o[7:4];
   /* TG68K_ALU.vhd:376:17  */
-  assign n10069_o = n10066_o ? 4'b0110 : n10068_o;
+  assign n10070_o = n10067_o ? 4'b0110 : n10069_o;
   /* TG68KdotC_Kernel.vhd:174:16  */
-  assign n10070_o = n10064_o[8];
+  assign n10071_o = n10065_o[8];
   /* TG68K_ALU.vhd:379:24  */
-  assign n10071_o = exec[12];
+  assign n10072_o = exec[12];
   /* TG68K_ALU.vhd:380:47  */
-  assign n10072_o = bcd_pur[8];
+  assign n10073_o = bcd_pur[8];
   /* TG68K_ALU.vhd:380:36  */
-  assign n10073_o = ~n10072_o;
+  assign n10074_o = ~n10073_o;
   /* TG68K_ALU.vhd:380:60  */
-  assign n10074_o = bcd_a[7];
+  assign n10075_o = bcd_a[7];
   /* TG68K_ALU.vhd:380:51  */
-  assign n10075_o = n10073_o & n10074_o;
+  assign n10076_o = n10074_o & n10075_o;
   /* TG68K_ALU.vhd:382:41  */
-  assign n10076_o = bcd_pur[9:1];
+  assign n10077_o = bcd_pur[9:1];
   /* TG68K_ALU.vhd:382:54  */
-  assign n10077_o = n10076_o + bcd_kor;
+  assign n10078_o = n10077_o + bcd_kor;
   /* TG68K_ALU.vhd:383:36  */
-  assign n10078_o = bcd_pur[4];
+  assign n10079_o = bcd_pur[4];
   /* TG68K_ALU.vhd:383:52  */
-  assign n10079_o = bcd_pur[3];
+  assign n10080_o = bcd_pur[3];
   /* TG68K_ALU.vhd:383:66  */
-  assign n10080_o = bcd_pur[2];
+  assign n10081_o = bcd_pur[2];
   /* TG68K_ALU.vhd:383:56  */
-  assign n10081_o = n10079_o | n10080_o;
+  assign n10082_o = n10080_o | n10081_o;
   /* TG68K_ALU.vhd:383:40  */
-  assign n10082_o = n10078_o & n10081_o;
+  assign n10083_o = n10079_o & n10082_o;
   /* TG68K_ALU.vhd:383:25  */
-  assign n10084_o = n10082_o ? 4'b0110 : n10063_o;
+  assign n10085_o = n10083_o ? 4'b0110 : n10064_o;
   /* TG68K_ALU.vhd:386:36  */
-  assign n10085_o = bcd_pur[8];
+  assign n10086_o = bcd_pur[8];
   /* TG68K_ALU.vhd:386:52  */
-  assign n10086_o = bcd_pur[7];
+  assign n10087_o = bcd_pur[7];
   /* TG68K_ALU.vhd:386:66  */
-  assign n10087_o = bcd_pur[6];
+  assign n10088_o = bcd_pur[6];
   /* TG68K_ALU.vhd:386:56  */
-  assign n10088_o = n10086_o | n10087_o;
+  assign n10089_o = n10087_o | n10088_o;
   /* TG68K_ALU.vhd:386:81  */
-  assign n10089_o = bcd_pur[5];
+  assign n10090_o = bcd_pur[5];
   /* TG68K_ALU.vhd:386:96  */
-  assign n10090_o = bcd_pur[4];
+  assign n10091_o = bcd_pur[4];
   /* TG68K_ALU.vhd:386:85  */
-  assign n10091_o = n10089_o & n10090_o;
+  assign n10092_o = n10090_o & n10091_o;
   /* TG68K_ALU.vhd:386:112  */
-  assign n10092_o = bcd_pur[3];
+  assign n10093_o = bcd_pur[3];
   /* TG68K_ALU.vhd:386:126  */
-  assign n10093_o = bcd_pur[2];
+  assign n10094_o = bcd_pur[2];
   /* TG68K_ALU.vhd:386:116  */
-  assign n10094_o = n10092_o | n10093_o;
+  assign n10095_o = n10093_o | n10094_o;
   /* TG68K_ALU.vhd:386:100  */
-  assign n10095_o = n10091_o & n10094_o;
+  assign n10096_o = n10092_o & n10095_o;
   /* TG68K_ALU.vhd:386:70  */
-  assign n10096_o = n10088_o | n10095_o;
+  assign n10097_o = n10089_o | n10096_o;
   /* TG68K_ALU.vhd:386:40  */
-  assign n10097_o = n10085_o & n10096_o;
+  assign n10098_o = n10086_o & n10097_o;
   /* TG68K_ALU.vhd:386:25  */
-  assign n10099_o = n10097_o ? 4'b0110 : n10069_o;
+  assign n10100_o = n10098_o ? 4'b0110 : n10070_o;
   /* TG68K_ALU.vhd:390:43  */
-  assign n10100_o = bcd_pur[8];
+  assign n10101_o = bcd_pur[8];
   /* TG68K_ALU.vhd:390:60  */
-  assign n10101_o = bcd_a[7];
+  assign n10102_o = bcd_a[7];
   /* TG68K_ALU.vhd:390:51  */
-  assign n10102_o = ~n10101_o;
+  assign n10103_o = ~n10102_o;
   /* TG68K_ALU.vhd:390:47  */
-  assign n10103_o = n10100_o & n10102_o;
+  assign n10104_o = n10101_o & n10103_o;
   /* TG68K_ALU.vhd:392:41  */
-  assign n10104_o = bcd_pur[9:1];
+  assign n10105_o = bcd_pur[9:1];
   /* TG68K_ALU.vhd:392:54  */
-  assign n10105_o = n10104_o - bcd_kor;
-  assign n10106_o = {n10099_o, n10084_o};
-  assign n10107_o = {n10069_o, n10063_o};
+  assign n10106_o = n10105_o - bcd_kor;
+  assign n10107_o = {n10100_o, n10085_o};
+  assign n10108_o = {n10070_o, n10064_o};
   /* TG68K_ALU.vhd:379:17  */
-  assign n10108_o = n10071_o ? n10106_o : n10107_o;
+  assign n10109_o = n10072_o ? n10107_o : n10108_o;
   /* TG68K_ALU.vhd:379:17  */
-  assign n10109_o = n10071_o ? n10075_o : n10103_o;
+  assign n10110_o = n10072_o ? n10076_o : n10104_o;
   /* TG68K_ALU.vhd:379:17  */
-  assign n10110_o = n10071_o ? n10077_o : n10105_o;
+  assign n10111_o = n10072_o ? n10078_o : n10106_o;
   /* TG68K_ALU.vhd:394:23  */
-  assign n10111_o = cpu[1];
+  assign n10112_o = cpu[1];
   /* TG68K_ALU.vhd:394:17  */
-  assign n10113_o = n10111_o ? 1'b0 : n10109_o;
+  assign n10114_o = n10112_o ? 1'b0 : n10110_o;
   /* TG68K_ALU.vhd:397:39  */
-  assign n10114_o = bcd_pur[9];
+  assign n10115_o = bcd_pur[9];
   /* TG68K_ALU.vhd:397:51  */
-  assign n10115_o = bcd_a[8];
+  assign n10116_o = bcd_a[8];
   /* TG68K_ALU.vhd:397:43  */
-  assign n10116_o = n10114_o | n10115_o;
+  assign n10117_o = n10115_o | n10116_o;
   /* TG68K_ALU.vhd:409:44  */
-  assign n10121_o = opcode[7:6];
+  assign n10122_o = opcode[7:6];
   /* TG68K_ALU.vhd:410:41  */
-  assign n10123_o = n10121_o == 2'b01;
+  assign n10124_o = n10122_o == 2'b01;
   /* TG68K_ALU.vhd:412:41  */
-  assign n10125_o = n10121_o == 2'b11;
-  assign n10126_o = {n10125_o, n10123_o};
+  assign n10126_o = n10122_o == 2'b11;
+  assign n10127_o = {n10126_o, n10124_o};
   /* TG68K_ALU.vhd:409:33  */
   always @*
-    case (n10126_o)
-      2'b10: n10129_o = 1'b0;
-      2'b01: n10129_o = 1'b1;
-      default: n10129_o = 1'b0;
+    case (n10127_o)
+      2'b10: n10130_o = 1'b0;
+      2'b01: n10130_o = 1'b1;
+      default: n10130_o = 1'b0;
     endcase
   /* TG68K_ALU.vhd:409:33  */
   always @*
-    case (n10126_o)
-      2'b10: n10133_o = 1'b1;
-      2'b01: n10133_o = 1'b0;
-      default: n10133_o = 1'b0;
+    case (n10127_o)
+      2'b10: n10134_o = 1'b1;
+      2'b01: n10134_o = 1'b0;
+      default: n10134_o = 1'b0;
     endcase
   /* TG68K_ALU.vhd:419:30  */
-  assign n10139_o = exe_opcode[8];
+  assign n10140_o = exe_opcode[8];
   /* TG68K_ALU.vhd:419:33  */
-  assign n10140_o = ~n10139_o;
+  assign n10141_o = ~n10140_o;
   /* TG68K_ALU.vhd:420:38  */
-  assign n10141_o = exe_opcode[5:4];
+  assign n10142_o = exe_opcode[5:4];
   /* TG68K_ALU.vhd:420:50  */
-  assign n10143_o = n10141_o == 2'b00;
+  assign n10144_o = n10142_o == 2'b00;
   /* TG68K_ALU.vhd:421:53  */
-  assign n10144_o = sndopc[4:0];
+  assign n10145_o = sndopc[4:0];
   /* TG68K_ALU.vhd:423:58  */
-  assign n10145_o = sndopc[2:0];
+  assign n10146_o = sndopc[2:0];
   /* TG68K_ALU.vhd:423:51  */
-  assign n10147_o = {2'b00, n10145_o};
+  assign n10148_o = {2'b00, n10146_o};
   /* TG68K_ALU.vhd:420:25  */
-  assign n10148_o = n10143_o ? n10144_o : n10147_o;
+  assign n10149_o = n10144_o ? n10145_o : n10148_o;
   /* TG68K_ALU.vhd:426:38  */
-  assign n10149_o = exe_opcode[5:4];
+  assign n10150_o = exe_opcode[5:4];
   /* TG68K_ALU.vhd:426:50  */
-  assign n10151_o = n10149_o == 2'b00;
+  assign n10152_o = n10150_o == 2'b00;
   /* TG68K_ALU.vhd:427:53  */
-  assign n10152_o = reg_qb[4:0];
+  assign n10153_o = reg_qb[4:0];
   /* TG68K_ALU.vhd:429:58  */
-  assign n10153_o = reg_qb[2:0];
+  assign n10154_o = reg_qb[2:0];
   /* TG68K_ALU.vhd:429:51  */
-  assign n10155_o = {2'b00, n10153_o};
+  assign n10156_o = {2'b00, n10154_o};
   /* TG68K_ALU.vhd:426:25  */
-  assign n10156_o = n10151_o ? n10152_o : n10155_o;
+  assign n10157_o = n10152_o ? n10153_o : n10156_o;
   /* TG68K_ALU.vhd:419:17  */
-  assign n10157_o = n10140_o ? n10148_o : n10156_o;
+  assign n10158_o = n10141_o ? n10149_o : n10157_o;
   /* TG68K_ALU.vhd:435:65  */
-  assign n10163_o = ~one_bit_in;
+  assign n10164_o = ~one_bit_in;
   /* TG68K_ALU.vhd:435:61  */
-  assign n10164_o = bchg & n10163_o;
+  assign n10165_o = bchg & n10164_o;
   /* TG68K_ALU.vhd:435:81  */
-  assign n10165_o = n10164_o | bset;
+  assign n10166_o = n10165_o | bset;
   /* TG68K_ALU.vhd:456:42  */
-  assign n10171_o = opcode[5:4];
+  assign n10172_o = opcode[5:4];
   /* TG68K_ALU.vhd:456:55  */
-  assign n10173_o = n10171_o == 2'b00;
+  assign n10174_o = n10172_o == 2'b00;
   /* TG68K_ALU.vhd:456:33  */
-  assign n10176_o = n10173_o ? 1'b1 : 1'b0;
+  assign n10177_o = n10174_o ? 1'b1 : 1'b0;
   /* TG68K_ALU.vhd:459:44  */
-  assign n10178_o = opcode[10:8];
+  assign n10179_o = opcode[10:8];
   /* TG68K_ALU.vhd:460:41  */
-  assign n10180_o = n10178_o == 3'b010;
+  assign n10181_o = n10179_o == 3'b010;
   /* TG68K_ALU.vhd:461:41  */
-  assign n10182_o = n10178_o == 3'b011;
+  assign n10183_o = n10179_o == 3'b011;
   /* TG68K_ALU.vhd:463:41  */
-  assign n10184_o = n10178_o == 3'b101;
+  assign n10185_o = n10179_o == 3'b101;
   /* TG68K_ALU.vhd:464:41  */
-  assign n10186_o = n10178_o == 3'b110;
+  assign n10187_o = n10179_o == 3'b110;
   /* TG68K_ALU.vhd:465:41  */
-  assign n10188_o = n10178_o == 3'b111;
-  assign n10189_o = {n10188_o, n10186_o, n10184_o, n10182_o, n10180_o};
+  assign n10189_o = n10179_o == 3'b111;
+  assign n10190_o = {n10189_o, n10187_o, n10185_o, n10183_o, n10181_o};
   /* TG68K_ALU.vhd:459:33  */
   always @*
-    case (n10189_o)
-      5'b10000: n10192_o = 1'b0;
-      5'b01000: n10192_o = 1'b1;
-      5'b00100: n10192_o = 1'b0;
-      5'b00010: n10192_o = 1'b0;
-      5'b00001: n10192_o = 1'b0;
-      default: n10192_o = 1'b0;
+    case (n10190_o)
+      5'b10000: n10193_o = 1'b0;
+      5'b01000: n10193_o = 1'b1;
+      5'b00100: n10193_o = 1'b0;
+      5'b00010: n10193_o = 1'b0;
+      5'b00001: n10193_o = 1'b0;
+      default: n10193_o = 1'b0;
     endcase
   /* TG68K_ALU.vhd:459:33  */
   always @*
-    case (n10189_o)
-      5'b10000: n10196_o = 1'b0;
-      5'b01000: n10196_o = 1'b0;
-      5'b00100: n10196_o = 1'b0;
-      5'b00010: n10196_o = 1'b0;
-      5'b00001: n10196_o = 1'b1;
-      default: n10196_o = 1'b0;
+    case (n10190_o)
+      5'b10000: n10197_o = 1'b0;
+      5'b01000: n10197_o = 1'b0;
+      5'b00100: n10197_o = 1'b0;
+      5'b00010: n10197_o = 1'b0;
+      5'b00001: n10197_o = 1'b1;
+      default: n10197_o = 1'b0;
     endcase
   /* TG68K_ALU.vhd:459:33  */
   always @*
-    case (n10189_o)
-      5'b10000: n10200_o = 1'b1;
-      5'b01000: n10200_o = 1'b0;
-      5'b00100: n10200_o = 1'b0;
-      5'b00010: n10200_o = 1'b0;
-      5'b00001: n10200_o = 1'b0;
-      default: n10200_o = 1'b0;
+    case (n10190_o)
+      5'b10000: n10201_o = 1'b1;
+      5'b01000: n10201_o = 1'b0;
+      5'b00100: n10201_o = 1'b0;
+      5'b00010: n10201_o = 1'b0;
+      5'b00001: n10201_o = 1'b0;
+      default: n10201_o = 1'b0;
     endcase
   /* TG68K_ALU.vhd:459:33  */
   always @*
-    case (n10189_o)
-      5'b10000: n10204_o = 1'b0;
-      5'b01000: n10204_o = 1'b0;
-      5'b00100: n10204_o = 1'b0;
-      5'b00010: n10204_o = 1'b1;
-      5'b00001: n10204_o = 1'b0;
-      default: n10204_o = 1'b0;
+    case (n10190_o)
+      5'b10000: n10205_o = 1'b0;
+      5'b01000: n10205_o = 1'b0;
+      5'b00100: n10205_o = 1'b0;
+      5'b00010: n10205_o = 1'b1;
+      5'b00001: n10205_o = 1'b0;
+      default: n10205_o = 1'b0;
     endcase
   /* TG68K_ALU.vhd:459:33  */
   always @*
-    case (n10189_o)
-      5'b10000: n10208_o = 1'b0;
-      5'b01000: n10208_o = 1'b0;
-      5'b00100: n10208_o = 1'b1;
-      5'b00010: n10208_o = 1'b0;
-      5'b00001: n10208_o = 1'b0;
-      default: n10208_o = 1'b0;
+    case (n10190_o)
+      5'b10000: n10209_o = 1'b0;
+      5'b01000: n10209_o = 1'b0;
+      5'b00100: n10209_o = 1'b1;
+      5'b00010: n10209_o = 1'b0;
+      5'b00001: n10209_o = 1'b0;
+      default: n10209_o = 1'b0;
     endcase
   /* TG68K_ALU.vhd:459:33  */
   always @*
-    case (n10189_o)
-      5'b10000: n10211_o = 1'b1;
-      5'b01000: n10211_o = n10176_o;
-      5'b00100: n10211_o = n10176_o;
-      5'b00010: n10211_o = n10176_o;
-      5'b00001: n10211_o = n10176_o;
-      default: n10211_o = n10176_o;
+    case (n10190_o)
+      5'b10000: n10212_o = 1'b1;
+      5'b01000: n10212_o = n10177_o;
+      5'b00100: n10212_o = n10177_o;
+      5'b00010: n10212_o = n10177_o;
+      5'b00001: n10212_o = n10177_o;
+      default: n10212_o = n10177_o;
     endcase
   /* TG68K_ALU.vhd:469:42  */
-  assign n10212_o = opcode[4:3];
+  assign n10213_o = opcode[4:3];
   /* TG68K_ALU.vhd:469:54  */
-  assign n10214_o = n10212_o == 2'b00;
+  assign n10215_o = n10213_o == 2'b00;
   /* TG68K_ALU.vhd:469:33  */
-  assign n10217_o = n10214_o ? 1'b1 : 1'b0;
+  assign n10218_o = n10215_o ? 1'b1 : 1'b0;
   /* TG68K_ALU.vhd:472:53  */
-  assign n10219_o = result[39:32];
+  assign n10220_o = result[39:32];
   /* TG68K_ALU.vhd:490:38  */
-  assign n10237_o = bf_width[4:0];
+  assign n10238_o = bf_width[4:0];
   /* TG68K_ALU.vhd:490:29  */
-  assign n10239_o = $unsigned(5'b00000) > $unsigned(n10237_o);
-  assign n10242_o = reg_qb[0];
-  assign n10243_o = bf_set2[0];
+  assign n10240_o = $unsigned(5'b00000) > $unsigned(n10238_o);
+  assign n10243_o = reg_qb[0];
+  assign n10244_o = bf_set2[0];
   /* TG68K_ALU.vhd:476:17  */
-  assign n10244_o = bf_ins ? n10242_o : n10243_o;
+  assign n10245_o = bf_ins ? n10243_o : n10244_o;
   /* TG68K_ALU.vhd:490:25  */
-  assign n10245_o = n10239_o ? 1'b0 : n10244_o;
+  assign n10246_o = n10240_o ? 1'b0 : n10245_o;
   /* TG68K_ALU.vhd:490:25  */
-  assign n10250_o = n10239_o ? 1'b1 : 1'b0;
+  assign n10251_o = n10240_o ? 1'b1 : 1'b0;
   /* TG68K_ALU.vhd:490:38  */
-  assign n10253_o = bf_width[4:0];
+  assign n10254_o = bf_width[4:0];
   /* TG68K_ALU.vhd:490:29  */
-  assign n10255_o = $unsigned(5'b00001) > $unsigned(n10253_o);
-  assign n10258_o = reg_qb[1];
-  assign n10259_o = bf_set2[1];
+  assign n10256_o = $unsigned(5'b00001) > $unsigned(n10254_o);
+  assign n10259_o = reg_qb[1];
+  assign n10260_o = bf_set2[1];
   /* TG68K_ALU.vhd:476:17  */
-  assign n10260_o = bf_ins ? n10258_o : n10259_o;
+  assign n10261_o = bf_ins ? n10259_o : n10260_o;
   /* TG68K_ALU.vhd:490:25  */
-  assign n10261_o = n10255_o ? 1'b0 : n10260_o;
-  assign n10265_o = n10251_o[1];
+  assign n10262_o = n10256_o ? 1'b0 : n10261_o;
+  assign n10266_o = n10252_o[1];
   /* TG68K_ALU.vhd:490:25  */
-  assign n10266_o = n10255_o ? 1'b1 : n10265_o;
+  assign n10267_o = n10256_o ? 1'b1 : n10266_o;
   /* TG68K_ALU.vhd:490:38  */
-  assign n10268_o = bf_width[4:0];
+  assign n10269_o = bf_width[4:0];
   /* TG68K_ALU.vhd:490:29  */
-  assign n10270_o = $unsigned(5'b00010) > $unsigned(n10268_o);
-  assign n10273_o = reg_qb[2];
-  assign n10274_o = bf_set2[2];
+  assign n10271_o = $unsigned(5'b00010) > $unsigned(n10269_o);
+  assign n10274_o = reg_qb[2];
+  assign n10275_o = bf_set2[2];
   /* TG68K_ALU.vhd:476:17  */
-  assign n10275_o = bf_ins ? n10273_o : n10274_o;
+  assign n10276_o = bf_ins ? n10274_o : n10275_o;
   /* TG68K_ALU.vhd:490:25  */
-  assign n10276_o = n10270_o ? 1'b0 : n10275_o;
-  assign n10280_o = n10251_o[2];
+  assign n10277_o = n10271_o ? 1'b0 : n10276_o;
+  assign n10281_o = n10252_o[2];
   /* TG68K_ALU.vhd:490:25  */
-  assign n10281_o = n10270_o ? 1'b1 : n10280_o;
+  assign n10282_o = n10271_o ? 1'b1 : n10281_o;
   /* TG68K_ALU.vhd:490:38  */
-  assign n10283_o = bf_width[4:0];
+  assign n10284_o = bf_width[4:0];
   /* TG68K_ALU.vhd:490:29  */
-  assign n10285_o = $unsigned(5'b00011) > $unsigned(n10283_o);
-  assign n10288_o = reg_qb[3];
-  assign n10289_o = bf_set2[3];
+  assign n10286_o = $unsigned(5'b00011) > $unsigned(n10284_o);
+  assign n10289_o = reg_qb[3];
+  assign n10290_o = bf_set2[3];
   /* TG68K_ALU.vhd:476:17  */
-  assign n10290_o = bf_ins ? n10288_o : n10289_o;
+  assign n10291_o = bf_ins ? n10289_o : n10290_o;
   /* TG68K_ALU.vhd:490:25  */
-  assign n10291_o = n10285_o ? 1'b0 : n10290_o;
-  assign n10295_o = n10251_o[3];
+  assign n10292_o = n10286_o ? 1'b0 : n10291_o;
+  assign n10296_o = n10252_o[3];
   /* TG68K_ALU.vhd:490:25  */
-  assign n10296_o = n10285_o ? 1'b1 : n10295_o;
+  assign n10297_o = n10286_o ? 1'b1 : n10296_o;
   /* TG68K_ALU.vhd:490:38  */
-  assign n10298_o = bf_width[4:0];
+  assign n10299_o = bf_width[4:0];
   /* TG68K_ALU.vhd:490:29  */
-  assign n10300_o = $unsigned(5'b00100) > $unsigned(n10298_o);
-  assign n10303_o = reg_qb[4];
-  assign n10304_o = bf_set2[4];
+  assign n10301_o = $unsigned(5'b00100) > $unsigned(n10299_o);
+  assign n10304_o = reg_qb[4];
+  assign n10305_o = bf_set2[4];
   /* TG68K_ALU.vhd:476:17  */
-  assign n10305_o = bf_ins ? n10303_o : n10304_o;
+  assign n10306_o = bf_ins ? n10304_o : n10305_o;
   /* TG68K_ALU.vhd:490:25  */
-  assign n10306_o = n10300_o ? 1'b0 : n10305_o;
-  assign n10310_o = n10251_o[4];
+  assign n10307_o = n10301_o ? 1'b0 : n10306_o;
+  assign n10311_o = n10252_o[4];
   /* TG68K_ALU.vhd:490:25  */
-  assign n10311_o = n10300_o ? 1'b1 : n10310_o;
+  assign n10312_o = n10301_o ? 1'b1 : n10311_o;
   /* TG68K_ALU.vhd:490:38  */
-  assign n10313_o = bf_width[4:0];
+  assign n10314_o = bf_width[4:0];
   /* TG68K_ALU.vhd:490:29  */
-  assign n10315_o = $unsigned(5'b00101) > $unsigned(n10313_o);
-  assign n10318_o = reg_qb[5];
-  assign n10319_o = bf_set2[5];
+  assign n10316_o = $unsigned(5'b00101) > $unsigned(n10314_o);
+  assign n10319_o = reg_qb[5];
+  assign n10320_o = bf_set2[5];
   /* TG68K_ALU.vhd:476:17  */
-  assign n10320_o = bf_ins ? n10318_o : n10319_o;
+  assign n10321_o = bf_ins ? n10319_o : n10320_o;
   /* TG68K_ALU.vhd:490:25  */
-  assign n10321_o = n10315_o ? 1'b0 : n10320_o;
-  assign n10325_o = n10251_o[5];
+  assign n10322_o = n10316_o ? 1'b0 : n10321_o;
+  assign n10326_o = n10252_o[5];
   /* TG68K_ALU.vhd:490:25  */
-  assign n10326_o = n10315_o ? 1'b1 : n10325_o;
+  assign n10327_o = n10316_o ? 1'b1 : n10326_o;
   /* TG68K_ALU.vhd:490:38  */
-  assign n10328_o = bf_width[4:0];
+  assign n10329_o = bf_width[4:0];
   /* TG68K_ALU.vhd:490:29  */
-  assign n10330_o = $unsigned(5'b00110) > $unsigned(n10328_o);
-  assign n10333_o = reg_qb[6];
-  assign n10334_o = bf_set2[6];
+  assign n10331_o = $unsigned(5'b00110) > $unsigned(n10329_o);
+  assign n10334_o = reg_qb[6];
+  assign n10335_o = bf_set2[6];
   /* TG68K_ALU.vhd:476:17  */
-  assign n10335_o = bf_ins ? n10333_o : n10334_o;
+  assign n10336_o = bf_ins ? n10334_o : n10335_o;
   /* TG68K_ALU.vhd:490:25  */
-  assign n10336_o = n10330_o ? 1'b0 : n10335_o;
-  assign n10340_o = n10251_o[6];
+  assign n10337_o = n10331_o ? 1'b0 : n10336_o;
+  assign n10341_o = n10252_o[6];
   /* TG68K_ALU.vhd:490:25  */
-  assign n10341_o = n10330_o ? 1'b1 : n10340_o;
+  assign n10342_o = n10331_o ? 1'b1 : n10341_o;
   /* TG68K_ALU.vhd:490:38  */
-  assign n10343_o = bf_width[4:0];
+  assign n10344_o = bf_width[4:0];
   /* TG68K_ALU.vhd:490:29  */
-  assign n10345_o = $unsigned(5'b00111) > $unsigned(n10343_o);
-  assign n10348_o = reg_qb[7];
-  assign n10349_o = bf_set2[7];
+  assign n10346_o = $unsigned(5'b00111) > $unsigned(n10344_o);
+  assign n10349_o = reg_qb[7];
+  assign n10350_o = bf_set2[7];
   /* TG68K_ALU.vhd:476:17  */
-  assign n10350_o = bf_ins ? n10348_o : n10349_o;
+  assign n10351_o = bf_ins ? n10349_o : n10350_o;
   /* TG68K_ALU.vhd:490:25  */
-  assign n10351_o = n10345_o ? 1'b0 : n10350_o;
-  assign n10355_o = n10251_o[7];
+  assign n10352_o = n10346_o ? 1'b0 : n10351_o;
+  assign n10356_o = n10252_o[7];
   /* TG68K_ALU.vhd:490:25  */
-  assign n10356_o = n10345_o ? 1'b1 : n10355_o;
+  assign n10357_o = n10346_o ? 1'b1 : n10356_o;
   /* TG68K_ALU.vhd:490:38  */
-  assign n10358_o = bf_width[4:0];
+  assign n10359_o = bf_width[4:0];
   /* TG68K_ALU.vhd:490:29  */
-  assign n10360_o = $unsigned(5'b01000) > $unsigned(n10358_o);
-  assign n10363_o = reg_qb[8];
-  assign n10364_o = bf_set2[8];
+  assign n10361_o = $unsigned(5'b01000) > $unsigned(n10359_o);
+  assign n10364_o = reg_qb[8];
+  assign n10365_o = bf_set2[8];
   /* TG68K_ALU.vhd:476:17  */
-  assign n10365_o = bf_ins ? n10363_o : n10364_o;
+  assign n10366_o = bf_ins ? n10364_o : n10365_o;
   /* TG68K_ALU.vhd:490:25  */
-  assign n10366_o = n10360_o ? 1'b0 : n10365_o;
-  assign n10370_o = n10251_o[8];
+  assign n10367_o = n10361_o ? 1'b0 : n10366_o;
+  assign n10371_o = n10252_o[8];
   /* TG68K_ALU.vhd:490:25  */
-  assign n10371_o = n10360_o ? 1'b1 : n10370_o;
+  assign n10372_o = n10361_o ? 1'b1 : n10371_o;
   /* TG68K_ALU.vhd:490:38  */
-  assign n10373_o = bf_width[4:0];
+  assign n10374_o = bf_width[4:0];
   /* TG68K_ALU.vhd:490:29  */
-  assign n10375_o = $unsigned(5'b01001) > $unsigned(n10373_o);
-  assign n10378_o = reg_qb[9];
-  assign n10379_o = bf_set2[9];
+  assign n10376_o = $unsigned(5'b01001) > $unsigned(n10374_o);
+  assign n10379_o = reg_qb[9];
+  assign n10380_o = bf_set2[9];
   /* TG68K_ALU.vhd:476:17  */
-  assign n10380_o = bf_ins ? n10378_o : n10379_o;
+  assign n10381_o = bf_ins ? n10379_o : n10380_o;
   /* TG68K_ALU.vhd:490:25  */
-  assign n10381_o = n10375_o ? 1'b0 : n10380_o;
-  assign n10385_o = n10251_o[9];
+  assign n10382_o = n10376_o ? 1'b0 : n10381_o;
+  assign n10386_o = n10252_o[9];
   /* TG68K_ALU.vhd:490:25  */
-  assign n10386_o = n10375_o ? 1'b1 : n10385_o;
+  assign n10387_o = n10376_o ? 1'b1 : n10386_o;
   /* TG68K_ALU.vhd:490:38  */
-  assign n10388_o = bf_width[4:0];
+  assign n10389_o = bf_width[4:0];
   /* TG68K_ALU.vhd:490:29  */
-  assign n10390_o = $unsigned(5'b01010) > $unsigned(n10388_o);
-  assign n10393_o = reg_qb[10];
-  assign n10394_o = bf_set2[10];
+  assign n10391_o = $unsigned(5'b01010) > $unsigned(n10389_o);
+  assign n10394_o = reg_qb[10];
+  assign n10395_o = bf_set2[10];
   /* TG68K_ALU.vhd:476:17  */
-  assign n10395_o = bf_ins ? n10393_o : n10394_o;
+  assign n10396_o = bf_ins ? n10394_o : n10395_o;
   /* TG68K_ALU.vhd:490:25  */
-  assign n10396_o = n10390_o ? 1'b0 : n10395_o;
-  assign n10400_o = n10251_o[10];
+  assign n10397_o = n10391_o ? 1'b0 : n10396_o;
+  assign n10401_o = n10252_o[10];
   /* TG68K_ALU.vhd:490:25  */
-  assign n10401_o = n10390_o ? 1'b1 : n10400_o;
+  assign n10402_o = n10391_o ? 1'b1 : n10401_o;
   /* TG68K_ALU.vhd:490:38  */
-  assign n10403_o = bf_width[4:0];
+  assign n10404_o = bf_width[4:0];
   /* TG68K_ALU.vhd:490:29  */
-  assign n10405_o = $unsigned(5'b01011) > $unsigned(n10403_o);
-  assign n10408_o = reg_qb[11];
-  assign n10409_o = bf_set2[11];
+  assign n10406_o = $unsigned(5'b01011) > $unsigned(n10404_o);
+  assign n10409_o = reg_qb[11];
+  assign n10410_o = bf_set2[11];
   /* TG68K_ALU.vhd:476:17  */
-  assign n10410_o = bf_ins ? n10408_o : n10409_o;
+  assign n10411_o = bf_ins ? n10409_o : n10410_o;
   /* TG68K_ALU.vhd:490:25  */
-  assign n10411_o = n10405_o ? 1'b0 : n10410_o;
-  assign n10415_o = n10251_o[11];
+  assign n10412_o = n10406_o ? 1'b0 : n10411_o;
+  assign n10416_o = n10252_o[11];
   /* TG68K_ALU.vhd:490:25  */
-  assign n10416_o = n10405_o ? 1'b1 : n10415_o;
+  assign n10417_o = n10406_o ? 1'b1 : n10416_o;
   /* TG68K_ALU.vhd:490:38  */
-  assign n10418_o = bf_width[4:0];
+  assign n10419_o = bf_width[4:0];
   /* TG68K_ALU.vhd:490:29  */
-  assign n10420_o = $unsigned(5'b01100) > $unsigned(n10418_o);
-  assign n10423_o = reg_qb[12];
-  assign n10424_o = bf_set2[12];
+  assign n10421_o = $unsigned(5'b01100) > $unsigned(n10419_o);
+  assign n10424_o = reg_qb[12];
+  assign n10425_o = bf_set2[12];
   /* TG68K_ALU.vhd:476:17  */
-  assign n10425_o = bf_ins ? n10423_o : n10424_o;
+  assign n10426_o = bf_ins ? n10424_o : n10425_o;
   /* TG68K_ALU.vhd:490:25  */
-  assign n10426_o = n10420_o ? 1'b0 : n10425_o;
-  assign n10430_o = n10251_o[12];
+  assign n10427_o = n10421_o ? 1'b0 : n10426_o;
+  assign n10431_o = n10252_o[12];
   /* TG68K_ALU.vhd:490:25  */
-  assign n10431_o = n10420_o ? 1'b1 : n10430_o;
+  assign n10432_o = n10421_o ? 1'b1 : n10431_o;
   /* TG68K_ALU.vhd:490:38  */
-  assign n10433_o = bf_width[4:0];
+  assign n10434_o = bf_width[4:0];
   /* TG68K_ALU.vhd:490:29  */
-  assign n10435_o = $unsigned(5'b01101) > $unsigned(n10433_o);
-  assign n10438_o = reg_qb[13];
-  assign n10439_o = bf_set2[13];
+  assign n10436_o = $unsigned(5'b01101) > $unsigned(n10434_o);
+  assign n10439_o = reg_qb[13];
+  assign n10440_o = bf_set2[13];
   /* TG68K_ALU.vhd:476:17  */
-  assign n10440_o = bf_ins ? n10438_o : n10439_o;
+  assign n10441_o = bf_ins ? n10439_o : n10440_o;
   /* TG68K_ALU.vhd:490:25  */
-  assign n10441_o = n10435_o ? 1'b0 : n10440_o;
-  assign n10445_o = n10251_o[13];
+  assign n10442_o = n10436_o ? 1'b0 : n10441_o;
+  assign n10446_o = n10252_o[13];
   /* TG68K_ALU.vhd:490:25  */
-  assign n10446_o = n10435_o ? 1'b1 : n10445_o;
+  assign n10447_o = n10436_o ? 1'b1 : n10446_o;
   /* TG68K_ALU.vhd:490:38  */
-  assign n10448_o = bf_width[4:0];
+  assign n10449_o = bf_width[4:0];
   /* TG68K_ALU.vhd:490:29  */
-  assign n10450_o = $unsigned(5'b01110) > $unsigned(n10448_o);
-  assign n10453_o = reg_qb[14];
-  assign n10454_o = bf_set2[14];
+  assign n10451_o = $unsigned(5'b01110) > $unsigned(n10449_o);
+  assign n10454_o = reg_qb[14];
+  assign n10455_o = bf_set2[14];
   /* TG68K_ALU.vhd:476:17  */
-  assign n10455_o = bf_ins ? n10453_o : n10454_o;
+  assign n10456_o = bf_ins ? n10454_o : n10455_o;
   /* TG68K_ALU.vhd:490:25  */
-  assign n10456_o = n10450_o ? 1'b0 : n10455_o;
-  assign n10460_o = n10251_o[14];
+  assign n10457_o = n10451_o ? 1'b0 : n10456_o;
+  assign n10461_o = n10252_o[14];
   /* TG68K_ALU.vhd:490:25  */
-  assign n10461_o = n10450_o ? 1'b1 : n10460_o;
+  assign n10462_o = n10451_o ? 1'b1 : n10461_o;
   /* TG68K_ALU.vhd:490:38  */
-  assign n10463_o = bf_width[4:0];
+  assign n10464_o = bf_width[4:0];
   /* TG68K_ALU.vhd:490:29  */
-  assign n10465_o = $unsigned(5'b01111) > $unsigned(n10463_o);
-  assign n10468_o = reg_qb[15];
-  assign n10469_o = bf_set2[15];
+  assign n10466_o = $unsigned(5'b01111) > $unsigned(n10464_o);
+  assign n10469_o = reg_qb[15];
+  assign n10470_o = bf_set2[15];
   /* TG68K_ALU.vhd:476:17  */
-  assign n10470_o = bf_ins ? n10468_o : n10469_o;
+  assign n10471_o = bf_ins ? n10469_o : n10470_o;
   /* TG68K_ALU.vhd:490:25  */
-  assign n10471_o = n10465_o ? 1'b0 : n10470_o;
-  assign n10475_o = n10251_o[15];
+  assign n10472_o = n10466_o ? 1'b0 : n10471_o;
+  assign n10476_o = n10252_o[15];
   /* TG68K_ALU.vhd:490:25  */
-  assign n10476_o = n10465_o ? 1'b1 : n10475_o;
+  assign n10477_o = n10466_o ? 1'b1 : n10476_o;
   /* TG68K_ALU.vhd:490:38  */
-  assign n10478_o = bf_width[4:0];
+  assign n10479_o = bf_width[4:0];
   /* TG68K_ALU.vhd:490:29  */
-  assign n10480_o = $unsigned(5'b10000) > $unsigned(n10478_o);
-  assign n10483_o = reg_qb[16];
-  assign n10484_o = bf_set2[16];
+  assign n10481_o = $unsigned(5'b10000) > $unsigned(n10479_o);
+  assign n10484_o = reg_qb[16];
+  assign n10485_o = bf_set2[16];
   /* TG68K_ALU.vhd:476:17  */
-  assign n10485_o = bf_ins ? n10483_o : n10484_o;
+  assign n10486_o = bf_ins ? n10484_o : n10485_o;
   /* TG68K_ALU.vhd:490:25  */
-  assign n10486_o = n10480_o ? 1'b0 : n10485_o;
-  assign n10490_o = n10251_o[16];
+  assign n10487_o = n10481_o ? 1'b0 : n10486_o;
+  assign n10491_o = n10252_o[16];
   /* TG68K_ALU.vhd:490:25  */
-  assign n10491_o = n10480_o ? 1'b1 : n10490_o;
+  assign n10492_o = n10481_o ? 1'b1 : n10491_o;
   /* TG68K_ALU.vhd:490:38  */
-  assign n10493_o = bf_width[4:0];
+  assign n10494_o = bf_width[4:0];
   /* TG68K_ALU.vhd:490:29  */
-  assign n10495_o = $unsigned(5'b10001) > $unsigned(n10493_o);
-  assign n10498_o = reg_qb[17];
-  assign n10499_o = bf_set2[17];
+  assign n10496_o = $unsigned(5'b10001) > $unsigned(n10494_o);
+  assign n10499_o = reg_qb[17];
+  assign n10500_o = bf_set2[17];
   /* TG68K_ALU.vhd:476:17  */
-  assign n10500_o = bf_ins ? n10498_o : n10499_o;
+  assign n10501_o = bf_ins ? n10499_o : n10500_o;
   /* TG68K_ALU.vhd:490:25  */
-  assign n10501_o = n10495_o ? 1'b0 : n10500_o;
-  assign n10505_o = n10251_o[17];
+  assign n10502_o = n10496_o ? 1'b0 : n10501_o;
+  assign n10506_o = n10252_o[17];
   /* TG68K_ALU.vhd:490:25  */
-  assign n10506_o = n10495_o ? 1'b1 : n10505_o;
+  assign n10507_o = n10496_o ? 1'b1 : n10506_o;
   /* TG68K_ALU.vhd:490:38  */
-  assign n10508_o = bf_width[4:0];
+  assign n10509_o = bf_width[4:0];
   /* TG68K_ALU.vhd:490:29  */
-  assign n10510_o = $unsigned(5'b10010) > $unsigned(n10508_o);
-  assign n10513_o = reg_qb[18];
-  assign n10514_o = bf_set2[18];
+  assign n10511_o = $unsigned(5'b10010) > $unsigned(n10509_o);
+  assign n10514_o = reg_qb[18];
+  assign n10515_o = bf_set2[18];
   /* TG68K_ALU.vhd:476:17  */
-  assign n10515_o = bf_ins ? n10513_o : n10514_o;
+  assign n10516_o = bf_ins ? n10514_o : n10515_o;
   /* TG68K_ALU.vhd:490:25  */
-  assign n10516_o = n10510_o ? 1'b0 : n10515_o;
-  assign n10520_o = n10251_o[18];
+  assign n10517_o = n10511_o ? 1'b0 : n10516_o;
+  assign n10521_o = n10252_o[18];
   /* TG68K_ALU.vhd:490:25  */
-  assign n10521_o = n10510_o ? 1'b1 : n10520_o;
+  assign n10522_o = n10511_o ? 1'b1 : n10521_o;
   /* TG68K_ALU.vhd:490:38  */
-  assign n10523_o = bf_width[4:0];
+  assign n10524_o = bf_width[4:0];
   /* TG68K_ALU.vhd:490:29  */
-  assign n10525_o = $unsigned(5'b10011) > $unsigned(n10523_o);
-  assign n10528_o = reg_qb[19];
-  assign n10529_o = bf_set2[19];
+  assign n10526_o = $unsigned(5'b10011) > $unsigned(n10524_o);
+  assign n10529_o = reg_qb[19];
+  assign n10530_o = bf_set2[19];
   /* TG68K_ALU.vhd:476:17  */
-  assign n10530_o = bf_ins ? n10528_o : n10529_o;
+  assign n10531_o = bf_ins ? n10529_o : n10530_o;
   /* TG68K_ALU.vhd:490:25  */
-  assign n10531_o = n10525_o ? 1'b0 : n10530_o;
-  assign n10535_o = n10251_o[19];
+  assign n10532_o = n10526_o ? 1'b0 : n10531_o;
+  assign n10536_o = n10252_o[19];
   /* TG68K_ALU.vhd:490:25  */
-  assign n10536_o = n10525_o ? 1'b1 : n10535_o;
+  assign n10537_o = n10526_o ? 1'b1 : n10536_o;
   /* TG68K_ALU.vhd:490:38  */
-  assign n10538_o = bf_width[4:0];
+  assign n10539_o = bf_width[4:0];
   /* TG68K_ALU.vhd:490:29  */
-  assign n10540_o = $unsigned(5'b10100) > $unsigned(n10538_o);
-  assign n10543_o = reg_qb[20];
-  assign n10544_o = bf_set2[20];
+  assign n10541_o = $unsigned(5'b10100) > $unsigned(n10539_o);
+  assign n10544_o = reg_qb[20];
+  assign n10545_o = bf_set2[20];
   /* TG68K_ALU.vhd:476:17  */
-  assign n10545_o = bf_ins ? n10543_o : n10544_o;
+  assign n10546_o = bf_ins ? n10544_o : n10545_o;
   /* TG68K_ALU.vhd:490:25  */
-  assign n10546_o = n10540_o ? 1'b0 : n10545_o;
-  assign n10550_o = n10251_o[20];
+  assign n10547_o = n10541_o ? 1'b0 : n10546_o;
+  assign n10551_o = n10252_o[20];
   /* TG68K_ALU.vhd:490:25  */
-  assign n10551_o = n10540_o ? 1'b1 : n10550_o;
+  assign n10552_o = n10541_o ? 1'b1 : n10551_o;
   /* TG68K_ALU.vhd:490:38  */
-  assign n10553_o = bf_width[4:0];
+  assign n10554_o = bf_width[4:0];
   /* TG68K_ALU.vhd:490:29  */
-  assign n10555_o = $unsigned(5'b10101) > $unsigned(n10553_o);
-  assign n10558_o = reg_qb[21];
-  assign n10559_o = bf_set2[21];
+  assign n10556_o = $unsigned(5'b10101) > $unsigned(n10554_o);
+  assign n10559_o = reg_qb[21];
+  assign n10560_o = bf_set2[21];
   /* TG68K_ALU.vhd:476:17  */
-  assign n10560_o = bf_ins ? n10558_o : n10559_o;
+  assign n10561_o = bf_ins ? n10559_o : n10560_o;
   /* TG68K_ALU.vhd:490:25  */
-  assign n10561_o = n10555_o ? 1'b0 : n10560_o;
-  assign n10565_o = n10251_o[21];
+  assign n10562_o = n10556_o ? 1'b0 : n10561_o;
+  assign n10566_o = n10252_o[21];
   /* TG68K_ALU.vhd:490:25  */
-  assign n10566_o = n10555_o ? 1'b1 : n10565_o;
+  assign n10567_o = n10556_o ? 1'b1 : n10566_o;
   /* TG68K_ALU.vhd:490:38  */
-  assign n10568_o = bf_width[4:0];
+  assign n10569_o = bf_width[4:0];
   /* TG68K_ALU.vhd:490:29  */
-  assign n10570_o = $unsigned(5'b10110) > $unsigned(n10568_o);
-  assign n10573_o = reg_qb[22];
-  assign n10574_o = bf_set2[22];
+  assign n10571_o = $unsigned(5'b10110) > $unsigned(n10569_o);
+  assign n10574_o = reg_qb[22];
+  assign n10575_o = bf_set2[22];
   /* TG68K_ALU.vhd:476:17  */
-  assign n10575_o = bf_ins ? n10573_o : n10574_o;
+  assign n10576_o = bf_ins ? n10574_o : n10575_o;
   /* TG68K_ALU.vhd:490:25  */
-  assign n10576_o = n10570_o ? 1'b0 : n10575_o;
-  assign n10580_o = n10251_o[22];
+  assign n10577_o = n10571_o ? 1'b0 : n10576_o;
+  assign n10581_o = n10252_o[22];
   /* TG68K_ALU.vhd:490:25  */
-  assign n10581_o = n10570_o ? 1'b1 : n10580_o;
+  assign n10582_o = n10571_o ? 1'b1 : n10581_o;
   /* TG68K_ALU.vhd:490:38  */
-  assign n10583_o = bf_width[4:0];
+  assign n10584_o = bf_width[4:0];
   /* TG68K_ALU.vhd:490:29  */
-  assign n10585_o = $unsigned(5'b10111) > $unsigned(n10583_o);
-  assign n10588_o = reg_qb[23];
-  assign n10589_o = bf_set2[23];
+  assign n10586_o = $unsigned(5'b10111) > $unsigned(n10584_o);
+  assign n10589_o = reg_qb[23];
+  assign n10590_o = bf_set2[23];
   /* TG68K_ALU.vhd:476:17  */
-  assign n10590_o = bf_ins ? n10588_o : n10589_o;
+  assign n10591_o = bf_ins ? n10589_o : n10590_o;
   /* TG68K_ALU.vhd:490:25  */
-  assign n10591_o = n10585_o ? 1'b0 : n10590_o;
-  assign n10595_o = n10251_o[23];
+  assign n10592_o = n10586_o ? 1'b0 : n10591_o;
+  assign n10596_o = n10252_o[23];
   /* TG68K_ALU.vhd:490:25  */
-  assign n10596_o = n10585_o ? 1'b1 : n10595_o;
+  assign n10597_o = n10586_o ? 1'b1 : n10596_o;
   /* TG68K_ALU.vhd:490:38  */
-  assign n10598_o = bf_width[4:0];
+  assign n10599_o = bf_width[4:0];
   /* TG68K_ALU.vhd:490:29  */
-  assign n10600_o = $unsigned(5'b11000) > $unsigned(n10598_o);
-  assign n10603_o = reg_qb[24];
-  assign n10604_o = bf_set2[24];
+  assign n10601_o = $unsigned(5'b11000) > $unsigned(n10599_o);
+  assign n10604_o = reg_qb[24];
+  assign n10605_o = bf_set2[24];
   /* TG68K_ALU.vhd:476:17  */
-  assign n10605_o = bf_ins ? n10603_o : n10604_o;
+  assign n10606_o = bf_ins ? n10604_o : n10605_o;
   /* TG68K_ALU.vhd:490:25  */
-  assign n10606_o = n10600_o ? 1'b0 : n10605_o;
-  assign n10610_o = n10251_o[24];
+  assign n10607_o = n10601_o ? 1'b0 : n10606_o;
+  assign n10611_o = n10252_o[24];
   /* TG68K_ALU.vhd:490:25  */
-  assign n10611_o = n10600_o ? 1'b1 : n10610_o;
+  assign n10612_o = n10601_o ? 1'b1 : n10611_o;
   /* TG68K_ALU.vhd:490:38  */
-  assign n10613_o = bf_width[4:0];
+  assign n10614_o = bf_width[4:0];
   /* TG68K_ALU.vhd:490:29  */
-  assign n10615_o = $unsigned(5'b11001) > $unsigned(n10613_o);
-  assign n10618_o = reg_qb[25];
-  assign n10619_o = bf_set2[25];
+  assign n10616_o = $unsigned(5'b11001) > $unsigned(n10614_o);
+  assign n10619_o = reg_qb[25];
+  assign n10620_o = bf_set2[25];
   /* TG68K_ALU.vhd:476:17  */
-  assign n10620_o = bf_ins ? n10618_o : n10619_o;
+  assign n10621_o = bf_ins ? n10619_o : n10620_o;
   /* TG68K_ALU.vhd:490:25  */
-  assign n10621_o = n10615_o ? 1'b0 : n10620_o;
-  assign n10625_o = n10251_o[25];
+  assign n10622_o = n10616_o ? 1'b0 : n10621_o;
+  assign n10626_o = n10252_o[25];
   /* TG68K_ALU.vhd:490:25  */
-  assign n10626_o = n10615_o ? 1'b1 : n10625_o;
+  assign n10627_o = n10616_o ? 1'b1 : n10626_o;
   /* TG68K_ALU.vhd:490:38  */
-  assign n10628_o = bf_width[4:0];
+  assign n10629_o = bf_width[4:0];
   /* TG68K_ALU.vhd:490:29  */
-  assign n10630_o = $unsigned(5'b11010) > $unsigned(n10628_o);
-  assign n10633_o = reg_qb[26];
-  assign n10634_o = bf_set2[26];
+  assign n10631_o = $unsigned(5'b11010) > $unsigned(n10629_o);
+  assign n10634_o = reg_qb[26];
+  assign n10635_o = bf_set2[26];
   /* TG68K_ALU.vhd:476:17  */
-  assign n10635_o = bf_ins ? n10633_o : n10634_o;
+  assign n10636_o = bf_ins ? n10634_o : n10635_o;
   /* TG68K_ALU.vhd:490:25  */
-  assign n10636_o = n10630_o ? 1'b0 : n10635_o;
-  assign n10640_o = n10251_o[26];
+  assign n10637_o = n10631_o ? 1'b0 : n10636_o;
+  assign n10641_o = n10252_o[26];
   /* TG68K_ALU.vhd:490:25  */
-  assign n10641_o = n10630_o ? 1'b1 : n10640_o;
+  assign n10642_o = n10631_o ? 1'b1 : n10641_o;
   /* TG68K_ALU.vhd:490:38  */
-  assign n10643_o = bf_width[4:0];
+  assign n10644_o = bf_width[4:0];
   /* TG68K_ALU.vhd:490:29  */
-  assign n10645_o = $unsigned(5'b11011) > $unsigned(n10643_o);
-  assign n10648_o = reg_qb[27];
-  assign n10649_o = bf_set2[27];
+  assign n10646_o = $unsigned(5'b11011) > $unsigned(n10644_o);
+  assign n10649_o = reg_qb[27];
+  assign n10650_o = bf_set2[27];
   /* TG68K_ALU.vhd:476:17  */
-  assign n10650_o = bf_ins ? n10648_o : n10649_o;
+  assign n10651_o = bf_ins ? n10649_o : n10650_o;
   /* TG68K_ALU.vhd:490:25  */
-  assign n10651_o = n10645_o ? 1'b0 : n10650_o;
-  assign n10655_o = n10251_o[27];
+  assign n10652_o = n10646_o ? 1'b0 : n10651_o;
+  assign n10656_o = n10252_o[27];
   /* TG68K_ALU.vhd:490:25  */
-  assign n10656_o = n10645_o ? 1'b1 : n10655_o;
+  assign n10657_o = n10646_o ? 1'b1 : n10656_o;
   /* TG68K_ALU.vhd:490:38  */
-  assign n10658_o = bf_width[4:0];
+  assign n10659_o = bf_width[4:0];
   /* TG68K_ALU.vhd:490:29  */
-  assign n10660_o = $unsigned(5'b11100) > $unsigned(n10658_o);
-  assign n10663_o = reg_qb[28];
-  assign n10664_o = bf_set2[28];
+  assign n10661_o = $unsigned(5'b11100) > $unsigned(n10659_o);
+  assign n10664_o = reg_qb[28];
+  assign n10665_o = bf_set2[28];
   /* TG68K_ALU.vhd:476:17  */
-  assign n10665_o = bf_ins ? n10663_o : n10664_o;
+  assign n10666_o = bf_ins ? n10664_o : n10665_o;
   /* TG68K_ALU.vhd:490:25  */
-  assign n10666_o = n10660_o ? 1'b0 : n10665_o;
-  assign n10670_o = n10251_o[28];
+  assign n10667_o = n10661_o ? 1'b0 : n10666_o;
+  assign n10671_o = n10252_o[28];
   /* TG68K_ALU.vhd:490:25  */
-  assign n10671_o = n10660_o ? 1'b1 : n10670_o;
+  assign n10672_o = n10661_o ? 1'b1 : n10671_o;
   /* TG68K_ALU.vhd:490:38  */
-  assign n10673_o = bf_width[4:0];
+  assign n10674_o = bf_width[4:0];
   /* TG68K_ALU.vhd:490:29  */
-  assign n10675_o = $unsigned(5'b11101) > $unsigned(n10673_o);
-  assign n10678_o = reg_qb[29];
-  assign n10679_o = bf_set2[29];
+  assign n10676_o = $unsigned(5'b11101) > $unsigned(n10674_o);
+  assign n10679_o = reg_qb[29];
+  assign n10680_o = bf_set2[29];
   /* TG68K_ALU.vhd:476:17  */
-  assign n10680_o = bf_ins ? n10678_o : n10679_o;
+  assign n10681_o = bf_ins ? n10679_o : n10680_o;
   /* TG68K_ALU.vhd:490:25  */
-  assign n10681_o = n10675_o ? 1'b0 : n10680_o;
-  assign n10685_o = n10251_o[29];
+  assign n10682_o = n10676_o ? 1'b0 : n10681_o;
+  assign n10686_o = n10252_o[29];
   /* TG68K_ALU.vhd:490:25  */
-  assign n10686_o = n10675_o ? 1'b1 : n10685_o;
+  assign n10687_o = n10676_o ? 1'b1 : n10686_o;
   /* TG68K_ALU.vhd:490:38  */
-  assign n10688_o = bf_width[4:0];
+  assign n10689_o = bf_width[4:0];
   /* TG68K_ALU.vhd:490:29  */
-  assign n10690_o = $unsigned(5'b11110) > $unsigned(n10688_o);
-  assign n10693_o = reg_qb[30];
-  assign n10694_o = bf_set2[30];
+  assign n10691_o = $unsigned(5'b11110) > $unsigned(n10689_o);
+  assign n10694_o = reg_qb[30];
+  assign n10695_o = bf_set2[30];
   /* TG68K_ALU.vhd:476:17  */
-  assign n10695_o = bf_ins ? n10693_o : n10694_o;
+  assign n10696_o = bf_ins ? n10694_o : n10695_o;
   /* TG68K_ALU.vhd:490:25  */
-  assign n10696_o = n10690_o ? 1'b0 : n10695_o;
-  assign n10697_o = reg_qb[31];
-  assign n10698_o = bf_set2[31];
+  assign n10697_o = n10691_o ? 1'b0 : n10696_o;
+  assign n10698_o = reg_qb[31];
+  assign n10699_o = bf_set2[31];
   /* TG68K_ALU.vhd:476:17  */
-  assign n10699_o = bf_ins ? n10697_o : n10698_o;
-  assign n10700_o = n10251_o[30];
+  assign n10700_o = bf_ins ? n10698_o : n10699_o;
+  assign n10701_o = n10252_o[30];
   /* TG68K_ALU.vhd:490:25  */
-  assign n10701_o = n10690_o ? 1'b1 : n10700_o;
-  assign n10702_o = n10251_o[31];
+  assign n10702_o = n10691_o ? 1'b1 : n10701_o;
+  assign n10703_o = n10252_o[31];
   /* TG68K_ALU.vhd:490:38  */
-  assign n10703_o = bf_width[4:0];
+  assign n10704_o = bf_width[4:0];
   /* TG68K_ALU.vhd:490:29  */
-  assign n10705_o = $unsigned(5'b11111) > $unsigned(n10703_o);
+  assign n10706_o = $unsigned(5'b11111) > $unsigned(n10704_o);
   /* TG68K_ALU.vhd:490:25  */
-  assign n10708_o = n10705_o ? 1'b0 : n10699_o;
+  assign n10709_o = n10706_o ? 1'b0 : n10700_o;
   /* TG68K_ALU.vhd:490:25  */
-  assign n10709_o = n10705_o ? 1'b1 : n10702_o;
+  assign n10710_o = n10706_o ? 1'b1 : n10703_o;
   /* TG68K_ALU.vhd:496:37  */
-  assign n10711_o = bf_width[4:0];  // trunc
+  assign n10712_o = bf_width[4:0];  // trunc
   /* TG68K_ALU.vhd:497:32  */
-  assign n10714_o = bf_nflag & bf_exts;
+  assign n10715_o = bf_nflag & bf_exts;
   /* TG68K_ALU.vhd:498:47  */
-  assign n10715_o = datareg | unshifted_bitmask;
+  assign n10716_o = datareg | unshifted_bitmask;
   /* TG68K_ALU.vhd:497:17  */
-  assign n10716_o = n10714_o ? n10715_o : datareg;
+  assign n10717_o = n10715_o ? n10716_o : datareg;
   /* TG68K_ALU.vhd:504:30  */
-  assign n10717_o = bf_loffset[4];
+  assign n10718_o = bf_loffset[4];
   /* TG68K_ALU.vhd:505:57  */
-  assign n10718_o = unshifted_bitmask[15:0];
+  assign n10719_o = unshifted_bitmask[15:0];
   /* TG68K_ALU.vhd:505:88  */
-  assign n10719_o = unshifted_bitmask[31:16];
+  assign n10720_o = unshifted_bitmask[31:16];
   /* TG68K_ALU.vhd:505:70  */
-  assign n10720_o = {n10718_o, n10719_o};
+  assign n10721_o = {n10719_o, n10720_o};
   /* TG68K_ALU.vhd:504:17  */
-  assign n10721_o = n10717_o ? n10720_o : unshifted_bitmask;
+  assign n10722_o = n10718_o ? n10721_o : unshifted_bitmask;
   /* TG68K_ALU.vhd:509:30  */
-  assign n10722_o = bf_loffset[3];
+  assign n10723_o = bf_loffset[3];
   /* TG68K_ALU.vhd:510:64  */
-  assign n10723_o = bitmaskmux3[23:0];
+  assign n10724_o = bitmaskmux3[23:0];
   /* TG68K_ALU.vhd:510:89  */
-  assign n10724_o = bitmaskmux3[31:24];
+  assign n10725_o = bitmaskmux3[31:24];
   /* TG68K_ALU.vhd:510:77  */
-  assign n10725_o = {n10723_o, n10724_o};
+  assign n10726_o = {n10724_o, n10725_o};
   /* TG68K_ALU.vhd:509:17  */
-  assign n10726_o = n10722_o ? n10725_o : bitmaskmux3;
+  assign n10727_o = n10723_o ? n10726_o : bitmaskmux3;
   /* TG68K_ALU.vhd:514:30  */
-  assign n10727_o = bf_loffset[2];
+  assign n10728_o = bf_loffset[2];
   /* TG68K_ALU.vhd:515:51  */
-  assign n10729_o = {bitmaskmux2, 4'b1111};
+  assign n10730_o = {bitmaskmux2, 4'b1111};
   /* TG68K_ALU.vhd:517:71  */
-  assign n10730_o = bitmaskmux2[31:28];
-  assign n10731_o = n10729_o[3:0];
+  assign n10731_o = bitmaskmux2[31:28];
+  assign n10732_o = n10730_o[3:0];
   /* TG68K_ALU.vhd:516:25  */
-  assign n10732_o = bf_d32 ? n10730_o : n10731_o;
-  assign n10733_o = n10729_o[35:4];
+  assign n10733_o = bf_d32 ? n10731_o : n10732_o;
+  assign n10734_o = n10730_o[35:4];
   /* TG68K_ALU.vhd:520:46  */
-  assign n10735_o = {4'b1111, bitmaskmux2};
-  assign n10736_o = {n10733_o, n10732_o};
+  assign n10736_o = {4'b1111, bitmaskmux2};
+  assign n10737_o = {n10734_o, n10733_o};
   /* TG68K_ALU.vhd:514:17  */
-  assign n10737_o = n10727_o ? n10736_o : n10735_o;
+  assign n10738_o = n10728_o ? n10737_o : n10736_o;
   /* TG68K_ALU.vhd:522:30  */
-  assign n10738_o = bf_loffset[1];
+  assign n10739_o = bf_loffset[1];
   /* TG68K_ALU.vhd:523:51  */
-  assign n10740_o = {bitmaskmux1, 2'b11};
+  assign n10741_o = {bitmaskmux1, 2'b11};
   /* TG68K_ALU.vhd:525:71  */
-  assign n10741_o = bitmaskmux1[31:30];
-  assign n10742_o = n10740_o[1:0];
+  assign n10742_o = bitmaskmux1[31:30];
+  assign n10743_o = n10741_o[1:0];
   /* TG68K_ALU.vhd:524:25  */
-  assign n10743_o = bf_d32 ? n10741_o : n10742_o;
-  assign n10744_o = n10740_o[37:2];
+  assign n10744_o = bf_d32 ? n10742_o : n10743_o;
+  assign n10745_o = n10741_o[37:2];
   /* TG68K_ALU.vhd:528:44  */
-  assign n10746_o = {2'b11, bitmaskmux1};
-  assign n10747_o = {n10744_o, n10743_o};
+  assign n10747_o = {2'b11, bitmaskmux1};
+  assign n10748_o = {n10745_o, n10744_o};
   /* TG68K_ALU.vhd:522:17  */
-  assign n10748_o = n10738_o ? n10747_o : n10746_o;
+  assign n10749_o = n10739_o ? n10748_o : n10747_o;
   /* TG68K_ALU.vhd:530:30  */
-  assign n10749_o = bf_loffset[0];
+  assign n10750_o = bf_loffset[0];
   /* TG68K_ALU.vhd:531:47  */
-  assign n10751_o = {1'b1, bitmaskmux0};
+  assign n10752_o = {1'b1, bitmaskmux0};
   /* TG68K_ALU.vhd:531:59  */
-  assign n10753_o = {n10751_o, 1'b1};
+  assign n10754_o = {n10752_o, 1'b1};
   /* TG68K_ALU.vhd:533:66  */
-  assign n10754_o = bitmaskmux0[31];
-  assign n10755_o = n10753_o[0];
+  assign n10755_o = bitmaskmux0[31];
+  assign n10756_o = n10754_o[0];
   /* TG68K_ALU.vhd:532:25  */
-  assign n10756_o = bf_d32 ? n10754_o : n10755_o;
-  assign n10757_o = n10753_o[39:1];
+  assign n10757_o = bf_d32 ? n10755_o : n10756_o;
+  assign n10758_o = n10754_o[39:1];
   /* TG68K_ALU.vhd:536:48  */
-  assign n10759_o = {2'b11, bitmaskmux0};
-  assign n10760_o = {n10757_o, n10756_o};
+  assign n10760_o = {2'b11, bitmaskmux0};
+  assign n10761_o = {n10758_o, n10757_o};
   /* TG68K_ALU.vhd:530:17  */
-  assign n10761_o = n10749_o ? n10760_o : n10759_o;
+  assign n10762_o = n10750_o ? n10761_o : n10760_o;
   /* TG68K_ALU.vhd:541:35  */
-  assign n10762_o = {bf_ext_in, op2out};
+  assign n10763_o = {bf_ext_in, op2out};
   /* TG68K_ALU.vhd:543:54  */
-  assign n10763_o = op2out[7:0];
-  assign n10764_o = n10762_o[39:32];
+  assign n10764_o = op2out[7:0];
+  assign n10765_o = n10763_o[39:32];
   /* TG68K_ALU.vhd:542:17  */
-  assign n10765_o = bf_s32 ? n10763_o : n10764_o;
-  assign n10766_o = n10762_o[31:0];
+  assign n10766_o = bf_s32 ? n10764_o : n10765_o;
+  assign n10767_o = n10763_o[31:0];
   /* TG68K_ALU.vhd:546:28  */
-  assign n10767_o = bf_shift[0];
+  assign n10768_o = bf_shift[0];
   /* TG68K_ALU.vhd:547:40  */
-  assign n10768_o = shift[0];
+  assign n10769_o = shift[0];
   /* TG68K_ALU.vhd:547:49  */
-  assign n10769_o = shift[39:1];
+  assign n10770_o = shift[39:1];
   /* TG68K_ALU.vhd:547:43  */
-  assign n10770_o = {n10768_o, n10769_o};
+  assign n10771_o = {n10769_o, n10770_o};
   /* TG68K_ALU.vhd:546:17  */
-  assign n10771_o = n10767_o ? n10770_o : shift;
+  assign n10772_o = n10768_o ? n10771_o : shift;
   /* TG68K_ALU.vhd:551:28  */
-  assign n10772_o = bf_shift[1];
+  assign n10773_o = bf_shift[1];
   /* TG68K_ALU.vhd:552:41  */
-  assign n10773_o = inmux0[1:0];
+  assign n10774_o = inmux0[1:0];
   /* TG68K_ALU.vhd:552:60  */
-  assign n10774_o = inmux0[39:2];
+  assign n10775_o = inmux0[39:2];
   /* TG68K_ALU.vhd:552:53  */
-  assign n10775_o = {n10773_o, n10774_o};
+  assign n10776_o = {n10774_o, n10775_o};
   /* TG68K_ALU.vhd:551:17  */
-  assign n10776_o = n10772_o ? n10775_o : inmux0;
+  assign n10777_o = n10773_o ? n10776_o : inmux0;
   /* TG68K_ALU.vhd:556:28  */
-  assign n10777_o = bf_shift[2];
+  assign n10778_o = bf_shift[2];
   /* TG68K_ALU.vhd:557:41  */
-  assign n10778_o = inmux1[3:0];
+  assign n10779_o = inmux1[3:0];
   /* TG68K_ALU.vhd:557:60  */
-  assign n10779_o = inmux1[39:4];
+  assign n10780_o = inmux1[39:4];
   /* TG68K_ALU.vhd:557:53  */
-  assign n10780_o = {n10778_o, n10779_o};
+  assign n10781_o = {n10779_o, n10780_o};
   /* TG68K_ALU.vhd:556:17  */
-  assign n10781_o = n10777_o ? n10780_o : inmux1;
+  assign n10782_o = n10778_o ? n10781_o : inmux1;
   /* TG68K_ALU.vhd:561:28  */
-  assign n10782_o = bf_shift[3];
+  assign n10783_o = bf_shift[3];
   /* TG68K_ALU.vhd:562:41  */
-  assign n10783_o = inmux2[7:0];
+  assign n10784_o = inmux2[7:0];
   /* TG68K_ALU.vhd:562:60  */
-  assign n10784_o = inmux2[31:8];
+  assign n10785_o = inmux2[31:8];
   /* TG68K_ALU.vhd:562:53  */
-  assign n10785_o = {n10783_o, n10784_o};
+  assign n10786_o = {n10784_o, n10785_o};
   /* TG68K_ALU.vhd:564:41  */
-  assign n10786_o = inmux2[31:0];
+  assign n10787_o = inmux2[31:0];
   /* TG68K_ALU.vhd:561:17  */
-  assign n10787_o = n10782_o ? n10785_o : n10786_o;
+  assign n10788_o = n10783_o ? n10786_o : n10787_o;
   /* TG68K_ALU.vhd:566:28  */
-  assign n10788_o = bf_shift[4];
+  assign n10789_o = bf_shift[4];
   /* TG68K_ALU.vhd:567:55  */
-  assign n10789_o = inmux3[15:0];
+  assign n10790_o = inmux3[15:0];
   /* TG68K_ALU.vhd:567:75  */
-  assign n10790_o = inmux3[31:16];
+  assign n10791_o = inmux3[31:16];
   /* TG68K_ALU.vhd:567:68  */
-  assign n10791_o = {n10789_o, n10790_o};
+  assign n10792_o = {n10790_o, n10791_o};
   /* TG68K_ALU.vhd:566:17  */
-  assign n10792_o = n10788_o ? n10791_o : inmux3;
+  assign n10793_o = n10789_o ? n10792_o : inmux3;
   /* TG68K_ALU.vhd:574:56  */
-  assign n10793_o = bf_set2[7:0];
+  assign n10794_o = bf_set2[7:0];
   /* TG68K_ALU.vhd:576:48  */
-  assign n10794_o = ~op2out;
+  assign n10795_o = ~op2out;
   /* TG68K_ALU.vhd:577:49  */
-  assign n10795_o = ~bf_ext_in;
-  assign n10796_o = {n10795_o, n10794_o};
-  assign n10799_o = {n10793_o, bf_set2};
+  assign n10796_o = ~bf_ext_in;
+  assign n10797_o = {n10796_o, n10795_o};
+  assign n10800_o = {n10794_o, bf_set2};
   /* TG68K_ALU.vhd:586:48  */
-  assign n10803_o = {bf_ext_in, op1out};
+  assign n10804_o = {bf_ext_in, op1out};
   /* TG68K_ALU.vhd:588:48  */
-  assign n10804_o = {bf_ext_in, op2out};
+  assign n10805_o = {bf_ext_in, op2out};
   /* TG68K_ALU.vhd:585:17  */
-  assign n10805_o = bf_ins ? n10803_o : n10804_o;
+  assign n10806_o = bf_ins ? n10804_o : n10805_o;
   /* TG68K_ALU.vhd:591:43  */
-  assign n10806_o = shifted_bitmask[0];
+  assign n10807_o = shifted_bitmask[0];
   /* TG68K_ALU.vhd:592:56  */
-  assign n10807_o = result_tmp[0];
-  assign n10808_o = n10801_o[0];
-  assign n10809_o = n10799_o[0];
-  assign n10810_o = n10796_o[0];
+  assign n10808_o = result_tmp[0];
+  assign n10809_o = n10802_o[0];
+  assign n10810_o = n10800_o[0];
   assign n10811_o = n10797_o[0];
+  assign n10812_o = n10798_o[0];
   /* TG68K_ALU.vhd:575:17  */
-  assign n10812_o = bf_bchg ? n10810_o : n10811_o;
+  assign n10813_o = bf_bchg ? n10811_o : n10812_o;
   /* TG68K_ALU.vhd:572:17  */
-  assign n10813_o = bf_ins ? n10809_o : n10812_o;
+  assign n10814_o = bf_ins ? n10810_o : n10813_o;
   /* TG68K_ALU.vhd:581:17  */
-  assign n10814_o = bf_bset ? n10808_o : n10813_o;
+  assign n10815_o = bf_bset ? n10809_o : n10814_o;
   /* TG68K_ALU.vhd:591:25  */
-  assign n10815_o = n10806_o ? n10807_o : n10814_o;
+  assign n10816_o = n10807_o ? n10808_o : n10815_o;
   /* TG68K_ALU.vhd:591:43  */
-  assign n10823_o = shifted_bitmask[1];
+  assign n10824_o = shifted_bitmask[1];
   /* TG68K_ALU.vhd:592:56  */
-  assign n10824_o = result_tmp[1];
-  assign n10825_o = n10801_o[1];
-  assign n10826_o = n10799_o[1];
-  assign n10827_o = n10796_o[1];
+  assign n10825_o = result_tmp[1];
+  assign n10826_o = n10802_o[1];
+  assign n10827_o = n10800_o[1];
   assign n10828_o = n10797_o[1];
+  assign n10829_o = n10798_o[1];
   /* TG68K_ALU.vhd:575:17  */
-  assign n10829_o = bf_bchg ? n10827_o : n10828_o;
+  assign n10830_o = bf_bchg ? n10828_o : n10829_o;
   /* TG68K_ALU.vhd:572:17  */
-  assign n10830_o = bf_ins ? n10826_o : n10829_o;
+  assign n10831_o = bf_ins ? n10827_o : n10830_o;
   /* TG68K_ALU.vhd:581:17  */
-  assign n10831_o = bf_bset ? n10825_o : n10830_o;
+  assign n10832_o = bf_bset ? n10826_o : n10831_o;
   /* TG68K_ALU.vhd:591:25  */
-  assign n10832_o = n10823_o ? n10824_o : n10831_o;
+  assign n10833_o = n10824_o ? n10825_o : n10832_o;
   /* TG68K_ALU.vhd:591:43  */
-  assign n10840_o = shifted_bitmask[2];
+  assign n10841_o = shifted_bitmask[2];
   /* TG68K_ALU.vhd:592:56  */
-  assign n10841_o = result_tmp[2];
-  assign n10842_o = n10801_o[2];
-  assign n10843_o = n10799_o[2];
-  assign n10844_o = n10796_o[2];
+  assign n10842_o = result_tmp[2];
+  assign n10843_o = n10802_o[2];
+  assign n10844_o = n10800_o[2];
   assign n10845_o = n10797_o[2];
+  assign n10846_o = n10798_o[2];
   /* TG68K_ALU.vhd:575:17  */
-  assign n10846_o = bf_bchg ? n10844_o : n10845_o;
+  assign n10847_o = bf_bchg ? n10845_o : n10846_o;
   /* TG68K_ALU.vhd:572:17  */
-  assign n10847_o = bf_ins ? n10843_o : n10846_o;
+  assign n10848_o = bf_ins ? n10844_o : n10847_o;
   /* TG68K_ALU.vhd:581:17  */
-  assign n10848_o = bf_bset ? n10842_o : n10847_o;
+  assign n10849_o = bf_bset ? n10843_o : n10848_o;
   /* TG68K_ALU.vhd:591:25  */
-  assign n10849_o = n10840_o ? n10841_o : n10848_o;
+  assign n10850_o = n10841_o ? n10842_o : n10849_o;
   /* TG68K_ALU.vhd:591:43  */
-  assign n10857_o = shifted_bitmask[3];
+  assign n10858_o = shifted_bitmask[3];
   /* TG68K_ALU.vhd:592:56  */
-  assign n10858_o = result_tmp[3];
-  assign n10859_o = n10801_o[3];
-  assign n10860_o = n10799_o[3];
-  assign n10861_o = n10796_o[3];
+  assign n10859_o = result_tmp[3];
+  assign n10860_o = n10802_o[3];
+  assign n10861_o = n10800_o[3];
   assign n10862_o = n10797_o[3];
+  assign n10863_o = n10798_o[3];
   /* TG68K_ALU.vhd:575:17  */
-  assign n10863_o = bf_bchg ? n10861_o : n10862_o;
+  assign n10864_o = bf_bchg ? n10862_o : n10863_o;
   /* TG68K_ALU.vhd:572:17  */
-  assign n10864_o = bf_ins ? n10860_o : n10863_o;
+  assign n10865_o = bf_ins ? n10861_o : n10864_o;
   /* TG68K_ALU.vhd:581:17  */
-  assign n10865_o = bf_bset ? n10859_o : n10864_o;
+  assign n10866_o = bf_bset ? n10860_o : n10865_o;
   /* TG68K_ALU.vhd:591:25  */
-  assign n10866_o = n10857_o ? n10858_o : n10865_o;
+  assign n10867_o = n10858_o ? n10859_o : n10866_o;
   /* TG68K_ALU.vhd:591:43  */
-  assign n10874_o = shifted_bitmask[4];
+  assign n10875_o = shifted_bitmask[4];
   /* TG68K_ALU.vhd:592:56  */
-  assign n10875_o = result_tmp[4];
-  assign n10876_o = n10801_o[4];
-  assign n10877_o = n10799_o[4];
-  assign n10878_o = n10796_o[4];
+  assign n10876_o = result_tmp[4];
+  assign n10877_o = n10802_o[4];
+  assign n10878_o = n10800_o[4];
   assign n10879_o = n10797_o[4];
+  assign n10880_o = n10798_o[4];
   /* TG68K_ALU.vhd:575:17  */
-  assign n10880_o = bf_bchg ? n10878_o : n10879_o;
+  assign n10881_o = bf_bchg ? n10879_o : n10880_o;
   /* TG68K_ALU.vhd:572:17  */
-  assign n10881_o = bf_ins ? n10877_o : n10880_o;
+  assign n10882_o = bf_ins ? n10878_o : n10881_o;
   /* TG68K_ALU.vhd:581:17  */
-  assign n10882_o = bf_bset ? n10876_o : n10881_o;
+  assign n10883_o = bf_bset ? n10877_o : n10882_o;
   /* TG68K_ALU.vhd:591:25  */
-  assign n10883_o = n10874_o ? n10875_o : n10882_o;
+  assign n10884_o = n10875_o ? n10876_o : n10883_o;
   /* TG68K_ALU.vhd:591:43  */
-  assign n10891_o = shifted_bitmask[5];
+  assign n10892_o = shifted_bitmask[5];
   /* TG68K_ALU.vhd:592:56  */
-  assign n10892_o = result_tmp[5];
-  assign n10893_o = n10801_o[5];
-  assign n10894_o = n10799_o[5];
-  assign n10895_o = n10796_o[5];
+  assign n10893_o = result_tmp[5];
+  assign n10894_o = n10802_o[5];
+  assign n10895_o = n10800_o[5];
   assign n10896_o = n10797_o[5];
+  assign n10897_o = n10798_o[5];
   /* TG68K_ALU.vhd:575:17  */
-  assign n10897_o = bf_bchg ? n10895_o : n10896_o;
+  assign n10898_o = bf_bchg ? n10896_o : n10897_o;
   /* TG68K_ALU.vhd:572:17  */
-  assign n10898_o = bf_ins ? n10894_o : n10897_o;
+  assign n10899_o = bf_ins ? n10895_o : n10898_o;
   /* TG68K_ALU.vhd:581:17  */
-  assign n10899_o = bf_bset ? n10893_o : n10898_o;
+  assign n10900_o = bf_bset ? n10894_o : n10899_o;
   /* TG68K_ALU.vhd:591:25  */
-  assign n10900_o = n10891_o ? n10892_o : n10899_o;
+  assign n10901_o = n10892_o ? n10893_o : n10900_o;
   /* TG68K_ALU.vhd:591:43  */
-  assign n10908_o = shifted_bitmask[6];
+  assign n10909_o = shifted_bitmask[6];
   /* TG68K_ALU.vhd:592:56  */
-  assign n10909_o = result_tmp[6];
-  assign n10910_o = n10801_o[6];
-  assign n10911_o = n10799_o[6];
-  assign n10912_o = n10796_o[6];
+  assign n10910_o = result_tmp[6];
+  assign n10911_o = n10802_o[6];
+  assign n10912_o = n10800_o[6];
   assign n10913_o = n10797_o[6];
+  assign n10914_o = n10798_o[6];
   /* TG68K_ALU.vhd:575:17  */
-  assign n10914_o = bf_bchg ? n10912_o : n10913_o;
+  assign n10915_o = bf_bchg ? n10913_o : n10914_o;
   /* TG68K_ALU.vhd:572:17  */
-  assign n10915_o = bf_ins ? n10911_o : n10914_o;
+  assign n10916_o = bf_ins ? n10912_o : n10915_o;
   /* TG68K_ALU.vhd:581:17  */
-  assign n10916_o = bf_bset ? n10910_o : n10915_o;
+  assign n10917_o = bf_bset ? n10911_o : n10916_o;
   /* TG68K_ALU.vhd:591:25  */
-  assign n10917_o = n10908_o ? n10909_o : n10916_o;
+  assign n10918_o = n10909_o ? n10910_o : n10917_o;
   /* TG68K_ALU.vhd:591:43  */
-  assign n10925_o = shifted_bitmask[7];
+  assign n10926_o = shifted_bitmask[7];
   /* TG68K_ALU.vhd:592:56  */
-  assign n10926_o = result_tmp[7];
-  assign n10927_o = n10801_o[7];
-  assign n10928_o = n10799_o[7];
-  assign n10929_o = n10796_o[7];
+  assign n10927_o = result_tmp[7];
+  assign n10928_o = n10802_o[7];
+  assign n10929_o = n10800_o[7];
   assign n10930_o = n10797_o[7];
+  assign n10931_o = n10798_o[7];
   /* TG68K_ALU.vhd:575:17  */
-  assign n10931_o = bf_bchg ? n10929_o : n10930_o;
+  assign n10932_o = bf_bchg ? n10930_o : n10931_o;
   /* TG68K_ALU.vhd:572:17  */
-  assign n10932_o = bf_ins ? n10928_o : n10931_o;
+  assign n10933_o = bf_ins ? n10929_o : n10932_o;
   /* TG68K_ALU.vhd:581:17  */
-  assign n10933_o = bf_bset ? n10927_o : n10932_o;
+  assign n10934_o = bf_bset ? n10928_o : n10933_o;
   /* TG68K_ALU.vhd:591:25  */
-  assign n10934_o = n10925_o ? n10926_o : n10933_o;
+  assign n10935_o = n10926_o ? n10927_o : n10934_o;
   /* TG68K_ALU.vhd:591:43  */
-  assign n10942_o = shifted_bitmask[8];
+  assign n10943_o = shifted_bitmask[8];
   /* TG68K_ALU.vhd:592:56  */
-  assign n10943_o = result_tmp[8];
-  assign n10944_o = n10801_o[8];
-  assign n10945_o = n10799_o[8];
-  assign n10946_o = n10796_o[8];
+  assign n10944_o = result_tmp[8];
+  assign n10945_o = n10802_o[8];
+  assign n10946_o = n10800_o[8];
   assign n10947_o = n10797_o[8];
+  assign n10948_o = n10798_o[8];
   /* TG68K_ALU.vhd:575:17  */
-  assign n10948_o = bf_bchg ? n10946_o : n10947_o;
+  assign n10949_o = bf_bchg ? n10947_o : n10948_o;
   /* TG68K_ALU.vhd:572:17  */
-  assign n10949_o = bf_ins ? n10945_o : n10948_o;
+  assign n10950_o = bf_ins ? n10946_o : n10949_o;
   /* TG68K_ALU.vhd:581:17  */
-  assign n10950_o = bf_bset ? n10944_o : n10949_o;
+  assign n10951_o = bf_bset ? n10945_o : n10950_o;
   /* TG68K_ALU.vhd:591:25  */
-  assign n10951_o = n10942_o ? n10943_o : n10950_o;
+  assign n10952_o = n10943_o ? n10944_o : n10951_o;
   /* TG68K_ALU.vhd:591:43  */
-  assign n10959_o = shifted_bitmask[9];
+  assign n10960_o = shifted_bitmask[9];
   /* TG68K_ALU.vhd:592:56  */
-  assign n10960_o = result_tmp[9];
-  assign n10961_o = n10801_o[9];
-  assign n10962_o = n10799_o[9];
-  assign n10963_o = n10796_o[9];
+  assign n10961_o = result_tmp[9];
+  assign n10962_o = n10802_o[9];
+  assign n10963_o = n10800_o[9];
   assign n10964_o = n10797_o[9];
+  assign n10965_o = n10798_o[9];
   /* TG68K_ALU.vhd:575:17  */
-  assign n10965_o = bf_bchg ? n10963_o : n10964_o;
+  assign n10966_o = bf_bchg ? n10964_o : n10965_o;
   /* TG68K_ALU.vhd:572:17  */
-  assign n10966_o = bf_ins ? n10962_o : n10965_o;
+  assign n10967_o = bf_ins ? n10963_o : n10966_o;
   /* TG68K_ALU.vhd:581:17  */
-  assign n10967_o = bf_bset ? n10961_o : n10966_o;
+  assign n10968_o = bf_bset ? n10962_o : n10967_o;
   /* TG68K_ALU.vhd:591:25  */
-  assign n10968_o = n10959_o ? n10960_o : n10967_o;
+  assign n10969_o = n10960_o ? n10961_o : n10968_o;
   /* TG68K_ALU.vhd:591:43  */
-  assign n10976_o = shifted_bitmask[10];
+  assign n10977_o = shifted_bitmask[10];
   /* TG68K_ALU.vhd:592:56  */
-  assign n10977_o = result_tmp[10];
-  assign n10978_o = n10801_o[10];
-  assign n10979_o = n10799_o[10];
-  assign n10980_o = n10796_o[10];
+  assign n10978_o = result_tmp[10];
+  assign n10979_o = n10802_o[10];
+  assign n10980_o = n10800_o[10];
   assign n10981_o = n10797_o[10];
+  assign n10982_o = n10798_o[10];
   /* TG68K_ALU.vhd:575:17  */
-  assign n10982_o = bf_bchg ? n10980_o : n10981_o;
+  assign n10983_o = bf_bchg ? n10981_o : n10982_o;
   /* TG68K_ALU.vhd:572:17  */
-  assign n10983_o = bf_ins ? n10979_o : n10982_o;
+  assign n10984_o = bf_ins ? n10980_o : n10983_o;
   /* TG68K_ALU.vhd:581:17  */
-  assign n10984_o = bf_bset ? n10978_o : n10983_o;
+  assign n10985_o = bf_bset ? n10979_o : n10984_o;
   /* TG68K_ALU.vhd:591:25  */
-  assign n10985_o = n10976_o ? n10977_o : n10984_o;
+  assign n10986_o = n10977_o ? n10978_o : n10985_o;
   /* TG68K_ALU.vhd:591:43  */
-  assign n10993_o = shifted_bitmask[11];
+  assign n10994_o = shifted_bitmask[11];
   /* TG68K_ALU.vhd:592:56  */
-  assign n10994_o = result_tmp[11];
-  assign n10995_o = n10801_o[11];
-  assign n10996_o = n10799_o[11];
-  assign n10997_o = n10796_o[11];
+  assign n10995_o = result_tmp[11];
+  assign n10996_o = n10802_o[11];
+  assign n10997_o = n10800_o[11];
   assign n10998_o = n10797_o[11];
+  assign n10999_o = n10798_o[11];
   /* TG68K_ALU.vhd:575:17  */
-  assign n10999_o = bf_bchg ? n10997_o : n10998_o;
+  assign n11000_o = bf_bchg ? n10998_o : n10999_o;
   /* TG68K_ALU.vhd:572:17  */
-  assign n11000_o = bf_ins ? n10996_o : n10999_o;
+  assign n11001_o = bf_ins ? n10997_o : n11000_o;
   /* TG68K_ALU.vhd:581:17  */
-  assign n11001_o = bf_bset ? n10995_o : n11000_o;
+  assign n11002_o = bf_bset ? n10996_o : n11001_o;
   /* TG68K_ALU.vhd:591:25  */
-  assign n11002_o = n10993_o ? n10994_o : n11001_o;
+  assign n11003_o = n10994_o ? n10995_o : n11002_o;
   /* TG68K_ALU.vhd:591:43  */
-  assign n11010_o = shifted_bitmask[12];
+  assign n11011_o = shifted_bitmask[12];
   /* TG68K_ALU.vhd:592:56  */
-  assign n11011_o = result_tmp[12];
-  assign n11012_o = n10801_o[12];
-  assign n11013_o = n10799_o[12];
-  assign n11014_o = n10796_o[12];
+  assign n11012_o = result_tmp[12];
+  assign n11013_o = n10802_o[12];
+  assign n11014_o = n10800_o[12];
   assign n11015_o = n10797_o[12];
+  assign n11016_o = n10798_o[12];
   /* TG68K_ALU.vhd:575:17  */
-  assign n11016_o = bf_bchg ? n11014_o : n11015_o;
+  assign n11017_o = bf_bchg ? n11015_o : n11016_o;
   /* TG68K_ALU.vhd:572:17  */
-  assign n11017_o = bf_ins ? n11013_o : n11016_o;
+  assign n11018_o = bf_ins ? n11014_o : n11017_o;
   /* TG68K_ALU.vhd:581:17  */
-  assign n11018_o = bf_bset ? n11012_o : n11017_o;
+  assign n11019_o = bf_bset ? n11013_o : n11018_o;
   /* TG68K_ALU.vhd:591:25  */
-  assign n11019_o = n11010_o ? n11011_o : n11018_o;
+  assign n11020_o = n11011_o ? n11012_o : n11019_o;
   /* TG68K_ALU.vhd:591:43  */
-  assign n11027_o = shifted_bitmask[13];
+  assign n11028_o = shifted_bitmask[13];
   /* TG68K_ALU.vhd:592:56  */
-  assign n11028_o = result_tmp[13];
-  assign n11029_o = n10801_o[13];
-  assign n11030_o = n10799_o[13];
-  assign n11031_o = n10796_o[13];
+  assign n11029_o = result_tmp[13];
+  assign n11030_o = n10802_o[13];
+  assign n11031_o = n10800_o[13];
   assign n11032_o = n10797_o[13];
+  assign n11033_o = n10798_o[13];
   /* TG68K_ALU.vhd:575:17  */
-  assign n11033_o = bf_bchg ? n11031_o : n11032_o;
+  assign n11034_o = bf_bchg ? n11032_o : n11033_o;
   /* TG68K_ALU.vhd:572:17  */
-  assign n11034_o = bf_ins ? n11030_o : n11033_o;
+  assign n11035_o = bf_ins ? n11031_o : n11034_o;
   /* TG68K_ALU.vhd:581:17  */
-  assign n11035_o = bf_bset ? n11029_o : n11034_o;
+  assign n11036_o = bf_bset ? n11030_o : n11035_o;
   /* TG68K_ALU.vhd:591:25  */
-  assign n11036_o = n11027_o ? n11028_o : n11035_o;
+  assign n11037_o = n11028_o ? n11029_o : n11036_o;
   /* TG68K_ALU.vhd:591:43  */
-  assign n11044_o = shifted_bitmask[14];
+  assign n11045_o = shifted_bitmask[14];
   /* TG68K_ALU.vhd:592:56  */
-  assign n11045_o = result_tmp[14];
-  assign n11046_o = n10801_o[14];
-  assign n11047_o = n10799_o[14];
-  assign n11048_o = n10796_o[14];
+  assign n11046_o = result_tmp[14];
+  assign n11047_o = n10802_o[14];
+  assign n11048_o = n10800_o[14];
   assign n11049_o = n10797_o[14];
+  assign n11050_o = n10798_o[14];
   /* TG68K_ALU.vhd:575:17  */
-  assign n11050_o = bf_bchg ? n11048_o : n11049_o;
+  assign n11051_o = bf_bchg ? n11049_o : n11050_o;
   /* TG68K_ALU.vhd:572:17  */
-  assign n11051_o = bf_ins ? n11047_o : n11050_o;
+  assign n11052_o = bf_ins ? n11048_o : n11051_o;
   /* TG68K_ALU.vhd:581:17  */
-  assign n11052_o = bf_bset ? n11046_o : n11051_o;
+  assign n11053_o = bf_bset ? n11047_o : n11052_o;
   /* TG68K_ALU.vhd:591:25  */
-  assign n11053_o = n11044_o ? n11045_o : n11052_o;
+  assign n11054_o = n11045_o ? n11046_o : n11053_o;
   /* TG68K_ALU.vhd:591:43  */
-  assign n11061_o = shifted_bitmask[15];
+  assign n11062_o = shifted_bitmask[15];
   /* TG68K_ALU.vhd:592:56  */
-  assign n11062_o = result_tmp[15];
-  assign n11063_o = n10801_o[15];
-  assign n11064_o = n10799_o[15];
-  assign n11065_o = n10796_o[15];
+  assign n11063_o = result_tmp[15];
+  assign n11064_o = n10802_o[15];
+  assign n11065_o = n10800_o[15];
   assign n11066_o = n10797_o[15];
+  assign n11067_o = n10798_o[15];
   /* TG68K_ALU.vhd:575:17  */
-  assign n11067_o = bf_bchg ? n11065_o : n11066_o;
+  assign n11068_o = bf_bchg ? n11066_o : n11067_o;
   /* TG68K_ALU.vhd:572:17  */
-  assign n11068_o = bf_ins ? n11064_o : n11067_o;
+  assign n11069_o = bf_ins ? n11065_o : n11068_o;
   /* TG68K_ALU.vhd:581:17  */
-  assign n11069_o = bf_bset ? n11063_o : n11068_o;
+  assign n11070_o = bf_bset ? n11064_o : n11069_o;
   /* TG68K_ALU.vhd:591:25  */
-  assign n11070_o = n11061_o ? n11062_o : n11069_o;
+  assign n11071_o = n11062_o ? n11063_o : n11070_o;
   /* TG68K_ALU.vhd:591:43  */
-  assign n11078_o = shifted_bitmask[16];
+  assign n11079_o = shifted_bitmask[16];
   /* TG68K_ALU.vhd:592:56  */
-  assign n11079_o = result_tmp[16];
-  assign n11080_o = n10801_o[16];
-  assign n11081_o = n10799_o[16];
-  assign n11082_o = n10796_o[16];
+  assign n11080_o = result_tmp[16];
+  assign n11081_o = n10802_o[16];
+  assign n11082_o = n10800_o[16];
   assign n11083_o = n10797_o[16];
+  assign n11084_o = n10798_o[16];
   /* TG68K_ALU.vhd:575:17  */
-  assign n11084_o = bf_bchg ? n11082_o : n11083_o;
+  assign n11085_o = bf_bchg ? n11083_o : n11084_o;
   /* TG68K_ALU.vhd:572:17  */
-  assign n11085_o = bf_ins ? n11081_o : n11084_o;
+  assign n11086_o = bf_ins ? n11082_o : n11085_o;
   /* TG68K_ALU.vhd:581:17  */
-  assign n11086_o = bf_bset ? n11080_o : n11085_o;
+  assign n11087_o = bf_bset ? n11081_o : n11086_o;
   /* TG68K_ALU.vhd:591:25  */
-  assign n11087_o = n11078_o ? n11079_o : n11086_o;
+  assign n11088_o = n11079_o ? n11080_o : n11087_o;
   /* TG68K_ALU.vhd:591:43  */
-  assign n11095_o = shifted_bitmask[17];
+  assign n11096_o = shifted_bitmask[17];
   /* TG68K_ALU.vhd:592:56  */
-  assign n11096_o = result_tmp[17];
-  assign n11097_o = n10801_o[17];
-  assign n11098_o = n10799_o[17];
-  assign n11099_o = n10796_o[17];
+  assign n11097_o = result_tmp[17];
+  assign n11098_o = n10802_o[17];
+  assign n11099_o = n10800_o[17];
   assign n11100_o = n10797_o[17];
+  assign n11101_o = n10798_o[17];
   /* TG68K_ALU.vhd:575:17  */
-  assign n11101_o = bf_bchg ? n11099_o : n11100_o;
+  assign n11102_o = bf_bchg ? n11100_o : n11101_o;
   /* TG68K_ALU.vhd:572:17  */
-  assign n11102_o = bf_ins ? n11098_o : n11101_o;
+  assign n11103_o = bf_ins ? n11099_o : n11102_o;
   /* TG68K_ALU.vhd:581:17  */
-  assign n11103_o = bf_bset ? n11097_o : n11102_o;
+  assign n11104_o = bf_bset ? n11098_o : n11103_o;
   /* TG68K_ALU.vhd:591:25  */
-  assign n11104_o = n11095_o ? n11096_o : n11103_o;
+  assign n11105_o = n11096_o ? n11097_o : n11104_o;
   /* TG68K_ALU.vhd:591:43  */
-  assign n11112_o = shifted_bitmask[18];
+  assign n11113_o = shifted_bitmask[18];
   /* TG68K_ALU.vhd:592:56  */
-  assign n11113_o = result_tmp[18];
-  assign n11114_o = n10801_o[18];
-  assign n11115_o = n10799_o[18];
-  assign n11116_o = n10796_o[18];
+  assign n11114_o = result_tmp[18];
+  assign n11115_o = n10802_o[18];
+  assign n11116_o = n10800_o[18];
   assign n11117_o = n10797_o[18];
+  assign n11118_o = n10798_o[18];
   /* TG68K_ALU.vhd:575:17  */
-  assign n11118_o = bf_bchg ? n11116_o : n11117_o;
+  assign n11119_o = bf_bchg ? n11117_o : n11118_o;
   /* TG68K_ALU.vhd:572:17  */
-  assign n11119_o = bf_ins ? n11115_o : n11118_o;
+  assign n11120_o = bf_ins ? n11116_o : n11119_o;
   /* TG68K_ALU.vhd:581:17  */
-  assign n11120_o = bf_bset ? n11114_o : n11119_o;
+  assign n11121_o = bf_bset ? n11115_o : n11120_o;
   /* TG68K_ALU.vhd:591:25  */
-  assign n11121_o = n11112_o ? n11113_o : n11120_o;
+  assign n11122_o = n11113_o ? n11114_o : n11121_o;
   /* TG68K_ALU.vhd:591:43  */
-  assign n11129_o = shifted_bitmask[19];
+  assign n11130_o = shifted_bitmask[19];
   /* TG68K_ALU.vhd:592:56  */
-  assign n11130_o = result_tmp[19];
-  assign n11131_o = n10801_o[19];
-  assign n11132_o = n10799_o[19];
-  assign n11133_o = n10796_o[19];
+  assign n11131_o = result_tmp[19];
+  assign n11132_o = n10802_o[19];
+  assign n11133_o = n10800_o[19];
   assign n11134_o = n10797_o[19];
+  assign n11135_o = n10798_o[19];
   /* TG68K_ALU.vhd:575:17  */
-  assign n11135_o = bf_bchg ? n11133_o : n11134_o;
+  assign n11136_o = bf_bchg ? n11134_o : n11135_o;
   /* TG68K_ALU.vhd:572:17  */
-  assign n11136_o = bf_ins ? n11132_o : n11135_o;
+  assign n11137_o = bf_ins ? n11133_o : n11136_o;
   /* TG68K_ALU.vhd:581:17  */
-  assign n11137_o = bf_bset ? n11131_o : n11136_o;
+  assign n11138_o = bf_bset ? n11132_o : n11137_o;
   /* TG68K_ALU.vhd:591:25  */
-  assign n11138_o = n11129_o ? n11130_o : n11137_o;
+  assign n11139_o = n11130_o ? n11131_o : n11138_o;
   /* TG68K_ALU.vhd:591:43  */
-  assign n11146_o = shifted_bitmask[20];
+  assign n11147_o = shifted_bitmask[20];
   /* TG68K_ALU.vhd:592:56  */
-  assign n11147_o = result_tmp[20];
-  assign n11148_o = n10801_o[20];
-  assign n11149_o = n10799_o[20];
-  assign n11150_o = n10796_o[20];
+  assign n11148_o = result_tmp[20];
+  assign n11149_o = n10802_o[20];
+  assign n11150_o = n10800_o[20];
   assign n11151_o = n10797_o[20];
+  assign n11152_o = n10798_o[20];
   /* TG68K_ALU.vhd:575:17  */
-  assign n11152_o = bf_bchg ? n11150_o : n11151_o;
+  assign n11153_o = bf_bchg ? n11151_o : n11152_o;
   /* TG68K_ALU.vhd:572:17  */
-  assign n11153_o = bf_ins ? n11149_o : n11152_o;
+  assign n11154_o = bf_ins ? n11150_o : n11153_o;
   /* TG68K_ALU.vhd:581:17  */
-  assign n11154_o = bf_bset ? n11148_o : n11153_o;
+  assign n11155_o = bf_bset ? n11149_o : n11154_o;
   /* TG68K_ALU.vhd:591:25  */
-  assign n11155_o = n11146_o ? n11147_o : n11154_o;
+  assign n11156_o = n11147_o ? n11148_o : n11155_o;
   /* TG68K_ALU.vhd:591:43  */
-  assign n11163_o = shifted_bitmask[21];
+  assign n11164_o = shifted_bitmask[21];
   /* TG68K_ALU.vhd:592:56  */
-  assign n11164_o = result_tmp[21];
-  assign n11165_o = n10801_o[21];
-  assign n11166_o = n10799_o[21];
-  assign n11167_o = n10796_o[21];
+  assign n11165_o = result_tmp[21];
+  assign n11166_o = n10802_o[21];
+  assign n11167_o = n10800_o[21];
   assign n11168_o = n10797_o[21];
+  assign n11169_o = n10798_o[21];
   /* TG68K_ALU.vhd:575:17  */
-  assign n11169_o = bf_bchg ? n11167_o : n11168_o;
+  assign n11170_o = bf_bchg ? n11168_o : n11169_o;
   /* TG68K_ALU.vhd:572:17  */
-  assign n11170_o = bf_ins ? n11166_o : n11169_o;
+  assign n11171_o = bf_ins ? n11167_o : n11170_o;
   /* TG68K_ALU.vhd:581:17  */
-  assign n11171_o = bf_bset ? n11165_o : n11170_o;
+  assign n11172_o = bf_bset ? n11166_o : n11171_o;
   /* TG68K_ALU.vhd:591:25  */
-  assign n11172_o = n11163_o ? n11164_o : n11171_o;
+  assign n11173_o = n11164_o ? n11165_o : n11172_o;
   /* TG68K_ALU.vhd:591:43  */
-  assign n11180_o = shifted_bitmask[22];
+  assign n11181_o = shifted_bitmask[22];
   /* TG68K_ALU.vhd:592:56  */
-  assign n11181_o = result_tmp[22];
-  assign n11182_o = n10801_o[22];
-  assign n11183_o = n10799_o[22];
-  assign n11184_o = n10796_o[22];
+  assign n11182_o = result_tmp[22];
+  assign n11183_o = n10802_o[22];
+  assign n11184_o = n10800_o[22];
   assign n11185_o = n10797_o[22];
+  assign n11186_o = n10798_o[22];
   /* TG68K_ALU.vhd:575:17  */
-  assign n11186_o = bf_bchg ? n11184_o : n11185_o;
+  assign n11187_o = bf_bchg ? n11185_o : n11186_o;
   /* TG68K_ALU.vhd:572:17  */
-  assign n11187_o = bf_ins ? n11183_o : n11186_o;
+  assign n11188_o = bf_ins ? n11184_o : n11187_o;
   /* TG68K_ALU.vhd:581:17  */
-  assign n11188_o = bf_bset ? n11182_o : n11187_o;
+  assign n11189_o = bf_bset ? n11183_o : n11188_o;
   /* TG68K_ALU.vhd:591:25  */
-  assign n11189_o = n11180_o ? n11181_o : n11188_o;
+  assign n11190_o = n11181_o ? n11182_o : n11189_o;
   /* TG68K_ALU.vhd:591:43  */
-  assign n11197_o = shifted_bitmask[23];
+  assign n11198_o = shifted_bitmask[23];
   /* TG68K_ALU.vhd:592:56  */
-  assign n11198_o = result_tmp[23];
-  assign n11199_o = n10801_o[23];
-  assign n11200_o = n10799_o[23];
-  assign n11201_o = n10796_o[23];
+  assign n11199_o = result_tmp[23];
+  assign n11200_o = n10802_o[23];
+  assign n11201_o = n10800_o[23];
   assign n11202_o = n10797_o[23];
+  assign n11203_o = n10798_o[23];
   /* TG68K_ALU.vhd:575:17  */
-  assign n11203_o = bf_bchg ? n11201_o : n11202_o;
+  assign n11204_o = bf_bchg ? n11202_o : n11203_o;
   /* TG68K_ALU.vhd:572:17  */
-  assign n11204_o = bf_ins ? n11200_o : n11203_o;
+  assign n11205_o = bf_ins ? n11201_o : n11204_o;
   /* TG68K_ALU.vhd:581:17  */
-  assign n11205_o = bf_bset ? n11199_o : n11204_o;
+  assign n11206_o = bf_bset ? n11200_o : n11205_o;
   /* TG68K_ALU.vhd:591:25  */
-  assign n11206_o = n11197_o ? n11198_o : n11205_o;
+  assign n11207_o = n11198_o ? n11199_o : n11206_o;
   /* TG68K_ALU.vhd:591:43  */
-  assign n11214_o = shifted_bitmask[24];
+  assign n11215_o = shifted_bitmask[24];
   /* TG68K_ALU.vhd:592:56  */
-  assign n11215_o = result_tmp[24];
-  assign n11216_o = n10801_o[24];
-  assign n11217_o = n10799_o[24];
-  assign n11218_o = n10796_o[24];
+  assign n11216_o = result_tmp[24];
+  assign n11217_o = n10802_o[24];
+  assign n11218_o = n10800_o[24];
   assign n11219_o = n10797_o[24];
+  assign n11220_o = n10798_o[24];
   /* TG68K_ALU.vhd:575:17  */
-  assign n11220_o = bf_bchg ? n11218_o : n11219_o;
+  assign n11221_o = bf_bchg ? n11219_o : n11220_o;
   /* TG68K_ALU.vhd:572:17  */
-  assign n11221_o = bf_ins ? n11217_o : n11220_o;
+  assign n11222_o = bf_ins ? n11218_o : n11221_o;
   /* TG68K_ALU.vhd:581:17  */
-  assign n11222_o = bf_bset ? n11216_o : n11221_o;
+  assign n11223_o = bf_bset ? n11217_o : n11222_o;
   /* TG68K_ALU.vhd:591:25  */
-  assign n11223_o = n11214_o ? n11215_o : n11222_o;
+  assign n11224_o = n11215_o ? n11216_o : n11223_o;
   /* TG68K_ALU.vhd:591:43  */
-  assign n11231_o = shifted_bitmask[25];
+  assign n11232_o = shifted_bitmask[25];
   /* TG68K_ALU.vhd:592:56  */
-  assign n11232_o = result_tmp[25];
-  assign n11233_o = n10801_o[25];
-  assign n11234_o = n10799_o[25];
-  assign n11235_o = n10796_o[25];
+  assign n11233_o = result_tmp[25];
+  assign n11234_o = n10802_o[25];
+  assign n11235_o = n10800_o[25];
   assign n11236_o = n10797_o[25];
+  assign n11237_o = n10798_o[25];
   /* TG68K_ALU.vhd:575:17  */
-  assign n11237_o = bf_bchg ? n11235_o : n11236_o;
+  assign n11238_o = bf_bchg ? n11236_o : n11237_o;
   /* TG68K_ALU.vhd:572:17  */
-  assign n11238_o = bf_ins ? n11234_o : n11237_o;
+  assign n11239_o = bf_ins ? n11235_o : n11238_o;
   /* TG68K_ALU.vhd:581:17  */
-  assign n11239_o = bf_bset ? n11233_o : n11238_o;
+  assign n11240_o = bf_bset ? n11234_o : n11239_o;
   /* TG68K_ALU.vhd:591:25  */
-  assign n11240_o = n11231_o ? n11232_o : n11239_o;
+  assign n11241_o = n11232_o ? n11233_o : n11240_o;
   /* TG68K_ALU.vhd:591:43  */
-  assign n11248_o = shifted_bitmask[26];
+  assign n11249_o = shifted_bitmask[26];
   /* TG68K_ALU.vhd:592:56  */
-  assign n11249_o = result_tmp[26];
-  assign n11250_o = n10801_o[26];
-  assign n11251_o = n10799_o[26];
-  assign n11252_o = n10796_o[26];
+  assign n11250_o = result_tmp[26];
+  assign n11251_o = n10802_o[26];
+  assign n11252_o = n10800_o[26];
   assign n11253_o = n10797_o[26];
+  assign n11254_o = n10798_o[26];
   /* TG68K_ALU.vhd:575:17  */
-  assign n11254_o = bf_bchg ? n11252_o : n11253_o;
+  assign n11255_o = bf_bchg ? n11253_o : n11254_o;
   /* TG68K_ALU.vhd:572:17  */
-  assign n11255_o = bf_ins ? n11251_o : n11254_o;
+  assign n11256_o = bf_ins ? n11252_o : n11255_o;
   /* TG68K_ALU.vhd:581:17  */
-  assign n11256_o = bf_bset ? n11250_o : n11255_o;
+  assign n11257_o = bf_bset ? n11251_o : n11256_o;
   /* TG68K_ALU.vhd:591:25  */
-  assign n11257_o = n11248_o ? n11249_o : n11256_o;
+  assign n11258_o = n11249_o ? n11250_o : n11257_o;
   /* TG68K_ALU.vhd:591:43  */
-  assign n11265_o = shifted_bitmask[27];
+  assign n11266_o = shifted_bitmask[27];
   /* TG68K_ALU.vhd:592:56  */
-  assign n11266_o = result_tmp[27];
-  assign n11267_o = n10801_o[27];
-  assign n11268_o = n10799_o[27];
-  assign n11269_o = n10796_o[27];
+  assign n11267_o = result_tmp[27];
+  assign n11268_o = n10802_o[27];
+  assign n11269_o = n10800_o[27];
   assign n11270_o = n10797_o[27];
+  assign n11271_o = n10798_o[27];
   /* TG68K_ALU.vhd:575:17  */
-  assign n11271_o = bf_bchg ? n11269_o : n11270_o;
+  assign n11272_o = bf_bchg ? n11270_o : n11271_o;
   /* TG68K_ALU.vhd:572:17  */
-  assign n11272_o = bf_ins ? n11268_o : n11271_o;
+  assign n11273_o = bf_ins ? n11269_o : n11272_o;
   /* TG68K_ALU.vhd:581:17  */
-  assign n11273_o = bf_bset ? n11267_o : n11272_o;
+  assign n11274_o = bf_bset ? n11268_o : n11273_o;
   /* TG68K_ALU.vhd:591:25  */
-  assign n11274_o = n11265_o ? n11266_o : n11273_o;
+  assign n11275_o = n11266_o ? n11267_o : n11274_o;
   /* TG68K_ALU.vhd:591:43  */
-  assign n11282_o = shifted_bitmask[28];
+  assign n11283_o = shifted_bitmask[28];
   /* TG68K_ALU.vhd:592:56  */
-  assign n11283_o = result_tmp[28];
-  assign n11284_o = n10801_o[28];
-  assign n11285_o = n10799_o[28];
-  assign n11286_o = n10796_o[28];
+  assign n11284_o = result_tmp[28];
+  assign n11285_o = n10802_o[28];
+  assign n11286_o = n10800_o[28];
   assign n11287_o = n10797_o[28];
+  assign n11288_o = n10798_o[28];
   /* TG68K_ALU.vhd:575:17  */
-  assign n11288_o = bf_bchg ? n11286_o : n11287_o;
+  assign n11289_o = bf_bchg ? n11287_o : n11288_o;
   /* TG68K_ALU.vhd:572:17  */
-  assign n11289_o = bf_ins ? n11285_o : n11288_o;
+  assign n11290_o = bf_ins ? n11286_o : n11289_o;
   /* TG68K_ALU.vhd:581:17  */
-  assign n11290_o = bf_bset ? n11284_o : n11289_o;
+  assign n11291_o = bf_bset ? n11285_o : n11290_o;
   /* TG68K_ALU.vhd:591:25  */
-  assign n11291_o = n11282_o ? n11283_o : n11290_o;
+  assign n11292_o = n11283_o ? n11284_o : n11291_o;
   /* TG68K_ALU.vhd:591:43  */
-  assign n11299_o = shifted_bitmask[29];
+  assign n11300_o = shifted_bitmask[29];
   /* TG68K_ALU.vhd:592:56  */
-  assign n11300_o = result_tmp[29];
-  assign n11301_o = n10801_o[29];
-  assign n11302_o = n10799_o[29];
-  assign n11303_o = n10796_o[29];
+  assign n11301_o = result_tmp[29];
+  assign n11302_o = n10802_o[29];
+  assign n11303_o = n10800_o[29];
   assign n11304_o = n10797_o[29];
+  assign n11305_o = n10798_o[29];
   /* TG68K_ALU.vhd:575:17  */
-  assign n11305_o = bf_bchg ? n11303_o : n11304_o;
+  assign n11306_o = bf_bchg ? n11304_o : n11305_o;
   /* TG68K_ALU.vhd:572:17  */
-  assign n11306_o = bf_ins ? n11302_o : n11305_o;
+  assign n11307_o = bf_ins ? n11303_o : n11306_o;
   /* TG68K_ALU.vhd:581:17  */
-  assign n11307_o = bf_bset ? n11301_o : n11306_o;
+  assign n11308_o = bf_bset ? n11302_o : n11307_o;
   /* TG68K_ALU.vhd:591:25  */
-  assign n11308_o = n11299_o ? n11300_o : n11307_o;
+  assign n11309_o = n11300_o ? n11301_o : n11308_o;
   /* TG68K_ALU.vhd:591:43  */
-  assign n11316_o = shifted_bitmask[30];
+  assign n11317_o = shifted_bitmask[30];
   /* TG68K_ALU.vhd:592:56  */
-  assign n11317_o = result_tmp[30];
-  assign n11318_o = n10801_o[30];
-  assign n11319_o = n10799_o[30];
-  assign n11320_o = n10796_o[30];
+  assign n11318_o = result_tmp[30];
+  assign n11319_o = n10802_o[30];
+  assign n11320_o = n10800_o[30];
   assign n11321_o = n10797_o[30];
+  assign n11322_o = n10798_o[30];
   /* TG68K_ALU.vhd:575:17  */
-  assign n11322_o = bf_bchg ? n11320_o : n11321_o;
+  assign n11323_o = bf_bchg ? n11321_o : n11322_o;
   /* TG68K_ALU.vhd:572:17  */
-  assign n11323_o = bf_ins ? n11319_o : n11322_o;
+  assign n11324_o = bf_ins ? n11320_o : n11323_o;
   /* TG68K_ALU.vhd:581:17  */
-  assign n11324_o = bf_bset ? n11318_o : n11323_o;
+  assign n11325_o = bf_bset ? n11319_o : n11324_o;
   /* TG68K_ALU.vhd:591:25  */
-  assign n11325_o = n11316_o ? n11317_o : n11324_o;
+  assign n11326_o = n11317_o ? n11318_o : n11325_o;
   /* TG68K_ALU.vhd:591:43  */
-  assign n11333_o = shifted_bitmask[31];
+  assign n11334_o = shifted_bitmask[31];
   /* TG68K_ALU.vhd:592:56  */
-  assign n11334_o = result_tmp[31];
-  assign n11335_o = n10801_o[31];
-  assign n11336_o = n10799_o[31];
-  assign n11337_o = n10796_o[31];
+  assign n11335_o = result_tmp[31];
+  assign n11336_o = n10802_o[31];
+  assign n11337_o = n10800_o[31];
   assign n11338_o = n10797_o[31];
+  assign n11339_o = n10798_o[31];
   /* TG68K_ALU.vhd:575:17  */
-  assign n11339_o = bf_bchg ? n11337_o : n11338_o;
+  assign n11340_o = bf_bchg ? n11338_o : n11339_o;
   /* TG68K_ALU.vhd:572:17  */
-  assign n11340_o = bf_ins ? n11336_o : n11339_o;
+  assign n11341_o = bf_ins ? n11337_o : n11340_o;
   /* TG68K_ALU.vhd:581:17  */
-  assign n11341_o = bf_bset ? n11335_o : n11340_o;
+  assign n11342_o = bf_bset ? n11336_o : n11341_o;
   /* TG68K_ALU.vhd:591:25  */
-  assign n11342_o = n11333_o ? n11334_o : n11341_o;
+  assign n11343_o = n11334_o ? n11335_o : n11342_o;
   /* TG68K_ALU.vhd:591:43  */
-  assign n11350_o = shifted_bitmask[32];
+  assign n11351_o = shifted_bitmask[32];
   /* TG68K_ALU.vhd:592:56  */
-  assign n11351_o = result_tmp[32];
-  assign n11352_o = n10801_o[32];
-  assign n11353_o = n10799_o[32];
-  assign n11354_o = n10796_o[32];
+  assign n11352_o = result_tmp[32];
+  assign n11353_o = n10802_o[32];
+  assign n11354_o = n10800_o[32];
   assign n11355_o = n10797_o[32];
+  assign n11356_o = n10798_o[32];
   /* TG68K_ALU.vhd:575:17  */
-  assign n11356_o = bf_bchg ? n11354_o : n11355_o;
+  assign n11357_o = bf_bchg ? n11355_o : n11356_o;
   /* TG68K_ALU.vhd:572:17  */
-  assign n11357_o = bf_ins ? n11353_o : n11356_o;
+  assign n11358_o = bf_ins ? n11354_o : n11357_o;
   /* TG68K_ALU.vhd:581:17  */
-  assign n11358_o = bf_bset ? n11352_o : n11357_o;
+  assign n11359_o = bf_bset ? n11353_o : n11358_o;
   /* TG68K_ALU.vhd:591:25  */
-  assign n11359_o = n11350_o ? n11351_o : n11358_o;
+  assign n11360_o = n11351_o ? n11352_o : n11359_o;
   /* TG68K_ALU.vhd:591:43  */
-  assign n11367_o = shifted_bitmask[33];
+  assign n11368_o = shifted_bitmask[33];
   /* TG68K_ALU.vhd:592:56  */
-  assign n11368_o = result_tmp[33];
-  assign n11369_o = n10801_o[33];
-  assign n11370_o = n10799_o[33];
-  assign n11371_o = n10796_o[33];
+  assign n11369_o = result_tmp[33];
+  assign n11370_o = n10802_o[33];
+  assign n11371_o = n10800_o[33];
   assign n11372_o = n10797_o[33];
+  assign n11373_o = n10798_o[33];
   /* TG68K_ALU.vhd:575:17  */
-  assign n11373_o = bf_bchg ? n11371_o : n11372_o;
+  assign n11374_o = bf_bchg ? n11372_o : n11373_o;
   /* TG68K_ALU.vhd:572:17  */
-  assign n11374_o = bf_ins ? n11370_o : n11373_o;
+  assign n11375_o = bf_ins ? n11371_o : n11374_o;
   /* TG68K_ALU.vhd:581:17  */
-  assign n11375_o = bf_bset ? n11369_o : n11374_o;
+  assign n11376_o = bf_bset ? n11370_o : n11375_o;
   /* TG68K_ALU.vhd:591:25  */
-  assign n11376_o = n11367_o ? n11368_o : n11375_o;
+  assign n11377_o = n11368_o ? n11369_o : n11376_o;
   /* TG68K_ALU.vhd:591:43  */
-  assign n11384_o = shifted_bitmask[34];
+  assign n11385_o = shifted_bitmask[34];
   /* TG68K_ALU.vhd:592:56  */
-  assign n11385_o = result_tmp[34];
-  assign n11386_o = n10801_o[34];
-  assign n11387_o = n10799_o[34];
-  assign n11388_o = n10796_o[34];
+  assign n11386_o = result_tmp[34];
+  assign n11387_o = n10802_o[34];
+  assign n11388_o = n10800_o[34];
   assign n11389_o = n10797_o[34];
+  assign n11390_o = n10798_o[34];
   /* TG68K_ALU.vhd:575:17  */
-  assign n11390_o = bf_bchg ? n11388_o : n11389_o;
+  assign n11391_o = bf_bchg ? n11389_o : n11390_o;
   /* TG68K_ALU.vhd:572:17  */
-  assign n11391_o = bf_ins ? n11387_o : n11390_o;
+  assign n11392_o = bf_ins ? n11388_o : n11391_o;
   /* TG68K_ALU.vhd:581:17  */
-  assign n11392_o = bf_bset ? n11386_o : n11391_o;
+  assign n11393_o = bf_bset ? n11387_o : n11392_o;
   /* TG68K_ALU.vhd:591:25  */
-  assign n11393_o = n11384_o ? n11385_o : n11392_o;
+  assign n11394_o = n11385_o ? n11386_o : n11393_o;
   /* TG68K_ALU.vhd:591:43  */
-  assign n11401_o = shifted_bitmask[35];
+  assign n11402_o = shifted_bitmask[35];
   /* TG68K_ALU.vhd:592:56  */
-  assign n11402_o = result_tmp[35];
-  assign n11403_o = n10801_o[35];
-  assign n11404_o = n10799_o[35];
-  assign n11405_o = n10796_o[35];
+  assign n11403_o = result_tmp[35];
+  assign n11404_o = n10802_o[35];
+  assign n11405_o = n10800_o[35];
   assign n11406_o = n10797_o[35];
+  assign n11407_o = n10798_o[35];
   /* TG68K_ALU.vhd:575:17  */
-  assign n11407_o = bf_bchg ? n11405_o : n11406_o;
+  assign n11408_o = bf_bchg ? n11406_o : n11407_o;
   /* TG68K_ALU.vhd:572:17  */
-  assign n11408_o = bf_ins ? n11404_o : n11407_o;
+  assign n11409_o = bf_ins ? n11405_o : n11408_o;
   /* TG68K_ALU.vhd:581:17  */
-  assign n11409_o = bf_bset ? n11403_o : n11408_o;
+  assign n11410_o = bf_bset ? n11404_o : n11409_o;
   /* TG68K_ALU.vhd:591:25  */
-  assign n11410_o = n11401_o ? n11402_o : n11409_o;
+  assign n11411_o = n11402_o ? n11403_o : n11410_o;
   /* TG68K_ALU.vhd:591:43  */
-  assign n11418_o = shifted_bitmask[36];
+  assign n11419_o = shifted_bitmask[36];
   /* TG68K_ALU.vhd:592:56  */
-  assign n11419_o = result_tmp[36];
-  assign n11420_o = n10801_o[36];
-  assign n11421_o = n10799_o[36];
-  assign n11422_o = n10796_o[36];
+  assign n11420_o = result_tmp[36];
+  assign n11421_o = n10802_o[36];
+  assign n11422_o = n10800_o[36];
   assign n11423_o = n10797_o[36];
+  assign n11424_o = n10798_o[36];
   /* TG68K_ALU.vhd:575:17  */
-  assign n11424_o = bf_bchg ? n11422_o : n11423_o;
+  assign n11425_o = bf_bchg ? n11423_o : n11424_o;
   /* TG68K_ALU.vhd:572:17  */
-  assign n11425_o = bf_ins ? n11421_o : n11424_o;
+  assign n11426_o = bf_ins ? n11422_o : n11425_o;
   /* TG68K_ALU.vhd:581:17  */
-  assign n11426_o = bf_bset ? n11420_o : n11425_o;
+  assign n11427_o = bf_bset ? n11421_o : n11426_o;
   /* TG68K_ALU.vhd:591:25  */
-  assign n11427_o = n11418_o ? n11419_o : n11426_o;
+  assign n11428_o = n11419_o ? n11420_o : n11427_o;
   /* TG68K_ALU.vhd:591:43  */
-  assign n11435_o = shifted_bitmask[37];
+  assign n11436_o = shifted_bitmask[37];
   /* TG68K_ALU.vhd:592:56  */
-  assign n11436_o = result_tmp[37];
-  assign n11437_o = n10801_o[37];
-  assign n11438_o = n10799_o[37];
-  assign n11439_o = n10796_o[37];
+  assign n11437_o = result_tmp[37];
+  assign n11438_o = n10802_o[37];
+  assign n11439_o = n10800_o[37];
   assign n11440_o = n10797_o[37];
+  assign n11441_o = n10798_o[37];
   /* TG68K_ALU.vhd:575:17  */
-  assign n11441_o = bf_bchg ? n11439_o : n11440_o;
+  assign n11442_o = bf_bchg ? n11440_o : n11441_o;
   /* TG68K_ALU.vhd:572:17  */
-  assign n11442_o = bf_ins ? n11438_o : n11441_o;
+  assign n11443_o = bf_ins ? n11439_o : n11442_o;
   /* TG68K_ALU.vhd:581:17  */
-  assign n11443_o = bf_bset ? n11437_o : n11442_o;
+  assign n11444_o = bf_bset ? n11438_o : n11443_o;
   /* TG68K_ALU.vhd:591:25  */
-  assign n11444_o = n11435_o ? n11436_o : n11443_o;
+  assign n11445_o = n11436_o ? n11437_o : n11444_o;
   /* TG68K_ALU.vhd:591:43  */
-  assign n11452_o = shifted_bitmask[38];
+  assign n11453_o = shifted_bitmask[38];
   /* TG68K_ALU.vhd:592:56  */
-  assign n11453_o = result_tmp[38];
-  assign n11454_o = n10801_o[38];
-  assign n11455_o = n10799_o[38];
-  assign n11456_o = n10796_o[38];
+  assign n11454_o = result_tmp[38];
+  assign n11455_o = n10802_o[38];
+  assign n11456_o = n10800_o[38];
   assign n11457_o = n10797_o[38];
+  assign n11458_o = n10798_o[38];
   /* TG68K_ALU.vhd:575:17  */
-  assign n11458_o = bf_bchg ? n11456_o : n11457_o;
+  assign n11459_o = bf_bchg ? n11457_o : n11458_o;
   /* TG68K_ALU.vhd:572:17  */
-  assign n11459_o = bf_ins ? n11455_o : n11458_o;
+  assign n11460_o = bf_ins ? n11456_o : n11459_o;
   /* TG68K_ALU.vhd:581:17  */
-  assign n11460_o = bf_bset ? n11454_o : n11459_o;
+  assign n11461_o = bf_bset ? n11455_o : n11460_o;
   /* TG68K_ALU.vhd:591:25  */
-  assign n11461_o = n11452_o ? n11453_o : n11460_o;
-  assign n11462_o = n10801_o[39];
-  assign n11463_o = n10799_o[39];
-  assign n11464_o = n10796_o[39];
+  assign n11462_o = n11453_o ? n11454_o : n11461_o;
+  assign n11463_o = n10802_o[39];
+  assign n11464_o = n10800_o[39];
   assign n11465_o = n10797_o[39];
+  assign n11466_o = n10798_o[39];
   /* TG68K_ALU.vhd:575:17  */
-  assign n11466_o = bf_bchg ? n11464_o : n11465_o;
+  assign n11467_o = bf_bchg ? n11465_o : n11466_o;
   /* TG68K_ALU.vhd:572:17  */
-  assign n11467_o = bf_ins ? n11463_o : n11466_o;
+  assign n11468_o = bf_ins ? n11464_o : n11467_o;
   /* TG68K_ALU.vhd:581:17  */
-  assign n11468_o = bf_bset ? n11462_o : n11467_o;
+  assign n11469_o = bf_bset ? n11463_o : n11468_o;
   /* TG68K_ALU.vhd:591:43  */
-  assign n11469_o = shifted_bitmask[39];
+  assign n11470_o = shifted_bitmask[39];
   /* TG68K_ALU.vhd:592:56  */
-  assign n11470_o = result_tmp[39];
+  assign n11471_o = result_tmp[39];
   /* TG68K_ALU.vhd:591:25  */
-  assign n11471_o = n11469_o ? n11470_o : n11468_o;
+  assign n11472_o = n11470_o ? n11471_o : n11469_o;
   /* TG68K_ALU.vhd:598:36  */
-  assign n11473_o = {1'b0, bitnr};
+  assign n11474_o = {1'b0, bitnr};
   /* TG68K_ALU.vhd:598:43  */
-  assign n11474_o = {5'b0, mask_not_zero};  //  uext
+  assign n11475_o = {5'b0, mask_not_zero};  //  uext
   /* TG68K_ALU.vhd:598:43  */
-  assign n11475_o = n11473_o + n11474_o;
+  assign n11476_o = n11474_o + n11475_o;
   /* TG68K_ALU.vhd:601:24  */
-  assign n11476_o = mask[31:28];
+  assign n11477_o = mask[31:28];
   /* TG68K_ALU.vhd:601:38  */
-  assign n11478_o = n11476_o == 4'b0000;
+  assign n11479_o = n11477_o == 4'b0000;
   /* TG68K_ALU.vhd:602:32  */
-  assign n11479_o = mask[27:24];
+  assign n11480_o = mask[27:24];
   /* TG68K_ALU.vhd:602:46  */
-  assign n11481_o = n11479_o == 4'b0000;
+  assign n11482_o = n11480_o == 4'b0000;
   /* TG68K_ALU.vhd:603:40  */
-  assign n11482_o = mask[23:20];
+  assign n11483_o = mask[23:20];
   /* TG68K_ALU.vhd:603:54  */
-  assign n11484_o = n11482_o == 4'b0000;
+  assign n11485_o = n11483_o == 4'b0000;
   /* TG68K_ALU.vhd:604:48  */
-  assign n11485_o = mask[19:16];
+  assign n11486_o = mask[19:16];
   /* TG68K_ALU.vhd:604:62  */
-  assign n11487_o = n11485_o == 4'b0000;
+  assign n11488_o = n11486_o == 4'b0000;
   /* TG68K_ALU.vhd:606:56  */
-  assign n11489_o = mask[15:12];
+  assign n11490_o = mask[15:12];
   /* TG68K_ALU.vhd:606:70  */
-  assign n11491_o = n11489_o == 4'b0000;
+  assign n11492_o = n11490_o == 4'b0000;
   /* TG68K_ALU.vhd:607:64  */
-  assign n11492_o = mask[11:8];
+  assign n11493_o = mask[11:8];
   /* TG68K_ALU.vhd:607:77  */
-  assign n11494_o = n11492_o == 4'b0000;
+  assign n11495_o = n11493_o == 4'b0000;
   /* TG68K_ALU.vhd:609:72  */
-  assign n11496_o = mask[7:4];
+  assign n11497_o = mask[7:4];
   /* TG68K_ALU.vhd:609:84  */
-  assign n11498_o = n11496_o == 4'b0000;
+  assign n11499_o = n11497_o == 4'b0000;
   /* TG68K_ALU.vhd:611:84  */
-  assign n11500_o = mask[3:0];
+  assign n11501_o = mask[3:0];
   /* TG68K_ALU.vhd:613:84  */
-  assign n11501_o = mask[7:4];
+  assign n11502_o = mask[7:4];
   /* TG68K_ALU.vhd:609:65  */
-  assign n11502_o = n11498_o ? n11500_o : n11501_o;
+  assign n11503_o = n11499_o ? n11501_o : n11502_o;
   /* TG68K_ALU.vhd:609:65  */
-  assign n11504_o = n11498_o ? 1'b0 : 1'b1;
+  assign n11505_o = n11499_o ? 1'b0 : 1'b1;
   /* TG68K_ALU.vhd:616:76  */
-  assign n11505_o = mask[11:8];
+  assign n11506_o = mask[11:8];
   /* TG68K_ALU.vhd:607:57  */
-  assign n11507_o = n11494_o ? n11502_o : n11505_o;
-  assign n11508_o = {1'b0, n11504_o};
-  assign n11509_o = n11508_o[0];
+  assign n11508_o = n11495_o ? n11503_o : n11506_o;
+  assign n11509_o = {1'b0, n11505_o};
+  assign n11510_o = n11509_o[0];
   /* TG68K_ALU.vhd:607:57  */
-  assign n11510_o = n11494_o ? n11509_o : 1'b0;
-  assign n11511_o = n11508_o[1];
+  assign n11511_o = n11495_o ? n11510_o : 1'b0;
+  assign n11512_o = n11509_o[1];
   /* TG68K_ALU.vhd:607:57  */
-  assign n11513_o = n11494_o ? n11511_o : 1'b1;
+  assign n11514_o = n11495_o ? n11512_o : 1'b1;
   /* TG68K_ALU.vhd:620:68  */
-  assign n11514_o = mask[15:12];
+  assign n11515_o = mask[15:12];
   /* TG68K_ALU.vhd:606:49  */
-  assign n11515_o = n11491_o ? n11507_o : n11514_o;
-  assign n11516_o = {n11513_o, n11510_o};
+  assign n11516_o = n11492_o ? n11508_o : n11515_o;
+  assign n11517_o = {n11514_o, n11511_o};
   /* TG68K_ALU.vhd:606:49  */
-  assign n11518_o = n11491_o ? n11516_o : 2'b11;
+  assign n11519_o = n11492_o ? n11517_o : 2'b11;
   /* TG68K_ALU.vhd:623:60  */
-  assign n11519_o = mask[19:16];
+  assign n11520_o = mask[19:16];
   /* TG68K_ALU.vhd:604:41  */
-  assign n11522_o = n11487_o ? n11515_o : n11519_o;
-  assign n11523_o = {1'b0, 1'b0};
-  assign n11524_o = {1'b0, n11518_o};
-  assign n11525_o = n11524_o[1:0];
+  assign n11523_o = n11488_o ? n11516_o : n11520_o;
+  assign n11524_o = {1'b0, 1'b0};
+  assign n11525_o = {1'b0, n11519_o};
+  assign n11526_o = n11525_o[1:0];
   /* TG68K_ALU.vhd:604:41  */
-  assign n11526_o = n11487_o ? n11525_o : n11523_o;
-  assign n11527_o = n11524_o[2];
+  assign n11527_o = n11488_o ? n11526_o : n11524_o;
+  assign n11528_o = n11525_o[2];
   /* TG68K_ALU.vhd:604:41  */
-  assign n11529_o = n11487_o ? n11527_o : 1'b1;
+  assign n11530_o = n11488_o ? n11528_o : 1'b1;
   /* TG68K_ALU.vhd:628:52  */
-  assign n11530_o = mask[23:20];
+  assign n11531_o = mask[23:20];
   /* TG68K_ALU.vhd:603:33  */
-  assign n11532_o = n11484_o ? n11522_o : n11530_o;
-  assign n11533_o = {n11529_o, n11526_o};
-  assign n11534_o = n11533_o[0];
+  assign n11533_o = n11485_o ? n11523_o : n11531_o;
+  assign n11534_o = {n11530_o, n11527_o};
+  assign n11535_o = n11534_o[0];
   /* TG68K_ALU.vhd:603:33  */
-  assign n11536_o = n11484_o ? n11534_o : 1'b1;
-  assign n11537_o = n11533_o[1];
+  assign n11537_o = n11485_o ? n11535_o : 1'b1;
+  assign n11538_o = n11534_o[1];
   /* TG68K_ALU.vhd:603:33  */
-  assign n11538_o = n11484_o ? n11537_o : 1'b0;
-  assign n11539_o = n11533_o[2];
+  assign n11539_o = n11485_o ? n11538_o : 1'b0;
+  assign n11540_o = n11534_o[2];
   /* TG68K_ALU.vhd:603:33  */
-  assign n11541_o = n11484_o ? n11539_o : 1'b1;
+  assign n11542_o = n11485_o ? n11540_o : 1'b1;
   /* TG68K_ALU.vhd:632:44  */
-  assign n11542_o = mask[27:24];
+  assign n11543_o = mask[27:24];
   /* TG68K_ALU.vhd:602:25  */
-  assign n11544_o = n11481_o ? n11532_o : n11542_o;
-  assign n11545_o = {n11541_o, n11538_o, n11536_o};
-  assign n11546_o = n11545_o[0];
+  assign n11545_o = n11482_o ? n11533_o : n11543_o;
+  assign n11546_o = {n11542_o, n11539_o, n11537_o};
+  assign n11547_o = n11546_o[0];
   /* TG68K_ALU.vhd:602:25  */
-  assign n11547_o = n11481_o ? n11546_o : 1'b0;
-  assign n11548_o = n11545_o[2:1];
+  assign n11548_o = n11482_o ? n11547_o : 1'b0;
+  assign n11549_o = n11546_o[2:1];
   /* TG68K_ALU.vhd:602:25  */
-  assign n11550_o = n11481_o ? n11548_o : 2'b11;
+  assign n11551_o = n11482_o ? n11549_o : 2'b11;
   /* TG68K_ALU.vhd:636:36  */
-  assign n11551_o = mask[31:28];
+  assign n11552_o = mask[31:28];
   /* TG68K_ALU.vhd:601:17  */
-  assign n11552_o = n11478_o ? n11544_o : n11551_o;
-  assign n11553_o = {n11550_o, n11547_o};
+  assign n11553_o = n11479_o ? n11545_o : n11552_o;
+  assign n11554_o = {n11551_o, n11548_o};
   /* TG68K_ALU.vhd:601:17  */
-  assign n11555_o = n11478_o ? n11553_o : 3'b111;
+  assign n11556_o = n11479_o ? n11554_o : 3'b111;
   /* TG68K_ALU.vhd:639:23  */
-  assign n11558_o = mux[3:2];
+  assign n11559_o = mux[3:2];
   /* TG68K_ALU.vhd:639:35  */
-  assign n11560_o = n11558_o == 2'b00;
+  assign n11561_o = n11559_o == 2'b00;
   /* TG68K_ALU.vhd:641:31  */
-  assign n11562_o = mux[1];
+  assign n11563_o = mux[1];
   /* TG68K_ALU.vhd:641:34  */
-  assign n11563_o = ~n11562_o;
+  assign n11564_o = ~n11563_o;
   /* TG68K_ALU.vhd:643:39  */
-  assign n11565_o = mux[0];
+  assign n11566_o = mux[0];
   /* TG68K_ALU.vhd:643:42  */
-  assign n11566_o = ~n11565_o;
+  assign n11567_o = ~n11566_o;
   /* TG68K_ALU.vhd:643:33  */
-  assign n11569_o = n11566_o ? 1'b0 : 1'b1;
-  assign n11570_o = n11556_o[0];
+  assign n11570_o = n11567_o ? 1'b0 : 1'b1;
+  assign n11571_o = n11557_o[0];
   /* TG68K_ALU.vhd:641:25  */
-  assign n11571_o = n11563_o ? 1'b0 : n11570_o;
+  assign n11572_o = n11564_o ? 1'b0 : n11571_o;
   /* TG68K_ALU.vhd:641:25  */
-  assign n11573_o = n11563_o ? n11569_o : 1'b1;
+  assign n11574_o = n11564_o ? n11570_o : 1'b1;
   /* TG68K_ALU.vhd:648:31  */
-  assign n11574_o = mux[3];
+  assign n11575_o = mux[3];
   /* TG68K_ALU.vhd:648:34  */
-  assign n11575_o = ~n11574_o;
-  assign n11577_o = n11556_o[0];
+  assign n11576_o = ~n11575_o;
+  assign n11578_o = n11557_o[0];
   /* TG68K_ALU.vhd:648:25  */
-  assign n11578_o = n11575_o ? 1'b0 : n11577_o;
-  assign n11579_o = {1'b0, n11571_o};
-  assign n11580_o = n11579_o[0];
+  assign n11579_o = n11576_o ? 1'b0 : n11578_o;
+  assign n11580_o = {1'b0, n11572_o};
+  assign n11581_o = n11580_o[0];
   /* TG68K_ALU.vhd:639:17  */
-  assign n11581_o = n11560_o ? n11580_o : n11578_o;
-  assign n11582_o = n11579_o[1];
-  assign n11583_o = n11556_o[1];
+  assign n11582_o = n11561_o ? n11581_o : n11579_o;
+  assign n11583_o = n11580_o[1];
+  assign n11584_o = n11557_o[1];
   /* TG68K_ALU.vhd:639:17  */
-  assign n11584_o = n11560_o ? n11582_o : n11583_o;
+  assign n11585_o = n11561_o ? n11583_o : n11584_o;
   /* TG68K_ALU.vhd:639:17  */
-  assign n11587_o = n11560_o ? n11573_o : 1'b1;
+  assign n11588_o = n11561_o ? n11574_o : 1'b1;
   /* TG68K_ALU.vhd:659:32  */
-  assign n11592_o = exe_opcode[7:6];
+  assign n11593_o = exe_opcode[7:6];
   /* TG68K_ALU.vhd:661:66  */
-  assign n11593_o = op1out[7];
+  assign n11594_o = op1out[7];
   /* TG68K_ALU.vhd:660:25  */
-  assign n11595_o = n11592_o == 2'b00;
+  assign n11596_o = n11593_o == 2'b00;
   /* TG68K_ALU.vhd:663:66  */
-  assign n11596_o = op1out[15];
+  assign n11597_o = op1out[15];
   /* TG68K_ALU.vhd:662:25  */
-  assign n11598_o = n11592_o == 2'b01;
+  assign n11599_o = n11593_o == 2'b01;
   /* TG68K_ALU.vhd:662:34  */
-  assign n11600_o = n11592_o == 2'b11;
+  assign n11601_o = n11593_o == 2'b11;
   /* TG68K_ALU.vhd:662:34  */
-  assign n11601_o = n11598_o | n11600_o;
+  assign n11602_o = n11599_o | n11601_o;
   /* TG68K_ALU.vhd:665:66  */
-  assign n11602_o = op1out[31];
+  assign n11603_o = op1out[31];
   /* TG68K_ALU.vhd:664:25  */
-  assign n11604_o = n11592_o == 2'b10;
-  assign n11605_o = {n11604_o, n11601_o, n11595_o};
+  assign n11605_o = n11593_o == 2'b10;
+  assign n11606_o = {n11605_o, n11602_o, n11596_o};
   /* TG68K_ALU.vhd:659:17  */
   always @*
-    case (n11605_o)
-      3'b100: n11606_o = n11602_o;
-      3'b010: n11606_o = n11596_o;
-      3'b001: n11606_o = n11593_o;
-      default: n11606_o = rot_rot;
+    case (n11606_o)
+      3'b100: n11608_o = n11603_o;
+      3'b010: n11608_o = n11597_o;
+      3'b001: n11608_o = n11594_o;
+      default: n11608_o = 1'b0;
     endcase
-  /* TG68K_ALU.vhd:670:25  */
-  assign n11608_o = rot_bits == 2'b00;
   /* TG68K_ALU.vhd:673:25  */
-  assign n11610_o = rot_bits == 2'b01;
-  /* TG68K_ALU.vhd:677:65  */
-  assign n11611_o = n12824_q[4];
-  /* TG68K_ALU.vhd:678:65  */
-  assign n11612_o = n12824_q[4];
+  assign n11610_o = rot_bits == 2'b00;
   /* TG68K_ALU.vhd:676:25  */
-  assign n11614_o = rot_bits == 2'b10;
-  /* TG68K_ALU.vhd:681:66  */
-  assign n11615_o = op1out[0];
+  assign n11612_o = rot_bits == 2'b01;
+  /* TG68K_ALU.vhd:680:65  */
+  assign n11613_o = n12831_q[4];
+  /* TG68K_ALU.vhd:681:65  */
+  assign n11614_o = n12831_q[4];
   /* TG68K_ALU.vhd:679:25  */
-  assign n11617_o = rot_bits == 2'b11;
-  assign n11618_o = {n11617_o, n11614_o, n11610_o, n11608_o};
-  /* TG68K_ALU.vhd:669:17  */
+  assign n11616_o = rot_bits == 2'b10;
+  /* TG68K_ALU.vhd:684:66  */
+  assign n11617_o = op1out[0];
+  /* TG68K_ALU.vhd:682:25  */
+  assign n11619_o = rot_bits == 2'b11;
+  assign n11620_o = {n11619_o, n11616_o, n11612_o, n11610_o};
+  /* TG68K_ALU.vhd:672:17  */
   always @*
-    case (n11618_o)
-      4'b1000: n11621_o = rot_rot;
-      4'b0100: n11621_o = n11611_o;
-      4'b0010: n11621_o = 1'b0;
-      4'b0001: n11621_o = 1'b0;
-      default: n11621_o = rot_lsb;
+    case (n11620_o)
+      4'b1000: n11624_o = rot_rot;
+      4'b0100: n11624_o = n11613_o;
+      4'b0010: n11624_o = 1'b0;
+      4'b0001: n11624_o = 1'b0;
+      default: n11624_o = 1'b0;
     endcase
-  /* TG68K_ALU.vhd:669:17  */
+  /* TG68K_ALU.vhd:672:17  */
   always @*
-    case (n11618_o)
-      4'b1000: n11623_o = n11615_o;
-      4'b0100: n11623_o = n11612_o;
-      4'b0010: n11623_o = 1'b0;
-      4'b0001: n11623_o = rot_rot;
-      default: n11623_o = rot_msb;
+    case (n11620_o)
+      4'b1000: n11627_o = n11617_o;
+      4'b0100: n11627_o = n11614_o;
+      4'b0010: n11627_o = 1'b0;
+      4'b0001: n11627_o = rot_rot;
+      default: n11627_o = 1'b0;
     endcase
-  /* TG68K_ALU.vhd:685:24  */
-  assign n11624_o = exec[23];
-  /* TG68K_ALU.vhd:687:39  */
-  assign n11625_o = n12824_q[4];
-  /* TG68K_ALU.vhd:688:36  */
-  assign n11627_o = rot_bits == 2'b10;
-  /* TG68K_ALU.vhd:689:47  */
-  assign n11628_o = n12824_q[4];
-  /* TG68K_ALU.vhd:688:25  */
-  assign n11630_o = n11627_o ? n11628_o : 1'b0;
-  /* TG68K_ALU.vhd:694:38  */
-  assign n11631_o = exe_opcode[8];
-  /* TG68K_ALU.vhd:695:50  */
-  assign n11632_o = op1out[30:0];
-  /* TG68K_ALU.vhd:695:63  */
-  assign n11633_o = {n11632_o, rot_lsb};
-  /* TG68K_ALU.vhd:699:48  */
-  assign n11634_o = op1out[0];
-  /* TG68K_ALU.vhd:700:48  */
-  assign n11635_o = op1out[0];
-  /* TG68K_ALU.vhd:701:58  */
-  assign n11636_o = op1out[31:1];
-  /* TG68K_ALU.vhd:701:51  */
-  assign n11637_o = {rot_msb, n11636_o};
-  /* TG68K_ALU.vhd:702:48  */
-  assign n11638_o = exe_opcode[7:6];
-  /* TG68K_ALU.vhd:703:41  */
-  assign n11640_o = n11638_o == 2'b00;
-  /* TG68K_ALU.vhd:705:41  */
-  assign n11642_o = n11638_o == 2'b01;
-  /* TG68K_ALU.vhd:705:50  */
-  assign n11644_o = n11638_o == 2'b11;
-  /* TG68K_ALU.vhd:705:50  */
-  assign n11645_o = n11642_o | n11644_o;
-  assign n11646_o = {n11645_o, n11640_o};
-  assign n11647_o = n11637_o[7];
-  /* TG68K_ALU.vhd:702:33  */
+  /* TG68K_ALU.vhd:690:24  */
+  assign n11628_o = exec[23];
+  /* TG68K_ALU.vhd:692:39  */
+  assign n11629_o = n12831_q[4];
+  /* TG68K_ALU.vhd:693:36  */
+  assign n11631_o = rot_bits == 2'b10;
+  /* TG68K_ALU.vhd:694:47  */
+  assign n11632_o = n12831_q[4];
+  /* TG68K_ALU.vhd:693:25  */
+  assign n11634_o = n11631_o ? n11632_o : 1'b0;
+  /* TG68K_ALU.vhd:699:38  */
+  assign n11635_o = exe_opcode[8];
+  /* TG68K_ALU.vhd:700:50  */
+  assign n11636_o = op1out[30:0];
+  /* TG68K_ALU.vhd:700:63  */
+  assign n11637_o = {n11636_o, rot_lsb};
+  /* TG68K_ALU.vhd:704:48  */
+  assign n11638_o = op1out[0];
+  /* TG68K_ALU.vhd:705:48  */
+  assign n11639_o = op1out[0];
+  /* TG68K_ALU.vhd:706:58  */
+  assign n11640_o = op1out[31:1];
+  /* TG68K_ALU.vhd:706:51  */
+  assign n11641_o = {rot_msb, n11640_o};
+  /* TG68K_ALU.vhd:707:48  */
+  assign n11642_o = exe_opcode[7:6];
+  /* TG68K_ALU.vhd:708:41  */
+  assign n11644_o = n11642_o == 2'b00;
+  /* TG68K_ALU.vhd:710:41  */
+  assign n11646_o = n11642_o == 2'b01;
+  /* TG68K_ALU.vhd:710:50  */
+  assign n11648_o = n11642_o == 2'b11;
+  /* TG68K_ALU.vhd:710:50  */
+  assign n11649_o = n11646_o | n11648_o;
+  assign n11650_o = {n11649_o, n11644_o};
+  assign n11651_o = n11641_o[7];
+  /* TG68K_ALU.vhd:707:33  */
   always @*
-    case (n11646_o)
-      2'b10: n11648_o = n11647_o;
-      2'b01: n11648_o = rot_msb;
-      default: n11648_o = n11647_o;
+    case (n11650_o)
+      2'b10: n11652_o = n11651_o;
+      2'b01: n11652_o = rot_msb;
+      default: n11652_o = n11651_o;
     endcase
-  assign n11649_o = n11637_o[15];
-  /* TG68K_ALU.vhd:702:33  */
+  assign n11653_o = n11641_o[15];
+  /* TG68K_ALU.vhd:707:33  */
   always @*
-    case (n11646_o)
-      2'b10: n11650_o = rot_msb;
-      2'b01: n11650_o = n11649_o;
-      default: n11650_o = n11649_o;
+    case (n11650_o)
+      2'b10: n11654_o = rot_msb;
+      2'b01: n11654_o = n11653_o;
+      default: n11654_o = n11653_o;
     endcase
-  assign n11652_o = n11637_o[6:0];
-  assign n11653_o = n11637_o[31:16];
-  assign n11654_o = n11637_o[14:8];
-  /* TG68K_ALU.vhd:694:25  */
-  assign n11655_o = n11631_o ? rot_rot : n11634_o;
-  /* TG68K_ALU.vhd:694:25  */
-  assign n11656_o = n11631_o ? rot_rot : n11635_o;
-  assign n11657_o = {n11653_o, n11650_o, n11654_o, n11648_o, n11652_o};
-  /* TG68K_ALU.vhd:694:25  */
-  assign n11658_o = n11631_o ? n11633_o : n11657_o;
-  /* TG68K_ALU.vhd:685:17  */
-  assign n11659_o = n11624_o ? n11625_o : n11655_o;
-  /* TG68K_ALU.vhd:685:17  */
-  assign n11660_o = n11624_o ? n11630_o : n11656_o;
-  /* TG68K_ALU.vhd:685:17  */
-  assign n11661_o = n11624_o ? op1out : n11658_o;
-  /* TG68K_ALU.vhd:723:28  */
-  assign n11666_o = rot_bits == 2'b10;
-  /* TG68K_ALU.vhd:724:40  */
-  assign n11667_o = exe_opcode[7:6];
-  /* TG68K_ALU.vhd:725:33  */
-  assign n11669_o = n11667_o == 2'b00;
-  /* TG68K_ALU.vhd:727:33  */
-  assign n11671_o = n11667_o == 2'b01;
-  /* TG68K_ALU.vhd:727:42  */
-  assign n11673_o = n11667_o == 2'b11;
-  /* TG68K_ALU.vhd:727:42  */
-  assign n11674_o = n11671_o | n11673_o;
-  /* TG68K_ALU.vhd:729:33  */
-  assign n11676_o = n11667_o == 2'b10;
-  assign n11677_o = {n11676_o, n11674_o, n11669_o};
-  /* TG68K_ALU.vhd:724:25  */
+  assign n11656_o = n11641_o[6:0];
+  assign n11657_o = n11641_o[31:16];
+  assign n11658_o = n11641_o[14:8];
+  /* TG68K_ALU.vhd:699:25  */
+  assign n11659_o = n11635_o ? rot_rot : n11638_o;
+  /* TG68K_ALU.vhd:699:25  */
+  assign n11660_o = n11635_o ? rot_rot : n11639_o;
+  assign n11661_o = {n11657_o, n11654_o, n11658_o, n11652_o, n11656_o};
+  /* TG68K_ALU.vhd:699:25  */
+  assign n11662_o = n11635_o ? n11637_o : n11661_o;
+  /* TG68K_ALU.vhd:690:17  */
+  assign n11663_o = n11628_o ? n11629_o : n11659_o;
+  /* TG68K_ALU.vhd:690:17  */
+  assign n11664_o = n11628_o ? n11634_o : n11660_o;
+  /* TG68K_ALU.vhd:690:17  */
+  assign n11665_o = n11628_o ? op1out : n11662_o;
+  /* TG68K_ALU.vhd:732:28  */
+  assign n11670_o = rot_bits == 2'b10;
+  /* TG68K_ALU.vhd:733:40  */
+  assign n11671_o = exe_opcode[7:6];
+  /* TG68K_ALU.vhd:734:33  */
+  assign n11673_o = n11671_o == 2'b00;
+  /* TG68K_ALU.vhd:736:33  */
+  assign n11675_o = n11671_o == 2'b01;
+  /* TG68K_ALU.vhd:736:42  */
+  assign n11677_o = n11671_o == 2'b11;
+  /* TG68K_ALU.vhd:736:42  */
+  assign n11678_o = n11675_o | n11677_o;
+  /* TG68K_ALU.vhd:738:33  */
+  assign n11680_o = n11671_o == 2'b10;
+  assign n11681_o = {n11680_o, n11678_o, n11673_o};
+  /* TG68K_ALU.vhd:733:25  */
   always @*
-    case (n11677_o)
-      3'b100: n11682_o = 6'b100001;
-      3'b010: n11682_o = 6'b010001;
-      3'b001: n11682_o = 6'b001001;
-      default: n11682_o = 6'b100000;
+    case (n11681_o)
+      3'b100: n11686_o = 6'b100001;
+      3'b010: n11686_o = 6'b010001;
+      3'b001: n11686_o = 6'b001001;
+      default: n11686_o = 6'b100000;
     endcase
-  /* TG68K_ALU.vhd:734:40  */
-  assign n11683_o = exe_opcode[7:6];
-  /* TG68K_ALU.vhd:735:33  */
-  assign n11685_o = n11683_o == 2'b00;
-  /* TG68K_ALU.vhd:737:33  */
-  assign n11687_o = n11683_o == 2'b01;
-  /* TG68K_ALU.vhd:737:42  */
-  assign n11689_o = n11683_o == 2'b11;
-  /* TG68K_ALU.vhd:737:42  */
-  assign n11690_o = n11687_o | n11689_o;
-  /* TG68K_ALU.vhd:739:33  */
-  assign n11692_o = n11683_o == 2'b10;
-  assign n11693_o = {n11692_o, n11690_o, n11685_o};
-  /* TG68K_ALU.vhd:734:25  */
+  /* TG68K_ALU.vhd:743:40  */
+  assign n11687_o = exe_opcode[7:6];
+  /* TG68K_ALU.vhd:744:33  */
+  assign n11689_o = n11687_o == 2'b00;
+  /* TG68K_ALU.vhd:746:33  */
+  assign n11691_o = n11687_o == 2'b01;
+  /* TG68K_ALU.vhd:746:42  */
+  assign n11693_o = n11687_o == 2'b11;
+  /* TG68K_ALU.vhd:746:42  */
+  assign n11694_o = n11691_o | n11693_o;
+  /* TG68K_ALU.vhd:748:33  */
+  assign n11696_o = n11687_o == 2'b10;
+  assign n11697_o = {n11696_o, n11694_o, n11689_o};
+  /* TG68K_ALU.vhd:743:25  */
   always @*
-    case (n11693_o)
-      3'b100: n11698_o = 6'b100000;
-      3'b010: n11698_o = 6'b010000;
-      3'b001: n11698_o = 6'b001000;
-      default: n11698_o = 6'b100000;
+    case (n11697_o)
+      3'b100: n11702_o = 6'b100000;
+      3'b010: n11702_o = 6'b010000;
+      3'b001: n11702_o = 6'b001000;
+      default: n11702_o = 6'b100000;
     endcase
-  /* TG68K_ALU.vhd:723:17  */
-  assign n11699_o = n11666_o ? n11682_o : n11698_o;
-  /* TG68K_ALU.vhd:745:30  */
-  assign n11701_o = exe_opcode[7:6];
-  /* TG68K_ALU.vhd:745:42  */
-  assign n11703_o = n11701_o == 2'b11;
-  /* TG68K_ALU.vhd:745:55  */
-  assign n11704_o = exec[81];
-  /* TG68K_ALU.vhd:745:64  */
-  assign n11705_o = ~n11704_o;
-  /* TG68K_ALU.vhd:745:48  */
-  assign n11706_o = n11703_o | n11705_o;
-  /* TG68K_ALU.vhd:747:33  */
-  assign n11707_o = exe_opcode[5];
-  /* TG68K_ALU.vhd:748:43  */
-  assign n11708_o = op2out[5:0];
-  /* TG68K_ALU.vhd:750:59  */
-  assign n11709_o = exe_opcode[11:9];
-  /* TG68K_ALU.vhd:751:38  */
-  assign n11710_o = exe_opcode[11:9];
-  /* TG68K_ALU.vhd:751:51  */
-  assign n11712_o = n11710_o == 3'b000;
-  /* TG68K_ALU.vhd:751:25  */
-  assign n11715_o = n11712_o ? 3'b001 : 3'b000;
-  assign n11716_o = {n11715_o, n11709_o};
-  /* TG68K_ALU.vhd:747:17  */
-  assign n11717_o = n11707_o ? n11708_o : n11716_o;
-  /* TG68K_ALU.vhd:745:17  */
-  assign n11719_o = n11706_o ? 6'b000001 : n11717_o;
-  /* TG68K_ALU.vhd:762:29  */
-  assign n11726_o = $unsigned(bs_shift) < $unsigned(ring);
-  /* TG68K_ALU.vhd:763:40  */
-  assign n11727_o = ring - bs_shift;
-  /* TG68K_ALU.vhd:762:17  */
-  assign n11729_o = n11726_o ? n11727_o : 6'b000000;
-  /* TG68K_ALU.vhd:765:45  */
-  assign n11731_o = vector[30:0];
-  /* TG68K_ALU.vhd:765:38  */
-  assign n11733_o = {1'b0, n11731_o};
-  /* TG68K_ALU.vhd:765:75  */
-  assign n11734_o = vector[31:1];
-  /* TG68K_ALU.vhd:765:68  */
-  assign n11736_o = {1'b0, n11734_o};
-  /* TG68K_ALU.vhd:765:60  */
-  assign n11737_o = n11733_o ^ n11736_o;
-  /* TG68K_ALU.vhd:765:90  */
-  assign n11738_o = {n11737_o, msb};
-  /* TG68K_ALU.vhd:766:32  */
-  assign n11739_o = exe_opcode[7:6];
-  /* TG68K_ALU.vhd:767:25  */
-  assign n11742_o = n11739_o == 2'b00;
-  /* TG68K_ALU.vhd:769:25  */
-  assign n11745_o = n11739_o == 2'b01;
-  /* TG68K_ALU.vhd:769:34  */
-  assign n11747_o = n11739_o == 2'b11;
-  /* TG68K_ALU.vhd:769:34  */
-  assign n11748_o = n11745_o | n11747_o;
-  assign n11749_o = {n11748_o, n11742_o};
-  assign n11750_o = n11738_o[8];
-  /* TG68K_ALU.vhd:766:17  */
-  always @*
-    case (n11749_o)
-      2'b10: n11751_o = n11750_o;
-      2'b01: n11751_o = 1'b0;
-      default: n11751_o = n11750_o;
-    endcase
-  assign n11752_o = n11738_o[16];
-  /* TG68K_ALU.vhd:766:17  */
-  always @*
-    case (n11749_o)
-      2'b10: n11753_o = 1'b0;
-      2'b01: n11753_o = n11752_o;
-      default: n11753_o = n11752_o;
-    endcase
-  assign n11755_o = n11738_o[7:0];
-  assign n11756_o = n11738_o[32:17];
-  assign n11757_o = n11738_o[15:9];
-  /* TG68K_ALU.vhd:773:56  */
-  assign n11758_o = hot_msb[31:0];
-  /* TG68K_ALU.vhd:773:48  */
-  assign n11760_o = {1'b0, n11758_o};
-  /* TG68K_ALU.vhd:773:42  */
-  assign n11761_o = asl_over_xor - n11760_o;
-  /* TG68K_ALU.vhd:775:28  */
-  assign n11763_o = rot_bits == 2'b00;
-  /* TG68K_ALU.vhd:775:48  */
-  assign n11764_o = exe_opcode[8];
-  /* TG68K_ALU.vhd:775:34  */
-  assign n11765_o = n11764_o & n11763_o;
-  /* TG68K_ALU.vhd:776:45  */
-  assign n11766_o = asl_over[32];
-  /* TG68K_ALU.vhd:776:33  */
-  assign n11767_o = ~n11766_o;
+  /* TG68K_ALU.vhd:732:17  */
+  assign n11703_o = n11670_o ? n11686_o : n11702_o;
+  /* TG68K_ALU.vhd:754:30  */
+  assign n11705_o = exe_opcode[7:6];
+  /* TG68K_ALU.vhd:754:42  */
+  assign n11707_o = n11705_o == 2'b11;
+  /* TG68K_ALU.vhd:754:55  */
+  assign n11708_o = exec[81];
+  /* TG68K_ALU.vhd:754:64  */
+  assign n11709_o = ~n11708_o;
+  /* TG68K_ALU.vhd:754:48  */
+  assign n11710_o = n11707_o | n11709_o;
+  /* TG68K_ALU.vhd:756:33  */
+  assign n11711_o = exe_opcode[5];
+  /* TG68K_ALU.vhd:757:43  */
+  assign n11712_o = op2out[5:0];
+  /* TG68K_ALU.vhd:759:59  */
+  assign n11713_o = exe_opcode[11:9];
+  /* TG68K_ALU.vhd:760:38  */
+  assign n11714_o = exe_opcode[11:9];
+  /* TG68K_ALU.vhd:760:51  */
+  assign n11716_o = n11714_o == 3'b000;
+  /* TG68K_ALU.vhd:760:25  */
+  assign n11719_o = n11716_o ? 3'b001 : 3'b000;
+  assign n11720_o = {n11719_o, n11713_o};
+  /* TG68K_ALU.vhd:756:17  */
+  assign n11721_o = n11711_o ? n11712_o : n11720_o;
+  /* TG68K_ALU.vhd:754:17  */
+  assign n11723_o = n11710_o ? 6'b000001 : n11721_o;
+  /* TG68K_ALU.vhd:771:29  */
+  assign n11730_o = $unsigned(bs_shift) < $unsigned(ring);
+  /* TG68K_ALU.vhd:772:40  */
+  assign n11731_o = ring - bs_shift;
+  /* TG68K_ALU.vhd:771:17  */
+  assign n11733_o = n11730_o ? n11731_o : 6'b000000;
+  /* TG68K_ALU.vhd:774:45  */
+  assign n11735_o = vector[30:0];
+  /* TG68K_ALU.vhd:774:38  */
+  assign n11737_o = {1'b0, n11735_o};
+  /* TG68K_ALU.vhd:774:75  */
+  assign n11738_o = vector[31:1];
+  /* TG68K_ALU.vhd:774:68  */
+  assign n11740_o = {1'b0, n11738_o};
+  /* TG68K_ALU.vhd:774:60  */
+  assign n11741_o = n11737_o ^ n11740_o;
+  /* TG68K_ALU.vhd:774:90  */
+  assign n11742_o = {n11741_o, msb};
+  /* TG68K_ALU.vhd:775:32  */
+  assign n11743_o = exe_opcode[7:6];
+  /* TG68K_ALU.vhd:776:25  */
+  assign n11746_o = n11743_o == 2'b00;
+  /* TG68K_ALU.vhd:778:25  */
+  assign n11749_o = n11743_o == 2'b01;
+  /* TG68K_ALU.vhd:778:34  */
+  assign n11751_o = n11743_o == 2'b11;
+  /* TG68K_ALU.vhd:778:34  */
+  assign n11752_o = n11749_o | n11751_o;
+  assign n11753_o = {n11752_o, n11746_o};
+  assign n11754_o = n11742_o[8];
   /* TG68K_ALU.vhd:775:17  */
-  assign n11769_o = n11765_o ? n11767_o : 1'b0;
-  /* TG68K_ALU.vhd:780:30  */
-  assign n11771_o = exe_opcode[8];
-  /* TG68K_ALU.vhd:780:33  */
-  assign n11772_o = ~n11771_o;
-  /* TG68K_ALU.vhd:781:42  */
-  assign n11773_o = result_bs[31];
-  /* TG68K_ALU.vhd:783:40  */
-  assign n11774_o = exe_opcode[7:6];
-  /* TG68K_ALU.vhd:785:58  */
-  assign n11775_o = result_bs[8];
-  /* TG68K_ALU.vhd:784:33  */
-  assign n11777_o = n11774_o == 2'b00;
-  /* TG68K_ALU.vhd:787:58  */
-  assign n11778_o = result_bs[16];
-  /* TG68K_ALU.vhd:786:33  */
-  assign n11780_o = n11774_o == 2'b01;
-  /* TG68K_ALU.vhd:786:42  */
-  assign n11782_o = n11774_o == 2'b11;
-  /* TG68K_ALU.vhd:786:42  */
-  assign n11783_o = n11780_o | n11782_o;
-  /* TG68K_ALU.vhd:789:58  */
-  assign n11784_o = result_bs[32];
-  /* TG68K_ALU.vhd:788:33  */
-  assign n11786_o = n11774_o == 2'b10;
-  assign n11787_o = {n11786_o, n11783_o, n11777_o};
-  /* TG68K_ALU.vhd:783:25  */
   always @*
-    case (n11787_o)
-      3'b100: n11788_o = n11784_o;
-      3'b010: n11788_o = n11778_o;
-      3'b001: n11788_o = n11775_o;
-      default: n11788_o = bs_c;
+    case (n11753_o)
+      2'b10: n11755_o = n11754_o;
+      2'b01: n11755_o = 1'b0;
+      default: n11755_o = n11754_o;
     endcase
-  /* TG68K_ALU.vhd:780:17  */
-  assign n11789_o = n11772_o ? n11773_o : n11788_o;
-  /* TG68K_ALU.vhd:795:28  */
-  assign n11791_o = rot_bits == 2'b11;
-  /* TG68K_ALU.vhd:796:38  */
-  assign n11792_o = n12824_q[4];
-  /* TG68K_ALU.vhd:797:40  */
-  assign n11793_o = exe_opcode[7:6];
-  /* TG68K_ALU.vhd:799:69  */
-  assign n11794_o = result_bs[7:0];
-  /* TG68K_ALU.vhd:799:94  */
-  assign n11795_o = result_bs[15:8];
-  /* TG68K_ALU.vhd:799:82  */
-  assign n11796_o = n11794_o | n11795_o;
-  /* TG68K_ALU.vhd:800:52  */
-  assign n11797_o = alu[7];
-  /* TG68K_ALU.vhd:798:33  */
-  assign n11799_o = n11793_o == 2'b00;
-  /* TG68K_ALU.vhd:802:70  */
-  assign n11800_o = result_bs[15:0];
-  /* TG68K_ALU.vhd:802:96  */
-  assign n11801_o = result_bs[31:16];
-  /* TG68K_ALU.vhd:802:84  */
+  assign n11756_o = n11742_o[16];
+  /* TG68K_ALU.vhd:775:17  */
+  always @*
+    case (n11753_o)
+      2'b10: n11757_o = 1'b0;
+      2'b01: n11757_o = n11756_o;
+      default: n11757_o = n11756_o;
+    endcase
+  assign n11759_o = n11742_o[7:0];
+  assign n11760_o = n11742_o[32:17];
+  assign n11761_o = n11742_o[15:9];
+  /* TG68K_ALU.vhd:782:56  */
+  assign n11762_o = hot_msb[31:0];
+  /* TG68K_ALU.vhd:782:48  */
+  assign n11764_o = {1'b0, n11762_o};
+  /* TG68K_ALU.vhd:782:42  */
+  assign n11765_o = asl_over_xor - n11764_o;
+  /* TG68K_ALU.vhd:784:28  */
+  assign n11767_o = rot_bits == 2'b00;
+  /* TG68K_ALU.vhd:784:48  */
+  assign n11768_o = exe_opcode[8];
+  /* TG68K_ALU.vhd:784:34  */
+  assign n11769_o = n11768_o & n11767_o;
+  /* TG68K_ALU.vhd:785:45  */
+  assign n11770_o = asl_over[32];
+  /* TG68K_ALU.vhd:785:33  */
+  assign n11771_o = ~n11770_o;
+  /* TG68K_ALU.vhd:784:17  */
+  assign n11773_o = n11769_o ? n11771_o : 1'b0;
+  /* TG68K_ALU.vhd:789:30  */
+  assign n11775_o = exe_opcode[8];
+  /* TG68K_ALU.vhd:789:33  */
+  assign n11776_o = ~n11775_o;
+  /* TG68K_ALU.vhd:790:42  */
+  assign n11777_o = result_bs[31];
+  /* TG68K_ALU.vhd:792:40  */
+  assign n11778_o = exe_opcode[7:6];
+  /* TG68K_ALU.vhd:794:58  */
+  assign n11779_o = result_bs[8];
+  /* TG68K_ALU.vhd:793:33  */
+  assign n11781_o = n11778_o == 2'b00;
+  /* TG68K_ALU.vhd:796:58  */
+  assign n11782_o = result_bs[16];
+  /* TG68K_ALU.vhd:795:33  */
+  assign n11784_o = n11778_o == 2'b01;
+  /* TG68K_ALU.vhd:795:42  */
+  assign n11786_o = n11778_o == 2'b11;
+  /* TG68K_ALU.vhd:795:42  */
+  assign n11787_o = n11784_o | n11786_o;
+  /* TG68K_ALU.vhd:798:58  */
+  assign n11788_o = result_bs[32];
+  /* TG68K_ALU.vhd:797:33  */
+  assign n11790_o = n11778_o == 2'b10;
+  assign n11791_o = {n11790_o, n11787_o, n11781_o};
+  /* TG68K_ALU.vhd:792:25  */
+  always @*
+    case (n11791_o)
+      3'b100: n11793_o = n11788_o;
+      3'b010: n11793_o = n11782_o;
+      3'b001: n11793_o = n11779_o;
+      default: n11793_o = 1'b0;
+    endcase
+  /* TG68K_ALU.vhd:789:17  */
+  assign n11794_o = n11776_o ? n11777_o : n11793_o;
+  /* TG68K_ALU.vhd:804:28  */
+  assign n11797_o = rot_bits == 2'b11;
+  /* TG68K_ALU.vhd:805:38  */
+  assign n11798_o = n12831_q[4];
+  /* TG68K_ALU.vhd:806:40  */
+  assign n11799_o = exe_opcode[7:6];
+  /* TG68K_ALU.vhd:808:69  */
+  assign n11800_o = result_bs[7:0];
+  /* TG68K_ALU.vhd:808:94  */
+  assign n11801_o = result_bs[15:8];
+  /* TG68K_ALU.vhd:808:82  */
   assign n11802_o = n11800_o | n11801_o;
-  /* TG68K_ALU.vhd:803:52  */
-  assign n11803_o = alu[15];
-  /* TG68K_ALU.vhd:801:33  */
-  assign n11805_o = n11793_o == 2'b01;
-  /* TG68K_ALU.vhd:801:42  */
-  assign n11807_o = n11793_o == 2'b11;
-  /* TG68K_ALU.vhd:801:42  */
-  assign n11808_o = n11805_o | n11807_o;
-  /* TG68K_ALU.vhd:805:57  */
-  assign n11809_o = result_bs[31:0];
-  /* TG68K_ALU.vhd:805:83  */
-  assign n11810_o = result_bs[63:32];
-  /* TG68K_ALU.vhd:805:71  */
-  assign n11811_o = n11809_o | n11810_o;
-  /* TG68K_ALU.vhd:806:52  */
-  assign n11812_o = alu[31];
-  /* TG68K_ALU.vhd:804:33  */
-  assign n11814_o = n11793_o == 2'b10;
-  assign n11815_o = {n11814_o, n11808_o, n11799_o};
-  assign n11816_o = n11802_o[7:0];
-  assign n11817_o = n11811_o[7:0];
-  /* TG68K_ALU.vhd:797:25  */
+  /* TG68K_ALU.vhd:809:52  */
+  assign n11803_o = alu[7];
+  /* TG68K_ALU.vhd:807:33  */
+  assign n11805_o = n11799_o == 2'b00;
+  /* TG68K_ALU.vhd:811:70  */
+  assign n11806_o = result_bs[15:0];
+  /* TG68K_ALU.vhd:811:96  */
+  assign n11807_o = result_bs[31:16];
+  /* TG68K_ALU.vhd:811:84  */
+  assign n11808_o = n11806_o | n11807_o;
+  /* TG68K_ALU.vhd:812:52  */
+  assign n11809_o = alu[15];
+  /* TG68K_ALU.vhd:810:33  */
+  assign n11811_o = n11799_o == 2'b01;
+  /* TG68K_ALU.vhd:810:42  */
+  assign n11813_o = n11799_o == 2'b11;
+  /* TG68K_ALU.vhd:810:42  */
+  assign n11814_o = n11811_o | n11813_o;
+  /* TG68K_ALU.vhd:814:57  */
+  assign n11815_o = result_bs[31:0];
+  /* TG68K_ALU.vhd:814:83  */
+  assign n11816_o = result_bs[63:32];
+  /* TG68K_ALU.vhd:814:71  */
+  assign n11817_o = n11815_o | n11816_o;
+  /* TG68K_ALU.vhd:815:52  */
+  assign n11818_o = alu[31];
+  /* TG68K_ALU.vhd:813:33  */
+  assign n11820_o = n11799_o == 2'b10;
+  assign n11821_o = {n11820_o, n11814_o, n11805_o};
+  assign n11822_o = n11808_o[7:0];
+  assign n11823_o = n11817_o[7:0];
+  /* TG68K_ALU.vhd:806:25  */
   always @*
-    case (n11815_o)
-      3'b100: n11819_o = n11817_o;
-      3'b010: n11819_o = n11816_o;
-      3'b001: n11819_o = n11796_o;
-      default: n11819_o = 8'bX;
+    case (n11821_o)
+      3'b100: n11825_o = n11823_o;
+      3'b010: n11825_o = n11822_o;
+      3'b001: n11825_o = n11802_o;
+      default: n11825_o = 8'bX;
     endcase
-  assign n11820_o = n11802_o[15:8];
-  assign n11821_o = n11811_o[15:8];
-  /* TG68K_ALU.vhd:797:25  */
+  assign n11826_o = n11808_o[15:8];
+  assign n11827_o = n11817_o[15:8];
+  /* TG68K_ALU.vhd:806:25  */
   always @*
-    case (n11815_o)
-      3'b100: n11823_o = n11821_o;
-      3'b010: n11823_o = n11820_o;
-      3'b001: n11823_o = 8'bX;
-      default: n11823_o = 8'bX;
+    case (n11821_o)
+      3'b100: n11829_o = n11827_o;
+      3'b010: n11829_o = n11826_o;
+      3'b001: n11829_o = 8'bX;
+      default: n11829_o = 8'bX;
     endcase
-  assign n11824_o = n11811_o[31:16];
-  /* TG68K_ALU.vhd:797:25  */
+  assign n11830_o = n11817_o[31:16];
+  /* TG68K_ALU.vhd:806:25  */
   always @*
-    case (n11815_o)
-      3'b100: n11826_o = n11824_o;
-      3'b010: n11826_o = 16'bX;
-      3'b001: n11826_o = 16'bX;
-      default: n11826_o = 16'bX;
+    case (n11821_o)
+      3'b100: n11832_o = n11830_o;
+      3'b010: n11832_o = 16'bX;
+      3'b001: n11832_o = 16'bX;
+      default: n11832_o = 16'bX;
     endcase
-  /* TG68K_ALU.vhd:797:25  */
+  /* TG68K_ALU.vhd:806:25  */
   always @*
-    case (n11815_o)
-      3'b100: n11827_o = n11812_o;
-      3'b010: n11827_o = n11803_o;
-      3'b001: n11827_o = n11797_o;
-      default: n11827_o = n11789_o;
+    case (n11821_o)
+      3'b100: n11833_o = n11818_o;
+      3'b010: n11833_o = n11809_o;
+      3'b001: n11833_o = n11803_o;
+      default: n11833_o = n11794_o;
     endcase
-  /* TG68K_ALU.vhd:809:38  */
-  assign n11828_o = exe_opcode[8];
-  /* TG68K_ALU.vhd:810:44  */
-  assign n11829_o = alu[0];
-  /* TG68K_ALU.vhd:809:25  */
-  assign n11830_o = n11828_o ? n11829_o : n11827_o;
-  /* TG68K_ALU.vhd:812:31  */
-  assign n11832_o = rot_bits == 2'b10;
-  /* TG68K_ALU.vhd:813:40  */
-  assign n11833_o = exe_opcode[7:6];
-  /* TG68K_ALU.vhd:815:69  */
-  assign n11834_o = result_bs[7:0];
-  /* TG68K_ALU.vhd:815:94  */
-  assign n11835_o = result_bs[16:9];
-  /* TG68K_ALU.vhd:815:82  */
-  assign n11836_o = n11834_o | n11835_o;
-  /* TG68K_ALU.vhd:816:58  */
-  assign n11837_o = result_bs[8];
-  /* TG68K_ALU.vhd:816:74  */
-  assign n11838_o = result_bs[17];
-  /* TG68K_ALU.vhd:816:62  */
-  assign n11839_o = n11837_o | n11838_o;
-  /* TG68K_ALU.vhd:814:33  */
-  assign n11841_o = n11833_o == 2'b00;
-  /* TG68K_ALU.vhd:818:70  */
-  assign n11842_o = result_bs[15:0];
-  /* TG68K_ALU.vhd:818:96  */
-  assign n11843_o = result_bs[32:17];
-  /* TG68K_ALU.vhd:818:84  */
-  assign n11844_o = n11842_o | n11843_o;
-  /* TG68K_ALU.vhd:819:58  */
-  assign n11845_o = result_bs[16];
-  /* TG68K_ALU.vhd:819:75  */
-  assign n11846_o = result_bs[33];
-  /* TG68K_ALU.vhd:819:63  */
-  assign n11847_o = n11845_o | n11846_o;
-  /* TG68K_ALU.vhd:817:33  */
-  assign n11849_o = n11833_o == 2'b01;
-  /* TG68K_ALU.vhd:817:42  */
-  assign n11851_o = n11833_o == 2'b11;
-  /* TG68K_ALU.vhd:817:42  */
-  assign n11852_o = n11849_o | n11851_o;
-  /* TG68K_ALU.vhd:821:57  */
-  assign n11853_o = result_bs[31:0];
-  /* TG68K_ALU.vhd:821:83  */
-  assign n11854_o = result_bs[64:33];
-  /* TG68K_ALU.vhd:821:71  */
-  assign n11855_o = n11853_o | n11854_o;
-  /* TG68K_ALU.vhd:822:58  */
-  assign n11856_o = result_bs[32];
-  /* TG68K_ALU.vhd:822:75  */
-  assign n11857_o = result_bs[65];
-  /* TG68K_ALU.vhd:822:63  */
-  assign n11858_o = n11856_o | n11857_o;
-  /* TG68K_ALU.vhd:820:33  */
-  assign n11860_o = n11833_o == 2'b10;
-  assign n11861_o = {n11860_o, n11852_o, n11841_o};
-  assign n11862_o = n11844_o[7:0];
-  assign n11863_o = n11855_o[7:0];
-  /* TG68K_ALU.vhd:813:25  */
+  /* TG68K_ALU.vhd:818:38  */
+  assign n11834_o = exe_opcode[8];
+  /* TG68K_ALU.vhd:819:44  */
+  assign n11835_o = alu[0];
+  /* TG68K_ALU.vhd:818:25  */
+  assign n11836_o = n11834_o ? n11835_o : n11833_o;
+  /* TG68K_ALU.vhd:821:31  */
+  assign n11838_o = rot_bits == 2'b10;
+  /* TG68K_ALU.vhd:822:40  */
+  assign n11839_o = exe_opcode[7:6];
+  /* TG68K_ALU.vhd:824:69  */
+  assign n11840_o = result_bs[7:0];
+  /* TG68K_ALU.vhd:824:94  */
+  assign n11841_o = result_bs[16:9];
+  /* TG68K_ALU.vhd:824:82  */
+  assign n11842_o = n11840_o | n11841_o;
+  /* TG68K_ALU.vhd:825:58  */
+  assign n11843_o = result_bs[8];
+  /* TG68K_ALU.vhd:825:74  */
+  assign n11844_o = result_bs[17];
+  /* TG68K_ALU.vhd:825:62  */
+  assign n11845_o = n11843_o | n11844_o;
+  /* TG68K_ALU.vhd:823:33  */
+  assign n11847_o = n11839_o == 2'b00;
+  /* TG68K_ALU.vhd:827:70  */
+  assign n11848_o = result_bs[15:0];
+  /* TG68K_ALU.vhd:827:96  */
+  assign n11849_o = result_bs[32:17];
+  /* TG68K_ALU.vhd:827:84  */
+  assign n11850_o = n11848_o | n11849_o;
+  /* TG68K_ALU.vhd:828:58  */
+  assign n11851_o = result_bs[16];
+  /* TG68K_ALU.vhd:828:75  */
+  assign n11852_o = result_bs[33];
+  /* TG68K_ALU.vhd:828:63  */
+  assign n11853_o = n11851_o | n11852_o;
+  /* TG68K_ALU.vhd:826:33  */
+  assign n11855_o = n11839_o == 2'b01;
+  /* TG68K_ALU.vhd:826:42  */
+  assign n11857_o = n11839_o == 2'b11;
+  /* TG68K_ALU.vhd:826:42  */
+  assign n11858_o = n11855_o | n11857_o;
+  /* TG68K_ALU.vhd:830:57  */
+  assign n11859_o = result_bs[31:0];
+  /* TG68K_ALU.vhd:830:83  */
+  assign n11860_o = result_bs[64:33];
+  /* TG68K_ALU.vhd:830:71  */
+  assign n11861_o = n11859_o | n11860_o;
+  /* TG68K_ALU.vhd:831:58  */
+  assign n11862_o = result_bs[32];
+  /* TG68K_ALU.vhd:831:75  */
+  assign n11863_o = result_bs[65];
+  /* TG68K_ALU.vhd:831:63  */
+  assign n11864_o = n11862_o | n11863_o;
+  /* TG68K_ALU.vhd:829:33  */
+  assign n11866_o = n11839_o == 2'b10;
+  assign n11867_o = {n11866_o, n11858_o, n11847_o};
+  assign n11868_o = n11850_o[7:0];
+  assign n11869_o = n11861_o[7:0];
+  /* TG68K_ALU.vhd:822:25  */
   always @*
-    case (n11861_o)
-      3'b100: n11865_o = n11863_o;
-      3'b010: n11865_o = n11862_o;
-      3'b001: n11865_o = n11836_o;
-      default: n11865_o = 8'bX;
+    case (n11867_o)
+      3'b100: n11871_o = n11869_o;
+      3'b010: n11871_o = n11868_o;
+      3'b001: n11871_o = n11842_o;
+      default: n11871_o = 8'bX;
     endcase
-  assign n11866_o = n11844_o[15:8];
-  assign n11867_o = n11855_o[15:8];
-  /* TG68K_ALU.vhd:813:25  */
+  assign n11872_o = n11850_o[15:8];
+  assign n11873_o = n11861_o[15:8];
+  /* TG68K_ALU.vhd:822:25  */
   always @*
-    case (n11861_o)
-      3'b100: n11869_o = n11867_o;
-      3'b010: n11869_o = n11866_o;
-      3'b001: n11869_o = 8'bX;
-      default: n11869_o = 8'bX;
+    case (n11867_o)
+      3'b100: n11875_o = n11873_o;
+      3'b010: n11875_o = n11872_o;
+      3'b001: n11875_o = 8'bX;
+      default: n11875_o = 8'bX;
     endcase
-  assign n11870_o = n11855_o[31:16];
-  /* TG68K_ALU.vhd:813:25  */
+  assign n11876_o = n11861_o[31:16];
+  /* TG68K_ALU.vhd:822:25  */
   always @*
-    case (n11861_o)
-      3'b100: n11872_o = n11870_o;
-      3'b010: n11872_o = 16'bX;
-      3'b001: n11872_o = 16'bX;
-      default: n11872_o = 16'bX;
+    case (n11867_o)
+      3'b100: n11878_o = n11876_o;
+      3'b010: n11878_o = 16'bX;
+      3'b001: n11878_o = 16'bX;
+      default: n11878_o = 16'bX;
     endcase
-  /* TG68K_ALU.vhd:813:25  */
+  /* TG68K_ALU.vhd:822:25  */
   always @*
-    case (n11861_o)
-      3'b100: n11873_o = n11858_o;
-      3'b010: n11873_o = n11847_o;
-      3'b001: n11873_o = n11839_o;
-      default: n11873_o = n11789_o;
+    case (n11867_o)
+      3'b100: n11879_o = n11864_o;
+      3'b010: n11879_o = n11853_o;
+      3'b001: n11879_o = n11845_o;
+      default: n11879_o = n11794_o;
     endcase
-  /* TG68K_ALU.vhd:826:38  */
-  assign n11874_o = exe_opcode[8];
-  /* TG68K_ALU.vhd:826:41  */
-  assign n11875_o = ~n11874_o;
-  /* TG68K_ALU.vhd:827:49  */
-  assign n11876_o = result_bs[63:32];
-  /* TG68K_ALU.vhd:829:49  */
-  assign n11877_o = result_bs[31:0];
-  /* TG68K_ALU.vhd:826:25  */
-  assign n11878_o = n11875_o ? n11876_o : n11877_o;
-  assign n11879_o = {n11872_o, n11869_o, n11865_o};
-  /* TG68K_ALU.vhd:812:17  */
-  assign n11880_o = n11832_o ? n11879_o : n11878_o;
-  /* TG68K_ALU.vhd:812:17  */
-  assign n11881_o = n11832_o ? n11873_o : n11789_o;
-  assign n11882_o = {n11826_o, n11823_o, n11819_o};
-  /* TG68K_ALU.vhd:795:17  */
-  assign n11883_o = n11791_o ? n11882_o : n11880_o;
-  /* TG68K_ALU.vhd:795:17  */
-  assign n11885_o = n11791_o ? n11830_o : n11881_o;
-  /* TG68K_ALU.vhd:795:17  */
-  assign n11886_o = n11791_o ? n11792_o : bs_c;
-  /* TG68K_ALU.vhd:833:29  */
-  assign n11888_o = bs_shift == 6'b000000;
-  /* TG68K_ALU.vhd:834:36  */
-  assign n11890_o = rot_bits == 2'b10;
-  /* TG68K_ALU.vhd:835:46  */
-  assign n11891_o = n12824_q[4];
-  /* TG68K_ALU.vhd:834:25  */
-  assign n11893_o = n11890_o ? n11891_o : 1'b0;
-  /* TG68K_ALU.vhd:839:38  */
-  assign n11894_o = n12824_q[4];
-  /* TG68K_ALU.vhd:833:17  */
-  assign n11896_o = n11888_o ? 1'b0 : n11769_o;
-  /* TG68K_ALU.vhd:833:17  */
-  assign n11897_o = n11888_o ? n11893_o : n11885_o;
-  /* TG68K_ALU.vhd:833:17  */
-  assign n11898_o = n11888_o ? n11894_o : n11886_o;
-  /* TG68K_ALU.vhd:848:45  */
-  assign n11900_o = bs_shift == 6'b111111;
-  /* TG68K_ALU.vhd:850:48  */
-  assign n11902_o = $unsigned(bs_shift) > $unsigned(6'b110101);
-  /* TG68K_ALU.vhd:851:66  */
-  assign n11904_o = bs_shift - 6'b110110;
-  /* TG68K_ALU.vhd:852:48  */
-  assign n11906_o = $unsigned(bs_shift) > $unsigned(6'b101100);
-  /* TG68K_ALU.vhd:853:66  */
-  assign n11908_o = bs_shift - 6'b101101;
-  /* TG68K_ALU.vhd:854:48  */
-  assign n11910_o = $unsigned(bs_shift) > $unsigned(6'b100011);
-  /* TG68K_ALU.vhd:855:66  */
-  assign n11912_o = bs_shift - 6'b100100;
-  /* TG68K_ALU.vhd:856:48  */
-  assign n11914_o = $unsigned(bs_shift) > $unsigned(6'b011010);
-  /* TG68K_ALU.vhd:857:66  */
-  assign n11916_o = bs_shift - 6'b011011;
-  /* TG68K_ALU.vhd:858:48  */
-  assign n11918_o = $unsigned(bs_shift) > $unsigned(6'b010001);
-  /* TG68K_ALU.vhd:859:66  */
-  assign n11920_o = bs_shift - 6'b010010;
-  /* TG68K_ALU.vhd:860:48  */
-  assign n11922_o = $unsigned(bs_shift) > $unsigned(6'b001000);
-  /* TG68K_ALU.vhd:861:66  */
-  assign n11924_o = bs_shift - 6'b001001;
-  /* TG68K_ALU.vhd:860:33  */
-  assign n11925_o = n11922_o ? n11924_o : bs_shift;
-  /* TG68K_ALU.vhd:858:33  */
-  assign n11926_o = n11918_o ? n11920_o : n11925_o;
-  /* TG68K_ALU.vhd:856:33  */
-  assign n11927_o = n11914_o ? n11916_o : n11926_o;
-  /* TG68K_ALU.vhd:854:33  */
-  assign n11928_o = n11910_o ? n11912_o : n11927_o;
-  /* TG68K_ALU.vhd:852:33  */
-  assign n11929_o = n11906_o ? n11908_o : n11928_o;
-  /* TG68K_ALU.vhd:850:33  */
-  assign n11930_o = n11902_o ? n11904_o : n11929_o;
-  /* TG68K_ALU.vhd:848:33  */
-  assign n11932_o = n11900_o ? 6'b000000 : n11930_o;
-  /* TG68K_ALU.vhd:847:25  */
-  assign n11934_o = ring == 6'b001001;
-  /* TG68K_ALU.vhd:866:45  */
-  assign n11936_o = $unsigned(bs_shift) > $unsigned(6'b110010);
-  /* TG68K_ALU.vhd:867:66  */
-  assign n11938_o = bs_shift - 6'b110011;
-  /* TG68K_ALU.vhd:868:48  */
-  assign n11940_o = $unsigned(bs_shift) > $unsigned(6'b100001);
-  /* TG68K_ALU.vhd:869:66  */
-  assign n11942_o = bs_shift - 6'b100010;
-  /* TG68K_ALU.vhd:870:48  */
-  assign n11944_o = $unsigned(bs_shift) > $unsigned(6'b010000);
-  /* TG68K_ALU.vhd:871:66  */
-  assign n11946_o = bs_shift - 6'b010001;
-  /* TG68K_ALU.vhd:870:33  */
-  assign n11947_o = n11944_o ? n11946_o : bs_shift;
-  /* TG68K_ALU.vhd:868:33  */
-  assign n11948_o = n11940_o ? n11942_o : n11947_o;
-  /* TG68K_ALU.vhd:866:33  */
-  assign n11949_o = n11936_o ? n11938_o : n11948_o;
-  /* TG68K_ALU.vhd:865:25  */
-  assign n11951_o = ring == 6'b010001;
-  /* TG68K_ALU.vhd:876:45  */
-  assign n11953_o = $unsigned(bs_shift) > $unsigned(6'b100000);
-  /* TG68K_ALU.vhd:877:66  */
-  assign n11955_o = bs_shift - 6'b100001;
-  /* TG68K_ALU.vhd:876:33  */
-  assign n11956_o = n11953_o ? n11955_o : bs_shift;
-  /* TG68K_ALU.vhd:875:25  */
-  assign n11958_o = ring == 6'b100001;
-  /* TG68K_ALU.vhd:881:74  */
-  assign n11959_o = bs_shift[2:0];
-  /* TG68K_ALU.vhd:881:64  */
-  assign n11961_o = {3'b000, n11959_o};
-  /* TG68K_ALU.vhd:881:25  */
-  assign n11963_o = ring == 6'b001000;
-  /* TG68K_ALU.vhd:882:74  */
-  assign n11964_o = bs_shift[3:0];
-  /* TG68K_ALU.vhd:882:64  */
-  assign n11966_o = {2'b00, n11964_o};
-  /* TG68K_ALU.vhd:882:25  */
-  assign n11968_o = ring == 6'b010000;
-  /* TG68K_ALU.vhd:883:74  */
-  assign n11969_o = bs_shift[4:0];
-  /* TG68K_ALU.vhd:883:64  */
-  assign n11971_o = {1'b0, n11969_o};
-  /* TG68K_ALU.vhd:883:25  */
-  assign n11973_o = ring == 6'b100000;
-  assign n11974_o = {n11973_o, n11968_o, n11963_o, n11958_o, n11951_o, n11934_o};
-  /* TG68K_ALU.vhd:846:17  */
-  always @*
-    case (n11974_o)
-      6'b100000: n11976_o = n11971_o;
-      6'b010000: n11976_o = n11966_o;
-      6'b001000: n11976_o = n11961_o;
-      6'b000100: n11976_o = n11956_o;
-      6'b000010: n11976_o = n11949_o;
-      6'b000001: n11976_o = n11932_o;
-      default: n11976_o = 6'b000000;
-    endcase
-  /* TG68K_ALU.vhd:888:30  */
-  assign n11977_o = exe_opcode[8];
-  /* TG68K_ALU.vhd:888:33  */
-  assign n11978_o = ~n11977_o;
-  /* TG68K_ALU.vhd:889:39  */
-  assign n11979_o = ring - bs_shift_mod;
-  /* TG68K_ALU.vhd:888:17  */
-  assign n11980_o = n11978_o ? n11979_o : bs_shift_mod;
-  /* TG68K_ALU.vhd:891:28  */
-  assign n11981_o = rot_bits[1];
-  /* TG68K_ALU.vhd:891:31  */
-  assign n11982_o = ~n11981_o;
-  /* TG68K_ALU.vhd:892:38  */
-  assign n11983_o = exe_opcode[8];
-  /* TG68K_ALU.vhd:892:41  */
-  assign n11984_o = ~n11983_o;
-  /* TG68K_ALU.vhd:893:45  */
-  assign n11986_o = 6'b100000 - bs_shift_mod;
+  /* TG68K_ALU.vhd:835:38  */
+  assign n11880_o = exe_opcode[8];
+  /* TG68K_ALU.vhd:835:41  */
+  assign n11881_o = ~n11880_o;
+  /* TG68K_ALU.vhd:836:49  */
+  assign n11882_o = result_bs[63:32];
+  /* TG68K_ALU.vhd:838:49  */
+  assign n11883_o = result_bs[31:0];
+  /* TG68K_ALU.vhd:835:25  */
+  assign n11884_o = n11881_o ? n11882_o : n11883_o;
+  assign n11885_o = {n11878_o, n11875_o, n11871_o};
+  /* TG68K_ALU.vhd:821:17  */
+  assign n11886_o = n11838_o ? n11885_o : n11884_o;
+  /* TG68K_ALU.vhd:821:17  */
+  assign n11887_o = n11838_o ? n11879_o : n11794_o;
+  assign n11888_o = {n11832_o, n11829_o, n11825_o};
+  /* TG68K_ALU.vhd:804:17  */
+  assign n11889_o = n11797_o ? n11888_o : n11886_o;
+  /* TG68K_ALU.vhd:804:17  */
+  assign n11891_o = n11797_o ? n11836_o : n11887_o;
+  /* TG68K_ALU.vhd:804:17  */
+  assign n11892_o = n11797_o ? n11798_o : bs_c;
+  /* TG68K_ALU.vhd:842:29  */
+  assign n11894_o = bs_shift == 6'b000000;
+  /* TG68K_ALU.vhd:843:36  */
+  assign n11896_o = rot_bits == 2'b10;
+  /* TG68K_ALU.vhd:844:46  */
+  assign n11897_o = n12831_q[4];
+  /* TG68K_ALU.vhd:843:25  */
+  assign n11899_o = n11896_o ? n11897_o : 1'b0;
+  /* TG68K_ALU.vhd:848:38  */
+  assign n11900_o = n12831_q[4];
+  /* TG68K_ALU.vhd:842:17  */
+  assign n11902_o = n11894_o ? 1'b0 : n11773_o;
+  /* TG68K_ALU.vhd:842:17  */
+  assign n11903_o = n11894_o ? n11899_o : n11891_o;
+  /* TG68K_ALU.vhd:842:17  */
+  assign n11904_o = n11894_o ? n11900_o : n11892_o;
+  /* TG68K_ALU.vhd:857:45  */
+  assign n11906_o = bs_shift == 6'b111111;
+  /* TG68K_ALU.vhd:859:48  */
+  assign n11908_o = $unsigned(bs_shift) > $unsigned(6'b110101);
+  /* TG68K_ALU.vhd:860:66  */
+  assign n11910_o = bs_shift - 6'b110110;
+  /* TG68K_ALU.vhd:861:48  */
+  assign n11912_o = $unsigned(bs_shift) > $unsigned(6'b101100);
+  /* TG68K_ALU.vhd:862:66  */
+  assign n11914_o = bs_shift - 6'b101101;
+  /* TG68K_ALU.vhd:863:48  */
+  assign n11916_o = $unsigned(bs_shift) > $unsigned(6'b100011);
+  /* TG68K_ALU.vhd:864:66  */
+  assign n11918_o = bs_shift - 6'b100100;
+  /* TG68K_ALU.vhd:865:48  */
+  assign n11920_o = $unsigned(bs_shift) > $unsigned(6'b011010);
+  /* TG68K_ALU.vhd:866:66  */
+  assign n11922_o = bs_shift - 6'b011011;
+  /* TG68K_ALU.vhd:867:48  */
+  assign n11924_o = $unsigned(bs_shift) > $unsigned(6'b010001);
+  /* TG68K_ALU.vhd:868:66  */
+  assign n11926_o = bs_shift - 6'b010010;
+  /* TG68K_ALU.vhd:869:48  */
+  assign n11928_o = $unsigned(bs_shift) > $unsigned(6'b001000);
+  /* TG68K_ALU.vhd:870:66  */
+  assign n11930_o = bs_shift - 6'b001001;
+  /* TG68K_ALU.vhd:869:33  */
+  assign n11931_o = n11928_o ? n11930_o : bs_shift;
+  /* TG68K_ALU.vhd:867:33  */
+  assign n11932_o = n11924_o ? n11926_o : n11931_o;
+  /* TG68K_ALU.vhd:865:33  */
+  assign n11933_o = n11920_o ? n11922_o : n11932_o;
+  /* TG68K_ALU.vhd:863:33  */
+  assign n11934_o = n11916_o ? n11918_o : n11933_o;
+  /* TG68K_ALU.vhd:861:33  */
+  assign n11935_o = n11912_o ? n11914_o : n11934_o;
+  /* TG68K_ALU.vhd:859:33  */
+  assign n11936_o = n11908_o ? n11910_o : n11935_o;
+  /* TG68K_ALU.vhd:857:33  */
+  assign n11938_o = n11906_o ? 6'b000000 : n11936_o;
+  /* TG68K_ALU.vhd:856:25  */
+  assign n11940_o = ring == 6'b001001;
+  /* TG68K_ALU.vhd:875:45  */
+  assign n11942_o = $unsigned(bs_shift) > $unsigned(6'b110010);
+  /* TG68K_ALU.vhd:876:66  */
+  assign n11944_o = bs_shift - 6'b110011;
+  /* TG68K_ALU.vhd:877:48  */
+  assign n11946_o = $unsigned(bs_shift) > $unsigned(6'b100001);
+  /* TG68K_ALU.vhd:878:66  */
+  assign n11948_o = bs_shift - 6'b100010;
+  /* TG68K_ALU.vhd:879:48  */
+  assign n11950_o = $unsigned(bs_shift) > $unsigned(6'b010000);
+  /* TG68K_ALU.vhd:880:66  */
+  assign n11952_o = bs_shift - 6'b010001;
+  /* TG68K_ALU.vhd:879:33  */
+  assign n11953_o = n11950_o ? n11952_o : bs_shift;
+  /* TG68K_ALU.vhd:877:33  */
+  assign n11954_o = n11946_o ? n11948_o : n11953_o;
+  /* TG68K_ALU.vhd:875:33  */
+  assign n11955_o = n11942_o ? n11944_o : n11954_o;
+  /* TG68K_ALU.vhd:874:25  */
+  assign n11957_o = ring == 6'b010001;
+  /* TG68K_ALU.vhd:885:45  */
+  assign n11959_o = $unsigned(bs_shift) > $unsigned(6'b100000);
+  /* TG68K_ALU.vhd:886:66  */
+  assign n11961_o = bs_shift - 6'b100001;
+  /* TG68K_ALU.vhd:885:33  */
+  assign n11962_o = n11959_o ? n11961_o : bs_shift;
+  /* TG68K_ALU.vhd:884:25  */
+  assign n11964_o = ring == 6'b100001;
+  /* TG68K_ALU.vhd:890:74  */
+  assign n11965_o = bs_shift[2:0];
+  /* TG68K_ALU.vhd:890:64  */
+  assign n11967_o = {3'b000, n11965_o};
+  /* TG68K_ALU.vhd:890:25  */
+  assign n11969_o = ring == 6'b001000;
+  /* TG68K_ALU.vhd:891:74  */
+  assign n11970_o = bs_shift[3:0];
+  /* TG68K_ALU.vhd:891:64  */
+  assign n11972_o = {2'b00, n11970_o};
+  /* TG68K_ALU.vhd:891:25  */
+  assign n11974_o = ring == 6'b010000;
+  /* TG68K_ALU.vhd:892:74  */
+  assign n11975_o = bs_shift[4:0];
+  /* TG68K_ALU.vhd:892:64  */
+  assign n11977_o = {1'b0, n11975_o};
   /* TG68K_ALU.vhd:892:25  */
-  assign n11987_o = n11984_o ? n11986_o : n11980_o;
-  /* TG68K_ALU.vhd:895:37  */
-  assign n11988_o = bs_shift == ring;
-  /* TG68K_ALU.vhd:896:46  */
+  assign n11979_o = ring == 6'b100000;
+  assign n11980_o = {n11979_o, n11974_o, n11969_o, n11964_o, n11957_o, n11940_o};
+  /* TG68K_ALU.vhd:855:17  */
+  always @*
+    case (n11980_o)
+      6'b100000: n11982_o = n11977_o;
+      6'b010000: n11982_o = n11972_o;
+      6'b001000: n11982_o = n11967_o;
+      6'b000100: n11982_o = n11962_o;
+      6'b000010: n11982_o = n11955_o;
+      6'b000001: n11982_o = n11938_o;
+      default: n11982_o = 6'b000000;
+    endcase
+  /* TG68K_ALU.vhd:897:30  */
+  assign n11983_o = exe_opcode[8];
+  /* TG68K_ALU.vhd:897:33  */
+  assign n11984_o = ~n11983_o;
+  /* TG68K_ALU.vhd:898:39  */
+  assign n11985_o = ring - bs_shift_mod;
+  /* TG68K_ALU.vhd:897:17  */
+  assign n11986_o = n11984_o ? n11985_o : bs_shift_mod;
+  /* TG68K_ALU.vhd:900:28  */
+  assign n11987_o = rot_bits[1];
+  /* TG68K_ALU.vhd:900:31  */
+  assign n11988_o = ~n11987_o;
+  /* TG68K_ALU.vhd:901:38  */
   assign n11989_o = exe_opcode[8];
-  /* TG68K_ALU.vhd:896:49  */
+  /* TG68K_ALU.vhd:901:41  */
   assign n11990_o = ~n11989_o;
-  /* TG68K_ALU.vhd:897:53  */
-  assign n11992_o = 6'b100000 - ring;
-  /* TG68K_ALU.vhd:896:33  */
-  assign n11993_o = n11990_o ? n11992_o : ring;
-  /* TG68K_ALU.vhd:895:25  */
-  assign n11994_o = n11988_o ? n11993_o : n11987_o;
-  /* TG68K_ALU.vhd:902:37  */
-  assign n11995_o = $unsigned(bs_shift) > $unsigned(ring);
-  /* TG68K_ALU.vhd:903:46  */
-  assign n11996_o = exe_opcode[8];
-  /* TG68K_ALU.vhd:903:49  */
-  assign n11997_o = ~n11996_o;
-  /* TG68K_ALU.vhd:907:55  */
-  assign n11999_o = ring + 6'b000001;
-  /* TG68K_ALU.vhd:903:33  */
-  assign n12001_o = n11997_o ? 6'b000000 : n11999_o;
-  /* TG68K_ALU.vhd:891:17  */
-  assign n12003_o = n12007_o ? 1'b0 : n11897_o;
-  /* TG68K_ALU.vhd:902:25  */
-  assign n12004_o = n11995_o ? n12001_o : n11994_o;
-  /* TG68K_ALU.vhd:902:25  */
-  assign n12005_o = n11997_o & n11995_o;
-  /* TG68K_ALU.vhd:891:17  */
-  assign n12006_o = n11982_o ? n12004_o : n11980_o;
-  /* TG68K_ALU.vhd:891:17  */
-  assign n12007_o = n12005_o & n11982_o;
-  /* TG68K_ALU.vhd:915:50  */
-  assign n12008_o = asr_sign[31:0];
-  /* TG68K_ALU.vhd:915:74  */
-  assign n12009_o = hot_msb[31:0];
-  /* TG68K_ALU.vhd:915:64  */
-  assign n12010_o = n12008_o | n12009_o;
-  assign n12012_o = n12011_o[0];
-  /* TG68K_ALU.vhd:916:28  */
-  assign n12014_o = rot_bits == 2'b00;
-  /* TG68K_ALU.vhd:916:48  */
-  assign n12015_o = exe_opcode[8];
-  /* TG68K_ALU.vhd:916:51  */
-  assign n12016_o = ~n12015_o;
-  /* TG68K_ALU.vhd:916:34  */
-  assign n12017_o = n12016_o & n12014_o;
-  /* TG68K_ALU.vhd:916:56  */
-  assign n12018_o = msb & n12017_o;
-  /* TG68K_ALU.vhd:917:49  */
-  assign n12019_o = asr_sign[32:1];
-  /* TG68K_ALU.vhd:917:38  */
-  assign n12020_o = alu | n12019_o;
-  /* TG68K_ALU.vhd:918:37  */
-  assign n12021_o = $unsigned(bs_shift) > $unsigned(ring);
-  /* TG68K_ALU.vhd:916:17  */
-  assign n12023_o = n12025_o ? 1'b1 : n12003_o;
-  /* TG68K_ALU.vhd:916:17  */
-  assign n12025_o = n12021_o & n12018_o;
-  /* TG68K_ALU.vhd:923:43  */
-  assign n12027_o = {1'b0, op1out};
-  /* TG68K_ALU.vhd:924:32  */
-  assign n12028_o = exe_opcode[7:6];
-  /* TG68K_ALU.vhd:926:46  */
-  assign n12029_o = op1out[7];
-  /* TG68K_ALU.vhd:929:44  */
-  assign n12033_o = rot_bits == 2'b10;
-  /* TG68K_ALU.vhd:930:59  */
-  assign n12034_o = n12824_q[4];
-  assign n12035_o = n12030_o[0];
-  /* TG68K_ALU.vhd:929:33  */
-  assign n12036_o = n12033_o ? n12034_o : n12035_o;
-  assign n12037_o = n12030_o[23:1];
-  /* TG68K_ALU.vhd:925:25  */
-  assign n12039_o = n12028_o == 2'b00;
-  /* TG68K_ALU.vhd:933:46  */
-  assign n12040_o = op1out[15];
-  /* TG68K_ALU.vhd:936:44  */
-  assign n12044_o = rot_bits == 2'b10;
-  /* TG68K_ALU.vhd:937:60  */
-  assign n12045_o = n12824_q[4];
-  assign n12046_o = n12041_o[0];
-  /* TG68K_ALU.vhd:936:33  */
-  assign n12047_o = n12044_o ? n12045_o : n12046_o;
-  assign n12048_o = n12041_o[15:1];
-  /* TG68K_ALU.vhd:932:25  */
-  assign n12050_o = n12028_o == 2'b01;
-  /* TG68K_ALU.vhd:932:34  */
-  assign n12052_o = n12028_o == 2'b11;
-  /* TG68K_ALU.vhd:932:34  */
-  assign n12053_o = n12050_o | n12052_o;
-  /* TG68K_ALU.vhd:940:46  */
-  assign n12054_o = op1out[31];
-  /* TG68K_ALU.vhd:941:44  */
-  assign n12056_o = rot_bits == 2'b10;
-  /* TG68K_ALU.vhd:942:60  */
-  assign n12057_o = n12824_q[4];
-  assign n12058_o = n12027_o[32];
-  /* TG68K_ALU.vhd:941:33  */
-  assign n12059_o = n12056_o ? n12057_o : n12058_o;
-  /* TG68K_ALU.vhd:939:25  */
-  assign n12061_o = n12028_o == 2'b10;
-  assign n12062_o = {n12061_o, n12053_o, n12039_o};
-  assign n12063_o = n12027_o[8];
-  /* TG68K_ALU.vhd:924:17  */
+  /* TG68K_ALU.vhd:902:45  */
+  assign n11992_o = 6'b100000 - bs_shift_mod;
+  /* TG68K_ALU.vhd:901:25  */
+  assign n11993_o = n11990_o ? n11992_o : n11986_o;
+  /* TG68K_ALU.vhd:904:37  */
+  assign n11994_o = bs_shift == ring;
+  /* TG68K_ALU.vhd:905:46  */
+  assign n11995_o = exe_opcode[8];
+  /* TG68K_ALU.vhd:905:49  */
+  assign n11996_o = ~n11995_o;
+  /* TG68K_ALU.vhd:906:53  */
+  assign n11998_o = 6'b100000 - ring;
+  /* TG68K_ALU.vhd:905:33  */
+  assign n11999_o = n11996_o ? n11998_o : ring;
+  /* TG68K_ALU.vhd:904:25  */
+  assign n12000_o = n11994_o ? n11999_o : n11993_o;
+  /* TG68K_ALU.vhd:911:37  */
+  assign n12001_o = $unsigned(bs_shift) > $unsigned(ring);
+  /* TG68K_ALU.vhd:912:46  */
+  assign n12002_o = exe_opcode[8];
+  /* TG68K_ALU.vhd:912:49  */
+  assign n12003_o = ~n12002_o;
+  /* TG68K_ALU.vhd:916:55  */
+  assign n12005_o = ring + 6'b000001;
+  /* TG68K_ALU.vhd:912:33  */
+  assign n12007_o = n12003_o ? 6'b000000 : n12005_o;
+  /* TG68K_ALU.vhd:900:17  */
+  assign n12009_o = n12013_o ? 1'b0 : n11903_o;
+  /* TG68K_ALU.vhd:911:25  */
+  assign n12010_o = n12001_o ? n12007_o : n12000_o;
+  /* TG68K_ALU.vhd:911:25  */
+  assign n12011_o = n12003_o & n12001_o;
+  /* TG68K_ALU.vhd:900:17  */
+  assign n12012_o = n11988_o ? n12010_o : n11986_o;
+  /* TG68K_ALU.vhd:900:17  */
+  assign n12013_o = n12011_o & n11988_o;
+  /* TG68K_ALU.vhd:924:50  */
+  assign n12014_o = asr_sign[31:0];
+  /* TG68K_ALU.vhd:924:74  */
+  assign n12015_o = hot_msb[31:0];
+  /* TG68K_ALU.vhd:924:64  */
+  assign n12016_o = n12014_o | n12015_o;
+  assign n12018_o = n12017_o[0];
+  /* TG68K_ALU.vhd:925:28  */
+  assign n12020_o = rot_bits == 2'b00;
+  /* TG68K_ALU.vhd:925:48  */
+  assign n12021_o = exe_opcode[8];
+  /* TG68K_ALU.vhd:925:51  */
+  assign n12022_o = ~n12021_o;
+  /* TG68K_ALU.vhd:925:34  */
+  assign n12023_o = n12022_o & n12020_o;
+  /* TG68K_ALU.vhd:925:56  */
+  assign n12024_o = msb & n12023_o;
+  /* TG68K_ALU.vhd:926:49  */
+  assign n12025_o = asr_sign[32:1];
+  /* TG68K_ALU.vhd:926:38  */
+  assign n12026_o = alu | n12025_o;
+  /* TG68K_ALU.vhd:927:37  */
+  assign n12027_o = $unsigned(bs_shift) > $unsigned(ring);
+  /* TG68K_ALU.vhd:925:17  */
+  assign n12029_o = n12031_o ? 1'b1 : n12009_o;
+  /* TG68K_ALU.vhd:925:17  */
+  assign n12031_o = n12027_o & n12024_o;
+  /* TG68K_ALU.vhd:932:43  */
+  assign n12033_o = {1'b0, op1out};
+  /* TG68K_ALU.vhd:933:32  */
+  assign n12034_o = exe_opcode[7:6];
+  /* TG68K_ALU.vhd:935:46  */
+  assign n12035_o = op1out[7];
+  /* TG68K_ALU.vhd:938:44  */
+  assign n12039_o = rot_bits == 2'b10;
+  /* TG68K_ALU.vhd:939:59  */
+  assign n12040_o = n12831_q[4];
+  assign n12041_o = n12036_o[0];
+  /* TG68K_ALU.vhd:938:33  */
+  assign n12042_o = n12039_o ? n12040_o : n12041_o;
+  assign n12043_o = n12036_o[23:1];
+  /* TG68K_ALU.vhd:934:25  */
+  assign n12045_o = n12034_o == 2'b00;
+  /* TG68K_ALU.vhd:942:46  */
+  assign n12046_o = op1out[15];
+  /* TG68K_ALU.vhd:945:44  */
+  assign n12050_o = rot_bits == 2'b10;
+  /* TG68K_ALU.vhd:946:60  */
+  assign n12051_o = n12831_q[4];
+  assign n12052_o = n12047_o[0];
+  /* TG68K_ALU.vhd:945:33  */
+  assign n12053_o = n12050_o ? n12051_o : n12052_o;
+  assign n12054_o = n12047_o[15:1];
+  /* TG68K_ALU.vhd:941:25  */
+  assign n12056_o = n12034_o == 2'b01;
+  /* TG68K_ALU.vhd:941:34  */
+  assign n12058_o = n12034_o == 2'b11;
+  /* TG68K_ALU.vhd:941:34  */
+  assign n12059_o = n12056_o | n12058_o;
+  /* TG68K_ALU.vhd:949:46  */
+  assign n12060_o = op1out[31];
+  /* TG68K_ALU.vhd:950:44  */
+  assign n12062_o = rot_bits == 2'b10;
+  /* TG68K_ALU.vhd:951:60  */
+  assign n12063_o = n12831_q[4];
+  assign n12064_o = n12033_o[32];
+  /* TG68K_ALU.vhd:950:33  */
+  assign n12065_o = n12062_o ? n12063_o : n12064_o;
+  /* TG68K_ALU.vhd:948:25  */
+  assign n12067_o = n12034_o == 2'b10;
+  assign n12068_o = {n12067_o, n12059_o, n12045_o};
+  assign n12069_o = n12033_o[8];
+  /* TG68K_ALU.vhd:933:17  */
   always @*
-    case (n12062_o)
-      3'b100: n12064_o = n12063_o;
-      3'b010: n12064_o = n12063_o;
-      3'b001: n12064_o = n12036_o;
-      default: n12064_o = n12063_o;
-    endcase
-  assign n12065_o = n12037_o[6:0];
-  assign n12066_o = n12027_o[15:9];
-  /* TG68K_ALU.vhd:924:17  */
-  always @*
-    case (n12062_o)
-      3'b100: n12067_o = n12066_o;
-      3'b010: n12067_o = n12066_o;
-      3'b001: n12067_o = n12065_o;
-      default: n12067_o = n12066_o;
-    endcase
-  assign n12068_o = n12037_o[7];
-  assign n12069_o = n12027_o[16];
-  /* TG68K_ALU.vhd:924:17  */
-  always @*
-    case (n12062_o)
+    case (n12068_o)
       3'b100: n12070_o = n12069_o;
-      3'b010: n12070_o = n12047_o;
-      3'b001: n12070_o = n12068_o;
+      3'b010: n12070_o = n12069_o;
+      3'b001: n12070_o = n12042_o;
       default: n12070_o = n12069_o;
     endcase
-  assign n12071_o = n12037_o[22:8];
-  assign n12072_o = n12027_o[31:17];
-  /* TG68K_ALU.vhd:924:17  */
+  assign n12071_o = n12043_o[6:0];
+  assign n12072_o = n12033_o[15:9];
+  /* TG68K_ALU.vhd:933:17  */
   always @*
-    case (n12062_o)
+    case (n12068_o)
       3'b100: n12073_o = n12072_o;
-      3'b010: n12073_o = n12048_o;
+      3'b010: n12073_o = n12072_o;
       3'b001: n12073_o = n12071_o;
       default: n12073_o = n12072_o;
     endcase
-  assign n12074_o = n12027_o[32];
-  /* TG68K_ALU.vhd:924:17  */
+  assign n12074_o = n12043_o[7];
+  assign n12075_o = n12033_o[16];
+  /* TG68K_ALU.vhd:933:17  */
   always @*
-    case (n12062_o)
-      3'b100: n12075_o = n12059_o;
-      3'b010: n12075_o = n12074_o;
-      3'b001: n12075_o = n12074_o;
-      default: n12075_o = n12074_o;
+    case (n12068_o)
+      3'b100: n12076_o = n12075_o;
+      3'b010: n12076_o = n12053_o;
+      3'b001: n12076_o = n12074_o;
+      default: n12076_o = n12075_o;
     endcase
-  assign n12077_o = n12027_o[7:0];
-  /* TG68K_ALU.vhd:924:17  */
+  assign n12077_o = n12043_o[22:8];
+  assign n12078_o = n12033_o[31:17];
+  /* TG68K_ALU.vhd:933:17  */
   always @*
-    case (n12062_o)
-      3'b100: n12081_o = n12054_o;
-      3'b010: n12081_o = n12040_o;
-      3'b001: n12081_o = n12029_o;
-      default: n12081_o = msb;
+    case (n12068_o)
+      3'b100: n12079_o = n12078_o;
+      3'b010: n12079_o = n12054_o;
+      3'b001: n12079_o = n12077_o;
+      default: n12079_o = n12078_o;
     endcase
-  assign n12082_o = n12031_o[7:0];
-  assign n12083_o = n12020_o[15:8];
-  assign n12084_o = alu[15:8];
-  /* TG68K_ALU.vhd:916:17  */
-  assign n12085_o = n12018_o ? n12083_o : n12084_o;
-  /* TG68K_ALU.vhd:924:17  */
+  assign n12080_o = n12033_o[32];
+  /* TG68K_ALU.vhd:933:17  */
   always @*
-    case (n12062_o)
-      3'b100: n12086_o = n12085_o;
-      3'b010: n12086_o = n12085_o;
-      3'b001: n12086_o = n12082_o;
-      default: n12086_o = n12085_o;
+    case (n12068_o)
+      3'b100: n12081_o = n12065_o;
+      3'b010: n12081_o = n12080_o;
+      3'b001: n12081_o = n12080_o;
+      default: n12081_o = n12080_o;
     endcase
-  assign n12087_o = n12031_o[23:8];
-  assign n12088_o = n12020_o[31:16];
-  assign n12089_o = alu[31:16];
-  /* TG68K_ALU.vhd:916:17  */
-  assign n12090_o = n12018_o ? n12088_o : n12089_o;
-  /* TG68K_ALU.vhd:924:17  */
+  assign n12083_o = n12033_o[7:0];
+  /* TG68K_ALU.vhd:933:17  */
   always @*
-    case (n12062_o)
-      3'b100: n12091_o = n12090_o;
-      3'b010: n12091_o = 16'b0000000000000000;
-      3'b001: n12091_o = n12087_o;
-      default: n12091_o = n12090_o;
+    case (n12068_o)
+      3'b100: n12088_o = n12060_o;
+      3'b010: n12088_o = n12046_o;
+      3'b001: n12088_o = n12035_o;
+      default: n12088_o = 1'b0;
     endcase
-  assign n12095_o = n12020_o[7:0];
-  assign n12096_o = alu[7:0];
-  /* TG68K_ALU.vhd:916:17  */
-  assign n12097_o = n12018_o ? n12095_o : n12096_o;
-  /* TG68K_ALU.vhd:946:71  */
-  assign n12099_o = {33'b000000000000000000000000000000000, vector};
-  /* TG68K_ALU.vhd:946:84  */
-  assign n12100_o = {25'b0, bit_nr};  //  uext
-  /* TG68K_ALU.vhd:946:80  */
-  assign n12101_o = {1'b0, n12100_o};  //  uext
-  /* TG68K_ALU.vhd:946:80  */
-  assign n12102_o = n12099_o << n12101_o;
-  /* TG68K_ALU.vhd:957:24  */
-  assign n12106_o = exec[17];
-  /* TG68K_ALU.vhd:958:58  */
-  assign n12107_o = last_data_read[7:0];
-  /* TG68K_ALU.vhd:958:40  */
-  assign n12108_o = n12824_q & n12107_o;
-  /* TG68K_ALU.vhd:959:27  */
-  assign n12109_o = exec[18];
-  /* TG68K_ALU.vhd:960:58  */
-  assign n12110_o = last_data_read[7:0];
-  /* TG68K_ALU.vhd:960:40  */
-  assign n12111_o = n12824_q ^ n12110_o;
-  /* TG68K_ALU.vhd:961:27  */
-  assign n12112_o = exec[19];
-  /* TG68K_ALU.vhd:962:57  */
-  assign n12113_o = last_data_read[7:0];
-  /* TG68K_ALU.vhd:962:40  */
-  assign n12114_o = n12824_q | n12113_o;
-  /* TG68K_ALU.vhd:964:40  */
-  assign n12115_o = op2out[7:0];
-  /* TG68K_ALU.vhd:961:17  */
-  assign n12116_o = n12112_o ? n12114_o : n12115_o;
-  /* TG68K_ALU.vhd:959:17  */
-  assign n12117_o = n12109_o ? n12111_o : n12116_o;
-  /* TG68K_ALU.vhd:957:17  */
-  assign n12118_o = n12106_o ? n12108_o : n12117_o;
-  /* TG68K_ALU.vhd:971:24  */
-  assign n12119_o = exec[28];
-  /* TG68K_ALU.vhd:971:50  */
-  assign n12120_o = n12824_q[2];
-  /* TG68K_ALU.vhd:971:53  */
-  assign n12121_o = ~n12120_o;
-  /* TG68K_ALU.vhd:971:41  */
-  assign n12122_o = n12121_o & n12119_o;
-  /* TG68K_ALU.vhd:973:28  */
-  assign n12123_o = op1in[7:0];
+  assign n12089_o = n12037_o[7:0];
+  assign n12090_o = n12026_o[15:8];
+  assign n12091_o = alu[15:8];
+  /* TG68K_ALU.vhd:925:17  */
+  assign n12092_o = n12024_o ? n12090_o : n12091_o;
+  /* TG68K_ALU.vhd:933:17  */
+  always @*
+    case (n12068_o)
+      3'b100: n12093_o = n12092_o;
+      3'b010: n12093_o = n12092_o;
+      3'b001: n12093_o = n12089_o;
+      default: n12093_o = n12092_o;
+    endcase
+  assign n12094_o = n12037_o[23:8];
+  assign n12095_o = n12026_o[31:16];
+  assign n12096_o = alu[31:16];
+  /* TG68K_ALU.vhd:925:17  */
+  assign n12097_o = n12024_o ? n12095_o : n12096_o;
+  /* TG68K_ALU.vhd:933:17  */
+  always @*
+    case (n12068_o)
+      3'b100: n12098_o = n12097_o;
+      3'b010: n12098_o = 16'b0000000000000000;
+      3'b001: n12098_o = n12094_o;
+      default: n12098_o = n12097_o;
+    endcase
+  assign n12102_o = n12026_o[7:0];
+  assign n12103_o = alu[7:0];
+  /* TG68K_ALU.vhd:925:17  */
+  assign n12104_o = n12024_o ? n12102_o : n12103_o;
+  /* TG68K_ALU.vhd:957:71  */
+  assign n12106_o = {33'b000000000000000000000000000000000, vector};
+  /* TG68K_ALU.vhd:957:84  */
+  assign n12107_o = {25'b0, bit_nr};  //  uext
+  /* TG68K_ALU.vhd:957:80  */
+  assign n12108_o = {1'b0, n12107_o};  //  uext
+  /* TG68K_ALU.vhd:957:80  */
+  assign n12109_o = n12106_o << n12108_o;
+  /* TG68K_ALU.vhd:968:24  */
+  assign n12113_o = exec[17];
+  /* TG68K_ALU.vhd:969:58  */
+  assign n12114_o = last_data_read[7:0];
+  /* TG68K_ALU.vhd:969:40  */
+  assign n12115_o = n12831_q & n12114_o;
+  /* TG68K_ALU.vhd:970:27  */
+  assign n12116_o = exec[18];
+  /* TG68K_ALU.vhd:971:58  */
+  assign n12117_o = last_data_read[7:0];
+  /* TG68K_ALU.vhd:971:40  */
+  assign n12118_o = n12831_q ^ n12117_o;
+  /* TG68K_ALU.vhd:972:27  */
+  assign n12119_o = exec[19];
+  /* TG68K_ALU.vhd:973:57  */
+  assign n12120_o = last_data_read[7:0];
   /* TG68K_ALU.vhd:973:40  */
-  assign n12125_o = n12123_o == 8'b00000000;
-  /* TG68K_ALU.vhd:975:33  */
-  assign n12127_o = op1in[15:8];
-  /* TG68K_ALU.vhd:975:46  */
-  assign n12129_o = n12127_o == 8'b00000000;
-  /* TG68K_ALU.vhd:977:41  */
-  assign n12131_o = op1in[31:16];
-  /* TG68K_ALU.vhd:977:55  */
-  assign n12133_o = n12131_o == 16'b0000000000000000;
-  /* TG68K_ALU.vhd:977:33  */
-  assign n12136_o = n12133_o ? 1'b1 : 1'b0;
-  assign n12137_o = {n12136_o, 1'b1};
-  /* TG68K_ALU.vhd:975:25  */
-  assign n12139_o = n12129_o ? n12137_o : 2'b00;
-  assign n12140_o = {n12139_o, 1'b1};
-  /* TG68K_ALU.vhd:973:17  */
-  assign n12142_o = n12125_o ? n12140_o : 3'b000;
-  /* TG68K_ALU.vhd:971:17  */
-  assign n12144_o = n12122_o ? 3'b000 : n12142_o;
-  /* TG68K_ALU.vhd:984:32  */
-  assign n12147_o = exe_datatype == 2'b00;
-  /* TG68K_ALU.vhd:985:43  */
-  assign n12148_o = op1in[7];
-  /* TG68K_ALU.vhd:985:53  */
-  assign n12149_o = flag_z[0];
-  /* TG68K_ALU.vhd:985:46  */
-  assign n12150_o = {n12148_o, n12149_o};
-  /* TG68K_ALU.vhd:985:67  */
-  assign n12151_o = addsub_ofl[0];
-  /* TG68K_ALU.vhd:985:56  */
-  assign n12152_o = {n12150_o, n12151_o};
-  /* TG68K_ALU.vhd:985:76  */
-  assign n12153_o = n10049_o[0];
-  /* TG68K_ALU.vhd:985:70  */
-  assign n12154_o = {n12152_o, n12153_o};
-  /* TG68K_ALU.vhd:986:32  */
-  assign n12155_o = exec[12];
-  /* TG68K_ALU.vhd:986:53  */
-  assign n12156_o = exec[13];
+  assign n12121_o = n12831_q | n12120_o;
+  /* TG68K_ALU.vhd:975:40  */
+  assign n12122_o = op2out[7:0];
+  /* TG68K_ALU.vhd:972:17  */
+  assign n12123_o = n12119_o ? n12121_o : n12122_o;
+  /* TG68K_ALU.vhd:970:17  */
+  assign n12124_o = n12116_o ? n12118_o : n12123_o;
+  /* TG68K_ALU.vhd:968:17  */
+  assign n12125_o = n12113_o ? n12115_o : n12124_o;
+  /* TG68K_ALU.vhd:982:24  */
+  assign n12126_o = exec[28];
+  /* TG68K_ALU.vhd:982:50  */
+  assign n12127_o = n12831_q[2];
+  /* TG68K_ALU.vhd:982:53  */
+  assign n12128_o = ~n12127_o;
+  /* TG68K_ALU.vhd:982:41  */
+  assign n12129_o = n12128_o & n12126_o;
+  /* TG68K_ALU.vhd:984:28  */
+  assign n12130_o = op1in[7:0];
+  /* TG68K_ALU.vhd:984:40  */
+  assign n12132_o = n12130_o == 8'b00000000;
+  /* TG68K_ALU.vhd:986:33  */
+  assign n12134_o = op1in[15:8];
   /* TG68K_ALU.vhd:986:46  */
-  assign n12157_o = n12155_o | n12156_o;
-  assign n12158_o = {vflag_a, bcd_a_carry};
-  assign n12159_o = n12154_o[1:0];
+  assign n12136_o = n12134_o == 8'b00000000;
+  /* TG68K_ALU.vhd:988:41  */
+  assign n12138_o = op1in[31:16];
+  /* TG68K_ALU.vhd:988:55  */
+  assign n12140_o = n12138_o == 16'b0000000000000000;
+  /* TG68K_ALU.vhd:988:33  */
+  assign n12143_o = n12140_o ? 1'b1 : 1'b0;
+  assign n12144_o = {n12143_o, 1'b1};
   /* TG68K_ALU.vhd:986:25  */
-  assign n12160_o = n12157_o ? n12158_o : n12159_o;
-  assign n12161_o = n12154_o[3:2];
-  /* TG68K_ALU.vhd:990:35  */
-  assign n12163_o = exe_datatype == 2'b10;
-  /* TG68K_ALU.vhd:990:48  */
-  assign n12164_o = exec[10];
-  /* TG68K_ALU.vhd:990:41  */
-  assign n12165_o = n12163_o | n12164_o;
-  /* TG68K_ALU.vhd:991:43  */
-  assign n12166_o = op1in[31];
-  /* TG68K_ALU.vhd:991:54  */
-  assign n12167_o = flag_z[2];
-  /* TG68K_ALU.vhd:991:47  */
-  assign n12168_o = {n12166_o, n12167_o};
-  /* TG68K_ALU.vhd:991:68  */
-  assign n12169_o = addsub_ofl[2];
-  /* TG68K_ALU.vhd:991:57  */
-  assign n12170_o = {n12168_o, n12169_o};
-  /* TG68K_ALU.vhd:991:77  */
-  assign n12171_o = n10049_o[2];
-  /* TG68K_ALU.vhd:991:71  */
-  assign n12172_o = {n12170_o, n12171_o};
-  /* TG68K_ALU.vhd:993:43  */
-  assign n12173_o = op1in[15];
-  /* TG68K_ALU.vhd:993:54  */
-  assign n12174_o = flag_z[1];
-  /* TG68K_ALU.vhd:993:47  */
-  assign n12175_o = {n12173_o, n12174_o};
-  /* TG68K_ALU.vhd:993:68  */
-  assign n12176_o = addsub_ofl[1];
-  /* TG68K_ALU.vhd:993:57  */
-  assign n12177_o = {n12175_o, n12176_o};
-  /* TG68K_ALU.vhd:993:77  */
-  assign n12178_o = n10049_o[1];
-  /* TG68K_ALU.vhd:993:71  */
-  assign n12179_o = {n12177_o, n12178_o};
-  /* TG68K_ALU.vhd:990:17  */
-  assign n12180_o = n12165_o ? n12172_o : n12179_o;
-  assign n12181_o = {n12161_o, n12160_o};
+  assign n12146_o = n12136_o ? n12144_o : 2'b00;
+  assign n12147_o = {n12146_o, 1'b1};
   /* TG68K_ALU.vhd:984:17  */
-  assign n12182_o = n12147_o ? n12181_o : n12180_o;
-  /* TG68K_ALU.vhd:1000:40  */
-  assign n12184_o = exec[59];
-  /* TG68K_ALU.vhd:1000:55  */
-  assign n12185_o = n12184_o | set_stop;
-  /* TG68K_ALU.vhd:1003:40  */
-  assign n12188_o = exec[60];
-  /* TG68K_ALU.vhd:1007:40  */
-  assign n12191_o = exec[9];
-  /* TG68K_ALU.vhd:1007:66  */
-  assign n12192_o = ~decodeopc;
-  /* TG68K_ALU.vhd:1007:53  */
-  assign n12193_o = n12192_o & n12191_o;
-  /* TG68K_ALU.vhd:1008:65  */
-  assign n12194_o = set_flags[3];
-  /* TG68K_ALU.vhd:1008:69  */
-  assign n12195_o = n12194_o ^ rot_rot;
-  /* TG68K_ALU.vhd:1008:82  */
-  assign n12196_o = n12195_o | asl_vflag;
-  /* TG68K_ALU.vhd:1007:33  */
-  assign n12198_o = n12193_o ? n12196_o : 1'b0;
-  /* TG68K_ALU.vhd:1012:40  */
-  assign n12199_o = exec[51];
-  /* TG68K_ALU.vhd:1015:56  */
-  assign n12201_o = micro_state == 7'b0110011;
-  /* TG68K_ALU.vhd:1017:62  */
-  assign n12202_o = exe_opcode[8];
-  /* TG68K_ALU.vhd:1017:65  */
-  assign n12203_o = ~n12202_o;
-  /* TG68K_ALU.vhd:1019:92  */
-  assign n12204_o = reg_qa[31];
+  assign n12149_o = n12132_o ? n12147_o : 3'b000;
+  /* TG68K_ALU.vhd:982:17  */
+  assign n12151_o = n12129_o ? 3'b000 : n12149_o;
+  /* TG68K_ALU.vhd:995:32  */
+  assign n12154_o = exe_datatype == 2'b00;
+  /* TG68K_ALU.vhd:996:43  */
+  assign n12155_o = op1in[7];
+  /* TG68K_ALU.vhd:996:53  */
+  assign n12156_o = flag_z[0];
+  /* TG68K_ALU.vhd:996:46  */
+  assign n12157_o = {n12155_o, n12156_o};
+  /* TG68K_ALU.vhd:996:67  */
+  assign n12158_o = addsub_ofl[0];
+  /* TG68K_ALU.vhd:996:56  */
+  assign n12159_o = {n12157_o, n12158_o};
+  /* TG68K_ALU.vhd:996:76  */
+  assign n12160_o = n10050_o[0];
+  /* TG68K_ALU.vhd:996:70  */
+  assign n12161_o = {n12159_o, n12160_o};
+  /* TG68K_ALU.vhd:997:32  */
+  assign n12162_o = exec[12];
+  /* TG68K_ALU.vhd:997:53  */
+  assign n12163_o = exec[13];
+  /* TG68K_ALU.vhd:997:46  */
+  assign n12164_o = n12162_o | n12163_o;
+  assign n12165_o = {vflag_a, bcd_a_carry};
+  assign n12166_o = n12161_o[1:0];
+  /* TG68K_ALU.vhd:997:25  */
+  assign n12167_o = n12164_o ? n12165_o : n12166_o;
+  assign n12168_o = n12161_o[3:2];
+  /* TG68K_ALU.vhd:1001:35  */
+  assign n12170_o = exe_datatype == 2'b10;
+  /* TG68K_ALU.vhd:1001:48  */
+  assign n12171_o = exec[10];
+  /* TG68K_ALU.vhd:1001:41  */
+  assign n12172_o = n12170_o | n12171_o;
+  /* TG68K_ALU.vhd:1002:43  */
+  assign n12173_o = op1in[31];
+  /* TG68K_ALU.vhd:1002:54  */
+  assign n12174_o = flag_z[2];
+  /* TG68K_ALU.vhd:1002:47  */
+  assign n12175_o = {n12173_o, n12174_o};
+  /* TG68K_ALU.vhd:1002:68  */
+  assign n12176_o = addsub_ofl[2];
+  /* TG68K_ALU.vhd:1002:57  */
+  assign n12177_o = {n12175_o, n12176_o};
+  /* TG68K_ALU.vhd:1002:77  */
+  assign n12178_o = n10050_o[2];
+  /* TG68K_ALU.vhd:1002:71  */
+  assign n12179_o = {n12177_o, n12178_o};
+  /* TG68K_ALU.vhd:1004:43  */
+  assign n12180_o = op1in[15];
+  /* TG68K_ALU.vhd:1004:54  */
+  assign n12181_o = flag_z[1];
+  /* TG68K_ALU.vhd:1004:47  */
+  assign n12182_o = {n12180_o, n12181_o};
+  /* TG68K_ALU.vhd:1004:68  */
+  assign n12183_o = addsub_ofl[1];
+  /* TG68K_ALU.vhd:1004:57  */
+  assign n12184_o = {n12182_o, n12183_o};
+  /* TG68K_ALU.vhd:1004:77  */
+  assign n12185_o = n10050_o[1];
+  /* TG68K_ALU.vhd:1004:71  */
+  assign n12186_o = {n12184_o, n12185_o};
+  /* TG68K_ALU.vhd:1001:17  */
+  assign n12187_o = n12172_o ? n12179_o : n12186_o;
+  assign n12188_o = {n12168_o, n12167_o};
+  /* TG68K_ALU.vhd:995:17  */
+  assign n12189_o = n12154_o ? n12188_o : n12187_o;
+  /* TG68K_ALU.vhd:1011:40  */
+  assign n12191_o = exec[59];
+  /* TG68K_ALU.vhd:1011:55  */
+  assign n12192_o = n12191_o | set_stop;
+  /* TG68K_ALU.vhd:1014:40  */
+  assign n12195_o = exec[60];
+  /* TG68K_ALU.vhd:1018:40  */
+  assign n12198_o = exec[9];
+  /* TG68K_ALU.vhd:1018:66  */
+  assign n12199_o = ~decodeopc;
+  /* TG68K_ALU.vhd:1018:53  */
+  assign n12200_o = n12199_o & n12198_o;
+  /* TG68K_ALU.vhd:1019:65  */
+  assign n12201_o = set_flags[3];
+  /* TG68K_ALU.vhd:1019:69  */
+  assign n12202_o = n12201_o ^ rot_rot;
   /* TG68K_ALU.vhd:1019:82  */
-  assign n12205_o = ~n12204_o;
-  /* TG68K_ALU.vhd:1019:81  */
-  assign n12207_o = {1'b0, n12205_o};
-  /* TG68K_ALU.vhd:1019:96  */
-  assign n12209_o = {n12207_o, 2'b00};
-  /* TG68K_ALU.vhd:1017:49  */
-  assign n12211_o = n12203_o ? n12209_o : 4'b0100;
-  assign n12212_o = data_read[3:0];
-  assign n12213_o = data_read[3:0];
-  assign n12214_o = n12824_q[3:0];
-  /* TG68K_ALU.vhd:1000:33  */
-  assign n12215_o = n12185_o ? n12213_o : n12214_o;
-  /* TG68K_ALU.vhd:1003:33  */
-  assign n12216_o = n12188_o ? n12212_o : n12215_o;
-  /* TG68K_ALU.vhd:1015:41  */
-  assign n12217_o = n12201_o ? n12211_o : n12216_o;
-  /* TG68K_ALU.vhd:1024:43  */
-  assign n12218_o = exec[49];
-  /* TG68K_ALU.vhd:1024:53  */
-  assign n12219_o = ~n12218_o;
-  /* TG68K_ALU.vhd:1025:61  */
-  assign n12220_o = n12824_q[3:0];
-  /* TG68K_ALU.vhd:1026:48  */
-  assign n12221_o = exec[3];
-  /* TG68K_ALU.vhd:1027:70  */
-  assign n12222_o = set_flags[0];
-  /* TG68K_ALU.vhd:1028:51  */
-  assign n12223_o = exec[9];
-  /* TG68K_ALU.vhd:1028:76  */
-  assign n12225_o = rot_bits != 2'b11;
-  /* TG68K_ALU.vhd:1028:64  */
-  assign n12226_o = n12225_o & n12223_o;
-  /* TG68K_ALU.vhd:1028:91  */
-  assign n12227_o = exec[23];
-  /* TG68K_ALU.vhd:1028:100  */
-  assign n12228_o = ~n12227_o;
-  /* TG68K_ALU.vhd:1028:83  */
-  assign n12229_o = n12228_o & n12226_o;
-  /* TG68K_ALU.vhd:1030:51  */
-  assign n12230_o = exec[81];
-  assign n12231_o = data_read[4];
-  assign n12232_o = data_read[4];
-  assign n12233_o = n12824_q[4];
-  /* TG68K_ALU.vhd:1000:33  */
-  assign n12234_o = n12185_o ? n12232_o : n12233_o;
-  /* TG68K_ALU.vhd:1003:33  */
-  assign n12235_o = n12188_o ? n12231_o : n12234_o;
-  /* TG68K_ALU.vhd:1030:41  */
-  assign n12236_o = n12230_o ? bs_x : n12235_o;
-  /* TG68K_ALU.vhd:1028:41  */
-  assign n12237_o = n12229_o ? rot_x : n12236_o;
+  assign n12203_o = n12202_o | asl_vflag;
+  /* TG68K_ALU.vhd:1018:33  */
+  assign n12205_o = n12200_o ? n12203_o : 1'b0;
+  /* TG68K_ALU.vhd:1023:40  */
+  assign n12206_o = exec[51];
+  /* TG68K_ALU.vhd:1026:56  */
+  assign n12208_o = micro_state == 7'b0110011;
+  /* TG68K_ALU.vhd:1028:62  */
+  assign n12209_o = exe_opcode[8];
+  /* TG68K_ALU.vhd:1028:65  */
+  assign n12210_o = ~n12209_o;
+  /* TG68K_ALU.vhd:1030:92  */
+  assign n12211_o = reg_qa[31];
+  /* TG68K_ALU.vhd:1030:82  */
+  assign n12212_o = ~n12211_o;
+  /* TG68K_ALU.vhd:1030:81  */
+  assign n12214_o = {1'b0, n12212_o};
+  /* TG68K_ALU.vhd:1030:96  */
+  assign n12216_o = {n12214_o, 2'b00};
+  /* TG68K_ALU.vhd:1028:49  */
+  assign n12218_o = n12210_o ? n12216_o : 4'b0100;
+  assign n12219_o = data_read[3:0];
+  assign n12220_o = data_read[3:0];
+  assign n12221_o = n12831_q[3:0];
+  /* TG68K_ALU.vhd:1011:33  */
+  assign n12222_o = n12192_o ? n12220_o : n12221_o;
+  /* TG68K_ALU.vhd:1014:33  */
+  assign n12223_o = n12195_o ? n12219_o : n12222_o;
   /* TG68K_ALU.vhd:1026:41  */
-  assign n12238_o = n12221_o ? n12222_o : n12237_o;
-  /* TG68K_ALU.vhd:1034:49  */
-  assign n12239_o = exec[8];
-  /* TG68K_ALU.vhd:1034:65  */
-  assign n12240_o = exec[86];
-  /* TG68K_ALU.vhd:1034:58  */
-  assign n12241_o = n12239_o | n12240_o;
-  /* TG68K_ALU.vhd:1036:51  */
-  assign n12242_o = exec[21];
-  /* TG68K_ALU.vhd:1036:65  */
-  assign n12244_o = 1'b1 & n12242_o;
-  /* TG68K_ALU.vhd:1039:65  */
-  assign n12246_o = exe_opcode[15];
-  /* TG68K_ALU.vhd:1039:74  */
-  assign n12248_o = n12246_o | 1'b0;
-  /* TG68K_ALU.vhd:1040:83  */
-  assign n12249_o = op1in[15];
-  /* TG68K_ALU.vhd:1040:94  */
-  assign n12250_o = flag_z[1];
-  /* TG68K_ALU.vhd:1040:87  */
-  assign n12251_o = {n12249_o, n12250_o};
-  /* TG68K_ALU.vhd:1040:97  */
-  assign n12253_o = {n12251_o, 2'b00};
-  /* TG68K_ALU.vhd:1042:83  */
-  assign n12254_o = op1in[31];
-  /* TG68K_ALU.vhd:1042:94  */
-  assign n12255_o = flag_z[2];
-  /* TG68K_ALU.vhd:1042:87  */
-  assign n12256_o = {n12254_o, n12255_o};
-  /* TG68K_ALU.vhd:1042:97  */
-  assign n12258_o = {n12256_o, 2'b00};
-  /* TG68K_ALU.vhd:1039:49  */
-  assign n12259_o = n12248_o ? n12253_o : n12258_o;
-  /* TG68K_ALU.vhd:1037:49  */
-  assign n12260_o = v_flag ? 4'b1010 : n12259_o;
-  /* TG68K_ALU.vhd:1044:51  */
-  assign n12261_o = exec[68];
-  /* TG68K_ALU.vhd:1044:72  */
-  assign n12263_o = 1'b1 & n12261_o;
-  /* TG68K_ALU.vhd:1045:70  */
-  assign n12264_o = set_flags[3];
-  /* TG68K_ALU.vhd:1046:70  */
-  assign n12265_o = set_flags[2];
-  /* TG68K_ALU.vhd:1046:83  */
-  assign n12266_o = n12824_q[2];
-  /* TG68K_ALU.vhd:1046:74  */
-  assign n12267_o = n12265_o & n12266_o;
-  /* TG68K_ALU.vhd:1049:51  */
-  assign n12270_o = exec[67];
-  /* TG68K_ALU.vhd:1049:71  */
-  assign n12272_o = 1'b1 & n12270_o;
-  /* TG68K_ALU.vhd:1050:70  */
-  assign n12273_o = set_flags[3];
-  /* TG68K_ALU.vhd:1051:70  */
-  assign n12274_o = set_flags[2];
-  /* TG68K_ALU.vhd:1054:51  */
-  assign n12276_o = exec[5];
-  /* TG68K_ALU.vhd:1054:70  */
-  assign n12277_o = exec[6];
-  /* TG68K_ALU.vhd:1054:63  */
-  assign n12278_o = n12276_o | n12277_o;
-  /* TG68K_ALU.vhd:1054:90  */
-  assign n12279_o = exec[7];
-  /* TG68K_ALU.vhd:1054:83  */
-  assign n12280_o = n12278_o | n12279_o;
-  /* TG68K_ALU.vhd:1054:110  */
-  assign n12281_o = exec[0];
-  /* TG68K_ALU.vhd:1054:103  */
-  assign n12282_o = n12280_o | n12281_o;
-  /* TG68K_ALU.vhd:1054:131  */
-  assign n12283_o = exec[1];
-  /* TG68K_ALU.vhd:1054:124  */
-  assign n12284_o = n12282_o | n12283_o;
-  /* TG68K_ALU.vhd:1054:153  */
-  assign n12285_o = exec[15];
-  /* TG68K_ALU.vhd:1054:146  */
-  assign n12286_o = n12284_o | n12285_o;
-  /* TG68K_ALU.vhd:1054:174  */
-  assign n12287_o = exec[75];
-  /* TG68K_ALU.vhd:1054:167  */
-  assign n12288_o = n12286_o | n12287_o;
-  /* TG68K_ALU.vhd:1054:194  */
-  assign n12289_o = exec[20];
-  /* TG68K_ALU.vhd:1054:208  */
-  assign n12291_o = 1'b1 & n12289_o;
-  /* TG68K_ALU.vhd:1054:186  */
-  assign n12292_o = n12288_o | n12291_o;
-  /* TG68K_ALU.vhd:1057:56  */
-  assign n12295_o = exec[75];
-  assign n12296_o = set_flags[3];
-  /* TG68K_ALU.vhd:1057:49  */
-  assign n12297_o = n12295_o ? bf_nflag : n12296_o;
-  assign n12298_o = set_flags[2];
+  assign n12224_o = n12208_o ? n12218_o : n12223_o;
+  /* TG68K_ALU.vhd:1035:43  */
+  assign n12225_o = exec[49];
+  /* TG68K_ALU.vhd:1035:53  */
+  assign n12226_o = ~n12225_o;
+  /* TG68K_ALU.vhd:1036:61  */
+  assign n12227_o = n12831_q[3:0];
+  /* TG68K_ALU.vhd:1037:48  */
+  assign n12228_o = exec[3];
+  /* TG68K_ALU.vhd:1038:70  */
+  assign n12229_o = set_flags[0];
+  /* TG68K_ALU.vhd:1039:51  */
+  assign n12230_o = exec[9];
+  /* TG68K_ALU.vhd:1039:76  */
+  assign n12232_o = rot_bits != 2'b11;
+  /* TG68K_ALU.vhd:1039:64  */
+  assign n12233_o = n12232_o & n12230_o;
+  /* TG68K_ALU.vhd:1039:91  */
+  assign n12234_o = exec[23];
+  /* TG68K_ALU.vhd:1039:100  */
+  assign n12235_o = ~n12234_o;
+  /* TG68K_ALU.vhd:1039:83  */
+  assign n12236_o = n12235_o & n12233_o;
+  /* TG68K_ALU.vhd:1041:51  */
+  assign n12237_o = exec[81];
+  assign n12238_o = data_read[4];
+  assign n12239_o = data_read[4];
+  assign n12240_o = n12831_q[4];
+  /* TG68K_ALU.vhd:1011:33  */
+  assign n12241_o = n12192_o ? n12239_o : n12240_o;
+  /* TG68K_ALU.vhd:1014:33  */
+  assign n12242_o = n12195_o ? n12238_o : n12241_o;
+  /* TG68K_ALU.vhd:1041:41  */
+  assign n12243_o = n12237_o ? bs_x : n12242_o;
+  /* TG68K_ALU.vhd:1039:41  */
+  assign n12244_o = n12236_o ? rot_x : n12243_o;
+  /* TG68K_ALU.vhd:1037:41  */
+  assign n12245_o = n12228_o ? n12229_o : n12244_o;
+  /* TG68K_ALU.vhd:1045:49  */
+  assign n12246_o = exec[8];
+  /* TG68K_ALU.vhd:1045:65  */
+  assign n12247_o = exec[86];
+  /* TG68K_ALU.vhd:1045:58  */
+  assign n12248_o = n12246_o | n12247_o;
+  /* TG68K_ALU.vhd:1047:51  */
+  assign n12249_o = exec[21];
+  /* TG68K_ALU.vhd:1047:65  */
+  assign n12251_o = 1'b1 & n12249_o;
+  /* TG68K_ALU.vhd:1050:65  */
+  assign n12253_o = exe_opcode[15];
+  /* TG68K_ALU.vhd:1050:74  */
+  assign n12255_o = n12253_o | 1'b0;
+  /* TG68K_ALU.vhd:1051:83  */
+  assign n12256_o = op1in[15];
+  /* TG68K_ALU.vhd:1051:94  */
+  assign n12257_o = flag_z[1];
+  /* TG68K_ALU.vhd:1051:87  */
+  assign n12258_o = {n12256_o, n12257_o};
+  /* TG68K_ALU.vhd:1051:97  */
+  assign n12260_o = {n12258_o, 2'b00};
+  /* TG68K_ALU.vhd:1053:83  */
+  assign n12261_o = op1in[31];
+  /* TG68K_ALU.vhd:1053:94  */
+  assign n12262_o = flag_z[2];
+  /* TG68K_ALU.vhd:1053:87  */
+  assign n12263_o = {n12261_o, n12262_o};
+  /* TG68K_ALU.vhd:1053:97  */
+  assign n12265_o = {n12263_o, 2'b00};
+  /* TG68K_ALU.vhd:1050:49  */
+  assign n12266_o = n12255_o ? n12260_o : n12265_o;
+  /* TG68K_ALU.vhd:1048:49  */
+  assign n12267_o = v_flag ? 4'b1010 : n12266_o;
+  /* TG68K_ALU.vhd:1055:51  */
+  assign n12268_o = exec[68];
+  /* TG68K_ALU.vhd:1055:72  */
+  assign n12270_o = 1'b1 & n12268_o;
+  /* TG68K_ALU.vhd:1056:70  */
+  assign n12271_o = set_flags[3];
+  /* TG68K_ALU.vhd:1057:70  */
+  assign n12272_o = set_flags[2];
+  /* TG68K_ALU.vhd:1057:83  */
+  assign n12273_o = n12831_q[2];
+  /* TG68K_ALU.vhd:1057:74  */
+  assign n12274_o = n12272_o & n12273_o;
   /* TG68K_ALU.vhd:1060:51  */
-  assign n12299_o = exec[9];
-  /* TG68K_ALU.vhd:1061:79  */
-  assign n12300_o = set_flags[3:2];
-  /* TG68K_ALU.vhd:1063:60  */
-  assign n12302_o = rot_bits == 2'b00;
-  /* TG68K_ALU.vhd:1063:81  */
+  assign n12277_o = exec[67];
+  /* TG68K_ALU.vhd:1060:71  */
+  assign n12279_o = 1'b1 & n12277_o;
+  /* TG68K_ALU.vhd:1061:70  */
+  assign n12280_o = set_flags[3];
+  /* TG68K_ALU.vhd:1062:70  */
+  assign n12281_o = set_flags[2];
+  /* TG68K_ALU.vhd:1065:51  */
+  assign n12283_o = exec[5];
+  /* TG68K_ALU.vhd:1065:70  */
+  assign n12284_o = exec[6];
+  /* TG68K_ALU.vhd:1065:63  */
+  assign n12285_o = n12283_o | n12284_o;
+  /* TG68K_ALU.vhd:1065:90  */
+  assign n12286_o = exec[7];
+  /* TG68K_ALU.vhd:1065:83  */
+  assign n12287_o = n12285_o | n12286_o;
+  /* TG68K_ALU.vhd:1065:110  */
+  assign n12288_o = exec[0];
+  /* TG68K_ALU.vhd:1065:103  */
+  assign n12289_o = n12287_o | n12288_o;
+  /* TG68K_ALU.vhd:1065:131  */
+  assign n12290_o = exec[1];
+  /* TG68K_ALU.vhd:1065:124  */
+  assign n12291_o = n12289_o | n12290_o;
+  /* TG68K_ALU.vhd:1065:153  */
+  assign n12292_o = exec[15];
+  /* TG68K_ALU.vhd:1065:146  */
+  assign n12293_o = n12291_o | n12292_o;
+  /* TG68K_ALU.vhd:1065:174  */
+  assign n12294_o = exec[75];
+  /* TG68K_ALU.vhd:1065:167  */
+  assign n12295_o = n12293_o | n12294_o;
+  /* TG68K_ALU.vhd:1065:194  */
+  assign n12296_o = exec[20];
+  /* TG68K_ALU.vhd:1065:208  */
+  assign n12298_o = 1'b1 & n12296_o;
+  /* TG68K_ALU.vhd:1065:186  */
+  assign n12299_o = n12295_o | n12298_o;
+  /* TG68K_ALU.vhd:1068:56  */
+  assign n12302_o = exec[75];
   assign n12303_o = set_flags[3];
-  /* TG68K_ALU.vhd:1063:85  */
-  assign n12304_o = n12303_o ^ rot_rot;
-  /* TG68K_ALU.vhd:1063:98  */
-  assign n12305_o = n12304_o | asl_vflag;
-  /* TG68K_ALU.vhd:1063:66  */
-  assign n12306_o = n12305_o & n12302_o;
-  /* TG68K_ALU.vhd:1063:49  */
-  assign n12309_o = n12306_o ? 1'b1 : 1'b0;
-  /* TG68K_ALU.vhd:1068:51  */
-  assign n12310_o = exec[81];
-  /* TG68K_ALU.vhd:1069:79  */
-  assign n12311_o = set_flags[3:2];
-  /* TG68K_ALU.vhd:1072:51  */
-  assign n12312_o = exec[14];
-  /* TG68K_ALU.vhd:1073:61  */
-  assign n12313_o = ~one_bit_in;
-  /* TG68K_ALU.vhd:1074:51  */
-  assign n12314_o = exec[87];
-  /* TG68K_ALU.vhd:1079:63  */
-  assign n12315_o = last_flags1[0];
-  /* TG68K_ALU.vhd:1079:66  */
-  assign n12316_o = ~n12315_o;
-  /* TG68K_ALU.vhd:1080:74  */
-  assign n12317_o = n12824_q[0];
-  /* TG68K_ALU.vhd:1080:95  */
-  assign n12318_o = set_flags[0];
-  /* TG68K_ALU.vhd:1080:82  */
-  assign n12319_o = ~n12318_o;
-  /* TG68K_ALU.vhd:1080:116  */
-  assign n12320_o = set_flags[2];
-  /* TG68K_ALU.vhd:1080:103  */
-  assign n12321_o = ~n12320_o;
-  /* TG68K_ALU.vhd:1080:99  */
-  assign n12322_o = n12319_o & n12321_o;
-  /* TG68K_ALU.vhd:1080:78  */
-  assign n12323_o = n12317_o | n12322_o;
-  /* TG68K_ALU.vhd:1082:75  */
-  assign n12324_o = n12824_q[0];
-  /* TG68K_ALU.vhd:1082:92  */
+  /* TG68K_ALU.vhd:1068:49  */
+  assign n12304_o = n12302_o ? bf_nflag : n12303_o;
+  assign n12305_o = set_flags[2];
+  /* TG68K_ALU.vhd:1071:51  */
+  assign n12306_o = exec[9];
+  /* TG68K_ALU.vhd:1072:79  */
+  assign n12307_o = set_flags[3:2];
+  /* TG68K_ALU.vhd:1074:60  */
+  assign n12309_o = rot_bits == 2'b00;
+  /* TG68K_ALU.vhd:1074:81  */
+  assign n12310_o = set_flags[3];
+  /* TG68K_ALU.vhd:1074:85  */
+  assign n12311_o = n12310_o ^ rot_rot;
+  /* TG68K_ALU.vhd:1074:98  */
+  assign n12312_o = n12311_o | asl_vflag;
+  /* TG68K_ALU.vhd:1074:66  */
+  assign n12313_o = n12312_o & n12309_o;
+  /* TG68K_ALU.vhd:1074:49  */
+  assign n12316_o = n12313_o ? 1'b1 : 1'b0;
+  /* TG68K_ALU.vhd:1079:51  */
+  assign n12317_o = exec[81];
+  /* TG68K_ALU.vhd:1080:79  */
+  assign n12318_o = set_flags[3:2];
+  /* TG68K_ALU.vhd:1083:51  */
+  assign n12319_o = exec[14];
+  /* TG68K_ALU.vhd:1084:61  */
+  assign n12320_o = ~one_bit_in;
+  /* TG68K_ALU.vhd:1085:51  */
+  assign n12321_o = exec[87];
+  /* TG68K_ALU.vhd:1090:63  */
+  assign n12322_o = last_flags1[0];
+  /* TG68K_ALU.vhd:1090:66  */
+  assign n12323_o = ~n12322_o;
+  /* TG68K_ALU.vhd:1091:74  */
+  assign n12324_o = n12831_q[0];
+  /* TG68K_ALU.vhd:1091:95  */
   assign n12325_o = set_flags[0];
-  /* TG68K_ALU.vhd:1082:79  */
-  assign n12326_o = n12324_o ^ n12325_o;
-  /* TG68K_ALU.vhd:1082:111  */
-  assign n12327_o = n12824_q[2];
-  /* TG68K_ALU.vhd:1082:102  */
+  /* TG68K_ALU.vhd:1091:82  */
+  assign n12326_o = ~n12325_o;
+  /* TG68K_ALU.vhd:1091:116  */
+  assign n12327_o = set_flags[2];
+  /* TG68K_ALU.vhd:1091:103  */
   assign n12328_o = ~n12327_o;
-  /* TG68K_ALU.vhd:1082:97  */
+  /* TG68K_ALU.vhd:1091:99  */
   assign n12329_o = n12326_o & n12328_o;
-  /* TG68K_ALU.vhd:1082:132  */
-  assign n12330_o = set_flags[2];
-  /* TG68K_ALU.vhd:1082:119  */
-  assign n12331_o = ~n12330_o;
-  /* TG68K_ALU.vhd:1082:115  */
-  assign n12332_o = n12329_o & n12331_o;
-  /* TG68K_ALU.vhd:1079:49  */
-  assign n12333_o = n12316_o ? n12323_o : n12332_o;
-  /* TG68K_ALU.vhd:1085:66  */
-  assign n12335_o = n12824_q[2];
-  /* TG68K_ALU.vhd:1085:82  */
-  assign n12336_o = set_flags[2];
-  /* TG68K_ALU.vhd:1085:70  */
-  assign n12337_o = n12335_o | n12336_o;
-  /* TG68K_ALU.vhd:1086:76  */
-  assign n12338_o = last_flags1[0];
-  /* TG68K_ALU.vhd:1086:61  */
-  assign n12339_o = ~n12338_o;
-  /* TG68K_ALU.vhd:1087:51  */
-  assign n12340_o = exec[31];
-  /* TG68K_ALU.vhd:1088:64  */
-  assign n12342_o = exe_datatype == 2'b01;
-  /* TG68K_ALU.vhd:1089:75  */
-  assign n12343_o = op1out[15];
-  /* TG68K_ALU.vhd:1091:75  */
-  assign n12344_o = op1out[31];
-  /* TG68K_ALU.vhd:1088:49  */
-  assign n12345_o = n12342_o ? n12343_o : n12344_o;
-  /* TG68K_ALU.vhd:1093:58  */
-  assign n12346_o = op1out[15:0];
-  /* TG68K_ALU.vhd:1093:71  */
-  assign n12348_o = n12346_o == 16'b0000000000000000;
+  /* TG68K_ALU.vhd:1091:78  */
+  assign n12330_o = n12324_o | n12329_o;
+  /* TG68K_ALU.vhd:1093:75  */
+  assign n12331_o = n12831_q[0];
+  /* TG68K_ALU.vhd:1093:92  */
+  assign n12332_o = set_flags[0];
+  /* TG68K_ALU.vhd:1093:79  */
+  assign n12333_o = n12331_o ^ n12332_o;
+  /* TG68K_ALU.vhd:1093:111  */
+  assign n12334_o = n12831_q[2];
+  /* TG68K_ALU.vhd:1093:102  */
+  assign n12335_o = ~n12334_o;
   /* TG68K_ALU.vhd:1093:97  */
-  assign n12350_o = exe_datatype == 2'b01;
-  /* TG68K_ALU.vhd:1093:112  */
-  assign n12351_o = op1out[31:16];
-  /* TG68K_ALU.vhd:1093:126  */
-  assign n12353_o = n12351_o == 16'b0000000000000000;
-  /* TG68K_ALU.vhd:1093:103  */
-  assign n12354_o = n12350_o | n12353_o;
-  /* TG68K_ALU.vhd:1093:80  */
-  assign n12355_o = n12354_o & n12348_o;
-  /* TG68K_ALU.vhd:1093:49  */
-  assign n12358_o = n12355_o ? 1'b1 : 1'b0;
-  assign n12361_o = {n12345_o, n12358_o, 1'b0, 1'b0};
-  assign n12362_o = data_read[3:0];
-  assign n12363_o = data_read[3:0];
-  assign n12364_o = n12824_q[3:0];
-  /* TG68K_ALU.vhd:1000:33  */
-  assign n12365_o = n12185_o ? n12363_o : n12364_o;
-  /* TG68K_ALU.vhd:1003:33  */
-  assign n12366_o = n12188_o ? n12362_o : n12365_o;
-  /* TG68K_ALU.vhd:1087:41  */
-  assign n12367_o = n12340_o ? n12361_o : n12366_o;
-  assign n12368_o = {n12339_o, n12337_o, 1'b0, n12333_o};
-  /* TG68K_ALU.vhd:1074:41  */
-  assign n12369_o = n12314_o ? n12368_o : n12367_o;
-  assign n12370_o = n12369_o[1:0];
-  assign n12371_o = data_read[1:0];
-  assign n12372_o = data_read[1:0];
-  assign n12373_o = n12824_q[1:0];
-  /* TG68K_ALU.vhd:1000:33  */
-  assign n12374_o = n12185_o ? n12372_o : n12373_o;
-  /* TG68K_ALU.vhd:1003:33  */
-  assign n12375_o = n12188_o ? n12371_o : n12374_o;
-  /* TG68K_ALU.vhd:1072:41  */
-  assign n12376_o = n12312_o ? n12375_o : n12370_o;
-  assign n12377_o = n12369_o[2];
-  /* TG68K_ALU.vhd:1072:41  */
-  assign n12378_o = n12312_o ? n12313_o : n12377_o;
-  assign n12379_o = n12369_o[3];
-  assign n12380_o = data_read[3];
-  assign n12381_o = data_read[3];
-  assign n12382_o = n12824_q[3];
-  /* TG68K_ALU.vhd:1000:33  */
-  assign n12383_o = n12185_o ? n12381_o : n12382_o;
-  /* TG68K_ALU.vhd:1003:33  */
-  assign n12384_o = n12188_o ? n12380_o : n12383_o;
-  /* TG68K_ALU.vhd:1072:41  */
-  assign n12385_o = n12312_o ? n12384_o : n12379_o;
-  assign n12386_o = {n12385_o, n12378_o, n12376_o};
-  assign n12387_o = {n12311_o, bs_v, bs_c};
-  /* TG68K_ALU.vhd:1068:41  */
-  assign n12388_o = n12310_o ? n12387_o : n12386_o;
-  assign n12389_o = {n12300_o, n12309_o, rot_c};
+  assign n12336_o = n12333_o & n12335_o;
+  /* TG68K_ALU.vhd:1093:132  */
+  assign n12337_o = set_flags[2];
+  /* TG68K_ALU.vhd:1093:119  */
+  assign n12338_o = ~n12337_o;
+  /* TG68K_ALU.vhd:1093:115  */
+  assign n12339_o = n12336_o & n12338_o;
+  /* TG68K_ALU.vhd:1090:49  */
+  assign n12340_o = n12323_o ? n12330_o : n12339_o;
+  /* TG68K_ALU.vhd:1096:66  */
+  assign n12342_o = n12831_q[2];
+  /* TG68K_ALU.vhd:1096:82  */
+  assign n12343_o = set_flags[2];
+  /* TG68K_ALU.vhd:1096:70  */
+  assign n12344_o = n12342_o | n12343_o;
+  /* TG68K_ALU.vhd:1097:76  */
+  assign n12345_o = last_flags1[0];
+  /* TG68K_ALU.vhd:1097:61  */
+  assign n12346_o = ~n12345_o;
+  /* TG68K_ALU.vhd:1098:51  */
+  assign n12347_o = exec[31];
+  /* TG68K_ALU.vhd:1099:64  */
+  assign n12349_o = exe_datatype == 2'b01;
+  /* TG68K_ALU.vhd:1100:75  */
+  assign n12350_o = op1out[15];
+  /* TG68K_ALU.vhd:1102:75  */
+  assign n12351_o = op1out[31];
+  /* TG68K_ALU.vhd:1099:49  */
+  assign n12352_o = n12349_o ? n12350_o : n12351_o;
+  /* TG68K_ALU.vhd:1104:58  */
+  assign n12353_o = op1out[15:0];
+  /* TG68K_ALU.vhd:1104:71  */
+  assign n12355_o = n12353_o == 16'b0000000000000000;
+  /* TG68K_ALU.vhd:1104:97  */
+  assign n12357_o = exe_datatype == 2'b01;
+  /* TG68K_ALU.vhd:1104:112  */
+  assign n12358_o = op1out[31:16];
+  /* TG68K_ALU.vhd:1104:126  */
+  assign n12360_o = n12358_o == 16'b0000000000000000;
+  /* TG68K_ALU.vhd:1104:103  */
+  assign n12361_o = n12357_o | n12360_o;
+  /* TG68K_ALU.vhd:1104:80  */
+  assign n12362_o = n12361_o & n12355_o;
+  /* TG68K_ALU.vhd:1104:49  */
+  assign n12365_o = n12362_o ? 1'b1 : 1'b0;
+  assign n12368_o = {n12352_o, n12365_o, 1'b0, 1'b0};
+  assign n12369_o = data_read[3:0];
+  assign n12370_o = data_read[3:0];
+  assign n12371_o = n12831_q[3:0];
+  /* TG68K_ALU.vhd:1011:33  */
+  assign n12372_o = n12192_o ? n12370_o : n12371_o;
+  /* TG68K_ALU.vhd:1014:33  */
+  assign n12373_o = n12195_o ? n12369_o : n12372_o;
+  /* TG68K_ALU.vhd:1098:41  */
+  assign n12374_o = n12347_o ? n12368_o : n12373_o;
+  assign n12375_o = {n12346_o, n12344_o, 1'b0, n12340_o};
+  /* TG68K_ALU.vhd:1085:41  */
+  assign n12376_o = n12321_o ? n12375_o : n12374_o;
+  assign n12377_o = n12376_o[1:0];
+  assign n12378_o = data_read[1:0];
+  assign n12379_o = data_read[1:0];
+  assign n12380_o = n12831_q[1:0];
+  /* TG68K_ALU.vhd:1011:33  */
+  assign n12381_o = n12192_o ? n12379_o : n12380_o;
+  /* TG68K_ALU.vhd:1014:33  */
+  assign n12382_o = n12195_o ? n12378_o : n12381_o;
+  /* TG68K_ALU.vhd:1083:41  */
+  assign n12383_o = n12319_o ? n12382_o : n12377_o;
+  assign n12384_o = n12376_o[2];
+  /* TG68K_ALU.vhd:1083:41  */
+  assign n12385_o = n12319_o ? n12320_o : n12384_o;
+  assign n12386_o = n12376_o[3];
+  assign n12387_o = data_read[3];
+  assign n12388_o = data_read[3];
+  assign n12389_o = n12831_q[3];
+  /* TG68K_ALU.vhd:1011:33  */
+  assign n12390_o = n12192_o ? n12388_o : n12389_o;
+  /* TG68K_ALU.vhd:1014:33  */
+  assign n12391_o = n12195_o ? n12387_o : n12390_o;
+  /* TG68K_ALU.vhd:1083:41  */
+  assign n12392_o = n12319_o ? n12391_o : n12386_o;
+  assign n12393_o = {n12392_o, n12385_o, n12383_o};
+  assign n12394_o = {n12318_o, bs_v, bs_c};
+  /* TG68K_ALU.vhd:1079:41  */
+  assign n12395_o = n12317_o ? n12394_o : n12393_o;
+  assign n12396_o = {n12307_o, n12316_o, rot_c};
+  /* TG68K_ALU.vhd:1071:41  */
+  assign n12397_o = n12306_o ? n12396_o : n12395_o;
+  assign n12398_o = {n12304_o, n12305_o, 2'b00};
+  /* TG68K_ALU.vhd:1065:41  */
+  assign n12399_o = n12299_o ? n12398_o : n12397_o;
+  assign n12400_o = {n12280_o, n12281_o, set_mv_flag, 1'b0};
   /* TG68K_ALU.vhd:1060:41  */
-  assign n12390_o = n12299_o ? n12389_o : n12388_o;
-  assign n12391_o = {n12297_o, n12298_o, 2'b00};
-  /* TG68K_ALU.vhd:1054:41  */
-  assign n12392_o = n12292_o ? n12391_o : n12390_o;
-  assign n12393_o = {n12273_o, n12274_o, set_mv_flag, 1'b0};
-  /* TG68K_ALU.vhd:1049:41  */
-  assign n12394_o = n12272_o ? n12393_o : n12392_o;
-  assign n12395_o = {n12264_o, n12267_o, 1'b0, 1'b0};
-  /* TG68K_ALU.vhd:1044:41  */
-  assign n12396_o = n12263_o ? n12395_o : n12394_o;
-  /* TG68K_ALU.vhd:1036:41  */
-  assign n12397_o = n12244_o ? n12260_o : n12396_o;
-  /* TG68K_ALU.vhd:1034:41  */
-  assign n12398_o = n12241_o ? set_flags : n12397_o;
-  assign n12399_o = {n12238_o, n12398_o};
-  assign n12400_o = data_read[4:0];
-  assign n12401_o = data_read[4:0];
-  assign n12402_o = n12824_q[4:0];
-  /* TG68K_ALU.vhd:1000:33  */
-  assign n12403_o = n12185_o ? n12401_o : n12402_o;
-  /* TG68K_ALU.vhd:1003:33  */
-  assign n12404_o = n12188_o ? n12400_o : n12403_o;
-  /* TG68K_ALU.vhd:1024:33  */
-  assign n12405_o = n12219_o ? n12399_o : n12404_o;
-  /* TG68K_ALU.vhd:1024:33  */
-  assign n12406_o = n12219_o ? n12220_o : last_flags1;
-  assign n12407_o = n12405_o[3:0];
+  assign n12401_o = n12279_o ? n12400_o : n12399_o;
+  assign n12402_o = {n12271_o, n12274_o, 1'b0, 1'b0};
+  /* TG68K_ALU.vhd:1055:41  */
+  assign n12403_o = n12270_o ? n12402_o : n12401_o;
+  /* TG68K_ALU.vhd:1047:41  */
+  assign n12404_o = n12251_o ? n12267_o : n12403_o;
+  /* TG68K_ALU.vhd:1045:41  */
+  assign n12405_o = n12248_o ? set_flags : n12404_o;
+  assign n12406_o = {n12245_o, n12405_o};
+  assign n12407_o = data_read[4:0];
+  assign n12408_o = data_read[4:0];
+  assign n12409_o = n12831_q[4:0];
+  /* TG68K_ALU.vhd:1011:33  */
+  assign n12410_o = n12192_o ? n12408_o : n12409_o;
   /* TG68K_ALU.vhd:1014:33  */
-  assign n12408_o = z_error ? n12217_o : n12407_o;
-  assign n12409_o = n12405_o[4];
-  assign n12410_o = data_read[4];
-  assign n12411_o = data_read[4];
-  assign n12412_o = n12824_q[4];
-  /* TG68K_ALU.vhd:1000:33  */
-  assign n12413_o = n12185_o ? n12411_o : n12412_o;
-  /* TG68K_ALU.vhd:1003:33  */
-  assign n12414_o = n12188_o ? n12410_o : n12413_o;
+  assign n12411_o = n12195_o ? n12407_o : n12410_o;
+  /* TG68K_ALU.vhd:1035:33  */
+  assign n12412_o = n12226_o ? n12406_o : n12411_o;
+  /* TG68K_ALU.vhd:1035:33  */
+  assign n12413_o = n12226_o ? n12227_o : last_flags1;
+  assign n12414_o = n12412_o[3:0];
+  /* TG68K_ALU.vhd:1025:33  */
+  assign n12415_o = z_error ? n12224_o : n12414_o;
+  assign n12416_o = n12412_o[4];
+  assign n12417_o = data_read[4];
+  assign n12418_o = data_read[4];
+  assign n12419_o = n12831_q[4];
+  /* TG68K_ALU.vhd:1011:33  */
+  assign n12420_o = n12192_o ? n12418_o : n12419_o;
   /* TG68K_ALU.vhd:1014:33  */
-  assign n12415_o = z_error ? n12414_o : n12409_o;
+  assign n12421_o = n12195_o ? n12417_o : n12420_o;
+  /* TG68K_ALU.vhd:1025:33  */
+  assign n12422_o = z_error ? n12421_o : n12416_o;
+  /* TG68K_ALU.vhd:1025:33  */
+  assign n12423_o = z_error ? last_flags1 : n12413_o;
+  assign n12424_o = {n12422_o, n12415_o};
+  assign n12425_o = ccrin[4:0];
+  /* TG68K_ALU.vhd:1023:33  */
+  assign n12426_o = n12206_o ? n12425_o : n12424_o;
+  assign n12427_o = ccrin[7:5];
+  assign n12428_o = data_read[7:5];
+  assign n12429_o = data_read[7:5];
+  assign n12430_o = n12831_q[7:5];
+  /* TG68K_ALU.vhd:1011:33  */
+  assign n12431_o = n12192_o ? n12429_o : n12430_o;
   /* TG68K_ALU.vhd:1014:33  */
-  assign n12416_o = z_error ? last_flags1 : n12406_o;
-  assign n12417_o = {n12415_o, n12408_o};
-  assign n12418_o = ccrin[4:0];
-  /* TG68K_ALU.vhd:1012:33  */
-  assign n12419_o = n12199_o ? n12418_o : n12417_o;
-  assign n12420_o = ccrin[7:5];
-  assign n12421_o = data_read[7:5];
-  assign n12422_o = data_read[7:5];
-  assign n12423_o = n12824_q[7:5];
-  /* TG68K_ALU.vhd:1000:33  */
-  assign n12424_o = n12185_o ? n12422_o : n12423_o;
-  /* TG68K_ALU.vhd:1003:33  */
-  assign n12425_o = n12188_o ? n12421_o : n12424_o;
-  /* TG68K_ALU.vhd:1012:33  */
-  assign n12426_o = n12199_o ? n12420_o : n12425_o;
-  /* TG68K_ALU.vhd:1012:33  */
-  assign n12432_o = n12199_o ? last_flags1 : n12416_o;
-  assign n12433_o = {n12426_o, n12419_o};
-  /* TG68K_ALU.vhd:999:25  */
-  assign n12435_o = clkena_lw ? n12432_o : last_flags1;
-  /* TG68K_ALU.vhd:999:25  */
-  assign n12436_o = clkena_lw ? n12198_o : asl_vflag;
-  /* TG68K_ALU.vhd:997:25  */
-  assign n12439_o = reset ? last_flags1 : n12435_o;
-  /* TG68K_ALU.vhd:997:25  */
-  assign n12440_o = reset ? asl_vflag : n12436_o;
-  assign n12442_o = n12437_o[4:0];
-  assign n12443_o = n12433_o[4:0];
-  assign n12444_o = n12824_q[4:0];
-  /* TG68K_ALU.vhd:999:25  */
-  assign n12445_o = clkena_lw ? n12443_o : n12444_o;
-  /* TG68K_ALU.vhd:997:25  */
-  assign n12446_o = reset ? n12442_o : n12445_o;
-  assign n12447_o = {3'b000, n12446_o};
-  /* TG68K_ALU.vhd:1162:45  */
-  assign n12454_o = faktorb[31];
-  /* TG68K_ALU.vhd:1162:34  */
-  assign n12455_o = n12454_o & signedop;
-  /* TG68K_ALU.vhd:1162:55  */
-  assign n12456_o = n12455_o | fasign;
-  /* TG68K_ALU.vhd:1163:45  */
-  assign n12457_o = mulu_reg[63];
-  /* TG68K_ALU.vhd:1162:17  */
-  assign n12459_o = n12456_o ? n12457_o : 1'b0;
-  /* TG68K_ALU.vhd:1168:44  */
-  assign n12460_o = faktorb[31];
-  /* TG68K_ALU.vhd:1168:33  */
-  assign n12461_o = n12460_o & signedop;
-  /* TG68K_ALU.vhd:1168:17  */
-  assign n12464_o = n12461_o ? 1'b1 : 1'b0;
-  /* TG68K_ALU.vhd:1185:70  */
-  assign n12465_o = mulu_reg[63:1];
-  /* TG68K_ALU.vhd:1185:61  */
-  assign n12466_o = {muls_msb, n12465_o};
-  /* TG68K_ALU.vhd:1186:36  */
-  assign n12467_o = mulu_reg[0];
-  /* TG68K_ALU.vhd:1188:88  */
-  assign n12468_o = mulu_reg[63:32];
-  /* TG68K_ALU.vhd:1188:79  */
-  assign n12469_o = {muls_msb, n12468_o};
-  /* TG68K_ALU.vhd:1188:113  */
-  assign n12470_o = {mulu_sign, faktorb};
-  /* TG68K_ALU.vhd:1188:102  */
-  assign n12471_o = n12469_o - n12470_o;
-  /* TG68K_ALU.vhd:1190:88  */
-  assign n12472_o = mulu_reg[63:32];
-  /* TG68K_ALU.vhd:1190:79  */
+  assign n12432_o = n12195_o ? n12428_o : n12431_o;
+  /* TG68K_ALU.vhd:1023:33  */
+  assign n12433_o = n12206_o ? n12427_o : n12432_o;
+  /* TG68K_ALU.vhd:1023:33  */
+  assign n12439_o = n12206_o ? last_flags1 : n12423_o;
+  assign n12440_o = {n12433_o, n12426_o};
+  /* TG68K_ALU.vhd:1010:25  */
+  assign n12442_o = clkena_lw ? n12439_o : last_flags1;
+  /* TG68K_ALU.vhd:1010:25  */
+  assign n12443_o = clkena_lw ? n12205_o : asl_vflag;
+  /* TG68K_ALU.vhd:1008:25  */
+  assign n12446_o = reset ? last_flags1 : n12442_o;
+  /* TG68K_ALU.vhd:1008:25  */
+  assign n12447_o = reset ? asl_vflag : n12443_o;
+  assign n12449_o = n12444_o[4:0];
+  assign n12450_o = n12440_o[4:0];
+  assign n12451_o = n12831_q[4:0];
+  /* TG68K_ALU.vhd:1010:25  */
+  assign n12452_o = clkena_lw ? n12450_o : n12451_o;
+  /* TG68K_ALU.vhd:1008:25  */
+  assign n12453_o = reset ? n12449_o : n12452_o;
+  assign n12454_o = {3'b000, n12453_o};
+  /* TG68K_ALU.vhd:1173:45  */
+  assign n12461_o = faktorb[31];
+  /* TG68K_ALU.vhd:1173:34  */
+  assign n12462_o = n12461_o & signedop;
+  /* TG68K_ALU.vhd:1173:55  */
+  assign n12463_o = n12462_o | fasign;
+  /* TG68K_ALU.vhd:1174:45  */
+  assign n12464_o = mulu_reg[63];
+  /* TG68K_ALU.vhd:1173:17  */
+  assign n12466_o = n12463_o ? n12464_o : 1'b0;
+  /* TG68K_ALU.vhd:1179:44  */
+  assign n12467_o = faktorb[31];
+  /* TG68K_ALU.vhd:1179:33  */
+  assign n12468_o = n12467_o & signedop;
+  /* TG68K_ALU.vhd:1179:17  */
+  assign n12471_o = n12468_o ? 1'b1 : 1'b0;
+  /* TG68K_ALU.vhd:1196:70  */
+  assign n12472_o = mulu_reg[63:1];
+  /* TG68K_ALU.vhd:1196:61  */
   assign n12473_o = {muls_msb, n12472_o};
-  /* TG68K_ALU.vhd:1190:113  */
-  assign n12474_o = {mulu_sign, faktorb};
-  /* TG68K_ALU.vhd:1190:102  */
-  assign n12475_o = n12473_o + n12474_o;
-  /* TG68K_ALU.vhd:1187:33  */
-  assign n12476_o = fasign ? n12471_o : n12475_o;
-  assign n12477_o = n12466_o[63:31];
-  /* TG68K_ALU.vhd:1186:25  */
-  assign n12478_o = n12467_o ? n12476_o : n12477_o;
-  assign n12479_o = n12466_o[30:0];
-  /* TG68K_ALU.vhd:1194:30  */
-  assign n12480_o = exe_opcode[15];
-  /* TG68K_ALU.vhd:1194:39  */
-  assign n12482_o = n12480_o | 1'b0;
-  /* TG68K_ALU.vhd:1195:56  */
-  assign n12483_o = op2out[15:0];
-  assign n12485_o = {n12483_o, 16'b0000000000000000};
-  /* TG68K_ALU.vhd:1194:17  */
-  assign n12486_o = n12482_o ? n12485_o : op2out;
-  /* TG68K_ALU.vhd:1201:32  */
-  assign n12487_o = result_mulu[63:32];
-  /* TG68K_ALU.vhd:1201:46  */
-  assign n12489_o = n12487_o == 32'b00000000000000000000000000000000;
-  /* TG68K_ALU.vhd:1201:72  */
-  assign n12490_o = ~signedop;
-  /* TG68K_ALU.vhd:1201:91  */
-  assign n12491_o = result_mulu[31];
-  /* TG68K_ALU.vhd:1201:95  */
-  assign n12492_o = ~n12491_o;
-  /* TG68K_ALU.vhd:1201:77  */
-  assign n12493_o = n12490_o | n12492_o;
-  /* TG68K_ALU.vhd:1201:59  */
-  assign n12494_o = n12493_o & n12489_o;
-  /* TG68K_ALU.vhd:1202:37  */
-  assign n12495_o = result_mulu[63:32];
-  /* TG68K_ALU.vhd:1202:51  */
-  assign n12497_o = n12495_o == 32'b11111111111111111111111111111111;
-  /* TG68K_ALU.vhd:1202:64  */
-  assign n12498_o = signedop & n12497_o;
-  /* TG68K_ALU.vhd:1202:96  */
-  assign n12499_o = result_mulu[31];
-  /* TG68K_ALU.vhd:1202:81  */
-  assign n12500_o = n12499_o & n12498_o;
+  /* TG68K_ALU.vhd:1197:36  */
+  assign n12474_o = mulu_reg[0];
+  /* TG68K_ALU.vhd:1199:88  */
+  assign n12475_o = mulu_reg[63:32];
+  /* TG68K_ALU.vhd:1199:79  */
+  assign n12476_o = {muls_msb, n12475_o};
+  /* TG68K_ALU.vhd:1199:113  */
+  assign n12477_o = {mulu_sign, faktorb};
+  /* TG68K_ALU.vhd:1199:102  */
+  assign n12478_o = n12476_o - n12477_o;
+  /* TG68K_ALU.vhd:1201:88  */
+  assign n12479_o = mulu_reg[63:32];
+  /* TG68K_ALU.vhd:1201:79  */
+  assign n12480_o = {muls_msb, n12479_o};
+  /* TG68K_ALU.vhd:1201:113  */
+  assign n12481_o = {mulu_sign, faktorb};
   /* TG68K_ALU.vhd:1201:102  */
-  assign n12501_o = n12494_o | n12500_o;
-  /* TG68K_ALU.vhd:1201:17  */
-  assign n12504_o = n12501_o ? 1'b0 : 1'b1;
-  /* TG68K_ALU.vhd:1214:55  */
-  assign n12510_o = micro_state == 7'b1010101;
-  /* TG68K_ALU.vhd:1216:77  */
-  assign n12512_o = exe_opcode[15];
-  /* TG68K_ALU.vhd:1216:96  */
-  assign n12513_o = reg_qa[15];
-  /* TG68K_ALU.vhd:1216:86  */
-  assign n12514_o = n12513_o & n12512_o;
-  /* TG68K_ALU.vhd:1216:120  */
-  assign n12515_o = exe_opcode[15];
-  /* TG68K_ALU.vhd:1216:124  */
-  assign n12516_o = ~n12515_o;
-  /* TG68K_ALU.vhd:1216:139  */
-  assign n12517_o = reg_qa[31];
-  /* TG68K_ALU.vhd:1216:129  */
-  assign n12518_o = n12517_o & n12516_o;
-  /* TG68K_ALU.vhd:1216:106  */
-  assign n12519_o = n12514_o | n12518_o;
-  /* TG68K_ALU.vhd:1216:61  */
-  assign n12520_o = n12519_o & divs;
-  /* TG68K_ALU.vhd:1218:83  */
-  assign n12522_o = 32'b00000000000000000000000000000000 - reg_qa;
-  /* TG68K_ALU.vhd:1216:49  */
-  assign n12523_o = n12520_o ? n12522_o : reg_qa;
-  /* TG68K_ALU.vhd:1216:49  */
-  assign n12526_o = n12520_o ? 1'b1 : 1'b0;
-  /* TG68K_ALU.vhd:1223:51  */
-  assign n12527_o = exec[20];
-  /* TG68K_ALU.vhd:1223:60  */
-  assign n12528_o = ~n12527_o;
-  /* TG68K_ALU.vhd:1224:72  */
-  assign n12529_o = result_mulu[63:0];
-  /* TG68K_ALU.vhd:1223:41  */
-  assign n12530_o = n12528_o ? n12529_o : mulu_reg;
-  assign n12531_o = {32'b00000000000000000000000000000000, n12523_o};
-  /* TG68K_ALU.vhd:1214:41  */
-  assign n12532_o = n12510_o ? n12531_o : n12530_o;
-  /* TG68K_ALU.vhd:1212:25  */
-  assign n12535_o = n12510_o & clkena_lw;
-  /* TG68K_ALU.vhd:1240:32  */
-  assign n12541_o = opcode[15];
-  /* TG68K_ALU.vhd:1240:47  */
-  assign n12542_o = opcode[8];
-  /* TG68K_ALU.vhd:1240:37  */
-  assign n12543_o = n12541_o & n12542_o;
-  /* TG68K_ALU.vhd:1240:66  */
-  assign n12544_o = opcode[15];
-  /* TG68K_ALU.vhd:1240:56  */
-  assign n12545_o = ~n12544_o;
-  /* TG68K_ALU.vhd:1240:81  */
-  assign n12546_o = sndopc[11];
-  /* TG68K_ALU.vhd:1240:71  */
-  assign n12547_o = n12545_o & n12546_o;
-  /* TG68K_ALU.vhd:1240:52  */
-  assign n12548_o = n12543_o | n12547_o;
-  /* TG68K_ALU.vhd:1242:68  */
-  assign n12550_o = reg_qa[31];
-  /* TG68K_ALU.vhd:1242:58  */
-  assign n12551_o = divs & n12550_o;
-  /* TG68K_ALU.vhd:1242:68  */
-  assign n12552_o = reg_qa[31];
-  /* TG68K_ALU.vhd:1242:58  */
-  assign n12553_o = divs & n12552_o;
-  /* TG68K_ALU.vhd:1242:68  */
-  assign n12554_o = reg_qa[31];
-  /* TG68K_ALU.vhd:1242:58  */
-  assign n12555_o = divs & n12554_o;
-  /* TG68K_ALU.vhd:1242:68  */
-  assign n12556_o = reg_qa[31];
-  /* TG68K_ALU.vhd:1242:58  */
-  assign n12557_o = divs & n12556_o;
-  /* TG68K_ALU.vhd:1242:68  */
-  assign n12558_o = reg_qa[31];
-  /* TG68K_ALU.vhd:1242:58  */
-  assign n12559_o = divs & n12558_o;
-  /* TG68K_ALU.vhd:1242:68  */
-  assign n12560_o = reg_qa[31];
-  /* TG68K_ALU.vhd:1242:58  */
-  assign n12561_o = divs & n12560_o;
-  /* TG68K_ALU.vhd:1242:68  */
-  assign n12562_o = reg_qa[31];
-  /* TG68K_ALU.vhd:1242:58  */
-  assign n12563_o = divs & n12562_o;
-  /* TG68K_ALU.vhd:1242:68  */
-  assign n12564_o = reg_qa[31];
-  /* TG68K_ALU.vhd:1242:58  */
-  assign n12565_o = divs & n12564_o;
-  /* TG68K_ALU.vhd:1242:68  */
-  assign n12566_o = reg_qa[31];
-  /* TG68K_ALU.vhd:1242:58  */
-  assign n12567_o = divs & n12566_o;
-  /* TG68K_ALU.vhd:1242:68  */
-  assign n12568_o = reg_qa[31];
-  /* TG68K_ALU.vhd:1242:58  */
-  assign n12569_o = divs & n12568_o;
-  /* TG68K_ALU.vhd:1242:68  */
-  assign n12570_o = reg_qa[31];
-  /* TG68K_ALU.vhd:1242:58  */
-  assign n12571_o = divs & n12570_o;
-  /* TG68K_ALU.vhd:1242:68  */
-  assign n12572_o = reg_qa[31];
-  /* TG68K_ALU.vhd:1242:58  */
-  assign n12573_o = divs & n12572_o;
-  /* TG68K_ALU.vhd:1242:68  */
-  assign n12574_o = reg_qa[31];
-  /* TG68K_ALU.vhd:1242:58  */
-  assign n12575_o = divs & n12574_o;
-  /* TG68K_ALU.vhd:1242:68  */
-  assign n12576_o = reg_qa[31];
-  /* TG68K_ALU.vhd:1242:58  */
-  assign n12577_o = divs & n12576_o;
-  /* TG68K_ALU.vhd:1242:68  */
-  assign n12578_o = reg_qa[31];
-  /* TG68K_ALU.vhd:1242:58  */
-  assign n12579_o = divs & n12578_o;
-  /* TG68K_ALU.vhd:1242:68  */
-  assign n12580_o = reg_qa[31];
-  /* TG68K_ALU.vhd:1242:58  */
-  assign n12581_o = divs & n12580_o;
-  /* TG68K_ALU.vhd:1242:68  */
-  assign n12582_o = reg_qa[31];
-  /* TG68K_ALU.vhd:1242:58  */
-  assign n12583_o = divs & n12582_o;
-  /* TG68K_ALU.vhd:1242:68  */
-  assign n12584_o = reg_qa[31];
-  /* TG68K_ALU.vhd:1242:58  */
-  assign n12585_o = divs & n12584_o;
-  /* TG68K_ALU.vhd:1242:68  */
-  assign n12586_o = reg_qa[31];
-  /* TG68K_ALU.vhd:1242:58  */
-  assign n12587_o = divs & n12586_o;
-  /* TG68K_ALU.vhd:1242:68  */
-  assign n12588_o = reg_qa[31];
-  /* TG68K_ALU.vhd:1242:58  */
-  assign n12589_o = divs & n12588_o;
-  /* TG68K_ALU.vhd:1242:68  */
-  assign n12590_o = reg_qa[31];
-  /* TG68K_ALU.vhd:1242:58  */
-  assign n12591_o = divs & n12590_o;
-  /* TG68K_ALU.vhd:1242:68  */
-  assign n12592_o = reg_qa[31];
-  /* TG68K_ALU.vhd:1242:58  */
-  assign n12593_o = divs & n12592_o;
-  /* TG68K_ALU.vhd:1242:68  */
-  assign n12594_o = reg_qa[31];
-  /* TG68K_ALU.vhd:1242:58  */
-  assign n12595_o = divs & n12594_o;
-  /* TG68K_ALU.vhd:1242:68  */
-  assign n12596_o = reg_qa[31];
-  /* TG68K_ALU.vhd:1242:58  */
-  assign n12597_o = divs & n12596_o;
-  /* TG68K_ALU.vhd:1242:68  */
-  assign n12598_o = reg_qa[31];
-  /* TG68K_ALU.vhd:1242:58  */
-  assign n12599_o = divs & n12598_o;
-  /* TG68K_ALU.vhd:1242:68  */
-  assign n12600_o = reg_qa[31];
-  /* TG68K_ALU.vhd:1242:58  */
-  assign n12601_o = divs & n12600_o;
-  /* TG68K_ALU.vhd:1242:68  */
-  assign n12602_o = reg_qa[31];
-  /* TG68K_ALU.vhd:1242:58  */
-  assign n12603_o = divs & n12602_o;
-  /* TG68K_ALU.vhd:1242:68  */
-  assign n12604_o = reg_qa[31];
-  /* TG68K_ALU.vhd:1242:58  */
-  assign n12605_o = divs & n12604_o;
-  /* TG68K_ALU.vhd:1242:68  */
-  assign n12606_o = reg_qa[31];
-  /* TG68K_ALU.vhd:1242:58  */
-  assign n12607_o = divs & n12606_o;
-  /* TG68K_ALU.vhd:1242:68  */
-  assign n12608_o = reg_qa[31];
-  /* TG68K_ALU.vhd:1242:58  */
-  assign n12609_o = divs & n12608_o;
-  /* TG68K_ALU.vhd:1242:68  */
-  assign n12610_o = reg_qa[31];
-  /* TG68K_ALU.vhd:1242:58  */
-  assign n12611_o = divs & n12610_o;
-  /* TG68K_ALU.vhd:1242:68  */
-  assign n12612_o = reg_qa[31];
-  /* TG68K_ALU.vhd:1242:58  */
-  assign n12613_o = divs & n12612_o;
-  assign n12614_o = {n12551_o, n12553_o, n12555_o, n12557_o};
-  assign n12615_o = {n12559_o, n12561_o, n12563_o, n12565_o};
-  assign n12616_o = {n12567_o, n12569_o, n12571_o, n12573_o};
-  assign n12617_o = {n12575_o, n12577_o, n12579_o, n12581_o};
-  assign n12618_o = {n12583_o, n12585_o, n12587_o, n12589_o};
-  assign n12619_o = {n12591_o, n12593_o, n12595_o, n12597_o};
-  assign n12620_o = {n12599_o, n12601_o, n12603_o, n12605_o};
-  assign n12621_o = {n12607_o, n12609_o, n12611_o, n12613_o};
-  assign n12622_o = {n12614_o, n12615_o, n12616_o, n12617_o};
-  assign n12623_o = {n12618_o, n12619_o, n12620_o, n12621_o};
-  assign n12624_o = {n12622_o, n12623_o};
-  /* TG68K_ALU.vhd:1243:30  */
-  assign n12625_o = exe_opcode[15];
-  /* TG68K_ALU.vhd:1243:39  */
-  assign n12627_o = n12625_o | 1'b0;
-  /* TG68K_ALU.vhd:1245:52  */
-  assign n12628_o = result_div_pre[15];
-  /* TG68K_ALU.vhd:1248:38  */
-  assign n12629_o = exe_opcode[14];
-  /* TG68K_ALU.vhd:1248:57  */
-  assign n12630_o = sndopc[10];
-  /* TG68K_ALU.vhd:1248:47  */
-  assign n12631_o = n12630_o & n12629_o;
-  /* TG68K_ALU.vhd:1248:25  */
-  assign n12632_o = n12631_o ? reg_qb : n12624_o;
+  assign n12482_o = n12480_o + n12481_o;
+  /* TG68K_ALU.vhd:1198:33  */
+  assign n12483_o = fasign ? n12478_o : n12482_o;
+  assign n12484_o = n12473_o[63:31];
+  /* TG68K_ALU.vhd:1197:25  */
+  assign n12485_o = n12474_o ? n12483_o : n12484_o;
+  assign n12486_o = n12473_o[30:0];
+  /* TG68K_ALU.vhd:1205:30  */
+  assign n12487_o = exe_opcode[15];
+  /* TG68K_ALU.vhd:1205:39  */
+  assign n12489_o = n12487_o | 1'b0;
+  /* TG68K_ALU.vhd:1206:56  */
+  assign n12490_o = op2out[15:0];
+  assign n12492_o = {n12490_o, 16'b0000000000000000};
+  /* TG68K_ALU.vhd:1205:17  */
+  assign n12493_o = n12489_o ? n12492_o : op2out;
+  /* TG68K_ALU.vhd:1212:32  */
+  assign n12494_o = result_mulu[63:32];
+  /* TG68K_ALU.vhd:1212:46  */
+  assign n12496_o = n12494_o == 32'b00000000000000000000000000000000;
+  /* TG68K_ALU.vhd:1212:72  */
+  assign n12497_o = ~signedop;
+  /* TG68K_ALU.vhd:1212:91  */
+  assign n12498_o = result_mulu[31];
+  /* TG68K_ALU.vhd:1212:95  */
+  assign n12499_o = ~n12498_o;
+  /* TG68K_ALU.vhd:1212:77  */
+  assign n12500_o = n12497_o | n12499_o;
+  /* TG68K_ALU.vhd:1212:59  */
+  assign n12501_o = n12500_o & n12496_o;
+  /* TG68K_ALU.vhd:1213:37  */
+  assign n12502_o = result_mulu[63:32];
+  /* TG68K_ALU.vhd:1213:51  */
+  assign n12504_o = n12502_o == 32'b11111111111111111111111111111111;
+  /* TG68K_ALU.vhd:1213:64  */
+  assign n12505_o = signedop & n12504_o;
+  /* TG68K_ALU.vhd:1213:96  */
+  assign n12506_o = result_mulu[31];
+  /* TG68K_ALU.vhd:1213:81  */
+  assign n12507_o = n12506_o & n12505_o;
+  /* TG68K_ALU.vhd:1212:102  */
+  assign n12508_o = n12501_o | n12507_o;
+  /* TG68K_ALU.vhd:1212:17  */
+  assign n12511_o = n12508_o ? 1'b0 : 1'b1;
+  /* TG68K_ALU.vhd:1225:55  */
+  assign n12517_o = micro_state == 7'b1010101;
+  /* TG68K_ALU.vhd:1227:77  */
+  assign n12519_o = exe_opcode[15];
+  /* TG68K_ALU.vhd:1227:96  */
+  assign n12520_o = reg_qa[15];
+  /* TG68K_ALU.vhd:1227:86  */
+  assign n12521_o = n12520_o & n12519_o;
+  /* TG68K_ALU.vhd:1227:120  */
+  assign n12522_o = exe_opcode[15];
+  /* TG68K_ALU.vhd:1227:124  */
+  assign n12523_o = ~n12522_o;
+  /* TG68K_ALU.vhd:1227:139  */
+  assign n12524_o = reg_qa[31];
+  /* TG68K_ALU.vhd:1227:129  */
+  assign n12525_o = n12524_o & n12523_o;
+  /* TG68K_ALU.vhd:1227:106  */
+  assign n12526_o = n12521_o | n12525_o;
+  /* TG68K_ALU.vhd:1227:61  */
+  assign n12527_o = n12526_o & divs;
+  /* TG68K_ALU.vhd:1229:83  */
+  assign n12529_o = 32'b00000000000000000000000000000000 - reg_qa;
+  /* TG68K_ALU.vhd:1227:49  */
+  assign n12530_o = n12527_o ? n12529_o : reg_qa;
+  /* TG68K_ALU.vhd:1227:49  */
+  assign n12533_o = n12527_o ? 1'b1 : 1'b0;
+  /* TG68K_ALU.vhd:1234:51  */
+  assign n12534_o = exec[20];
+  /* TG68K_ALU.vhd:1234:60  */
+  assign n12535_o = ~n12534_o;
+  /* TG68K_ALU.vhd:1235:72  */
+  assign n12536_o = result_mulu[63:0];
+  /* TG68K_ALU.vhd:1234:41  */
+  assign n12537_o = n12535_o ? n12536_o : mulu_reg;
+  assign n12538_o = {32'b00000000000000000000000000000000, n12530_o};
+  /* TG68K_ALU.vhd:1225:41  */
+  assign n12539_o = n12517_o ? n12538_o : n12537_o;
+  /* TG68K_ALU.vhd:1223:25  */
+  assign n12542_o = n12517_o & clkena_lw;
+  /* TG68K_ALU.vhd:1251:32  */
+  assign n12548_o = opcode[15];
+  /* TG68K_ALU.vhd:1251:47  */
+  assign n12549_o = opcode[8];
+  /* TG68K_ALU.vhd:1251:37  */
+  assign n12550_o = n12548_o & n12549_o;
+  /* TG68K_ALU.vhd:1251:66  */
+  assign n12551_o = opcode[15];
+  /* TG68K_ALU.vhd:1251:56  */
+  assign n12552_o = ~n12551_o;
+  /* TG68K_ALU.vhd:1251:81  */
+  assign n12553_o = sndopc[11];
+  /* TG68K_ALU.vhd:1251:71  */
+  assign n12554_o = n12552_o & n12553_o;
   /* TG68K_ALU.vhd:1251:52  */
-  assign n12633_o = result_div_pre[31];
-  /* TG68K_ALU.vhd:1243:17  */
-  assign n12634_o = n12627_o ? n12628_o : n12633_o;
-  assign n12635_o = {n12632_o, reg_qa};
-  assign n12636_o = n12635_o[15:0];
-  /* TG68K_ALU.vhd:1243:17  */
-  assign n12637_o = n12627_o ? 16'b0000000000000000 : n12636_o;
-  assign n12638_o = n12635_o[47:16];
-  /* TG68K_ALU.vhd:1243:17  */
-  assign n12639_o = n12627_o ? reg_qa : n12638_o;
-  assign n12640_o = n12635_o[63:48];
-  assign n12641_o = n12624_o[31:16];
-  /* TG68K_ALU.vhd:1243:17  */
-  assign n12642_o = n12627_o ? n12641_o : n12640_o;
-  /* TG68K_ALU.vhd:1253:42  */
-  assign n12644_o = opcode[15];
-  /* TG68K_ALU.vhd:1253:46  */
-  assign n12645_o = ~n12644_o;
-  /* TG68K_ALU.vhd:1253:33  */
-  assign n12646_o = signedop | n12645_o;
-  /* TG68K_ALU.vhd:1254:44  */
-  assign n12647_o = op2out[31:16];
-  /* TG68K_ALU.vhd:1253:17  */
-  assign n12649_o = n12646_o ? n12647_o : 16'b0000000000000000;
-  /* TG68K_ALU.vhd:1258:43  */
-  assign n12650_o = op2out[31];
-  /* TG68K_ALU.vhd:1258:33  */
-  assign n12651_o = n12650_o & signedop;
-  /* TG68K_ALU.vhd:1259:44  */
-  assign n12652_o = div_reg[63:31];
-  /* TG68K_ALU.vhd:1259:64  */
-  assign n12654_o = {1'b1, op2out};
-  /* TG68K_ALU.vhd:1259:59  */
-  assign n12655_o = n12652_o + n12654_o;
-  /* TG68K_ALU.vhd:1261:44  */
-  assign n12656_o = div_reg[63:31];
-  /* TG68K_ALU.vhd:1261:64  */
-  assign n12658_o = {1'b0, op2outext};
-  /* TG68K_ALU.vhd:1261:94  */
-  assign n12659_o = op2out[15:0];
-  /* TG68K_ALU.vhd:1261:87  */
-  assign n12660_o = {n12658_o, n12659_o};
-  /* TG68K_ALU.vhd:1261:59  */
-  assign n12661_o = n12656_o - n12660_o;
-  /* TG68K_ALU.vhd:1258:17  */
-  assign n12662_o = n12651_o ? n12655_o : n12661_o;
-  /* TG68K_ALU.vhd:1266:43  */
-  assign n12663_o = div_sub[32];
-  /* TG68K_ALU.vhd:1269:58  */
-  assign n12664_o = div_reg[62:31];
-  /* TG68K_ALU.vhd:1271:58  */
-  assign n12665_o = div_sub[31:0];
-  /* TG68K_ALU.vhd:1268:17  */
-  assign n12666_o = div_bit ? n12664_o : n12665_o;
-  /* TG68K_ALU.vhd:1273:49  */
-  assign n12667_o = div_reg[30:0];
-  /* TG68K_ALU.vhd:1273:63  */
-  assign n12668_o = ~div_bit;
-  /* TG68K_ALU.vhd:1273:62  */
-  assign n12669_o = {n12667_o, n12668_o};
-  /* TG68K_ALU.vhd:1276:66  */
-  assign n12670_o = div_quot[31:0];
-  /* TG68K_ALU.vhd:1276:57  */
-  assign n12672_o = 32'b00000000000000000000000000000000 - n12670_o;
-  /* TG68K_ALU.vhd:1279:64  */
-  assign n12673_o = div_quot[31:0];
-  /* TG68K_ALU.vhd:1275:17  */
-  assign n12674_o = div_neg ? n12672_o : n12673_o;
-  /* TG68K_ALU.vhd:1282:44  */
+  assign n12555_o = n12550_o | n12554_o;
+  /* TG68K_ALU.vhd:1253:68  */
+  assign n12557_o = reg_qa[31];
+  /* TG68K_ALU.vhd:1253:58  */
+  assign n12558_o = divs & n12557_o;
+  /* TG68K_ALU.vhd:1253:68  */
+  assign n12559_o = reg_qa[31];
+  /* TG68K_ALU.vhd:1253:58  */
+  assign n12560_o = divs & n12559_o;
+  /* TG68K_ALU.vhd:1253:68  */
+  assign n12561_o = reg_qa[31];
+  /* TG68K_ALU.vhd:1253:58  */
+  assign n12562_o = divs & n12561_o;
+  /* TG68K_ALU.vhd:1253:68  */
+  assign n12563_o = reg_qa[31];
+  /* TG68K_ALU.vhd:1253:58  */
+  assign n12564_o = divs & n12563_o;
+  /* TG68K_ALU.vhd:1253:68  */
+  assign n12565_o = reg_qa[31];
+  /* TG68K_ALU.vhd:1253:58  */
+  assign n12566_o = divs & n12565_o;
+  /* TG68K_ALU.vhd:1253:68  */
+  assign n12567_o = reg_qa[31];
+  /* TG68K_ALU.vhd:1253:58  */
+  assign n12568_o = divs & n12567_o;
+  /* TG68K_ALU.vhd:1253:68  */
+  assign n12569_o = reg_qa[31];
+  /* TG68K_ALU.vhd:1253:58  */
+  assign n12570_o = divs & n12569_o;
+  /* TG68K_ALU.vhd:1253:68  */
+  assign n12571_o = reg_qa[31];
+  /* TG68K_ALU.vhd:1253:58  */
+  assign n12572_o = divs & n12571_o;
+  /* TG68K_ALU.vhd:1253:68  */
+  assign n12573_o = reg_qa[31];
+  /* TG68K_ALU.vhd:1253:58  */
+  assign n12574_o = divs & n12573_o;
+  /* TG68K_ALU.vhd:1253:68  */
+  assign n12575_o = reg_qa[31];
+  /* TG68K_ALU.vhd:1253:58  */
+  assign n12576_o = divs & n12575_o;
+  /* TG68K_ALU.vhd:1253:68  */
+  assign n12577_o = reg_qa[31];
+  /* TG68K_ALU.vhd:1253:58  */
+  assign n12578_o = divs & n12577_o;
+  /* TG68K_ALU.vhd:1253:68  */
+  assign n12579_o = reg_qa[31];
+  /* TG68K_ALU.vhd:1253:58  */
+  assign n12580_o = divs & n12579_o;
+  /* TG68K_ALU.vhd:1253:68  */
+  assign n12581_o = reg_qa[31];
+  /* TG68K_ALU.vhd:1253:58  */
+  assign n12582_o = divs & n12581_o;
+  /* TG68K_ALU.vhd:1253:68  */
+  assign n12583_o = reg_qa[31];
+  /* TG68K_ALU.vhd:1253:58  */
+  assign n12584_o = divs & n12583_o;
+  /* TG68K_ALU.vhd:1253:68  */
+  assign n12585_o = reg_qa[31];
+  /* TG68K_ALU.vhd:1253:58  */
+  assign n12586_o = divs & n12585_o;
+  /* TG68K_ALU.vhd:1253:68  */
+  assign n12587_o = reg_qa[31];
+  /* TG68K_ALU.vhd:1253:58  */
+  assign n12588_o = divs & n12587_o;
+  /* TG68K_ALU.vhd:1253:68  */
+  assign n12589_o = reg_qa[31];
+  /* TG68K_ALU.vhd:1253:58  */
+  assign n12590_o = divs & n12589_o;
+  /* TG68K_ALU.vhd:1253:68  */
+  assign n12591_o = reg_qa[31];
+  /* TG68K_ALU.vhd:1253:58  */
+  assign n12592_o = divs & n12591_o;
+  /* TG68K_ALU.vhd:1253:68  */
+  assign n12593_o = reg_qa[31];
+  /* TG68K_ALU.vhd:1253:58  */
+  assign n12594_o = divs & n12593_o;
+  /* TG68K_ALU.vhd:1253:68  */
+  assign n12595_o = reg_qa[31];
+  /* TG68K_ALU.vhd:1253:58  */
+  assign n12596_o = divs & n12595_o;
+  /* TG68K_ALU.vhd:1253:68  */
+  assign n12597_o = reg_qa[31];
+  /* TG68K_ALU.vhd:1253:58  */
+  assign n12598_o = divs & n12597_o;
+  /* TG68K_ALU.vhd:1253:68  */
+  assign n12599_o = reg_qa[31];
+  /* TG68K_ALU.vhd:1253:58  */
+  assign n12600_o = divs & n12599_o;
+  /* TG68K_ALU.vhd:1253:68  */
+  assign n12601_o = reg_qa[31];
+  /* TG68K_ALU.vhd:1253:58  */
+  assign n12602_o = divs & n12601_o;
+  /* TG68K_ALU.vhd:1253:68  */
+  assign n12603_o = reg_qa[31];
+  /* TG68K_ALU.vhd:1253:58  */
+  assign n12604_o = divs & n12603_o;
+  /* TG68K_ALU.vhd:1253:68  */
+  assign n12605_o = reg_qa[31];
+  /* TG68K_ALU.vhd:1253:58  */
+  assign n12606_o = divs & n12605_o;
+  /* TG68K_ALU.vhd:1253:68  */
+  assign n12607_o = reg_qa[31];
+  /* TG68K_ALU.vhd:1253:58  */
+  assign n12608_o = divs & n12607_o;
+  /* TG68K_ALU.vhd:1253:68  */
+  assign n12609_o = reg_qa[31];
+  /* TG68K_ALU.vhd:1253:58  */
+  assign n12610_o = divs & n12609_o;
+  /* TG68K_ALU.vhd:1253:68  */
+  assign n12611_o = reg_qa[31];
+  /* TG68K_ALU.vhd:1253:58  */
+  assign n12612_o = divs & n12611_o;
+  /* TG68K_ALU.vhd:1253:68  */
+  assign n12613_o = reg_qa[31];
+  /* TG68K_ALU.vhd:1253:58  */
+  assign n12614_o = divs & n12613_o;
+  /* TG68K_ALU.vhd:1253:68  */
+  assign n12615_o = reg_qa[31];
+  /* TG68K_ALU.vhd:1253:58  */
+  assign n12616_o = divs & n12615_o;
+  /* TG68K_ALU.vhd:1253:68  */
+  assign n12617_o = reg_qa[31];
+  /* TG68K_ALU.vhd:1253:58  */
+  assign n12618_o = divs & n12617_o;
+  /* TG68K_ALU.vhd:1253:68  */
+  assign n12619_o = reg_qa[31];
+  /* TG68K_ALU.vhd:1253:58  */
+  assign n12620_o = divs & n12619_o;
+  assign n12621_o = {n12558_o, n12560_o, n12562_o, n12564_o};
+  assign n12622_o = {n12566_o, n12568_o, n12570_o, n12572_o};
+  assign n12623_o = {n12574_o, n12576_o, n12578_o, n12580_o};
+  assign n12624_o = {n12582_o, n12584_o, n12586_o, n12588_o};
+  assign n12625_o = {n12590_o, n12592_o, n12594_o, n12596_o};
+  assign n12626_o = {n12598_o, n12600_o, n12602_o, n12604_o};
+  assign n12627_o = {n12606_o, n12608_o, n12610_o, n12612_o};
+  assign n12628_o = {n12614_o, n12616_o, n12618_o, n12620_o};
+  assign n12629_o = {n12621_o, n12622_o, n12623_o, n12624_o};
+  assign n12630_o = {n12625_o, n12626_o, n12627_o, n12628_o};
+  assign n12631_o = {n12629_o, n12630_o};
+  /* TG68K_ALU.vhd:1254:30  */
+  assign n12632_o = exe_opcode[15];
+  /* TG68K_ALU.vhd:1254:39  */
+  assign n12634_o = n12632_o | 1'b0;
+  /* TG68K_ALU.vhd:1256:52  */
+  assign n12635_o = result_div_pre[15];
+  /* TG68K_ALU.vhd:1259:38  */
+  assign n12636_o = exe_opcode[14];
+  /* TG68K_ALU.vhd:1259:57  */
+  assign n12637_o = sndopc[10];
+  /* TG68K_ALU.vhd:1259:47  */
+  assign n12638_o = n12637_o & n12636_o;
+  /* TG68K_ALU.vhd:1259:25  */
+  assign n12639_o = n12638_o ? reg_qb : n12631_o;
+  /* TG68K_ALU.vhd:1262:52  */
+  assign n12640_o = result_div_pre[31];
+  /* TG68K_ALU.vhd:1254:17  */
+  assign n12641_o = n12634_o ? n12635_o : n12640_o;
+  assign n12642_o = {n12639_o, reg_qa};
+  assign n12643_o = n12642_o[15:0];
+  /* TG68K_ALU.vhd:1254:17  */
+  assign n12644_o = n12634_o ? 16'b0000000000000000 : n12643_o;
+  assign n12645_o = n12642_o[47:16];
+  /* TG68K_ALU.vhd:1254:17  */
+  assign n12646_o = n12634_o ? reg_qa : n12645_o;
+  assign n12647_o = n12642_o[63:48];
+  assign n12648_o = n12631_o[31:16];
+  /* TG68K_ALU.vhd:1254:17  */
+  assign n12649_o = n12634_o ? n12648_o : n12647_o;
+  /* TG68K_ALU.vhd:1264:42  */
+  assign n12651_o = opcode[15];
+  /* TG68K_ALU.vhd:1264:46  */
+  assign n12652_o = ~n12651_o;
+  /* TG68K_ALU.vhd:1264:33  */
+  assign n12653_o = signedop | n12652_o;
+  /* TG68K_ALU.vhd:1265:44  */
+  assign n12654_o = op2out[31:16];
+  /* TG68K_ALU.vhd:1264:17  */
+  assign n12656_o = n12653_o ? n12654_o : 16'b0000000000000000;
+  /* TG68K_ALU.vhd:1269:43  */
+  assign n12657_o = op2out[31];
+  /* TG68K_ALU.vhd:1269:33  */
+  assign n12658_o = n12657_o & signedop;
+  /* TG68K_ALU.vhd:1270:44  */
+  assign n12659_o = div_reg[63:31];
+  /* TG68K_ALU.vhd:1270:64  */
+  assign n12661_o = {1'b1, op2out};
+  /* TG68K_ALU.vhd:1270:59  */
+  assign n12662_o = n12659_o + n12661_o;
+  /* TG68K_ALU.vhd:1272:44  */
+  assign n12663_o = div_reg[63:31];
+  /* TG68K_ALU.vhd:1272:64  */
+  assign n12665_o = {1'b0, op2outext};
+  /* TG68K_ALU.vhd:1272:94  */
+  assign n12666_o = op2out[15:0];
+  /* TG68K_ALU.vhd:1272:87  */
+  assign n12667_o = {n12665_o, n12666_o};
+  /* TG68K_ALU.vhd:1272:59  */
+  assign n12668_o = n12663_o - n12667_o;
+  /* TG68K_ALU.vhd:1269:17  */
+  assign n12669_o = n12658_o ? n12662_o : n12668_o;
+  /* TG68K_ALU.vhd:1277:43  */
+  assign n12670_o = div_sub[32];
+  /* TG68K_ALU.vhd:1280:58  */
+  assign n12671_o = div_reg[62:31];
+  /* TG68K_ALU.vhd:1282:58  */
+  assign n12672_o = div_sub[31:0];
+  /* TG68K_ALU.vhd:1279:17  */
+  assign n12673_o = div_bit ? n12671_o : n12672_o;
+  /* TG68K_ALU.vhd:1284:49  */
+  assign n12674_o = div_reg[30:0];
+  /* TG68K_ALU.vhd:1284:63  */
   assign n12675_o = ~div_bit;
-  /* TG68K_ALU.vhd:1282:34  */
-  assign n12676_o = nozero | n12675_o;
-  /* TG68K_ALU.vhd:1282:50  */
-  assign n12677_o = signedop & n12676_o;
-  /* TG68K_ALU.vhd:1282:78  */
-  assign n12678_o = op2out[31];
-  /* TG68K_ALU.vhd:1282:83  */
-  assign n12679_o = n12678_o ^ op1_sign;
-  /* TG68K_ALU.vhd:1282:96  */
-  assign n12680_o = n12679_o ^ div_qsign;
-  /* TG68K_ALU.vhd:1282:67  */
-  assign n12681_o = n12680_o & n12677_o;
-  /* TG68K_ALU.vhd:1283:37  */
-  assign n12682_o = ~signedop;
-  /* TG68K_ALU.vhd:1283:54  */
-  assign n12683_o = div_over[32];
-  /* TG68K_ALU.vhd:1283:58  */
-  assign n12684_o = ~n12683_o;
-  /* TG68K_ALU.vhd:1283:42  */
-  assign n12685_o = n12684_o & n12682_o;
-  /* TG68K_ALU.vhd:1283:25  */
-  assign n12686_o = n12681_o | n12685_o;
-  /* TG68K_ALU.vhd:1283:65  */
-  assign n12688_o = 1'b1 & n12686_o;
-  /* TG68K_ALU.vhd:1282:17  */
-  assign n12691_o = n12688_o ? 1'b1 : 1'b0;
-  /* TG68K_ALU.vhd:1294:47  */
-  assign n12697_o = micro_state != 7'b1011110;
-  /* TG68K_ALU.vhd:1298:47  */
-  assign n12700_o = micro_state == 7'b1011001;
-  /* TG68K_ALU.vhd:1300:65  */
-  assign n12701_o = dividend[63];
-  /* TG68K_ALU.vhd:1300:53  */
-  assign n12702_o = n12701_o & divs;
-  /* TG68K_ALU.vhd:1302:61  */
-  assign n12704_o = 64'b0000000000000000000000000000000000000000000000000000000000000000 - dividend;
-  /* TG68K_ALU.vhd:1300:41  */
-  assign n12705_o = n12702_o ? n12704_o : dividend;
-  /* TG68K_ALU.vhd:1300:41  */
-  assign n12708_o = n12702_o ? 1'b1 : 1'b0;
-  /* TG68K_ALU.vhd:1309:51  */
-  assign n12709_o = ~div_bit;
-  /* TG68K_ALU.vhd:1309:63  */
-  assign n12710_o = n12709_o | nozero;
-  /* TG68K_ALU.vhd:1298:33  */
-  assign n12711_o = n12700_o ? n12705_o : div_quot;
-  /* TG68K_ALU.vhd:1298:33  */
-  assign n12713_o = n12700_o ? 1'b0 : n12710_o;
-  /* TG68K_ALU.vhd:1311:47  */
-  assign n12716_o = micro_state == 7'b1011010;
-  /* TG68K_ALU.vhd:1312:72  */
-  assign n12717_o = op2out[31];
-  /* TG68K_ALU.vhd:1312:77  */
-  assign n12718_o = n12717_o ^ op1_sign;
-  /* TG68K_ALU.vhd:1312:61  */
-  assign n12719_o = signedop & n12718_o;
-  /* TG68K_ALU.vhd:1316:73  */
-  assign n12720_o = div_reg[63:32];
-  /* TG68K_ALU.vhd:1316:65  */
-  assign n12722_o = {1'b0, n12720_o};
-  /* TG68K_ALU.vhd:1316:93  */
-  assign n12724_o = {1'b0, op2outext};
-  /* TG68K_ALU.vhd:1316:123  */
-  assign n12725_o = op2out[15:0];
-  /* TG68K_ALU.vhd:1316:116  */
-  assign n12726_o = {n12724_o, n12725_o};
-  /* TG68K_ALU.vhd:1316:88  */
-  assign n12727_o = n12722_o - n12726_o;
-  /* TG68K_ALU.vhd:1319:40  */
-  assign n12730_o = exec[68];
-  /* TG68K_ALU.vhd:1319:56  */
-  assign n12731_o = ~n12730_o;
-  /* TG68K_ALU.vhd:1322:87  */
-  assign n12732_o = div_quot[63:32];
-  /* TG68K_ALU.vhd:1322:78  */
-  assign n12734_o = 32'b00000000000000000000000000000000 - n12732_o;
-  /* TG68K_ALU.vhd:1324:85  */
-  assign n12735_o = div_quot[63:32];
-  /* TG68K_ALU.vhd:1321:41  */
-  assign n12736_o = op1_sign ? n12734_o : n12735_o;
-  assign n12737_o = {n12736_o, result_div_pre};
-  /* TG68K_ALU.vhd:1293:25  */
-  assign n12739_o = n12731_o & clkena_lw;
-  /* TG68K_ALU.vhd:1293:25  */
-  assign n12740_o = n12697_o & clkena_lw;
-  /* TG68K_ALU.vhd:1293:25  */
-  assign n12742_o = n12716_o & clkena_lw;
-  /* TG68K_ALU.vhd:1293:25  */
-  assign n12743_o = n12716_o & clkena_lw;
-  /* TG68K_ALU.vhd:1293:25  */
-  assign n12746_o = n12700_o & clkena_lw;
-  assign n12756_o = {n9897_o, n9894_o};
-  assign n12757_o = {n10048_o, n10041_o, n10034_o};
-  assign n12758_o = {n10026_o, n10025_o, n10020_o, n9978_o};
-  /* TG68K_ALU.vhd:996:17  */
+  /* TG68K_ALU.vhd:1284:62  */
+  assign n12676_o = {n12674_o, n12675_o};
+  /* TG68K_ALU.vhd:1287:66  */
+  assign n12677_o = div_quot[31:0];
+  /* TG68K_ALU.vhd:1287:57  */
+  assign n12679_o = 32'b00000000000000000000000000000000 - n12677_o;
+  /* TG68K_ALU.vhd:1290:64  */
+  assign n12680_o = div_quot[31:0];
+  /* TG68K_ALU.vhd:1286:17  */
+  assign n12681_o = div_neg ? n12679_o : n12680_o;
+  /* TG68K_ALU.vhd:1293:44  */
+  assign n12682_o = ~div_bit;
+  /* TG68K_ALU.vhd:1293:34  */
+  assign n12683_o = nozero | n12682_o;
+  /* TG68K_ALU.vhd:1293:50  */
+  assign n12684_o = signedop & n12683_o;
+  /* TG68K_ALU.vhd:1293:78  */
+  assign n12685_o = op2out[31];
+  /* TG68K_ALU.vhd:1293:83  */
+  assign n12686_o = n12685_o ^ op1_sign;
+  /* TG68K_ALU.vhd:1293:96  */
+  assign n12687_o = n12686_o ^ div_qsign;
+  /* TG68K_ALU.vhd:1293:67  */
+  assign n12688_o = n12687_o & n12684_o;
+  /* TG68K_ALU.vhd:1294:37  */
+  assign n12689_o = ~signedop;
+  /* TG68K_ALU.vhd:1294:54  */
+  assign n12690_o = div_over[32];
+  /* TG68K_ALU.vhd:1294:58  */
+  assign n12691_o = ~n12690_o;
+  /* TG68K_ALU.vhd:1294:42  */
+  assign n12692_o = n12691_o & n12689_o;
+  /* TG68K_ALU.vhd:1294:25  */
+  assign n12693_o = n12688_o | n12692_o;
+  /* TG68K_ALU.vhd:1294:65  */
+  assign n12695_o = 1'b1 & n12693_o;
+  /* TG68K_ALU.vhd:1293:17  */
+  assign n12698_o = n12695_o ? 1'b1 : 1'b0;
+  /* TG68K_ALU.vhd:1305:47  */
+  assign n12704_o = micro_state != 7'b1011110;
+  /* TG68K_ALU.vhd:1309:47  */
+  assign n12707_o = micro_state == 7'b1011001;
+  /* TG68K_ALU.vhd:1311:65  */
+  assign n12708_o = dividend[63];
+  /* TG68K_ALU.vhd:1311:53  */
+  assign n12709_o = n12708_o & divs;
+  /* TG68K_ALU.vhd:1313:61  */
+  assign n12711_o = 64'b0000000000000000000000000000000000000000000000000000000000000000 - dividend;
+  /* TG68K_ALU.vhd:1311:41  */
+  assign n12712_o = n12709_o ? n12711_o : dividend;
+  /* TG68K_ALU.vhd:1311:41  */
+  assign n12715_o = n12709_o ? 1'b1 : 1'b0;
+  /* TG68K_ALU.vhd:1320:51  */
+  assign n12716_o = ~div_bit;
+  /* TG68K_ALU.vhd:1320:63  */
+  assign n12717_o = n12716_o | nozero;
+  /* TG68K_ALU.vhd:1309:33  */
+  assign n12718_o = n12707_o ? n12712_o : div_quot;
+  /* TG68K_ALU.vhd:1309:33  */
+  assign n12720_o = n12707_o ? 1'b0 : n12717_o;
+  /* TG68K_ALU.vhd:1322:47  */
+  assign n12723_o = micro_state == 7'b1011010;
+  /* TG68K_ALU.vhd:1323:72  */
+  assign n12724_o = op2out[31];
+  /* TG68K_ALU.vhd:1323:77  */
+  assign n12725_o = n12724_o ^ op1_sign;
+  /* TG68K_ALU.vhd:1323:61  */
+  assign n12726_o = signedop & n12725_o;
+  /* TG68K_ALU.vhd:1327:73  */
+  assign n12727_o = div_reg[63:32];
+  /* TG68K_ALU.vhd:1327:65  */
+  assign n12729_o = {1'b0, n12727_o};
+  /* TG68K_ALU.vhd:1327:93  */
+  assign n12731_o = {1'b0, op2outext};
+  /* TG68K_ALU.vhd:1327:123  */
+  assign n12732_o = op2out[15:0];
+  /* TG68K_ALU.vhd:1327:116  */
+  assign n12733_o = {n12731_o, n12732_o};
+  /* TG68K_ALU.vhd:1327:88  */
+  assign n12734_o = n12729_o - n12733_o;
+  /* TG68K_ALU.vhd:1330:40  */
+  assign n12737_o = exec[68];
+  /* TG68K_ALU.vhd:1330:56  */
+  assign n12738_o = ~n12737_o;
+  /* TG68K_ALU.vhd:1333:87  */
+  assign n12739_o = div_quot[63:32];
+  /* TG68K_ALU.vhd:1333:78  */
+  assign n12741_o = 32'b00000000000000000000000000000000 - n12739_o;
+  /* TG68K_ALU.vhd:1335:85  */
+  assign n12742_o = div_quot[63:32];
+  /* TG68K_ALU.vhd:1332:41  */
+  assign n12743_o = op1_sign ? n12741_o : n12742_o;
+  assign n12744_o = {n12743_o, result_div_pre};
+  /* TG68K_ALU.vhd:1304:25  */
+  assign n12746_o = n12738_o & clkena_lw;
+  /* TG68K_ALU.vhd:1304:25  */
+  assign n12747_o = n12704_o & clkena_lw;
+  /* TG68K_ALU.vhd:1304:25  */
+  assign n12749_o = n12723_o & clkena_lw;
+  /* TG68K_ALU.vhd:1304:25  */
+  assign n12750_o = n12723_o & clkena_lw;
+  /* TG68K_ALU.vhd:1304:25  */
+  assign n12753_o = n12707_o & clkena_lw;
+  assign n12763_o = {n9898_o, n9895_o};
+  assign n12764_o = {n10049_o, n10042_o, n10035_o};
+  assign n12765_o = {n10027_o, n10026_o, n10021_o, n9979_o};
+  /* TG68K_ALU.vhd:1007:17  */
   always @(posedge clk)
-    n12759_q <= n12439_o;
-  /* TG68K_ALU.vhd:996:17  */
-  assign n12760_o = {n10070_o, n10108_o};
-  assign n12762_o = {64'bZ, n12478_o, n12479_o};
-  /* TG68K_ALU.vhd:1292:17  */
-  assign n12763_o = n12739_o ? n12737_o : result_div;
-  /* TG68K_ALU.vhd:1292:17  */
+    n12766_q <= n12446_o;
+  /* TG68K_ALU.vhd:1007:17  */
+  assign n12767_o = {n10071_o, n10109_o};
+  assign n12769_o = {64'bZ, n12485_o, n12486_o};
+  /* TG68K_ALU.vhd:1303:17  */
+  assign n12770_o = n12746_o ? n12744_o : result_div;
+  /* TG68K_ALU.vhd:1303:17  */
   always @(posedge clk)
-    n12764_q <= n12763_o;
-  /* TG68K_ALU.vhd:1292:17  */
-  assign n12765_o = n12740_o ? n12691_o : v_flag;
-  /* TG68K_ALU.vhd:1292:17  */
+    n12771_q <= n12770_o;
+  /* TG68K_ALU.vhd:1303:17  */
+  assign n12772_o = n12747_o ? n12698_o : v_flag;
+  /* TG68K_ALU.vhd:1303:17  */
   always @(posedge clk)
-    n12766_q <= n12765_o;
-  /* TG68K_ALU.vhd:996:17  */
+    n12773_q <= n12772_o;
+  /* TG68K_ALU.vhd:1007:17  */
   always @(posedge clk)
-    n12767_q <= n12440_o;
+    n12774_q <= n12447_o;
   /* TG68K_ALU.vhd:405:17  */
-  assign n12769_o = clkena_lw ? n10129_o : bchg;
+  assign n12776_o = clkena_lw ? n10130_o : bchg;
   /* TG68K_ALU.vhd:405:17  */
-  always @(posedge clk)
-    n12770_q <= n12769_o;
-  /* TG68K_ALU.vhd:405:17  */
-  assign n12771_o = clkena_lw ? n10133_o : bset;
-  /* TG68K_ALU.vhd:405:17  */
-  always @(posedge clk)
-    n12772_q <= n12771_o;
-  /* TG68K_ALU.vhd:1211:17  */
-  assign n12774_o = clkena_lw ? n12532_o : mulu_reg;
-  /* TG68K_ALU.vhd:1211:17  */
-  always @(posedge clk)
-    n12775_q <= n12774_o;
-  /* TG68K_ALU.vhd:1211:17  */
-  assign n12776_o = n12535_o ? n12526_o : fasign;
-  /* TG68K_ALU.vhd:1211:17  */
   always @(posedge clk)
     n12777_q <= n12776_o;
-  /* TG68K_ALU.vhd:1292:17  */
-  assign n12779_o = clkena_lw ? n12711_o : div_reg;
-  /* TG68K_ALU.vhd:1292:17  */
+  /* TG68K_ALU.vhd:405:17  */
+  assign n12778_o = clkena_lw ? n10134_o : bset;
+  /* TG68K_ALU.vhd:405:17  */
   always @(posedge clk)
-    n12780_q <= n12779_o;
-  /* TG68K_ALU.vhd:1292:17  */
-  assign n12781_o = {n12666_o, n12669_o};
-  /* TG68K_ALU.vhd:1292:17  */
-  assign n12783_o = n12742_o ? n12719_o : div_neg;
-  /* TG68K_ALU.vhd:1292:17  */
+    n12779_q <= n12778_o;
+  /* TG68K_ALU.vhd:1222:17  */
+  assign n12781_o = clkena_lw ? n12539_o : mulu_reg;
+  /* TG68K_ALU.vhd:1222:17  */
+  always @(posedge clk)
+    n12782_q <= n12781_o;
+  /* TG68K_ALU.vhd:1222:17  */
+  assign n12783_o = n12542_o ? n12533_o : fasign;
+  /* TG68K_ALU.vhd:1222:17  */
   always @(posedge clk)
     n12784_q <= n12783_o;
-  /* TG68K_ALU.vhd:1292:17  */
-  assign n12785_o = n12743_o ? n12727_o : div_over;
-  /* TG68K_ALU.vhd:1292:17  */
+  /* TG68K_ALU.vhd:1303:17  */
+  assign n12786_o = clkena_lw ? n12718_o : div_reg;
+  /* TG68K_ALU.vhd:1303:17  */
   always @(posedge clk)
-    n12786_q <= n12785_o;
-  /* TG68K_ALU.vhd:1292:17  */
-  assign n12787_o = clkena_lw ? n12713_o : nozero;
-  /* TG68K_ALU.vhd:1292:17  */
-  always @(posedge clk)
-    n12788_q <= n12787_o;
-  /* TG68K_ALU.vhd:1292:17  */
-  assign n12789_o = {n12642_o, n12639_o, n12637_o};
-  /* TG68K_ALU.vhd:1292:17  */
-  assign n12790_o = clkena_lw ? divs : signedop;
-  /* TG68K_ALU.vhd:1292:17  */
+    n12787_q <= n12786_o;
+  /* TG68K_ALU.vhd:1303:17  */
+  assign n12788_o = {n12673_o, n12676_o};
+  /* TG68K_ALU.vhd:1303:17  */
+  assign n12790_o = n12749_o ? n12726_o : div_neg;
+  /* TG68K_ALU.vhd:1303:17  */
   always @(posedge clk)
     n12791_q <= n12790_o;
-  /* TG68K_ALU.vhd:1292:17  */
-  assign n12792_o = n12746_o ? n12708_o : op1_sign;
-  /* TG68K_ALU.vhd:1292:17  */
+  /* TG68K_ALU.vhd:1303:17  */
+  assign n12792_o = n12750_o ? n12734_o : div_over;
+  /* TG68K_ALU.vhd:1303:17  */
   always @(posedge clk)
     n12793_q <= n12792_o;
-  assign n12796_o = {n10708_o, n10696_o, n10681_o, n10666_o, n10651_o, n10636_o, n10621_o, n10606_o, n10591_o, n10576_o, n10561_o, n10546_o, n10531_o, n10516_o, n10501_o, n10486_o, n10471_o, n10456_o, n10441_o, n10426_o, n10411_o, n10396_o, n10381_o, n10366_o, n10351_o, n10336_o, n10321_o, n10306_o, n10291_o, n10276_o, n10261_o, n10245_o};
-  assign n12798_o = {n11471_o, n11461_o, n11444_o, n11427_o, n11410_o, n11393_o, n11376_o, n11359_o, n11342_o, n11325_o, n11308_o, n11291_o, n11274_o, n11257_o, n11240_o, n11223_o, n11206_o, n11189_o, n11172_o, n11155_o, n11138_o, n11121_o, n11104_o, n11087_o, n11070_o, n11053_o, n11036_o, n11019_o, n11002_o, n10985_o, n10968_o, n10951_o, n10934_o, n10917_o, n10900_o, n10883_o, n10866_o, n10849_o, n10832_o, n10815_o};
-  assign n12799_o = {n10709_o, n10701_o, n10686_o, n10671_o, n10656_o, n10641_o, n10626_o, n10611_o, n10596_o, n10581_o, n10566_o, n10551_o, n10536_o, n10521_o, n10506_o, n10491_o, n10476_o, n10461_o, n10446_o, n10431_o, n10416_o, n10401_o, n10386_o, n10371_o, n10356_o, n10341_o, n10326_o, n10311_o, n10296_o, n10281_o, n10266_o, n10250_o};
-  assign n12801_o = {n10765_o, n10766_o};
-  assign n12802_o = {n11555_o, n11584_o, n11581_o};
+  /* TG68K_ALU.vhd:1303:17  */
+  assign n12794_o = clkena_lw ? n12720_o : nozero;
+  /* TG68K_ALU.vhd:1303:17  */
+  always @(posedge clk)
+    n12795_q <= n12794_o;
+  /* TG68K_ALU.vhd:1303:17  */
+  assign n12796_o = {n12649_o, n12646_o, n12644_o};
+  /* TG68K_ALU.vhd:1303:17  */
+  assign n12797_o = clkena_lw ? divs : signedop;
+  /* TG68K_ALU.vhd:1303:17  */
+  always @(posedge clk)
+    n12798_q <= n12797_o;
+  /* TG68K_ALU.vhd:1303:17  */
+  assign n12799_o = n12753_o ? n12715_o : op1_sign;
+  /* TG68K_ALU.vhd:1303:17  */
+  always @(posedge clk)
+    n12800_q <= n12799_o;
+  assign n12803_o = {n10709_o, n10697_o, n10682_o, n10667_o, n10652_o, n10637_o, n10622_o, n10607_o, n10592_o, n10577_o, n10562_o, n10547_o, n10532_o, n10517_o, n10502_o, n10487_o, n10472_o, n10457_o, n10442_o, n10427_o, n10412_o, n10397_o, n10382_o, n10367_o, n10352_o, n10337_o, n10322_o, n10307_o, n10292_o, n10277_o, n10262_o, n10246_o};
+  assign n12805_o = {n11472_o, n11462_o, n11445_o, n11428_o, n11411_o, n11394_o, n11377_o, n11360_o, n11343_o, n11326_o, n11309_o, n11292_o, n11275_o, n11258_o, n11241_o, n11224_o, n11207_o, n11190_o, n11173_o, n11156_o, n11139_o, n11122_o, n11105_o, n11088_o, n11071_o, n11054_o, n11037_o, n11020_o, n11003_o, n10986_o, n10969_o, n10952_o, n10935_o, n10918_o, n10901_o, n10884_o, n10867_o, n10850_o, n10833_o, n10816_o};
+  assign n12806_o = {n10710_o, n10702_o, n10687_o, n10672_o, n10657_o, n10642_o, n10627_o, n10612_o, n10597_o, n10582_o, n10567_o, n10552_o, n10537_o, n10522_o, n10507_o, n10492_o, n10477_o, n10462_o, n10447_o, n10432_o, n10417_o, n10402_o, n10387_o, n10372_o, n10357_o, n10342_o, n10327_o, n10312_o, n10297_o, n10282_o, n10267_o, n10251_o};
+  assign n12808_o = {n10766_o, n10767_o};
+  assign n12809_o = {n11556_o, n11585_o, n11582_o};
   /* TG68K_ALU.vhd:446:17  */
-  assign n12803_o = clkena_lw ? n10192_o : bf_bset;
+  assign n12810_o = clkena_lw ? n10193_o : bf_bset;
   /* TG68K_ALU.vhd:446:17  */
   always @(posedge clk)
-    n12804_q <= n12803_o;
+    n12811_q <= n12810_o;
   /* TG68K_ALU.vhd:446:17  */
-  assign n12805_o = clkena_lw ? n10196_o : bf_bchg;
-  /* TG68K_ALU.vhd:446:17  */
-  always @(posedge clk)
-    n12806_q <= n12805_o;
-  /* TG68K_ALU.vhd:446:17  */
-  assign n12807_o = clkena_lw ? n10200_o : bf_ins;
+  assign n12812_o = clkena_lw ? n10197_o : bf_bchg;
   /* TG68K_ALU.vhd:446:17  */
   always @(posedge clk)
-    n12808_q <= n12807_o;
+    n12813_q <= n12812_o;
   /* TG68K_ALU.vhd:446:17  */
-  assign n12809_o = clkena_lw ? n10204_o : bf_exts;
-  /* TG68K_ALU.vhd:446:17  */
-  always @(posedge clk)
-    n12810_q <= n12809_o;
-  /* TG68K_ALU.vhd:446:17  */
-  assign n12811_o = clkena_lw ? n10208_o : bf_fffo;
+  assign n12814_o = clkena_lw ? n10201_o : bf_ins;
   /* TG68K_ALU.vhd:446:17  */
   always @(posedge clk)
-    n12812_q <= n12811_o;
+    n12815_q <= n12814_o;
   /* TG68K_ALU.vhd:446:17  */
-  assign n12813_o = clkena_lw ? n10217_o : bf_d32;
-  /* TG68K_ALU.vhd:446:17  */
-  always @(posedge clk)
-    n12814_q <= n12813_o;
-  /* TG68K_ALU.vhd:446:17  */
-  assign n12815_o = clkena_lw ? n10211_o : bf_s32;
+  assign n12816_o = clkena_lw ? n10205_o : bf_exts;
   /* TG68K_ALU.vhd:446:17  */
   always @(posedge clk)
-    n12816_q <= n12815_o;
-  assign n12818_o = {n12075_o, n12073_o, n12070_o, n12067_o, n12064_o, n12077_o};
-  assign n12819_o = {n11756_o, n11753_o, n11757_o, n11751_o, n11755_o};
-  assign n12820_o = {n12010_o, n12012_o};
-  assign n12821_o = {n12091_o, n12086_o, n12097_o};
+    n12817_q <= n12816_o;
   /* TG68K_ALU.vhd:446:17  */
-  assign n12822_o = clkena_lw ? n10219_o : n12823_q;
+  assign n12818_o = clkena_lw ? n10209_o : bf_fffo;
+  /* TG68K_ALU.vhd:446:17  */
+  always @(posedge clk)
+    n12819_q <= n12818_o;
+  /* TG68K_ALU.vhd:446:17  */
+  assign n12820_o = clkena_lw ? n10218_o : bf_d32;
+  /* TG68K_ALU.vhd:446:17  */
+  always @(posedge clk)
+    n12821_q <= n12820_o;
+  /* TG68K_ALU.vhd:446:17  */
+  assign n12822_o = clkena_lw ? n10212_o : bf_s32;
   /* TG68K_ALU.vhd:446:17  */
   always @(posedge clk)
     n12823_q <= n12822_o;
-  /* TG68K_ALU.vhd:996:17  */
-  always @(posedge clk)
-    n12824_q <= n12447_o;
-  /* TG68K_ALU.vhd:76:17  */
-  assign n12825_o = op1out[0];
-  /* TG68K_ALU.vhd:75:17  */
-  assign n12826_o = op1out[1];
-  /* TG68K_ALU.vhd:74:17  */
-  assign n12827_o = op1out[2];
-  /* TG68K_ALU.vhd:73:17  */
-  assign n12828_o = op1out[3];
-  /* TG68K_ALU.vhd:72:17  */
-  assign n12829_o = op1out[4];
-  /* TG68K_ALU.vhd:66:17  */
-  assign n12830_o = op1out[5];
+  assign n12825_o = {n12081_o, n12079_o, n12076_o, n12073_o, n12070_o, n12083_o};
+  assign n12826_o = {n11760_o, n11757_o, n11761_o, n11755_o, n11759_o};
+  assign n12827_o = {n12016_o, n12018_o};
+  assign n12828_o = {n12098_o, n12093_o, n12104_o};
   /* TG68K_ALU.vhd:446:17  */
-  assign n12831_o = op1out[6];
-  assign n12832_o = op1out[7];
-  assign n12833_o = op1out[8];
-  assign n12834_o = op1out[9];
-  /* TG68K_ALU.vhd:1292:17  */
-  assign n12835_o = op1out[10];
-  assign n12836_o = op1out[11];
-  /* TG68K_ALU.vhd:1211:17  */
-  assign n12837_o = op1out[12];
+  assign n12829_o = clkena_lw ? n10220_o : n12830_q;
+  /* TG68K_ALU.vhd:446:17  */
+  always @(posedge clk)
+    n12830_q <= n12829_o;
+  /* TG68K_ALU.vhd:1007:17  */
+  always @(posedge clk)
+    n12831_q <= n12454_o;
+  /* TG68K_ALU.vhd:76:17  */
+  assign n12832_o = op1out[0];
+  /* TG68K_ALU.vhd:75:17  */
+  assign n12833_o = op1out[1];
+  /* TG68K_ALU.vhd:74:17  */
+  assign n12834_o = op1out[2];
+  /* TG68K_ALU.vhd:73:17  */
+  assign n12835_o = op1out[3];
+  /* TG68K_ALU.vhd:72:17  */
+  assign n12836_o = op1out[4];
+  /* TG68K_ALU.vhd:66:17  */
+  assign n12837_o = op1out[5];
+  /* TG68K_ALU.vhd:446:17  */
+  assign n12838_o = op1out[6];
+  assign n12839_o = op1out[7];
+  assign n12840_o = op1out[8];
+  assign n12841_o = op1out[9];
+  /* TG68K_ALU.vhd:1303:17  */
+  assign n12842_o = op1out[10];
+  assign n12843_o = op1out[11];
+  /* TG68K_ALU.vhd:1222:17  */
+  assign n12844_o = op1out[12];
   /* TG68K_ALU.vhd:405:17  */
-  assign n12838_o = op1out[13];
-  /* TG68K_ALU.vhd:996:17  */
-  assign n12839_o = op1out[14];
-  assign n12840_o = op1out[15];
-  /* TG68K_ALU.vhd:1292:17  */
-  assign n12841_o = op1out[16];
-  /* TG68K_ALU.vhd:1292:17  */
-  assign n12842_o = op1out[17];
-  /* TG68K_ALU.vhd:1292:17  */
-  assign n12843_o = op1out[18];
-  /* TG68K_ALU.vhd:1292:17  */
-  assign n12844_o = op1out[19];
-  /* TG68K_ALU.vhd:1292:17  */
-  assign n12845_o = op1out[20];
-  /* TG68K_ALU.vhd:1292:17  */
-  assign n12846_o = op1out[21];
-  /* TG68K_ALU.vhd:1292:17  */
-  assign n12847_o = op1out[22];
-  /* TG68K_ALU.vhd:1292:17  */
-  assign n12848_o = op1out[23];
-  /* TG68K_ALU.vhd:1290:1  */
-  assign n12849_o = op1out[24];
-  assign n12850_o = op1out[25];
-  assign n12851_o = op1out[26];
-  /* TG68K_ALU.vhd:1237:1  */
-  assign n12852_o = op1out[27];
-  assign n12853_o = op1out[28];
-  /* TG68K_ALU.vhd:1211:17  */
-  assign n12854_o = op1out[29];
-  /* TG68K_ALU.vhd:1211:17  */
-  assign n12855_o = op1out[30];
-  /* TG68K_ALU.vhd:1209:1  */
-  assign n12856_o = op1out[31];
+  assign n12845_o = op1out[13];
+  /* TG68K_ALU.vhd:1007:17  */
+  assign n12846_o = op1out[14];
+  assign n12847_o = op1out[15];
+  /* TG68K_ALU.vhd:1303:17  */
+  assign n12848_o = op1out[16];
+  /* TG68K_ALU.vhd:1303:17  */
+  assign n12849_o = op1out[17];
+  /* TG68K_ALU.vhd:1303:17  */
+  assign n12850_o = op1out[18];
+  /* TG68K_ALU.vhd:1303:17  */
+  assign n12851_o = op1out[19];
+  /* TG68K_ALU.vhd:1303:17  */
+  assign n12852_o = op1out[20];
+  /* TG68K_ALU.vhd:1303:17  */
+  assign n12853_o = op1out[21];
+  /* TG68K_ALU.vhd:1303:17  */
+  assign n12854_o = op1out[22];
+  /* TG68K_ALU.vhd:1303:17  */
+  assign n12855_o = op1out[23];
+  /* TG68K_ALU.vhd:1301:1  */
+  assign n12856_o = op1out[24];
+  assign n12857_o = op1out[25];
+  assign n12858_o = op1out[26];
+  /* TG68K_ALU.vhd:1248:1  */
+  assign n12859_o = op1out[27];
+  assign n12860_o = op1out[28];
+  /* TG68K_ALU.vhd:1222:17  */
+  assign n12861_o = op1out[29];
+  /* TG68K_ALU.vhd:1222:17  */
+  assign n12862_o = op1out[30];
+  /* TG68K_ALU.vhd:1220:1  */
+  assign n12863_o = op1out[31];
   /* TG68K_ALU.vhd:433:37  */
-  assign n12857_o = bit_number[1:0];
-  /* TG68K_ALU.vhd:433:37  */
-  always @*
-    case (n12857_o)
-      2'b00: n12858_o = n12825_o;
-      2'b01: n12858_o = n12826_o;
-      2'b10: n12858_o = n12827_o;
-      2'b11: n12858_o = n12828_o;
-    endcase
-  /* TG68K_ALU.vhd:433:37  */
-  assign n12859_o = bit_number[1:0];
+  assign n12864_o = bit_number[1:0];
   /* TG68K_ALU.vhd:433:37  */
   always @*
-    case (n12859_o)
-      2'b00: n12860_o = n12829_o;
-      2'b01: n12860_o = n12830_o;
-      2'b10: n12860_o = n12831_o;
-      2'b11: n12860_o = n12832_o;
+    case (n12864_o)
+      2'b00: n12865_o = n12832_o;
+      2'b01: n12865_o = n12833_o;
+      2'b10: n12865_o = n12834_o;
+      2'b11: n12865_o = n12835_o;
     endcase
   /* TG68K_ALU.vhd:433:37  */
-  assign n12861_o = bit_number[1:0];
+  assign n12866_o = bit_number[1:0];
   /* TG68K_ALU.vhd:433:37  */
   always @*
-    case (n12861_o)
-      2'b00: n12862_o = n12833_o;
-      2'b01: n12862_o = n12834_o;
-      2'b10: n12862_o = n12835_o;
-      2'b11: n12862_o = n12836_o;
+    case (n12866_o)
+      2'b00: n12867_o = n12836_o;
+      2'b01: n12867_o = n12837_o;
+      2'b10: n12867_o = n12838_o;
+      2'b11: n12867_o = n12839_o;
     endcase
   /* TG68K_ALU.vhd:433:37  */
-  assign n12863_o = bit_number[1:0];
+  assign n12868_o = bit_number[1:0];
   /* TG68K_ALU.vhd:433:37  */
   always @*
-    case (n12863_o)
-      2'b00: n12864_o = n12837_o;
-      2'b01: n12864_o = n12838_o;
-      2'b10: n12864_o = n12839_o;
-      2'b11: n12864_o = n12840_o;
+    case (n12868_o)
+      2'b00: n12869_o = n12840_o;
+      2'b01: n12869_o = n12841_o;
+      2'b10: n12869_o = n12842_o;
+      2'b11: n12869_o = n12843_o;
     endcase
   /* TG68K_ALU.vhd:433:37  */
-  assign n12865_o = bit_number[1:0];
+  assign n12870_o = bit_number[1:0];
   /* TG68K_ALU.vhd:433:37  */
   always @*
-    case (n12865_o)
-      2'b00: n12866_o = n12841_o;
-      2'b01: n12866_o = n12842_o;
-      2'b10: n12866_o = n12843_o;
-      2'b11: n12866_o = n12844_o;
+    case (n12870_o)
+      2'b00: n12871_o = n12844_o;
+      2'b01: n12871_o = n12845_o;
+      2'b10: n12871_o = n12846_o;
+      2'b11: n12871_o = n12847_o;
     endcase
   /* TG68K_ALU.vhd:433:37  */
-  assign n12867_o = bit_number[1:0];
+  assign n12872_o = bit_number[1:0];
   /* TG68K_ALU.vhd:433:37  */
   always @*
-    case (n12867_o)
-      2'b00: n12868_o = n12845_o;
-      2'b01: n12868_o = n12846_o;
-      2'b10: n12868_o = n12847_o;
-      2'b11: n12868_o = n12848_o;
+    case (n12872_o)
+      2'b00: n12873_o = n12848_o;
+      2'b01: n12873_o = n12849_o;
+      2'b10: n12873_o = n12850_o;
+      2'b11: n12873_o = n12851_o;
     endcase
   /* TG68K_ALU.vhd:433:37  */
-  assign n12869_o = bit_number[1:0];
+  assign n12874_o = bit_number[1:0];
   /* TG68K_ALU.vhd:433:37  */
   always @*
-    case (n12869_o)
-      2'b00: n12870_o = n12849_o;
-      2'b01: n12870_o = n12850_o;
-      2'b10: n12870_o = n12851_o;
-      2'b11: n12870_o = n12852_o;
+    case (n12874_o)
+      2'b00: n12875_o = n12852_o;
+      2'b01: n12875_o = n12853_o;
+      2'b10: n12875_o = n12854_o;
+      2'b11: n12875_o = n12855_o;
     endcase
   /* TG68K_ALU.vhd:433:37  */
-  assign n12871_o = bit_number[1:0];
+  assign n12876_o = bit_number[1:0];
   /* TG68K_ALU.vhd:433:37  */
   always @*
-    case (n12871_o)
-      2'b00: n12872_o = n12853_o;
-      2'b01: n12872_o = n12854_o;
-      2'b10: n12872_o = n12855_o;
-      2'b11: n12872_o = n12856_o;
+    case (n12876_o)
+      2'b00: n12877_o = n12856_o;
+      2'b01: n12877_o = n12857_o;
+      2'b10: n12877_o = n12858_o;
+      2'b11: n12877_o = n12859_o;
     endcase
   /* TG68K_ALU.vhd:433:37  */
-  assign n12873_o = bit_number[3:2];
+  assign n12878_o = bit_number[1:0];
   /* TG68K_ALU.vhd:433:37  */
   always @*
-    case (n12873_o)
-      2'b00: n12874_o = n12858_o;
-      2'b01: n12874_o = n12860_o;
-      2'b10: n12874_o = n12862_o;
-      2'b11: n12874_o = n12864_o;
+    case (n12878_o)
+      2'b00: n12879_o = n12860_o;
+      2'b01: n12879_o = n12861_o;
+      2'b10: n12879_o = n12862_o;
+      2'b11: n12879_o = n12863_o;
     endcase
   /* TG68K_ALU.vhd:433:37  */
-  assign n12875_o = bit_number[3:2];
+  assign n12880_o = bit_number[3:2];
   /* TG68K_ALU.vhd:433:37  */
   always @*
-    case (n12875_o)
-      2'b00: n12876_o = n12866_o;
-      2'b01: n12876_o = n12868_o;
-      2'b10: n12876_o = n12870_o;
-      2'b11: n12876_o = n12872_o;
+    case (n12880_o)
+      2'b00: n12881_o = n12865_o;
+      2'b01: n12881_o = n12867_o;
+      2'b10: n12881_o = n12869_o;
+      2'b11: n12881_o = n12871_o;
     endcase
   /* TG68K_ALU.vhd:433:37  */
-  assign n12877_o = bit_number[4];
+  assign n12882_o = bit_number[3:2];
   /* TG68K_ALU.vhd:433:37  */
-  assign n12878_o = n12877_o ? n12876_o : n12874_o;
+  always @*
+    case (n12882_o)
+      2'b00: n12883_o = n12873_o;
+      2'b01: n12883_o = n12875_o;
+      2'b10: n12883_o = n12877_o;
+      2'b11: n12883_o = n12879_o;
+    endcase
+  /* TG68K_ALU.vhd:433:37  */
+  assign n12884_o = bit_number[4];
+  /* TG68K_ALU.vhd:433:37  */
+  assign n12885_o = n12884_o ? n12883_o : n12881_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12879_o = bit_number[4];
+  assign n12886_o = bit_number[4];
   /* TG68K_ALU.vhd:435:17  */
-  assign n12880_o = ~n12879_o;
+  assign n12887_o = ~n12886_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12881_o = bit_number[3];
+  assign n12888_o = bit_number[3];
   /* TG68K_ALU.vhd:435:17  */
-  assign n12882_o = ~n12881_o;
+  assign n12889_o = ~n12888_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12883_o = n12880_o & n12882_o;
+  assign n12890_o = n12887_o & n12889_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12884_o = n12880_o & n12881_o;
+  assign n12891_o = n12887_o & n12888_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12885_o = n12879_o & n12882_o;
+  assign n12892_o = n12886_o & n12889_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12886_o = n12879_o & n12881_o;
+  assign n12893_o = n12886_o & n12888_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12887_o = bit_number[2];
+  assign n12894_o = bit_number[2];
   /* TG68K_ALU.vhd:435:17  */
-  assign n12888_o = ~n12887_o;
+  assign n12895_o = ~n12894_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12889_o = n12883_o & n12888_o;
+  assign n12896_o = n12890_o & n12895_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12890_o = n12883_o & n12887_o;
+  assign n12897_o = n12890_o & n12894_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12891_o = n12884_o & n12888_o;
+  assign n12898_o = n12891_o & n12895_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12892_o = n12884_o & n12887_o;
+  assign n12899_o = n12891_o & n12894_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12893_o = n12885_o & n12888_o;
+  assign n12900_o = n12892_o & n12895_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12894_o = n12885_o & n12887_o;
+  assign n12901_o = n12892_o & n12894_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12895_o = n12886_o & n12888_o;
+  assign n12902_o = n12893_o & n12895_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12896_o = n12886_o & n12887_o;
+  assign n12903_o = n12893_o & n12894_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12897_o = bit_number[1];
+  assign n12904_o = bit_number[1];
   /* TG68K_ALU.vhd:435:17  */
-  assign n12898_o = ~n12897_o;
+  assign n12905_o = ~n12904_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12899_o = n12889_o & n12898_o;
+  assign n12906_o = n12896_o & n12905_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12900_o = n12889_o & n12897_o;
+  assign n12907_o = n12896_o & n12904_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12901_o = n12890_o & n12898_o;
+  assign n12908_o = n12897_o & n12905_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12902_o = n12890_o & n12897_o;
+  assign n12909_o = n12897_o & n12904_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12903_o = n12891_o & n12898_o;
+  assign n12910_o = n12898_o & n12905_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12904_o = n12891_o & n12897_o;
+  assign n12911_o = n12898_o & n12904_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12905_o = n12892_o & n12898_o;
+  assign n12912_o = n12899_o & n12905_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12906_o = n12892_o & n12897_o;
+  assign n12913_o = n12899_o & n12904_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12907_o = n12893_o & n12898_o;
+  assign n12914_o = n12900_o & n12905_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12908_o = n12893_o & n12897_o;
+  assign n12915_o = n12900_o & n12904_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12909_o = n12894_o & n12898_o;
+  assign n12916_o = n12901_o & n12905_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12910_o = n12894_o & n12897_o;
+  assign n12917_o = n12901_o & n12904_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12911_o = n12895_o & n12898_o;
+  assign n12918_o = n12902_o & n12905_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12912_o = n12895_o & n12897_o;
+  assign n12919_o = n12902_o & n12904_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12913_o = n12896_o & n12898_o;
+  assign n12920_o = n12903_o & n12905_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12914_o = n12896_o & n12897_o;
+  assign n12921_o = n12903_o & n12904_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12915_o = bit_number[0];
+  assign n12922_o = bit_number[0];
   /* TG68K_ALU.vhd:435:17  */
-  assign n12916_o = ~n12915_o;
+  assign n12923_o = ~n12922_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12917_o = n12899_o & n12916_o;
+  assign n12924_o = n12906_o & n12923_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12918_o = n12899_o & n12915_o;
+  assign n12925_o = n12906_o & n12922_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12919_o = n12900_o & n12916_o;
+  assign n12926_o = n12907_o & n12923_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12920_o = n12900_o & n12915_o;
+  assign n12927_o = n12907_o & n12922_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12921_o = n12901_o & n12916_o;
+  assign n12928_o = n12908_o & n12923_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12922_o = n12901_o & n12915_o;
+  assign n12929_o = n12908_o & n12922_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12923_o = n12902_o & n12916_o;
+  assign n12930_o = n12909_o & n12923_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12924_o = n12902_o & n12915_o;
+  assign n12931_o = n12909_o & n12922_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12925_o = n12903_o & n12916_o;
+  assign n12932_o = n12910_o & n12923_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12926_o = n12903_o & n12915_o;
+  assign n12933_o = n12910_o & n12922_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12927_o = n12904_o & n12916_o;
+  assign n12934_o = n12911_o & n12923_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12928_o = n12904_o & n12915_o;
+  assign n12935_o = n12911_o & n12922_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12929_o = n12905_o & n12916_o;
+  assign n12936_o = n12912_o & n12923_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12930_o = n12905_o & n12915_o;
+  assign n12937_o = n12912_o & n12922_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12931_o = n12906_o & n12916_o;
+  assign n12938_o = n12913_o & n12923_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12932_o = n12906_o & n12915_o;
+  assign n12939_o = n12913_o & n12922_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12933_o = n12907_o & n12916_o;
+  assign n12940_o = n12914_o & n12923_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12934_o = n12907_o & n12915_o;
+  assign n12941_o = n12914_o & n12922_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12935_o = n12908_o & n12916_o;
+  assign n12942_o = n12915_o & n12923_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12936_o = n12908_o & n12915_o;
+  assign n12943_o = n12915_o & n12922_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12937_o = n12909_o & n12916_o;
+  assign n12944_o = n12916_o & n12923_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12938_o = n12909_o & n12915_o;
+  assign n12945_o = n12916_o & n12922_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12939_o = n12910_o & n12916_o;
+  assign n12946_o = n12917_o & n12923_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12940_o = n12910_o & n12915_o;
+  assign n12947_o = n12917_o & n12922_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12941_o = n12911_o & n12916_o;
+  assign n12948_o = n12918_o & n12923_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12942_o = n12911_o & n12915_o;
+  assign n12949_o = n12918_o & n12922_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12943_o = n12912_o & n12916_o;
+  assign n12950_o = n12919_o & n12923_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12944_o = n12912_o & n12915_o;
+  assign n12951_o = n12919_o & n12922_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12945_o = n12913_o & n12916_o;
+  assign n12952_o = n12920_o & n12923_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12946_o = n12913_o & n12915_o;
+  assign n12953_o = n12920_o & n12922_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12947_o = n12914_o & n12916_o;
+  assign n12954_o = n12921_o & n12923_o;
   /* TG68K_ALU.vhd:435:17  */
-  assign n12948_o = n12914_o & n12915_o;
-  /* TG68K_ALU.vhd:581:17  */
-  assign n12949_o = op1out[0];
+  assign n12955_o = n12921_o & n12922_o;
+  assign n12956_o = op1out[0];
   /* TG68K_ALU.vhd:435:17  */
-  assign n12950_o = n12917_o ? n10165_o : n12949_o;
-  /* TG68K_ALU.vhd:575:17  */
-  assign n12951_o = op1out[1];
-  /* TG68K_ALU.vhd:435:17  */
-  assign n12952_o = n12918_o ? n10165_o : n12951_o;
-  assign n12953_o = op1out[2];
-  /* TG68K_ALU.vhd:435:17  */
-  assign n12954_o = n12919_o ? n10165_o : n12953_o;
-  assign n12955_o = op1out[3];
-  /* TG68K_ALU.vhd:435:17  */
-  assign n12956_o = n12920_o ? n10165_o : n12955_o;
+  assign n12957_o = n12924_o ? n10166_o : n12956_o;
   /* TG68K_ALU.vhd:572:17  */
-  assign n12957_o = op1out[4];
+  assign n12958_o = op1out[1];
   /* TG68K_ALU.vhd:435:17  */
-  assign n12958_o = n12921_o ? n10165_o : n12957_o;
-  assign n12959_o = op1out[5];
+  assign n12959_o = n12925_o ? n10166_o : n12958_o;
+  assign n12960_o = op1out[2];
   /* TG68K_ALU.vhd:435:17  */
-  assign n12960_o = n12922_o ? n10165_o : n12959_o;
-  assign n12961_o = op1out[6];
+  assign n12961_o = n12926_o ? n10166_o : n12960_o;
+  assign n12962_o = op1out[3];
   /* TG68K_ALU.vhd:435:17  */
-  assign n12962_o = n12923_o ? n10165_o : n12961_o;
+  assign n12963_o = n12927_o ? n10166_o : n12962_o;
   /* TG68K_ALU.vhd:581:17  */
-  assign n12963_o = op1out[7];
+  assign n12964_o = op1out[4];
   /* TG68K_ALU.vhd:435:17  */
-  assign n12964_o = n12924_o ? n10165_o : n12963_o;
+  assign n12965_o = n12928_o ? n10166_o : n12964_o;
   /* TG68K_ALU.vhd:575:17  */
-  assign n12965_o = op1out[8];
+  assign n12966_o = op1out[5];
   /* TG68K_ALU.vhd:435:17  */
-  assign n12966_o = n12925_o ? n10165_o : n12965_o;
-  assign n12967_o = op1out[9];
+  assign n12967_o = n12929_o ? n10166_o : n12966_o;
+  assign n12968_o = op1out[6];
   /* TG68K_ALU.vhd:435:17  */
-  assign n12968_o = n12926_o ? n10165_o : n12967_o;
-  assign n12969_o = op1out[10];
+  assign n12969_o = n12930_o ? n10166_o : n12968_o;
+  assign n12970_o = op1out[7];
   /* TG68K_ALU.vhd:435:17  */
-  assign n12970_o = n12927_o ? n10165_o : n12969_o;
+  assign n12971_o = n12931_o ? n10166_o : n12970_o;
   /* TG68K_ALU.vhd:572:17  */
-  assign n12971_o = op1out[11];
+  assign n12972_o = op1out[8];
   /* TG68K_ALU.vhd:435:17  */
-  assign n12972_o = n12928_o ? n10165_o : n12971_o;
-  assign n12973_o = op1out[12];
+  assign n12973_o = n12932_o ? n10166_o : n12972_o;
+  assign n12974_o = op1out[9];
   /* TG68K_ALU.vhd:435:17  */
-  assign n12974_o = n12929_o ? n10165_o : n12973_o;
-  assign n12975_o = op1out[13];
+  assign n12975_o = n12933_o ? n10166_o : n12974_o;
+  assign n12976_o = op1out[10];
   /* TG68K_ALU.vhd:435:17  */
-  assign n12976_o = n12930_o ? n10165_o : n12975_o;
+  assign n12977_o = n12934_o ? n10166_o : n12976_o;
   /* TG68K_ALU.vhd:581:17  */
-  assign n12977_o = op1out[14];
+  assign n12978_o = op1out[11];
   /* TG68K_ALU.vhd:435:17  */
-  assign n12978_o = n12931_o ? n10165_o : n12977_o;
+  assign n12979_o = n12935_o ? n10166_o : n12978_o;
   /* TG68K_ALU.vhd:575:17  */
-  assign n12979_o = op1out[15];
+  assign n12980_o = op1out[12];
   /* TG68K_ALU.vhd:435:17  */
-  assign n12980_o = n12932_o ? n10165_o : n12979_o;
-  assign n12981_o = op1out[16];
+  assign n12981_o = n12936_o ? n10166_o : n12980_o;
+  assign n12982_o = op1out[13];
   /* TG68K_ALU.vhd:435:17  */
-  assign n12982_o = n12933_o ? n10165_o : n12981_o;
-  assign n12983_o = op1out[17];
+  assign n12983_o = n12937_o ? n10166_o : n12982_o;
+  assign n12984_o = op1out[14];
   /* TG68K_ALU.vhd:435:17  */
-  assign n12984_o = n12934_o ? n10165_o : n12983_o;
+  assign n12985_o = n12938_o ? n10166_o : n12984_o;
   /* TG68K_ALU.vhd:572:17  */
-  assign n12985_o = op1out[18];
+  assign n12986_o = op1out[15];
   /* TG68K_ALU.vhd:435:17  */
-  assign n12986_o = n12935_o ? n10165_o : n12985_o;
-  assign n12987_o = op1out[19];
+  assign n12987_o = n12939_o ? n10166_o : n12986_o;
+  assign n12988_o = op1out[16];
   /* TG68K_ALU.vhd:435:17  */
-  assign n12988_o = n12936_o ? n10165_o : n12987_o;
-  assign n12989_o = op1out[20];
+  assign n12989_o = n12940_o ? n10166_o : n12988_o;
+  assign n12990_o = op1out[17];
   /* TG68K_ALU.vhd:435:17  */
-  assign n12990_o = n12937_o ? n10165_o : n12989_o;
+  assign n12991_o = n12941_o ? n10166_o : n12990_o;
   /* TG68K_ALU.vhd:581:17  */
-  assign n12991_o = op1out[21];
+  assign n12992_o = op1out[18];
   /* TG68K_ALU.vhd:435:17  */
-  assign n12992_o = n12938_o ? n10165_o : n12991_o;
+  assign n12993_o = n12942_o ? n10166_o : n12992_o;
   /* TG68K_ALU.vhd:575:17  */
-  assign n12993_o = op1out[22];
+  assign n12994_o = op1out[19];
   /* TG68K_ALU.vhd:435:17  */
-  assign n12994_o = n12939_o ? n10165_o : n12993_o;
-  assign n12995_o = op1out[23];
+  assign n12995_o = n12943_o ? n10166_o : n12994_o;
+  assign n12996_o = op1out[20];
   /* TG68K_ALU.vhd:435:17  */
-  assign n12996_o = n12940_o ? n10165_o : n12995_o;
-  assign n12997_o = op1out[24];
+  assign n12997_o = n12944_o ? n10166_o : n12996_o;
+  assign n12998_o = op1out[21];
   /* TG68K_ALU.vhd:435:17  */
-  assign n12998_o = n12941_o ? n10165_o : n12997_o;
+  assign n12999_o = n12945_o ? n10166_o : n12998_o;
   /* TG68K_ALU.vhd:572:17  */
-  assign n12999_o = op1out[25];
+  assign n13000_o = op1out[22];
   /* TG68K_ALU.vhd:435:17  */
-  assign n13000_o = n12942_o ? n10165_o : n12999_o;
-  assign n13001_o = op1out[26];
+  assign n13001_o = n12946_o ? n10166_o : n13000_o;
+  assign n13002_o = op1out[23];
   /* TG68K_ALU.vhd:435:17  */
-  assign n13002_o = n12943_o ? n10165_o : n13001_o;
-  assign n13003_o = op1out[27];
+  assign n13003_o = n12947_o ? n10166_o : n13002_o;
+  assign n13004_o = op1out[24];
   /* TG68K_ALU.vhd:435:17  */
-  assign n13004_o = n12944_o ? n10165_o : n13003_o;
+  assign n13005_o = n12948_o ? n10166_o : n13004_o;
   /* TG68K_ALU.vhd:581:17  */
-  assign n13005_o = op1out[28];
+  assign n13006_o = op1out[25];
   /* TG68K_ALU.vhd:435:17  */
-  assign n13006_o = n12945_o ? n10165_o : n13005_o;
+  assign n13007_o = n12949_o ? n10166_o : n13006_o;
   /* TG68K_ALU.vhd:575:17  */
-  assign n13007_o = op1out[29];
+  assign n13008_o = op1out[26];
   /* TG68K_ALU.vhd:435:17  */
-  assign n13008_o = n12946_o ? n10165_o : n13007_o;
-  assign n13009_o = op1out[30];
+  assign n13009_o = n12950_o ? n10166_o : n13008_o;
+  assign n13010_o = op1out[27];
   /* TG68K_ALU.vhd:435:17  */
-  assign n13010_o = n12947_o ? n10165_o : n13009_o;
-  assign n13011_o = op1out[31];
+  assign n13011_o = n12951_o ? n10166_o : n13010_o;
+  assign n13012_o = op1out[28];
   /* TG68K_ALU.vhd:435:17  */
-  assign n13012_o = n12948_o ? n10165_o : n13011_o;
+  assign n13013_o = n12952_o ? n10166_o : n13012_o;
   /* TG68K_ALU.vhd:572:17  */
-  assign n13013_o = {n13012_o, n13010_o, n13008_o, n13006_o, n13004_o, n13002_o, n13000_o, n12998_o, n12996_o, n12994_o, n12992_o, n12990_o, n12988_o, n12986_o, n12984_o, n12982_o, n12980_o, n12978_o, n12976_o, n12974_o, n12972_o, n12970_o, n12968_o, n12966_o, n12964_o, n12962_o, n12960_o, n12958_o, n12956_o, n12954_o, n12952_o, n12950_o};
+  assign n13014_o = op1out[29];
+  /* TG68K_ALU.vhd:435:17  */
+  assign n13015_o = n12953_o ? n10166_o : n13014_o;
+  assign n13016_o = op1out[30];
+  /* TG68K_ALU.vhd:435:17  */
+  assign n13017_o = n12954_o ? n10166_o : n13016_o;
+  assign n13018_o = op1out[31];
+  /* TG68K_ALU.vhd:435:17  */
+  assign n13019_o = n12955_o ? n10166_o : n13018_o;
+  /* TG68K_ALU.vhd:581:17  */
+  assign n13020_o = {n13019_o, n13017_o, n13015_o, n13013_o, n13011_o, n13009_o, n13007_o, n13005_o, n13003_o, n13001_o, n12999_o, n12997_o, n12995_o, n12993_o, n12991_o, n12989_o, n12987_o, n12985_o, n12983_o, n12981_o, n12979_o, n12977_o, n12975_o, n12973_o, n12971_o, n12969_o, n12967_o, n12965_o, n12963_o, n12961_o, n12959_o, n12957_o};
   /* TG68K_ALU.vhd:435:26  */
-  assign n13014_o = datareg[0];
+  assign n13021_o = datareg[0];
   /* TG68K_ALU.vhd:435:17  */
-  assign n13015_o = datareg[1];
-  /* TG68K_ALU.vhd:575:17  */
-  assign n13016_o = datareg[2];
-  assign n13017_o = datareg[3];
-  assign n13018_o = datareg[4];
-  assign n13019_o = datareg[5];
-  assign n13020_o = datareg[6];
-  /* TG68K_ALU.vhd:581:17  */
-  assign n13021_o = datareg[7];
+  assign n13022_o = datareg[1];
   /* TG68K_ALU.vhd:572:17  */
-  assign n13022_o = datareg[8];
+  assign n13023_o = datareg[2];
   /* TG68K_ALU.vhd:575:17  */
-  assign n13023_o = datareg[9];
-  assign n13024_o = datareg[10];
-  assign n13025_o = datareg[11];
-  assign n13026_o = datareg[12];
-  assign n13027_o = datareg[13];
+  assign n13024_o = datareg[3];
+  assign n13025_o = datareg[4];
+  assign n13026_o = datareg[5];
+  assign n13027_o = datareg[6];
+  assign n13028_o = datareg[7];
   /* TG68K_ALU.vhd:581:17  */
-  assign n13028_o = datareg[14];
+  assign n13029_o = datareg[8];
   /* TG68K_ALU.vhd:572:17  */
-  assign n13029_o = datareg[15];
+  assign n13030_o = datareg[9];
   /* TG68K_ALU.vhd:575:17  */
-  assign n13030_o = datareg[16];
-  assign n13031_o = datareg[17];
-  assign n13032_o = datareg[18];
-  assign n13033_o = datareg[19];
-  assign n13034_o = datareg[20];
+  assign n13031_o = datareg[10];
+  assign n13032_o = datareg[11];
+  assign n13033_o = datareg[12];
+  assign n13034_o = datareg[13];
+  assign n13035_o = datareg[14];
   /* TG68K_ALU.vhd:581:17  */
-  assign n13035_o = datareg[21];
+  assign n13036_o = datareg[15];
   /* TG68K_ALU.vhd:572:17  */
-  assign n13036_o = datareg[22];
+  assign n13037_o = datareg[16];
   /* TG68K_ALU.vhd:575:17  */
-  assign n13037_o = datareg[23];
-  assign n13038_o = datareg[24];
-  assign n13039_o = datareg[25];
-  assign n13040_o = datareg[26];
-  assign n13041_o = datareg[27];
+  assign n13038_o = datareg[17];
+  assign n13039_o = datareg[18];
+  assign n13040_o = datareg[19];
+  assign n13041_o = datareg[20];
+  assign n13042_o = datareg[21];
   /* TG68K_ALU.vhd:581:17  */
-  assign n13042_o = datareg[28];
+  assign n13043_o = datareg[22];
   /* TG68K_ALU.vhd:572:17  */
-  assign n13043_o = datareg[29];
+  assign n13044_o = datareg[23];
   /* TG68K_ALU.vhd:575:17  */
-  assign n13044_o = datareg[30];
-  assign n13045_o = datareg[31];
+  assign n13045_o = datareg[24];
+  assign n13046_o = datareg[25];
+  assign n13047_o = datareg[26];
+  assign n13048_o = datareg[27];
+  assign n13049_o = datareg[28];
+  /* TG68K_ALU.vhd:581:17  */
+  assign n13050_o = datareg[29];
+  /* TG68K_ALU.vhd:572:17  */
+  assign n13051_o = datareg[30];
+  /* TG68K_ALU.vhd:575:17  */
+  assign n13052_o = datareg[31];
   /* TG68K_ALU.vhd:496:36  */
-  assign n13046_o = n10711_o[1:0];
-  /* TG68K_ALU.vhd:496:36  */
-  always @*
-    case (n13046_o)
-      2'b00: n13047_o = n13014_o;
-      2'b01: n13047_o = n13015_o;
-      2'b10: n13047_o = n13016_o;
-      2'b11: n13047_o = n13017_o;
-    endcase
-  /* TG68K_ALU.vhd:496:36  */
-  assign n13048_o = n10711_o[1:0];
-  /* TG68K_ALU.vhd:496:36  */
-  always @*
-    case (n13048_o)
-      2'b00: n13049_o = n13018_o;
-      2'b01: n13049_o = n13019_o;
-      2'b10: n13049_o = n13020_o;
-      2'b11: n13049_o = n13021_o;
-    endcase
-  /* TG68K_ALU.vhd:496:36  */
-  assign n13050_o = n10711_o[1:0];
+  assign n13053_o = n10712_o[1:0];
   /* TG68K_ALU.vhd:496:36  */
   always @*
-    case (n13050_o)
-      2'b00: n13051_o = n13022_o;
-      2'b01: n13051_o = n13023_o;
-      2'b10: n13051_o = n13024_o;
-      2'b11: n13051_o = n13025_o;
+    case (n13053_o)
+      2'b00: n13054_o = n13021_o;
+      2'b01: n13054_o = n13022_o;
+      2'b10: n13054_o = n13023_o;
+      2'b11: n13054_o = n13024_o;
     endcase
   /* TG68K_ALU.vhd:496:36  */
-  assign n13052_o = n10711_o[1:0];
+  assign n13055_o = n10712_o[1:0];
   /* TG68K_ALU.vhd:496:36  */
   always @*
-    case (n13052_o)
-      2'b00: n13053_o = n13026_o;
-      2'b01: n13053_o = n13027_o;
-      2'b10: n13053_o = n13028_o;
-      2'b11: n13053_o = n13029_o;
+    case (n13055_o)
+      2'b00: n13056_o = n13025_o;
+      2'b01: n13056_o = n13026_o;
+      2'b10: n13056_o = n13027_o;
+      2'b11: n13056_o = n13028_o;
     endcase
   /* TG68K_ALU.vhd:496:36  */
-  assign n13054_o = n10711_o[1:0];
+  assign n13057_o = n10712_o[1:0];
   /* TG68K_ALU.vhd:496:36  */
   always @*
-    case (n13054_o)
-      2'b00: n13055_o = n13030_o;
-      2'b01: n13055_o = n13031_o;
-      2'b10: n13055_o = n13032_o;
-      2'b11: n13055_o = n13033_o;
+    case (n13057_o)
+      2'b00: n13058_o = n13029_o;
+      2'b01: n13058_o = n13030_o;
+      2'b10: n13058_o = n13031_o;
+      2'b11: n13058_o = n13032_o;
     endcase
   /* TG68K_ALU.vhd:496:36  */
-  assign n13056_o = n10711_o[1:0];
+  assign n13059_o = n10712_o[1:0];
   /* TG68K_ALU.vhd:496:36  */
   always @*
-    case (n13056_o)
-      2'b00: n13057_o = n13034_o;
-      2'b01: n13057_o = n13035_o;
-      2'b10: n13057_o = n13036_o;
-      2'b11: n13057_o = n13037_o;
+    case (n13059_o)
+      2'b00: n13060_o = n13033_o;
+      2'b01: n13060_o = n13034_o;
+      2'b10: n13060_o = n13035_o;
+      2'b11: n13060_o = n13036_o;
     endcase
   /* TG68K_ALU.vhd:496:36  */
-  assign n13058_o = n10711_o[1:0];
+  assign n13061_o = n10712_o[1:0];
   /* TG68K_ALU.vhd:496:36  */
   always @*
-    case (n13058_o)
-      2'b00: n13059_o = n13038_o;
-      2'b01: n13059_o = n13039_o;
-      2'b10: n13059_o = n13040_o;
-      2'b11: n13059_o = n13041_o;
+    case (n13061_o)
+      2'b00: n13062_o = n13037_o;
+      2'b01: n13062_o = n13038_o;
+      2'b10: n13062_o = n13039_o;
+      2'b11: n13062_o = n13040_o;
     endcase
   /* TG68K_ALU.vhd:496:36  */
-  assign n13060_o = n10711_o[1:0];
+  assign n13063_o = n10712_o[1:0];
   /* TG68K_ALU.vhd:496:36  */
   always @*
-    case (n13060_o)
-      2'b00: n13061_o = n13042_o;
-      2'b01: n13061_o = n13043_o;
-      2'b10: n13061_o = n13044_o;
-      2'b11: n13061_o = n13045_o;
+    case (n13063_o)
+      2'b00: n13064_o = n13041_o;
+      2'b01: n13064_o = n13042_o;
+      2'b10: n13064_o = n13043_o;
+      2'b11: n13064_o = n13044_o;
     endcase
   /* TG68K_ALU.vhd:496:36  */
-  assign n13062_o = n10711_o[3:2];
+  assign n13065_o = n10712_o[1:0];
   /* TG68K_ALU.vhd:496:36  */
   always @*
-    case (n13062_o)
-      2'b00: n13063_o = n13047_o;
-      2'b01: n13063_o = n13049_o;
-      2'b10: n13063_o = n13051_o;
-      2'b11: n13063_o = n13053_o;
+    case (n13065_o)
+      2'b00: n13066_o = n13045_o;
+      2'b01: n13066_o = n13046_o;
+      2'b10: n13066_o = n13047_o;
+      2'b11: n13066_o = n13048_o;
     endcase
   /* TG68K_ALU.vhd:496:36  */
-  assign n13064_o = n10711_o[3:2];
+  assign n13067_o = n10712_o[1:0];
   /* TG68K_ALU.vhd:496:36  */
   always @*
-    case (n13064_o)
-      2'b00: n13065_o = n13055_o;
-      2'b01: n13065_o = n13057_o;
-      2'b10: n13065_o = n13059_o;
-      2'b11: n13065_o = n13061_o;
+    case (n13067_o)
+      2'b00: n13068_o = n13049_o;
+      2'b01: n13068_o = n13050_o;
+      2'b10: n13068_o = n13051_o;
+      2'b11: n13068_o = n13052_o;
     endcase
   /* TG68K_ALU.vhd:496:36  */
-  assign n13066_o = n10711_o[4];
+  assign n13069_o = n10712_o[3:2];
   /* TG68K_ALU.vhd:496:36  */
-  assign n13067_o = n13066_o ? n13065_o : n13063_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13068_o = bit_msb[5];
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13069_o = ~n13068_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13070_o = bit_msb[4];
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13071_o = ~n13070_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13072_o = n13069_o & n13071_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13073_o = n13069_o & n13070_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13074_o = n13068_o & n13071_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13075_o = bit_msb[3];
-  /* TG68K_ALU.vhd:761:17  */
+  always @*
+    case (n13069_o)
+      2'b00: n13070_o = n13054_o;
+      2'b01: n13070_o = n13056_o;
+      2'b10: n13070_o = n13058_o;
+      2'b11: n13070_o = n13060_o;
+    endcase
+  /* TG68K_ALU.vhd:496:36  */
+  assign n13071_o = n10712_o[3:2];
+  /* TG68K_ALU.vhd:496:36  */
+  always @*
+    case (n13071_o)
+      2'b00: n13072_o = n13062_o;
+      2'b01: n13072_o = n13064_o;
+      2'b10: n13072_o = n13066_o;
+      2'b11: n13072_o = n13068_o;
+    endcase
+  /* TG68K_ALU.vhd:496:36  */
+  assign n13073_o = n10712_o[4];
+  /* TG68K_ALU.vhd:496:36  */
+  assign n13074_o = n13073_o ? n13072_o : n13070_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13075_o = bit_msb[5];
+  /* TG68K_ALU.vhd:770:17  */
   assign n13076_o = ~n13075_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13077_o = n13072_o & n13076_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13078_o = n13072_o & n13075_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13079_o = n13073_o & n13076_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13080_o = n13073_o & n13075_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13081_o = n13074_o & n13076_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13082_o = bit_msb[2];
-  /* TG68K_ALU.vhd:761:17  */
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13077_o = bit_msb[4];
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13078_o = ~n13077_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13079_o = n13076_o & n13078_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13080_o = n13076_o & n13077_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13081_o = n13075_o & n13078_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13082_o = bit_msb[3];
+  /* TG68K_ALU.vhd:770:17  */
   assign n13083_o = ~n13082_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13084_o = n13077_o & n13083_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13085_o = n13077_o & n13082_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13086_o = n13078_o & n13083_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13087_o = n13078_o & n13082_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13088_o = n13079_o & n13083_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13089_o = n13079_o & n13082_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13090_o = n13080_o & n13083_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13091_o = n13080_o & n13082_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13092_o = n13081_o & n13083_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13093_o = bit_msb[1];
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13094_o = ~n13093_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13095_o = n13084_o & n13094_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13096_o = n13084_o & n13093_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13097_o = n13085_o & n13094_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13098_o = n13085_o & n13093_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13099_o = n13086_o & n13094_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13100_o = n13086_o & n13093_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13101_o = n13087_o & n13094_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13102_o = n13087_o & n13093_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13103_o = n13088_o & n13094_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13104_o = n13088_o & n13093_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13105_o = n13089_o & n13094_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13106_o = n13089_o & n13093_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13107_o = n13090_o & n13094_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13108_o = n13090_o & n13093_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13109_o = n13091_o & n13094_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13110_o = n13091_o & n13093_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13111_o = n13092_o & n13094_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13112_o = bit_msb[0];
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13113_o = ~n13112_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13114_o = n13095_o & n13113_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13115_o = n13095_o & n13112_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13116_o = n13096_o & n13113_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13117_o = n13096_o & n13112_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13118_o = n13097_o & n13113_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13119_o = n13097_o & n13112_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13120_o = n13098_o & n13113_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13121_o = n13098_o & n13112_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13122_o = n13099_o & n13113_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13123_o = n13099_o & n13112_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13124_o = n13100_o & n13113_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13125_o = n13100_o & n13112_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13126_o = n13101_o & n13113_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13127_o = n13101_o & n13112_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13128_o = n13102_o & n13113_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13129_o = n13102_o & n13112_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13130_o = n13103_o & n13113_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13131_o = n13103_o & n13112_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13132_o = n13104_o & n13113_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13133_o = n13104_o & n13112_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13134_o = n13105_o & n13113_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13135_o = n13105_o & n13112_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13136_o = n13106_o & n13113_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13137_o = n13106_o & n13112_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13138_o = n13107_o & n13113_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13139_o = n13107_o & n13112_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13140_o = n13108_o & n13113_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13141_o = n13108_o & n13112_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13142_o = n13109_o & n13113_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13143_o = n13109_o & n13112_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13144_o = n13110_o & n13113_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13145_o = n13110_o & n13112_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13146_o = n13111_o & n13113_o;
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13147_o = n13111_o & n13112_o;
-  assign n13148_o = n11722_o[0];
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13149_o = n13114_o ? 1'b1 : n13148_o;
-  /* TG68K_ALU.vhd:572:17  */
-  assign n13150_o = n11722_o[1];
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13151_o = n13115_o ? 1'b1 : n13150_o;
-  assign n13152_o = n11722_o[2];
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13153_o = n13116_o ? 1'b1 : n13152_o;
-  assign n13154_o = n11722_o[3];
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13155_o = n13117_o ? 1'b1 : n13154_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13084_o = n13079_o & n13083_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13085_o = n13079_o & n13082_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13086_o = n13080_o & n13083_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13087_o = n13080_o & n13082_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13088_o = n13081_o & n13083_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13089_o = bit_msb[2];
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13090_o = ~n13089_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13091_o = n13084_o & n13090_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13092_o = n13084_o & n13089_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13093_o = n13085_o & n13090_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13094_o = n13085_o & n13089_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13095_o = n13086_o & n13090_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13096_o = n13086_o & n13089_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13097_o = n13087_o & n13090_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13098_o = n13087_o & n13089_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13099_o = n13088_o & n13090_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13100_o = bit_msb[1];
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13101_o = ~n13100_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13102_o = n13091_o & n13101_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13103_o = n13091_o & n13100_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13104_o = n13092_o & n13101_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13105_o = n13092_o & n13100_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13106_o = n13093_o & n13101_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13107_o = n13093_o & n13100_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13108_o = n13094_o & n13101_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13109_o = n13094_o & n13100_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13110_o = n13095_o & n13101_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13111_o = n13095_o & n13100_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13112_o = n13096_o & n13101_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13113_o = n13096_o & n13100_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13114_o = n13097_o & n13101_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13115_o = n13097_o & n13100_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13116_o = n13098_o & n13101_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13117_o = n13098_o & n13100_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13118_o = n13099_o & n13101_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13119_o = bit_msb[0];
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13120_o = ~n13119_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13121_o = n13102_o & n13120_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13122_o = n13102_o & n13119_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13123_o = n13103_o & n13120_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13124_o = n13103_o & n13119_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13125_o = n13104_o & n13120_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13126_o = n13104_o & n13119_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13127_o = n13105_o & n13120_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13128_o = n13105_o & n13119_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13129_o = n13106_o & n13120_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13130_o = n13106_o & n13119_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13131_o = n13107_o & n13120_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13132_o = n13107_o & n13119_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13133_o = n13108_o & n13120_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13134_o = n13108_o & n13119_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13135_o = n13109_o & n13120_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13136_o = n13109_o & n13119_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13137_o = n13110_o & n13120_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13138_o = n13110_o & n13119_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13139_o = n13111_o & n13120_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13140_o = n13111_o & n13119_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13141_o = n13112_o & n13120_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13142_o = n13112_o & n13119_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13143_o = n13113_o & n13120_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13144_o = n13113_o & n13119_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13145_o = n13114_o & n13120_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13146_o = n13114_o & n13119_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13147_o = n13115_o & n13120_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13148_o = n13115_o & n13119_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13149_o = n13116_o & n13120_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13150_o = n13116_o & n13119_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13151_o = n13117_o & n13120_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13152_o = n13117_o & n13119_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13153_o = n13118_o & n13120_o;
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13154_o = n13118_o & n13119_o;
+  assign n13155_o = n11726_o[0];
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13156_o = n13121_o ? 1'b1 : n13155_o;
   /* TG68K_ALU.vhd:581:17  */
-  assign n13156_o = n11722_o[4];
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13157_o = n13118_o ? 1'b1 : n13156_o;
+  assign n13157_o = n11726_o[1];
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13158_o = n13122_o ? 1'b1 : n13157_o;
   /* TG68K_ALU.vhd:575:17  */
-  assign n13158_o = n11722_o[5];
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13159_o = n13119_o ? 1'b1 : n13158_o;
-  assign n13160_o = n11722_o[6];
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13161_o = n13120_o ? 1'b1 : n13160_o;
-  assign n13162_o = n11722_o[7];
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13163_o = n13121_o ? 1'b1 : n13162_o;
+  assign n13159_o = n11726_o[2];
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13160_o = n13123_o ? 1'b1 : n13159_o;
+  assign n13161_o = n11726_o[3];
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13162_o = n13124_o ? 1'b1 : n13161_o;
+  assign n13163_o = n11726_o[4];
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13164_o = n13125_o ? 1'b1 : n13163_o;
   /* TG68K_ALU.vhd:572:17  */
-  assign n13164_o = n11722_o[8];
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13165_o = n13122_o ? 1'b1 : n13164_o;
-  assign n13166_o = n11722_o[9];
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13167_o = n13123_o ? 1'b1 : n13166_o;
-  assign n13168_o = n11722_o[10];
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13169_o = n13124_o ? 1'b1 : n13168_o;
+  assign n13165_o = n11726_o[5];
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13166_o = n13126_o ? 1'b1 : n13165_o;
+  assign n13167_o = n11726_o[6];
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13168_o = n13127_o ? 1'b1 : n13167_o;
+  assign n13169_o = n11726_o[7];
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13170_o = n13128_o ? 1'b1 : n13169_o;
   /* TG68K_ALU.vhd:581:17  */
-  assign n13170_o = n11722_o[11];
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13171_o = n13125_o ? 1'b1 : n13170_o;
+  assign n13171_o = n11726_o[8];
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13172_o = n13129_o ? 1'b1 : n13171_o;
   /* TG68K_ALU.vhd:575:17  */
-  assign n13172_o = n11722_o[12];
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13173_o = n13126_o ? 1'b1 : n13172_o;
-  assign n13174_o = n11722_o[13];
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13175_o = n13127_o ? 1'b1 : n13174_o;
-  assign n13176_o = n11722_o[14];
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13177_o = n13128_o ? 1'b1 : n13176_o;
-  assign n13178_o = n11722_o[15];
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13179_o = n13129_o ? 1'b1 : n13178_o;
-  assign n13180_o = n11722_o[16];
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13181_o = n13130_o ? 1'b1 : n13180_o;
-  assign n13182_o = n11722_o[17];
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13183_o = n13131_o ? 1'b1 : n13182_o;
-  assign n13184_o = n11722_o[18];
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13185_o = n13132_o ? 1'b1 : n13184_o;
-  assign n13186_o = n11722_o[19];
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13187_o = n13133_o ? 1'b1 : n13186_o;
-  assign n13188_o = n11722_o[20];
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13189_o = n13134_o ? 1'b1 : n13188_o;
-  assign n13190_o = n11722_o[21];
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13191_o = n13135_o ? 1'b1 : n13190_o;
-  assign n13192_o = n11722_o[22];
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13193_o = n13136_o ? 1'b1 : n13192_o;
-  assign n13194_o = n11722_o[23];
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13195_o = n13137_o ? 1'b1 : n13194_o;
-  assign n13196_o = n11722_o[24];
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13197_o = n13138_o ? 1'b1 : n13196_o;
-  assign n13198_o = n11722_o[25];
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13199_o = n13139_o ? 1'b1 : n13198_o;
-  assign n13200_o = n11722_o[26];
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13201_o = n13140_o ? 1'b1 : n13200_o;
-  assign n13202_o = n11722_o[27];
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13203_o = n13141_o ? 1'b1 : n13202_o;
-  assign n13204_o = n11722_o[28];
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13205_o = n13142_o ? 1'b1 : n13204_o;
-  assign n13206_o = n11722_o[29];
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13207_o = n13143_o ? 1'b1 : n13206_o;
-  assign n13208_o = n11722_o[30];
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13209_o = n13144_o ? 1'b1 : n13208_o;
-  assign n13210_o = n11722_o[31];
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13211_o = n13145_o ? 1'b1 : n13210_o;
-  assign n13212_o = n11722_o[32];
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13213_o = n13146_o ? 1'b1 : n13212_o;
-  assign n13214_o = n11722_o[33];
-  /* TG68K_ALU.vhd:761:17  */
-  assign n13215_o = n13147_o ? 1'b1 : n13214_o;
-  assign n13216_o = {n13215_o, n13213_o, n13211_o, n13209_o, n13207_o, n13205_o, n13203_o, n13201_o, n13199_o, n13197_o, n13195_o, n13193_o, n13191_o, n13189_o, n13187_o, n13185_o, n13183_o, n13181_o, n13179_o, n13177_o, n13175_o, n13173_o, n13171_o, n13169_o, n13167_o, n13165_o, n13163_o, n13161_o, n13159_o, n13157_o, n13155_o, n13153_o, n13151_o, n13149_o};
+  assign n13173_o = n11726_o[9];
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13174_o = n13130_o ? 1'b1 : n13173_o;
+  assign n13175_o = n11726_o[10];
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13176_o = n13131_o ? 1'b1 : n13175_o;
+  assign n13177_o = n11726_o[11];
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13178_o = n13132_o ? 1'b1 : n13177_o;
+  /* TG68K_ALU.vhd:572:17  */
+  assign n13179_o = n11726_o[12];
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13180_o = n13133_o ? 1'b1 : n13179_o;
+  /* TG68K_ALU.vhd:496:37  */
+  assign n13181_o = n11726_o[13];
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13182_o = n13134_o ? 1'b1 : n13181_o;
+  /* TG68K_ALU.vhd:476:17  */
+  assign n13183_o = n11726_o[14];
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13184_o = n13135_o ? 1'b1 : n13183_o;
+  assign n13185_o = n11726_o[15];
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13186_o = n13136_o ? 1'b1 : n13185_o;
+  /* TG68K_ALU.vhd:476:17  */
+  assign n13187_o = n11726_o[16];
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13188_o = n13137_o ? 1'b1 : n13187_o;
+  assign n13189_o = n11726_o[17];
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13190_o = n13138_o ? 1'b1 : n13189_o;
+  /* TG68K_ALU.vhd:476:17  */
+  assign n13191_o = n11726_o[18];
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13192_o = n13139_o ? 1'b1 : n13191_o;
+  assign n13193_o = n11726_o[19];
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13194_o = n13140_o ? 1'b1 : n13193_o;
+  /* TG68K_ALU.vhd:476:17  */
+  assign n13195_o = n11726_o[20];
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13196_o = n13141_o ? 1'b1 : n13195_o;
+  assign n13197_o = n11726_o[21];
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13198_o = n13142_o ? 1'b1 : n13197_o;
+  /* TG68K_ALU.vhd:476:17  */
+  assign n13199_o = n11726_o[22];
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13200_o = n13143_o ? 1'b1 : n13199_o;
+  assign n13201_o = n11726_o[23];
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13202_o = n13144_o ? 1'b1 : n13201_o;
+  /* TG68K_ALU.vhd:476:17  */
+  assign n13203_o = n11726_o[24];
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13204_o = n13145_o ? 1'b1 : n13203_o;
+  assign n13205_o = n11726_o[25];
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13206_o = n13146_o ? 1'b1 : n13205_o;
+  /* TG68K_ALU.vhd:476:17  */
+  assign n13207_o = n11726_o[26];
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13208_o = n13147_o ? 1'b1 : n13207_o;
+  assign n13209_o = n11726_o[27];
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13210_o = n13148_o ? 1'b1 : n13209_o;
+  /* TG68K_ALU.vhd:476:17  */
+  assign n13211_o = n11726_o[28];
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13212_o = n13149_o ? 1'b1 : n13211_o;
+  assign n13213_o = n11726_o[29];
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13214_o = n13150_o ? 1'b1 : n13213_o;
+  /* TG68K_ALU.vhd:476:17  */
+  assign n13215_o = n11726_o[30];
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13216_o = n13151_o ? 1'b1 : n13215_o;
+  assign n13217_o = n11726_o[31];
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13218_o = n13152_o ? 1'b1 : n13217_o;
+  /* TG68K_ALU.vhd:476:17  */
+  assign n13219_o = n11726_o[32];
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13220_o = n13153_o ? 1'b1 : n13219_o;
+  assign n13221_o = n11726_o[33];
+  /* TG68K_ALU.vhd:770:17  */
+  assign n13222_o = n13154_o ? 1'b1 : n13221_o;
+  /* TG68K_ALU.vhd:476:17  */
+  assign n13223_o = {n13222_o, n13220_o, n13218_o, n13216_o, n13214_o, n13212_o, n13210_o, n13208_o, n13206_o, n13204_o, n13202_o, n13200_o, n13198_o, n13196_o, n13194_o, n13192_o, n13190_o, n13188_o, n13186_o, n13184_o, n13182_o, n13180_o, n13178_o, n13176_o, n13174_o, n13172_o, n13170_o, n13168_o, n13166_o, n13164_o, n13162_o, n13160_o, n13158_o, n13156_o};
 endmodule
 
 module tg68kdotc_kernel_0_2_2_2_2_2_0_0
@@ -13925,219 +13936,219 @@ module tg68kdotc_kernel_0_2_2_2_2_2_0_0
   wire n9496_o;
   wire n9498_o;
   wire [15:0] n9499_o;
-  reg n9502_o;
-  wire n9507_o;
-  wire [15:0] n9508_o;
-  wire n9509_o;
+  reg n9503_o;
+  wire n9508_o;
+  wire [15:0] n9509_o;
   wire n9510_o;
   wire n9511_o;
-  wire n9514_o;
-  wire n9517_o;
-  wire n9520_o;
-  wire n9523_o;
-  wire n9526_o;
-  wire n9529_o;
-  wire n9532_o;
-  wire n9535_o;
-  wire n9538_o;
-  wire n9541_o;
-  wire n9544_o;
-  wire n9547_o;
-  wire n9550_o;
-  wire n9553_o;
-  wire n9556_o;
-  wire n9559_o;
-  wire [15:0] n9560_o;
-  wire n9561_o;
-  reg n9562_o;
-  wire n9563_o;
-  reg n9564_o;
-  wire n9565_o;
-  reg n9566_o;
-  wire n9567_o;
-  reg n9568_o;
-  wire n9569_o;
-  reg n9570_o;
-  wire n9571_o;
-  reg n9572_o;
-  wire n9573_o;
-  reg n9574_o;
-  wire n9575_o;
-  reg n9576_o;
-  wire n9577_o;
-  reg n9578_o;
-  wire n9579_o;
-  reg n9580_o;
-  wire n9581_o;
-  reg n9582_o;
-  wire n9583_o;
-  reg n9584_o;
-  wire n9585_o;
-  reg n9586_o;
-  wire n9587_o;
-  reg n9588_o;
-  wire n9589_o;
-  reg n9590_o;
-  wire n9591_o;
-  reg n9592_o;
-  wire [15:0] n9593_o;
+  wire n9512_o;
+  wire n9515_o;
+  wire n9518_o;
+  wire n9521_o;
+  wire n9524_o;
+  wire n9527_o;
+  wire n9530_o;
+  wire n9533_o;
+  wire n9536_o;
+  wire n9539_o;
+  wire n9542_o;
+  wire n9545_o;
+  wire n9548_o;
+  wire n9551_o;
+  wire n9554_o;
+  wire n9557_o;
+  wire n9560_o;
+  wire [15:0] n9561_o;
+  wire n9562_o;
+  reg n9563_o;
+  wire n9564_o;
+  reg n9565_o;
+  wire n9566_o;
+  reg n9567_o;
+  wire n9568_o;
+  reg n9569_o;
+  wire n9570_o;
+  reg n9571_o;
+  wire n9572_o;
+  reg n9573_o;
+  wire n9574_o;
+  reg n9575_o;
+  wire n9576_o;
+  reg n9577_o;
+  wire n9578_o;
+  reg n9579_o;
+  wire n9580_o;
+  reg n9581_o;
+  wire n9582_o;
+  reg n9583_o;
+  wire n9584_o;
+  reg n9585_o;
+  wire n9586_o;
+  reg n9587_o;
+  wire n9588_o;
+  reg n9589_o;
+  wire n9590_o;
+  reg n9591_o;
+  wire n9592_o;
+  reg n9593_o;
   wire [15:0] n9594_o;
   wire [15:0] n9595_o;
-  wire [3:0] n9603_o;
-  wire n9605_o;
-  wire [3:0] n9606_o;
-  wire n9608_o;
-  wire [3:0] n9610_o;
-  wire n9612_o;
-  wire [3:0] n9613_o;
-  wire n9615_o;
-  wire n9618_o;
-  wire [3:0] n9620_o;
+  wire [15:0] n9596_o;
+  wire [3:0] n9604_o;
+  wire n9606_o;
+  wire [3:0] n9607_o;
+  wire n9609_o;
+  wire [3:0] n9611_o;
+  wire n9613_o;
+  wire [3:0] n9614_o;
+  wire n9616_o;
+  wire n9619_o;
   wire [3:0] n9621_o;
-  wire n9623_o;
-  wire [3:0] n9624_o;
-  wire n9626_o;
-  wire [3:0] n9627_o;
-  wire [1:0] n9629_o;
-  wire n9630_o;
+  wire [3:0] n9622_o;
+  wire n9624_o;
+  wire [3:0] n9625_o;
+  wire n9627_o;
+  wire [3:0] n9628_o;
+  wire [1:0] n9630_o;
   wire n9631_o;
   wire n9632_o;
-  wire n9634_o;
-  wire [3:0] n9635_o;
-  wire n9637_o;
-  wire [3:0] n9638_o;
-  wire [1:0] n9639_o;
-  wire [1:0] n9641_o;
-  localparam [3:0] n9642_o = 4'b0000;
-  wire [3:0] n9644_o;
-  wire n9646_o;
-  wire [1:0] n9648_o;
-  wire n9650_o;
-  wire n9652_o;
+  wire n9633_o;
+  wire n9635_o;
+  wire [3:0] n9636_o;
+  wire n9638_o;
+  wire [3:0] n9639_o;
+  wire [1:0] n9640_o;
+  wire [1:0] n9642_o;
+  localparam [3:0] n9643_o = 4'b0000;
+  wire [3:0] n9645_o;
+  wire n9647_o;
+  wire [1:0] n9649_o;
+  wire n9651_o;
   wire n9653_o;
-  wire n9655_o;
+  wire n9654_o;
   wire n9656_o;
   wire n9657_o;
   wire n9658_o;
-  wire n9660_o;
+  wire n9659_o;
   wire n9661_o;
-  wire [1:0] n9662_o;
-  wire n9663_o;
+  wire n9662_o;
+  wire [1:0] n9663_o;
   wire n9664_o;
   wire n9665_o;
   wire n9666_o;
   wire n9667_o;
-  reg n9670_q;
-  wire [3:0] n9671_o;
-  reg [3:0] n9672_q;
-  wire n9673_o;
-  reg n9674_q;
-  reg [31:0] n9675_q;
-  wire [31:0] n9676_o;
-  reg [31:0] n9677_q;
-  wire [31:0] n9678_o;
-  reg [31:0] n9679_q;
-  reg [1:0] n9680_q;
+  wire n9668_o;
+  reg n9671_q;
+  wire [3:0] n9672_o;
+  reg [3:0] n9673_q;
+  wire n9674_o;
+  reg n9675_q;
+  reg [31:0] n9676_q;
+  wire [31:0] n9677_o;
+  reg [31:0] n9678_q;
+  wire [31:0] n9679_o;
+  reg [31:0] n9680_q;
   reg [1:0] n9681_q;
-  reg n9682_q;
-  reg [15:0] n9683_q;
+  reg [1:0] n9682_q;
+  reg n9683_q;
   reg [15:0] n9684_q;
-  wire [15:0] n9685_o;
-  reg [15:0] n9686_q;
-  reg [31:0] n9687_q;
+  reg [15:0] n9685_q;
+  wire [15:0] n9686_o;
+  reg [15:0] n9687_q;
   reg [31:0] n9688_q;
-  reg [15:0] n9689_q;
-  wire [3:0] n9691_o;
-  reg [3:0] n9692_q;
-  wire [31:0] n9693_o;
-  wire [3:0] n9696_o;
-  reg [3:0] n9697_q;
-  wire [3:0] n9698_o;
-  reg [3:0] n9699_q;
-  wire n9700_o;
-  reg n9701_q;
-  wire [31:0] n9702_o;
-  reg [31:0] n9703_q;
-  wire [31:0] n9704_o;
-  reg [31:0] n9705_q;
-  wire n9706_o;
-  reg n9707_q;
-  reg [31:0] n9708_q;
-  wire [31:0] n9709_o;
-  reg [31:0] n9711_q;
-  reg n9712_q;
-  wire [31:0] n9714_o;
-  reg n9715_q;
-  reg [15:0] n9716_q;
-  reg n9717_q;
+  reg [31:0] n9689_q;
+  reg [15:0] n9690_q;
+  wire [3:0] n9692_o;
+  reg [3:0] n9693_q;
+  wire [31:0] n9694_o;
+  wire [3:0] n9697_o;
+  reg [3:0] n9698_q;
+  wire [3:0] n9699_o;
+  reg [3:0] n9700_q;
+  wire n9701_o;
+  reg n9702_q;
+  wire [31:0] n9703_o;
+  reg [31:0] n9704_q;
+  wire [31:0] n9705_o;
+  reg [31:0] n9706_q;
+  wire n9707_o;
+  reg n9708_q;
+  reg [31:0] n9709_q;
+  wire [31:0] n9710_o;
+  reg [31:0] n9712_q;
+  reg n9713_q;
+  wire [31:0] n9715_o;
+  reg n9716_q;
+  reg [15:0] n9717_q;
   reg n9718_q;
   reg n9719_q;
   reg n9720_q;
   reg n9721_q;
   reg n9722_q;
   reg n9723_q;
-  reg [7:0] n9724_q;
-  reg n9725_q;
-  wire n9726_o;
-  reg n9727_q;
-  reg [1:0] n9728_q;
-  reg [5:0] n9729_q;
-  wire n9730_o;
-  reg n9731_q;
-  wire [3:0] n9732_o;
-  reg n9734_q;
+  reg n9724_q;
+  reg [7:0] n9725_q;
+  reg n9726_q;
+  wire n9727_o;
+  reg n9728_q;
+  reg [1:0] n9729_q;
+  reg [5:0] n9730_q;
+  wire n9731_o;
+  reg n9732_q;
+  wire [3:0] n9733_o;
   reg n9735_q;
   reg n9736_q;
   reg n9737_q;
   reg n9738_q;
   reg n9739_q;
-  reg [7:0] n9740_q;
-  reg n9741_q;
+  reg n9740_q;
+  reg [7:0] n9741_q;
   reg n9742_q;
   reg n9743_q;
   reg n9744_q;
-  wire [31:0] n9745_o;
-  reg [31:0] n9746_q;
-  wire [31:0] n9747_o;
-  reg [31:0] n9748_q;
-  reg [2:0] n9749_q;
-  reg [7:0] n9750_q;
-  reg n9751_q;
+  reg n9745_q;
+  wire [31:0] n9746_o;
+  reg [31:0] n9747_q;
+  wire [31:0] n9748_o;
+  reg [31:0] n9749_q;
+  reg [2:0] n9750_q;
+  reg [7:0] n9751_q;
   reg n9752_q;
   reg n9753_q;
   reg n9754_q;
   reg n9755_q;
-  wire [31:0] n9756_o;
-  wire [7:0] n9757_o;
-  reg [7:0] n9758_q;
-  reg [5:0] n9759_q;
-  reg [3:0] n9760_q;
-  reg [5:0] n9761_q;
-  reg n9762_q;
+  reg n9756_q;
+  wire [31:0] n9757_o;
+  wire [7:0] n9758_o;
+  reg [7:0] n9759_q;
+  reg [5:0] n9760_q;
+  reg [3:0] n9761_q;
+  reg [5:0] n9762_q;
   reg n9763_q;
-  reg [31:0] n9764_q;
+  reg n9764_q;
   reg [31:0] n9765_q;
-  wire [5:0] n9766_o;
+  reg [31:0] n9766_q;
   wire [5:0] n9767_o;
-  reg [5:0] n9768_q;
+  wire [5:0] n9768_o;
   reg [5:0] n9769_q;
-  wire [5:0] n9770_o;
-  reg [31:0] n9771_q;
-  reg [5:0] n9772_q;
-  reg [31:0] n9773_q;
-  reg [3:0] n9774_q;
-  reg [2:0] n9775_q;
+  reg [5:0] n9770_q;
+  wire [5:0] n9771_o;
+  reg [31:0] n9772_q;
+  reg [5:0] n9773_q;
+  reg [31:0] n9774_q;
+  reg [3:0] n9775_q;
   reg [2:0] n9776_q;
-  wire [88:0] n9777_o;
+  reg [2:0] n9777_q;
   wire [88:0] n9778_o;
   wire [88:0] n9779_o;
-  reg [88:0] n9780_q;
-  reg [6:0] n9781_q;
-  reg n9782_q;
-  reg [1:0] n9783_q;
-  wire [2:0] n9784_o;
-  wire [31:0] n9786_data; // mem_rd
+  wire [88:0] n9780_o;
+  reg [88:0] n9781_q;
+  reg [6:0] n9782_q;
+  reg n9783_q;
+  reg [1:0] n9784_q;
+  wire [2:0] n9785_o;
   wire [31:0] n9787_data; // mem_rd
+  wire [31:0] n9788_data; // mem_rd
   assign addr_out = n1074_o;
   assign data_write = n278_o;
   assign nwr = n78_o;
@@ -14146,24 +14157,24 @@ module tg68kdotc_kernel_0_2_2_2_2_2_0_0
   assign busstate = state;
   assign longword = n56_o;
   assign nresetout = n82_o;
-  assign fc = n9784_o;
+  assign fc = n9785_o;
   assign clr_berr = n98_o;
   assign skipfetch = n8974_o;
   assign regin_out = regin;
   assign cacr_out = cacr;
   assign vbr_out = vbr;
   /* TG68KdotC_Kernel.vhd:148:16  */
-  assign use_vbr_stackframe = n9670_q; // (signal)
+  assign use_vbr_stackframe = n9671_q; // (signal)
   /* TG68KdotC_Kernel.vhd:150:16  */
-  assign syncreset = n9672_q; // (signal)
+  assign syncreset = n9673_q; // (signal)
   /* TG68KdotC_Kernel.vhd:151:16  */
-  assign reset = n9674_q; // (signal)
+  assign reset = n9675_q; // (signal)
   /* TG68KdotC_Kernel.vhd:152:16  */
   assign clkena_lw = n94_o; // (signal)
   /* TG68KdotC_Kernel.vhd:153:16  */
-  assign tg68_pc = n9675_q; // (signal)
+  assign tg68_pc = n9676_q; // (signal)
   /* TG68KdotC_Kernel.vhd:154:16  */
-  assign tmp_tg68_pc = n9677_q; // (signal)
+  assign tmp_tg68_pc = n9678_q; // (signal)
   /* TG68KdotC_Kernel.vhd:155:16  */
   assign tg68_pc_add = n1175_o; // (signal)
   /* TG68KdotC_Kernel.vhd:156:16  */
@@ -14171,37 +14182,37 @@ module tg68kdotc_kernel_0_2_2_2_2_2_0_0
   /* TG68KdotC_Kernel.vhd:157:16  */
   assign pc_datab = n1174_o; // (signal)
   /* TG68KdotC_Kernel.vhd:158:16  */
-  assign memaddr = n9679_q; // (signal)
+  assign memaddr = n9680_q; // (signal)
   /* TG68KdotC_Kernel.vhd:159:16  */
-  assign state = n9680_q; // (signal)
+  assign state = n9681_q; // (signal)
   /* TG68KdotC_Kernel.vhd:160:16  */
   assign datatype = n8991_o; // (signal)
   /* TG68KdotC_Kernel.vhd:161:16  */
   assign set_datatype = n8992_o; // (signal)
   /* TG68KdotC_Kernel.vhd:162:16  */
-  assign exe_datatype = n9681_q; // (signal)
+  assign exe_datatype = n9682_q; // (signal)
   /* TG68KdotC_Kernel.vhd:163:16  */
   assign setstate = n9034_o; // (signal)
   /* TG68KdotC_Kernel.vhd:164:16  */
   assign setaddrvalue = n9037_o; // (signal)
   /* TG68KdotC_Kernel.vhd:165:16  */
-  assign addrvalue = n9682_q; // (signal)
+  assign addrvalue = n9683_q; // (signal)
   /* TG68KdotC_Kernel.vhd:167:16  */
-  assign opcode = n9683_q; // (signal)
+  assign opcode = n9684_q; // (signal)
   /* TG68KdotC_Kernel.vhd:168:16  */
-  assign exe_opcode = n9684_q; // (signal)
+  assign exe_opcode = n9685_q; // (signal)
   /* TG68KdotC_Kernel.vhd:169:16  */
-  assign sndopc = n9686_q; // (signal)
+  assign sndopc = n9687_q; // (signal)
   /* TG68KdotC_Kernel.vhd:171:16  */
-  assign exe_pc = n9687_q; // (signal)
+  assign exe_pc = n9688_q; // (signal)
   /* TG68KdotC_Kernel.vhd:172:16  */
-  assign last_opc_pc = n9688_q; // (signal)
+  assign last_opc_pc = n9689_q; // (signal)
   /* TG68KdotC_Kernel.vhd:173:16  */
-  assign last_opc_read = n9689_q; // (signal)
+  assign last_opc_read = n9690_q; // (signal)
   /* TG68KdotC_Kernel.vhd:175:16  */
-  assign reg_qa = n9787_data; // (signal)
+  assign reg_qa = n9788_data; // (signal)
   /* TG68KdotC_Kernel.vhd:176:16  */
-  assign reg_qb = n9786_data; // (signal)
+  assign reg_qb = n9787_data; // (signal)
   /* TG68KdotC_Kernel.vhd:177:16  */
   assign wwrena = n392_o; // (signal)
   /* TG68KdotC_Kernel.vhd:177:23  */
@@ -14215,15 +14226,15 @@ module tg68kdotc_kernel_0_2_2_2_2_2_0_0
   /* TG68KdotC_Kernel.vhd:181:16  */
   assign rf_source_addr = n478_o; // (signal)
   /* TG68KdotC_Kernel.vhd:182:16  */
-  assign rf_source_addrd = n9692_q; // (signal)
+  assign rf_source_addrd = n9693_q; // (signal)
   /* TG68KdotC_Kernel.vhd:184:16  */
-  assign regin = n9693_o; // (signal)
+  assign regin = n9694_o; // (signal)
   /* TG68KdotC_Kernel.vhd:187:16  */
-  assign rdindex_a = n9697_q; // (signal)
+  assign rdindex_a = n9698_q; // (signal)
   /* TG68KdotC_Kernel.vhd:188:16  */
-  assign rdindex_b = n9699_q; // (signal)
+  assign rdindex_b = n9700_q; // (signal)
   /* TG68KdotC_Kernel.vhd:189:16  */
-  assign wr_areg = n9701_q; // (signal)
+  assign wr_areg = n9702_q; // (signal)
   /* TG68KdotC_Kernel.vhd:192:16  */
   assign addr = n1073_o; // (signal)
   /* TG68KdotC_Kernel.vhd:193:16  */
@@ -14231,29 +14242,29 @@ module tg68kdotc_kernel_0_2_2_2_2_2_0_0
   /* TG68KdotC_Kernel.vhd:194:16  */
   assign memaddr_delta = n1072_o; // (signal)
   /* TG68KdotC_Kernel.vhd:195:16  */
-  assign memaddr_delta_rega = n9703_q; // (signal)
+  assign memaddr_delta_rega = n9704_q; // (signal)
   /* TG68KdotC_Kernel.vhd:196:16  */
-  assign memaddr_delta_regb = n9705_q; // (signal)
+  assign memaddr_delta_regb = n9706_q; // (signal)
   /* TG68KdotC_Kernel.vhd:197:16  */
-  assign use_base = n9707_q; // (signal)
+  assign use_base = n9708_q; // (signal)
   /* TG68KdotC_Kernel.vhd:199:16  */
-  assign ea_data = n9708_q; // (signal)
+  assign ea_data = n9709_q; // (signal)
   /* TG68KdotC_Kernel.vhd:200:16  */
   assign op1out = n494_o; // (signal)
   /* TG68KdotC_Kernel.vhd:201:16  */
-  assign op2out = n9709_o; // (signal)
+  assign op2out = n9710_o; // (signal)
   /* TG68KdotC_Kernel.vhd:202:16  */
   assign op1outbrief = n839_o; // (signal)
   /* TG68KdotC_Kernel.vhd:204:16  */
   assign aluout = alu_n42; // (signal)
   /* TG68KdotC_Kernel.vhd:205:16  */
-  assign data_write_tmp = n9711_q; // (signal)
+  assign data_write_tmp = n9712_q; // (signal)
   /* TG68KdotC_Kernel.vhd:206:16  */
   assign data_write_muxin = n241_o; // (signal)
   /* TG68KdotC_Kernel.vhd:207:16  */
   assign data_write_mux = n250_o; // (signal)
   /* TG68KdotC_Kernel.vhd:208:16  */
-  assign nextpass = n9712_q; // (signal)
+  assign nextpass = n9713_q; // (signal)
   /* TG68KdotC_Kernel.vhd:209:16  */
   assign setnextpass = n9045_o; // (signal)
   /* TG68KdotC_Kernel.vhd:210:16  */
@@ -14269,61 +14280,61 @@ module tg68kdotc_kernel_0_2_2_2_2_2_0_0
   /* TG68KdotC_Kernel.vhd:215:16  */
   assign c_out = alu_n40; // (signal)
   /* TG68KdotC_Kernel.vhd:218:16  */
-  assign memaddr_a = n9714_o; // (signal)
+  assign memaddr_a = n9715_o; // (signal)
   /* TG68KdotC_Kernel.vhd:220:16  */
   assign tg68_pc_brw = n9061_o; // (signal)
   /* TG68KdotC_Kernel.vhd:221:16  */
-  assign tg68_pc_word = n9715_q; // (signal)
+  assign tg68_pc_word = n9716_q; // (signal)
   /* TG68KdotC_Kernel.vhd:222:16  */
   assign getbrief = n7694_o; // (signal)
   /* TG68KdotC_Kernel.vhd:223:16  */
-  assign brief = n9716_q; // (signal)
+  assign brief = n9717_q; // (signal)
   /* TG68KdotC_Kernel.vhd:224:16  */
   assign data_is_source = n7696_o; // (signal)
   /* TG68KdotC_Kernel.vhd:225:16  */
-  assign store_in_tmp = n9717_q; // (signal)
+  assign store_in_tmp = n9718_q; // (signal)
   /* TG68KdotC_Kernel.vhd:226:16  */
   assign write_back = n7959_o; // (signal)
   /* TG68KdotC_Kernel.vhd:227:16  */
-  assign exec_write_back = n9718_q; // (signal)
+  assign exec_write_back = n9719_q; // (signal)
   /* TG68KdotC_Kernel.vhd:228:16  */
   assign setstackaddr = n9079_o; // (signal)
   /* TG68KdotC_Kernel.vhd:229:16  */
   assign writepc = n9081_o; // (signal)
   /* TG68KdotC_Kernel.vhd:230:16  */
-  assign writepcbig = n9719_q; // (signal)
+  assign writepcbig = n9720_q; // (signal)
   /* TG68KdotC_Kernel.vhd:231:16  */
   assign set_writepcbig = n9084_o; // (signal)
   /* TG68KdotC_Kernel.vhd:232:16  */
-  assign writepcnext = n9720_q; // (signal)
+  assign writepcnext = n9721_q; // (signal)
   /* TG68KdotC_Kernel.vhd:233:16  */
   assign setopcode = n1211_o; // (signal)
   /* TG68KdotC_Kernel.vhd:234:16  */
-  assign decodeopc = n9721_q; // (signal)
+  assign decodeopc = n9722_q; // (signal)
   /* TG68KdotC_Kernel.vhd:235:16  */
-  assign execopc = n9722_q; // (signal)
+  assign execopc = n9723_q; // (signal)
   /* TG68KdotC_Kernel.vhd:236:16  */
   assign execopc_alu = n60_o; // (signal)
   /* TG68KdotC_Kernel.vhd:237:16  */
   assign setexecopc = n1236_o; // (signal)
   /* TG68KdotC_Kernel.vhd:238:16  */
-  assign endopc = n9723_q; // (signal)
+  assign endopc = n9724_q; // (signal)
   /* TG68KdotC_Kernel.vhd:239:16  */
   assign setendopc = n1215_o; // (signal)
   /* TG68KdotC_Kernel.vhd:240:16  */
   assign flags = alu_n39; // (signal)
   /* TG68KdotC_Kernel.vhd:241:16  */
-  assign flagssr = n9724_q; // (signal)
+  assign flagssr = n9725_q; // (signal)
   /* TG68KdotC_Kernel.vhd:242:16  */
   assign srin = n1785_o; // (signal)
   /* TG68KdotC_Kernel.vhd:243:16  */
-  assign exec_direct = n9725_q; // (signal)
+  assign exec_direct = n9726_q; // (signal)
   /* TG68KdotC_Kernel.vhd:244:16  */
-  assign exec_tas = n9727_q; // (signal)
+  assign exec_tas = n9728_q; // (signal)
   /* TG68KdotC_Kernel.vhd:245:16  */
   assign set_exec_tas = n7706_o; // (signal)
   /* TG68KdotC_Kernel.vhd:247:16  */
-  assign exe_condition = n9502_o; // (signal)
+  assign exe_condition = n9503_o; // (signal)
   /* TG68KdotC_Kernel.vhd:248:16  */
   assign ea_only = n7709_o; // (signal)
   /* TG68KdotC_Kernel.vhd:249:16  */
@@ -14355,29 +14366,29 @@ module tg68kdotc_kernel_0_2_2_2_2_2_0_0
   /* TG68KdotC_Kernel.vhd:262:16  */
   assign dest_hbits = n9131_o; // (signal)
   /* TG68KdotC_Kernel.vhd:263:16  */
-  assign rot_bits = n9728_q; // (signal)
+  assign rot_bits = n9729_q; // (signal)
   /* TG68KdotC_Kernel.vhd:264:16  */
   assign set_rot_bits = n7732_o; // (signal)
   /* TG68KdotC_Kernel.vhd:265:16  */
-  assign rot_cnt = n9729_q; // (signal)
+  assign rot_cnt = n9730_q; // (signal)
   /* TG68KdotC_Kernel.vhd:266:16  */
   assign set_rot_cnt = n9132_o; // (signal)
   /* TG68KdotC_Kernel.vhd:267:16  */
-  assign movem_actiond = n9731_q; // (signal)
+  assign movem_actiond = n9732_q; // (signal)
   /* TG68KdotC_Kernel.vhd:268:16  */
-  assign movem_regaddr = n9732_o; // (signal)
+  assign movem_regaddr = n9733_o; // (signal)
   /* TG68KdotC_Kernel.vhd:269:16  */
-  assign movem_mux = n9644_o; // (signal)
+  assign movem_mux = n9645_o; // (signal)
   /* TG68KdotC_Kernel.vhd:270:16  */
   assign movem_presub = n7736_o; // (signal)
   /* TG68KdotC_Kernel.vhd:271:16  */
-  assign movem_run = n9646_o; // (signal)
+  assign movem_run = n9647_o; // (signal)
   /* TG68KdotC_Kernel.vhd:273:16  */
   assign set_direct_data = n9136_o; // (signal)
   /* TG68KdotC_Kernel.vhd:274:16  */
-  assign use_direct_data = n9734_q; // (signal)
+  assign use_direct_data = n9735_q; // (signal)
   /* TG68KdotC_Kernel.vhd:275:16  */
-  assign direct_data = n9735_q; // (signal)
+  assign direct_data = n9736_q; // (signal)
   /* TG68KdotC_Kernel.vhd:277:16  */
   assign set_v_flag = alu_n38; // (signal)
   /* TG68KdotC_Kernel.vhd:278:16  */
@@ -14385,7 +14396,7 @@ module tg68kdotc_kernel_0_2_2_2_2_2_0_0
   /* TG68KdotC_Kernel.vhd:279:16  */
   assign writesr = n9143_o; // (signal)
   /* TG68KdotC_Kernel.vhd:280:16  */
-  assign trap_berr = n9736_q; // (signal)
+  assign trap_berr = n9737_q; // (signal)
   /* TG68KdotC_Kernel.vhd:281:16  */
   assign trap_illegal = n9145_o; // (signal)
   /* TG68KdotC_Kernel.vhd:282:16  */
@@ -14393,7 +14404,7 @@ module tg68kdotc_kernel_0_2_2_2_2_2_0_0
   /* TG68KdotC_Kernel.vhd:283:16  */
   assign trap_priv = n7747_o; // (signal)
   /* TG68KdotC_Kernel.vhd:284:16  */
-  assign trap_trace = n9737_q; // (signal)
+  assign trap_trace = n9738_q; // (signal)
   /* TG68KdotC_Kernel.vhd:285:16  */
   assign trap_1010 = n7750_o; // (signal)
   /* TG68KdotC_Kernel.vhd:286:16  */
@@ -14403,51 +14414,51 @@ module tg68kdotc_kernel_0_2_2_2_2_2_0_0
   /* TG68KdotC_Kernel.vhd:288:16  */
   assign trap_trapv = n7759_o; // (signal)
   /* TG68KdotC_Kernel.vhd:289:16  */
-  assign trap_interrupt = n9738_q; // (signal)
+  assign trap_interrupt = n9739_q; // (signal)
   /* TG68KdotC_Kernel.vhd:290:16  */
   assign trapmake = n9146_o; // (signal)
   /* TG68KdotC_Kernel.vhd:291:16  */
-  assign trapd = n9739_q; // (signal)
+  assign trapd = n9740_q; // (signal)
   /* TG68KdotC_Kernel.vhd:292:16  */
-  assign trap_sr = n9740_q; // (signal)
+  assign trap_sr = n9741_q; // (signal)
   /* TG68KdotC_Kernel.vhd:293:16  */
-  assign make_trace = n9741_q; // (signal)
+  assign make_trace = n9742_q; // (signal)
   /* TG68KdotC_Kernel.vhd:294:16  */
-  assign make_berr = n9742_q; // (signal)
+  assign make_berr = n9743_q; // (signal)
   /* TG68KdotC_Kernel.vhd:295:16  */
-  assign usestackframe2 = n9743_q; // (signal)
+  assign usestackframe2 = n9744_q; // (signal)
   /* TG68KdotC_Kernel.vhd:297:16  */
   assign set_stop = n7765_o; // (signal)
   /* TG68KdotC_Kernel.vhd:298:16  */
-  assign stop = n9744_q; // (signal)
+  assign stop = n9745_q; // (signal)
   /* TG68KdotC_Kernel.vhd:299:16  */
-  assign trap_vector = n9746_q; // (signal)
+  assign trap_vector = n9747_q; // (signal)
   /* TG68KdotC_Kernel.vhd:300:16  */
   assign trap_vector_vbr = n917_o; // (signal)
   /* TG68KdotC_Kernel.vhd:301:16  */
-  assign usp = n9748_q; // (signal)
+  assign usp = n9749_q; // (signal)
   /* TG68KdotC_Kernel.vhd:306:16  */
   assign ipl_nr = n1238_o; // (signal)
   /* TG68KdotC_Kernel.vhd:307:16  */
-  assign ripl_nr = n9749_q; // (signal)
+  assign ripl_nr = n9750_q; // (signal)
   /* TG68KdotC_Kernel.vhd:308:16  */
-  assign ipl_vec = n9750_q; // (signal)
+  assign ipl_vec = n9751_q; // (signal)
   /* TG68KdotC_Kernel.vhd:309:16  */
-  assign interrupt = n9751_q; // (signal)
+  assign interrupt = n9752_q; // (signal)
   /* TG68KdotC_Kernel.vhd:310:16  */
   assign setinterrupt = n1218_o; // (signal)
   /* TG68KdotC_Kernel.vhd:311:16  */
-  assign svmode = n9752_q; // (signal)
+  assign svmode = n9753_q; // (signal)
   /* TG68KdotC_Kernel.vhd:312:16  */
-  assign presvmode = n9753_q; // (signal)
+  assign presvmode = n9754_q; // (signal)
   /* TG68KdotC_Kernel.vhd:313:16  */
-  assign suppress_base = n9754_q; // (signal)
+  assign suppress_base = n9755_q; // (signal)
   /* TG68KdotC_Kernel.vhd:314:16  */
   assign set_suppress_base = n9149_o; // (signal)
   /* TG68KdotC_Kernel.vhd:315:16  */
   assign set_z_error = n9151_o; // (signal)
   /* TG68KdotC_Kernel.vhd:316:16  */
-  assign z_error = n9755_q; // (signal)
+  assign z_error = n9756_q; // (signal)
   /* TG68KdotC_Kernel.vhd:317:16  */
   assign ea_build_now = n7898_o; // (signal)
   /* TG68KdotC_Kernel.vhd:318:16  */
@@ -14455,9 +14466,9 @@ module tg68kdotc_kernel_0_2_2_2_2_2_0_0
   /* TG68KdotC_Kernel.vhd:319:16  */
   assign build_bcd = n7774_o; // (signal)
   /* TG68KdotC_Kernel.vhd:321:16  */
-  assign data_read = n9756_o; // (signal)
+  assign data_read = n9757_o; // (signal)
   /* TG68KdotC_Kernel.vhd:322:16  */
-  assign bf_ext_in = n9758_q; // (signal)
+  assign bf_ext_in = n9759_q; // (signal)
   /* TG68KdotC_Kernel.vhd:323:16  */
   assign bf_ext_out = alu_n36; // (signal)
   /* TG68KdotC_Kernel.vhd:325:16  */
@@ -14471,65 +14482,65 @@ module tg68kdotc_kernel_0_2_2_2_2_2_0_0
   /* TG68KdotC_Kernel.vhd:329:16  */
   assign long_done = n236_o; // (signal)
   /* TG68KdotC_Kernel.vhd:330:16  */
-  assign memmask = n9759_q; // (signal)
+  assign memmask = n9760_q; // (signal)
   /* TG68KdotC_Kernel.vhd:331:16  */
   assign set_memmask = n1769_o; // (signal)
   /* TG68KdotC_Kernel.vhd:332:16  */
-  assign memread = n9760_q; // (signal)
+  assign memread = n9761_q; // (signal)
   /* TG68KdotC_Kernel.vhd:333:16  */
-  assign wbmemmask = n9761_q; // (signal)
+  assign wbmemmask = n9762_q; // (signal)
   /* TG68KdotC_Kernel.vhd:334:16  */
   assign memmaskmux = n85_o; // (signal)
   /* TG68KdotC_Kernel.vhd:335:16  */
-  assign oddout = n9762_q; // (signal)
+  assign oddout = n9763_q; // (signal)
   /* TG68KdotC_Kernel.vhd:336:16  */
   assign set_oddout = n1694_o; // (signal)
   /* TG68KdotC_Kernel.vhd:337:16  */
-  assign pcbase = n9763_q; // (signal)
+  assign pcbase = n9764_q; // (signal)
   /* TG68KdotC_Kernel.vhd:338:16  */
   assign set_pcbase = n2160_o; // (signal)
   /* TG68KdotC_Kernel.vhd:340:16  */
-  assign last_data_read = n9764_q; // (signal)
+  assign last_data_read = n9765_q; // (signal)
   /* TG68KdotC_Kernel.vhd:341:16  */
-  assign last_data_in = n9765_q; // (signal)
+  assign last_data_in = n9766_q; // (signal)
   /* TG68KdotC_Kernel.vhd:343:16  */
-  assign bf_offset = n9766_o; // (signal)
+  assign bf_offset = n9767_o; // (signal)
   /* TG68KdotC_Kernel.vhd:344:16  */
-  assign bf_width = n9767_o; // (signal)
+  assign bf_width = n9768_o; // (signal)
   /* TG68KdotC_Kernel.vhd:345:16  */
   assign bf_bhits = n1692_o; // (signal)
   /* TG68KdotC_Kernel.vhd:346:16  */
   assign bf_shift = n1749_o; // (signal)
   /* TG68KdotC_Kernel.vhd:347:16  */
-  assign alu_width = n9768_q; // (signal)
+  assign alu_width = n9769_q; // (signal)
   /* TG68KdotC_Kernel.vhd:348:16  */
-  assign alu_bf_shift = n9769_q; // (signal)
+  assign alu_bf_shift = n9770_q; // (signal)
   /* TG68KdotC_Kernel.vhd:349:16  */
-  assign bf_loffset = n9770_o; // (signal)
+  assign bf_loffset = n9771_o; // (signal)
   /* TG68KdotC_Kernel.vhd:350:16  */
   assign bf_full_offset = n1682_o; // (signal)
   /* TG68KdotC_Kernel.vhd:351:16  */
-  assign alu_bf_ffo_offset = n9771_q; // (signal)
+  assign alu_bf_ffo_offset = n9772_q; // (signal)
   /* TG68KdotC_Kernel.vhd:352:16  */
-  assign alu_bf_loffset = n9772_q; // (signal)
+  assign alu_bf_loffset = n9773_q; // (signal)
   /* TG68KdotC_Kernel.vhd:354:16  */
   assign movec_data = n9397_o; // (signal)
   /* TG68KdotC_Kernel.vhd:355:16  */
-  assign vbr = n9773_q; // (signal)
+  assign vbr = n9774_q; // (signal)
   /* TG68KdotC_Kernel.vhd:356:16  */
-  assign cacr = n9774_q; // (signal)
+  assign cacr = n9775_q; // (signal)
   /* TG68KdotC_Kernel.vhd:357:16  */
-  assign dfc = n9775_q; // (signal)
+  assign dfc = n9776_q; // (signal)
   /* TG68KdotC_Kernel.vhd:358:16  */
-  assign sfc = n9776_q; // (signal)
+  assign sfc = n9777_q; // (signal)
   /* TG68KdotC_Kernel.vhd:361:16  */
-  assign set = n9777_o; // (signal)
+  assign set = n9778_o; // (signal)
   /* TG68KdotC_Kernel.vhd:362:16  */
-  assign set_exec = n9778_o; // (signal)
+  assign set_exec = n9779_o; // (signal)
   /* TG68KdotC_Kernel.vhd:363:16  */
-  assign exec = n9780_q; // (signal)
+  assign exec = n9781_q; // (signal)
   /* TG68KdotC_Kernel.vhd:365:16  */
-  assign micro_state = n9781_q; // (signal)
+  assign micro_state = n9782_q; // (signal)
   /* TG68KdotC_Kernel.vhd:366:16  */
   assign next_micro_state = n9332_o; // (signal)
   /* TG68KdotC_Kernel.vhd:405:49  */
@@ -16555,7 +16566,7 @@ module tg68kdotc_kernel_0_2_2_2_2_2_0_0
   assign n1468_o = decodeopc | interrupt;
   /* TG68KdotC_Kernel.vhd:1101:33  */
   assign n1469_o = n1493_o ? flagssr : trap_sr;
-  assign n1470_o = n9784_o[1:0];
+  assign n1470_o = n9785_o[1:0];
   /* TG68KdotC_Kernel.vhd:1101:33  */
   assign n1471_o = clkena_lw ? n1418_o : n1470_o;
   /* TG68KdotC_Kernel.vhd:1101:33  */
@@ -16630,7 +16641,7 @@ module tg68kdotc_kernel_0_2_2_2_2_2_0_0
   assign n1507_o = n1324_o & clkena_lw;
   /* TG68KdotC_Kernel.vhd:1101:33  */
   assign n1508_o = n1324_o & clkena_lw;
-  assign n1509_o = n9784_o[1:0];
+  assign n1509_o = n9785_o[1:0];
   /* TG68KdotC_Kernel.vhd:1060:25  */
   assign n1510_o = reset ? n1509_o : n1471_o;
   /* TG68KdotC_Kernel.vhd:1060:25  */
@@ -16969,7 +16980,7 @@ module tg68kdotc_kernel_0_2_2_2_2_2_0_0
   assign n1806_o = ~presvmode;
   /* TG68KdotC_Kernel.vhd:1393:50  */
   assign n1807_o = ~presvmode;
-  assign n1808_o = n9784_o[2];
+  assign n1808_o = n9785_o[2];
   /* TG68KdotC_Kernel.vhd:1390:33  */
   assign n1809_o = n1804_o ? n1807_o : n1808_o;
   assign n1810_o = flagssr[5];
@@ -17049,7 +17060,7 @@ module tg68kdotc_kernel_0_2_2_2_2_2_0_0
   assign n1873_o = n1843_o[2:0];
   /* TG68KdotC_Kernel.vhd:1407:33  */
   assign n1874_o = n1837_o ? n1872_o : n1873_o;
-  assign n1875_o = n9784_o[2];
+  assign n1875_o = n9785_o[2];
   /* TG68KdotC_Kernel.vhd:1377:25  */
   assign n1876_o = clkena_lw ? n1846_o : n1875_o;
   assign n1877_o = {n1867_o, n1858_o, n1870_o, n1854_o, 1'b0, n1874_o};
@@ -35444,801 +35455,801 @@ module tg68kdotc_kernel_0_2_2_2_2_2_0_0
   /* TG68KdotC_Kernel.vhd:4086:17  */
   always @*
     case (n9499_o)
-      16'b1000000000000000: n9502_o = n9496_o;
-      16'b0100000000000000: n9502_o = n9483_o;
-      16'b0010000000000000: n9502_o = n9466_o;
-      16'b0001000000000000: n9502_o = n9455_o;
-      16'b0000100000000000: n9502_o = n9444_o;
-      16'b0000010000000000: n9502_o = n9441_o;
-      16'b0000001000000000: n9502_o = n9437_o;
-      16'b0000000100000000: n9502_o = n9434_o;
-      16'b0000000010000000: n9502_o = n9430_o;
-      16'b0000000001000000: n9502_o = n9427_o;
-      16'b0000000000100000: n9502_o = n9423_o;
-      16'b0000000000010000: n9502_o = n9420_o;
-      16'b0000000000001000: n9502_o = n9416_o;
-      16'b0000000000000100: n9502_o = n9411_o;
-      16'b0000000000000010: n9502_o = 1'b0;
-      16'b0000000000000001: n9502_o = 1'b1;
-      default: n9502_o = exe_condition;
+      16'b1000000000000000: n9503_o = n9496_o;
+      16'b0100000000000000: n9503_o = n9483_o;
+      16'b0010000000000000: n9503_o = n9466_o;
+      16'b0001000000000000: n9503_o = n9455_o;
+      16'b0000100000000000: n9503_o = n9444_o;
+      16'b0000010000000000: n9503_o = n9441_o;
+      16'b0000001000000000: n9503_o = n9437_o;
+      16'b0000000100000000: n9503_o = n9434_o;
+      16'b0000000010000000: n9503_o = n9430_o;
+      16'b0000000001000000: n9503_o = n9427_o;
+      16'b0000000000100000: n9503_o = n9423_o;
+      16'b0000000000010000: n9503_o = n9420_o;
+      16'b0000000000001000: n9503_o = n9416_o;
+      16'b0000000000000100: n9503_o = n9411_o;
+      16'b0000000000000010: n9503_o = 1'b0;
+      16'b0000000000000001: n9503_o = 1'b1;
+      default: n9503_o = 1'b0;
     endcase
-  /* TG68KdotC_Kernel.vhd:4114:54  */
-  assign n9507_o = exec[69];
-  /* TG68KdotC_Kernel.vhd:4116:60  */
-  assign n9508_o = data_read[15:0];
-  /* TG68KdotC_Kernel.vhd:4117:43  */
-  assign n9509_o = exec[69];
-  /* TG68KdotC_Kernel.vhd:4117:68  */
-  assign n9510_o = set[69];
-  /* TG68KdotC_Kernel.vhd:4117:62  */
-  assign n9511_o = n9509_o | n9510_o;
-  /* TG68KdotC_Kernel.vhd:4119:49  */
-  assign n9514_o = movem_regaddr == 4'b0000;
-  /* TG68KdotC_Kernel.vhd:4120:49  */
-  assign n9517_o = movem_regaddr == 4'b0001;
-  /* TG68KdotC_Kernel.vhd:4121:49  */
-  assign n9520_o = movem_regaddr == 4'b0010;
+  /* TG68KdotC_Kernel.vhd:4117:54  */
+  assign n9508_o = exec[69];
+  /* TG68KdotC_Kernel.vhd:4119:60  */
+  assign n9509_o = data_read[15:0];
+  /* TG68KdotC_Kernel.vhd:4120:43  */
+  assign n9510_o = exec[69];
+  /* TG68KdotC_Kernel.vhd:4120:68  */
+  assign n9511_o = set[69];
+  /* TG68KdotC_Kernel.vhd:4120:62  */
+  assign n9512_o = n9510_o | n9511_o;
   /* TG68KdotC_Kernel.vhd:4122:49  */
-  assign n9523_o = movem_regaddr == 4'b0011;
+  assign n9515_o = movem_regaddr == 4'b0000;
   /* TG68KdotC_Kernel.vhd:4123:49  */
-  assign n9526_o = movem_regaddr == 4'b0100;
+  assign n9518_o = movem_regaddr == 4'b0001;
   /* TG68KdotC_Kernel.vhd:4124:49  */
-  assign n9529_o = movem_regaddr == 4'b0101;
+  assign n9521_o = movem_regaddr == 4'b0010;
   /* TG68KdotC_Kernel.vhd:4125:49  */
-  assign n9532_o = movem_regaddr == 4'b0110;
+  assign n9524_o = movem_regaddr == 4'b0011;
   /* TG68KdotC_Kernel.vhd:4126:49  */
-  assign n9535_o = movem_regaddr == 4'b0111;
+  assign n9527_o = movem_regaddr == 4'b0100;
   /* TG68KdotC_Kernel.vhd:4127:49  */
-  assign n9538_o = movem_regaddr == 4'b1000;
+  assign n9530_o = movem_regaddr == 4'b0101;
   /* TG68KdotC_Kernel.vhd:4128:49  */
-  assign n9541_o = movem_regaddr == 4'b1001;
+  assign n9533_o = movem_regaddr == 4'b0110;
   /* TG68KdotC_Kernel.vhd:4129:49  */
-  assign n9544_o = movem_regaddr == 4'b1010;
+  assign n9536_o = movem_regaddr == 4'b0111;
   /* TG68KdotC_Kernel.vhd:4130:49  */
-  assign n9547_o = movem_regaddr == 4'b1011;
+  assign n9539_o = movem_regaddr == 4'b1000;
   /* TG68KdotC_Kernel.vhd:4131:49  */
-  assign n9550_o = movem_regaddr == 4'b1100;
+  assign n9542_o = movem_regaddr == 4'b1001;
   /* TG68KdotC_Kernel.vhd:4132:49  */
-  assign n9553_o = movem_regaddr == 4'b1101;
+  assign n9545_o = movem_regaddr == 4'b1010;
   /* TG68KdotC_Kernel.vhd:4133:49  */
-  assign n9556_o = movem_regaddr == 4'b1110;
+  assign n9548_o = movem_regaddr == 4'b1011;
   /* TG68KdotC_Kernel.vhd:4134:49  */
-  assign n9559_o = movem_regaddr == 4'b1111;
-  assign n9560_o = {n9559_o, n9556_o, n9553_o, n9550_o, n9547_o, n9544_o, n9541_o, n9538_o, n9535_o, n9532_o, n9529_o, n9526_o, n9523_o, n9520_o, n9517_o, n9514_o};
-  assign n9561_o = sndopc[0];
-  /* TG68KdotC_Kernel.vhd:4118:41  */
+  assign n9551_o = movem_regaddr == 4'b1100;
+  /* TG68KdotC_Kernel.vhd:4135:49  */
+  assign n9554_o = movem_regaddr == 4'b1101;
+  /* TG68KdotC_Kernel.vhd:4136:49  */
+  assign n9557_o = movem_regaddr == 4'b1110;
+  /* TG68KdotC_Kernel.vhd:4137:49  */
+  assign n9560_o = movem_regaddr == 4'b1111;
+  assign n9561_o = {n9560_o, n9557_o, n9554_o, n9551_o, n9548_o, n9545_o, n9542_o, n9539_o, n9536_o, n9533_o, n9530_o, n9527_o, n9524_o, n9521_o, n9518_o, n9515_o};
+  assign n9562_o = sndopc[0];
+  /* TG68KdotC_Kernel.vhd:4121:41  */
   always @*
-    case (n9560_o)
-      16'b1000000000000000: n9562_o = n9561_o;
-      16'b0100000000000000: n9562_o = n9561_o;
-      16'b0010000000000000: n9562_o = n9561_o;
-      16'b0001000000000000: n9562_o = n9561_o;
-      16'b0000100000000000: n9562_o = n9561_o;
-      16'b0000010000000000: n9562_o = n9561_o;
-      16'b0000001000000000: n9562_o = n9561_o;
-      16'b0000000100000000: n9562_o = n9561_o;
-      16'b0000000010000000: n9562_o = n9561_o;
-      16'b0000000001000000: n9562_o = n9561_o;
-      16'b0000000000100000: n9562_o = n9561_o;
-      16'b0000000000010000: n9562_o = n9561_o;
-      16'b0000000000001000: n9562_o = n9561_o;
-      16'b0000000000000100: n9562_o = n9561_o;
-      16'b0000000000000010: n9562_o = n9561_o;
-      16'b0000000000000001: n9562_o = 1'b0;
-      default: n9562_o = n9561_o;
+    case (n9561_o)
+      16'b1000000000000000: n9563_o = n9562_o;
+      16'b0100000000000000: n9563_o = n9562_o;
+      16'b0010000000000000: n9563_o = n9562_o;
+      16'b0001000000000000: n9563_o = n9562_o;
+      16'b0000100000000000: n9563_o = n9562_o;
+      16'b0000010000000000: n9563_o = n9562_o;
+      16'b0000001000000000: n9563_o = n9562_o;
+      16'b0000000100000000: n9563_o = n9562_o;
+      16'b0000000010000000: n9563_o = n9562_o;
+      16'b0000000001000000: n9563_o = n9562_o;
+      16'b0000000000100000: n9563_o = n9562_o;
+      16'b0000000000010000: n9563_o = n9562_o;
+      16'b0000000000001000: n9563_o = n9562_o;
+      16'b0000000000000100: n9563_o = n9562_o;
+      16'b0000000000000010: n9563_o = n9562_o;
+      16'b0000000000000001: n9563_o = 1'b0;
+      default: n9563_o = n9562_o;
     endcase
-  assign n9563_o = sndopc[1];
-  /* TG68KdotC_Kernel.vhd:4118:41  */
+  assign n9564_o = sndopc[1];
+  /* TG68KdotC_Kernel.vhd:4121:41  */
   always @*
-    case (n9560_o)
-      16'b1000000000000000: n9564_o = n9563_o;
-      16'b0100000000000000: n9564_o = n9563_o;
-      16'b0010000000000000: n9564_o = n9563_o;
-      16'b0001000000000000: n9564_o = n9563_o;
-      16'b0000100000000000: n9564_o = n9563_o;
-      16'b0000010000000000: n9564_o = n9563_o;
-      16'b0000001000000000: n9564_o = n9563_o;
-      16'b0000000100000000: n9564_o = n9563_o;
-      16'b0000000010000000: n9564_o = n9563_o;
-      16'b0000000001000000: n9564_o = n9563_o;
-      16'b0000000000100000: n9564_o = n9563_o;
-      16'b0000000000010000: n9564_o = n9563_o;
-      16'b0000000000001000: n9564_o = n9563_o;
-      16'b0000000000000100: n9564_o = n9563_o;
-      16'b0000000000000010: n9564_o = 1'b0;
-      16'b0000000000000001: n9564_o = n9563_o;
-      default: n9564_o = n9563_o;
+    case (n9561_o)
+      16'b1000000000000000: n9565_o = n9564_o;
+      16'b0100000000000000: n9565_o = n9564_o;
+      16'b0010000000000000: n9565_o = n9564_o;
+      16'b0001000000000000: n9565_o = n9564_o;
+      16'b0000100000000000: n9565_o = n9564_o;
+      16'b0000010000000000: n9565_o = n9564_o;
+      16'b0000001000000000: n9565_o = n9564_o;
+      16'b0000000100000000: n9565_o = n9564_o;
+      16'b0000000010000000: n9565_o = n9564_o;
+      16'b0000000001000000: n9565_o = n9564_o;
+      16'b0000000000100000: n9565_o = n9564_o;
+      16'b0000000000010000: n9565_o = n9564_o;
+      16'b0000000000001000: n9565_o = n9564_o;
+      16'b0000000000000100: n9565_o = n9564_o;
+      16'b0000000000000010: n9565_o = 1'b0;
+      16'b0000000000000001: n9565_o = n9564_o;
+      default: n9565_o = n9564_o;
     endcase
-  assign n9565_o = sndopc[2];
-  /* TG68KdotC_Kernel.vhd:4118:41  */
+  assign n9566_o = sndopc[2];
+  /* TG68KdotC_Kernel.vhd:4121:41  */
   always @*
-    case (n9560_o)
-      16'b1000000000000000: n9566_o = n9565_o;
-      16'b0100000000000000: n9566_o = n9565_o;
-      16'b0010000000000000: n9566_o = n9565_o;
-      16'b0001000000000000: n9566_o = n9565_o;
-      16'b0000100000000000: n9566_o = n9565_o;
-      16'b0000010000000000: n9566_o = n9565_o;
-      16'b0000001000000000: n9566_o = n9565_o;
-      16'b0000000100000000: n9566_o = n9565_o;
-      16'b0000000010000000: n9566_o = n9565_o;
-      16'b0000000001000000: n9566_o = n9565_o;
-      16'b0000000000100000: n9566_o = n9565_o;
-      16'b0000000000010000: n9566_o = n9565_o;
-      16'b0000000000001000: n9566_o = n9565_o;
-      16'b0000000000000100: n9566_o = 1'b0;
-      16'b0000000000000010: n9566_o = n9565_o;
-      16'b0000000000000001: n9566_o = n9565_o;
-      default: n9566_o = n9565_o;
+    case (n9561_o)
+      16'b1000000000000000: n9567_o = n9566_o;
+      16'b0100000000000000: n9567_o = n9566_o;
+      16'b0010000000000000: n9567_o = n9566_o;
+      16'b0001000000000000: n9567_o = n9566_o;
+      16'b0000100000000000: n9567_o = n9566_o;
+      16'b0000010000000000: n9567_o = n9566_o;
+      16'b0000001000000000: n9567_o = n9566_o;
+      16'b0000000100000000: n9567_o = n9566_o;
+      16'b0000000010000000: n9567_o = n9566_o;
+      16'b0000000001000000: n9567_o = n9566_o;
+      16'b0000000000100000: n9567_o = n9566_o;
+      16'b0000000000010000: n9567_o = n9566_o;
+      16'b0000000000001000: n9567_o = n9566_o;
+      16'b0000000000000100: n9567_o = 1'b0;
+      16'b0000000000000010: n9567_o = n9566_o;
+      16'b0000000000000001: n9567_o = n9566_o;
+      default: n9567_o = n9566_o;
     endcase
-  assign n9567_o = sndopc[3];
-  /* TG68KdotC_Kernel.vhd:4118:41  */
+  assign n9568_o = sndopc[3];
+  /* TG68KdotC_Kernel.vhd:4121:41  */
   always @*
-    case (n9560_o)
-      16'b1000000000000000: n9568_o = n9567_o;
-      16'b0100000000000000: n9568_o = n9567_o;
-      16'b0010000000000000: n9568_o = n9567_o;
-      16'b0001000000000000: n9568_o = n9567_o;
-      16'b0000100000000000: n9568_o = n9567_o;
-      16'b0000010000000000: n9568_o = n9567_o;
-      16'b0000001000000000: n9568_o = n9567_o;
-      16'b0000000100000000: n9568_o = n9567_o;
-      16'b0000000010000000: n9568_o = n9567_o;
-      16'b0000000001000000: n9568_o = n9567_o;
-      16'b0000000000100000: n9568_o = n9567_o;
-      16'b0000000000010000: n9568_o = n9567_o;
-      16'b0000000000001000: n9568_o = 1'b0;
-      16'b0000000000000100: n9568_o = n9567_o;
-      16'b0000000000000010: n9568_o = n9567_o;
-      16'b0000000000000001: n9568_o = n9567_o;
-      default: n9568_o = n9567_o;
+    case (n9561_o)
+      16'b1000000000000000: n9569_o = n9568_o;
+      16'b0100000000000000: n9569_o = n9568_o;
+      16'b0010000000000000: n9569_o = n9568_o;
+      16'b0001000000000000: n9569_o = n9568_o;
+      16'b0000100000000000: n9569_o = n9568_o;
+      16'b0000010000000000: n9569_o = n9568_o;
+      16'b0000001000000000: n9569_o = n9568_o;
+      16'b0000000100000000: n9569_o = n9568_o;
+      16'b0000000010000000: n9569_o = n9568_o;
+      16'b0000000001000000: n9569_o = n9568_o;
+      16'b0000000000100000: n9569_o = n9568_o;
+      16'b0000000000010000: n9569_o = n9568_o;
+      16'b0000000000001000: n9569_o = 1'b0;
+      16'b0000000000000100: n9569_o = n9568_o;
+      16'b0000000000000010: n9569_o = n9568_o;
+      16'b0000000000000001: n9569_o = n9568_o;
+      default: n9569_o = n9568_o;
     endcase
-  assign n9569_o = sndopc[4];
-  /* TG68KdotC_Kernel.vhd:4118:41  */
+  assign n9570_o = sndopc[4];
+  /* TG68KdotC_Kernel.vhd:4121:41  */
   always @*
-    case (n9560_o)
-      16'b1000000000000000: n9570_o = n9569_o;
-      16'b0100000000000000: n9570_o = n9569_o;
-      16'b0010000000000000: n9570_o = n9569_o;
-      16'b0001000000000000: n9570_o = n9569_o;
-      16'b0000100000000000: n9570_o = n9569_o;
-      16'b0000010000000000: n9570_o = n9569_o;
-      16'b0000001000000000: n9570_o = n9569_o;
-      16'b0000000100000000: n9570_o = n9569_o;
-      16'b0000000010000000: n9570_o = n9569_o;
-      16'b0000000001000000: n9570_o = n9569_o;
-      16'b0000000000100000: n9570_o = n9569_o;
-      16'b0000000000010000: n9570_o = 1'b0;
-      16'b0000000000001000: n9570_o = n9569_o;
-      16'b0000000000000100: n9570_o = n9569_o;
-      16'b0000000000000010: n9570_o = n9569_o;
-      16'b0000000000000001: n9570_o = n9569_o;
-      default: n9570_o = n9569_o;
+    case (n9561_o)
+      16'b1000000000000000: n9571_o = n9570_o;
+      16'b0100000000000000: n9571_o = n9570_o;
+      16'b0010000000000000: n9571_o = n9570_o;
+      16'b0001000000000000: n9571_o = n9570_o;
+      16'b0000100000000000: n9571_o = n9570_o;
+      16'b0000010000000000: n9571_o = n9570_o;
+      16'b0000001000000000: n9571_o = n9570_o;
+      16'b0000000100000000: n9571_o = n9570_o;
+      16'b0000000010000000: n9571_o = n9570_o;
+      16'b0000000001000000: n9571_o = n9570_o;
+      16'b0000000000100000: n9571_o = n9570_o;
+      16'b0000000000010000: n9571_o = 1'b0;
+      16'b0000000000001000: n9571_o = n9570_o;
+      16'b0000000000000100: n9571_o = n9570_o;
+      16'b0000000000000010: n9571_o = n9570_o;
+      16'b0000000000000001: n9571_o = n9570_o;
+      default: n9571_o = n9570_o;
     endcase
-  assign n9571_o = sndopc[5];
-  /* TG68KdotC_Kernel.vhd:4118:41  */
+  assign n9572_o = sndopc[5];
+  /* TG68KdotC_Kernel.vhd:4121:41  */
   always @*
-    case (n9560_o)
-      16'b1000000000000000: n9572_o = n9571_o;
-      16'b0100000000000000: n9572_o = n9571_o;
-      16'b0010000000000000: n9572_o = n9571_o;
-      16'b0001000000000000: n9572_o = n9571_o;
-      16'b0000100000000000: n9572_o = n9571_o;
-      16'b0000010000000000: n9572_o = n9571_o;
-      16'b0000001000000000: n9572_o = n9571_o;
-      16'b0000000100000000: n9572_o = n9571_o;
-      16'b0000000010000000: n9572_o = n9571_o;
-      16'b0000000001000000: n9572_o = n9571_o;
-      16'b0000000000100000: n9572_o = 1'b0;
-      16'b0000000000010000: n9572_o = n9571_o;
-      16'b0000000000001000: n9572_o = n9571_o;
-      16'b0000000000000100: n9572_o = n9571_o;
-      16'b0000000000000010: n9572_o = n9571_o;
-      16'b0000000000000001: n9572_o = n9571_o;
-      default: n9572_o = n9571_o;
+    case (n9561_o)
+      16'b1000000000000000: n9573_o = n9572_o;
+      16'b0100000000000000: n9573_o = n9572_o;
+      16'b0010000000000000: n9573_o = n9572_o;
+      16'b0001000000000000: n9573_o = n9572_o;
+      16'b0000100000000000: n9573_o = n9572_o;
+      16'b0000010000000000: n9573_o = n9572_o;
+      16'b0000001000000000: n9573_o = n9572_o;
+      16'b0000000100000000: n9573_o = n9572_o;
+      16'b0000000010000000: n9573_o = n9572_o;
+      16'b0000000001000000: n9573_o = n9572_o;
+      16'b0000000000100000: n9573_o = 1'b0;
+      16'b0000000000010000: n9573_o = n9572_o;
+      16'b0000000000001000: n9573_o = n9572_o;
+      16'b0000000000000100: n9573_o = n9572_o;
+      16'b0000000000000010: n9573_o = n9572_o;
+      16'b0000000000000001: n9573_o = n9572_o;
+      default: n9573_o = n9572_o;
     endcase
-  assign n9573_o = sndopc[6];
-  /* TG68KdotC_Kernel.vhd:4118:41  */
+  assign n9574_o = sndopc[6];
+  /* TG68KdotC_Kernel.vhd:4121:41  */
   always @*
-    case (n9560_o)
-      16'b1000000000000000: n9574_o = n9573_o;
-      16'b0100000000000000: n9574_o = n9573_o;
-      16'b0010000000000000: n9574_o = n9573_o;
-      16'b0001000000000000: n9574_o = n9573_o;
-      16'b0000100000000000: n9574_o = n9573_o;
-      16'b0000010000000000: n9574_o = n9573_o;
-      16'b0000001000000000: n9574_o = n9573_o;
-      16'b0000000100000000: n9574_o = n9573_o;
-      16'b0000000010000000: n9574_o = n9573_o;
-      16'b0000000001000000: n9574_o = 1'b0;
-      16'b0000000000100000: n9574_o = n9573_o;
-      16'b0000000000010000: n9574_o = n9573_o;
-      16'b0000000000001000: n9574_o = n9573_o;
-      16'b0000000000000100: n9574_o = n9573_o;
-      16'b0000000000000010: n9574_o = n9573_o;
-      16'b0000000000000001: n9574_o = n9573_o;
-      default: n9574_o = n9573_o;
+    case (n9561_o)
+      16'b1000000000000000: n9575_o = n9574_o;
+      16'b0100000000000000: n9575_o = n9574_o;
+      16'b0010000000000000: n9575_o = n9574_o;
+      16'b0001000000000000: n9575_o = n9574_o;
+      16'b0000100000000000: n9575_o = n9574_o;
+      16'b0000010000000000: n9575_o = n9574_o;
+      16'b0000001000000000: n9575_o = n9574_o;
+      16'b0000000100000000: n9575_o = n9574_o;
+      16'b0000000010000000: n9575_o = n9574_o;
+      16'b0000000001000000: n9575_o = 1'b0;
+      16'b0000000000100000: n9575_o = n9574_o;
+      16'b0000000000010000: n9575_o = n9574_o;
+      16'b0000000000001000: n9575_o = n9574_o;
+      16'b0000000000000100: n9575_o = n9574_o;
+      16'b0000000000000010: n9575_o = n9574_o;
+      16'b0000000000000001: n9575_o = n9574_o;
+      default: n9575_o = n9574_o;
     endcase
-  assign n9575_o = sndopc[7];
-  /* TG68KdotC_Kernel.vhd:4118:41  */
+  assign n9576_o = sndopc[7];
+  /* TG68KdotC_Kernel.vhd:4121:41  */
   always @*
-    case (n9560_o)
-      16'b1000000000000000: n9576_o = n9575_o;
-      16'b0100000000000000: n9576_o = n9575_o;
-      16'b0010000000000000: n9576_o = n9575_o;
-      16'b0001000000000000: n9576_o = n9575_o;
-      16'b0000100000000000: n9576_o = n9575_o;
-      16'b0000010000000000: n9576_o = n9575_o;
-      16'b0000001000000000: n9576_o = n9575_o;
-      16'b0000000100000000: n9576_o = n9575_o;
-      16'b0000000010000000: n9576_o = 1'b0;
-      16'b0000000001000000: n9576_o = n9575_o;
-      16'b0000000000100000: n9576_o = n9575_o;
-      16'b0000000000010000: n9576_o = n9575_o;
-      16'b0000000000001000: n9576_o = n9575_o;
-      16'b0000000000000100: n9576_o = n9575_o;
-      16'b0000000000000010: n9576_o = n9575_o;
-      16'b0000000000000001: n9576_o = n9575_o;
-      default: n9576_o = n9575_o;
+    case (n9561_o)
+      16'b1000000000000000: n9577_o = n9576_o;
+      16'b0100000000000000: n9577_o = n9576_o;
+      16'b0010000000000000: n9577_o = n9576_o;
+      16'b0001000000000000: n9577_o = n9576_o;
+      16'b0000100000000000: n9577_o = n9576_o;
+      16'b0000010000000000: n9577_o = n9576_o;
+      16'b0000001000000000: n9577_o = n9576_o;
+      16'b0000000100000000: n9577_o = n9576_o;
+      16'b0000000010000000: n9577_o = 1'b0;
+      16'b0000000001000000: n9577_o = n9576_o;
+      16'b0000000000100000: n9577_o = n9576_o;
+      16'b0000000000010000: n9577_o = n9576_o;
+      16'b0000000000001000: n9577_o = n9576_o;
+      16'b0000000000000100: n9577_o = n9576_o;
+      16'b0000000000000010: n9577_o = n9576_o;
+      16'b0000000000000001: n9577_o = n9576_o;
+      default: n9577_o = n9576_o;
     endcase
-  assign n9577_o = sndopc[8];
-  /* TG68KdotC_Kernel.vhd:4118:41  */
+  assign n9578_o = sndopc[8];
+  /* TG68KdotC_Kernel.vhd:4121:41  */
   always @*
-    case (n9560_o)
-      16'b1000000000000000: n9578_o = n9577_o;
-      16'b0100000000000000: n9578_o = n9577_o;
-      16'b0010000000000000: n9578_o = n9577_o;
-      16'b0001000000000000: n9578_o = n9577_o;
-      16'b0000100000000000: n9578_o = n9577_o;
-      16'b0000010000000000: n9578_o = n9577_o;
-      16'b0000001000000000: n9578_o = n9577_o;
-      16'b0000000100000000: n9578_o = 1'b0;
-      16'b0000000010000000: n9578_o = n9577_o;
-      16'b0000000001000000: n9578_o = n9577_o;
-      16'b0000000000100000: n9578_o = n9577_o;
-      16'b0000000000010000: n9578_o = n9577_o;
-      16'b0000000000001000: n9578_o = n9577_o;
-      16'b0000000000000100: n9578_o = n9577_o;
-      16'b0000000000000010: n9578_o = n9577_o;
-      16'b0000000000000001: n9578_o = n9577_o;
-      default: n9578_o = n9577_o;
+    case (n9561_o)
+      16'b1000000000000000: n9579_o = n9578_o;
+      16'b0100000000000000: n9579_o = n9578_o;
+      16'b0010000000000000: n9579_o = n9578_o;
+      16'b0001000000000000: n9579_o = n9578_o;
+      16'b0000100000000000: n9579_o = n9578_o;
+      16'b0000010000000000: n9579_o = n9578_o;
+      16'b0000001000000000: n9579_o = n9578_o;
+      16'b0000000100000000: n9579_o = 1'b0;
+      16'b0000000010000000: n9579_o = n9578_o;
+      16'b0000000001000000: n9579_o = n9578_o;
+      16'b0000000000100000: n9579_o = n9578_o;
+      16'b0000000000010000: n9579_o = n9578_o;
+      16'b0000000000001000: n9579_o = n9578_o;
+      16'b0000000000000100: n9579_o = n9578_o;
+      16'b0000000000000010: n9579_o = n9578_o;
+      16'b0000000000000001: n9579_o = n9578_o;
+      default: n9579_o = n9578_o;
     endcase
-  assign n9579_o = sndopc[9];
-  /* TG68KdotC_Kernel.vhd:4118:41  */
+  assign n9580_o = sndopc[9];
+  /* TG68KdotC_Kernel.vhd:4121:41  */
   always @*
-    case (n9560_o)
-      16'b1000000000000000: n9580_o = n9579_o;
-      16'b0100000000000000: n9580_o = n9579_o;
-      16'b0010000000000000: n9580_o = n9579_o;
-      16'b0001000000000000: n9580_o = n9579_o;
-      16'b0000100000000000: n9580_o = n9579_o;
-      16'b0000010000000000: n9580_o = n9579_o;
-      16'b0000001000000000: n9580_o = 1'b0;
-      16'b0000000100000000: n9580_o = n9579_o;
-      16'b0000000010000000: n9580_o = n9579_o;
-      16'b0000000001000000: n9580_o = n9579_o;
-      16'b0000000000100000: n9580_o = n9579_o;
-      16'b0000000000010000: n9580_o = n9579_o;
-      16'b0000000000001000: n9580_o = n9579_o;
-      16'b0000000000000100: n9580_o = n9579_o;
-      16'b0000000000000010: n9580_o = n9579_o;
-      16'b0000000000000001: n9580_o = n9579_o;
-      default: n9580_o = n9579_o;
+    case (n9561_o)
+      16'b1000000000000000: n9581_o = n9580_o;
+      16'b0100000000000000: n9581_o = n9580_o;
+      16'b0010000000000000: n9581_o = n9580_o;
+      16'b0001000000000000: n9581_o = n9580_o;
+      16'b0000100000000000: n9581_o = n9580_o;
+      16'b0000010000000000: n9581_o = n9580_o;
+      16'b0000001000000000: n9581_o = 1'b0;
+      16'b0000000100000000: n9581_o = n9580_o;
+      16'b0000000010000000: n9581_o = n9580_o;
+      16'b0000000001000000: n9581_o = n9580_o;
+      16'b0000000000100000: n9581_o = n9580_o;
+      16'b0000000000010000: n9581_o = n9580_o;
+      16'b0000000000001000: n9581_o = n9580_o;
+      16'b0000000000000100: n9581_o = n9580_o;
+      16'b0000000000000010: n9581_o = n9580_o;
+      16'b0000000000000001: n9581_o = n9580_o;
+      default: n9581_o = n9580_o;
     endcase
-  assign n9581_o = sndopc[10];
-  /* TG68KdotC_Kernel.vhd:4118:41  */
+  assign n9582_o = sndopc[10];
+  /* TG68KdotC_Kernel.vhd:4121:41  */
   always @*
-    case (n9560_o)
-      16'b1000000000000000: n9582_o = n9581_o;
-      16'b0100000000000000: n9582_o = n9581_o;
-      16'b0010000000000000: n9582_o = n9581_o;
-      16'b0001000000000000: n9582_o = n9581_o;
-      16'b0000100000000000: n9582_o = n9581_o;
-      16'b0000010000000000: n9582_o = 1'b0;
-      16'b0000001000000000: n9582_o = n9581_o;
-      16'b0000000100000000: n9582_o = n9581_o;
-      16'b0000000010000000: n9582_o = n9581_o;
-      16'b0000000001000000: n9582_o = n9581_o;
-      16'b0000000000100000: n9582_o = n9581_o;
-      16'b0000000000010000: n9582_o = n9581_o;
-      16'b0000000000001000: n9582_o = n9581_o;
-      16'b0000000000000100: n9582_o = n9581_o;
-      16'b0000000000000010: n9582_o = n9581_o;
-      16'b0000000000000001: n9582_o = n9581_o;
-      default: n9582_o = n9581_o;
+    case (n9561_o)
+      16'b1000000000000000: n9583_o = n9582_o;
+      16'b0100000000000000: n9583_o = n9582_o;
+      16'b0010000000000000: n9583_o = n9582_o;
+      16'b0001000000000000: n9583_o = n9582_o;
+      16'b0000100000000000: n9583_o = n9582_o;
+      16'b0000010000000000: n9583_o = 1'b0;
+      16'b0000001000000000: n9583_o = n9582_o;
+      16'b0000000100000000: n9583_o = n9582_o;
+      16'b0000000010000000: n9583_o = n9582_o;
+      16'b0000000001000000: n9583_o = n9582_o;
+      16'b0000000000100000: n9583_o = n9582_o;
+      16'b0000000000010000: n9583_o = n9582_o;
+      16'b0000000000001000: n9583_o = n9582_o;
+      16'b0000000000000100: n9583_o = n9582_o;
+      16'b0000000000000010: n9583_o = n9582_o;
+      16'b0000000000000001: n9583_o = n9582_o;
+      default: n9583_o = n9582_o;
     endcase
-  assign n9583_o = sndopc[11];
-  /* TG68KdotC_Kernel.vhd:4118:41  */
+  assign n9584_o = sndopc[11];
+  /* TG68KdotC_Kernel.vhd:4121:41  */
   always @*
-    case (n9560_o)
-      16'b1000000000000000: n9584_o = n9583_o;
-      16'b0100000000000000: n9584_o = n9583_o;
-      16'b0010000000000000: n9584_o = n9583_o;
-      16'b0001000000000000: n9584_o = n9583_o;
-      16'b0000100000000000: n9584_o = 1'b0;
-      16'b0000010000000000: n9584_o = n9583_o;
-      16'b0000001000000000: n9584_o = n9583_o;
-      16'b0000000100000000: n9584_o = n9583_o;
-      16'b0000000010000000: n9584_o = n9583_o;
-      16'b0000000001000000: n9584_o = n9583_o;
-      16'b0000000000100000: n9584_o = n9583_o;
-      16'b0000000000010000: n9584_o = n9583_o;
-      16'b0000000000001000: n9584_o = n9583_o;
-      16'b0000000000000100: n9584_o = n9583_o;
-      16'b0000000000000010: n9584_o = n9583_o;
-      16'b0000000000000001: n9584_o = n9583_o;
-      default: n9584_o = n9583_o;
+    case (n9561_o)
+      16'b1000000000000000: n9585_o = n9584_o;
+      16'b0100000000000000: n9585_o = n9584_o;
+      16'b0010000000000000: n9585_o = n9584_o;
+      16'b0001000000000000: n9585_o = n9584_o;
+      16'b0000100000000000: n9585_o = 1'b0;
+      16'b0000010000000000: n9585_o = n9584_o;
+      16'b0000001000000000: n9585_o = n9584_o;
+      16'b0000000100000000: n9585_o = n9584_o;
+      16'b0000000010000000: n9585_o = n9584_o;
+      16'b0000000001000000: n9585_o = n9584_o;
+      16'b0000000000100000: n9585_o = n9584_o;
+      16'b0000000000010000: n9585_o = n9584_o;
+      16'b0000000000001000: n9585_o = n9584_o;
+      16'b0000000000000100: n9585_o = n9584_o;
+      16'b0000000000000010: n9585_o = n9584_o;
+      16'b0000000000000001: n9585_o = n9584_o;
+      default: n9585_o = n9584_o;
     endcase
-  assign n9585_o = sndopc[12];
-  /* TG68KdotC_Kernel.vhd:4118:41  */
+  assign n9586_o = sndopc[12];
+  /* TG68KdotC_Kernel.vhd:4121:41  */
   always @*
-    case (n9560_o)
-      16'b1000000000000000: n9586_o = n9585_o;
-      16'b0100000000000000: n9586_o = n9585_o;
-      16'b0010000000000000: n9586_o = n9585_o;
-      16'b0001000000000000: n9586_o = 1'b0;
-      16'b0000100000000000: n9586_o = n9585_o;
-      16'b0000010000000000: n9586_o = n9585_o;
-      16'b0000001000000000: n9586_o = n9585_o;
-      16'b0000000100000000: n9586_o = n9585_o;
-      16'b0000000010000000: n9586_o = n9585_o;
-      16'b0000000001000000: n9586_o = n9585_o;
-      16'b0000000000100000: n9586_o = n9585_o;
-      16'b0000000000010000: n9586_o = n9585_o;
-      16'b0000000000001000: n9586_o = n9585_o;
-      16'b0000000000000100: n9586_o = n9585_o;
-      16'b0000000000000010: n9586_o = n9585_o;
-      16'b0000000000000001: n9586_o = n9585_o;
-      default: n9586_o = n9585_o;
+    case (n9561_o)
+      16'b1000000000000000: n9587_o = n9586_o;
+      16'b0100000000000000: n9587_o = n9586_o;
+      16'b0010000000000000: n9587_o = n9586_o;
+      16'b0001000000000000: n9587_o = 1'b0;
+      16'b0000100000000000: n9587_o = n9586_o;
+      16'b0000010000000000: n9587_o = n9586_o;
+      16'b0000001000000000: n9587_o = n9586_o;
+      16'b0000000100000000: n9587_o = n9586_o;
+      16'b0000000010000000: n9587_o = n9586_o;
+      16'b0000000001000000: n9587_o = n9586_o;
+      16'b0000000000100000: n9587_o = n9586_o;
+      16'b0000000000010000: n9587_o = n9586_o;
+      16'b0000000000001000: n9587_o = n9586_o;
+      16'b0000000000000100: n9587_o = n9586_o;
+      16'b0000000000000010: n9587_o = n9586_o;
+      16'b0000000000000001: n9587_o = n9586_o;
+      default: n9587_o = n9586_o;
     endcase
-  assign n9587_o = sndopc[13];
-  /* TG68KdotC_Kernel.vhd:4118:41  */
+  assign n9588_o = sndopc[13];
+  /* TG68KdotC_Kernel.vhd:4121:41  */
   always @*
-    case (n9560_o)
-      16'b1000000000000000: n9588_o = n9587_o;
-      16'b0100000000000000: n9588_o = n9587_o;
-      16'b0010000000000000: n9588_o = 1'b0;
-      16'b0001000000000000: n9588_o = n9587_o;
-      16'b0000100000000000: n9588_o = n9587_o;
-      16'b0000010000000000: n9588_o = n9587_o;
-      16'b0000001000000000: n9588_o = n9587_o;
-      16'b0000000100000000: n9588_o = n9587_o;
-      16'b0000000010000000: n9588_o = n9587_o;
-      16'b0000000001000000: n9588_o = n9587_o;
-      16'b0000000000100000: n9588_o = n9587_o;
-      16'b0000000000010000: n9588_o = n9587_o;
-      16'b0000000000001000: n9588_o = n9587_o;
-      16'b0000000000000100: n9588_o = n9587_o;
-      16'b0000000000000010: n9588_o = n9587_o;
-      16'b0000000000000001: n9588_o = n9587_o;
-      default: n9588_o = n9587_o;
+    case (n9561_o)
+      16'b1000000000000000: n9589_o = n9588_o;
+      16'b0100000000000000: n9589_o = n9588_o;
+      16'b0010000000000000: n9589_o = 1'b0;
+      16'b0001000000000000: n9589_o = n9588_o;
+      16'b0000100000000000: n9589_o = n9588_o;
+      16'b0000010000000000: n9589_o = n9588_o;
+      16'b0000001000000000: n9589_o = n9588_o;
+      16'b0000000100000000: n9589_o = n9588_o;
+      16'b0000000010000000: n9589_o = n9588_o;
+      16'b0000000001000000: n9589_o = n9588_o;
+      16'b0000000000100000: n9589_o = n9588_o;
+      16'b0000000000010000: n9589_o = n9588_o;
+      16'b0000000000001000: n9589_o = n9588_o;
+      16'b0000000000000100: n9589_o = n9588_o;
+      16'b0000000000000010: n9589_o = n9588_o;
+      16'b0000000000000001: n9589_o = n9588_o;
+      default: n9589_o = n9588_o;
     endcase
-  assign n9589_o = sndopc[14];
-  /* TG68KdotC_Kernel.vhd:4118:41  */
+  assign n9590_o = sndopc[14];
+  /* TG68KdotC_Kernel.vhd:4121:41  */
   always @*
-    case (n9560_o)
-      16'b1000000000000000: n9590_o = n9589_o;
-      16'b0100000000000000: n9590_o = 1'b0;
-      16'b0010000000000000: n9590_o = n9589_o;
-      16'b0001000000000000: n9590_o = n9589_o;
-      16'b0000100000000000: n9590_o = n9589_o;
-      16'b0000010000000000: n9590_o = n9589_o;
-      16'b0000001000000000: n9590_o = n9589_o;
-      16'b0000000100000000: n9590_o = n9589_o;
-      16'b0000000010000000: n9590_o = n9589_o;
-      16'b0000000001000000: n9590_o = n9589_o;
-      16'b0000000000100000: n9590_o = n9589_o;
-      16'b0000000000010000: n9590_o = n9589_o;
-      16'b0000000000001000: n9590_o = n9589_o;
-      16'b0000000000000100: n9590_o = n9589_o;
-      16'b0000000000000010: n9590_o = n9589_o;
-      16'b0000000000000001: n9590_o = n9589_o;
-      default: n9590_o = n9589_o;
+    case (n9561_o)
+      16'b1000000000000000: n9591_o = n9590_o;
+      16'b0100000000000000: n9591_o = 1'b0;
+      16'b0010000000000000: n9591_o = n9590_o;
+      16'b0001000000000000: n9591_o = n9590_o;
+      16'b0000100000000000: n9591_o = n9590_o;
+      16'b0000010000000000: n9591_o = n9590_o;
+      16'b0000001000000000: n9591_o = n9590_o;
+      16'b0000000100000000: n9591_o = n9590_o;
+      16'b0000000010000000: n9591_o = n9590_o;
+      16'b0000000001000000: n9591_o = n9590_o;
+      16'b0000000000100000: n9591_o = n9590_o;
+      16'b0000000000010000: n9591_o = n9590_o;
+      16'b0000000000001000: n9591_o = n9590_o;
+      16'b0000000000000100: n9591_o = n9590_o;
+      16'b0000000000000010: n9591_o = n9590_o;
+      16'b0000000000000001: n9591_o = n9590_o;
+      default: n9591_o = n9590_o;
     endcase
-  assign n9591_o = sndopc[15];
-  /* TG68KdotC_Kernel.vhd:4118:41  */
+  assign n9592_o = sndopc[15];
+  /* TG68KdotC_Kernel.vhd:4121:41  */
   always @*
-    case (n9560_o)
-      16'b1000000000000000: n9592_o = 1'b0;
-      16'b0100000000000000: n9592_o = n9591_o;
-      16'b0010000000000000: n9592_o = n9591_o;
-      16'b0001000000000000: n9592_o = n9591_o;
-      16'b0000100000000000: n9592_o = n9591_o;
-      16'b0000010000000000: n9592_o = n9591_o;
-      16'b0000001000000000: n9592_o = n9591_o;
-      16'b0000000100000000: n9592_o = n9591_o;
-      16'b0000000010000000: n9592_o = n9591_o;
-      16'b0000000001000000: n9592_o = n9591_o;
-      16'b0000000000100000: n9592_o = n9591_o;
-      16'b0000000000010000: n9592_o = n9591_o;
-      16'b0000000000001000: n9592_o = n9591_o;
-      16'b0000000000000100: n9592_o = n9591_o;
-      16'b0000000000000010: n9592_o = n9591_o;
-      16'b0000000000000001: n9592_o = n9591_o;
-      default: n9592_o = n9591_o;
+    case (n9561_o)
+      16'b1000000000000000: n9593_o = 1'b0;
+      16'b0100000000000000: n9593_o = n9592_o;
+      16'b0010000000000000: n9593_o = n9592_o;
+      16'b0001000000000000: n9593_o = n9592_o;
+      16'b0000100000000000: n9593_o = n9592_o;
+      16'b0000010000000000: n9593_o = n9592_o;
+      16'b0000001000000000: n9593_o = n9592_o;
+      16'b0000000100000000: n9593_o = n9592_o;
+      16'b0000000010000000: n9593_o = n9592_o;
+      16'b0000000001000000: n9593_o = n9592_o;
+      16'b0000000000100000: n9593_o = n9592_o;
+      16'b0000000000010000: n9593_o = n9592_o;
+      16'b0000000000001000: n9593_o = n9592_o;
+      16'b0000000000000100: n9593_o = n9592_o;
+      16'b0000000000000010: n9593_o = n9592_o;
+      16'b0000000000000001: n9593_o = n9592_o;
+      default: n9593_o = n9592_o;
     endcase
-  assign n9593_o = {n9592_o, n9590_o, n9588_o, n9586_o, n9584_o, n9582_o, n9580_o, n9578_o, n9576_o, n9574_o, n9572_o, n9570_o, n9568_o, n9566_o, n9564_o, n9562_o};
-  /* TG68KdotC_Kernel.vhd:4117:33  */
-  assign n9594_o = n9511_o ? n9593_o : sndopc;
-  /* TG68KdotC_Kernel.vhd:4115:33  */
-  assign n9595_o = decodeopc ? n9508_o : n9594_o;
-  /* TG68KdotC_Kernel.vhd:4146:26  */
-  assign n9603_o = sndopc[3:0];
-  /* TG68KdotC_Kernel.vhd:4146:38  */
-  assign n9605_o = n9603_o == 4'b0000;
-  /* TG68KdotC_Kernel.vhd:4147:34  */
-  assign n9606_o = sndopc[7:4];
-  /* TG68KdotC_Kernel.vhd:4147:46  */
-  assign n9608_o = n9606_o == 4'b0000;
-  /* TG68KdotC_Kernel.vhd:4149:42  */
-  assign n9610_o = sndopc[11:8];
-  /* TG68KdotC_Kernel.vhd:4149:55  */
-  assign n9612_o = n9610_o == 4'b0000;
-  /* TG68KdotC_Kernel.vhd:4150:50  */
-  assign n9613_o = sndopc[15:12];
-  /* TG68KdotC_Kernel.vhd:4150:64  */
-  assign n9615_o = n9613_o == 4'b0000;
-  /* TG68KdotC_Kernel.vhd:4150:41  */
-  assign n9618_o = n9615_o ? 1'b0 : 1'b1;
-  /* TG68KdotC_Kernel.vhd:4154:60  */
-  assign n9620_o = sndopc[15:12];
-  /* TG68KdotC_Kernel.vhd:4156:60  */
-  assign n9621_o = sndopc[11:8];
-  /* TG68KdotC_Kernel.vhd:4149:33  */
-  assign n9623_o = n9612_o ? 1'b1 : 1'b0;
-  /* TG68KdotC_Kernel.vhd:4149:33  */
-  assign n9624_o = n9612_o ? n9620_o : n9621_o;
-  /* TG68KdotC_Kernel.vhd:4149:33  */
-  assign n9626_o = n9612_o ? n9618_o : 1'b1;
-  /* TG68KdotC_Kernel.vhd:4159:52  */
-  assign n9627_o = sndopc[7:4];
-  assign n9629_o = {1'b1, n9623_o};
-  assign n9630_o = n9629_o[0];
-  /* TG68KdotC_Kernel.vhd:4147:25  */
-  assign n9631_o = n9608_o ? n9630_o : 1'b1;
-  assign n9632_o = n9629_o[1];
-  /* TG68KdotC_Kernel.vhd:4147:25  */
-  assign n9634_o = n9608_o ? n9632_o : 1'b0;
-  /* TG68KdotC_Kernel.vhd:4147:25  */
-  assign n9635_o = n9608_o ? n9624_o : n9627_o;
-  /* TG68KdotC_Kernel.vhd:4147:25  */
-  assign n9637_o = n9608_o ? n9626_o : 1'b1;
-  /* TG68KdotC_Kernel.vhd:4163:44  */
-  assign n9638_o = sndopc[3:0];
-  assign n9639_o = {n9634_o, n9631_o};
-  /* TG68KdotC_Kernel.vhd:4146:17  */
-  assign n9641_o = n9605_o ? n9639_o : 2'b00;
-  /* TG68KdotC_Kernel.vhd:4146:17  */
-  assign n9644_o = n9605_o ? n9635_o : n9638_o;
-  /* TG68KdotC_Kernel.vhd:4146:17  */
-  assign n9646_o = n9605_o ? n9637_o : 1'b1;
-  /* TG68KdotC_Kernel.vhd:4165:29  */
-  assign n9648_o = movem_mux[1:0];
-  /* TG68KdotC_Kernel.vhd:4165:41  */
-  assign n9650_o = n9648_o == 2'b00;
-  /* TG68KdotC_Kernel.vhd:4167:37  */
-  assign n9652_o = movem_mux[2];
-  /* TG68KdotC_Kernel.vhd:4167:40  */
-  assign n9653_o = ~n9652_o;
-  assign n9655_o = n9642_o[0];
-  /* TG68KdotC_Kernel.vhd:4167:25  */
-  assign n9656_o = n9653_o ? 1'b1 : n9655_o;
-  /* TG68KdotC_Kernel.vhd:4171:37  */
-  assign n9657_o = movem_mux[0];
-  /* TG68KdotC_Kernel.vhd:4171:40  */
-  assign n9658_o = ~n9657_o;
-  assign n9660_o = n9642_o[0];
-  /* TG68KdotC_Kernel.vhd:4171:25  */
-  assign n9661_o = n9658_o ? 1'b1 : n9660_o;
-  assign n9662_o = {1'b1, n9656_o};
-  assign n9663_o = n9662_o[0];
-  /* TG68KdotC_Kernel.vhd:4165:17  */
-  assign n9664_o = n9650_o ? n9663_o : n9661_o;
-  assign n9665_o = n9662_o[1];
-  assign n9666_o = n9642_o[1];
-  /* TG68KdotC_Kernel.vhd:4165:17  */
-  assign n9667_o = n9650_o ? n9665_o : n9666_o;
+  assign n9594_o = {n9593_o, n9591_o, n9589_o, n9587_o, n9585_o, n9583_o, n9581_o, n9579_o, n9577_o, n9575_o, n9573_o, n9571_o, n9569_o, n9567_o, n9565_o, n9563_o};
+  /* TG68KdotC_Kernel.vhd:4120:33  */
+  assign n9595_o = n9512_o ? n9594_o : sndopc;
+  /* TG68KdotC_Kernel.vhd:4118:33  */
+  assign n9596_o = decodeopc ? n9509_o : n9595_o;
+  /* TG68KdotC_Kernel.vhd:4149:26  */
+  assign n9604_o = sndopc[3:0];
+  /* TG68KdotC_Kernel.vhd:4149:38  */
+  assign n9606_o = n9604_o == 4'b0000;
+  /* TG68KdotC_Kernel.vhd:4150:34  */
+  assign n9607_o = sndopc[7:4];
+  /* TG68KdotC_Kernel.vhd:4150:46  */
+  assign n9609_o = n9607_o == 4'b0000;
+  /* TG68KdotC_Kernel.vhd:4152:42  */
+  assign n9611_o = sndopc[11:8];
+  /* TG68KdotC_Kernel.vhd:4152:55  */
+  assign n9613_o = n9611_o == 4'b0000;
+  /* TG68KdotC_Kernel.vhd:4153:50  */
+  assign n9614_o = sndopc[15:12];
+  /* TG68KdotC_Kernel.vhd:4153:64  */
+  assign n9616_o = n9614_o == 4'b0000;
+  /* TG68KdotC_Kernel.vhd:4153:41  */
+  assign n9619_o = n9616_o ? 1'b0 : 1'b1;
+  /* TG68KdotC_Kernel.vhd:4157:60  */
+  assign n9621_o = sndopc[15:12];
+  /* TG68KdotC_Kernel.vhd:4159:60  */
+  assign n9622_o = sndopc[11:8];
+  /* TG68KdotC_Kernel.vhd:4152:33  */
+  assign n9624_o = n9613_o ? 1'b1 : 1'b0;
+  /* TG68KdotC_Kernel.vhd:4152:33  */
+  assign n9625_o = n9613_o ? n9621_o : n9622_o;
+  /* TG68KdotC_Kernel.vhd:4152:33  */
+  assign n9627_o = n9613_o ? n9619_o : 1'b1;
+  /* TG68KdotC_Kernel.vhd:4162:52  */
+  assign n9628_o = sndopc[7:4];
+  assign n9630_o = {1'b1, n9624_o};
+  assign n9631_o = n9630_o[0];
+  /* TG68KdotC_Kernel.vhd:4150:25  */
+  assign n9632_o = n9609_o ? n9631_o : 1'b1;
+  assign n9633_o = n9630_o[1];
+  /* TG68KdotC_Kernel.vhd:4150:25  */
+  assign n9635_o = n9609_o ? n9633_o : 1'b0;
+  /* TG68KdotC_Kernel.vhd:4150:25  */
+  assign n9636_o = n9609_o ? n9625_o : n9628_o;
+  /* TG68KdotC_Kernel.vhd:4150:25  */
+  assign n9638_o = n9609_o ? n9627_o : 1'b1;
+  /* TG68KdotC_Kernel.vhd:4166:44  */
+  assign n9639_o = sndopc[3:0];
+  assign n9640_o = {n9635_o, n9632_o};
+  /* TG68KdotC_Kernel.vhd:4149:17  */
+  assign n9642_o = n9606_o ? n9640_o : 2'b00;
+  /* TG68KdotC_Kernel.vhd:4149:17  */
+  assign n9645_o = n9606_o ? n9636_o : n9639_o;
+  /* TG68KdotC_Kernel.vhd:4149:17  */
+  assign n9647_o = n9606_o ? n9638_o : 1'b1;
+  /* TG68KdotC_Kernel.vhd:4168:29  */
+  assign n9649_o = movem_mux[1:0];
+  /* TG68KdotC_Kernel.vhd:4168:41  */
+  assign n9651_o = n9649_o == 2'b00;
+  /* TG68KdotC_Kernel.vhd:4170:37  */
+  assign n9653_o = movem_mux[2];
+  /* TG68KdotC_Kernel.vhd:4170:40  */
+  assign n9654_o = ~n9653_o;
+  assign n9656_o = n9643_o[0];
+  /* TG68KdotC_Kernel.vhd:4170:25  */
+  assign n9657_o = n9654_o ? 1'b1 : n9656_o;
+  /* TG68KdotC_Kernel.vhd:4174:37  */
+  assign n9658_o = movem_mux[0];
+  /* TG68KdotC_Kernel.vhd:4174:40  */
+  assign n9659_o = ~n9658_o;
+  assign n9661_o = n9643_o[0];
+  /* TG68KdotC_Kernel.vhd:4174:25  */
+  assign n9662_o = n9659_o ? 1'b1 : n9661_o;
+  assign n9663_o = {1'b1, n9657_o};
+  assign n9664_o = n9663_o[0];
+  /* TG68KdotC_Kernel.vhd:4168:17  */
+  assign n9665_o = n9651_o ? n9664_o : n9662_o;
+  assign n9666_o = n9663_o[1];
+  assign n9667_o = n9643_o[1];
+  /* TG68KdotC_Kernel.vhd:4168:17  */
+  assign n9668_o = n9651_o ? n9666_o : n9667_o;
   /* TG68KdotC_Kernel.vhd:464:17  */
   always @(posedge clk)
-    n9670_q <= n125_o;
+    n9671_q <= n125_o;
   /* TG68KdotC_Kernel.vhd:458:17  */
-  assign n9671_o = clkena_in ? n106_o : syncreset;
-  /* TG68KdotC_Kernel.vhd:458:17  */
-  always @(posedge clk or posedge n102_o)
-    if (n102_o)
-      n9672_q <= 4'b0000;
-    else
-      n9672_q <= n9671_o;
-  /* TG68KdotC_Kernel.vhd:458:17  */
-  assign n9673_o = clkena_in ? n108_o : reset;
+  assign n9672_o = clkena_in ? n106_o : syncreset;
   /* TG68KdotC_Kernel.vhd:458:17  */
   always @(posedge clk or posedge n102_o)
     if (n102_o)
-      n9674_q <= 1'b1;
+      n9673_q <= 4'b0000;
     else
-      n9674_q <= n9673_o;
+      n9673_q <= n9672_o;
+  /* TG68KdotC_Kernel.vhd:458:17  */
+  assign n9674_o = clkena_in ? n108_o : reset;
+  /* TG68KdotC_Kernel.vhd:458:17  */
+  always @(posedge clk or posedge n102_o)
+    if (n102_o)
+      n9675_q <= 1'b1;
+    else
+      n9675_q <= n9674_o;
   /* TG68KdotC_Kernel.vhd:1059:17  */
   always @(posedge clk)
-    n9675_q <= n1512_o;
+    n9676_q <= n1512_o;
   /* TG68KdotC_Kernel.vhd:947:17  */
-  assign n9676_o = n1062_o ? addr : tmp_tg68_pc;
-  /* TG68KdotC_Kernel.vhd:947:17  */
-  always @(posedge clk)
-    n9677_q <= n9676_o;
-  /* TG68KdotC_Kernel.vhd:947:17  */
-  assign n9678_o = n1063_o ? addr : memaddr;
+  assign n9677_o = n1062_o ? addr : tmp_tg68_pc;
   /* TG68KdotC_Kernel.vhd:947:17  */
   always @(posedge clk)
-    n9679_q <= n9678_o;
+    n9678_q <= n9677_o;
+  /* TG68KdotC_Kernel.vhd:947:17  */
+  assign n9679_o = n1063_o ? addr : memaddr;
+  /* TG68KdotC_Kernel.vhd:947:17  */
+  always @(posedge clk)
+    n9680_q <= n9679_o;
   /* TG68KdotC_Kernel.vhd:1059:17  */
   always @(posedge clk)
-    n9680_q <= n1514_o;
+    n9681_q <= n1514_o;
   /* TG68KdotC_Kernel.vhd:1059:17  */
   always @(posedge clk)
-    n9681_q <= n1515_o;
+    n9682_q <= n1515_o;
   /* TG68KdotC_Kernel.vhd:1059:17  */
   always @(posedge clk)
-    n9682_q <= n1517_o;
+    n9683_q <= n1517_o;
   /* TG68KdotC_Kernel.vhd:1059:17  */
   always @(posedge clk)
-    n9683_q <= n1519_o;
+    n9684_q <= n1519_o;
   /* TG68KdotC_Kernel.vhd:1059:17  */
   always @(posedge clk)
-    n9684_q <= n1520_o;
-  /* TG68KdotC_Kernel.vhd:4112:17  */
-  assign n9685_o = clkena_lw ? n9595_o : sndopc;
-  /* TG68KdotC_Kernel.vhd:4112:17  */
+    n9685_q <= n1520_o;
+  /* TG68KdotC_Kernel.vhd:4115:17  */
+  assign n9686_o = clkena_lw ? n9596_o : sndopc;
+  /* TG68KdotC_Kernel.vhd:4115:17  */
   always @(posedge clk)
-    n9686_q <= n9685_o;
+    n9687_q <= n9686_o;
   /* TG68KdotC_Kernel.vhd:1059:17  */
   always @(posedge clk)
-    n9687_q <= n1521_o;
+    n9688_q <= n1521_o;
   /* TG68KdotC_Kernel.vhd:1059:17  */
   always @(posedge clk)
-    n9688_q <= n1522_o;
+    n9689_q <= n1522_o;
   /* TG68KdotC_Kernel.vhd:1059:17  */
   always @(posedge clk)
-    n9689_q <= n1524_o;
+    n9690_q <= n1524_o;
   /* TG68KdotC_Kernel.vhd:560:17  */
-  assign n9691_o = clkena_lw ? rf_source_addr : rf_source_addrd;
-  /* TG68KdotC_Kernel.vhd:560:17  */
-  always @(posedge clk)
-    n9692_q <= n9691_o;
-  /* TG68KdotC_Kernel.vhd:560:17  */
-  assign n9693_o = {n356_o, n335_o, n353_o};
-  /* TG68KdotC_Kernel.vhd:560:17  */
-  assign n9696_o = clkena_lw ? rf_dest_addr : rdindex_a;
+  assign n9692_o = clkena_lw ? rf_source_addr : rf_source_addrd;
   /* TG68KdotC_Kernel.vhd:560:17  */
   always @(posedge clk)
-    n9697_q <= n9696_o;
+    n9693_q <= n9692_o;
   /* TG68KdotC_Kernel.vhd:560:17  */
-  assign n9698_o = clkena_lw ? rf_source_addr : rdindex_b;
+  assign n9694_o = {n356_o, n335_o, n353_o};
   /* TG68KdotC_Kernel.vhd:560:17  */
-  always @(posedge clk)
-    n9699_q <= n9698_o;
-  /* TG68KdotC_Kernel.vhd:560:17  */
-  assign n9700_o = clkena_lw ? n291_o : wr_areg;
+  assign n9697_o = clkena_lw ? rf_dest_addr : rdindex_a;
   /* TG68KdotC_Kernel.vhd:560:17  */
   always @(posedge clk)
-    n9701_q <= n9700_o;
+    n9698_q <= n9697_o;
+  /* TG68KdotC_Kernel.vhd:560:17  */
+  assign n9699_o = clkena_lw ? rf_source_addr : rdindex_b;
+  /* TG68KdotC_Kernel.vhd:560:17  */
+  always @(posedge clk)
+    n9700_q <= n9699_o;
+  /* TG68KdotC_Kernel.vhd:560:17  */
+  assign n9701_o = clkena_lw ? n291_o : wr_areg;
+  /* TG68KdotC_Kernel.vhd:560:17  */
+  always @(posedge clk)
+    n9702_q <= n9701_o;
   /* TG68KdotC_Kernel.vhd:947:17  */
-  assign n9702_o = clkena_in ? n1049_o : memaddr_delta_rega;
-  /* TG68KdotC_Kernel.vhd:947:17  */
-  always @(posedge clk)
-    n9703_q <= n9702_o;
-  /* TG68KdotC_Kernel.vhd:947:17  */
-  assign n9704_o = clkena_in ? n1051_o : memaddr_delta_regb;
+  assign n9703_o = clkena_in ? n1049_o : memaddr_delta_rega;
   /* TG68KdotC_Kernel.vhd:947:17  */
   always @(posedge clk)
-    n9705_q <= n9704_o;
+    n9704_q <= n9703_o;
   /* TG68KdotC_Kernel.vhd:947:17  */
-  assign n9706_o = clkena_in ? n1054_o : use_base;
+  assign n9705_o = clkena_in ? n1051_o : memaddr_delta_regb;
   /* TG68KdotC_Kernel.vhd:947:17  */
   always @(posedge clk)
-    n9707_q <= n9706_o;
+    n9706_q <= n9705_o;
+  /* TG68KdotC_Kernel.vhd:947:17  */
+  assign n9707_o = clkena_in ? n1054_o : use_base;
+  /* TG68KdotC_Kernel.vhd:947:17  */
+  always @(posedge clk)
+    n9708_q <= n9707_o;
   /* TG68KdotC_Kernel.vhd:743:9  */
   always @(posedge clk)
-    n9708_q <= n790_o;
+    n9709_q <= n790_o;
   /* TG68KdotC_Kernel.vhd:743:9  */
-  assign n9709_o = {n619_o, n626_o};
-  /* TG68KdotC_Kernel.vhd:743:9  */
-  always @(posedge clk)
-    n9711_q <= n791_o;
-  /* TG68KdotC_Kernel.vhd:1059:17  */
-  always @(posedge clk)
-    n9712_q <= n1525_o;
-  assign n9714_o = {n987_o, n984_o};
-  /* TG68KdotC_Kernel.vhd:1059:17  */
-  always @(posedge clk)
-    n9715_q <= n1527_o;
-  /* TG68KdotC_Kernel.vhd:1059:17  */
-  always @(posedge clk)
-    n9716_q <= n1528_o;
+  assign n9710_o = {n619_o, n626_o};
   /* TG68KdotC_Kernel.vhd:743:9  */
   always @(posedge clk)
-    n9717_q <= n793_o;
+    n9712_q <= n791_o;
   /* TG68KdotC_Kernel.vhd:1059:17  */
   always @(posedge clk)
-    n9718_q <= n1530_o;
+    n9713_q <= n1525_o;
+  assign n9715_o = {n987_o, n984_o};
   /* TG68KdotC_Kernel.vhd:1059:17  */
   always @(posedge clk)
-    n9719_q <= n1532_o;
+    n9716_q <= n1527_o;
+  /* TG68KdotC_Kernel.vhd:1059:17  */
+  always @(posedge clk)
+    n9717_q <= n1528_o;
   /* TG68KdotC_Kernel.vhd:743:9  */
   always @(posedge clk)
-    n9720_q <= n795_o;
+    n9718_q <= n793_o;
   /* TG68KdotC_Kernel.vhd:1059:17  */
   always @(posedge clk)
-    n9721_q <= n1534_o;
+    n9719_q <= n1530_o;
   /* TG68KdotC_Kernel.vhd:1059:17  */
   always @(posedge clk)
-    n9722_q <= n1536_o;
+    n9720_q <= n1532_o;
+  /* TG68KdotC_Kernel.vhd:743:9  */
+  always @(posedge clk)
+    n9721_q <= n795_o;
   /* TG68KdotC_Kernel.vhd:1059:17  */
   always @(posedge clk)
-    n9723_q <= n1538_o;
+    n9722_q <= n1534_o;
+  /* TG68KdotC_Kernel.vhd:1059:17  */
+  always @(posedge clk)
+    n9723_q <= n1536_o;
+  /* TG68KdotC_Kernel.vhd:1059:17  */
+  always @(posedge clk)
+    n9724_q <= n1538_o;
   /* TG68KdotC_Kernel.vhd:1370:17  */
   always @(posedge clk)
-    n9724_q <= n1884_o;
+    n9725_q <= n1884_o;
   /* TG68KdotC_Kernel.vhd:743:9  */
   always @(posedge clk)
-    n9725_q <= n796_o;
+    n9726_q <= n796_o;
   /* TG68KdotC_Kernel.vhd:1260:17  */
-  assign n9726_o = clkena_lw ? n1647_o : exec_tas;
+  assign n9727_o = clkena_lw ? n1647_o : exec_tas;
   /* TG68KdotC_Kernel.vhd:1260:17  */
   always @(posedge clk)
-    n9727_q <= n9726_o;
+    n9728_q <= n9727_o;
   /* TG68KdotC_Kernel.vhd:1059:17  */
   always @(posedge clk)
-    n9728_q <= n1539_o;
+    n9729_q <= n1539_o;
   /* TG68KdotC_Kernel.vhd:1059:17  */
   always @(posedge clk)
-    n9729_q <= n1541_o;
-  /* TG68KdotC_Kernel.vhd:4112:17  */
-  assign n9730_o = clkena_lw ? n9507_o : movem_actiond;
-  /* TG68KdotC_Kernel.vhd:4112:17  */
+    n9730_q <= n1541_o;
+  /* TG68KdotC_Kernel.vhd:4115:17  */
+  assign n9731_o = clkena_lw ? n9508_o : movem_actiond;
+  /* TG68KdotC_Kernel.vhd:4115:17  */
   always @(posedge clk)
-    n9731_q <= n9730_o;
-  /* TG68KdotC_Kernel.vhd:4112:17  */
-  assign n9732_o = {n9641_o, n9667_o, n9664_o};
+    n9732_q <= n9731_o;
+  /* TG68KdotC_Kernel.vhd:4115:17  */
+  assign n9733_o = {n9642_o, n9668_o, n9665_o};
   /* TG68KdotC_Kernel.vhd:743:9  */
   always @(posedge clk)
-    n9734_q <= n798_o;
+    n9735_q <= n798_o;
   /* TG68KdotC_Kernel.vhd:743:9  */
   always @(posedge clk)
-    n9735_q <= n800_o;
+    n9736_q <= n800_o;
   /* TG68KdotC_Kernel.vhd:1059:17  */
   always @(posedge clk)
-    n9736_q <= n1543_o;
+    n9737_q <= n1543_o;
   /* TG68KdotC_Kernel.vhd:1059:17  */
   always @(posedge clk)
-    n9737_q <= n1545_o;
+    n9738_q <= n1545_o;
   /* TG68KdotC_Kernel.vhd:1059:17  */
   always @(posedge clk)
-    n9738_q <= n1547_o;
+    n9739_q <= n1547_o;
   /* TG68KdotC_Kernel.vhd:3254:17  */
   always @(posedge clk)
-    n9739_q <= n8007_o;
+    n9740_q <= n8007_o;
   /* TG68KdotC_Kernel.vhd:1059:17  */
   always @(posedge clk)
-    n9740_q <= n1548_o;
+    n9741_q <= n1548_o;
   /* TG68KdotC_Kernel.vhd:1370:17  */
   always @(posedge clk)
-    n9741_q <= n1886_o;
+    n9742_q <= n1886_o;
   /* TG68KdotC_Kernel.vhd:1059:17  */
   always @(posedge clk)
-    n9742_q <= n1550_o;
+    n9743_q <= n1550_o;
   /* TG68KdotC_Kernel.vhd:743:9  */
   always @(posedge clk)
-    n9743_q <= n801_o;
+    n9744_q <= n801_o;
   /* TG68KdotC_Kernel.vhd:1059:17  */
   always @(posedge clk)
-    n9744_q <= n1552_o;
+    n9745_q <= n1552_o;
   /* TG68KdotC_Kernel.vhd:876:17  */
-  assign n9745_o = clkena_lw ? n913_o : trap_vector;
+  assign n9746_o = clkena_lw ? n913_o : trap_vector;
   /* TG68KdotC_Kernel.vhd:876:17  */
   always @(posedge clk)
-    n9746_q <= n9745_o;
+    n9747_q <= n9746_o;
   /* TG68KdotC_Kernel.vhd:560:17  */
-  assign n9747_o = n306_o ? reg_qa : usp;
+  assign n9748_o = n306_o ? reg_qa : usp;
   /* TG68KdotC_Kernel.vhd:560:17  */
   always @(posedge clk)
-    n9748_q <= n9747_o;
+    n9749_q <= n9748_o;
   /* TG68KdotC_Kernel.vhd:1059:17  */
   always @(posedge clk)
-    n9749_q <= n1553_o;
+    n9750_q <= n1553_o;
   /* TG68KdotC_Kernel.vhd:1059:17  */
   always @(posedge clk)
-    n9750_q <= n1554_o;
+    n9751_q <= n1554_o;
   /* TG68KdotC_Kernel.vhd:1059:17  */
   always @(posedge clk)
-    n9751_q <= n1556_o;
+    n9752_q <= n1556_o;
   /* TG68KdotC_Kernel.vhd:1370:17  */
   always @(posedge clk)
-    n9752_q <= n1888_o;
+    n9753_q <= n1888_o;
   /* TG68KdotC_Kernel.vhd:1370:17  */
   always @(posedge clk)
-    n9753_q <= n1890_o;
+    n9754_q <= n1890_o;
   /* TG68KdotC_Kernel.vhd:1059:17  */
   always @(posedge clk)
-    n9754_q <= n1558_o;
+    n9755_q <= n1558_o;
   /* TG68KdotC_Kernel.vhd:743:9  */
   always @(posedge clk)
-    n9755_q <= n803_o;
+    n9756_q <= n803_o;
   /* TG68KdotC_Kernel.vhd:743:9  */
-  assign n9756_o = {n169_o, n172_o};
+  assign n9757_o = {n169_o, n172_o};
   /* TG68KdotC_Kernel.vhd:484:17  */
-  assign n9757_o = n176_o ? n181_o : bf_ext_in;
+  assign n9758_o = n176_o ? n181_o : bf_ext_in;
   /* TG68KdotC_Kernel.vhd:484:17  */
   always @(posedge clk)
-    n9758_q <= n9757_o;
+    n9759_q <= n9758_o;
   /* TG68KdotC_Kernel.vhd:1059:17  */
   always @(posedge clk)
-    n9759_q <= n1560_o;
+    n9760_q <= n1560_o;
   /* TG68KdotC_Kernel.vhd:1059:17  */
   always @(posedge clk)
-    n9760_q <= n1561_o;
+    n9761_q <= n1561_o;
   /* TG68KdotC_Kernel.vhd:1059:17  */
   always @(posedge clk)
-    n9761_q <= n1562_o;
+    n9762_q <= n1562_o;
   /* TG68KdotC_Kernel.vhd:1059:17  */
   always @(posedge clk)
-    n9762_q <= n1563_o;
+    n9763_q <= n1563_o;
   /* TG68KdotC_Kernel.vhd:1260:17  */
   always @(posedge clk)
-    n9763_q <= n1617_o;
+    n9764_q <= n1617_o;
   /* TG68KdotC_Kernel.vhd:484:17  */
   always @(posedge clk)
-    n9764_q <= n228_o;
+    n9765_q <= n228_o;
   /* TG68KdotC_Kernel.vhd:484:17  */
   always @(posedge clk)
-    n9765_q <= n229_o;
+    n9766_q <= n229_o;
   /* TG68KdotC_Kernel.vhd:484:17  */
-  assign n9766_o = {n1744_o, n1741_o, n1747_o};
-  assign n9767_o = {1'b0, n1691_o};
+  assign n9767_o = {n1744_o, n1741_o, n1747_o};
+  assign n9768_o = {1'b0, n1691_o};
   /* TG68KdotC_Kernel.vhd:1059:17  */
   always @(posedge clk)
-    n9768_q <= n1564_o;
+    n9769_q <= n1564_o;
   /* TG68KdotC_Kernel.vhd:1059:17  */
   always @(posedge clk)
-    n9769_q <= n1565_o;
+    n9770_q <= n1565_o;
   /* TG68KdotC_Kernel.vhd:1059:17  */
-  assign n9770_o = {1'b0, n1704_o};
-  /* TG68KdotC_Kernel.vhd:1059:17  */
-  always @(posedge clk)
-    n9771_q <= n1566_o;
+  assign n9771_o = {1'b0, n1704_o};
   /* TG68KdotC_Kernel.vhd:1059:17  */
   always @(posedge clk)
-    n9772_q <= n1567_o;
+    n9772_q <= n1566_o;
+  /* TG68KdotC_Kernel.vhd:1059:17  */
+  always @(posedge clk)
+    n9773_q <= n1567_o;
   /* TG68KdotC_Kernel.vhd:4047:9  */
   always @(posedge clk)
-    n9773_q <= n9369_o;
+    n9774_q <= n9369_o;
   /* TG68KdotC_Kernel.vhd:4047:9  */
   always @(posedge clk)
-    n9774_q <= n9371_o;
+    n9775_q <= n9371_o;
   /* TG68KdotC_Kernel.vhd:4047:9  */
   always @(posedge clk)
-    n9775_q <= n9372_o;
+    n9776_q <= n9372_o;
   /* TG68KdotC_Kernel.vhd:4047:9  */
   always @(posedge clk)
-    n9776_q <= n9373_o;
+    n9777_q <= n9373_o;
   /* TG68KdotC_Kernel.vhd:4047:9  */
-  assign n9777_o = {n9238_o, n9236_o, n9234_o, n9230_o, n9226_o, n9222_o, n9221_o, n7836_o, n7813_o, n9220_o, n9275_o, n9274_o, n9218_o, n9214_o, n7808_o, n9213_o, n9212_o, n9211_o, n9209_o, n9267_o, n9207_o, n9270_o, n9203_o, n9264_o, n9202_o, n9198_o, n9194_o, n9190_o, n9255_o, n9186_o, n9185_o, n9249_o, n9181_o, n9180_o, n9179_o, n7800_o, n2002_o, n9178_o, n9174_o, n9170_o, n9169_o, n9243_o, n9165_o, n9164_o, n7826_o, n7793_o, n9240_o, n9163_o, n9161_o, n9160_o, n9159_o, n7821_o, n9158_o, n9157_o, n9155_o, n7787_o, n7820_o, n9153_o};
-  assign n9778_o = {n7852_o, n7863_o, n7850_o, n7862_o, n7996_o, n7906_o, n7860_o, n7995_o, n7858_o, n7994_o, n9285_o, n9284_o, n9286_o, n7842_o};
+  assign n9778_o = {n9238_o, n9236_o, n9234_o, n9230_o, n9226_o, n9222_o, n9221_o, n7836_o, n7813_o, n9220_o, n9275_o, n9274_o, n9218_o, n9214_o, n7808_o, n9213_o, n9212_o, n9211_o, n9209_o, n9267_o, n9207_o, n9270_o, n9203_o, n9264_o, n9202_o, n9198_o, n9194_o, n9190_o, n9255_o, n9186_o, n9185_o, n9249_o, n9181_o, n9180_o, n9179_o, n7800_o, n2002_o, n9178_o, n9174_o, n9170_o, n9169_o, n9243_o, n9165_o, n9164_o, n7826_o, n7793_o, n9240_o, n9163_o, n9161_o, n9160_o, n9159_o, n7821_o, n9158_o, n9157_o, n9155_o, n7787_o, n7820_o, n9153_o};
+  assign n9779_o = {n7852_o, n7863_o, n7850_o, n7862_o, n7996_o, n7906_o, n7860_o, n7995_o, n7858_o, n7994_o, n9285_o, n9284_o, n9286_o, n7842_o};
   /* TG68KdotC_Kernel.vhd:1260:17  */
-  assign n9779_o = clkena_lw ? n1661_o : exec;
+  assign n9780_o = clkena_lw ? n1661_o : exec;
   /* TG68KdotC_Kernel.vhd:1260:17  */
   always @(posedge clk)
-    n9780_q <= n9779_o;
+    n9781_q <= n9780_o;
   /* TG68KdotC_Kernel.vhd:3254:17  */
   always @(posedge clk)
-    n9781_q <= n8009_o;
+    n9782_q <= n8009_o;
   /* TG68KdotC_Kernel.vhd:1370:17  */
   always @(posedge clk)
-    n9782_q <= n1882_o;
+    n9783_q <= n1882_o;
   /* TG68KdotC_Kernel.vhd:1059:17  */
   always @(posedge clk)
-    n9783_q <= n1510_o;
+    n9784_q <= n1510_o;
   /* TG68KdotC_Kernel.vhd:1059:17  */
-  assign n9784_o = {n9782_q, n9783_q};
+  assign n9785_o = {n9783_q, n9784_q};
   /* TG68KdotC_Kernel.vhd:558:35  */
   reg [31:0] regfile[15:0] ; // memory
   initial begin
@@ -36259,8 +36270,8 @@ module tg68kdotc_kernel_0_2_2_2_2_2_0_0
     regfile[1] = 32'b00000000000000000000000000000000;
     regfile[0] = 32'b00000000000000000000000000000000;
     end
-  assign n9786_data = regfile[rdindex_b];
-  assign n9787_data = regfile[rdindex_a];
+  assign n9787_data = regfile[rdindex_b];
+  assign n9788_data = regfile[rdindex_a];
   always @(posedge clk)
     if (n302_o)
       regfile[rdindex_a] <= regin;
