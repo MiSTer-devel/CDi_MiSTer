@@ -1,5 +1,7 @@
 # Uncover featuring Tatjana
 
+## Display of photos
+
 Graphical problems with the photos. Those are MPEG decoded.
 How are these even displayed?
 
@@ -28,3 +30,21 @@ I think I've never tested this actually.
 
 In the end, the stride was to blame. And also the timing of IMG and PIC SZ and RT registers.
 IMG always has to come first, so the NIS event is triggered. That was also missing.
+
+## Weird behavior of re-opening the lowest main menu item when moving the cursor away
+
+Also can be reproduced in cdiemu. How are these even played. Everything is in one file
+
+    @00DF42DE(cdi_appl) TRAP[66881] #0 I$Open <= (a0)="VIDEOS/alltabs" d0.b=1
+
+    $ cat log | grep Seek
+    @00DF1258(cdi_appl) TRAP[66895] #0 I$Seek <= d0.w=$B d1.l=0
+    @00DF125C(cdi_appl) TRAP[66895] #0 I$Seek => 
+    @00DF1258(cdi_appl) TRAP[66912] #0 I$Seek <= d0.w=$B d1.l=$800
+    @00DF125C(cdi_appl) TRAP[66912] #0 I$Seek => 
+    @00DF1258(cdi_appl) TRAP[67267] #0 I$Seek <= d0.w=$A d1.l=$271000
+    @00DF125C(cdi_appl) TRAP[67267] #0 I$Seek => 
+    @00DF1258(cdi_appl) TRAP[72588] #0 I$Seek <= d0.w=$B d1.l=$BFE5000
+    @00DF125C(cdi_appl) TRAP[72588] #0 I$Seek => 
+
+TODO

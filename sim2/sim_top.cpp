@@ -2054,8 +2054,7 @@ int main(int argc, char **argv) {
         mount_image("images/nimh.bin");
         break;
     case 1:
-        mount_image("images/aims_frogs.iso");
-        prepare_artificial_audiocd_toc();
+        mount_image("images/nimh_alt.bin");
         break;
     case 2:
         mount_image("images/CDICTEST.BIN");

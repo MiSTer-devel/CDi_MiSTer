@@ -78,7 +78,6 @@ waitforpics:
 	move.w #$0420,$E040C2 ; FMV VIDCMD - Show on next frame
 	move.w #$882D,$E040C6 ; FMV SYSSCR - Sync, CD-i Mode, Fullmotion No Interlace
 
-
 endless:
 	jsr WaitForSectorAndUse
 	bra endless

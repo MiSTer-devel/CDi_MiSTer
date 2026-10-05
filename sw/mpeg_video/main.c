@@ -73,12 +73,16 @@ static void push_frame(plm_frame_t *frame) {
 
     // To avoid scrambled graphics, the first frame to provide
     // for display, shall be an I frame
-    if (!intra_frame_occured_during_stream)
+    if (!intra_frame_occured_during_stream) {
+        frame_display_fifo->discard_picture = 4 | DISCARD_AFTER_DECODER_MASK;
+        __asm volatile("" : : : "memory");
+        frame->ready_for_display = false;
         return;
+    }
 
     __asm volatile("" : : : "memory");
 
-    while (frame_display_fifo->pictures_in_output_fifo > 25)
+    while (frame_display_fifo->pictures_in_output_fifo > 2)
         __asm volatile("" : : : "memory");
 
     *((volatile plm_frame_t **)OUTPORT_FRAME) = frame;
@@ -91,8 +95,7 @@ static void push_frame(plm_frame_t *frame) {
     if (frame->temporal_ref == 0)
         first_intra_frame_of_gop_occured = false;
 
-    if (!first_intra_frame_of_gop_occured &&
-        frame->picture_type == PLM_VIDEO_PICTURE_TYPE_INTRA) {
+    if (!first_intra_frame_of_gop_occured && frame->picture_type == PLM_VIDEO_PICTURE_TYPE_INTRA) {
         first_intra_frame_of_gop_occured = true;
         frame_display_fifo->first_intra_frame_of_gop = 1;
 
@@ -106,8 +109,8 @@ static void push_frame(plm_frame_t *frame) {
     frame_display_fifo->width = frame->width;
     frame_display_fifo->height = frame->height;
 
-    int period30mhz = PLM_VIDEO_PICTURE_RATE_30MHZ[seq_hdr_conf.frameperiod] *
-                          (frame_display_fifo->slow_motion + 1);
+    int period30mhz =
+        PLM_VIDEO_PICTURE_RATE_30MHZ[seq_hdr_conf.frameperiod] * (frame_display_fifo->slow_motion + 1);
     int period90khz = PLM_VIDEO_PICTURE_RATE_90KHZ[seq_hdr_conf.frameperiod];
 
     frame_display_fifo->frameperiod_90khz = period90khz;
@@ -115,20 +118,19 @@ static void push_frame(plm_frame_t *frame) {
     frame_display_fifo->timecode = frame->timecode;
     frame_display_fifo->frameperiod_30mhz = period30mhz;
 
-    frame_display_fifo->video_status =
-        (frame->temporal_ref << 2) | frame->picture_type;
+    frame_display_fifo->video_status = (frame->temporal_ref << 2) | frame->picture_type;
 
     // The order is crucial. Everything written above must be in I/O by now
     __asm volatile("" : : : "memory");
     frame_display_fifo->commit_frame = 1;
     __asm volatile("" : : : "memory");
+    frame->ready_for_display = false;
 }
 
 void main(void) {
     DEBUG_STATE = 1;
 
-    plm_dma_buffer_t *buffer =
-        plm_buffer_create_with_memory((uint8_t *)0x20000000, 700 * 1024 * 1024);
+    plm_dma_buffer_t *buffer = plm_buffer_create_with_memory((uint8_t *)0x20000000, 700 * 1024 * 1024);
     if (!buffer)
         *((volatile uint8_t *)OUTPORT_END) = 2;
 
@@ -164,7 +166,6 @@ void main(void) {
             DEBUG_STATE = 28;
 
             push_frame(frame);
-            frame->ready_for_display = false;
             underflow_occured = 0;
         } else {
             // Only indicate underflow when there is no frame left

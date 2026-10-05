@@ -198,7 +198,6 @@ Data Buffer Register[15] Set bit to transfer command register to shadow command 
 Data Buffer Register[2] Related to Audio?
 Data Buffer Register[0] Is toggled after reading a sector. Ensures double buffering is used
 
-
 ## Inspirations
 
 https://raw.githubusercontent.com/MiSTer-devel/MegaCD_MiSTer/master/MegaCD.sv

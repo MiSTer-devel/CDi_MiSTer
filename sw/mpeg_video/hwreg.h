@@ -30,7 +30,7 @@ struct frame_display_fifo {
     uint32_t commit_frame;             // @0x10003040 Write only
     uint32_t timecode;                 // @0x10003044 Write only
     uint32_t first_intra_frame_of_seq; // @0x10003048 Write only
-    uint32_t reserved2_;               // @0x1000304C
+    uint32_t discard_picture;          // @0x1000304C Write only
     uint32_t event_frame_decoded;      // @0x10003050 Write only
     uint32_t luma_width;               // @0x10003054 Write only
     uint32_t chroma_width;             // @0x10003058 Write only
@@ -49,3 +49,5 @@ struct frame_display_fifo *const frame_display_fifo =
 
 // Only for worker cores
 #define INVALIDATE_CACHE *(volatile uint32_t *)0x10001110
+
+#define DISCARD_AFTER_DECODER_MASK 8

@@ -896,6 +896,12 @@ int plm_dma_buffer_find_start_code(plm_dma_buffer_t *self, int code) {
         if (current == code || current == -1) {
             return current;
         }
+
+        // When looking for SEQ, we must discard all found PICs
+        if (!fifo_ctrl->has_sequence_header && current == PLM_START_PICTURE) {
+            frame_display_fifo->discard_picture = 3;
+            __asm volatile("" : : : "memory");
+        }
     }
     return -1;
 }
@@ -1515,7 +1521,14 @@ plm_frame_t *plm_video_decode(plm_video_t *self) {
             } else {
                 self->has_reference_frame = TRUE;
             }
+        } else if (self->start_code == PLM_START_PICTURE) {
+            DEBUG_STATE = 37;
+            // No sequence header yet? Discard picture
+            frame_display_fifo->discard_picture = 2;
+            __asm volatile("" : : : "memory");
         } else if (self->start_code == PLM_START_SEQ_END) {
+            DEBUG_STATE = 38;
+
             frame_display_fifo->event_sequence_end = 1;
             __asm volatile("" : : : "memory");
 
@@ -1525,6 +1538,7 @@ plm_frame_t *plm_video_decode(plm_video_t *self) {
                 fifo_ctrl->has_sequence_header = FALSE;
             }
         } else if (self->start_code == PLM_START_SEQUENCE) {
+            DEBUG_STATE = 39;
             if (self->has_reference_frame) {
                 // Is this state even possible?
 
@@ -1666,7 +1680,13 @@ void plm_video_init_frame(plm_video_t *self, plm_frame_t *frame) {
     frame->cb.height = seq_hdr_conf.chroma_height;
     frame->cb.data = seq_hdr_conf.next_framebuffer + luma_plane_size + chroma_plane_size;
 
-    frame->ready_for_display = FALSE;
+    if (frame->ready_for_display) {
+        // Is this a frame that was ready but couldn't be shown?
+        // It must be discarded!
+        frame_display_fifo->discard_picture = 1 | DISCARD_AFTER_DECODER_MASK;
+        __asm volatile("" : : : "memory");
+        frame->ready_for_display = FALSE;
+    }
 
     seq_hdr_conf.next_framebuffer += frame_data_size;
     if (((uint32_t)(seq_hdr_conf.next_framebuffer + frame_data_size)) >= DDR_MEMORY_AREA)

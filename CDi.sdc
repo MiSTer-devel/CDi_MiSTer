@@ -42,6 +42,7 @@ set_false_path -from {emu:emu|cditop:cditop|vmpeg:vmpeg_inst|mpeg_video:video|yu
 set_false_path -from {emu:emu|cditop:cditop|vmpeg:vmpeg_inst|mpeg_video:video|yuv_frame_adr_fifo:readyframes|*} -to {emu:emu|cditop:cditop|vmpeg:vmpeg_inst|mpeg_video:video|display_video_status*}
 set_false_path -from {emu:emu|cditop:cditop|vmpeg:vmpeg_inst|mpeg_video:video|yuv_frame_adr_fifo:readyframes|*} -to {emu:emu|cditop:cditop|vmpeg:vmpeg_inst|mpeg_video:video|display_width*}
 set_false_path -from {emu:emu|cditop:cditop|vmpeg:vmpeg_inst|mpeg_video:video|yuv_frame_adr_fifo:readyframes|*} -to {emu:emu|cditop:cditop|vmpeg:vmpeg_inst|mpeg_video:video|display_height*}
+set_false_path -from {emu:emu|cditop:cditop|vmpeg:vmpeg_inst|mpeg_video:video|yuv_frame_adr_fifo:readyframes|*} -to {emu:emu|cditop:cditop|vmpeg:vmpeg_inst|mpeg_video:video|display_frameperiod_rawhdr*}
 set_false_path -from {emu:emu|cditop:cditop|vmpeg:vmpeg_inst|mpeg_video:video|yuv_frame_adr_fifo:readyframes|*} -to {emu:emu|cditop:cditop|vmpeg:vmpeg_inst|mpeg_video:video|first_intra_frame_of_gop_clk30}
 set_false_path -from {emu:emu|cditop:cditop|vmpeg:vmpeg_inst|mpeg_video:video|yuv_frame_adr_fifo:readyframes|*} -to {emu:emu|cditop:cditop|vmpeg:vmpeg_inst|mpeg_video:video|first_intra_frame_of_seq_clk30}
 set_false_path -from {emu:emu|cditop:cditop|vmpeg:vmpeg_inst|mpeg_video:video|desync2_q*} -to {emu:emu|cditop:cditop|vmpeg:vmpeg_inst|mpeg_video:video|desync2_q_clk_mpeg*}

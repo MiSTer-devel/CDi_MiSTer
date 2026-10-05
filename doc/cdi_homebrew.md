@@ -15,6 +15,27 @@ I usually build and deploy my images like this in my homebrew projects.
     ./make_image.sh && scp disk/FMVTEST.CUE disk/FMVTEST.BIN root@mister:/media/fat/games/CD-i
 
 Then I press the User button on the MiSTer to force a reset.
+If the option `OSD -> Autoplay` is activated, the system shell is skipped and the application is relaunched.
+
+## Remote launch from dev PC
+
+Based on the example above, it is possible to launch it by remote controlling the MiSTer.
+
+Create the file `/media/fat/fmvtest.mgl` and have this content inside
+
+    ```xml
+    <mistergamedescription>
+        <rbf>_console/CDi</rbf>
+        <file delay="1" type="s" index="0" path="FMVTEST.CUE"/>
+    </mistergamedescription>
+    ```
+
+Now run this on the MiSTer via SSH
+
+    echo "load_core fmvtest.mgl" > /dev/MiSTer_cmd
+
+It will reload the CD-i core and mount the declared image at the same time.
+If the option `OSD -> Autoplay` is activated, the system shell is skipped and the application launches.
 
 ## Access to debugging terminal
 

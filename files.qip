@@ -30,7 +30,7 @@ set_global_assignment -name SYSTEMVERILOG_FILE rtl/mpeg/fmv/dual_port_videoram.s
 set_global_assignment -name SYSTEMVERILOG_FILE rtl/mpeg/fmv/dualport_shared_ram.sv
 set_global_assignment -name SYSTEMVERILOG_FILE rtl/mpeg/fmv/frameplayer.sv
 set_global_assignment -name SYSTEMVERILOG_FILE rtl/mpeg/fmv/macroblock_worker.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/mpeg/fmv/mpeg_input_stream_fifo_32k.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/mpeg/fmv/mpeg_input_stream_fifo_64k.sv
 set_global_assignment -name SYSTEMVERILOG_FILE rtl/mpeg/fmv/mpeg_video_start_code_decoder.sv
 set_global_assignment -name SYSTEMVERILOG_FILE rtl/mpeg/fmv/mpeg_video.sv
 set_global_assignment -name SYSTEMVERILOG_FILE rtl/mpeg/fmv/mpeg_timestamp_fifo.sv

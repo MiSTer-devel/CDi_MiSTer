@@ -533,7 +533,7 @@ module cditop (
     assign reset = external_reset || resetsys;
 
 `ifndef DISABLE_SLAVE_UC
-    /*verilator tracing_off*/
+    /* verilator tracing_off */
     uc68hc05 uc68hc05_0 (
         .clk30,
         .reset(reset),
@@ -681,4 +681,3 @@ module cditop (
 `endif
 
 endmodule
-

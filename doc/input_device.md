@@ -87,5 +87,3 @@ Pressing up is negative Y.
 Pressing down is positve Y.
 
 When the D-Pad is pressed, the Spoon will send permanently. Button presses cause transmission only on event.
-
-
