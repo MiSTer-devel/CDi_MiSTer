@@ -968,9 +968,13 @@ module vmpeg (
                                 fmv_dclk_start_video <= fma_dclk + 32'd1000;
                                 fmv_dclk_start_video_latched <= 1;
 
-                                image_width <= {5'b0, fmv_decoder_width};
-                                image_height <= {7'b0, fmv_decoder_height};
-                                image_rt <= {8'b0, fmv_decoder_frameperiod_rawhdr};
+                                // We need to protect the FMV driver from discarded frames.
+                                // It might be still 0 at this point
+                                if (fmv_decoder_width != 0 && fmv_decoder_frameperiod_rawhdr != 0)begin
+                                    image_width <= {5'b0, fmv_decoder_width};
+                                    image_height <= {7'b0, fmv_decoder_height};
+                                    image_rt <= {8'b0, fmv_decoder_frameperiod_rawhdr};
+                                end
 
                                 // TODO can't be correct. set 0x42
                                 fmv_decoder_command[6] <= 1;
@@ -999,9 +1003,13 @@ module vmpeg (
                                 fmv_single_step <= 1;
                                 fmv_dclk_start_video_latched <= 0;
 
-                                image_width <= {5'b0, fmv_decoder_width};
-                                image_height <= {7'b0, fmv_decoder_height};
-                                image_rt <= {8'b0, fmv_decoder_frameperiod_rawhdr};
+                                // We need to protect the FMV driver from discarded frames.
+                                // It might be still 0 at this point
+                                if (fmv_decoder_width != 0 && fmv_decoder_frameperiod_rawhdr != 0)begin
+                                    image_width <= {5'b0, fmv_decoder_width};
+                                    image_height <= {7'b0, fmv_decoder_height};
+                                    image_rt <= {8'b0, fmv_decoder_frameperiod_rawhdr};
+                                end
                             end
 
                             if (din[7]) begin  // 0080 Stop

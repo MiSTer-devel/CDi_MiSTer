@@ -35,7 +35,7 @@
 #define SLAVE
 // #define SIMULATE_RC5
 // #define TRACE_ON_FMA
-// #define TRACE_ON_FMV
+#define TRACE_ON_FMV
 // #define TRACE_FROM_START
 // #define TRACE_ON_CD_REQUEST
 
