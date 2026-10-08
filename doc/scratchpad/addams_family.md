@@ -1105,3 +1105,22 @@ cat log-part-aa  | grep -e "eo 00272556" -e MV_
 The problem can be replicated even on real hardware. It just takes more patience and Python script
 which fakes a controller and presses B1 at a rate of 15 Hz.
 
+
+MAME has support for the DVC since 2026-09-23 with revision f43983b6.
+The code is inspired by this MiSTer core.
+Interestingly, it seems that Addams Family has not the same issues. Instead it behaves more
+like the real hardware.
+
+Now testing cfaacdc527541b78251c763ca4824abee1edbfbb.
+It behaves more like the MiSTer core but I still can't get it too crash manually.
+
+On the other hand, adding some custom auto fire to MAME, the issue is reproducible with revision cfaacdc5 as well.
+The experiment should be repeated with f43983b6.
+It's interesting that there is no issue with said revision. Interesting. So when does this change?
+Even so it is not crashing, sometimes the Pausing is not possible and Rewind or Fast Forward needs to be performed
+to unlock it again. Still, the state is better.
+
+9481bac3 also seems to be fine.
+cfaacdc5 also seems to be fine. But that has failed before... So it seems that the crash is just very rare on MAME.
+
+

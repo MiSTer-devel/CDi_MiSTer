@@ -235,7 +235,8 @@ module cdic (
     bit write_timecode1 = 0;
     bit write_timecode2 = 0;
 
-    bit [1:0] spin_down_cnt = 0;
+    bit [2:0] xbuf15_set_cnt = 0;
+    bit [2:0] dbuf15_reset_cnt = 0;
 
     always_comb begin
         reset_write_timecode1 = 0;
@@ -394,7 +395,8 @@ module cdic (
             fail_too_much_data <= 0;
             write_timecode1 <= 0;
             write_timecode2 <= 0;
-            spin_down_cnt <= 0;
+            xbuf15_set_cnt <= 0;
+            dbuf15_reset_cnt <= 0;
         end else begin
             if (mem_cd_hps_we) begin
                 cd_data_target_adr <= cd_data_target_adr + 1;
@@ -406,14 +408,21 @@ module cdic (
                 write_timecode2 <= !read_raw;
             end
 
-            if (spin_down_cnt != 0 && cd_sector_tick) begin
-                spin_down_cnt <= spin_down_cnt - 1;
-                if (spin_down_cnt == 1) x_buffer_register[15] <= 1'b1;
+            if (xbuf15_set_cnt != 0 && cd_sector_tick) begin
+                xbuf15_set_cnt <= xbuf15_set_cnt - 1;
+                if (xbuf15_set_cnt == 1) x_buffer_register[15] <= 1'b1;
             end
 
-            if (cd_data_valid && cd_reading_active) begin
-                // Later than on real hardware but should be fine.
+            if (dbuf15_reset_cnt != 0 && cd_sector_tick) begin
+                dbuf15_reset_cnt <= dbuf15_reset_cnt - 1;
+                if (dbuf15_reset_cnt == 1) data_buffer_register[15] <= 0;
+            end
+
+
+            if (cd_data_valid && cd_reading_active && use_sector_data) begin
+                // In case seeking simulation is disabled, we need to reset it here
                 data_buffer_register[15] <= 0;
+                dbuf15_reset_cnt <= 0;
 
                 sector_word_index <= sector_word_index + 1;
 
@@ -599,6 +608,9 @@ module cdic (
                     // This causes an IRQ to occur
                     x_buffer_register[15] <= 1'b1;
 
+                    // Don't set XBUF again via timer
+                    xbuf15_set_cnt <= 0;
+
                     if (header_submode.audio && audio_channel_match && header_mode2) begin
                         data_buffer_register[0] <= audio_target_buffer;
                         audio_target_buffer <= !audio_target_buffer;
@@ -613,24 +625,25 @@ module cdic (
                 x_buffer_register[15] <= 1'b0;
                 read_cdda <= 0;
                 read_raw <= 0;
-                spin_down_cnt <= 0;
+                xbuf15_set_cnt <= 0;
+                dbuf15_reset_cnt <= 0;
 
                 case (command_register)
                     16'h23: begin
                         data_buffer_register[15] <= 0;  // TODO really instant?
                         $display("CDIC Command: Stop disc spin");
                         cd_seek_lba <= time_register_as_lba;
-                        spin_down_cnt <= 3;
+                        xbuf15_set_cnt <= 3;
                         cd_reading_active <= 0;
                         cd_stop_sector_delivery <= 1;
-                        // It might be tempting to do x_buffer_register[15] <= 1'b1; immediatly here.
-                        // But it won't work. It needs to be delayed. spin_down_cnt will do the job
+                        // It might be tempting to do x_buffer_register[15] <= 1'b1; immediately here.
+                        // But it won't work. It needs to be delayed. xbuf15_set_cnt will do the job
                     end
                     16'h24: begin
                         data_buffer_register[15] <= 0;  // TODO really instant?
                         $display("CDIC Command: Stop reading and keep position");
                         cd_seek_lba <= time_register_as_lba;
-                        spin_down_cnt <= 2;
+                        xbuf15_set_cnt <= 2;
                         cd_reading_active <= 0;
                         cd_stop_sector_delivery <= 1;
                     end
@@ -648,7 +661,7 @@ module cdic (
                         if (audio_channel_register != 0 && !audio_control_register[11])
                             audio_abort_playback <= 1;
 
-                        spin_down_cnt <= 2;
+                        xbuf15_set_cnt <= 2;
 
                     end
                     16'h27: begin
@@ -675,15 +688,22 @@ module cdic (
                         cd_seek_lba <= time_register_as_lba;
                         cd_seek_lba_valid <= 1;
                         read_mode2 <= 0;
+                        // This might not be accurate. Usually its like 6 sectors
+                        // before XBUF[15]
+                        dbuf15_reset_cnt <= 5;
                     end
+
                     16'h2c: begin
-                        data_buffer_register[15] <= 0;  // TODO really instant?
                         $display("CDIC Command: Seek");
                         // MAME and cdiemu implement seek as Read Mode 1
                         cd_reading_active <= 1;
                         cd_seek_lba <= time_register_as_lba;
                         cd_seek_lba_valid <= 1;
                         read_mode2 <= 0;
+                        // This might be not accurate
+                        // The DBUF[15] reset occurs nearly at the same time with XBUF[15] when using 0x2C
+                        // instead of READ_MODE1
+                        dbuf15_reset_cnt <= 5;
                     end
                     16'h2a: begin
                         $display("CDIC Command: Read Mode 2");
@@ -691,6 +711,9 @@ module cdic (
                         cd_seek_lba <= time_register_as_lba;
                         cd_seek_lba_valid <= 1;
                         read_mode2 <= 1;
+                        // This might not be accurate. Usually its like 6 sectors
+                        // before XBUF[15]
+                        dbuf15_reset_cnt <= 5;
                     end
                     default: begin
                         assert (0);

@@ -2051,10 +2051,10 @@ int main(int argc, char **argv) {
 
     switch (machineindex) {
     case 0:
-        mount_image("images/nimh.bin");
+        mount_image("images/addams.bin");
         break;
     case 1:
-        mount_image("images/nimh_alt.bin");
+        mount_image("images/addams.bin");
         break;
     case 2:
         mount_image("images/CDICTEST.BIN");
