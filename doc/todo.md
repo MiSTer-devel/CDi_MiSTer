@@ -1,7 +1,5 @@
 # TODOs and known issues
 
-* Add optional support for CLUT RGB888 mode.
-  * RGB666 is more accurate to a real MCD212 but the data exists, so we could use it.
 * ST flag changes pixel aspect ratio on HDMI upscaled image. Good or bad?
 * "Freeze Picture" feature of VCDs seems to cause issues
 * Regressions with "The Lost Ride"

@@ -63,6 +63,16 @@ coding type of every picture in an MPEG-1 elementary or system/program stream:
 
 Use `--json` for newline-delimited JSON output suitable for other tools.
 
+### MPEG-1 program-stream structure
+
+To inspect packs and PES packets, with sequence-end and program-end markers
+shown in their packet context:
+
+    ./tools/mpeg1_program_info.py path/to/video.mpg
+
+The report distinguishes the video `sequence end` marker from the container's
+`program end` marker. Use `--json` for newline-delimited JSON records.
+
 ### Live frame viewer
 
 In another terminal, run the following to keep a window on the most recently
