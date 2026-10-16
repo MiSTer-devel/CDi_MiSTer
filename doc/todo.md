@@ -10,7 +10,7 @@
     * Reproduced by frequently pausing and resuming
     * No regression. Always present since 251123
     * Can be reproduced on cdiemu as well
-    * Issue is absent on mame0289-1072-gf43983b62ed
+    * Issue is difficult to reproduce on mame0289-1072-gf43983b62ed
 * Randomly no audio in Mad Dog McCree? Unclear reproduction
 * Check random audio video out of sync (e.g. Mad Dog McCree)
 * Check correct timing of DVC clipping functionality when scroll bit is reset
@@ -20,11 +20,6 @@
     * Will be broken again with the addition of frame synced updates
 * Frequency response of CDIC and MPEG audio output might not be 100% accurate
 * Add support for an emulated Peacekeeper Revolver Light Gun
-* "Uncover featuring Tatjana (Europe)"
-    * On the main menu, the lowest card "1 GAME" is broken. Sometimes it just stays open
-      This is reproducible with 2607020, 260131
-    * Issue also present on cdiemu
-    * Issue is also present on mame0289-1072-gf43983b62ed
 * Regression of "Historia del Arte Español" (working in DVC rc2)
     * Blank video?
 * Fix Christmas Crisis bonus ride

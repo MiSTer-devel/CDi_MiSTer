@@ -37,14 +37,120 @@ Also can be reproduced in cdiemu. How are these even played. Everything is in on
 
     @00DF42DE(cdi_appl) TRAP[66881] #0 I$Open <= (a0)="VIDEOS/alltabs" d0.b=1
 
-    $ cat log | grep Seek
-    @00DF1258(cdi_appl) TRAP[66895] #0 I$Seek <= d0.w=$B d1.l=0
-    @00DF125C(cdi_appl) TRAP[66895] #0 I$Seek => 
-    @00DF1258(cdi_appl) TRAP[66912] #0 I$Seek <= d0.w=$B d1.l=$800
-    @00DF125C(cdi_appl) TRAP[66912] #0 I$Seek => 
-    @00DF1258(cdi_appl) TRAP[67267] #0 I$Seek <= d0.w=$A d1.l=$271000
-    @00DF125C(cdi_appl) TRAP[67267] #0 I$Seek => 
-    @00DF1258(cdi_appl) TRAP[72588] #0 I$Seek <= d0.w=$B d1.l=$BFE5000
-    @00DF125C(cdi_appl) TRAP[72588] #0 I$Seek => 
+Concerning the playback, it is noticable that it works with CDDA at the same time.
+This is not done via Hostplay, but multiple PCLs that are simply played back
+using the normal CD playback routine.
 
-TODO
+The file alltabs contains 66 pictures
+
+               SEQUENCE | GOP
+    01         All tabs closed
+    02 - 06    1 opens (5 frames)
+               SEQUENCE END | PROGRAM END | SEQUENCE | GOP
+    07         All tabs closed (binary identical picture to 01)
+    08 - 12    2 opens (5 frames)
+               SEQUENCE END | PROGRAM END | SEQUENCE | GOP
+    13         All tabs closed
+    14 - 18    3 opens (5 frames)
+               SEQUENCE END | PROGRAM END | SEQUENCE | GOP
+    19         All tabs closed
+    20 - 24    4 opens (5 frames)
+               SEQUENCE END | PROGRAM END | SEQUENCE | GOP
+    25         All tabs closed
+    26 - 30    5 opens (5 frames)
+               SEQUENCE END | PROGRAM END | SEQUENCE | GOP
+    31         All tabs closed
+    32 - 36    6 opens (5 frames)
+               SEQUENCE END | PROGRAM END | SEQUENCE | GOP
+    37 - 39    1 closes
+    40         All tabs closed
+    41         Tab 1 is fully open (Why? Not shown on real hardware but on emulators)
+               SEQUENCE END | PROGRAM END | SEQUENCE | GOP
+    42 - 44    2 closes
+    45 - 46    All tabs closed
+               SEQUENCE END | PROGRAM END | SEQUENCE | GOP
+    47 - 49    3 closes
+    50 - 51    All tabs closed
+               SEQUENCE END | PROGRAM END | SEQUENCE | GOP
+    52 - 54    4 closes
+    55 - 56    All tabs closed
+               SEQUENCE END | PROGRAM END | SEQUENCE | GOP
+    57 - 59    5 closes
+    60 - 61    All tabs closed
+               SEQUENCE END | PROGRAM END | SEQUENCE | GOP
+    62 - 65    6 closes
+    66         All tabs closed (never shown on real VMPEG hardware)
+               SEQUENCE END | PROGRAM END 
+
+    6*6 opens + 5*6 closes = 66 total
+
+
+When observing the video status register 0x0E0405C while the game is running
+
+    1 open
+
+    1  000 01 I
+    7  001 11 B
+    b  010 11 B
+    e  011 10 P
+    13 100 11 B
+
+    1 close
+
+    1 00 01 I
+    7 01 11 B
+    b 10 11 B
+    e 11 10 P
+
+Why is one frame missing?
+Let's look at the ACK2N pin via a logic analyzer to estimate the number of DMA transfers.
+
+    1 open   19652 bits in 17 packs (number bits is correct)
+    1 close  16184 bits in 14 packs (number bits is correct)
+
+This is an indication that nothing is missing. All 14 packs are transferred. Let's look at timing.
+The numbers are FMA clock ticks. For now without `mv_abort()`
+
+    VMPEG
+
+    MV b080 6947    EOS
+    MV b040 539     EOI
+    MV b200 795     NIS
+    MV b00e 2866    SEQ GOP PIC 1
+    MV b002 1823    PIC 2
+    MV b002 1796    PIC 3
+    MV b100 1746    BUF
+    MV b002 389     PIC 4
+    MV b012 1433    LPD PIC 5
+
+    MiSTer
+
+    MV b040 7356    EOI
+    MV b200 856     NIS
+    MV b080 3635    EOS
+    MV b00e 481     SEQ GOP PIC 1
+    MV b002 1380    PIC 2
+    MV b002 1794    PIC 3
+    MV b002 1797    PIC 4
+    MV b100 840     BUF
+    MV b012 453     LPD PIC 5
+
+It turns out that the game will stop the playback on BUF. But it is more delicate than that. BUF occurs nearly before the next PIC.
+This is relevant, because shutting down via `mv_abort()` avoids the next PIC on occurring becuase IER is set to VCUP only.
+But here it is important that it still occurs, because it is happening on real hardware as well.
+In case of this core, I will go for a hack here. NDAT which leads to BUF is presented synchronous to PIC and about 8 horizontal lines earlier.
+The CD-i application of this game is too slow to react on this because the next IRQ of PIC will interrupt earlier before IER is deactivated.
+
+With `mv_abort()` on BUF, it should look like this.
+
+    MV b040 7420
+    MV b200 770
+    MV b080 3128
+    MV b00e 418
+    MV b002 1499
+    MV b002 1798
+    MV b100 1748
+    MV b002 484
+    MV2 ffff8001 4
+
+The last PIC is missing, as well as the last LPD together with it.

@@ -4,6 +4,8 @@
 The report deliberately keeps elementary-video markers separate from program
 stream markers: sequence_end_code (B7) ends one video sequence, whereas
 program_end_code (B9) ends the enclosing program stream.
+
+This application is created using AI assistance
 """
 
 from __future__ import annotations
@@ -99,6 +101,8 @@ def inspect(data: bytes) -> Iterator[dict[str, object]]:
     last_video: dict[str, object] | None = None
     last_sequence_end: dict[str, object] | None = None
     last_record: dict[str, object] | None = None
+    picture_count = 0
+    program_picture_count = 0
     offset = 0
     while True:
         found = data.find(b"\x00\x00\x01", offset)
@@ -119,11 +123,15 @@ def inspect(data: bytes) -> Iterator[dict[str, object]]:
                       "previous_offset": None if last_record is None else last_record["offset"],
                       "last_sequence_end_offset": None if last_sequence_end is None else last_sequence_end["offset"],
                       "bytes_after": len(data) - following_offset,
-                      "next_program_offset": following_offset if next_program else None}
+                      "next_program_offset": following_offset if next_program else None,
+                      "pictures_in_program": program_picture_count}
             if last_sequence_end is not None:
                 record["bytes_since_sequence_end"] = found - last_sequence_end["offset"]
             yield record
             last_record = record
+            program_picture_count = 0
+            last_video = None
+            last_sequence_end = None
             offset = found + 4
             continue
         # System headers and PES packets all carry a two-byte packet length.
@@ -147,6 +155,11 @@ def inspect(data: bytes) -> Iterator[dict[str, object]]:
                     continue
                 video = {"kind": VIDEO_CODES[video_code], "offset": video_offset,
                          "video_pes_offset": found, "stream": stream_name(code)}
+                if video_code == 0x00:
+                    picture_count += 1
+                    program_picture_count += 1
+                    video["picture_number"] = picture_count
+                    video["program_picture_number"] = program_picture_count
                 if video_code == 0xB7:
                     video["after"] = None if last_video is None else last_video["kind"]
                     video["after_offset"] = None if last_video is None else last_video["offset"]
@@ -177,7 +190,10 @@ def print_record(record: dict[str, object]) -> None:
         if kind == "sequence end":
             before = "none" if record["after_offset"] is None else f"{record['after']} @ 0x{record['after_offset']:08x}"
             relation = f"  after {before}"
-        print(f"{kind.upper():13} @ {offset}  in video PES @ 0x{record['video_pes_offset']:08x}{relation}")
+        count = ""
+        if kind == "picture":
+            count = f" #{record['picture_number']} (program #{record['program_picture_number']})"
+        print(f"{kind.upper():13}{count} @ {offset}  in video PES @ 0x{record['video_pes_offset']:08x}{relation}")
     elif kind == "program end":
         prior = "none" if record["previous_offset"] is None else f"{record['previous']} @ 0x{record['previous_offset']:08x}"
         seq = "none" if record["last_sequence_end_offset"] is None else f"0x{record['last_sequence_end_offset']:08x}"
@@ -188,7 +204,7 @@ def print_record(record: dict[str, object]) -> None:
             suffix = f"; WARNING: {record['bytes_after']} non-program trailing bytes"
         else:
             suffix = ""
-        print(f"PROGRAM END   @ {offset}  after {prior}; last sequence end={seq}{distance}{suffix}")
+        print(f"PROGRAM END   @ {offset}  pictures={record['pictures_in_program']}; after {prior}; last sequence end={seq}{distance}{suffix}")
     else:
         print(f"{kind.upper():13} @ {offset}  length={record['packet_length']}")
 

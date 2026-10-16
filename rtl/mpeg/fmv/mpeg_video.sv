@@ -247,9 +247,11 @@ module mpeg_video (
 
     bit signed [31:0] last_display_latch_dclk = 0;
     bit [1:0] keep_synchronizer_cnt;
+    bit event_buffer_underflow_armed;
 
     always_ff @(posedge clk30) begin
         // Catch something that should not be possible
+        event_buffer_underflow <= 0;
 
         if (clear_fifo || reset_dsp_enabled) begin
             display_dts_desync_q  <= 0;
@@ -297,7 +299,21 @@ module mpeg_video (
             end
         end
 
-        event_buffer_underflow <= pictures_in_output_fifo==1 && latch_frame_for_display && pictures_in_mpeg_decoder<2;
+        if (playback_active && !playback_active_delayed) event_buffer_underflow_armed <= 1;
+
+        // This might look overcomplicated but is a fix for a graphical menu bug in "Uncover featuring Tatjana".
+        // On real hardware, the last frame of the menu clips is never shown
+        // The game waits for a BUF event before it decides to stop playback.
+        // It seems the BUF event occurs just before PIC on real hardware
+        // So, when only one image is left to show and just before going for PIC, a NDAT is generated.
+        // My first idea was that both PIC and NDAT occur at exactly the same tick, but measurements show this is not the case.
+        // It is noticable that with every run, a PIC still occurs after mv_abort() induced by BUF. This is an indication
+        // that these 2 IRQs a very near together, resulting into 2 seperate events sent from the OS9 kernel.
+        // If BUF is too early the game will call mv_abort() resulting into FMV_IER being disabled and having no last PIC event.
+        if (playback_active && event_buffer_underflow_armed && pictures_in_output_fifo <= 1 && latch_frame_until_vblank && hsync_cnt == 4'hb && pictures_in_mpeg_decoder < 2 && pictures_in_input_fifo <= 1)begin
+            event_buffer_underflow <= 1;
+            event_buffer_underflow_armed <= 0;
+        end
 
         if (just_decoded_commit_clk30 || discard_picture_after_decoder) begin
             assert (pictures_in_mpeg_decoder > 0);
@@ -940,6 +956,9 @@ module mpeg_video (
 
     // Initial DTS near SCR. Playback is allowed
     bit display_dts_desync_satisfied_latch = 0;
+    bit playback_active_delayed = 0;
+
+    bit [3:0] hsync_cnt = 0;
 
     always_ff @(posedge clk30) begin
         vsync_q <= vsync;
@@ -948,9 +967,14 @@ module mpeg_video (
         vblank_q2 <= vblank_q1;
         frame_period_tick <= 0;
 
+        // Keep track of the early lines for NDAT delay
+        if (vsync) hsync_cnt <= 0;
+        else if (hsync && !hsync_q) hsync_cnt <= hsync_cnt + 1;
+
         if (reset_dsp_enabled) begin
             single_step_latch <= 0;
             latch_frame_until_vsync <= 0;
+            playback_active_delayed <= 0;
         end else if (single_step) begin
             single_step_latch <= 1;
         end
@@ -1034,6 +1058,7 @@ module mpeg_video (
                 // It doesn't hurt to check though...
                 if (frame_period > 1200) begin
                     latch_frame_until_vsync <= 1;
+                    playback_active_delayed <= playback_active;
                     frame_period_tick <= for_display_valid;
                 end
             end
