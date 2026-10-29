@@ -1,8 +1,6 @@
 # TODOs and known issues
 
 * ST flag changes pixel aspect ratio on HDMI upscaled image. Good or bad?
-* "Freeze Picture" feature of VCDs seems to cause issues
-* Regressions with "The Lost Ride"
 * Implement optional 50/15 µsec emphasis for ADPCM (and CDDA?)
 * Check if speed of mouse device really is the max, a CD-i can take
     * Also check the accumulator
@@ -13,11 +11,6 @@
     * Issue is difficult to reproduce on mame0289-1072-gf43983b62ed
 * Randomly no audio in Mad Dog McCree? Unclear reproduction
 * Check random audio video out of sync (e.g. Mad Dog McCree)
-* Check correct timing of DVC clipping functionality when scroll bit is reset
-* Moving window homebrew test timing is broken with 260123
-    * Was working in 260104. Also broken with 260116
-    * Proposed fix with 40637f4904
-    * Will be broken again with the addition of frame synced updates
 * Frequency response of CDIC and MPEG audio output might not be 100% accurate
 * Add support for an emulated Peacekeeper Revolver Light Gun
 * Regression of "Historia del Arte Español" (working in DVC rc2)
@@ -40,6 +33,7 @@
     * A workaround is CPU overclocking
 * Fix hang on audio track stop or change in media player
 * Cheat support?
+    * Since the CD-i has a multi tasking operating system, this can only be achieved by OS9 aware memory access
 * Fix reset behaviour (Core is sometimes hanging after reset)
 * Investigate desaturated colors / low contrast in "Photo CD Sample Disc"
     * Probably fixable with 16-235 to 0-255 scaling

@@ -133,7 +133,15 @@ MV_Info is at least called.
 
 What I hate about this? The entries of MVmapDesc are not read ingame. So, how does the game even know what is happening? Just a guess? Only by counting events?
 
+## The mystery of the glitch on the right
+
+This is even present on real hardware. On the right side of the screen, there is a column of pixels that shouldn't be there.
+They look like they come from the left side of the image, almost like the width of the frame is wrong.
+
+But the same is also present on real hardware.
+
 ## Error conditions
+
 ### Showing a weirdly side positioned footage without HUD after a fork
 
 During this error condition, the game is not showing the HUD and is also not controllable.

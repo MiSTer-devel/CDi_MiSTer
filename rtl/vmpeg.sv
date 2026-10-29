@@ -103,7 +103,8 @@ module vmpeg (
     );
 
     wire fmv_event_picture_starts_display;
-    wire fmv_event_potential_picture_starts_display;
+    wire fmv_picture_selected;
+    wire fmv_window_scan_started;
     wire fmv_event_last_picture_starts_display;
     wire fmv_event_first_intra_frame_seq_starts_display;
     wire fmv_event_first_intra_frame_gop_starts_display;
@@ -171,7 +172,8 @@ module vmpeg (
         .event_frame_decoded(fmv_event_frame_decoded),
         .event_buffer_underflow(fmv_event_buffer_underflow),
         .event_picture_starts_display(fmv_event_picture_starts_display),
-        .event_potential_picture_starts_display(fmv_event_potential_picture_starts_display),
+        .picture_selected(fmv_picture_selected),
+        .window_scan_started(fmv_window_scan_started),
         .event_last_picture_starts_display(fmv_event_last_picture_starts_display),
         .event_first_intra_frame_gop_starts_display(fmv_event_first_intra_frame_gop_starts_display),
         .event_first_intra_frame_seq_starts_display(fmv_event_first_intra_frame_seq_starts_display),
@@ -401,8 +403,6 @@ module vmpeg (
     interrupt_flags_s fmv_interrupt_enable_register;
     // FMV IVEC @ 00E040DC
     bit [15:0] fmv_interrupt_vector_register = 0;
-    // GEN_FRAME_RATE @ 00E040AC
-    bit [15:0] fmv_frame_rate = 0;
     // FMV TCNT @ 00E04064 (also named SYS_TIM)
     // according to fmvdrv sources:
     // 29700 -1 for 5.28 seconds
@@ -480,6 +480,7 @@ module vmpeg (
     // 0x5962  0101 1001 0110 0010 RUN_RYTHM?
     // 0x7952  0111 1001 0101 0010
     // 0x002c  0000 0000 0010 1100 after a long while of continues updates without new picture
+    // 0x59e1  0101 1001 1110 0001 RUN_RYTHM
     bit [15:0] fmv_decoder_command;
 
     bit [15:0] image_height = 0;
@@ -568,7 +569,8 @@ module vmpeg (
             15'h2052: dout = {9'b0, fmv_pictures_in_fifo};  // 00E040A4 ?? Pictures in fifo?
             15'h2054: dout = fmv_picture_rate;  // E040A8 Picture Rate Only read.
             15'h2055: dout = fmv_display_rate;  // e040aa ?? Display Rate ? Only read.
-            15'h2056: dout = fmv_frame_rate;  // e040ac ?? GEN_FRAME_RATE Read and written.
+            // Approximate GEN_FRAME_RATE as one tick: allow window updates.
+            15'h2056: dout = 16'd1;
             15'h2060: dout = fmv_system_command_register;  // e040c0
             15'h2061: dout = fmv_video_command_register;  // e040c2
             15'h2062: dout = {12'b0, fmv_stream_number};  // e040c4
@@ -600,6 +602,25 @@ module vmpeg (
     bit pending_fma_stream_change;
     bit register_update_latch;
     bit register_update_scroll;
+    wire scroll_update_write = access && write_strobe && bus_ack &&
+        address[15:1] == 15'h2061 && din[3] && din[2];
+    // Registers accepted at a field boundary, awaiting a new picture.
+    bit next_window_pending;
+    bit register_update_late, next_window_late;
+    // Approximate the picture-update deadline using the start of scanout.
+    // Keep a late update's complete window together for the following picture.
+    typedef struct packed {
+        bit [8:0] display_y, display_x;
+        bit [8:0] crop_y, crop_x;
+        bit [8:0] width, height;
+    } window_state_s;
+    window_state_s deferred_window;
+    bit deferred_window_pending;
+    bit last_picture_held;
+    wire held_window_update = !vsync && vsync_q && last_picture_held && !fmv_picture_selected;
+    bit [8:0] next_display_offset_x, next_display_offset_y;
+    bit [8:0] next_window_offset_x, next_window_offset_y;
+    bit [8:0] next_window_width, next_window_height;
 
     bit fmv_event_frame_decoded_q;
 
@@ -630,7 +651,6 @@ module vmpeg (
             fmv_dclk_start_video_latched <= 0;
             fmv_decoder_command <= 0;
             fmv_dsp_enable <= 0;
-            fmv_frame_rate <= 0;
             fmv_interrupt_enable_register <= 0;
             fmv_interrupt_status_register <= 0;
             fmv_interrupt_vector_register <= 0;
@@ -660,7 +680,17 @@ module vmpeg (
             video_ctrl_y_display <= 0;
             video_ctrl_y_offset <= 0;
             fmv_demuxer_scr_update_request_cnt <= 0;
+            register_update_latch <= 0;
+            next_window_pending <= 0;
+            register_update_late <= 0;
+            next_window_late <= 0;
+            deferred_window_pending <= 0;
+            last_picture_held <= 0;
         end else begin
+            if (!fmv_decoder_active || fmv_reset_persistent_storage || fmv_picture_selected)
+                last_picture_held <= 0;
+            if (fmv_event_last_picture_starts_display) last_picture_held <= 1;
+
 
             if (fmv_event_frame_decoded_q && fmv_decoder_active) begin
                 image_width <= {5'b0, fmv_decoder_width};
@@ -685,37 +715,81 @@ module vmpeg (
 
             if (vsync && !vsync_q) fmv_interrupt_status_register.vsync <= 1;
 
-            // Either update when scroll==1 and vertical retrace occurs OR
-            // when scroll==0 and a new frame will be displayed
-            if ((!vsync && vsync_q && register_update_latch && register_update_scroll) ||
-                (register_update_latch && fmv_event_potential_picture_starts_display && !register_update_scroll)) begin
+            // Once the final picture is held, finish updates on field boundaries;
+            // there will be no next picture to consume them.
+            if ((fmv_picture_selected || held_window_update) && deferred_window_pending) begin
+                {latched_display_offset_y, latched_display_offset_x,
+                 latched_window_offset_y, latched_window_offset_x,
+                 latched_window_width, latched_window_height} <= deferred_window;
+                deferred_window_pending <= 0;
+            end
 
-                fmv_interrupt_status_register.vcup <= 1;
-                // Always present on VMPEG when VCUP occurs, never asked for in the driver
-                // At 0x00e52ed2 there is a check for a solo occurence of VCUP
-                // This never happens on real hardware since DCL is always there
-                // resulting into a dead branch in the driver?
-                fmv_interrupt_status_register.dcl <= 1;
+            // Scroll still updates each field. A pending picture update must
+            // be consumed before a scroll rather than being discarded.
+            if (next_window_pending && (fmv_picture_selected || held_window_update ||
+                (vblank && scroll_update_write))) begin
+                if (fmv_picture_selected && next_window_late) begin
+                    deferred_window <= {
+                        next_display_offset_y,
+                        next_display_offset_x,
+                        next_window_offset_y,
+                        next_window_offset_x,
+                        next_window_width,
+                        next_window_height
+                    };
+                    deferred_window_pending <= 1;
+                end else begin
+                    {latched_display_offset_y, latched_display_offset_x,
+                     latched_window_offset_y, latched_window_offset_x,
+                     latched_window_width, latched_window_height} <=
+                        {
+                        next_display_offset_y,
+                        next_display_offset_x,
+                        next_window_offset_y,
+                        next_window_offset_x,
+                        next_window_width,
+                        next_window_height
+                    };
+                    deferred_window_pending <= 0;
+                end
+                next_window_pending <= 0;
+            end
+
+            if (!vsync && vsync_q && register_update_latch) begin
                 register_update_latch <= 0;
-
-                latched_display_offset_y <= video_ctrl_x_display[8:0];
-                latched_display_offset_x <= video_ctrl_y_display[8:0];
-                latched_window_offset_y <= video_ctrl_decoder_offset_y[8:0];
-                latched_window_offset_x <= video_ctrl_decoder_offset_x[8:0];
-                latched_window_width <= video_ctrl_window_width[8:0];
-                latched_window_height <= video_ctrl_window_height[8:0];
+                fmv_interrupt_status_register.vcup <= 1;
+                fmv_interrupt_status_register.dcl <= 1;
+                next_window_late <= register_update_late;
+                if (register_update_scroll) begin
+                    deferred_window_pending <= 0;
+                    next_window_late <= 0;
+                    latched_display_offset_y <= video_ctrl_x_display[8:0];
+                    latched_display_offset_x <= video_ctrl_y_display[8:0];
+                    latched_window_offset_y <= video_ctrl_decoder_offset_y[8:0];
+                    latched_window_offset_x <= video_ctrl_decoder_offset_x[8:0];
+                    latched_window_width <= video_ctrl_window_width[8:0];
+                    latched_window_height <= video_ctrl_window_height[8:0];
+                    next_window_pending <= 0;
+                end else begin
+                    next_display_offset_y <= video_ctrl_x_display[8:0];
+                    next_display_offset_x <= video_ctrl_y_display[8:0];
+                    next_window_offset_y <= video_ctrl_decoder_offset_y[8:0];
+                    next_window_offset_x <= video_ctrl_decoder_offset_x[8:0];
+                    next_window_width <= video_ctrl_window_width[8:0];
+                    next_window_height <= video_ctrl_window_height[8:0];
+                    next_window_pending <= 1;
+                end
             end
 
             if (fmv_event_first_intra_frame_seq_starts_display) begin
                 fmv_interrupt_status_register.seq <= 1;
                 $display("Cause FMV Seq Event");
             end
+
             if (fmv_event_first_intra_frame_gop_starts_display)
                 fmv_interrupt_status_register.gop <= 1;
-            if (fmv_event_picture_starts_display) begin
-                fmv_interrupt_status_register.pic <= 1;
 
-            end
+            if (fmv_event_picture_starts_display) fmv_interrupt_status_register.pic <= 1;
             if (fmv_event_last_picture_starts_display) fmv_interrupt_status_register.eod <= 1;
             if (fmv_event_program_end) fmv_interrupt_status_register.eii <= 1;
             if (fmv_event_sequence_end) fmv_interrupt_status_register.esi <= 1;
@@ -979,6 +1053,8 @@ module vmpeg (
                                 // TODO can't be correct. set 0x42
                                 fmv_decoder_command[6] <= 1;
                                 fmv_decoder_command[1] <= 1;
+                                fmv_decoder_command[5] <= 1;  // RUN_RYTHM
+
                                 fmv_slow_motion <= din[2:0];
 
                                 fmv_decoder_active <= 1;
@@ -1045,6 +1121,10 @@ module vmpeg (
 
                                 $display("FMV Decoder Off");
 
+                                fmv_decoder_command[6] <= 0;
+                                fmv_decoder_command[1] <= 0;
+                                fmv_decoder_command[5] <= 0;  // RUN_RYTHM
+
                                 // TODO confirm that this is happening
                                 image_width <= 0;
                                 image_height <= 0;
@@ -1072,7 +1152,8 @@ module vmpeg (
 
                             // 0008 RegsUpd
                             if (din[3]) begin
-                                register_update_latch  <= 1;
+                                register_update_latch <= 1;
+                                register_update_late <= fmv_playback_active && fmv_window_scan_started;
                                 register_update_scroll <= din[2];
                                 $display("RegsUpd");
                             end
@@ -1171,7 +1252,7 @@ module vmpeg (
                         end
                         15'h2056: begin
                             $display("FMV Write GEN_FRAME_RATE %x %x ?", address[15:1], din);
-                            fmv_frame_rate <= din;
+                            // Writes are ignored by the constant approximation.
                         end
                         15'h2001: begin
                             $display("FMV Write Image Width2 %x %x", address[15:1], din);

@@ -40,6 +40,8 @@ module mpeg_video (
     output event_frame_decoded,
     output bit event_buffer_underflow,
     output bit event_picture_starts_display,
+    output picture_selected,
+    output window_scan_started,
     output event_last_picture_starts_display,
     output bit event_first_intra_frame_gop_starts_display,
     output bit event_first_intra_frame_seq_starts_display,
@@ -48,7 +50,6 @@ module mpeg_video (
     input demuxer_decoding_timestamp_updated,
     input signed [32:0] demuxer_system_clock_reference,
     input signed [31:0] dclk,  // only 21:6 shall be used (16 bit)
-    output bit event_potential_picture_starts_display,
 
     output bit [10:0] decoder_width,
     output bit [ 8:0] decoder_height,
@@ -198,6 +199,32 @@ module mpeg_video (
 
     wire dts_fifo_out_valid_dts = dts_fifo_valid && (dts_fifo_out != 0);
 
+    // Most MPEG pictures have no DTS of their own. Continue the last DTS by
+    // one picture period per FIFO entry, and re-anchor at the next timestamp.
+    // The prediction follows the FIFO even for pictures discarded before
+    // display, and is invalidated when the decoder/FIFO is reset.
+    bit signed [32:0] predicted_dts;
+    bit predicted_dts_valid;
+    wire use_predicted_dts = dts_fifo_valid && !dts_fifo_out_valid_dts && predicted_dts_valid;
+    wire signed [32:0] sync_dts = use_predicted_dts ? predicted_dts : dts_fifo_out;
+    wire sync_dts_valid = dts_fifo_out_valid_dts || use_predicted_dts;
+
+    always_ff @(posedge clk30) begin
+        if (clear_fifo || reset_dsp_enabled) begin
+            predicted_dts <= 0;
+            predicted_dts_valid <= 0;
+        end else if ((latch_frame_for_display || discard_picture) && dts_fifo_valid) begin
+            if (dts_fifo_out_valid_dts && decoder_frameperiod_90khz != 0) begin
+                predicted_dts <= dts_fifo_out + {17'b0, decoder_frameperiod_90khz};
+                predicted_dts_valid <= 1;
+            end else if (predicted_dts_valid && decoder_frameperiod_90khz != 0) begin
+                predicted_dts <= predicted_dts + {17'b0, decoder_frameperiod_90khz};
+            end else begin
+                predicted_dts_valid <= 0;
+            end
+        end
+    end
+
     // Useful for fast forwarding after slow motion
     wire signed [32:0] demuxer_dts_desync = demuxer_system_clock_reference - dts_fifo_out;
 
@@ -208,7 +235,7 @@ module mpeg_video (
     // So only bits 20:6 of dclk must be used here.
     (* keep *)
     (* noprune *)
-    wire signed [14:0] display_dts_desync = dclk[20:6] - dts_fifo_out[21:7];
+    wire signed [14:0] display_dts_desync = dclk[20:6] - sync_dts[21:7];
 
     // Latched from display_dts_desync at latch_frame_for_display
     // to help with meta stability
@@ -284,7 +311,7 @@ module mpeg_video (
             // Only apply during synchronous playback and when we have a valid DTS for desync calculation
             // Also don't apply when slow motion is active
             // TODO This might not be accurate to real hardware but is currently easier to implement
-            if (dts_fifo_out_valid_dts && synchronous_playback && slow_motion == 0) begin
+            if (sync_dts_valid && synchronous_playback && slow_motion == 0) begin
                 display_dts_desync_q  <= display_dts_desync;
                 keep_synchronizer_cnt <= 3;
                 $display("display_dts_desync_q set %d", display_dts_desync);
@@ -893,6 +920,7 @@ module mpeg_video (
     wire just_decoded_commit = dmem_cmd_payload_write_1 && dmem_cmd_valid_1 && dmem_cmd_ready_1 && dmem_cmd_payload_address_1==32'h10003040;
     wire for_display_valid_clk_mpeg;
     bit latch_frame_for_display;
+    assign picture_selected = latch_frame_for_display;
     wire latch_frame_for_display_clk_mpeg;
     bit event_sequence_end_clk_mpeg;
 
@@ -986,8 +1014,6 @@ module mpeg_video (
         event_first_intra_frame_seq_starts_display <= 0;
         event_last_picture_starts_display <= 0;
 
-        event_potential_picture_starts_display <= 0;
-
         if (latch_frame_for_display) begin
             latch_frame_for_display <= 0;
             display_video_status <= for_display.video_status;
@@ -1030,7 +1056,6 @@ module mpeg_video (
 
         if (latch_frame_until_vsync && !vsync && vsync_q) begin
             latch_frame_until_vsync <= 0;
-            event_potential_picture_starts_display <= 1;
 
             if (for_display_valid) begin
                 latch_frame_for_display  <= 1;
@@ -1039,8 +1064,8 @@ module mpeg_video (
         end
 
         if (playback_active) begin
-            // Start playback only when we are near the next valid DTS 
-            if (!dts_fifo_out_valid_dts || (dts_fifo_out_valid_dts && display_dts_desync > -30)) begin
+            // Wait until the first timestamp is due, if present.
+            if (!dts_fifo_out_valid_dts || display_dts_desync > -30) begin
                 display_dts_desync_satisfied_latch <= 1;
             end
 
@@ -1126,6 +1151,7 @@ module mpeg_video (
         .reset,
         .ddrif(player_ddr),
         .vidout,
+        .window_scan_started,
         .vcd_pixel_clock,
         .debug_activate_vcd_filter,
         .hsync,

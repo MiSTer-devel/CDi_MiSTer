@@ -11,6 +11,7 @@ module frameplayer (
     ddr_if.to_host ddrif,
 
     output rgb888_s vidout,
+    output window_scan_started,
 
     input vcd_pixel_clock,
     input debug_activate_vcd_filter,
@@ -164,8 +165,10 @@ module frameplayer (
     bit y_requested;
 
     bit [8:0] vertical_offset_wait;
+    assign window_scan_started = !vblank && vertical_offset_wait == 0 &&
+        fetch_and_show_frame_clkvideo;
     bit [10:0] horizontal_offset_wait;
-    bit [8:0] latched_offset_x;
+    bit [ 8:0] latched_offset_x;
 
     always_ff @(posedge clkddr) begin
         if (vblank_clkddr) begin
