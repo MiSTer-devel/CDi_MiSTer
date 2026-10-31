@@ -1952,6 +1952,7 @@ int main(int argc, char **argv) {
     uint16_t udp_port = 0;
     const char *load_state = nullptr;
     const char *save_state = nullptr;
+    const char *image_path = nullptr;
     uint64_t save_frame = 0;
     const char *save_lba_state = nullptr;
     uint32_t save_lba = 0;
@@ -1967,6 +1968,12 @@ int main(int argc, char **argv) {
                 return 1;
             }
             event_script = argv[i];
+        } else if (strcmp(argv[i], "--image") == 0) {
+            if (++i == argc) {
+                fprintf(stderr, "--image requires a path\n");
+                return 1;
+            }
+            image_path = argv[i];
         } else if (strcmp(argv[i], "--load-state") == 0) {
             if (++i == argc) {
                 fprintf(stderr, "--load-state requires a path\n");
@@ -2016,7 +2023,7 @@ int main(int argc, char **argv) {
             write_png_frames = true;
         } else if (strcmp(argv[i], "--help") == 0) {
             fprintf(stderr,
-                    "Usage: %s [machine] [--auto] [--png] [--events script] [--udp port] [--load-state file] "
+                    "Usage: %s [machine] [--image path] [--auto] [--png] [--events script] [--udp port] [--load-state file] "
                     "[--save-at-frame frame file] [--save-at-lba lba file]\n",
                     argv[0]);
             return 0;
@@ -2081,6 +2088,9 @@ int main(int argc, char **argv) {
         mount_image("images/space_ace_eu.bin");
         break;
     }
+
+    if (image_path)
+        mount_image(image_path);
 
     CDi machine(machineindex);
 
