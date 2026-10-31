@@ -362,6 +362,7 @@ class CDi {
         TraceOff,
         InstructionsOn,
         InstructionsOff,
+        SaveState,
         Quit
     };
     struct InputEvent {
@@ -370,13 +371,14 @@ class CDi {
         unsigned int hold_frames{3};
         uint8_t analog_x{0};
         uint8_t analog_y{0};
+        std::string save_path;
     };
 
     // Persistent host-side state. Keep operating-system resources (files,
     // sockets, tracing) and the Verilated DUT out of this object: they are
     // recreated when a process restarts, while the DUT saves itself.
     struct TestbenchState {
-        static constexpr uint32_t kVersion{1};
+        static constexpr uint32_t kVersion{2};
 
         uint32_t version{kVersion};
         std::string image_path;
@@ -412,7 +414,7 @@ class CDi {
             os << event_count;
             for (const InputEvent &event : input_events)
                 os << event.frame << static_cast<uint8_t>(event.kind) << event.hold_frames << event.analog_x
-                   << event.analog_y;
+                   << event.analog_y << event.save_path;
         }
 
         bool Load(VerilatedRestore &os) {
@@ -433,7 +435,7 @@ class CDi {
             for (uint32_t i = 0; i < event_count; ++i) {
                 InputEvent event{};
                 uint8_t kind;
-                os >> event.frame >> kind >> event.hold_frames >> event.analog_x >> event.analog_y;
+                os >> event.frame >> kind >> event.hold_frames >> event.analog_x >> event.analog_y >> event.save_path;
                 if (kind > static_cast<uint8_t>(InputKind::Quit))
                     return false;
                 event.kind = static_cast<InputKind>(kind);
@@ -465,6 +467,7 @@ class CDi {
     uint8_t &held_buttons{testbench.held_buttons};
     uint64_t save_at_frame{UINT64_MAX};
     std::string save_state_path;
+    std::vector<std::string> scripted_save_paths;
     bool save_at_lba_enabled{false};
     uint32_t save_at_lba{0};
     std::string save_lba_state_path;
@@ -541,6 +544,13 @@ class CDi {
     }
 
     void CommitPendingSave() {
+        // Script saves continue execution, but must capture the same completed
+        // host tick as CLI checkpoints. A mid-tick save cannot replay exactly.
+        for (const auto &path : scripted_save_paths) {
+            if (!SaveState(path.c_str()))
+                status = 1;
+        }
+        scripted_save_paths.clear();
         if (pending_save == SaveRequest::None)
             return;
 
@@ -916,6 +926,17 @@ class CDi {
         return true;
     }
 
+    bool QueueSaveStateEvent(uint64_t frame, const std::string &path, const char *source, unsigned int line_number) {
+        if (path.empty()) {
+            fprintf(stderr, "%s:%u: save requires a path\n", source, line_number);
+            return false;
+        }
+        input_events.push_back({frame, InputKind::SaveState, 0, 0, 0, path});
+        std::stable_sort(input_events.begin(), input_events.end(),
+                         [](const InputEvent &a, const InputEvent &b) { return a.frame < b.frame; });
+        return true;
+    }
+
     void PollUdpInput() {
         if (udp_fd < 0)
             return;
@@ -953,6 +974,13 @@ class CDi {
                 int y;
                 std::string extra;
                 if (!(input >> x >> y) || (input >> extra) || !QueueAnalogEvent(frame, x, y, "UDP", 0))
+                    fprintf(stderr, "Ignoring malformed UDP input: %s\n", buffer);
+                continue;
+            }
+            if (command == "save") {
+                std::string path;
+                std::string extra;
+                if (!(input >> path) || (input >> extra) || !QueueSaveStateEvent(frame, path, "UDP", 0))
                     fprintf(stderr, "Ignoring malformed UDP input: %s\n", buffer);
                 continue;
             }
@@ -998,6 +1026,9 @@ class CDi {
             break;
         case InputKind::InstructionsOff:
             fprintf(f_executed_events, "%d instructions_off\n", frame_index);
+            break;
+        case InputKind::SaveState:
+            fprintf(f_executed_events, "%d save %s\n", frame_index, event.save_path.c_str());
             break;
         case InputKind::Quit:
             fprintf(f_executed_events, "%d quit\n", frame_index);
@@ -1070,6 +1101,9 @@ class CDi {
             case InputKind::InstructionsOff:
                 print_instructions = false;
                 break;
+            case InputKind::SaveState:
+                scripted_save_paths.push_back(event.save_path);
+                break;
             case InputKind::Quit:
                 status = SIGINT;
                 break;
@@ -1134,6 +1168,18 @@ class CDi {
                     return false;
                 }
                 if (!QueueAnalogEvent(frame, x, y, path, line_number))
+                    return false;
+                previous_frame = frame;
+                continue;
+            }
+            if (command == "save") {
+                std::string save_path;
+                std::string extra;
+                if (!(input >> save_path) || (input >> extra)) {
+                    fprintf(stderr, "%s:%u: expected: <frame> save <path>\n", path, line_number);
+                    return false;
+                }
+                if (!QueueSaveStateEvent(frame, save_path, path, line_number))
                     return false;
                 previous_frame = frame;
                 continue;

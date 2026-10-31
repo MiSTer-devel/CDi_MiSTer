@@ -102,7 +102,9 @@ after the preceding script event (the initial frame is zero). Button presses
 hold for three frames unless a duration is supplied. Set the analog stick with
 `<frame|+increment> analog <x> <y>`; `x` and `y` are signed 8-bit values (`-128..127`)
 and are stored as `JOY0_ANALOG = { Y, X }`. Available commands are `b1`, `b2`, `analog`,
-`b1b2`, `trace_on`, `trace_off`, `instructions_on`, `instructions_off`, and `quit`.
+`b1b2`, `trace_on`, `trace_off`, `instructions_on`, `instructions_off`, `save`, and `quit`.
+Use `save` as `<frame|+increment> save <path>` to write a save state at that frame
+without stopping the simulator.
 
     # Skip three screens
     154 b1
@@ -119,12 +121,14 @@ inserting or moving groups of events:
     +40 analog 0 -128
 
 For live control, add `--udp <port>`. A datagram may be `b1` (scheduled for
-the current frame), `<frame> b1 [hold_frames]`, or `<frame> analog <x> <y>`;
+the current frame), `<frame> b1 [hold_frames]`, `<frame> analog <x> <y>`, or
+`[frame] save <path>`;
 it uses the same commands as the script. For example:
 
     printf 'b1\n' | nc -u -w1 127.0.0.1 28070
     printf 'analog 0 -128\n' | nc -u -w1 127.0.0.1 28070
     printf 'b1b2 3\n' | nc -u -w1 127.0.0.1 28070
+    printf 'save /tmp/cdi-checkpoint.vls\n' | nc -u -w1 127.0.0.1 28070
     ./sim_top.sh 9 --udp 28070
 
 Every run records events as they take effect in a unique
@@ -144,4 +148,6 @@ Click **Button 1**, **Button 2**, or **Buttons 1 + 2**, drag the analog pad,
 or use the arrow keys (WASD also works). `Z`, `X`, and `C` trigger buttons 1,
 2, and 1 + 2. The host, port, and button hold duration can be changed in the
 window. The analog stick stays at its last position; use **Center stick** to
-return it to neutral. Use **Stop simulator** to send the UDP `quit` command.
+return it to neutral. Set a save-state path and press **Save** (or `Ctrl+S`)
+to send a UDP `save` command. Use **Stop simulator** to send the UDP `quit`
+command.

@@ -17,12 +17,13 @@ class UdpController:
     PAD_SIZE = 180
     PAD_MARGIN = 18
 
-    def __init__(self, root: tk.Tk, host: str, port: int, hold_frames: int) -> None:
+    def __init__(self, root: tk.Tk, host: str, port: int, hold_frames: int, save_path: str) -> None:
         self.root = root
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         self.host = tk.StringVar(value=host)
         self.port = tk.StringVar(value=str(port))
         self.hold_frames = tk.StringVar(value=str(hold_frames))
+        self.save_path = tk.StringVar(value=save_path)
         self.status = tk.StringVar(value="Ready")
         self.pressed_directions: set[str] = set()
         self.last_analog: tuple[int, int] | None = None
@@ -71,6 +72,9 @@ class UdpController:
         ttk.Button(tools, text="Instructions on", command=lambda: self.send("instructions_on")).grid(row=0, column=2)
         ttk.Button(tools, text="Instructions off", command=lambda: self.send("instructions_off")).grid(row=0, column=3, padx=6)
         ttk.Button(tools, text="Stop simulator", command=lambda: self.send("quit")).grid(row=0, column=4)
+        ttk.Label(tools, text="Save state").grid(row=1, column=0, sticky="w", pady=(8, 0))
+        ttk.Entry(tools, textvariable=self.save_path, width=38).grid(row=1, column=1, columnspan=3, sticky="ew", padx=6, pady=(8, 0))
+        ttk.Button(tools, text="Save  (Ctrl+S)", command=self.save_state).grid(row=1, column=4, pady=(8, 0))
         ttk.Label(frame, textvariable=self.status, foreground="#555555", wraplength=410).grid(
             row=3, column=0, columnspan=2, sticky="w", pady=(9, 0)
         )
@@ -112,6 +116,16 @@ class UdpController:
             return
         self.send(f"{command} {hold}")
 
+    def save_state(self) -> None:
+        path = self.save_path.get().strip()
+        if not path:
+            self.status.set("Enter a path for the save state")
+            return
+        if any(character.isspace() for character in path):
+            self.status.set("Save-state paths cannot contain whitespace")
+            return
+        self.send(f"save {path}")
+
     def draw_pad(self, x: int, y: int) -> None:
         self.canvas.delete("all")
         center = self.PAD_SIZE / 2
@@ -145,6 +159,9 @@ class UdpController:
 
     def key_press(self, event: tk.Event) -> None:
         key = event.keysym.lower()
+        if key == "s" and event.state & 0x4:
+            self.save_state()
+            return "break"
         if key == "z":
             self.button("b1")
             return
@@ -180,13 +197,14 @@ def main() -> int:
     parser.add_argument("--host", default="127.0.0.1", help="sim_top host (default: 127.0.0.1)")
     parser.add_argument("--port", type=int, default=28070, help="sim_top UDP port (default: 28070)")
     parser.add_argument("--hold", type=int, default=3, help="default button hold in frames (default: 3)")
+    parser.add_argument("--save-path", default="/tmp/cdi-checkpoint.vls", help="save-state path for the Save button")
     args = parser.parse_args()
     if not 1 <= args.port <= 65535:
         parser.error("--port must be between 1 and 65535")
     if args.hold < 1:
         parser.error("--hold must be positive")
     root = tk.Tk()
-    UdpController(root, args.host, args.port, args.hold)
+    UdpController(root, args.host, args.port, args.hold, args.save_path)
     root.mainloop()
     return 0
 
