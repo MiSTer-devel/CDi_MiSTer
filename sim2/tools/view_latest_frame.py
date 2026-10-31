@@ -1,11 +1,5 @@
 #!/usr/bin/env python3
-"""Show the newest display frame written by sim_top.
-
-The simulator writes frames as <instance>/video_###.bmp.  This viewer keeps a
-single window pointed at whichever such file was modified most recently.
-
-This whole tool is AI generated
-"""
+"""Show the newest display frame written by sim_top."""
 
 import argparse
 import ctypes
@@ -21,12 +15,16 @@ except ImportError:
     Image = ImageTk = None
 
 
+FRAME_SUFFIXES = (".bmp", ".png")
+
+
 def newest_frame(output_dir: Path) -> Path | None:
-    frames = output_dir.glob("[0-9]*/video_*.bmp")
-    try:
-        return max(frames, key=lambda path: path.stat().st_mtime_ns)
-    except ValueError:
-        return None
+    frames = (
+        frame
+        for suffix in FRAME_SUFFIXES
+        for frame in output_dir.glob(f"[0-9]*/video_*{suffix}")
+    )
+    return max(frames, key=lambda frame: frame.stat().st_mtime_ns, default=None)
 
 
 class InotifyWatcher:
@@ -39,9 +37,8 @@ class InotifyWatcher:
     WATCH_MASK = IN_CLOSE_WRITE | IN_MOVED_TO | IN_CREATE
 
     def __init__(self, root: tk.Tk, output_dir: Path, callback) -> None:
-        if not hasattr(root.tk, "createfilehandler") or sys.platform != "linux":
+        if sys.platform != "linux" or not hasattr(root.tk, "createfilehandler"):
             raise OSError("inotify is unavailable")
-
         libc = ctypes.CDLL(None, use_errno=True)
         libc.inotify_init1.restype = ctypes.c_int
         self.fd = libc.inotify_init1(os.O_NONBLOCK | os.O_CLOEXEC)
@@ -59,10 +56,9 @@ class InotifyWatcher:
         root.tk.createfilehandler(self.fd, tk.READABLE, self.on_event)
 
     def add_watch(self, path: Path) -> None:
-        encoded_path = os.fsencode(path)
-        watch_descriptor = self.libc.inotify_add_watch(self.fd, encoded_path, self.WATCH_MASK)
-        if watch_descriptor >= 0:
-            self.paths[watch_descriptor] = path
+        descriptor = self.libc.inotify_add_watch(self.fd, os.fsencode(path), self.WATCH_MASK)
+        if descriptor >= 0:
+            self.paths[descriptor] = path
 
     def on_event(self, _fd, _mask) -> None:
         try:
@@ -71,15 +67,15 @@ class InotifyWatcher:
             return
         offset = 0
         while offset < len(data):
-            watch_descriptor, event_mask, _cookie, name_length = struct.unpack_from("iIII", data, offset)
+            descriptor, mask, _cookie, name_length = struct.unpack_from("iIII", data, offset)
             name = data[offset + 16 : offset + 16 + name_length].rstrip(b"\0").decode(errors="replace")
             offset += 16 + name_length
-            parent = self.paths.get(watch_descriptor)
+            parent = self.paths.get(descriptor)
             if not parent:
                 continue
-            if parent == self.output_dir and event_mask & self.IN_ISDIR and name.isdigit():
+            if parent == self.output_dir and mask & self.IN_ISDIR and name.isdigit():
                 self.add_watch(parent / name)
-            elif name.startswith("video_") and name.endswith(".bmp") and event_mask & (
+            elif name.startswith("video_") and Path(name).suffix.lower() in FRAME_SUFFIXES and mask & (
                 self.IN_CLOSE_WRITE | self.IN_MOVED_TO
             ):
                 self.callback(parent / name)
@@ -179,30 +175,24 @@ class LatestFrameViewer:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Live viewer for sim_top's latest PNG frame.")
-    parser.add_argument(
-        "--output-dir",
-        type=Path,
-        default=Path(__file__).resolve().parent,
-        help="directory containing sim_top instance directories (default: sim2)",
-    )
-    parser.add_argument(
-        "--interval", type=float, default=5.0, help="fallback poll interval in seconds (default: 5; Linux uses inotify)"
-    )
+    parser = argparse.ArgumentParser(description="Live viewer for sim_top's latest frame.")
+    parser.add_argument("--output-dir", type=Path, default=Path(__file__).resolve().parent.parent)
+    parser.add_argument("--interval", type=float, default=5.0, help="fallback poll interval in seconds (default: 5)")
     parser.add_argument("--print", dest="print_only", action="store_true", help="print the newest frame path and exit")
     args = parser.parse_args()
-
     if args.interval <= 0:
         parser.error("--interval must be greater than zero")
 
     output_dir = args.output_dir.resolve()
+    frame = newest_frame(output_dir)
     if args.print_only:
-        frame = newest_frame(output_dir)
         if not frame:
             print(f"No sim_top frame found below {output_dir}", file=sys.stderr)
             return 1
         print(frame)
         return 0
+    if not Image:
+        parser.error("Pillow is required for the live viewer (install python3-pil)")
 
     root = tk.Tk()
     root.title("sim_top: waiting for a frame")

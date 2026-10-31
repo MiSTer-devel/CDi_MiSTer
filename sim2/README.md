@@ -78,14 +78,14 @@ The report distinguishes the video `sequence end` marker from the container's
 In another terminal, run the following to keep a window on the most recently
 written display frame (across all numeric simulator instance directories):
 
-    ./view_latest_frame.py
+    ./tools/view_latest_frame.py
 
-It uses Linux filesystem notifications, so it is idle between frames, and
-scales the image to preserve its aspect ratio as the window is resized. Pillow
-enables scaling; without it, the viewer still opens frames at native size. To
-obtain the current frame path for use in another tool instead, use:
+It uses Linux filesystem notifications, with polling as a fallback, and scales
+the image to preserve its aspect ratio as the window is resized. It requires
+Pillow (`python3-pil`). To obtain the current frame path for use in another
+tool instead, use:
 
-    ./view_latest_frame.py --print
+    ./tools/view_latest_frame.py --print
 
 ### Scripted and live input
 
