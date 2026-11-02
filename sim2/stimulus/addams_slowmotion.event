@@ -1,0 +1,23 @@
+# Must be executed with fake fast mode to work
+# 8f72e250d8b62724449099a38e6cf077  images/addams.bin
+# For manual tests
+# obj_dir/Vemu 3 --auto --image images/addams.bin --load-state savestates/cdi_addams_before_pbc.vls --events stimulus/addams_slowmotion.event --max-frames 2000 --udp 28070 > log
+# obj_dir/Vemu 3 --auto --image images/addams.bin --load-state savestates/cdi_addams_slow_motion_reached.vls --events stimulus/addams_slowmotion.event --max-frames 2000 --udp 28070 > log
+# obj_dir/Vemu 1 --auto --image images/addams.bin --events stimulus/addams_slowmotion.event --max-frames 2000 > log1
+315 b1 2 # Open Playback Controls
+
++11 analog 80 0 # Move cursor to Slow Motion
++15 analog 0 0
++2 trace_on
++1 b1 2 # Start Slow Motion
+
+# The PBC is closed again by the movie player
+
++5 b1 2 # Open Playback Controls for Slow Motion
++50 b1 2 # Press Play to continue normal playback
+
+# We now have time to analyze the resume
+# It will take time
+
++300 quit
+

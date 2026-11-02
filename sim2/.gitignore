@@ -5,6 +5,7 @@ log*
 *.BIN
 *.sub
 *.rom
+*.log
 uartlog
 *.bmp
 *.wav

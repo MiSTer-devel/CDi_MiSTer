@@ -27,7 +27,6 @@ vip
 *_sim
 .qsys_edit
 PLLJ_PLLSPE_INFO.txt
-*.bak
 *.orig
 *.rej
 *.qdf
@@ -55,3 +54,4 @@ c5_pin_model_dump.txt
 *_netlist
 *.cdf
 **/.DS_Store
+*.cpython-314.pyc

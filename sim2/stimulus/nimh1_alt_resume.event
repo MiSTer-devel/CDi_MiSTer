@@ -1,16 +1,19 @@
 # ./sim_top.sh 1 --auto --udp 28071 > log1
 # Executed input events; reusable with --events
 # Image: images/nimh_alt.bin 2a74467d0c8026c637e09c0b3951a91f
-# Requires "Fake fast memory"
+# No "Fake fast memory"
 # Pauses and resumes playback of movie, fails with same crash as "Addams Family" during resume
 
-196 b1 3
-234 b1 3
-261 b1 3
-284 b1 3
-322 b1 3
-342 b1 3 # Pause
-378 b1 3 # Resume
+278 b1 3 # Skip first intro?
+300 b1 3 # Skip Philips intro
+334 b1 3 # Skip WARNING
+370 b1 3 # Skip another intro
+
+419 b1 3 # Open PBC
++20 b1 3 # Pause
++36 b1 3 # Resume
+
++200 quit
 
 # Expected results
 # $ cat log1 | grep valid

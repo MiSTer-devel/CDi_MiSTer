@@ -22,6 +22,8 @@
 1031 b1 3 # Press pause
 1081 b1 3 # Resume
 
++230 quit
+
 # Results are showing desynchronisation
 # $ cat log0 | grep valid
 # desync_valid       32903       32903     -1      -15596

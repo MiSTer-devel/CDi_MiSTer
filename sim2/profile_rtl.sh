@@ -57,7 +57,7 @@ if [[ -n "${PROFILE_DIR:-}" ]]; then
     mkdir -p "$profile_dir"
     rm -f "$profile_dir/gmon.out" "$profile_dir/gprof.txt" "$profile_dir/rtl.txt" "$profile_dir/run.log"
 else
-    profile_dir="$(mktemp -d /tmp/scc68070-profile.XXXXXX)"
+    profile_dir="$(mktemp -d /tmp/cdi-profile.XXXXXX)"
 fi
 
 mkdir -p "$machine"

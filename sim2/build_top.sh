@@ -6,7 +6,7 @@ debug_flags=()
 # The Verilator PCH is also consumed by the small C++ harness objects, which
 # Verilator builds with -Os.  Match that setting here so GCC accepts the PCH.
 cpp_flags="-Os"
-if [[ "${SIM_DEBUG:-1}" == "1" ]]; then
+if [[ "${SIM_DEBUG:-0}" == "1" ]]; then
     debug_flags=(--trace --trace-fst --trace-structs --assert)
     # Keep the C++ harness trace support in lockstep with Verilator tracing.
     # This replaces manually defining TRACE in sim_top.cpp.

@@ -29,8 +29,8 @@ To stop at a CD seek instead, use the LBA form (decimal or `0x` hexadecimal):
 The state is taken after frame 299 has been written (the frame counter is
 300). The LBA form saves at the `seek_lba_valid` pulse delivered to
 `hps_cd_sector_cache`. It contains the RTL model, display/audio transfer
-state, and pending scripted input. Use the same machine/CD image and the same
-Verilator build to restore it. Supplying `--events` with `--load-state` clears
+state, and pending scripted input. Use the same Verilator build to restore it.
+Supplying `--events` with `--load-state` clears
 the state’s pending scripted input and replaces it with that script; `--udp`
 may be added for new live input after restoring.
 

@@ -1,0 +1,41 @@
+# ./sim_top.sh 5 --auto --udp 28070 --image images/lostride_recomp.bin --events stimulus/lost_ride_recomp.event > log5
+# Image: images/lostride_recomp.bin
+
+# This image should not have a Philips Bumper.
+# It also will start at the same level every time
+
+# Mash buttons to skip intro and select Mineworld
+520 b1 3 
++7 b1 3
++7 b1 3
++7 b1 3
++7 b1 3
++7 b1 3
++7 b1 3
++7 b1 3
++7 b1 3
++7 b1 3
++7 b1 3
++7 b1 3
++7 b1 3
++7 b1 3
++7 b1 3
++7 b1 3
++7 b1 3
++7 b1 3
++7 b1 3
++7 b1 3
++7 b1 3
++7 b1 3
+
+# Vehicle prep now plays
+
+1122 b1b2 3 # Pause
++40 b1 3 # Resume
+
+1370 quit
+
+# When pausing, we loose about 20 frames
+# The frame 1320 without pausing is
+# reached at frame 1343 when we have paused
+

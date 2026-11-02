@@ -1,0 +1,3 @@
+# Keep the approved arrow fixtures despite the repository-wide PNG ignore rule.
+!ref_lostride0.png
+!ref_lostride1.png

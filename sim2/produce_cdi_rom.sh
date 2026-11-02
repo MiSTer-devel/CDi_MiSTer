@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # According to CD-i Fan this ROM is not normal.
 # But I guess since I started with this...
 xxd -p -c2 cdimono1/cdi200.rom cdi200.mem

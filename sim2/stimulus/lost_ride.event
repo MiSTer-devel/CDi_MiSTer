@@ -9,7 +9,7 @@
 649 b1 3 # Skip the Enji logo intro Try 3
 
 # The game now loads the menu
-684 b1 3 # Select MineWorld
+684 b1 3 # Select Mineworld
 # On frame 941 the vehicle prep scene is visible
 
 # We should be ingame now at frame 1190

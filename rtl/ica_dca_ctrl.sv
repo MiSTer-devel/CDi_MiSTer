@@ -41,6 +41,9 @@ module ica_dca_ctrl (
     localparam bit [21:0] even_ica_start = 22'h404;
 
     bit [21:0] ica_pointer;
+
+    // The lowest 2 bits are usually 0. But with Addams Family it is possible
+    // to have a non 32 bit aligned address. This will be discared
     bit [21:0] dca_pointer;
     bit [21:0] next_line_dca_pointer;
     bit [3:0] dca_burst_cnt;
@@ -121,14 +124,12 @@ module ica_dca_ctrl (
                         // check for alignment on 32 bit boundary
                         assert (ica_pointer[1:0] == 0);
                         as <= 1;
-                    end else if (dca_read) begin
+                    end else if (dca_read && dca_pointer[1:0] == 0) begin // check at least for alignment on 32 bit boundary
                         dca_active <= 1;
                         // ICA has ended. Wait for hblanks to
                         state <= DCA_READ0;
                         as <= 1;
                         address <= dca_pointer;
-                        // check at least for alignment on 32 bit boundary
-                        assert (dca_pointer[1:0] == 0);
 
                         if (dca_pointer[2]) begin
                             // This is bad. The access is not on a 64 bit boundary
