@@ -399,8 +399,10 @@ module cditop (
     // It will result into 160 polls until the answer is available
 
 `ifdef VERILATOR
+    bit debug_disable_cpu  /*verilator public_flat_rw */ = 0;
+
     // For simulation, we are fine because of a hack in uc_68hc05.sv
-    assign reset68k = reset;
+    assign reset68k = reset || debug_disable_cpu;
 `else
     resetdelay cpuresetdelay (
         .clk(clk30),

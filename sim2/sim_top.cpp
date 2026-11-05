@@ -1901,7 +1901,7 @@ class CDi {
         dut.trace(&m_trace, 5);
 
         if (do_trace) {
-            sprintf(filename, "/tmp/waveform.vcd", instanceid);
+            sprintf(filename, "/tmp/waveform.fst", instanceid);
             fprintf(stderr, "Writing to %s\n", filename);
             m_trace.open(filename);
         }
