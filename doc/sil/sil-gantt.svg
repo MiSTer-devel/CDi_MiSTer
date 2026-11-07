@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1190" height="512">
+<rect width="100%" height="100%" fill="white"/>
+<text x="12" y="20" font-family="sans-serif" font-size="16">SIL run timeline</text>
+<line x1="370.0" y1="36" x2="370.0" y2="504" stroke="#d1d5db"/>
+<text x="370.0" y="32" text-anchor="middle" font-family="sans-serif" font-size="11">0.0s</text>
+<line x1="530.0" y1="36" x2="530.0" y2="504" stroke="#d1d5db"/>
+<text x="530.0" y="32" text-anchor="middle" font-family="sans-serif" font-size="11">819.9s</text>
+<line x1="690.0" y1="36" x2="690.0" y2="504" stroke="#d1d5db"/>
+<text x="690.0" y="32" text-anchor="middle" font-family="sans-serif" font-size="11">1639.8s</text>
+<line x1="850.0" y1="36" x2="850.0" y2="504" stroke="#d1d5db"/>
+<text x="850.0" y="32" text-anchor="middle" font-family="sans-serif" font-size="11">2459.7s</text>
+<line x1="1010.0" y1="36" x2="1010.0" y2="504" stroke="#d1d5db"/>
+<text x="1010.0" y="32" text-anchor="middle" font-family="sans-serif" font-size="11">3279.7s</text>
+<line x1="1170.0" y1="36" x2="1170.0" y2="504" stroke="#d1d5db"/>
+<text x="1170.0" y="32" text-anchor="middle" font-family="sans-serif" font-size="11">4099.6s</text>
+<text x="12" y="60" font-family="sans-serif" font-size="12">Machine 0 · Job 0: boot_save_state_ready</text>
+<rect x="370.0" y="44" width="17.6" height="18" rx="3" fill="#86efac"/>
+<text x="392.6" y="58" font-family="sans-serif" font-size="11">90.16s</text>
+<text x="12" y="88" font-family="sans-serif" font-size="12">Machine 7 · Job 7: sil_test_movingwindow2</text>
+<rect x="387.6" y="72" width="326.1" height="18" rx="3" fill="#86efac"/>
+<text x="718.7" y="86" font-family="sans-serif" font-size="11">1671.32s</text>
+<text x="12" y="116" font-family="sans-serif" font-size="12">Machine 5 · Job 5: sil_test_flying_mattes</text>
+<rect x="387.6" y="100" width="253.9" height="18" rx="3" fill="#86efac"/>
+<text x="646.5" y="114" font-family="sans-serif" font-size="11">1301.07s</text>
+<text x="12" y="144" font-family="sans-serif" font-size="12">Machine 6 · Job 6: sil_test_movingwindow1</text>
+<rect x="387.6" y="128" width="315.2" height="18" rx="3" fill="#86efac"/>
+<text x="707.8" y="142" font-family="sans-serif" font-size="11">1615.46s</text>
+<text x="12" y="172" font-family="sans-serif" font-size="12">Machine 3 · Job 3: secret_of_nimh_alt</text>
+<rect x="387.7" y="156" width="394.4" height="18" rx="3" fill="#86efac"/>
+<text x="787.1" y="170" font-family="sans-serif" font-size="11">2021.21s</text>
+<text x="12" y="200" font-family="sans-serif" font-size="12">Machine 4 · Job 4: secret_of_nimh</text>
+<rect x="387.7" y="184" width="729.4" height="18" rx="3" fill="#86efac"/>
+<text x="1122.0" y="198" font-family="sans-serif" font-size="11">3737.57s</text>
+<text x="12" y="228" font-family="sans-serif" font-size="12">Machine 1 · Job 1: custom_lost_ride_game_reached</text>
+<rect x="387.7" y="212" width="591.5" height="18" rx="3" fill="#86efac"/>
+<text x="984.2" y="226" font-family="sans-serif" font-size="11">3031.10s</text>
+<text x="12" y="256" font-family="sans-serif" font-size="12">Machine 2 · Job 2: addams_family_pbc_reached</text>
+<rect x="387.7" y="240" width="116.1" height="18" rx="3" fill="#86efac"/>
+<text x="508.8" y="254" font-family="sans-serif" font-size="11">595.01s</text>
+<text x="12" y="284" font-family="sans-serif" font-size="12">Machine 10 · Job 10: addams_family_crazypause</text>
+<rect x="503.8" y="268" width="590.3" height="18" rx="3" fill="#fca5a5"/>
+<text x="1099.1" y="282" font-family="sans-serif" font-size="11">3024.85s</text>
+<text x="12" y="312" font-family="sans-serif" font-size="12">Machine 11 · Job 11: addams_family_slowmotion_reached</text>
+<rect x="503.8" y="296" width="47.1" height="18" rx="3" fill="#86efac"/>
+<text x="555.9" y="310" font-family="sans-serif" font-size="11">241.24s</text>
+<text x="12" y="340" font-family="sans-serif" font-size="12">Machine 8 · Job 8: addams_family_seek</text>
+<rect x="503.8" y="324" width="124.1" height="18" rx="3" fill="#86efac"/>
+<text x="633.0" y="338" font-family="sans-serif" font-size="11">636.11s</text>
+<text x="12" y="368" font-family="sans-serif" font-size="12">Machine 9 · Job 9: check_addams_family_pause_resume</text>
+<rect x="503.8" y="352" width="271.9" height="18" rx="3" fill="#86efac"/>
+<text x="780.7" y="366" font-family="sans-serif" font-size="11">1393.21s</text>
+<text x="12" y="396" font-family="sans-serif" font-size="12">Machine 12 · Job 12: addams_family_resume_from_slow_motion</text>
+<rect x="550.9" y="380" width="339.6" height="18" rx="3" fill="#86efac"/>
+<text x="895.5" y="394" font-family="sans-serif" font-size="11">1740.49s</text>
+<text x="12" y="424" font-family="sans-serif" font-size="12">Machine 0 · Job 13: addams_family_freeze_frame_and_resume</text>
+<rect x="550.9" y="408" width="178.2" height="18" rx="3" fill="#86efac"/>
+<text x="734.1" y="422" font-family="sans-serif" font-size="11">913.23s</text>
+<text x="12" y="452" font-family="sans-serif" font-size="12">Machine 11 · Job 15: custom_lost_ride_with_pause_finish</text>
+<rect x="979.2" y="436" width="190.8" height="18" rx="3" fill="#86efac"/>
+<text x="1175.0" y="450" font-family="sans-serif" font-size="11">977.74s</text>
+<text x="12" y="480" font-family="sans-serif" font-size="12">Machine 2 · Job 14: custom_lost_ride_no_pause_finish</text>
+<rect x="979.2" y="464" width="175.7" height="18" rx="3" fill="#86efac"/>
+<text x="1159.9" y="478" font-family="sans-serif" font-size="11">900.38s</text>
+</svg>

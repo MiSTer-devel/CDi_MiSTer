@@ -151,3 +151,22 @@ window. The analog stick stays at its last position; use **Center stick** to
 return it to neutral. Set a save-state path and press **Save** (or `Ctrl+S`)
 to send a UDP `save` command. Use **Stop simulator** to send the UDP `quit`
 command.
+
+## Software in the Loop
+
+The Verilator tests can be automated for CI purposes
+Keep in mind that many CD images are required for this and about 70 minutes are required to simulate everything.
+
+    python tools/test_sil.py 
+
+### Example results.
+
+The dependency graph of the jobs
+
+![SIL Dependency Graph](../doc/sil/sil-graph.svg)
+
+The same but for timing
+
+![SIL Gantt Diagram](../doc/sil/sil-gantt.svg)
+
+
