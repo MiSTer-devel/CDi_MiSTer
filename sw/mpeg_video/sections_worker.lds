@@ -3,12 +3,12 @@ ENTRY(_start)
 
 MEMORY
 {
-    ram  (wxai!r) : ORIGIN = 0x00000000, LENGTH = 3400
+    ram  (wxai!r) : ORIGIN = 0x00000000, LENGTH = 2900
 }
 
 SECTIONS
 {
-    __stack_size = 512;
+    __stack_size = 100;
 
     /* Code and read-only data */
     .text : {
