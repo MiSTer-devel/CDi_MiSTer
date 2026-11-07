@@ -14,6 +14,7 @@ class RiscVStackAnalyzer {
     uint32_t stack_top{0}; // first byte after stack!
 
     static constexpr uint8_t kWaterMark{0xAA};
+    static constexpr uint8_t kMinimumFreeSpace{30};
 
   public:
     void ReadMapFile(const char *map_file) {
@@ -39,11 +40,17 @@ class RiscVStackAnalyzer {
         uint8_t *ram = reinterpret_cast<uint8_t *>(ram_void);
         for (int adr = stack_bottom; adr < stack_top; adr++) {
             if (ram[adr] != kWaterMark) {
+
+                // This must be caught at all costs!
+                // This project must never fail with something as stupid as a stack overflow
+                // in the MPEG hardware >.<
+                assert(kMinimumFreeSpace < (adr - stack_bottom));
+
                 return stack_top - adr;
             }
         }
+
         // No stack usage
         return 0;
     }
 };
-

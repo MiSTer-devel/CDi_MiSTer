@@ -5,41 +5,41 @@ For this reason, I've created a list of some known quirks, one might suspect of 
 by emulation errors but are also present on the real machine.
 
 * Is the "Digital Video Cartridge" supported?
-    * Please stop asking! >.<
+  * Please stop asking! >.<
 * The map of "Zelda - Wand of Gamelon" has micro jitter during scrolling
-    * This also happens on real 210/05 hardware
+  * This also happens on real 210/05 hardware
 * "Hotel Mario" seems to have the first samples of every ingame song repeated
-    * You have good ears as it is barely noticeable. This also happens on real hardware.
+  * You have good ears as it is barely noticeable. This also happens on real hardware.
 * Some earlier CD-i titles have both stereo channels swapped
-    * Yes, according to an [internal memo from Philips](http://icdia.co.uk/docs/mono2status.zip) there
-      were manufacturing issues and some early players have the left and right channel swapped.
-      This might explain discrepancies.
-    * One known quirk is inverted stereo on the "Philips Logo Jingle" of "Zelda - Wand of Gamelon"
+  * Yes, according to an [internal memo from Philips](http://icdia.co.uk/docs/mono2status.zip) there
+    were manufacturing issues and some early players have the left and right channel swapped.
+    This might explain discrepancies.
+  * One known quirk is inverted stereo on the "Philips Logo Jingle" of "Zelda - Wand of Gamelon"
 * During the rotating transition in "Myst" there are glitched lines at the bottom
-    * This also happens to some extent on a real 210/05 hardware and is caused by a misplaced Video IRQ
-      The video data is changed while it is displayed.
+  * This also happens to some extent on a real 210/05 hardware and is caused by a misplaced Video IRQ
+    The video data is changed while it is displayed.
 * When I load a save game in "Burn:Cycle" it plays a short and unclean loop of noise until I do something
-    * I thought that was a bug in the core at first too. However, it is actually like this on a real CD-i too.
+  * I thought that was a bug in the core at first too. However, it is actually like this on a real CD-i too.
 * The music of Burn:Cycle sometimes has "pops" and "clicks"
-    * This game is special. It doesn't play music from CD like most games for this system would do.
-    * Small loops of sampled music are loaded from CD, stored in memory and randomly concatenated together
-      to create the background music. These samples are sometimes not very "loopable" creating a pop at looping points.
-    * This issue is reproducible on a real 210/05 as well
+  * This game is special. It doesn't play music from CD like most games for this system would do.
+  * Small loops of sampled music are loaded from CD, stored in memory and randomly concatenated together
+    to create the background music. These samples are sometimes not very "loopable" creating a pop at looping points.
+  * This issue is reproducible on a real 210/05 as well
 * The music during the Philips Logo animation of Burn:Cycle has broken audio
-    * This issue is reproducible on a real 210/05 as well
-    * For some reason, it seems to be absent on other models with different hardware, like the 450/00
-    * The problem can be fixed by overclocking the CPU
+  * This issue is reproducible on a real 210/05 as well
+  * For some reason, it seems to be absent on other models with different hardware, like the 450/00
+  * The problem can be fixed by overclocking the CPU
 * Burn:Cycle - Random flickery animated text in front of the "Psychic Roulette" credit card terminal
-    * This actually happens on the real machine. I also thought this might be a CPU speed issue, considering
-      that the flickering disappears if the CPU is slightly overclocked.
+  * This actually happens on the real machine. I also thought this might be a CPU speed issue, considering
+    that the flickering disappears if the CPU is slightly overclocked.
 * Flashback: The audio and video during the intro are asynchronous
-    * This curiously happens on the real machine as well and doesn't even depend on 50 or 60 Hz
-    * It seems to be an oversight by the developers when the game was ported to CD-i
+  * This curiously happens on the real machine as well and doesn't even depend on 50 or 60 Hz
+  * It seems to be an oversight by the developers when the game was ported to CD-i
 * When dying in "Zelda's Adventure" the accompanying sound effect doesn't match the audio data on CD
-    * Good catch! This is a programming error which can be reproduced on a real CD-i 210/05 as well,
-      which causes the audio playback to start one sector too late.
-    * The same phenomenon exists in the "Help cutscene" of "Zelda - Wand of Gamelon"
-        * It is not audible in that game, because of silence in the beginning
+  * Good catch! This is a programming error which can be reproduced on a real CD-i 210/05 as well,
+    which causes the audio playback to start one sector too late.
+  * The same phenomenon exists in the "Help cutscene" of "Zelda - Wand of Gamelon"
+    * It is not audible in that game, because of silence in the beginning
 * The intro music of Zenith is played only on the left audio channel
   * Yes, this happens on a real 210/05 too. To be sure, I've tested it as well
     on a 450/00. It seems to be an oversight by the developers.
@@ -71,6 +71,10 @@ by emulation errors but are also present on the real machine.
     * This happens on real hardware as well. This seems to be an oversight by the developer.
   * The main menu has a weird freeze frame when the cutscene before that is skipped
     * Like on real hardware. I don't know what they were thinking.
+  * The gameplay stutters after resuming from pause
+    * This happens on real hardware as well. The cause is yet unknown
+  * On forks in the road, the screen shifts horizontally and the game seems to glitch for some seconds before repeating the last segment
+    * This issue is present on real hardware, but should be absent on MiSTer right now. If not, create an issue please
 * During the intro of "The Ultimate Noah's Ark", the Mike Wilks artwork has repeated pixels on the bottom and right edge.
   * This looks wrong but real hardware does that too.
   * There is also a weirdly wrong column of pixels during the title page on the left inside the black frame
@@ -80,7 +84,13 @@ by emulation errors but are also present on the real machine.
   * The movie on the disc has an audio issue from time code 00:04:23 to 00:04:28. This is not caused by an MPEG decoding issue,
     since it can be reproduced with modern playback software as well. The noise sounds like a broken recording from
     a magnetic tape during the authoring process.
+* "Cover Girl 'Play Area' Programme I (UK)" is not controllable
+  * This title requires an "Absolute Pointing Device" like a Lightpen or a Touch screen. It is not designed to be controlled by a "Relative Pointing Device"
 * When pausing and resuming MPEG audio, sometimes a short blip of ~70ms can be heard, followed by a pause of ~250ms before actual Audio starts
   * This is a bug in the VMPEG ROM version 4.1 and is present on real hardware as well.
   * With the movie "Addams Family", at least one title is known to show this issue
-
+* "Uncover featuring Tatjana"
+  * The Tab 6 on the main menu doesn't fully close.
+    * This is actually in the game and a programming error.
+  * The Tab 4 on the main menu has a "Black folder glitch"
+    * This is a wrong video frame and an authoring error by the developer
