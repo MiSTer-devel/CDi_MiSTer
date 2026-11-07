@@ -1,6 +1,7 @@
 import sys
 from pathlib import Path
 from collections import deque
+from contextlib import contextmanager
 import threading
 import subprocess
 import time
@@ -11,6 +12,40 @@ else:
     from eventscript import *
 
 import tempfile
+
+
+class _ThreadLocalStdout:
+    """Route stdout for the current thread without affecting other SIL jobs."""
+
+    def __init__(self, fallback):
+        self.fallback = fallback
+        self.stream = threading.local()
+
+    def write(self, data):
+        return getattr(self.stream, "value", self.fallback).write(data)
+
+    def flush(self):
+        return getattr(self.stream, "value", self.fallback).flush()
+
+    def __getattr__(self, name):
+        return getattr(self.fallback, name)
+
+    @contextmanager
+    def redirect(self, path):
+        with path.open("w") as output:
+            previous = getattr(self.stream, "value", None)
+            self.stream.value = output
+            try:
+                yield
+            finally:
+                if previous is None:
+                    del self.stream.value
+                else:
+                    self.stream.value = previous
+
+
+_stdout_router = _ThreadLocalStdout(sys.stdout)
+sys.stdout = _stdout_router
 
 DEFAULT_MAX_FRAMES = 2000
 MACHINE_COUNT = 13
@@ -79,6 +114,7 @@ class Machine:
         self.output_dir = None
         self.stdout_path = None
         self.stderr_path = None
+        self.analysis_path = None
         self.images = {}
         self.result = None
         self.thread = None
@@ -204,6 +240,7 @@ class Machine:
                     )
                     stdout_path = self.stdout_path = log_dir / "stdout.log"
                     stderr_path = self.stderr_path = log_dir / "stderr.log"
+                    self.analysis_path = log_dir / "analysis.log"
                     video_dir = self.output_dir = sim_dir / str(machine_index)
 
                     def video_files():
@@ -267,7 +304,11 @@ class Machine:
                 previous_parent = getattr(_callback_context, "parent", None)
                 _callback_context.parent = job_id
                 try:
-                    callback(self)
+                    if self.analysis_path is None:
+                        callback(self)
+                    else:
+                        with _stdout_router.redirect(self.analysis_path):
+                            callback(self)
                 finally:
                     _callback_context.parent = previous_parent
             except BaseException as error:
