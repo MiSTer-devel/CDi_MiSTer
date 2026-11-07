@@ -24,6 +24,7 @@
 #include "hle.h"
 #include "imgwrite.h"
 #include "scramble.h"
+#include "stack_analyzer.hpp"
 #include "table_of_contents.h"
 #include <arpa/inet.h>
 #include <byteswap.h>
@@ -328,6 +329,9 @@ class CDi {
     }
 
   private:
+    RiscVStackAnalyzer worker_stack_analysis;
+    RiscVStackAnalyzer decoder_stack_analysis;
+
     FILE *f_audio_left{nullptr};
     FILE *f_audio_right{nullptr};
     FILE *f_fma{nullptr};
@@ -496,6 +500,26 @@ class CDi {
     }
 
   public:
+    void PrintMaximumStackUsage() {
+        int result;
+
+        result = decoder_stack_analysis.MeasureMaximumStackUsage(
+            &dut.rootp->emu__DOT__cditop__DOT__vmpeg_inst__DOT__video__DOT__core1mem__DOT__ram[0]);
+        printf("MPEG Video Bitstream Decoder Stack Usage %d\n", result);
+
+        result = worker_stack_analysis.MeasureMaximumStackUsage(
+            &dut.rootp->emu__DOT__cditop__DOT__vmpeg_inst__DOT__video__DOT__worker2__DOT__core2mem__DOT__ram[0]);
+        printf("MPEG Video Frame Worker2 Stack Usage %d\n", result);
+
+        result = worker_stack_analysis.MeasureMaximumStackUsage(
+            &dut.rootp->emu__DOT__cditop__DOT__vmpeg_inst__DOT__video__DOT__worker3__DOT__core2mem__DOT__ram[0]);
+        printf("MPEG Video Frame Worker3 Stack Usage %d\n", result);
+
+        result = worker_stack_analysis.MeasureMaximumStackUsage(
+            &dut.rootp->emu__DOT__cditop__DOT__vmpeg_inst__DOT__video__DOT__worker4__DOT__core2mem__DOT__ram[0]);
+        printf("MPEG Video Frame Worker4 Stack Usage %d\n", result);
+    }
+
     bool SaveState(const char *path) {
         VerilatedSave os;
         os.open(path);
@@ -1922,8 +1946,23 @@ class CDi {
             clock30();
         }
 
+        // Zero virtual DDR4 memory
         memset(&dut.rootp->emu__DOT__ddram[0], 0x00, 5000000);
+
+        // Zero Video and DVC RAM
         memset(&dut.rootp->emu__DOT__ram[0], 0x00, 2097152 * 2);
+
+        decoder_stack_analysis.ReadMapFile("../sw/mpeg_video/firmware1.map");
+        worker_stack_analysis.ReadMapFile("../sw/mpeg_video/firmware2.map");
+
+        worker_stack_analysis.InsertWatermarks(
+            &dut.rootp->emu__DOT__cditop__DOT__vmpeg_inst__DOT__video__DOT__worker2__DOT__core2mem__DOT__ram[0]);
+        worker_stack_analysis.InsertWatermarks(
+            &dut.rootp->emu__DOT__cditop__DOT__vmpeg_inst__DOT__video__DOT__worker3__DOT__core2mem__DOT__ram[0]);
+        worker_stack_analysis.InsertWatermarks(
+            &dut.rootp->emu__DOT__cditop__DOT__vmpeg_inst__DOT__video__DOT__worker4__DOT__core2mem__DOT__ram[0]);
+        decoder_stack_analysis.InsertWatermarks(
+            &dut.rootp->emu__DOT__cditop__DOT__vmpeg_inst__DOT__video__DOT__core1mem__DOT__ram[0]);
 
 #if 0
         FILE *f = fopen("ddramdump.bin", "rb");
@@ -2228,6 +2267,9 @@ int main(int argc, char **argv) {
     machine.modelstep();
     machine.modelstep();
     machine.modelstep();
+
+    machine.PrintMaximumStackUsage();
+
     machine.DumpBaseCaseMemory();
     machine.DumpDvcSysMemory();
     machine.dump_slave_memory();
