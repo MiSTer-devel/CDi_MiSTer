@@ -371,10 +371,10 @@ module vmpeg (
     // [6] Step
     // [7] Stop
     // [15] Start DMA
-    (* keep *) (* noprune *) bit [15:0] fmv_system_command_register = 0;
+    bit [15:0] fmv_system_command_register = 0;
 
     // FMV VIDCMD @ 00E040C2
-    (* keep *) (* noprune *) bit [15:0] fmv_video_command_register = 0;
+    bit [15:0] fmv_video_command_register = 0;
 
     // FMV SYS_SCR @ 00E040C6
     // [1:0] BSIZ ?
@@ -386,7 +386,7 @@ module vmpeg (
     // 8829 1000 1000 0010 1001 During self build stepping, Async, CD-i Mode, Fullmotion No Interlace
     // So this would indicate that Sync should Synchronize to the DTS?
     // And Async shall decode and display as fast as possible?
-    (* keep *) (* noprune *) bit [15:0] fmv_system_control_register = 0;
+    bit [15:0] fmv_system_control_register = 0;
 
     bit fmv_show_on_next_video_frame;
 

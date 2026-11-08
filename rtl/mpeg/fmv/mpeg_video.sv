@@ -173,7 +173,7 @@ module mpeg_video (
     end
 
     wire dts_fifo_valid;
-    (* keep *) (* noprune *) wire signed [32:0] dts_fifo_out;
+    wire signed [32:0] dts_fifo_out;
     wire discard_picture_before_decoder;
     wire discard_picture_after_decoder;
     wire discard_picture = discard_picture_before_decoder || discard_picture_after_decoder;
@@ -233,13 +233,11 @@ module mpeg_video (
     // Only bits 21:6 can be changed by the CPU
     // It should be noted that the driver wants to have bit 21 always 0.
     // So only bits 20:6 of dclk must be used here.
-    (* keep *)
-    (* noprune *)
     wire signed [14:0] display_dts_desync = dclk[20:6] - sync_dts[21:7];
 
     // Latched from display_dts_desync at latch_frame_for_display
     // to help with meta stability
-    (* keep *) (* noprune *) bit signed [14:0] display_dts_desync_q;
+    bit signed [14:0] display_dts_desync_q;
 
     // Inc on picture_added_in_input_fifo
     // Dec on event_frame_decoded
