@@ -4,8 +4,8 @@
 #include "Vemu.h"
 #include "Vemu___024root.h"
 
-#include <byteswap.h>
 #include <algorithm>
+#include <byteswap.h>
 #include <cstdint>
 #include <cstdio>
 #include <cstdlib>
@@ -55,14 +55,14 @@ class VideoSim {
             trace.open(kTraceFile);
         }
 #endif
-        dut.rootp->emu__DOT__cditop__DOT__debug_disable_cpu = true;
-        dut.rootp->emu__DOT__debug_limited_to_full = 0;
-        dut.rootp->emu__DOT__img_size = 4096;
-        dut.UART_RXD = 1;
         dut.RESET = 1;
 
         for (int i = 0; i < 300; ++i)
             clock();
+
+        dut.rootp->emu__DOT__cditop__DOT__debug_disable_cpu = true;
+        dut.rootp->emu__DOT__img_size = 4096;
+        dut.UART_RXD = 1;
 
         dut.RESET = 0;
         dut.OSD_STATUS = 1;
@@ -266,8 +266,8 @@ void forked_run() {
     const char *ramdumps_dir = std::getenv("CDI_RAMDUMPS");
     const char *hacks_file = std::getenv("CDI_VIDEO_HACKS_FILE");
     const auto hacks_by_dump = load_hacks(hacks_file ? hacks_file : "videosim_hacks.txt");
-    const std::string path = std::string(ramdumps_dir ? ramdumps_dir : "ramdumps/") + "/" +
-                             (ramdump_glob ? ramdump_glob : "*") + ".bin";
+    const std::string path =
+        std::string(ramdumps_dir ? ramdumps_dir : "ramdumps/") + "/" + (ramdump_glob ? ramdump_glob : "*") + ".bin";
     const auto ramdumps = find_files(path);
     const size_t chunk_size = std::max(ramdumps.size() / kNumberForks, size_t{1});
     std::vector<pid_t> children;

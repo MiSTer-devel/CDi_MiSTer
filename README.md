@@ -72,9 +72,6 @@ by unplugging the current device and plugging in the next.
   * Aspect Ratio
   * Scale
   * Vertical Crop - Off, On(270) - For improved integer scaling
-  * RGB Scale
-    * 0-255 - Full RGB range
-    * 16-235 - Reduced RGB range (might provide more accurate color / more contrast)
 * Hardware Config
   * Ports - Either 1 Player with additional UART, or 2 players.*
   * Disable VMPEG DVC - Reset core to take effect

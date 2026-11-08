@@ -26,12 +26,12 @@ always @(posedge clk_vid) gamma <= gamma_curve[gamma_index];
 
 reg [9:0] gamma_index;
 reg [7:0] gamma;
+reg [1:0] ctr = 0;
 
 always @(posedge clk_vid) begin
 	reg [7:0] R_in, G_in, B_in;
 	reg [7:0] R_gamma, G_gamma;
 	reg       hs,vs,hb,vb;
-	reg [1:0] ctr = 0;
 	reg       old_ce;
 
 	old_ce <= ce_pix;

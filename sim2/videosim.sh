@@ -38,7 +38,7 @@ verilator --top-module emu -CFLAGS "-DCROP=${CROP} ${cpp_flags}" \
      "${debug_flags[@]}" \
     --cc --exe --build   \
     --build-jobs 8 videosim_top.cpp -I../rtl  \
-    ../rtl/*.sv ../CDi.sv ../rtl/*.v  \
+    ../rtl/*.sv ../CDi.sv ../sys/gamma_corr.sv ../rtl/*.v  \
     -I../rtl/mpeg -I../rtl/mpeg/fma ../rtl/mpeg/*.v ../rtl/mpeg/*.sv \
     ../rtl/mpeg/fma/*.sv  ../rtl/mpeg/fmv/*.sv  \
     tg68kdotc_verilog_wrapper.v ur6805.v \

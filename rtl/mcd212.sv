@@ -68,7 +68,6 @@ module mcd212 (
     output irq,
 
     input [1:0] debug_force_video_plane,
-    input [1:0] debug_limited_to_full,
     input config_disable_cpu_starve,
     input config_rgb888
 
@@ -1287,19 +1286,6 @@ module mcd212 (
         else clamped_mix = sum[7:0];
     endfunction
 
-    // Scales 16-235 to 0-255
-    function automatic [7:0] limited_to_full1(input [7:0] value);
-        if (value >= 235) limited_to_full1 = 255;
-        else if (value <= 16) limited_to_full1 = 0;
-        else limited_to_full1 = (value - 16) * 37 / 32;
-    endfunction
-
-    // Scales 16-255 to 0-255
-    function automatic [7:0] limited_to_full2(input [7:0] value);
-        if (value <= 16) limited_to_full2 = 0;
-        else limited_to_full2 = (value - 16) * 34 / 32;
-    endfunction
-
     always_comb begin
         bit backdrop_pixel;
 
@@ -1342,16 +1328,6 @@ module mcd212 (
 
         if (debug_force_video_plane == 2'b01) vidout = plane_a_q;
         else if (debug_force_video_plane == 2'b10) vidout = plane_b_q;
-
-        if (debug_limited_to_full == 1) begin
-            vidout.r = limited_to_full1(vidout.r);
-            vidout.g = limited_to_full1(vidout.g);
-            vidout.b = limited_to_full1(vidout.b);
-        end else if (debug_limited_to_full == 2) begin
-            vidout.r = limited_to_full2(vidout.r);
-            vidout.g = limited_to_full2(vidout.g);
-            vidout.b = limited_to_full2(vidout.b);
-        end
 
         // cursor
         if (cursor_pixel_q && inside_cursor_window_q && cursor_control_register.en) begin
