@@ -202,7 +202,6 @@ def addams_family_crazypause(machine):
 
 
 def secret_of_nimh(machine):
-    # TODO Ensure that hardware is actually having that much desync!
     _run_analysis(machine, analysis.check_secret_of_nimh, "Secret of NIMH")
 
 

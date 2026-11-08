@@ -416,7 +416,7 @@ def check_addams_family_seek(machine):
 
 
 def check_secret_of_nimh(machine):
-    """Verify speed-change order and the normal disc's desync rise/recovery."""
+    """Verify speed-change order and desync recovery to below 10 by the end."""
     expected_speeds = (0x7FFFFFFF, 0)
     speed_lines = []
     readings = []
@@ -495,6 +495,12 @@ def check_secret_of_nimh(machine):
                 f"at {machine.stdout_path}:{previous[0]} to {current[1]} at "
                 f"{machine.stdout_path}:{current[0]} (maximum allowed increase: 2)"
             )
+    final_line, final_desync = readings[-1]
+    if final_desync >= 10:
+        raise AssertionError(
+            f"Secret of NIMH: final absolute desync must be below 10, "
+            f"found {final_desync} at {machine.stdout_path}:{final_line}"
+        )
     print(
         f"Secret of NIMH passed: MV_ChSpeed D5=7fffffff then 00000000, "
         f"{len(readings)} measurements, desync {readings[0][1]} → {peak} → {readings[-1][1]}"
