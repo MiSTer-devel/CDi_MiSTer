@@ -24,8 +24,8 @@ module pointing_device (
     endfunction
 
 
-    // The baud rate of spoon is 1200
-    // A serial frame costs 1 start bit, 8 data bits and 1 stop bit
+    // The baud rate of the spoon is 1200
+    // A serial frame uses 1 start bit, 8 data bits and 1 stop bit
     // In truth according to the documentation these are 7 data bits and 2 stop bits
     // But I know that this is just wrong documentation.
     // 1200 baud is eqivalent to 120 byte/s
@@ -86,7 +86,7 @@ module pointing_device (
     wire significant_mouse_movement = (x_mouse_inc < -2) || (y_mouse_inc < -2) || (x_mouse_inc > 2) || (y_mouse_inc > 2);
     bit significant_mouse_movement_latch;
 
-    // accumulate movement from MiSTer framework
+    // Accumulate movement from MiSTer framework
     bit signed [12:0] x_mouse_acc;
     bit signed [12:0] y_mouse_acc;
 
@@ -163,7 +163,7 @@ module pointing_device (
         serial_out.write <= 0;
         mouse_event_q <= mouse_event;
 
-        // accumulation of mouse movement
+        // Accumulation of mouse movement
         if (mouse_inc_valid && device_type == RELATIVE) begin
             x_mouse_acc <= x_mouse_acc + 13'(x_mouse_inc);
             y_mouse_acc <= y_mouse_acc + 13'(y_mouse_inc);
@@ -213,11 +213,11 @@ module pointing_device (
         end
 
 
-        // change whole frame at the same time before transmitting the next
+        // Change whole frame at the same time before transmitting the next
         if (cnt == 1 && state == IDLE) begin
             significant_mouse_movement_latch <= 0;
 
-            // setup transmission of pointing device data, send correct
+            // Setup transmission of pointing device data, send correct
             // device ID first if required.
             if (significant_mouse_movement_latch && !digital_movement && !analog_movement && (device_type != RELATIVE)) begin
                 device_type <= RELATIVE;
@@ -226,7 +226,7 @@ module pointing_device (
                 device_type <= MANEUVERING;
                 state <= DEVICE_ID;
             end else if (perform_transmit) begin
-                // store for next comparsion
+                // Store for next comparison
                 x_q <= x;
                 y_q <= y;
                 b1_q <= b1;
@@ -239,16 +239,19 @@ module pointing_device (
 
                 state <= BYTE0;
 
-                // clear mouse accumulators (but don't lose the current
-                // increment, in case it happened this clock tick)
-                x_mouse_acc <= 0;
-                y_mouse_acc <= 0;
-                if (mouse_inc_valid) begin
-                    x_mouse_acc <= 13'(x_mouse_inc);
-                    y_mouse_acc <= 13'(y_mouse_inc);
+                // Consume only the relative movement stored in this packet.
+                // Keep any saturated remainder for later packets and include
+                // a same-clock increment, which was not part of this packet.
+                // Joystick packets must not consume pending mouse movement.
+                if (device_type == RELATIVE) begin
+                    x_mouse_acc <= x_mouse_acc - 13'(x_mouse) +
+                                   (mouse_inc_valid ? 13'(x_mouse_inc) : 13'sd0);
+                    y_mouse_acc <= y_mouse_acc - 13'(y_mouse) +
+                                   (mouse_inc_valid ? 13'(y_mouse_inc) : 13'sd0);
                 end
             end
 
+            // With every transmitted frame, when using the gamepad, the acceleration will increase
             if (mister_joystick[3:0] == 0) begin
                 accel <= 0;
             end else if (mister_joystick[3:0] != 0 && accel < 7) begin
