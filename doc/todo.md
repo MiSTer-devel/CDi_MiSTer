@@ -2,8 +2,6 @@
 
 * ST flag changes pixel aspect ratio on HDMI upscaled image. Good or bad?
 * Implement optional 50/15 µsec emphasis for ADPCM (and CDDA?)
-* Check if speed of mouse device really is the max, a CD-i can take
-    * Also check the accumulator
 * Random hang of playback controls in Addams Family Disc 2. Movie still playing. Sudden rainbow colors.
     * Reproduced by frequently pausing and resuming
     * No regression. Always present since 251123
@@ -35,9 +33,6 @@
 * Cheat support?
     * Since the CD-i has a multi tasking operating system, this can only be achieved by OS9 aware memory access
 * Fix reset behaviour (Core is sometimes hanging after reset)
-* Investigate desaturated colors / low contrast in "Photo CD Sample Disc"
-    * Probably fixable with 16-235 to 0-255 scaling
-    * More investigation needed
 * Find a solution for the video mode reset during system resets
     * The ST flag is the issue here, causing a video mode change
     * Interlacing also is a problem here
