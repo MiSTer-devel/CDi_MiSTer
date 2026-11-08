@@ -371,10 +371,10 @@ module vmpeg (
     // [6] Step
     // [7] Stop
     // [15] Start DMA
-    (* keep *) (* noprune *) bit [15:0] fmv_system_command_register = 0;
+    bit [15:0] fmv_system_command_register = 0;
 
     // FMV VIDCMD @ 00E040C2
-    (* keep *) (* noprune *) bit [15:0] fmv_video_command_register = 0;
+    bit [15:0] fmv_video_command_register = 0;
 
     // FMV SYS_SCR @ 00E040C6
     // [1:0] BSIZ ?
@@ -386,7 +386,7 @@ module vmpeg (
     // 8829 1000 1000 0010 1001 During self build stepping, Async, CD-i Mode, Fullmotion No Interlace
     // So this would indicate that Sync should Synchronize to the DTS?
     // And Async shall decode and display as fast as possible?
-    (* keep *) (* noprune *) bit [15:0] fmv_system_control_register = 0;
+    bit [15:0] fmv_system_control_register = 0;
 
     bit fmv_show_on_next_video_frame;
 
@@ -602,8 +602,18 @@ module vmpeg (
     bit pending_fma_stream_change;
     bit register_update_latch;
     bit register_update_scroll;
+
+    // I'm slightly ashamed here. This part of the Window update mechanism was derived
+    // via usage of generative AI. I've created many applications as stimulus to detect
+    // differences between the register values of real VMPEG and my replication here.
+    // AI helped to analyze the differences and has created some parts here that
+    // followed the matching patterns in the test data.
+    // The Software in the loop test is used to keep track of the accuracy
+
+    // Detect writing of 0x000c to e040c2 as a scrolled updated request
     wire scroll_update_write = access && write_strobe && bus_ack &&
         address[15:1] == 15'h2061 && din[3] && din[2];
+
     // Registers accepted at a field boundary, awaiting a new picture.
     bit next_window_pending;
     bit register_update_late, next_window_late;
@@ -715,6 +725,9 @@ module vmpeg (
 
             if (vsync && !vsync_q) fmv_interrupt_status_register.vsync <= 1;
 
+            // This part of the Window update mechanism was derived from measurements
+            // via usage of generative AI.
+
             // Once the final picture is held, finish updates on field boundaries;
             // there will be no next picture to consume them.
             if ((fmv_picture_selected || held_window_update) && deferred_window_pending) begin
@@ -757,6 +770,9 @@ module vmpeg (
 
             if (!vsync && vsync_q && register_update_latch) begin
                 register_update_latch <= 0;
+
+                // This part of the Window update mechanism was derived from measurements
+                // via usage of generative AI.
                 fmv_interrupt_status_register.vcup <= 1;
                 fmv_interrupt_status_register.dcl <= 1;
                 next_window_late <= register_update_late;
@@ -1123,7 +1139,7 @@ module vmpeg (
 
                                 fmv_decoder_command[6] <= 0;
                                 fmv_decoder_command[1] <= 0;
-                                fmv_decoder_command[5] <= 0;  // RUN_RYTHM
+                                fmv_decoder_command[5] <= 0;  // RUN_RYTHM off
 
                                 // TODO confirm that this is happening
                                 image_width <= 0;
