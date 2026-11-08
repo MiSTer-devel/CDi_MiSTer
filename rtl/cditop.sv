@@ -13,7 +13,6 @@ module cditop (
     input debug_activate_vcd_filter,
     input debug_uart_fake_space,
     input [1:0] debug_force_video_plane,
-    input [1:0] debug_limited_to_full,
     input audio_cd_in_tray,
     input [2:0] config_audio_mixing,
 
@@ -249,7 +248,6 @@ module cditop (
         .sdram_burstdata_valid,
         .irq(vdsc_int),
         .debug_force_video_plane,
-        .debug_limited_to_full,
         // Don't starve the CPU during DMA transfers
         .config_disable_cpu_starve(config_disable_cpu_starve || cdic_dma_ack || cdic_dma_req),
         .config_rgb888

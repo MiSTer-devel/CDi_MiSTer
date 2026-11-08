@@ -5,7 +5,9 @@ They raise AssertionError on failure and do not build, schedule, or run simulato
 Pillow is imported only by image checks, so log analysis does not require it.
 """
 
+from collections import Counter
 from pathlib import Path
+import re
 from PIL import Image, ImageChops
 
 
@@ -572,13 +574,43 @@ def check_secret_of_nimh_alt(machine):
     )
 
 
+def find_test_canvas(image):
+    """Locate the black test canvas without assuming its capture offset.
+
+    The debug border is colored, while these test patterns use a large black
+    rectangle. Its empty rows share the same horizontal span, even when dots
+    or a picture interrupt other rows. Use the most frequent wide black span
+    and its first/last rows to recover the canvas bounds.
+    """
+    red, green, blue = image.convert("RGB").split()
+    black = ImageChops.lighter(ImageChops.lighter(red, green), blue).point(
+        lambda value: 255 if value == 0 else 0
+    )
+    width, height = image.size
+    pixels = black.tobytes()
+    wide_run = re.compile(b"\xff{" + str(max(1, width * 3 // 5)).encode() + b",}")
+    rows = []
+    for y in range(height):
+        match = wide_run.search(pixels[y * width:(y + 1) * width])
+        if match:
+            rows.append((y, match.span()))
+    if not rows:
+        return None
+    span = Counter(bounds for _, bounds in rows).most_common(1)[0][0]
+    matching_rows = [y for y, bounds in rows if bounds == span]
+    top, bottom = matching_rows[0], matching_rows[-1] + 1
+    if bottom - top < height // 2:
+        return None
+    return span[0], top, span[1], bottom
+
+
 def check_flying_mattes(machine):
 
     if not machine.images:
         raise AssertionError("Flying Mattes: no video frames available")
 
-    # Normalize the 4x-scaled simulator output to its logical pixel grid and
-    # exclude the debug border. Coordinates below refer to the active test area.
+    # Normalize the detected canvas to its logical pixel grid, excluding the
+    # debug border even if capture timing shifts the canvas on the output image.
     # The approved frame 450 has white bounds (100, 100, 116, 116): this is
     # the test's fixed pivot, rather than the center of the whole video canvas.
     expected_white = (100, 100, 116, 116)
@@ -594,11 +626,12 @@ def check_flying_mattes(machine):
 
     for frame, path in sorted(machine.images.items()):
         with Image.open(path) as image:
-            active = (
-                image.resize((480, 312), Image.Resampling.NEAREST)
-                .convert("L")
-                .crop((81, 26, 465, 306))
-            )
+            canvas = find_test_canvas(image)
+            if canvas is None:
+                if animation_frames == 0:
+                    continue
+                raise AssertionError(f"Flying Mattes: missing test canvas in {path}")
+            active = image.crop(canvas).resize((384, 280), Image.Resampling.NEAREST).convert("L")
         white = active.point(lambda value: 255 if value >= 200 else 0)
         bounds = white.getbbox()
         # Permit a single faulty display frame when motion resumes after a
@@ -674,9 +707,11 @@ def check_flying_mattes(machine):
 
     # In the final orientation, the gray wings form an L above and to the
     # right of the white square. Check the silhouette, not just gray presence.
-    expected_gray = Image.new("L", (384, 280))
-    expected_gray.paste(255, (100, 84, 132, 100))
-    expected_gray.paste(255, (116, 100, 132, 116))
+    left, top, right, bottom = bounds
+    square_width, square_height = right - left, bottom - top
+    expected_gray = Image.new("L", active.size)
+    expected_gray.paste(255, (left, top - square_height, right + square_width, top))
+    expected_gray.paste(255, (right, top, right + square_width, bottom))
     mismatched = ImageChops.difference(final_gray, expected_gray).histogram()[255]
     if mismatched > 32:
         raise AssertionError(
@@ -699,8 +734,7 @@ def check_moving_window(machine, fixed_reference):
     name = "Moving Window 2" if fixed_reference else "Moving Window 1"
 
     # Work on the original pixels: resampling could hide a one-pixel shift.
-    # These bounds exclude Vemu's debug border in its 1920x1248 video output.
-    viewport = (323, 104, 1859, 1224)
+    # Locate the canvas independently of Vemu's debug-border/capture offset.
     # Each dot is 4x4 output pixels (one logical pixel). The outer rectangle
     # includes the dots; removing four pixels per edge leaves 264x176 content.
     marker_size = (272, 184)
@@ -713,20 +747,21 @@ def check_moving_window(machine, fixed_reference):
     reference_frame = None
     # Keep a small in-memory atlas, not copies of all the video frames. Once a
     # pixel is known it is never updated, so errors cannot cause reference drift.
-    atlas = Image.new("RGB", (1536, 1120))
+    atlas = None
     # A separate validity mask distinguishes unseen pixels from actual black
     # reference pixels: 0 means unseen, 255 means already recorded.
-    known = Image.new("L", atlas.size)
+    known = None
     checked = 0
     marker_frames = 0
     positions = set()
     previous_frame = None
     for frame, path in sorted(machine.images.items()):
         with Image.open(path) as image:
-            if image.size != (1920, 1248):
-                raise AssertionError(
-                    f"{name}: unsupported frame size {image.size} in {path}"
-                )
+            viewport = find_test_canvas(image)
+            if viewport is None:
+                if marker_frames == 0:
+                    continue
+                raise AssertionError(f"{name}: missing test canvas in {path}")
             active = image.convert("RGB").crop(viewport)
         # Taking the minimum of R/G/B selects near-white dots without mistaking
         # a saturated red, green, or blue area of the picture for a marker.
@@ -751,6 +786,11 @@ def check_moving_window(machine, fixed_reference):
             raise AssertionError(
                 f"{name}: missing or unstable corner dots in {path}; bounds {bounds}"
             )
+        if atlas is None:
+            atlas = Image.new("RGB", active.size)
+            known = Image.new("L", active.size)
+        elif active.size != atlas.size:
+            raise AssertionError(f"{name}: test canvas size changed in {path}")
         if previous_frame is not None and frame != previous_frame + 1:
             raise AssertionError(f"{name}: missing video frame before {path}")
         previous_frame = frame

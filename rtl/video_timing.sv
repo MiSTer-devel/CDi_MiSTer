@@ -27,9 +27,10 @@ module video_timing (
     bit [12:0] h_start;  // C in datasheet
     bit [12:0] h_sync;  // E in datasheet
 
-    // Allows moving videotiming to the left
-    // to counter pipeline latencies
-    localparam kHBlankOffset = 1;
+    // Allows moving videotiming to the left to counter pipeline latencies.
+    // C is defined as 10.7µs at 30 MHz or 20 cycles of 16 CLK periods.
+    // This means HBlank must be 320 clock cycles wide
+    localparam kHBlankOffset = 7;
 
     always_comb begin
         if (st && cf) begin
