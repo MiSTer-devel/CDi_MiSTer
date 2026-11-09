@@ -79,10 +79,12 @@ module cditop (
 
     output fail_not_enough_words,
     output fail_too_much_data,
-    input config_disable_cpu_starve,
-    input config_rgb888,
-    input config_auto_play,
-    input config_disable_vmpeg,
+    input  config_disable_cpu_starve,
+    input  config_rgb888,
+    input  config_auto_play,
+    input  config_disable_vmpeg,
+    input  config_crop_st,
+
     input [64:0] hps_rtc
 );
 
@@ -215,7 +217,6 @@ module cditop (
     // video mixing. But we won't do that here and use the digital
     // one instead
     wire mcd212_vsd;
-    /* verilator tracing_off */
     mcd212 mcd212_inst (
         .clk(clk30),
         .reset,
@@ -233,8 +234,10 @@ module cditop (
         .vsd(mcd212_vsd),
         .hsync(HSync),
         .vsync(VSync),
-        .hblank(HBlank),
-        .vblank(VBlank),
+        .hblank(),
+        .vblank(),
+        .hblank_ext(HBlank),
+        .vblank_ext(VBlank),
         .vga_f1(vga_f1),
         .sdram_addr(sdram_addr),
         .sdram_rd(sdram_rd),
@@ -250,7 +253,8 @@ module cditop (
         .debug_force_video_plane,
         // Don't starve the CPU during DMA transfers
         .config_disable_cpu_starve(config_disable_cpu_starve || cdic_dma_ack || cdic_dma_req),
-        .config_rgb888
+        .config_rgb888,
+        .config_crop_st
     );
     /*verilator tracing_on*/
 
@@ -346,6 +350,7 @@ module cditop (
     rgb888_s mcd212_video_out;
     linear_volume_s mpeg_dsp_volume;
 
+    /* verilator tracing_off */
     vmpeg vmpeg_inst (
         .clk(clk30),
         .clk_mpeg,

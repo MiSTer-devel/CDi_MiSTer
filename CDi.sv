@@ -57,12 +57,12 @@ module emu (
     output        HDMI_FREEZE,
     output        HDMI_BLACKOUT,
     output        HDMI_BOB_DEINT,
-    
-    input  [ 5:0] LFB_FMT,
-    input  [31:0] LFB_BASE,
-    input  [11:0] LFB_WIDTH,
-    input  [11:0] LFB_HEIGHT,
-    input  [13:0] LFB_STRIDE,
+
+    input [ 5:0] LFB_FMT,
+    input [31:0] LFB_BASE,
+    input [11:0] LFB_WIDTH,
+    input [11:0] LFB_HEIGHT,
+    input [13:0] LFB_STRIDE,
 
 `ifdef MISTER_FB
     // Use framebuffer in DDRAM
@@ -229,6 +229,7 @@ module emu (
         "P1O[35:34],Scale,Normal,V-Integer,Narrower HV-Integer,Wider HV-Integer;",
         "P1O[39],Vertical Crop,Off,On(270);",
         "P1O[40],CLUT Bits,Original(18),24;",
+        "P1O[41],Crop ST border,No,Yes;",
         "P1-;",
         "P1O[26:24],Audio Mixing,Original,CDIC unmixed,VMPEG unmixed,VMPEG Left,VMPEG Right;",
 
@@ -348,6 +349,7 @@ module emu (
     bit config_rgb888  /*verilator public_flat_rw */ = 1;
     bit config_auto_play  /*verilator public_flat_rw */ = 1;
     bit config_disable_vmpeg = 0;
+    bit config_crop_st = 1;
     bit config_first_player_back_port = 0;
     bit config_disable_seek_time  /*verilator public_flat_rw */ = 1;
     bit debug_disable_vcd_clock = 0;
@@ -386,6 +388,8 @@ module emu (
     wire [1:0] ar = status[33:32];
     wire [1:0] video_freak_scale = status[35:34];
     wire vcrop_en = status[39];
+    wire config_crop_st = status[41];
+
 
     always_ff @(posedge clk_sys) begin
         // only change during resets
@@ -1037,6 +1041,7 @@ module emu (
         .config_rgb888,
         .config_auto_play,
         .config_disable_vmpeg(config_disable_vmpeg),
+        .config_crop_st(config_crop_st),
 
         .hps_rtc(hps_rtc)
     );

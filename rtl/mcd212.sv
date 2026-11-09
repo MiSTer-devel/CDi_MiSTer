@@ -51,6 +51,8 @@ module mcd212 (
     output          vsync,
     output bit      hblank,
     output          vblank,
+    output          hblank_ext,
+    output          vblank_ext,
     output          vga_f1,
     output bit      vsd,
 
@@ -69,7 +71,8 @@ module mcd212 (
 
     input [1:0] debug_force_video_plane,
     input config_disable_cpu_starve,
-    input config_rgb888
+    input config_rgb888,
+    input config_crop_st
 
 );
 
@@ -470,6 +473,9 @@ module mcd212 (
         end
     end
 
+    wire hblank_no_st;
+    wire vblank_no_st;
+
     video_timing vt (
         .clk,
         .reset,
@@ -486,9 +492,13 @@ module mcd212 (
         .vsync(vsync),
         .hblank(hblank_vt),
         .vblank(vblank),
-        .new_line(new_line)
+        .new_line(new_line),
+        .hblank_no_st(hblank_no_st),
+        .vblank_no_st(vblank_no_st)
     );
 
+    assign hblank_ext = config_crop_st ? hblank : hblank_no_st;
+    assign vblank_ext = config_crop_st ? vblank : vblank_no_st;
 
     struct packed {
         bit de;
@@ -1348,6 +1358,9 @@ module mcd212 (
 `ifdef VERILATOR
         //vsd = 1;
 `endif
+
+        // Ensure that blank areas are colored "black", just in case
+        if (hblank || vblank) vidout = 16;
     end
 
     // Implementation of Table 5-13 Register Map
