@@ -36,8 +36,8 @@
 #define SLAVE
 // #define SIMULATE_RC5
 // #define TRACE_ON_FMA
-#define TRACE_ON_FMV
-// #define TRACE_FROM_START
+// #define TRACE_ON_FMV
+#define TRACE_FROM_START
 // #define TRACE_ON_CD_REQUEST
 
 #define PL_MPEG_IMPLEMENTATION
@@ -1633,7 +1633,7 @@ class CDi {
 
         // Simulate television
         if (dut.rootp->emu__DOT__cditop__DOT__mcd212_inst__DOT__video_y == 0 &&
-            dut.rootp->emu__DOT__cditop__DOT__mcd212_inst__DOT__video_x == 0) {
+            dut.rootp->emu__DOT__cditop__DOT__mcd212_inst__DOT__video_x == 4) {
             char filename[100];
 
             ApplyInputEvents();

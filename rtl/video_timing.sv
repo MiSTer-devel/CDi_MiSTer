@@ -10,12 +10,14 @@ module video_timing (
     input st,  // standard, 1=360/720 pixels per line, 0=384/768
     input cm,  // color mode, 0 = 4 clocks per pixel, 1 = 2 clocks per pixel
     input fd,  // frame duration, 0=50 Hz, 1=60 Hz
-    output bit [8:0] video_y,
-    output bit [12:0] video_x,
+    output bit [8:0] video_y = 0,
+    output bit [12:0] video_x = 0,
     output bit hsync,
     output bit vsync,
     output bit hblank,
     output bit vblank,
+    output bit hblank_no_st,
+    output bit vblank_no_st,
     output bit new_line
 );
 
@@ -34,16 +36,20 @@ module video_timing (
 
     always_comb begin
         if (st && cf) begin
+            // 30 MHz pixel frequency but 360 pixels instead of 384
+            // Used in the game "Flashback"
             h_total  = 120;
             h_active = 90;
             h_start  = 23;
             h_sync   = 9;
         end else if (cf) begin
+            // 30 MHz pixel frequency. This is the usual case
             h_total  = 120;
             h_active = 96;
             h_start  = 20;
             h_sync   = 9;
         end else begin
+            // 28 MHz? NTSC Monitor? This should never occur
             h_total  = 112;
             h_active = 90;
             h_start  = 19;
@@ -55,6 +61,27 @@ module video_timing (
         h_start  = h_start * ClksPerCycle - kHBlankOffset;
         h_sync   = h_sync * ClksPerCycle;
     end
+
+    // A variant of video timing without usage of the ST signal.
+    // Used to keep the video signal stable during mode change
+    bit [12:0] h_active_no_st;
+    bit [12:0] h_start_no_st;
+
+    always_comb begin
+        if (cf) begin
+            h_active_no_st = 96;
+            h_start_no_st  = 20;
+        end else begin
+            h_active_no_st = 8;
+            h_start_no_st  = 19;
+        end
+
+        // hblank <= hblank_vt_q2 <= hblank_vt_q <= hblank_vt causes 3 ticks delay
+        // in parent module
+        h_active_no_st = h_active_no_st * ClksPerCycle;
+        h_start_no_st  = h_start_no_st * ClksPerCycle - kHBlankOffset + 3;
+    end
+
 
     // vertical timing according to Table 5-6
     bit [8:0] v_total;  // J in datasheet
@@ -94,55 +121,83 @@ module video_timing (
         if (!parity) v_start = v_start + 1;
     end
 
+    bit [8:0] v_active_no_st;
+    bit [8:0] v_start_no_st;
+
+    always_comb begin
+        if (fd) begin
+            // NTSC
+            v_active_no_st = 240;
+            v_start_no_st  = 18;
+        end else begin
+            // PAL full height
+            v_active_no_st = 280;
+            v_start_no_st  = 26;
+        end
+
+        // This hack is required to fix the flickering OSD
+        // It moves even fields one line down
+        // but also breaks the line order for everything else
+        if (!parity) v_start_no_st = v_start_no_st + 1;
+    end
+
+
     always_ff @(posedge clk) begin
         new_line <= 0;
 
+        if (video_x == (h_total - 1)) begin  // end of line reached?
+            video_x <= 0;
+            hsync <= 1;
+            new_line <= 1;
+
+            if (video_y == (v_total - 1) && !parity) begin
+                // Start odd field now
+                // Can only be reached in interlacing mode
+                video_y <= 0;
+                parity <= 1;
+                fake_parity <= 1;
+                vsync <= 1;
+            end else if (video_y == (v_total - 2) && parity) begin
+                // Start even field when in interlacing
+                // Stay on odd field when interlacing is disabled
+                video_y <= 0;
+
+                if (sm) parity <= 0;
+                else vsync <= 1;
+
+                fake_parity <= !fake_parity;
+            end else begin
+                video_y <= video_y + 1;
+            end
+        end else begin
+            video_x <= video_x + 1;
+        end
+
+        if (video_x == h_sync) hsync <= 0;
+        if (parity && video_y == v_sync) vsync <= 0;
+
+        // Create the centered vsync edges for interlacing
+        if (!parity && video_x == h_total / 2 && video_y == 0) vsync <= 1;
+        if (!parity && video_x == h_total / 2 && video_y == v_sync) vsync <= 0;
+
+        // Never reset on FPGA build to keep the video stable.
+        // This avoids resyncs of HDMI sinks during reset
+`ifdef VERILATOR
         if (reset) begin
             video_x <= 0;
             video_y <= 0;
             parity <= 1;
             fake_parity <= 1;
-        end else begin
-            if (video_x == (h_total - 1)) begin  // end of line reached?
-                video_x <= 0;
-                hsync <= 1;
-                new_line <= 1;
-
-                if (video_y == (v_total - 1) && !parity) begin
-                    // Start odd field now
-                    // Can only be reached in interlacing mode
-                    video_y <= 0;
-                    parity <= 1;
-                    fake_parity <= 1;
-                    vsync <= 1;
-                end else if (video_y == (v_total - 2) && parity) begin
-                    // Start even field when in interlacing
-                    // Stay on odd field when interlacing is disabled
-                    video_y <= 0;
-
-                    if (sm) parity <= 0;
-                    else vsync <= 1;
-
-                    fake_parity <= !fake_parity;
-                end else begin
-                    video_y <= video_y + 1;
-                end
-            end else begin
-                video_x <= video_x + 1;
-            end
-
-            if (video_x == h_sync) hsync <= 0;
-            if (parity && video_y == v_sync) vsync <= 0;
-
-            // Create the centered vsync edges for interlacing
-            if (!parity && video_x == h_total / 2 && video_y == 0) vsync <= 1;
-            if (!parity && video_x == h_total / 2 && video_y == v_sync) vsync <= 0;
         end
+`endif
     end
 
     always_ff @(posedge clk) begin
         hblank <= !(video_x >= h_start && video_x < (h_start + h_active));
         vblank <= !(video_y >= v_start && video_y < (v_start + v_active));
+
+        hblank_no_st <= !(video_x >= h_start_no_st && video_x < (h_start_no_st + h_active_no_st));
+        vblank_no_st <= !(video_y >= v_start_no_st && video_y < (v_start_no_st + v_active_no_st));
     end
 
 

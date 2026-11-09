@@ -51,6 +51,8 @@ module mcd212 (
     output          vsync,
     output bit      hblank,
     output          vblank,
+    output          hblank_ext,
+    output          vblank_ext,
     output          vga_f1,
     output bit      vsd,
 
@@ -69,7 +71,8 @@ module mcd212 (
 
     input [1:0] debug_force_video_plane,
     input config_disable_cpu_starve,
-    input config_rgb888
+    input config_rgb888,
+    input config_crop_st
 
 );
 
@@ -470,6 +473,9 @@ module mcd212 (
         end
     end
 
+    wire hblank_no_st;
+    wire vblank_no_st;
+
     video_timing vt (
         .clk,
         .reset,
@@ -486,9 +492,13 @@ module mcd212 (
         .vsync(vsync),
         .hblank(hblank_vt),
         .vblank(vblank),
-        .new_line(new_line)
+        .new_line(new_line),
+        .hblank_no_st(hblank_no_st),
+        .vblank_no_st(vblank_no_st)
     );
 
+    assign hblank_ext = config_crop_st ? hblank : hblank_no_st;
+    assign vblank_ext = config_crop_st ? vblank : vblank_no_st;
 
     struct packed {
         bit de;
@@ -535,7 +545,18 @@ module mcd212 (
 
     always_ff @(posedge clk) begin
         if (reset) begin
+`ifdef VERILATOR
             command_register_dcr1 <= 0;
+`else
+            // Don't reset fd to keep the current PAL/NTSC setting
+            command_register_dcr1.de  <= 0;
+            command_register_dcr1.cf  <= 1;
+            command_register_dcr1.sm  <= 0;
+            command_register_dcr1.cm1 <= 0;
+            command_register_dcr1.ic1 <= 0;
+            command_register_dcr1.dc1 <= 0;
+`endif
+
             command_register_dcr2 <= 0;
             control_register_crsr1w <= 0;
             control_register_crsr2w <= 0;
@@ -651,7 +672,7 @@ module mcd212 (
     bit [21:0] ica1_vsr;
     bit ica1_irq;
 
-    wire dca0_read = hblank_vt && !hblank_vt_q && !vblank && command_register_dcr1.dc1;
+    wire dca0_read = hblank_vt && !hblank_vt_q && !vblank && command_register_dcr1.dc1 && command_register_dcr1.de;
     ica_dca_ctrl #(
         .unit_index(0)
     ) ica0 (
@@ -675,7 +696,7 @@ module mcd212 (
         .parity(ica_parity)
     );
 
-    wire dca1_read = hblank_vt && !hblank_vt_q && !vblank && command_register_dcr2.dc2;
+    wire dca1_read = hblank_vt && !hblank_vt_q && !vblank && command_register_dcr2.dc2 && command_register_dcr1.de;
     ica_dca_ctrl #(
         .unit_index(1)
     ) ica1 (
@@ -702,18 +723,11 @@ module mcd212 (
     wire [15:0] file0_din = sdram_dout;
     wire [15:0] file1_din = sdram_dout;
 
+    // No reset is allowed here to keep the video stable
     always_ff @(posedge clk) begin
-        if (reset) begin
-            hblank_vt_q <= 0;
-            hblank_vt_q2 <= 0;
-            hblank <= 0;
-        end else begin
-            hblank_vt_q <= hblank_vt;
-            hblank_vt_q2 <= hblank_vt_q;
-
-            hblank <= hblank_vt_q2;
-        end
-
+        hblank_vt_q <= hblank_vt;
+        hblank_vt_q2 <= hblank_vt_q;
+        hblank <= hblank_vt_q2;
     end
 
     pixelstream file0_out (.clk);
@@ -1345,9 +1359,13 @@ module mcd212 (
         end
 
         vsd = backdrop_pixel && image_coding_method_register.ev;
-`ifdef VERILATOR
-        //vsd = 1;
-`endif
+
+        // Ensure that blank areas are colored "black", just in case
+        if (hblank || vblank || !command_register_dcr1.de) begin
+            vidout.r = 16;
+            vidout.g = 16;
+            vidout.b = 16;
+        end
     end
 
     // Implementation of Table 5-13 Register Map

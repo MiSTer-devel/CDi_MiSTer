@@ -1,6 +1,5 @@
 # TODOs and known issues
 
-* ST flag changes pixel aspect ratio on HDMI upscaled image. Good or bad?
 * Implement optional 50/15 µsec emphasis for ADPCM (and CDDA?)
 * Random hang of playback controls in Addams Family Disc 2. Movie still playing. Sudden rainbow colors.
     * Reproduced by frequently pausing and resuming
@@ -33,9 +32,7 @@
 * Cheat support?
     * Since the CD-i has a multi tasking operating system, this can only be achieved by OS9 aware memory access
 * Fix reset behaviour (Core is sometimes hanging after reset)
-* Find a solution for the video mode reset during system resets
-    * The ST flag is the issue here, causing a video mode change
-    * Interlacing also is a problem here
+* Find a solution for HDMI resyncs when interlacing is activated
 * Check compatibility with CDs that have track index 2 as opposed to the usual 0 and 1
     * Possible discs? "Philips CDI Format Test Disc 1 (Europe)" and a disc by Zeneca Pharmaceuticals Group, "An Interactive Medical Program"
 * Possibly adding support for the Quizard arcade hardware

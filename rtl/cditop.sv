@@ -16,7 +16,7 @@ module cditop (
     input audio_cd_in_tray,
     input [2:0] config_audio_mixing,
 
-    output bit ce_pix,
+    output bit ce_pix = 1,
     output bit HBlank,
     output bit HSync,
     output bit VBlank,
@@ -79,10 +79,12 @@ module cditop (
 
     output fail_not_enough_words,
     output fail_too_much_data,
-    input config_disable_cpu_starve,
-    input config_rgb888,
-    input config_auto_play,
-    input config_disable_vmpeg,
+    input  config_disable_cpu_starve,
+    input  config_rgb888,
+    input  config_auto_play,
+    input  config_disable_vmpeg,
+    input  config_crop_st,
+
     input [64:0] hps_rtc
 );
 
@@ -154,10 +156,11 @@ module cditop (
     wire bus_err = (bus_err_ram_area1 || bus_err_ram_area2 || bus_err_ram_area3 || bus_err_ram_area4 || bus_err_ram_area5) && as && (lds || uds);
 
     always_ff @(posedge clk30) begin
-
+        ce_pix <= !ce_pix;
+        // No reset is allowed here to keep the video stable on the FPGA build
+`ifdef VERILATOR
         if (reset) ce_pix <= 0;
-        else ce_pix <= !ce_pix;
-
+`endif
         if (bus_ack) begin
             if ((lds || uds) && attex_cs_cdic && write_strobe)
                 $display(
@@ -233,8 +236,10 @@ module cditop (
         .vsd(mcd212_vsd),
         .hsync(HSync),
         .vsync(VSync),
-        .hblank(HBlank),
-        .vblank(VBlank),
+        .hblank(),
+        .vblank(),
+        .hblank_ext(HBlank),
+        .vblank_ext(VBlank),
         .vga_f1(vga_f1),
         .sdram_addr(sdram_addr),
         .sdram_rd(sdram_rd),
@@ -250,7 +255,8 @@ module cditop (
         .debug_force_video_plane,
         // Don't starve the CPU during DMA transfers
         .config_disable_cpu_starve(config_disable_cpu_starve || cdic_dma_ack || cdic_dma_req),
-        .config_rgb888
+        .config_rgb888,
+        .config_crop_st
     );
     /*verilator tracing_on*/
 

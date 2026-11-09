@@ -79,7 +79,7 @@ class VideoSim {
         clock();
 
         if (dut.rootp->emu__DOT__cditop__DOT__mcd212_inst__DOT__video_y == 0 &&
-            dut.rootp->emu__DOT__cditop__DOT__mcd212_inst__DOT__video_x == 0)
+            dut.rootp->emu__DOT__cditop__DOT__mcd212_inst__DOT__video_x == 4)
             pixel_index = 0;
 
         if (pixel_index >= kImageSize)
@@ -215,17 +215,19 @@ void get_video_frame(const std::string &binpath, const std::string &pngpath, con
     fread(&machine.dut.rootp->emu__DOT__ram[0], 1, 1024 * 256 * 4, file);
     fclose(file);
 
+    // Swap endianess if required
     if (machine.dut.rootp->emu__DOT__ram[1] == 0x0015) {
         for (int i = 0; i < 1024 * 256 * 2; ++i)
             machine.dut.rootp->emu__DOT__ram[i] = bswap_16(machine.dut.rootp->emu__DOT__ram[i]);
     }
 
-    constexpr uint32_t kIc1 = 1 << 9;
-    constexpr uint32_t kDc1 = 1 << 8;
+    constexpr uint32_t kIc1 = 1 << 9; // ICA enable
+    constexpr uint32_t kDc1 = 1 << 8; // DCA enable
     constexpr uint32_t kCf = 1 << 14; // 30 MHz
+    constexpr uint32_t kDe = 1 << 15; // Display Enable
     machine.step();
     machine.step();
-    machine.dut.rootp->emu__DOT__cditop__DOT__mcd212_inst__DOT__command_register_dcr1 = kIc1 | kDc1 | kCf;
+    machine.dut.rootp->emu__DOT__cditop__DOT__mcd212_inst__DOT__command_register_dcr1 = kIc1 | kDc1 | kCf | kDe;
     machine.dut.rootp->emu__DOT__cditop__DOT__mcd212_inst__DOT__command_register_dcr2 = kIc1 | kDc1;
 
     if (has_hack(hacks, "st")) {
@@ -250,6 +252,10 @@ void get_video_frame(const std::string &binpath, const std::string &pngpath, con
         while (machine.dut.rootp->emu__DOT__cditop__DOT__mcd212_inst__DOT__video_y != 0)
             machine.step();
     }
+
+    // Add some clock cycles due to video latency. The bottom right might still have a non-written spot
+    while (machine.dut.rootp->emu__DOT__cditop__DOT__mcd212_inst__DOT__video_x < 5)
+        machine.step();
 
     machine.write_png(pngpath.c_str());
     fprintf(stderr, "Written %s\n", pngpath.c_str());
