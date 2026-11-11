@@ -263,8 +263,8 @@ module emu (
         "R[0],Reset and close OSD;",
         "v,0;",  // [optional] config version 0-99. 
                  // If CONF_STR options are changed in incompatible way, then change version number too,
-        "J1,B1,B2,B1+B2;",
-        "jn,B,A,Y;",
+        "J1,B1,B2,B1+B2,Alt B1;",
+        "jn,B,A,Y,X;",
         // so all options will get default values on first start.
         "I,",
         "NvRAM saved;",
