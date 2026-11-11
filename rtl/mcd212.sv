@@ -545,7 +545,18 @@ module mcd212 (
 
     always_ff @(posedge clk) begin
         if (reset) begin
+`ifdef VERILATOR
             command_register_dcr1 <= 0;
+`else
+            // Don't reset fd to keep the current PAL/NTSC setting
+            command_register_dcr1.de  <= 0;
+            command_register_dcr1.cf  <= 1;
+            command_register_dcr1.sm  <= 0;
+            command_register_dcr1.cm1 <= 0;
+            command_register_dcr1.ic1 <= 0;
+            command_register_dcr1.dc1 <= 0;
+`endif
+
             command_register_dcr2 <= 0;
             control_register_crsr1w <= 0;
             control_register_crsr2w <= 0;
@@ -661,7 +672,7 @@ module mcd212 (
     bit [21:0] ica1_vsr;
     bit ica1_irq;
 
-    wire dca0_read = hblank_vt && !hblank_vt_q && !vblank && command_register_dcr1.dc1;
+    wire dca0_read = hblank_vt && !hblank_vt_q && !vblank && command_register_dcr1.dc1 && command_register_dcr1.de;
     ica_dca_ctrl #(
         .unit_index(0)
     ) ica0 (
@@ -685,7 +696,7 @@ module mcd212 (
         .parity(ica_parity)
     );
 
-    wire dca1_read = hblank_vt && !hblank_vt_q && !vblank && command_register_dcr2.dc2;
+    wire dca1_read = hblank_vt && !hblank_vt_q && !vblank && command_register_dcr2.dc2 && command_register_dcr1.de;
     ica_dca_ctrl #(
         .unit_index(1)
     ) ica1 (
@@ -1355,12 +1366,13 @@ module mcd212 (
         end
 
         vsd = backdrop_pixel && image_coding_method_register.ev;
-`ifdef VERILATOR
-        //vsd = 1;
-`endif
 
         // Ensure that blank areas are colored "black", just in case
-        if (hblank || vblank) vidout = 16;
+        if (hblank || vblank || !command_register_dcr1.de) begin
+            vidout.r = 16;
+            vidout.g = 16;
+            vidout.b = 16;
+        end
     end
 
     // Implementation of Table 5-13 Register Map
