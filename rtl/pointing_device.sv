@@ -114,7 +114,12 @@ module pointing_device (
         y = 0;
 
         // combine joystick and mouse buttons
-        b1 = mister_joystick[6] | mister_joystick[4] | mister_mouse[0];
+        // The gamepad uses the layout of the 22ER9017
+        // Front face buttons
+        //         B1
+        //  B1/B2      B2
+        //         B1
+        b1 = mister_joystick[6] | mister_joystick[4] | mister_joystick[7] | mister_mouse[0];
         b2 = mister_joystick[6] | mister_joystick[5] | mister_mouse[1];
 
         speed = speed_lut[{speed_setting[1:0], accel}];
