@@ -143,49 +143,51 @@ module video_timing (
     always_ff @(posedge clk) begin
         new_line <= 0;
 
-        if (reset) begin
+        if (video_x == (h_total - 1)) begin  // end of line reached?
+            video_x <= 0;
+            hsync <= 1;
+            new_line <= 1;
+
+            if (video_y == (v_total - 1) && !parity) begin
+                // Start odd field now
+                // Can only be reached in interlacing mode
+                video_y <= 0;
+                parity <= 1;
+                fake_parity <= 1;
+                vsync <= 1;
+            end else if (video_y == (v_total - 2) && parity) begin
+                // Start even field when in interlacing
+                // Stay on odd field when interlacing is disabled
+                video_y <= 0;
+
+                if (sm) parity <= 0;
+                else vsync <= 1;
+
+                fake_parity <= !fake_parity;
+            end else begin
+                video_y <= video_y + 1;
+            end
+        end else begin
+            video_x <= video_x + 1;
+        end
+
+        if (video_x == h_sync) hsync <= 0;
+        if (parity && video_y == v_sync) vsync <= 0;
+
+        // Create the centered vsync edges for interlacing
+        if (!parity && video_x == h_total / 2 && video_y == 0) vsync <= 1;
+        if (!parity && video_x == h_total / 2 && video_y == v_sync) vsync <= 0;
+
+        // Never reset on FPGA build to keep the video stable.
+        // This avoids resyncs of HDMI sinks during reset
 `ifdef VERILATOR
+        if (reset) begin
             video_x <= 0;
             video_y <= 0;
-`endif
             parity <= 1;
             fake_parity <= 1;
-        end else begin
-            if (video_x == (h_total - 1)) begin  // end of line reached?
-                video_x <= 0;
-                hsync <= 1;
-                new_line <= 1;
-
-                if (video_y == (v_total - 1) && !parity) begin
-                    // Start odd field now
-                    // Can only be reached in interlacing mode
-                    video_y <= 0;
-                    parity <= 1;
-                    fake_parity <= 1;
-                    vsync <= 1;
-                end else if (video_y == (v_total - 2) && parity) begin
-                    // Start even field when in interlacing
-                    // Stay on odd field when interlacing is disabled
-                    video_y <= 0;
-
-                    if (sm) parity <= 0;
-                    else vsync <= 1;
-
-                    fake_parity <= !fake_parity;
-                end else begin
-                    video_y <= video_y + 1;
-                end
-            end else begin
-                video_x <= video_x + 1;
-            end
-
-            if (video_x == h_sync) hsync <= 0;
-            if (parity && video_y == v_sync) vsync <= 0;
-
-            // Create the centered vsync edges for interlacing
-            if (!parity && video_x == h_total / 2 && video_y == 0) vsync <= 1;
-            if (!parity && video_x == h_total / 2 && video_y == v_sync) vsync <= 0;
         end
+`endif
     end
 
     always_ff @(posedge clk) begin

@@ -17,6 +17,8 @@ I usually build and deploy my images like this in my homebrew projects.
 Then I press the User button on the MiSTer to force a reset.
 If the option `OSD -> Autoplay` is activated, the system shell is skipped and the application is relaunched.
 
+**Warning:** Without a proper remount, the image size is not updated. Keep that in mind when adding assets to the disc!
+
 ## Remote launch from dev PC
 
 Based on the example above, it is possible to launch it by remote controlling the MiSTer.
