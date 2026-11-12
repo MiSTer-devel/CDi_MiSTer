@@ -602,8 +602,18 @@ module vmpeg (
     bit pending_fma_stream_change;
     bit register_update_latch;
     bit register_update_scroll;
+
+    // I'm slightly ashamed here. This part of the Window update mechanism was derived
+    // via usage of generative AI. I've created many applications as stimulus to detectd
+    // differences between the register values of real VMPEG and my replication here.
+    // AI helped to analyze the differences and has created some parts here that
+    // followed the matching patterns in the test data.
+    // The Software in the loop test is used to keep track of the accuracy
+
+    // Detect writing of 0x000c to e040c2 as a scrolled updated request
     wire scroll_update_write = access && write_strobe && bus_ack &&
         address[15:1] == 15'h2061 && din[3] && din[2];
+
     // Registers accepted at a field boundary, awaiting a new picture.
     bit next_window_pending;
     bit register_update_late, next_window_late;
@@ -1123,7 +1133,7 @@ module vmpeg (
 
                                 fmv_decoder_command[6] <= 0;
                                 fmv_decoder_command[1] <= 0;
-                                fmv_decoder_command[5] <= 0;  // RUN_RYTHM
+                                fmv_decoder_command[5] <= 0;  // RUN_RYTHM off
 
                                 // TODO confirm that this is happening
                                 image_width <= 0;
