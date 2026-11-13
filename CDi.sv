@@ -227,7 +227,7 @@ module emu (
         "P1O[4],Video Region,PAL (50 Hz),NTSC (60 Hz);",
         "P1O[33:32],Aspect ratio,Original,Full Screen,[ARC1],[ARC2];",
         "P1O[35:34],Scale,Normal,V-Integer,Narrower HV-Integer,Wider HV-Integer;",
-        "P1O[39],Vertical Crop,Off,On(270);",
+        "P1O[43:42],Vertical Crop,Off,On(270),On(216);",
         "P1O[40],CLUT Bits,Original(18),24;",
         "P1O[41],Crop ST border,No,Yes;",
         "P1-;",
@@ -387,7 +387,7 @@ module emu (
 
     wire [1:0] ar = status[33:32];
     wire [1:0] video_freak_scale = status[35:34];
-    wire vcrop_en = status[39];
+    wire [1:0] vcrop_en = status[43:42];
     wire config_crop_st = status[41];
 
 
@@ -448,6 +448,18 @@ module emu (
         .RTC(hps_rtc)
     );
 
+    // Cropping has multiple purposes
+    // 1. Allow integer scaling with 1080p
+    // 2. Remove safety margins that would not be perceivable on real CRTs due to overscan
+    bit [11:0] crop_size;
+    always_comb begin
+        crop_size = 0; // No crop
+        case (vcrop_en)
+            1: crop_size = 10'd270;  // 1080/4. Might be good for 50 Hz
+            2: crop_size = 10'd216;  // 1080/5. Might be good for 60 Hz
+        endcase
+    end
+
     video_freak video_freak (
         .*,
         .VGA_VS(VSync),
@@ -455,8 +467,8 @@ module emu (
         .VGA_DE_IN(~(HBlank | VBlank)),
         .ARX((!ar) ? 13'd4 : (13'(ar) - 13'd1)),
         .ARY((!ar) ? 13'd3 : 13'd0),
-        .CROP_SIZE(vcrop_en ? 10'd270 : 10'd0),
-        .CROP_OFF(0),
+        .CROP_SIZE(crop_size),
+        .CROP_OFF(0), // TODO Not sure about the offset yet
         .SCALE(video_freak_scale)
     );
 `endif
